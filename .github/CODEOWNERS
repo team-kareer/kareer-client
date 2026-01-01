@@ -1,0 +1,4 @@
+# Required number of approvals: 2
+
+# issue와 pr 올렸을 떄 리뷰어 자동 할당 (PR 작성자 제외)
+* @team-kareer/kareer-client
