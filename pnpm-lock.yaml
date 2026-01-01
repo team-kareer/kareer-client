@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@kareer/prettier-config':
         specifier: workspace:*
-        version: link:packages/config/prettier-config
+        version: link:packages/config/prettier
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
@@ -35,10 +35,10 @@ importers:
     devDependencies:
       '@kareer/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/config/eslint-config
+        version: link:../../packages/config/eslint
       '@kareer/typescript-config':
         specifier: workspace:*
-        version: link:../../packages/config/typescript-config
+        version: link:../../packages/config/typescript
       '@types/node':
         specifier: ^24.10.1
         version: 24.10.4
@@ -64,7 +64,7 @@ importers:
         specifier: ^7.2.4
         version: 7.3.0(@types/node@24.10.4)
 
-  packages/config/eslint-config:
+  packages/config/eslint:
     devDependencies:
       '@eslint/js':
         specifier: ^9.39.1
@@ -103,9 +103,9 @@ importers:
         specifier: ^8.50.0
         version: 8.50.0(eslint@9.39.1)(typescript@5.9.3)
 
-  packages/config/prettier-config: {}
+  packages/config/prettier: {}
 
-  packages/config/typescript-config: {}
+  packages/config/typescript: {}
 
   packages/kds-ui:
     dependencies:
@@ -118,10 +118,10 @@ importers:
     devDependencies:
       '@kareer/eslint-config':
         specifier: workspace:*
-        version: link:../config/eslint-config
+        version: link:../config/eslint
       '@kareer/typescript-config':
         specifier: workspace:*
-        version: link:../config/typescript-config
+        version: link:../config/typescript
       '@types/node':
         specifier: ^22.15.3
         version: 22.15.3
