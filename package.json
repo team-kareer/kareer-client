@@ -9,10 +9,12 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
+    "@kareer/prettier-config": "workspace:*",
     "prettier": "^3.7.4",
     "turbo": "^2.7.2",
     "typescript": "5.9.2"
   },
+  "prettier": "@kareer/prettier-config",
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"

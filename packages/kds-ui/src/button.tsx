@@ -3,5 +3,5 @@ interface ButtonProps {
 }
 
 export const Button = ({ text }: ButtonProps) => {
-  return <button style={{ backgroundColor: "red" }}>{text}</button>;
+  return <button style={{ backgroundColor: 'red' }}>{text}</button>;
 };
