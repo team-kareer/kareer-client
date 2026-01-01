@@ -15,7 +15,7 @@
     "typescript": "5.9.2"
   },
   "prettier": "@kareer/prettier-config",
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@9.15.0",
   "engines": {
     "node": ">=18"
   }
