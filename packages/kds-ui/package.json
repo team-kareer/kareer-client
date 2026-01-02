@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./button": "./src/components/button/button.tsx",
     "./*": "./src/*.tsx"
   },
   "scripts": {
