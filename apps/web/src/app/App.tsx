@@ -1,11 +1,8 @@
-import { Button } from '@kds/ui';
+import { RouterProvider } from 'react-router-dom';
+import { router } from '@shared/router';
 
 function App() {
-  return (
-    <div>
-      Hi @Kareer <Button text="Click me" />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
