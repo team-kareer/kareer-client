@@ -1,4 +1,4 @@
-import { Button } from '@kds/ui/button';
+import { Button } from '@kds/ui';
 
 function App() {
   return (
