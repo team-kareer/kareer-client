@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./button": "./src/components/button/button.tsx",
-    "./*": "./src/*.tsx"
+    ".": "./src/components/index.ts",
+    "./styles": "./src/styles/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
