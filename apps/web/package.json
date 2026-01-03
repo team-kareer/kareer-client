@@ -13,7 +13,8 @@
   "dependencies": {
     "@kds/ui": "workspace:*",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "react-router-dom": "^7.11.0"
   },
   "devDependencies": {
     "@kareer/eslint-config": "workspace:*",
