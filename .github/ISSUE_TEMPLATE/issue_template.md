@@ -1,9 +1,9 @@
+---
 name: 'Issue Template'
 description: '모든 이슈는 해당 템플릿으로 작성해 주세요!'
 title: '[Type] '
 labels: ''
 assignees: ''
-
 ---
 
 ## ✅ Tasks (To-Do)
