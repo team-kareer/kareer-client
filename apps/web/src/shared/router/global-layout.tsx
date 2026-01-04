@@ -3,11 +3,11 @@ import { Outlet } from 'react-router';
 
 const GlobalLayout = () => {
   return (
-      <main>
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </main>
+    <main>
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
+    </main>
   );
 };
 
