@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router';
 import { globalRoutes } from '@shared/router/routes/global-routes';
 import GlobalLayout from '@shared/router/global-layout';
 
