@@ -1,8 +1,8 @@
 import {
     DashboardPage,
-    RoadmapPage,
     EligibilityPage,
     MyPage,
+    RoadmapPage,
   } from '@shared/router/lazy';
   import { ROUTE_PATH } from '@shared/router/path';
   
