@@ -9,22 +9,22 @@ import {
   export const globalRoutes = [
     {
       path: ROUTE_PATH.ROOT,
-      element: <DashboardPage />,
+      Component: DashboardPage,
     },
     {
       path: ROUTE_PATH.DASHBOARD,
-      element: <DashboardPage />,
+      Component: DashboardPage,
     },
     {
       path: ROUTE_PATH.ROADMAP,
-      element: <RoadmapPage />,
+      Component: RoadmapPage,
     },
     {
       path: ROUTE_PATH.ELIGIBILITY,
-      element: <EligibilityPage />,
+      Component: EligibilityPage,
     },
     {
       path: ROUTE_PATH.MY_PAGE,
-      element: <MyPage />,
+      Component: MyPage,
     },
   ];
