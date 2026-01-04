@@ -1,6 +1,5 @@
 export const ROUTE_PATH = {
-  ROOT: '/',
-  DASHBOARD: '/dashboard',
+  DASHBOARD: '/',
   ROADMAP: '/roadmap',
   ELIGIBILITY: '/eligibility',
   MY_PAGE: '/my-page',

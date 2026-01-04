@@ -8,10 +8,6 @@ import {
   
   export const globalRoutes = [
     {
-      path: ROUTE_PATH.ROOT,
-      Component: DashboardPage,
-    },
-    {
       path: ROUTE_PATH.DASHBOARD,
       Component: DashboardPage,
     },
