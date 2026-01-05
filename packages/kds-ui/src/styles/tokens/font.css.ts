@@ -1,5 +1,5 @@
 export const font = {
-  size: {
+  fontSize: {
     12: '1.2rem',
     14: '1.4rem',
     16: '1.6rem',
@@ -10,7 +10,7 @@ export const font = {
     32: '3.2rem',
     40: '4rem',
   },
-  weight: {
+  fontWeight: {
     regular: '400',
     medium: '500',
     semibold: '600',
