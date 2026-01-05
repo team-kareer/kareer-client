@@ -2,5 +2,5 @@ import ky from 'ky';
 
 export const api = ky.create({
   prefixUrl: import.meta.env.VITE_BASE_URL,
-  retry: { limit: 2 },
+  retry: 0,
 });
