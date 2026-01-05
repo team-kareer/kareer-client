@@ -1,7 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css';
 
-import { themeVars } from './theme.css';
-
 globalStyle('html, body', {
   width: '100dvw',
   height: '100dvh',
@@ -13,8 +11,4 @@ globalStyle('html, body', {
 
 globalStyle('::-webkit-scrollbar', {
   display: 'none',
-});
-
-globalStyle('body', {
-  backgroundColor: themeVars.color.pastel.kamint_500,
 });
