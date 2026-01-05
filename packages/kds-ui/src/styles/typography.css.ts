@@ -1,6 +1,6 @@
 import { styleVariants } from '@vanilla-extract/css';
 
-import { font } from './font.css';
+import { font } from './tokens/font.css';
 
 export const typography = styleVariants({
   // Head
