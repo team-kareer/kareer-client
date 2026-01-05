@@ -4,9 +4,10 @@ pre-commit:
     lint:
       glob: '*.{js,ts,jsx,tsx}'
       run: pnpm lint
+
     format:
-      glob: '*.{js,ts,jsx,tsx,json,yaml,md}'
-      run: pnpm format
+      glob: '*.{js,ts,jsx,tsx,json,yaml,yml,md}'
+      run: pnpm prettier --write {staged_files}
       stage_fixed: true
 
 pre-push:
