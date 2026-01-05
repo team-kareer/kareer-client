@@ -13,13 +13,13 @@
   "dependencies": {
     "@kds/ui": "workspace:*",
     "@sentry/react": "^10.32.1",
-    "@sentry/vite-plugin": "^4.6.1",
     "ky": "^1.14.2",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "^7.11.0"
   },
   "devDependencies": {
+    "@sentry/vite-plugin": "^4.6.1",
     "@kareer/eslint-config": "workspace:*",
     "@kareer/typescript-config": "workspace:*",
     "@types/node": "catalog:",
