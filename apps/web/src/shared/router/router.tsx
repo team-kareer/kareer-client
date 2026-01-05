@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router';
-import { globalRoutes } from '@shared/router/routes/global-routes';
+
 import GlobalLayout from '@shared/router/global-layout';
+import { globalRoutes } from '@shared/router/routes/global-routes';
 
 export const router = createBrowserRouter([
   {
