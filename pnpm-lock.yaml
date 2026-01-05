@@ -59,9 +59,6 @@ importers:
       '@sentry/react':
         specifier: ^10.32.1
         version: 10.32.1(react@19.2.0)
-      '@sentry/vite-plugin':
-        specifier: ^4.6.1
-        version: 4.6.1
       ky:
         specifier: ^1.14.2
         version: 1.14.2
@@ -81,6 +78,9 @@ importers:
       '@kareer/typescript-config':
         specifier: workspace:*
         version: link:../../packages/configs/typescript
+      '@sentry/vite-plugin':
+        specifier: ^4.6.1
+        version: 4.6.1
       '@types/node':
         specifier: 'catalog:'
         version: 22.15.3
