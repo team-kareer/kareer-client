@@ -3,3 +3,4 @@ import './global.css';
 import './theme.css';
 
 export * from './theme.css';
+export { typography } from './typography.css';
