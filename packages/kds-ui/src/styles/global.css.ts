@@ -1,9 +1,8 @@
 import { globalStyle } from '@vanilla-extract/css';
 
 globalStyle('html, body', {
-  width: '100dvw',
+  width: '100%',
   height: '100dvh',
-  margin: '0',
   padding: '0',
   fontSize: '62.5%',
   fontFamily: `'Pretendard Variable', sans-serif`,
