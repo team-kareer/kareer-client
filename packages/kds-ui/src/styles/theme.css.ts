@@ -3,12 +3,11 @@ import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css';
 import { color } from './tokens/color.css';
 import { font } from './tokens/font.css';
 
-export const themeVars = createThemeContract({
-  color: color,
+const tokens = {
+  color,
   ...font,
-});
+};
 
-createGlobalTheme(':root', themeVars, {
-  color: color,
-  ...font,
-});
+export const themeVars = createThemeContract(tokens);
+
+createGlobalTheme(':root', themeVars, tokens);
