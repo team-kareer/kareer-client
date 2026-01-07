@@ -3,6 +3,21 @@ const fs = require('fs');
 const commitMsgFilePath = process.argv[2];
 const commitMessage = fs.readFileSync(commitMsgFilePath, 'utf8').trim();
 
+const mergePatterns = [
+  /^Merge pull request #\d+/,
+  /^Merge branch/,
+  /^Merge remote-tracking branch/,
+];
+
+const isMergeCommit = mergePatterns.some((pattern) =>
+  pattern.test(commitMessage),
+);
+
+if (isMergeCommit) {
+  console.log('Merge 성공!');
+  process.exit(0);
+}
+
 const allowedTypes = [
   'feat',
   'fix',
@@ -13,8 +28,6 @@ const allowedTypes = [
   'chore',
   'test',
   'deploy',
-  'merge',
-  'Merge',
 ];
 
 const commitRegex = /^(\w+):\s{1,}(.+)$/;
