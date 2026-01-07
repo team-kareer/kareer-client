@@ -2,6 +2,6 @@ export {};
 
 declare global {
   interface Window {
-    toggleDevtools: () => void;
+    toggleDevtools?: (status?: boolean) => void;
   }
 }

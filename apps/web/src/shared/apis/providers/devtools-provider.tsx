@@ -11,7 +11,12 @@ const DevtoolsProvider = () => {
   const [showDevtools, setShowDevtools] = useState(false);
 
   useEffect(() => {
-    window.toggleDevtools = () => setShowDevtools((prev) => !prev);
+    window.toggleDevtools = (status) =>
+      setShowDevtools((prev) => status ?? !prev);
+
+    return () => {
+      delete window.toggleDevtools;
+    };
   }, []);
 
   return (
