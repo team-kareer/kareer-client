@@ -1,8 +1,6 @@
-import { styleVariants } from '@vanilla-extract/css';
-
 import { themeVars } from './theme.css';
 
-export const typography = styleVariants({
+export const typography = {
   // Head
   head1_sb_40: {
     fontWeight: themeVars.fontWeight.semibold,
@@ -148,4 +146,4 @@ export const typography = styleVariants({
     lineHeight: themeVars.lineHeight.tight,
     letterSpacing: themeVars.letterSpacing.tight,
   },
-});
+};
