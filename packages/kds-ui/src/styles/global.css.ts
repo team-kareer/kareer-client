@@ -7,7 +7,3 @@ globalStyle('html, body', {
   fontSize: '62.5%',
   fontFamily: `'Pretendard Variable', sans-serif`,
 });
-
-globalStyle('::-webkit-scrollbar', {
-  display: 'none',
-});
