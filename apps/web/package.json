@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@kds/ui": "workspace:*",
+    "@sentry/react": "^10.32.1",
     "@tanstack/react-query": "^5.90.16",
     "@tanstack/react-query-devtools": "^5.91.2",
     "ky": "^1.14.2",
@@ -20,6 +21,7 @@
     "react-router": "^7.11.0"
   },
   "devDependencies": {
+    "@sentry/vite-plugin": "^4.6.1",
     "@kareer/eslint-config": "workspace:*",
     "@kareer/typescript-config": "workspace:*",
     "@types/node": "catalog:",
