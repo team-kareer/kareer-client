@@ -146,4 +146,4 @@ export const typography = {
     lineHeight: themeVars.lineHeight.tight,
     letterSpacing: themeVars.letterSpacing.tight,
   },
-};
+} as const;

@@ -37,4 +37,4 @@ export const color = {
     gray100: '#F5F6F8',
     white: '#FFFFFF',
   },
-};
+} as const;

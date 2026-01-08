@@ -22,4 +22,4 @@ export const font = {
   letterSpacing: {
     tight: '-0.025em',
   },
-};
+} as const;
