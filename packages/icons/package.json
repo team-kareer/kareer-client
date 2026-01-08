@@ -17,8 +17,11 @@
     "@kareer/eslint-config": "workspace:*",
     "@kareer/typescript-config": "workspace:*",
     "@types/react": "catalog:",
+    "@vitejs/plugin-react": "^5.1.2",
     "eslint": "catalog:",
     "react": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vite": "^7.3.1",
+    "vite-plugin-svgr": "^4.5.0"
   }
 }

@@ -3,29 +3,65 @@ enable:
   prs: true
 
 labels:
-  "🐛 FIX":
-    include: ['\bFix\b', '\bfix\b', '\bFIX\b', '\bBug\b', '\bbug\b', '\bBUG\b']
+  '🐛 FIX':
+    include:
+      patterns:
+        ['\bFix\b', '\bfix\b', '\bFIX\b', '\bBug\b', '\bbug\b', '\bBUG\b']
+      title: true
+      body: false
 
-  "⭐️ FEAT":
-    include: ['\bFeat\b', '\bFEAT\b', '\bfeat\b']
+  '⭐️ FEAT':
+    include:
+      patterns: ['\bFeat\b', '\bFEAT\b', '\bfeat\b']
+      title: true
+      body: false
 
-  "✏️ DOCS":
-    include: ['\bDocs\b', '\bDOCS\b', '\bdocs\b']
+  '✏️ DOCS':
+    include:
+      patterns: ['\bDocs\b', '\bDOCS\b', '\bdocs\b']
+      title: true
+      body: false
 
-  "🎉 INIT":
-    include: ['\bInit\b', '\bINIT\b', '\binit\b']
+  '🎉 INIT':
+    include:
+      patterns: ['\bInit\b', '\bINIT\b', '\binit\b']
+      title: true
+      body: false
 
-  "🧁 STYLE":
-    include: ['\bStyle\b', '\bSTYLE\b', '\bstyle\b', '\bDesign\b', '\bDESIGN\b', '\bdesign\b']
+  '🧁 STYLE':
+    include:
+      patterns:
+        [
+          '\bStyle\b',
+          '\bSTYLE\b',
+          '\bstyle\b',
+          '\bDesign\b',
+          '\bDESIGN\b',
+          '\bdesign\b',
+        ]
+      title: true
+      body: false
 
-  "🧹 CHORE":
-    include: ['\bCHORE\b', '\bChore\b', '\bchore\b']
+  '🧹 CHORE':
+    include:
+      patterns: ['\bCHORE\b', '\bChore\b', '\bchore\b']
+      title: true
+      body: false
 
-  "🛠️ REFACTOR":
-    include: ['\bRefactor\b', '\bREFACTOR\b', '\brefactor\b']
+  '🛠️ REFACTOR':
+    include:
+      patterns: ['\bRefactor\b', '\bREFACTOR\b', '\brefactor\b']
+      title: true
+      body: false
 
-  "🔎 TEST":
-    include: ['\bTest\b', '\bTEST\b', '\btest\b']
+  '🔎 TEST':
+    include:
+      patterns: ['\bTest\b', '\bTEST\b', '\btest\b']
+      title: true
+      body: false
 
-  "🚀 DEPLOY":
-    include: ['\bDeploy\b', '\bDEPLOY\b', '\bdeploy\b']
+  '🚀 DEPLOY':
+    include:
+      patterns: ['\bDeploy\b', '\bDEPLOY\b', '\bdeploy\b']
+      title: true
+      body: false
