@@ -1,15 +1,16 @@
 import { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+import { shouldRetry } from '../configs/query-config';
 import DevtoolsProvider from './devtools-provider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 1,
-      staleTime: 1000 * 60 * 5,
-      gcTime: 1000 * 60 * 10,
-      refetchOnWindowFocus: false,
+      retry: shouldRetry,
+      staleTime: 0,
+      gcTime: 1000 * 60 * 5,
+      refetchOnWindowFocus: true,
     },
   },
 });
