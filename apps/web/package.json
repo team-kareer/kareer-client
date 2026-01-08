@@ -13,6 +13,8 @@
   "dependencies": {
     "@kds/ui": "workspace:*",
     "@sentry/react": "^10.32.1",
+    "@tanstack/react-query": "^5.90.16",
+    "@tanstack/react-query-devtools": "^5.91.2",
     "ky": "^1.14.2",
     "react": "catalog:",
     "react-dom": "catalog:",
@@ -26,6 +28,9 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
+    "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/recipes": "catalog:",
+    "@vanilla-extract/vite-plugin": "catalog:",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "catalog:",
     "typescript": "catalog:",

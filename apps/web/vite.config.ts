@@ -1,4 +1,5 @@
 import { sentryVitePlugin } from '@sentry/vite-plugin';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
@@ -17,6 +18,7 @@ export default defineConfig({
       authToken: process.env.SENTRY_AUTH_TOKEN,
       disable: !process.env.SENTRY_AUTH_TOKEN,
     }),
+    vanillaExtractPlugin(),
   ],
   build: {
     sourcemap: true,

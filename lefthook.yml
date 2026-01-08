@@ -1,0 +1,21 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: '*.{js,ts,jsx,tsx}'
+      run: pnpm lint
+
+    format:
+      glob: '*.{js,ts,jsx,tsx,json,yaml,yml,md}'
+      run: pnpm prettier --write {staged_files}
+      stage_fixed: true
+
+pre-push:
+  commands:
+    type-check:
+      run: pnpm check-types
+
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: node commitlint.config.cjs {1}
