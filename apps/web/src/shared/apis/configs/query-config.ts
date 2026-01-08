@@ -10,8 +10,10 @@ const RETRY_BLACKLIST = new Set<number>([
   HTTP_STATUS_CODE.CONFLICT,
 ]);
 
+const MAX_RETRY_COUNT = 1;
+
 export const shouldRetry = (failureCount: number, error: unknown) => {
-  if (failureCount > 1) {
+  if (failureCount > MAX_RETRY_COUNT) {
     return false;
   }
 
