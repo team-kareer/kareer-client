@@ -1,10 +1,8 @@
-import { ReactNode } from 'react';
-
 import * as styles from './section-header.css';
 
 interface SectionHeaderProps {
-  title: ReactNode;
-  subtitle?: ReactNode;
+  title: string;
+  subtitle?: string;
 }
 
 const SectionHeader = ({ title, subtitle }: SectionHeaderProps) => {
