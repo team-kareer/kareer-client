@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { sectionHeader, subtitleStyle, titleStyle } from './section-header.css';
+import * as styles from './section-header.css';
 
 interface SectionHeaderProps {
   title: ReactNode;
@@ -9,9 +9,9 @@ interface SectionHeaderProps {
 
 const SectionHeader = ({ title, subtitle }: SectionHeaderProps) => {
   return (
-    <header className={sectionHeader}>
-      <h2 className={titleStyle}>{title}</h2>
-      {subtitle && <p className={subtitleStyle}>{subtitle}</p>}
+    <header className={styles.sectionHeader}>
+      <h2 className={styles.titleStyle}>{title}</h2>
+      {subtitle && <p className={styles.subtitleStyle}>{subtitle}</p>}
     </header>
   );
 };
