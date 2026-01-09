@@ -6,8 +6,9 @@ import { typography } from '../../styles/typography.css';
 const base = style({
   padding: '0.5rem 1.2rem',
   display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   borderRadius: '20px',
-  border: 'none',
   userSelect: 'none',
   ...typography.cap1_sb_12,
 });
