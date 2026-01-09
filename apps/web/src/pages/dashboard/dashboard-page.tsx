@@ -31,6 +31,7 @@ const DashboardPage = () => {
         <Tag color="outlined_blue">text</Tag>
         <Tag color="outlined_black">text</Tag>
         <Tag color="disabled_gray">text</Tag>
+        <Tag color="navigation">home</Tag>
       </div>
     </div>
   );

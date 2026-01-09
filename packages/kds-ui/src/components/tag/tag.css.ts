@@ -107,4 +107,17 @@ export const tagColor = styleVariants({
       border: `1px solid ${color.grayscale.gray300}`,
     },
   ],
+
+  // Navigation\
+  navigation: [
+    base,
+    {
+      ...typography.cap2_m_12,
+      padding: '0.8rem 1rem',
+      color: color.grayscale.white,
+      backgroundColor: color.grayscale.gray800,
+      borderRadius: '10px',
+      boxShadow: '0 0 12px 0 rgba(0, 0, 0, 0.25)',
+    },
+  ],
 });
