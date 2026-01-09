@@ -1,10 +1,15 @@
-import { Button } from '@kds/ui';
+import { RouterProvider } from 'react-router';
+
+import { QueryProvider } from '@shared/apis/providers';
+import { router } from '@shared/router';
+
+import '@kds/ui/styles';
 
 function App() {
   return (
-    <div>
-      Hi @Kareer <Button text="Click me" />
-    </div>
+    <QueryProvider>
+      <RouterProvider router={router} />
+    </QueryProvider>
   );
 }
 

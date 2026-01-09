@@ -5,6 +5,7 @@ on:
     types: [opened]
   pull_request_target:
     types: [opened]
+    branches: [develop]
 
 jobs:
   labeler:
@@ -32,7 +33,7 @@ jobs:
             const userLabels = {
               "jeonghoon11": "🦊 정훈",
               "huniversal": "🐶 훈진",
-              "sonnnhe": "🐯 하은",
+              "sonnnnhe": "🐯 하은",
               "yooncandooit":"🪼 윤지",
             };
 
