@@ -3,17 +3,19 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   flexDirection: 'row',
+  height: '100vh',
 });
 
 export const contentArea = style({
   display: 'flex',
   flexDirection: 'column',
-  flexGrow: 1,
+  flex: 1,
 });
 
 export const mainArea = style({
   display: 'flex',
   flexDirection: 'row',
+  flex: 1,
 });
 
 export const mainContent = style({
