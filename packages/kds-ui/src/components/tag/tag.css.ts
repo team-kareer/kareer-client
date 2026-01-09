@@ -9,14 +9,8 @@ const base = style({
   justifyContent: 'center',
   alignItems: 'center',
   border: 'none',
+  userSelect: 'none',
   ...typography.cap1_sb_12,
-  selectors: {
-    '&:disabled': {
-      backgroundColor: color.grayscale.gray100,
-      color: color.grayscale.gray400,
-      border: 'none',
-    },
-  },
 });
 
 export const tagColor = styleVariants({

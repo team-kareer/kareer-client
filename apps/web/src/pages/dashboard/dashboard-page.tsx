@@ -31,12 +31,6 @@ const DashboardPage = () => {
         <Tag color="outlined_blue">text</Tag>
         <Tag color="outlined_black">text</Tag>
       </div>
-
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem' }}>
-        <Tag color="primary_blue" disabled>
-          text
-        </Tag>
-      </div>
     </div>
   );
 };
