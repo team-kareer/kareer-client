@@ -7,8 +7,6 @@ const base = style({
   padding: '0.5rem 1.2rem',
   display: 'inline-flex',
   borderRadius: '20px',
-  justifyContent: 'center',
-  alignItems: 'center',
   verticalAlign: 'middle',
   border: 'none',
   userSelect: 'none',
