@@ -7,7 +7,6 @@ export const container = style({
   height: '100%',
   alignItems: 'stretch',
   backgroundColor: themeVars.color.grayscale.white,
-  boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
 });
 
 export const contentArea = style({
