@@ -9,6 +9,7 @@ const base = style({
   borderRadius: '20px',
   justifyContent: 'center',
   alignItems: 'center',
+  verticalAlign: 'middle',
   border: 'none',
   userSelect: 'none',
   ...typography.cap1_sb_12,
