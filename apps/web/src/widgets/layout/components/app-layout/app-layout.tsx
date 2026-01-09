@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import Header from '@widgets/layout/components/header/header';
-import Nav from '@widgets/layout/components/nav/nav';
+import Navigation from '@widgets/layout/components/navigation/navigation';
 import TodoPanel from '@widgets/layout/components/todo-panel/todo-panel';
 
 import * as styles from './app-layout.css';
@@ -13,7 +13,7 @@ interface AppLayoutProps {
 const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <div className={styles.container}>
-      <Nav />
+      <Navigation />
       <div className={styles.contentArea}>
         <Header />
         <div className={styles.mainArea}>
