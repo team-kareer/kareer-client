@@ -2,15 +2,17 @@ import { Suspense } from 'react';
 import * as Sentry from '@sentry/react';
 import { Outlet } from 'react-router';
 
+import AppLayout from '@widgets/layout/components/app-layout/app-layout';
+
 const GlobalLayout = () => {
   return (
-    <main>
+    <AppLayout>
       <Sentry.ErrorBoundary>
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>
       </Sentry.ErrorBoundary>
-    </main>
+    </AppLayout>
   );
 };
 
