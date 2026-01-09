@@ -15,7 +15,7 @@ catalog:
   '@types/node': '^22.15.3'
 
   # Build
-  vite: '^7.2.4'
+  vite: '^7.3.1'
   '@vitejs/plugin-react': '^5.1.1'
 
   # Lint

@@ -5,7 +5,8 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "env": ["SENTRY_AUTH_TOKEN"]
     },
     "lint": {
       "dependsOn": ["^lint"]

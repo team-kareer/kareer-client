@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -11,8 +12,17 @@ export default defineConfig({
         plugins: [['babel-plugin-react-compiler']],
       },
     }),
+    sentryVitePlugin({
+      org: 'team-kareer',
+      project: 'kareer-client',
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      disable: !process.env.SENTRY_AUTH_TOKEN,
+    }),
     vanillaExtractPlugin(),
   ],
+  build: {
+    sourcemap: true,
+  },
   resolve: {
     alias: {
       '@app': path.resolve(__dirname, 'src/app'),
