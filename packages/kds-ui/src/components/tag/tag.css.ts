@@ -7,7 +7,6 @@ const base = style({
   padding: '0.5rem 1.2rem',
   display: 'inline-flex',
   borderRadius: '20px',
-  verticalAlign: 'middle',
   border: 'none',
   userSelect: 'none',
   ...typography.cap1_sb_12,
@@ -108,7 +107,7 @@ export const tagColor = styleVariants({
     },
   ],
 
-  // Navigation\
+  // Navigation
   navigation: [
     base,
     {
