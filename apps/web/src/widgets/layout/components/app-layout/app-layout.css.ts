@@ -10,6 +10,7 @@ export const contentArea = style({
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
+  minHeight: 0,
 });
 
 export const mainArea = style({
@@ -19,7 +20,8 @@ export const mainArea = style({
   minHeight: 0,
 });
 
-export const mainContent = style({
+export const mainPage = style({
   padding: '1.6rem 2rem 0 2rem',
   flex: 1,
+  minHeight: 0,
 });

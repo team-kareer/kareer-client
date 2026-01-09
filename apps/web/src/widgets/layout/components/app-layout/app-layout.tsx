@@ -17,7 +17,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       <div className={styles.contentArea}>
         <Header />
         <div className={styles.mainArea}>
-          <main className={styles.mainContent}>{children}</main>
+          <main className={styles.mainPage}>{children}</main>
           <TodoPanel />
         </div>
       </div>
