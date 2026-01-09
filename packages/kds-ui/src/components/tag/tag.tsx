@@ -8,7 +8,7 @@ interface TagProps {
 }
 
 const Tag = ({ color, children }: TagProps) => {
-  return <div className={tagColor[color]}>{children}</div>;
+  return <span className={tagColor[color]}>{children}</span>;
 };
 
 export default Tag;
