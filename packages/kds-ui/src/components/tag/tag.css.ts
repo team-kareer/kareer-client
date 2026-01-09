@@ -6,7 +6,7 @@ import { typography } from '../../styles/typography.css';
 const base = style({
   padding: '0.5rem 1.2rem',
   display: 'inline-flex',
-  borderRadius: '20rem',
+  borderRadius: '20px',
   justifyContent: 'center',
   alignItems: 'center',
   border: 'none',
