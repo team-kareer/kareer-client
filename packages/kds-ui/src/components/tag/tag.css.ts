@@ -82,6 +82,15 @@ export const tagColor = styleVariants({
     },
   ],
 
+  // disabled
+  disabled_gray: [
+    base,
+    {
+      color: color.grayscale.gray500,
+      backgroundColor: color.grayscale.gray100,
+    },
+  ],
+
   // Outlined
   outlined_blue: [
     base,

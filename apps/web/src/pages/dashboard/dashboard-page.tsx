@@ -30,6 +30,7 @@ const DashboardPage = () => {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem' }}>
         <Tag color="outlined_blue">text</Tag>
         <Tag color="outlined_black">text</Tag>
+        <Tag color="disabled_gray">text</Tag>
       </div>
     </div>
   );
