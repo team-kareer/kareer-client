@@ -38,7 +38,6 @@ jobs:
               '🚀 DEPLOY': /\b(deploy|Deploy|DEPLOY)\b/i
             };
 
-            // 제목에서 패턴 매칭
             for (const [label, pattern] of Object.entries(labelPatterns)) {
               if (pattern.test(title)) {
                 labels.push(label);
@@ -46,19 +45,12 @@ jobs:
             }
 
             if (labels.length > 0) {
-              try {
-                await github.rest.issues.addLabels({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: context.payload.pull_request.number,
-                  labels: labels
-                });
-                console.log(`Successfully added labels based on title: ${labels.join(', ')}`);
-              } catch (error) {
-                console.error(`Failed to add labels: ${error.message}`);
-              }
-            } else {
-              console.log('No matching labels found in PR title');
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                labels: labels
+              });
             }
 
       # 사용자 기반 라벨링
@@ -81,22 +73,14 @@ jobs:
             const labelToAdd = userLabels[author];
 
             if (labelToAdd) {
-              try {
-                const issueNumber = context.payload.pull_request 
-                  ? context.payload.pull_request.number 
-                  : context.payload.issue.number;
-                
-                await github.rest.issues.addLabels({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: issueNumber,
-                  labels: [labelToAdd]
-                });
-                
-                console.log(`Successfully added label: ${labelToAdd}`);
-              } catch (error) {
-                console.error(`Failed to add label: ${error.message}`);
-              } 
-            } else {
-              console.log(`No label mapping found for user: ${author}`);
+              const issueNumber = context.payload.pull_request 
+                ? context.payload.pull_request.number 
+                : context.payload.issue.number;
+              
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                labels: [labelToAdd]
+              });
             }
