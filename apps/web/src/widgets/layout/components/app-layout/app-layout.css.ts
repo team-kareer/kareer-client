@@ -16,6 +16,7 @@ export const mainArea = style({
   display: 'flex',
   flexDirection: 'row',
   flex: 1,
+  minHeight: 0,
 });
 
 export const mainContent = style({
