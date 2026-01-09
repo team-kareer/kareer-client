@@ -19,6 +19,7 @@ labels:
       - "\bFeat\b"
       - "\bFEAT\b"
       - "\bfeat\b"
+      - 'Feat'
     title: true
     body: false
 
