@@ -4,7 +4,7 @@ on:
   issues:
     types: [opened]
   pull_request_target:
-    types: [opened]
+    types: [opened, reopened, synchronize]
     branches: [develop]
 
 jobs:
@@ -14,13 +14,46 @@ jobs:
       contents: read
       issues: write
       pull-requests: write
-    steps:
-      - name: Check Labels
-        id: labeler
-        uses: jimschubert/labeler-action@v2
-        with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+    steps:
+      # PR 제목 기반 라벨링
+      - name: Label based on PR title
+        if: github.event_name == 'pull_request_target'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const title = context.payload.pull_request.title;
+            const labels = [];
+
+            const labelPatterns = {
+              '🐛 FIX': /\b(fix|Fix|FIX|bug|Bug|BUG|hotfix|Hotfix|HOTFIX|HotFix)\b/i,
+              '⭐️ FEAT': /\b(feat|Feat|FEAT|feature|Feature|FEATURE)\b/i,
+              '✏️ DOCS': /\b(docs|Docs|DOCS|documentation|Documentation)\b/i,
+              '🎉 INIT': /\b(init|Init|INIT|initialize|Initialize)\b/i,
+              '🧁 STYLE': /\b(style|Style|STYLE|design|Design|DESIGN)\b/i,
+              '🧹 CHORE': /\b(chore|Chore|CHORE)\b/i,
+              '🛠️ REFACTOR': /\b(refactor|Refactor|REFACTOR)\b/i,
+              '🔎 TEST': /\b(test|Test|TEST)\b/i,
+              '🚀 DEPLOY': /\b(deploy|Deploy|DEPLOY)\b/i
+            };
+
+            for (const [label, pattern] of Object.entries(labelPatterns)) {
+              if (pattern.test(title)) {
+                labels.push(label);
+              }
+            }
+
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                labels: labels
+              });
+            }
+
+      # 사용자 기반 라벨링
       - name: Add labels based on user
         uses: actions/github-script@v7
         with:
@@ -34,18 +67,20 @@ jobs:
               "jeonghoon11": "🦊 정훈",
               "huniversal": "🐶 훈진",
               "sonnnnhe": "🐯 하은",
-              "yooncandooit":"🪼 윤지",
+              "yooncandooit": "🪼 윤지"
             };
 
             const labelToAdd = userLabels[author];
 
             if (labelToAdd) {
-              github.rest.issues.addLabels({
+              const issueNumber = context.payload.pull_request 
+                ? context.payload.pull_request.number 
+                : context.payload.issue.number;
+              
+              await github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: context.payload.pull_request 
-                  ? context.payload.pull_request.number 
-                  : context.payload.issue.number,
+                issue_number: issueNumber,
                 labels: [labelToAdd]
               });
             }
