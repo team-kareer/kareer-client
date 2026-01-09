@@ -6,7 +6,6 @@ export const container = style({
   flexDirection: 'column',
   flexShrink: 0,
   width: '8.4rem',
-  height: '100%',
   padding: '1rem',
   borderRight: `1px solid ${themeVars.color.grayscale.gray300}`,
   backgroundColor: themeVars.color.grayscale.white,
