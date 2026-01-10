@@ -1,5 +1,4 @@
 // 아이콘 배럴 파일
-import '../types/svg';
 
 export { default as ArrowDownIcon } from './ic_arrow_down.svg?react';
 export { default as ArrowLeftIcon } from './ic_arrow_left.svg?react';

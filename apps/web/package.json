@@ -35,6 +35,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "vite-plugin-svgr": "catalog:"
   }
 }
