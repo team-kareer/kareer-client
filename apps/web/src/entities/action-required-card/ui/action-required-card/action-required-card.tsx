@@ -1,7 +1,7 @@
 import * as styles from './action-required-card.css';
 import { Action } from '../../types/types';
 import { CalendarIcon } from '@kds/icons';
-import { ActionTodoButton } from '@features/action-todo';
+import ActionTodoButton from '@features/action-todo/ui/action-todo-button/action-todo-button';
 
 interface ActionRequiredCardProps {
   action: Action;
