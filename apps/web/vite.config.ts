@@ -33,10 +33,6 @@ export default defineConfig({
       '@features': path.resolve(__dirname, 'src/features'),
       '@entities': path.resolve(__dirname, 'src/entities'),
       '@shared': path.resolve(__dirname, 'src/shared'),
-      '@kds/ui/components': path.resolve(
-        __dirname,
-        '../../packages/kds-ui/src/components',
-      ),
     },
   },
 });
