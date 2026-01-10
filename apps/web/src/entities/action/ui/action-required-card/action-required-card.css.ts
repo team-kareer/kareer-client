@@ -4,7 +4,7 @@ import { color, typography } from '@kds/ui/styles';
 
 const base = style({
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'flex-start',
   borderRadius: '1rem',
@@ -28,7 +28,12 @@ const base = style({
   },
 });
 
-export const actionCard = base;
+export const contentWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+export const actionRequiredCard = base;
 
 export const titleStyle = style({
   ...typography.body7_sb_14,
