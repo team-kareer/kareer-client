@@ -4,7 +4,8 @@ on:
   issues:
     types: [opened]
   pull_request_target:
-    types: [opened]
+    types: [opened, reopened]
+    branches: [develop]
 
 jobs:
   labeler:
@@ -13,38 +14,68 @@ jobs:
       contents: read
       issues: write
       pull-requests: write
-    steps:
-      - name: Check Labels
-        id: labeler
-        uses: jimschubert/labeler-action@v2
-        with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: Add labels based on user
+    steps:
+      # 제목 기반 라벨링
+      - name: Auto Labeling based on title
+        if: github.event_name == 'pull_request_target' || github.event_name == 'issues'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const author = context.payload.pull_request 
-              ? context.payload.pull_request.user.login 
-              : context.payload.issue.user.login;
+            const payload = context.payload;
+            const isPR = !!payload.pull_request;
+            const target = isPR ? payload.pull_request : payload.issue;
 
-            const userLabels = {
-              "jeonghoon11": "🦊 정훈",
-              "huniversal": "🐶 훈진",
-              "sonnnnhe": "🐯 하은",
-              "yooncandooit":"🪼 윤지",
+            const title = target.title;
+            const author = target.user.login;
+            const issueNumber = target.number;
+
+            const labelsToAdd = [];
+
+            // 제목 기반 라벨 매칭
+            const labelPatterns = {
+              '🐛 FIX': /\b(fix|Fix|FIX|bug|Bug|BUG|hotfix|Hotfix|HOTFIX|HotFix)\b/i,
+              '⭐️ FEAT': /\b(feat|Feat|FEAT|feature|Feature|FEATURE)\b/i,
+              '✏️ DOCS': /\b(docs|Docs|DOCS)\b/i,
+              '🎉 INIT': /\b(init|Init|INIT)\b/i,
+              '🧁 STYLE': /\b(style|Style|STYLE|design|Design|DESIGN)\b/i,
+              '🧹 CHORE': /\b(chore|Chore|CHORE)\b/i,
+              '🛠️ REFACTOR': /\b(refactor|Refactor|REFACTOR)\b/i,
+              '🔎 TEST': /\b(test|Test|TEST)\b/i,
+              '🚀 DEPLOY': /\b(deploy|Deploy|DEPLOY)\b/i
             };
 
-            const labelToAdd = userLabels[author];
+            // 제목에서 패턴 매칭
+            for (const [label, pattern] of Object.entries(labelPatterns)) {
+              if (pattern.test(title)) {
+                labelsToAdd.push(label);
+              }
+            }
 
-            if (labelToAdd) {
-              github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request 
-                  ? context.payload.pull_request.number 
-                  : context.payload.issue.number,
-                labels: [labelToAdd]
-              });
+            // 사용자 기반 라벨 매칭
+            const userLabels = {
+              "jeonghoon11": "🦊 정훈", 
+              "huniversal": "🐶 훈진",
+              "sonnnnhe": "🐯 하은",
+              "yooncandooit": "🪼 윤지"
+            };
+
+            if (userLabels[author]) {
+              labelsToAdd.push(userLabels[author]);
+            }
+
+            const uniqueLabels = [...new Set(labelsToAdd)];
+
+            if (uniqueLabels.length > 0) {
+              try {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  labels: uniqueLabels
+                });
+              } catch (error) {
+                // 라벨 추가 실패 시 무시
+              }
             }
