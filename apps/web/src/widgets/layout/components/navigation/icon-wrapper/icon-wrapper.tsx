@@ -10,7 +10,7 @@ interface IconWrapperProps extends HTMLAttributes<HTMLButtonElement> {
 const IconWrapper = ({ icon, isActive, ...props }: IconWrapperProps) => {
   return (
     <button className={styles.wrapper({ isActive })} {...props}>
-      {icon}
+      <span className={styles.icon}>{icon}</span>
     </button>
   );
 };

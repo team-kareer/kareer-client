@@ -1,4 +1,5 @@
 import { themeVars } from '@kds/ui/styles';
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const wrapper = recipe({
@@ -8,7 +9,7 @@ export const wrapper = recipe({
     cursor: 'pointer',
     backgroundColor: themeVars.color.grayscale.white,
     borderRadius: '20px',
-    transition: 'background-color 500ms ease, color 200ms ease',
+    transition: 'background-color 300ms ease, color 150ms ease',
 
     selectors: {
       '&:hover': {
@@ -25,6 +26,16 @@ export const wrapper = recipe({
         color: themeVars.color.primary[500],
       },
       false: {},
+    },
+  },
+});
+
+export const icon = style({
+  display: 'inline-flex',
+  transition: 'transform 200ms ease',
+  selectors: {
+    [`${wrapper.classNames.base}:active &`]: {
+      transform: 'scale(0.9)',
     },
   },
 });
