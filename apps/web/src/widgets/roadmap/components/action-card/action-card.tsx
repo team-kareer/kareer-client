@@ -10,7 +10,7 @@ export const ActionCard = ({ action }: ActionCardProps) => {
   return (
     <div className={cardStyles.container}>
       <ActionRequiredCard action={action} />
-      <ActionTodoButton text="TODO" />
+      <ActionTodoButton text="To-Do" />
     </div>
   );
 };

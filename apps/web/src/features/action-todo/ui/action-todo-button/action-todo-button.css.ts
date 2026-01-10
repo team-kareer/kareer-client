@@ -9,6 +9,8 @@ export const actionTodoButton = style({
   border: `1px solid ${color.grayscale.gray300}`,
   padding: '0.75rem 1.2rem',
   cursor: 'pointer',
+  display: 'flex',
+  gap: '0.4rem',
   selectors: {
     '&:hover': {
       backgroundColor: color.grayscale.gray100,
