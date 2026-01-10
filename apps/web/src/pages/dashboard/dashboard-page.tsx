@@ -1,5 +1,11 @@
+import { ArrowDownIcon } from '@kds/icons';
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return (
+    <div>
+      <ArrowDownIcon />
+    </div>
+  );
 };
 
 export default DashboardPage;

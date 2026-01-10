@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
+    ".": "./src/index.ts",
+    "./svg": "./src/svg/index.ts",
     "./*": "./src/components/*.tsx"
   },
   "scripts": {

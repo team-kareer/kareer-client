@@ -73,6 +73,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@kds/icons':
+        specifier: workspace:*
+        version: link:../../packages/icons
       '@kds/ui':
         specifier: workspace:*
         version: link:../../packages/kds-ui
