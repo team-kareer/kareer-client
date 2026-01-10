@@ -1,5 +1,5 @@
-import { style } from '@vanilla-extract/css';
 import { color, typography } from '@kds/ui/styles';
+import { style } from '@vanilla-extract/css';
 
 export const actionTodoButton = style({
   ...typography.body7_sb_14,

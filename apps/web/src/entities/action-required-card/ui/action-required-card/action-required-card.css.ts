@@ -1,6 +1,5 @@
-import { style } from '@vanilla-extract/css';
-
 import { color, typography } from '@kds/ui/styles';
+import { style } from '@vanilla-extract/css';
 
 export const container = style({
   display: 'flex',

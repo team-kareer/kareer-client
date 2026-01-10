@@ -1,7 +1,8 @@
 import { MouseEvent } from 'react';
-import { actionTodoButton } from './action-todo-button.css';
 import { PlusIcon } from '@kds/icons';
 import { color } from '@kds/ui/styles';
+
+import { actionTodoButton } from './action-todo-button.css';
 
 interface ActionTodoButtonProps {
   text: string;
