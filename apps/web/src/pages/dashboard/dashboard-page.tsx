@@ -1,6 +1,9 @@
 import { ActionCard } from '@entities/action';
+import { useActions } from '@entities/action/hooks/use-actions';
 
 const DashboardPage = () => {
+  const { data: actions = [] } = useActions();
+
   return (
     <div
       style={{
@@ -12,27 +15,9 @@ const DashboardPage = () => {
         gap: '1rem',
       }}
     >
-      <ActionCard
-        action={{
-          title: 'Prepare internship log',
-          subTitle: 'Document all work exprience during internship period',
-          date: '2026-01-01',
-        }}
-      />
-      <ActionCard
-        action={{
-          title: 'Action 2',
-          subTitle: 'Subtitle 2',
-          date: '2026-01-02',
-        }}
-      />
-      <ActionCard
-        action={{
-          title: 'Action 3',
-          subTitle: 'Subtitle 3',
-          date: '2026-01-03',
-        }}
-      />
+      {actions.map((action, index) => {
+        return <ActionCard key={index} action={action} />;
+      })}
     </div>
   );
 };

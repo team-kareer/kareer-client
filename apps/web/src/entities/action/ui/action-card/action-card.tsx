@@ -1,5 +1,5 @@
 import * as styles from './action-card.css';
-import { Action } from '../../model/types';
+import { Action } from '../../types/types';
 
 interface ActionCardProps {
   action: Action;
