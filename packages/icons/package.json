@@ -4,8 +4,14 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
-    "./svg": "./src/svg/index.ts",
+    ".": {
+      "types": "./src/types/svg.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./svg": {
+      "types": "./src/types/svg.d.ts",
+      "default": "./src/svg/index.ts"
+    },
     "./*": "./src/components/*.tsx"
   },
   "scripts": {
