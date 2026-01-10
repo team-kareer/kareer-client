@@ -17,6 +17,7 @@ catalog:
   # Build
   vite: '^7.3.1'
   '@vitejs/plugin-react': '^5.1.1'
+  vite-plugin-svgr: '^4.5.0'
 
   # Lint
   eslint: '^9.39.1'
