@@ -6,5 +6,4 @@ export const container = style({
   flexShrink: 0,
   width: '25.6rem',
   padding: '2rem',
-  marginRight: '2rem',
 });

@@ -23,6 +23,7 @@ export const mainArea = style({
   flex: 1,
   alignItems: 'stretch',
   minHeight: 0,
+  marginRight: '2rem',
 });
 
 export const mainPage = style({
