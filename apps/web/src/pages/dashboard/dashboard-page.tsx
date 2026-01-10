@@ -1,4 +1,4 @@
-import { ActionList } from '@widgets/roadmap/components/action-card/action-list';
+import { ActionList } from '@widgets/roadmap/components';
 
 const DashboardPage = () => {
   return (

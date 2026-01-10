@@ -1,4 +1,4 @@
-import { useActions } from '@entities/action-required-card/queries/use-actions';
+import { useActions } from '@entities/action-required-card';
 import { ActionCard } from './action-card';
 
 export const ActionList = () => {
