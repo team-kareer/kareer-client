@@ -9,7 +9,7 @@ export const wrapper = recipe({
     cursor: 'pointer',
     backgroundColor: themeVars.color.grayscale.white,
     borderRadius: '20px',
-    transition: 'background-color 300ms ease, color 150ms ease',
+    transition: 'background-color 400ms ease, color 150ms ease',
 
     selectors: {
       '&:hover': {
