@@ -1,5 +1,7 @@
 import * as styles from './action-required-card.css';
 import { Action } from '../../types/types';
+import { CalendarIcon } from '@kds/icons';
+import { color } from '@kds/ui/styles';
 
 interface ActionRequiredCardProps {
   action: Action;
@@ -10,7 +12,10 @@ export const ActionRequiredCard = ({ action }: ActionRequiredCardProps) => {
     <div className={styles.contentWrapper}>
       <div className={styles.titleStyle}>{action.title}</div>
       <div className={styles.subTitleStyle}>{action.subTitle}</div>
-      <div className={styles.dateStyle}>{action.date}</div>
+      <div className={styles.dateStyle}>
+        <CalendarIcon width={14} height={14} color={color.grayscale.gray500} />
+        {action.date}
+      </div>
     </div>
   );
 };

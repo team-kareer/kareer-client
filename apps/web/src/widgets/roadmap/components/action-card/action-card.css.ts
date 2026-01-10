@@ -50,3 +50,10 @@ globalStyle(`${container}:hover ${dateStyle}`, {
 globalStyle(`${container}:active ${dateStyle}`, {
   color: color.primary[400],
 });
+
+globalStyle(`${container}:hover ${dateStyle} svg`, {
+  color: color.primary[400],
+});
+globalStyle(`${container}:active ${dateStyle} svg`, {
+  color: color.primary[400],
+});
