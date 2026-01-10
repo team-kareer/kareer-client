@@ -1,9 +1,6 @@
-import { ActionCard } from '@entities/action';
-import { useActions } from '@entities/action/hooks/use-actions';
+import { ActionList } from '@widgets/roadmap/components/action-card/action-list';
 
 const DashboardPage = () => {
-  const { data: actions = [] } = useActions();
-
   return (
     <div
       style={{
@@ -15,9 +12,7 @@ const DashboardPage = () => {
         gap: '1rem',
       }}
     >
-      {actions.map((action, index) => {
-        return <ActionCard key={index} action={action} />;
-      })}
+      <ActionList />
     </div>
   );
 };
