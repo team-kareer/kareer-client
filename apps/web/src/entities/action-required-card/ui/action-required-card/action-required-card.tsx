@@ -17,8 +17,19 @@ export const ActionRequiredCard = ({
   dueDate,
   onClick,
 }: ActionRequiredCardProps) => {
+  const handleCardClick = () => {
+    console.log('카드 클릭됨');
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
-    <article className={styles.container} onClick={onClick} role="button">
+    <article
+      className={styles.container}
+      onClick={handleCardClick}
+      role="button"
+    >
       <div className={styles.contentWrapper}>
         <p className={styles.titleStyle}>{title}</p>
         <p className={styles.subTitleStyle}>{subTitle}</p>

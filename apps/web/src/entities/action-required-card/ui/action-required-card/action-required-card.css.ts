@@ -13,15 +13,12 @@ export const container = style({
   backgroundColor: color.grayscale.white,
   border: `1.5px solid transparent`,
   transition: 'background-color 0.2s ease, border-color 0.2s ease',
+  cursor: 'pointer',
 
   selectors: {
     '&:hover': {
       backgroundColor: color.primary[100],
       border: `1.5px solid ${color.primary[300]}`,
-    },
-    '&:active': {
-      backgroundColor: color.primary[200],
-      border: `1.5px solid ${color.primary[400]}`,
     },
   },
 });
@@ -36,7 +33,7 @@ export const titleStyle = style({
   ...typography.body7_sb_14,
   color: color.grayscale.gray800,
   selectors: {
-    [`${container}:hover &, ${container}:active &`]: {
+    [`${container}:hover &`]: {
       color: color.primary[500],
     },
   },
@@ -46,7 +43,7 @@ export const subTitleStyle = style({
   ...typography.cap3_r_12,
   color: color.grayscale.gray400,
   selectors: {
-    [`${container}:hover &, ${container}:active &`]: {
+    [`${container}:hover &`]: {
       color: color.primary[300],
     },
   },
@@ -61,7 +58,7 @@ export const dueDateStyle = style({
   gap: '0.4rem',
   lineHeight: '14px',
   selectors: {
-    [`${container}:hover &, ${container}:active &`]: {
+    [`${container}:hover &`]: {
       color: color.primary[400],
     },
   },
