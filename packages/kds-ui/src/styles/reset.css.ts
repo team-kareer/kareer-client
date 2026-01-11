@@ -2,6 +2,9 @@ import { globalStyle } from '@vanilla-extract/css';
 
 globalStyle('*, *::before, *::after', {
   boxSizing: 'border-box',
+  borderWidth: 0,
+  borderStyle: 'solid',
+  borderColor: 'currentColor',
 });
 
 globalStyle('*:not(dialog)', {
@@ -19,6 +22,15 @@ globalStyle('input, button, textarea, select', {
 
 globalStyle('p, h1, h2, h3, h4, h5, h6', {
   overflowWrap: 'break-word',
+});
+
+globalStyle('button', {
+  border: 'none',
+});
+
+globalStyle('body', {
+  WebkitFontSmoothing: 'antialiased',
+  MozOsxFontSmoothing: 'grayscale',
 });
 
 globalStyle('#root, #__next', {
