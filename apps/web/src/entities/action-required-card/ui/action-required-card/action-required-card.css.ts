@@ -8,7 +8,7 @@ export const container = style({
   alignItems: 'flex-start',
   gap: '0.8rem',
 
-  borderRadius: '1rem',
+  borderRadius: '10px',
   padding: '1.2rem 1.6rem',
   backgroundColor: color.grayscale.white,
   border: `1.5px solid transparent`,

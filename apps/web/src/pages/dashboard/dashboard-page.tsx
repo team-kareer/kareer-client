@@ -18,7 +18,11 @@ const DashboardPage = () => {
         gap: '1rem',
       }}
     >
-      <ActionRequiredCard action={action} />
+      <ActionRequiredCard
+        title={action.title}
+        subTitle={action.subTitle}
+        date={action.date}
+      />
     </div>
   );
 };

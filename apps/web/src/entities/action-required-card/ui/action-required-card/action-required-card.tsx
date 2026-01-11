@@ -14,7 +14,7 @@ export const ActionRequiredCard = ({
   date,
 }: ActionRequiredCardProps) => {
   return (
-    <div className={styles.container}>
+    <button className={styles.container}>
       <div className={styles.contentWrapper}>
         <div className={styles.titleStyle}>{title}</div>
         <div className={styles.subTitleStyle}>{subTitle}</div>
@@ -24,6 +24,6 @@ export const ActionRequiredCard = ({
         </div>
       </div>
       <ActionTodoButton text="To-Do" />
-    </div>
+    </button>
   );
 };
