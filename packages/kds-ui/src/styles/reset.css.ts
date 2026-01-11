@@ -2,6 +2,9 @@ import { globalStyle } from '@vanilla-extract/css';
 
 globalStyle('*, *::before, *::after', {
   boxSizing: 'border-box',
+  borderWidth: 0,
+  borderStyle: 'solid',
+  borderColor: 'currentColor',
 });
 
 globalStyle('*:not(dialog)', {
