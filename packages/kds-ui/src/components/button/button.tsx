@@ -7,7 +7,7 @@ type ButtonRecipe = NonNullable<RecipeVariants<typeof button>>;
 type ColorType = NonNullable<ButtonRecipe['color']>;
 type VariantType = NonNullable<ButtonRecipe['variant']>;
 
-export type ButtonPreset =
+type ButtonPreset =
   | 'mini_primary'
   | 'mini_outlined'
   | 'small_primary'
