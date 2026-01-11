@@ -5,6 +5,8 @@ import { recipe } from '@vanilla-extract/recipes';
 export const wrapper = recipe({
   base: {
     color: themeVars.color.grayscale.gray900,
+    position: 'relative',
+    overflow: 'visible',
     padding: '2rem',
     cursor: 'pointer',
     backgroundColor: themeVars.color.grayscale.white,
@@ -36,6 +38,25 @@ export const icon = style({
   selectors: {
     [`${wrapper.classNames.base}:active &`]: {
       transform: 'scale(0.9)',
+    },
+  },
+});
+
+export const tag = style({
+  position: 'absolute',
+  top: '50%',
+  left: 'calc(100% + 0.8rem)',
+  transform: 'translateY(-50%) translateX(-0.4rem)',
+  opacity: 0,
+  pointerEvents: 'none',
+  whiteSpace: 'nowrap',
+  zIndex: themeVars.zIndex.tag,
+  transition: 'opacity 150ms ease, transform 150ms ease',
+
+  selectors: {
+    [`${wrapper.classNames.base}:hover &`]: {
+      opacity: 1,
+      transform: 'translateY(-50%) translateX(0)',
     },
   },
 });
