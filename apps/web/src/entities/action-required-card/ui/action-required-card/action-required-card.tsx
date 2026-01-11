@@ -20,7 +20,6 @@ export const ActionRequiredCard = ({
   children,
 }: ActionRequiredCardProps) => {
   const handleCardClick = () => {
-    console.log('카드 클릭됨');
     if (onClick) {
       onClick();
     }

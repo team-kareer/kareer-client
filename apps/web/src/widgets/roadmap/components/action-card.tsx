@@ -1,5 +1,5 @@
-import { ActionRequiredCard } from '@entities/action-required-card/ui/action-required-card/action-required-card';
 import { ActionTodoButton } from '@features/action-todo/ui/action-todo-button/action-todo-button';
+import { ActionRequiredCard } from '@entities/action-required-card/ui/action-required-card/action-required-card';
 
 interface ActionCardProps {
   title: string;
