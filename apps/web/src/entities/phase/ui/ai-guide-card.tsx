@@ -10,13 +10,13 @@ interface AiGuideCardProps {
 
 const AiGuideCard = ({ icon, title, description }: AiGuideCardProps) => {
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       {icon}
       <div>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
       </div>
-    </div>
+    </article>
   );
 };
 
