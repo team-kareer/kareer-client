@@ -1,10 +1,10 @@
 import {
   FitAnalysisIcon,
   HomeIcon,
+  LogoIcon,
   ProfileIcon,
   RoadmapIcon,
 } from '@kds/icons';
-import { ArrowDownIcon } from '@kds/icons';
 import { useLocation, useNavigate } from 'react-router';
 
 import { ROUTE_PATH } from '@shared/router/path';
@@ -30,9 +30,9 @@ const Navigation = () => {
 
   return (
     <nav className={styles.container}>
-      <div className={styles.logo}>
-        <ArrowDownIcon />
-      </div>
+      <button className={styles.logo} type="button">
+        <LogoIcon onClick={() => navigate(ROUTE_PATH.DASHBOARD)} />
+      </button>
       {NAVIGATION_ITEMS.map(({ key, icon, path }) => (
         <IconWrapper
           key={key}

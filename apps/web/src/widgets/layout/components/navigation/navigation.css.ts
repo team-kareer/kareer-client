@@ -14,4 +14,6 @@ export const container = style({
 
 export const logo = style({
   padding: '2rem',
+  cursor: 'pointer',
+  backgroundColor: 'transparent',
 });
