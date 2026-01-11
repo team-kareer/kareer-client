@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-
 import { CalendarIcon } from '@kds/icons';
 
 import * as styles from './action-required-card.css';
