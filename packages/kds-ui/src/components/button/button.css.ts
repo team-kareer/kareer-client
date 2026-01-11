@@ -5,16 +5,18 @@ import { themeVars, typography } from '../../styles';
 export const button = recipe({
   base: {
     display: 'flex',
+    alignItems: 'center',
     gap: '0.4rem',
     border: '1px solid transparent',
-    borderRadius: '1rem',
+    borderRadius: '10px',
+    cursor: 'pointer',
   },
   variants: {
     variant: {
       mini: {
         ...typography.cap1_sb_12,
         padding: '0.7rem 0.8rem',
-        borderRadius: '2rem',
+        borderRadius: '20px',
       },
       small: {
         ...typography.body7_sb_14,
