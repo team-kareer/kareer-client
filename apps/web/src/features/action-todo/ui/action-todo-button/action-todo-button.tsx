@@ -1,8 +1,7 @@
 import { MouseEvent } from 'react';
 import { PlusIcon } from '@kds/icons';
+import { Button } from '@kds/ui';
 import { color } from '@kds/ui/styles';
-
-import { actionTodoButton } from './action-todo-button.css';
 
 interface ActionTodoButtonProps {
   text: string;
@@ -19,9 +18,9 @@ export const ActionTodoButton = ({ text, onClick }: ActionTodoButtonProps) => {
   };
 
   return (
-    <button className={actionTodoButton} onClick={handleButtonClick}>
+    <Button preset="small_outlined" onClick={handleButtonClick}>
       <PlusIcon width={16} height={16} color={color.primary[500]} />
       {text}
-    </button>
+    </Button>
   );
 };
