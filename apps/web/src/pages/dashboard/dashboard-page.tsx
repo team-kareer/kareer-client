@@ -5,6 +5,7 @@ const DashboardPage = () => {
     title: 'Action Required',
     subTitle: 'This is a sub title',
     dueDate: '2026-01-01',
+    disabled: true,
   };
 
   return (
@@ -22,6 +23,13 @@ const DashboardPage = () => {
         title={action.title}
         subTitle={action.subTitle}
         dueDate={action.dueDate}
+        disabled={true}
+      />
+      <ActionCard
+        title={action.title}
+        subTitle={action.subTitle}
+        dueDate={action.dueDate}
+        disabled={false}
       />
     </div>
   );

@@ -7,6 +7,7 @@ interface ActionRequiredCardProps {
   title: string;
   subTitle: string;
   dueDate: string;
+  disabled?: boolean;
   onClick?: () => void;
   children?: ReactNode;
 }
@@ -16,9 +17,11 @@ export const ActionRequiredCard = ({
   subTitle,
   dueDate,
   onClick,
+  disabled = false,
   children,
 }: ActionRequiredCardProps) => {
   const handleCardClick = () => {
+    if (disabled) return;
     if (onClick) {
       onClick();
     }
@@ -26,19 +29,29 @@ export const ActionRequiredCard = ({
 
   return (
     <article
-      className={styles.container}
+      className={disabled ? styles.disabledContainer : styles.container}
       onClick={handleCardClick}
       role="button"
     >
       <div className={styles.contentWrapper}>
-        <p className={styles.titleStyle}>{title}</p>
-        <p className={styles.subTitleStyle}>{subTitle}</p>
-        <time className={styles.dueDateStyle} dateTime={dueDate}>
-          <CalendarIcon width={14} height={14} color={'currentColor'} />
-          {dueDate}
-        </time>
+        <p className={disabled ? styles.disabledTitleStyle : styles.titleStyle}>
+          {title}
+        </p>
+        <p
+          className={
+            disabled ? styles.disabledSubTitleStyle : styles.subTitleStyle
+          }
+        >
+          {subTitle}
+        </p>
+        {!disabled && (
+          <time className={styles.dueDateStyle} dateTime={dueDate}>
+            <CalendarIcon width={14} height={14} color={'currentColor'} />
+            {dueDate}
+          </time>
+        )}
       </div>
-      {children}
+      {!disabled && children}
     </article>
   );
 };

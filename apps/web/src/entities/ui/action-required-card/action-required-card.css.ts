@@ -33,6 +33,21 @@ export const contentWrapper = style({
   alignItems: 'flex-start',
 });
 
+// disabled 상태 스타일
+export const disabledContainer = style({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+  gap: '0.8rem',
+
+  borderRadius: '10px',
+  padding: '1.2rem 1.6rem',
+  border: `1.5px solid transparent`,
+  backgroundColor: color.grayscale.gray200,
+});
+
+// 타이틀 스타일
 export const titleStyle = style({
   ...typography.body7_sb_14,
   color: color.grayscale.gray800,
@@ -43,6 +58,13 @@ export const titleStyle = style({
   },
 });
 
+// disabled 상태 타이틀 스타일
+export const disabledTitleStyle = style({
+  ...typography.body7_sb_14,
+  color: color.grayscale.gray500,
+});
+
+// 서브타이틀 스타일
 export const subTitleStyle = style({
   ...typography.cap3_r_12,
   color: color.grayscale.gray400,
@@ -51,6 +73,12 @@ export const subTitleStyle = style({
       color: color.primary[300],
     },
   },
+});
+
+// disabled 상태 서브타이틀 스타일
+export const disabledSubTitleStyle = style({
+  ...typography.cap3_r_12,
+  color: color.grayscale.gray400,
 });
 
 export const dueDateStyle = style({
