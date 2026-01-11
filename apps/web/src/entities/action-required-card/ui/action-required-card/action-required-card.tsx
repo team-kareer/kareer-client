@@ -18,7 +18,7 @@ export const ActionRequiredCard = ({
   onClick,
 }: ActionRequiredCardProps) => {
   return (
-    <button className={styles.container} onClick={onClick}>
+    <article className={styles.container} onClick={onClick} role="button">
       <div className={styles.contentWrapper}>
         <p className={styles.titleStyle}>{title}</p>
         <p className={styles.subTitleStyle}>{subTitle}</p>
@@ -28,6 +28,6 @@ export const ActionRequiredCard = ({
         </time>
       </div>
       <ActionTodoButton text="To-Do" />
-    </button>
+    </article>
   );
 };
