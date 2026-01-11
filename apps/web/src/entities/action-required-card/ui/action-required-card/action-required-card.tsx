@@ -8,15 +8,17 @@ interface ActionRequiredCardProps {
   title: string;
   subTitle: string;
   dueDate: string;
+  onClick?: () => void;
 }
 
 export const ActionRequiredCard = ({
   title,
   subTitle,
   dueDate,
+  onClick,
 }: ActionRequiredCardProps) => {
   return (
-    <button className={styles.container}>
+    <button className={styles.container} onClick={onClick}>
       <div className={styles.contentWrapper}>
         <p className={styles.titleStyle}>{title}</p>
         <p className={styles.subTitleStyle}>{subTitle}</p>
