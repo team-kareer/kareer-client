@@ -1,4 +1,4 @@
-import { ActionRequiredCard } from '@entities/action-required-card/ui/action-required-card/action-required-card';
+import { ActionCard } from '@widgets/roadmap/components/action-card';
 
 const DashboardPage = () => {
   const action = {
@@ -18,7 +18,7 @@ const DashboardPage = () => {
         gap: '1rem',
       }}
     >
-      <ActionRequiredCard
+      <ActionCard
         title={action.title}
         subTitle={action.subTitle}
         dueDate={action.dueDate}

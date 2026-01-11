@@ -1,14 +1,13 @@
 import { CalendarIcon } from '@kds/icons';
-
-import ActionTodoButton from '@features/action-todo/ui/action-todo-button/action-todo-button';
-
 import * as styles from './action-required-card.css';
+import { ReactNode } from 'react';
 
 interface ActionRequiredCardProps {
   title: string;
   subTitle: string;
   dueDate: string;
   onClick?: () => void;
+  children?: ReactNode;
 }
 
 export const ActionRequiredCard = ({
@@ -16,6 +15,7 @@ export const ActionRequiredCard = ({
   subTitle,
   dueDate,
   onClick,
+  children,
 }: ActionRequiredCardProps) => {
   const handleCardClick = () => {
     console.log('카드 클릭됨');
@@ -38,7 +38,7 @@ export const ActionRequiredCard = ({
           {dueDate}
         </time>
       </div>
-      <ActionTodoButton text="To-Do" />
+      {children}
     </article>
   );
 };
