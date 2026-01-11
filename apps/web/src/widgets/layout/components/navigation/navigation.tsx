@@ -30,9 +30,9 @@ const Navigation = () => {
 
   return (
     <nav className={styles.container}>
-      <button className={styles.logo} type="button">
+      <a className={styles.logo}>
         <LogoIcon onClick={() => navigate(ROUTE_PATH.DASHBOARD)} />
-      </button>
+      </a>
       {NAVIGATION_ITEMS.map(({ label, icon, path }) => (
         <IconWrapper
           key={label}
