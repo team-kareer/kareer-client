@@ -4,7 +4,7 @@ const DashboardPage = () => {
   const action = {
     title: 'Action Required',
     subTitle: 'This is a sub title',
-    date: '2026-01-01',
+    dueDate: '2026-01-01',
   };
 
   return (
@@ -21,7 +21,7 @@ const DashboardPage = () => {
       <ActionRequiredCard
         title={action.title}
         subTitle={action.subTitle}
-        date={action.date}
+        dueDate={action.dueDate}
       />
     </div>
   );

@@ -52,7 +52,7 @@ export const subTitleStyle = style({
   },
 });
 
-export const dateStyle = style({
+export const dueDateStyle = style({
   ...typography.cap2_m_12,
   color: color.grayscale.gray500,
   marginTop: '0.5rem',
