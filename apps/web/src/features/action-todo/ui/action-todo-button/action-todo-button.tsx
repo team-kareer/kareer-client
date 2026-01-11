@@ -12,6 +12,7 @@ interface ActionTodoButtonProps {
 export const ActionTodoButton = ({ text, onClick }: ActionTodoButtonProps) => {
   const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+    console.log('버튼 클릭됨');
     if (onClick) {
       onClick();
     }

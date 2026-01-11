@@ -20,6 +20,10 @@ export const container = style({
       backgroundColor: color.primary[100],
       border: `1.5px solid ${color.primary[300]}`,
     },
+    '&:active:not(:has(button:active))': {
+      backgroundColor: color.primary[200],
+      border: `1.5px solid ${color.primary[400]}`,
+    },
   },
 });
 
