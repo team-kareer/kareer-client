@@ -60,7 +60,6 @@ export const dueDateStyle = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.4rem',
-  lineHeight: '14px',
   selectors: {
     [`${container}:hover &`]: {
       color: color.primary[400],
