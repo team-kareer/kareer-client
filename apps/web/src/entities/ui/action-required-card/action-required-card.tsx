@@ -21,7 +21,9 @@ export const ActionRequiredCard = ({
   children,
 }: ActionRequiredCardProps) => {
   const handleCardClick = () => {
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
     if (onClick) {
       onClick();
     }
