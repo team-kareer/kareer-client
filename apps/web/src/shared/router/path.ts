@@ -1,7 +1,7 @@
 export const ROUTE_PATH = {
   DASHBOARD: '/',
   ROADMAP: '/roadmap',
-  ELIGIBILITY: '/eligibility',
+  FITANALYSIS: '/fit-analysis',
   MY_PAGE: '/my-page',
 };
 
