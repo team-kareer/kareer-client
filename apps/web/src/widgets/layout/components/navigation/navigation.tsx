@@ -19,7 +19,7 @@ const NAVIGATION_ITEMS = [
   {
     label: 'Fit analysis',
     icon: <FitAnalysisIcon />,
-    path: ROUTE_PATH.ELIGIBILITY,
+    path: ROUTE_PATH.FITANALYSIS,
   },
   { label: 'My page', icon: <ProfileIcon />, path: ROUTE_PATH.MY_PAGE },
 ] as const;

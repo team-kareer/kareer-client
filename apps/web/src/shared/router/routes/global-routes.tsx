@@ -1,9 +1,5 @@
-import {
-  DashboardPage,
-  EligibilityPage,
-  MyPage,
-  RoadmapPage,
-} from '@shared/router/lazy';
+import FitAnalysisPage from '@pages/fit-analysis/fit-analysis-page';
+import { DashboardPage, MyPage, RoadmapPage } from '@shared/router/lazy';
 import { ROUTE_PATH } from '@shared/router/path';
 
 export const globalRoutes = [
@@ -16,8 +12,8 @@ export const globalRoutes = [
     Component: RoadmapPage,
   },
   {
-    path: ROUTE_PATH.ELIGIBILITY,
-    Component: EligibilityPage,
+    path: ROUTE_PATH.FITANALYSIS,
+    Component: FitAnalysisPage,
   },
   {
     path: ROUTE_PATH.MY_PAGE,
