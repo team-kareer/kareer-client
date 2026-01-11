@@ -14,14 +14,14 @@ import IconWrapper from './icon-wrapper/icon-wrapper';
 import * as styles from './navigation.css';
 
 const NAVIGATION_ITEMS = [
-  { key: 'home', icon: <HomeIcon />, path: ROUTE_PATH.DASHBOARD },
-  { key: 'roadmap', icon: <RoadmapIcon />, path: ROUTE_PATH.ROADMAP },
+  { label: 'Home', icon: <HomeIcon />, path: ROUTE_PATH.DASHBOARD },
+  { label: 'Road map', icon: <RoadmapIcon />, path: ROUTE_PATH.ROADMAP },
   {
-    key: 'analysis',
+    label: 'Fit analysis',
     icon: <FitAnalysisIcon />,
     path: ROUTE_PATH.ELIGIBILITY,
   },
-  { key: 'profile', icon: <ProfileIcon />, path: ROUTE_PATH.MY_PAGE },
+  { label: 'My page', icon: <ProfileIcon />, path: ROUTE_PATH.MY_PAGE },
 ] as const;
 
 const Navigation = () => {
@@ -33,10 +33,11 @@ const Navigation = () => {
       <button className={styles.logo} type="button">
         <LogoIcon onClick={() => navigate(ROUTE_PATH.DASHBOARD)} />
       </button>
-      {NAVIGATION_ITEMS.map(({ key, icon, path }) => (
+      {NAVIGATION_ITEMS.map(({ label, icon, path }) => (
         <IconWrapper
-          key={key}
+          key={label}
           icon={icon}
+          label={label}
           isActive={location.pathname === path}
           onClick={() => navigate(path)}
         />
