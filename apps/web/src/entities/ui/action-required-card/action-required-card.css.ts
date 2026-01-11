@@ -56,7 +56,7 @@ export const subTitleStyle = style({
 export const dueDateStyle = style({
   ...typography.cap2_m_12,
   color: color.grayscale.gray500,
-  marginTop: '0.5rem',
+  marginTop: '0.4rem',
   display: 'flex',
   alignItems: 'center',
   gap: '0.4rem',
