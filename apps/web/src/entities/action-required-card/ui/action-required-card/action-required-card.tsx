@@ -16,12 +16,12 @@ export const ActionRequiredCard = ({
   return (
     <button className={styles.container}>
       <div className={styles.contentWrapper}>
-        <div className={styles.titleStyle}>{title}</div>
-        <div className={styles.subTitleStyle}>{subTitle}</div>
-        <div className={styles.dateStyle}>
+        <p className={styles.titleStyle}>{title}</p>
+        <p className={styles.subTitleStyle}>{subTitle}</p>
+        <time className={styles.dateStyle} dateTime={date}>
           <CalendarIcon width={14} height={14} color={'currentColor'} />
           {date}
-        </div>
+        </time>
       </div>
       <ActionTodoButton text="To-Do" />
     </button>
