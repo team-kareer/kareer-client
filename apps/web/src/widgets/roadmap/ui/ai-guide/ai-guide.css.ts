@@ -5,7 +5,7 @@ export const container = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1.6rem',
-  padding: '2rem 1.6rem',
+  padding: '1.6rem 2rem',
   borderRadius: '10px',
   backgroundColor: themeVars.color.grayscale.gray800,
 });
