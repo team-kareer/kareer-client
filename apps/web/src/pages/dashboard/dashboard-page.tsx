@@ -1,4 +1,4 @@
-import AiGuide from '@entities/phase/ui/ai-guide/ai-guide';
+import AiGuide from '@widgets/roadmap/components/ai-guide/ai-guide';
 
 const MOCK_SERVER_RESPONSE = {
   importance:

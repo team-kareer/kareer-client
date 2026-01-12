@@ -1,6 +1,6 @@
 import { LogoIcon } from '@kds/icons';
 
-import AIGuideCard from '@entities/phase/ui/ai-guide-card/ai-guide-card';
+import { AIGuideCard } from '@entities/phase';
 
 import * as styles from './ai-guide.css';
 
