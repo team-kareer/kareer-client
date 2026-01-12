@@ -21,7 +21,7 @@ const TITLE_LIST = [
     subTitle: 'Here is your career overview!', // 변경 예정
     path: ROUTE_PATH.FITANALYSIS,
   },
-];
+] as const;
 
 const Header = () => {
   // 추후 api response로 대체
