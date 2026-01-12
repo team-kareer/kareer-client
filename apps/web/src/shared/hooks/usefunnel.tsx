@@ -18,6 +18,20 @@ interface FunnelProps {
   children: ReactElement<StepProps>[];
 }
 
+/**
+ * @param steps - 각 스텝을 식별할 문자열 배열.
+ * @param completePath - 퍼널 완료 후 이동할 경로
+ *
+ * @returns
+ * - goToStep : 다음 스텝 이동
+ * - goToPrevStep : 이전 스텝 이동
+ * - Funnel : 현재 스텝에 해당하는 컴포넌트 렌더링 컴포넌트
+ * - Step : 단순 children 렌더링 컴포넌트
+ * - currentStep : 현재 스텝
+ * - currentStepIndex : 현재 스텝 인덱스 번호
+ * - steps : 전체 스텝 배열
+ */
+
 export const useFunnel = (steps: string[], completePath: string) => {
   const navigate = useNavigate();
 
