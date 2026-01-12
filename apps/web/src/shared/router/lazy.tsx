@@ -8,3 +8,4 @@ export const FitAnalysisPage = lazy(
   () => import('@pages/fit-analysis/fit-analysis-page'),
 );
 export const MyPage = lazy(() => import('@pages/my-page/my-page'));
+export const Onboarding = lazy(() => import('@pages/onboarding/onboarding'));
