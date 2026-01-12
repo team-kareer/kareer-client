@@ -2,10 +2,10 @@ import { BangCircleIcon, InfoCircleIcon, SuccessCircleIcon } from '@kds/icons';
 
 import * as styles from './ai-guide-card.css';
 
-type AiGuideCardType = 'importance' | 'guideline' | 'commonMistakes';
+type AIGuideCardType = 'importance' | 'guideline' | 'commonMistakes';
 
-interface AiGuideCardProps {
-  type: AiGuideCardType;
+interface AIGuideCardProps {
+  type: AIGuideCardType;
   description: string;
 }
 
@@ -24,7 +24,7 @@ const CARD_CONTENT = {
   },
 } as const;
 
-const AiGuideCard = ({ type, description }: AiGuideCardProps) => {
+const AIGuideCard = ({ type, description }: AIGuideCardProps) => {
   const { title, icon } = CARD_CONTENT[type];
 
   return (
@@ -38,4 +38,4 @@ const AiGuideCard = ({ type, description }: AiGuideCardProps) => {
   );
 };
 
-export default AiGuideCard;
+export default AIGuideCard;

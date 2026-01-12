@@ -1,6 +1,6 @@
 import { LogoIcon } from '@kds/icons';
 
-import AiGuideCard from '@entities/phase/ui/ai-guide-card/ai-guide-card';
+import AIGuideCard from '@entities/phase/ui/ai-guide-card/ai-guide-card';
 
 import * as styles from './ai-guide.css';
 
@@ -9,13 +9,13 @@ const CONTENT = {
   DESCRIPTION: 'Document all work exprience during internship period',
 };
 
-interface AiGuideProps {
+interface AIGuideProps {
   importance: string;
   guideline: string;
   commonMistakes: string;
 }
 
-const AiGuide = ({ importance, guideline, commonMistakes }: AiGuideProps) => {
+const AIGuide = ({ importance, guideline, commonMistakes }: AIGuideProps) => {
   const GUIDE_ITEMS = [
     {
       type: 'importance',
@@ -41,10 +41,10 @@ const AiGuide = ({ importance, guideline, commonMistakes }: AiGuideProps) => {
         </div>
       </div>
       {GUIDE_ITEMS.map(({ type, description }) => (
-        <AiGuideCard key={type} type={type} description={description} />
+        <AIGuideCard key={type} type={type} description={description} />
       ))}
     </article>
   );
 };
 
-export default AiGuide;
+export default AIGuide;
