@@ -1,5 +1,7 @@
+import TestPage from './TestPage';
+
 const Onboarding = () => {
-  return <div>Onboarding</div>;
+  return <TestPage />;
 };
 
 export default Onboarding;

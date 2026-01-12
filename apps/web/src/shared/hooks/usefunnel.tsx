@@ -32,7 +32,7 @@ interface FunnelProps {
  * - steps : 전체 스텝 배열
  */
 
-export const useFunnel = (steps: string[], completePath: string) => {
+export const useFunnel = (steps: readonly string[], completePath: string) => {
   const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState(steps[0] ?? '');
@@ -59,8 +59,12 @@ export const useFunnel = (steps: string[], completePath: string) => {
   }, [currentStepIndex, steps, navigate, completePath]);
 
   const goToPrevStep = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
+    const prevStep = steps[currentStepIndex - 1];
+    if (prevStep) {
+      window.history.pushState({ step: prevStep }, '');
+      setCurrentStep(prevStep);
+    }
+  }, [currentStepIndex, steps]);
 
   const Funnel = ({ children }: FunnelProps) => {
     const targetStep = Children.toArray(children).find((child) => {
