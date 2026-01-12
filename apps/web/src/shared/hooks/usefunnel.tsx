@@ -1,5 +1,13 @@
-import { Children, ReactElement, ReactNode, isValidElement } from 'react';
-import { useSearchParams, useNavigate } from 'react-router';
+import {
+  Children,
+  ReactElement,
+  ReactNode,
+  isValidElement,
+  useCallback,
+  useState,
+  useEffect,
+} from 'react';
+import { useNavigate } from 'react-router';
 
 interface StepProps {
   name: string;
@@ -10,33 +18,35 @@ interface FunnelProps {
   children: ReactElement<StepProps>[];
 }
 
-export const useFunnel = <T extends string[]>(
-  steps: T,
-  completePath: string,
-) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+export const useFunnel = (steps: string[], completePath: string) => {
   const navigate = useNavigate();
 
-  const currentStep = searchParams.get('step') || steps[0];
-  const currentStepIndex = steps.indexOf(currentStep as T[number]);
+  const [currentStep, setCurrentStep] = useState(steps[0] ?? '');
+  const currentStepIndex = steps.indexOf(currentStep);
 
-  const goToStep = () => {
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state?.step) {
+        setCurrentStep(event.state.step);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const goToStep = useCallback(() => {
     const nextStep = steps[currentStepIndex + 1];
     if (nextStep) {
-      setSearchParams({ step: nextStep });
+      window.history.pushState({ step: nextStep }, '');
+      setCurrentStep(nextStep);
     } else {
       navigate(completePath);
     }
-  };
+  }, [currentStepIndex, steps, navigate, completePath]);
 
-  const goToPrevStep = () => {
-    const previousStep = steps[currentStepIndex - 1];
-    if (previousStep) {
-      setSearchParams({ step: previousStep });
-    } else {
-      navigate(-1);
-    }
-  };
+  const goToPrevStep = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
 
   const Funnel = ({ children }: FunnelProps) => {
     const targetStep = Children.toArray(children).find((child) => {
@@ -48,7 +58,15 @@ export const useFunnel = <T extends string[]>(
     return <>{targetStep}</>;
   };
   const Step = (props: StepProps) => {
-    return <div>{props.children}</div>;
+    return <>{props.children}</>;
   };
-  return { Funnel, Step, goToStep, goToPrevStep };
+  return {
+    Funnel,
+    Step,
+    goToStep,
+    goToPrevStep,
+    currentStep,
+    currentStepIndex,
+    steps,
+  };
 };
