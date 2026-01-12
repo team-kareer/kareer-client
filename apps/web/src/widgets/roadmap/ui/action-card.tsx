@@ -8,7 +8,7 @@ interface ActionCardProps {
   disabled?: boolean;
 }
 
-export const ActionCard = ({
+const ActionCard = ({
   title,
   subTitle,
   dueDate,
@@ -25,3 +25,5 @@ export const ActionCard = ({
     </ActionRequiredCard>
   );
 };
+
+export default ActionCard;
