@@ -4,7 +4,7 @@ const TestPage = () => {
   const {
     Funnel,
     Step,
-    goToStep,
+    goToNextStep,
     goToPrevStep,
     currentStep,
     currentStepIndex,
@@ -20,20 +20,20 @@ const TestPage = () => {
         <Step name="가입시작">
           <div>
             <h2>1단계 : 가입시작</h2>
-            <button onClick={goToStep}>다음</button>
+            <button onClick={goToNextStep}>다음</button>
           </div>
         </Step>
         <Step name="가입정보">
           <div>
             <h2>2단계 : 가입정보</h2>
-            <button onClick={goToStep}>다음</button>
+            <button onClick={goToNextStep}>다음</button>
             <button onClick={goToPrevStep}>이전</button>
           </div>
         </Step>
         <Step name="가입완료">
           <div>
             <h2>3단계 : 가입완료</h2>
-            <button onClick={goToStep}>완료</button>
+            <button onClick={goToNextStep}>완료</button>
             <button onClick={goToPrevStep}>이전</button>
           </div>
         </Step>

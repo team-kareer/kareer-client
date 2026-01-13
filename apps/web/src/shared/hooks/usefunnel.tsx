@@ -81,7 +81,7 @@ const useFunnel = (steps: readonly string[], completePath: string) => {
       }
       return child.props.name === currentStep;
     });
-    return <>{targetStep}</>;
+    return targetStep;
   };
   const Step = ({ children }: StepProps) => {
     return <>{children}</>;
