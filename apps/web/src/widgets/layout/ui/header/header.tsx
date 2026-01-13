@@ -9,17 +9,17 @@ import * as styles from './header.css';
 const HEADER_LIST = [
   {
     title: 'Your Personalized Career Plan',
-    subTitle: 'Built from your visa status, background, and career goals.',
+    subTitle: 'Built from your visa status, background, and career goals',
     path: ROUTE_PATH.DASHBOARD,
   },
   {
     title: 'Road Map',
-    subTitle: 'Here is your career overview!',
+    subTitle: 'Your step-by-step path toward career and visa goals',
     path: ROUTE_PATH.ROADMAP,
   },
   {
     title: 'Fit analysis',
-    subTitle: 'Here is your career overview!', // 변경 예정
+    subTitle: 'See what works in your favor — and what to improve',
     path: ROUTE_PATH.FITANALYSIS,
   },
 ] as const;
