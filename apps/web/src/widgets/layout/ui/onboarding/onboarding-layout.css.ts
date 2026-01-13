@@ -44,6 +44,5 @@ export const stepFormSection = style({
   flexDirection: 'column',
   flex: 1,
   minWidth: 0,
-  padding: '4.8rem 6.6rem',
   backgroundColor: themeVars.color.grayscale.gray200,
 });

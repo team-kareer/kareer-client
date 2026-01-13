@@ -1,5 +1,12 @@
+import { FeatureSection, HeroSection } from '@widgets/login';
+
 const Login = () => {
-  return <div>Login</div>;
+  return (
+    <>
+      <HeroSection />
+      <FeatureSection />
+    </>
+  );
 };
 
 export default Login;
