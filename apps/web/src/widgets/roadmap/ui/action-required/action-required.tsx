@@ -64,12 +64,14 @@ const ActionRequired = () => {
     <article className={styles.container}>
       <header className={styles.header}>
         <p className={styles.title}>{TITLE}</p>
-        <p className={styles.itemCount}>{ACTION_REQUIRED_ITEMS.length} items</p>
+        <p className={styles.headerItemCount}>
+          {ACTION_REQUIRED_ITEMS.length} items
+        </p>
       </header>
       <div className={styles.contentWrapper}>
         {Object.entries(groupedItems).map(([type, items]) => (
           <section key={type} className={styles.section}>
-            <div className={styles.sectionHeader}>
+            <div className={styles.sectionType}>
               <Tag
                 color={
                   TAG_COLOR_PALETTE[type as keyof typeof TAG_COLOR_PALETTE]
@@ -78,7 +80,7 @@ const ActionRequired = () => {
                 {type}
               </Tag>
               <span
-                className={`${styles.sectionItemCount}, ${styles.itemCountVariants[type as keyof typeof styles.itemCountVariants]}`}
+                className={`${styles.typeItemCount}, ${styles.typeItemCountVariants[type as keyof typeof styles.typeItemCountVariants]}`}
               >
                 {items.length}
               </span>

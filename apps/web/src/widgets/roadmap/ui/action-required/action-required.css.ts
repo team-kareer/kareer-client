@@ -21,26 +21,15 @@ export const title = style({
   color: themeVars.color.grayscale.gray800,
 });
 
-export const itemCount = style({
+export const headerItemCount = style({
   ...typography.cap2_m_12,
-});
-
-export const itemCountVariants = styleVariants({
-  Visa: {
-    color: themeVars.color.pastel.kapurple_500,
-  },
-  Career: {
-    color: themeVars.color.pastel.kaskyblue_500,
-  },
-  Done: {
-    color: themeVars.color.grayscale.gray400,
-  },
+  color: themeVars.color.grayscale.gray500,
 });
 
 export const contentWrapper = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '1.6rem',
+  gap: '1.2rem',
 });
 
 export const section = style({
@@ -49,7 +38,7 @@ export const section = style({
   gap: '0.8rem',
 });
 
-export const sectionHeader = style({
+export const sectionType = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.8rem',
@@ -61,7 +50,18 @@ export const sectionContent = style({
   gap: '0.8rem',
 });
 
-export const sectionItemCount = style({
+export const typeItemCount = style({
   ...typography.cap1_sb_12,
-  color: themeVars.color.grayscale.gray500,
+});
+
+export const typeItemCountVariants = styleVariants({
+  Visa: {
+    color: themeVars.color.pastel.kapurple_500,
+  },
+  Career: {
+    color: themeVars.color.pastel.kaskyblue_500,
+  },
+  Done: {
+    color: themeVars.color.grayscale.gray400,
+  },
 });
