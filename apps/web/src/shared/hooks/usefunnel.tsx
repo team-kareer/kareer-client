@@ -39,14 +39,22 @@ const useFunnel = (steps: readonly string[], completePath: string) => {
   const currentStepIndex = steps.indexOf(currentStep);
 
   useEffect(() => {
+    if (!window.history.state?.step) {
+      window.history.replaceState({ step: steps[0] }, '');
+    }
+  }, [steps]);
+
+  useEffect(() => {
     const handlePopState = (event: PopStateEvent) => {
       if (event.state?.step) {
         setCurrentStep(event.state.step);
+      } else {
+        setCurrentStep(steps[0] ?? '');
       }
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  }, [steps]);
 
   const goToStep = useCallback(() => {
     const nextStep = steps[currentStepIndex + 1];
