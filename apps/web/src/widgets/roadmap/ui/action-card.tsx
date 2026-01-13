@@ -1,5 +1,5 @@
-import { ActionTodoButton } from '@features/index';
-import { ActionRequiredCard } from '@entities/index';
+import { ActionTodoButton } from '@features/phase';
+import { ActionRequiredCard } from '@entities/phase';
 
 interface ActionCardProps {
   title: string;
@@ -8,7 +8,7 @@ interface ActionCardProps {
   disabled?: boolean;
 }
 
-export const ActionCard = ({
+const ActionCard = ({
   title,
   subTitle,
   dueDate,
@@ -25,3 +25,5 @@ export const ActionCard = ({
     </ActionRequiredCard>
   );
 };
+
+export default ActionCard;

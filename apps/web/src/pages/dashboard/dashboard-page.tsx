@@ -1,24 +1,20 @@
-import { BangCircleIcon, InfoCircleIcon, SuccessCircleIcon } from '@kds/icons';
+import AiGuide from '@widgets/roadmap/ui/ai-guide/ai-guide';
 
-import AiGuideCard from '@entities/phase/ui/ai-guide-card';
+const MOCK_SERVER_RESPONSE = {
+  importance:
+    'Explain the impact so the reader understands why this step cannot be skipped.',
+  guideline: 'List the exact steps and provide a clear example to follow.',
+  commonMistakes:
+    'Call out frequent errors and how to avoid them in the workflow.',
+} as const;
 
 const DashboardPage = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <AiGuideCard
-        icon={<InfoCircleIcon width={24} height={24} />}
-        title="Why this matters"
-        description="This is placeholder text for Required Action section."
-      />
-      <AiGuideCard
-        icon={<SuccessCircleIcon width={24} height={24} />}
-        title="How to do it properly"
-        description="This is placeholder text for Next Steps section."
-      />
-      <AiGuideCard
-        icon={<BangCircleIcon width={24} height={24} />}
-        title="Common mistakes"
-        description="This is placeholder text for Required Action section."
+      <AiGuide
+        importance={MOCK_SERVER_RESPONSE.importance}
+        guideline={MOCK_SERVER_RESPONSE.guideline}
+        commonMistakes={MOCK_SERVER_RESPONSE.commonMistakes}
       />
     </div>
   );

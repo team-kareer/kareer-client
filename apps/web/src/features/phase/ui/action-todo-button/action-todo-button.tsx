@@ -8,7 +8,7 @@ interface ActionTodoButtonProps {
   onClick?: () => void;
 }
 
-export const ActionTodoButton = ({ text, onClick }: ActionTodoButtonProps) => {
+const ActionTodoButton = ({ text, onClick }: ActionTodoButtonProps) => {
   const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (onClick) {
@@ -23,3 +23,5 @@ export const ActionTodoButton = ({ text, onClick }: ActionTodoButtonProps) => {
     </Button>
   );
 };
+
+export default ActionTodoButton;
