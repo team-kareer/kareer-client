@@ -6,7 +6,14 @@ import * as styles from './action-required.css';
 
 const TITLE = 'Action Required';
 
-const ACTION_REQUIRED_ITEMS = [
+interface ActionRequiredItem {
+  type: 'Visa' | 'Career' | 'Done';
+  title: string;
+  subTitle: string;
+  dueDate: string;
+}
+
+const ACTION_REQUIRED_ITEMS: ActionRequiredItem[] = [
   {
     type: 'Visa',
     title: 'Prepare internship log',
@@ -25,42 +32,67 @@ const ACTION_REQUIRED_ITEMS = [
     subTitle: 'Document all work exprience during internship period',
     dueDate: '2026-01-13',
   },
-] as const;
+  {
+    type: 'Career',
+    title: 'Prepare internship log',
+    subTitle: 'Document all work exprience during internship period',
+    dueDate: '2026-01-13',
+  },
+];
 
-// interface ActionRequiredItem {
-//   type: 'Visa' | 'Career' | 'Done';
-//   title: string;
-//   subTitle: string;
-//   dueDate: string;
-// }
-
-const TAG_COLOR_MAP = {
+const TAG_COLOR_PALETTE = {
   Visa: 'pastel_purple',
   Career: 'pastel_skyblue',
   Done: 'disabled_gray',
 } as const;
 
 const ActionRequired = () => {
+  // 타입별로 그룹화
+  const groupedItems = ACTION_REQUIRED_ITEMS.reduce(
+    (acc, item) => {
+      const type = item.type;
+      if (!acc[type]) {
+        acc[type] = [];
+      }
+      acc[type].push(item);
+      return acc;
+    },
+    {} as Record<string, ActionRequiredItem[]>,
+  );
+
   return (
     <article className={styles.container}>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <p className={styles.title}>{TITLE}</p>
         <p className={styles.itemCount}>{ACTION_REQUIRED_ITEMS.length} items</p>
-      </div>
+      </header>
       <div className={styles.contentWrapper}>
-        {ACTION_REQUIRED_ITEMS.map((item) => (
-          <section className={styles.section}>
+        {Object.entries(groupedItems).map(([type, items]) => (
+          <section key={type} className={styles.section}>
             <div className={styles.sectionHeader}>
-              <Tag color={TAG_COLOR_MAP[item.type]}>{item.type}</Tag>
+              <Tag
+                color={
+                  TAG_COLOR_PALETTE[type as keyof typeof TAG_COLOR_PALETTE]
+                }
+              >
+                {type}
+              </Tag>
+              <span
+                className={`${styles.sectionItemCount}, ${styles.itemCountVariants[type as keyof typeof styles.itemCountVariants]}`}
+              >
+                {items.length}
+              </span>
             </div>
             <div className={styles.sectionContent}>
-              <ActionCard
-                key={item.type}
-                title={item.title}
-                subTitle={item.subTitle}
-                dueDate={item.dueDate}
-                disabled={item.type === 'Done'}
-              />
+              {items.map((item, index) => (
+                <ActionCard
+                  key={`${type}-${index}`}
+                  title={item.title}
+                  subTitle={item.subTitle}
+                  dueDate={item.dueDate}
+                  disabled={type === 'Done'}
+                />
+              ))}
             </div>
           </section>
         ))}

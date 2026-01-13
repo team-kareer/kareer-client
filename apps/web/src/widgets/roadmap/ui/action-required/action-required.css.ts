@@ -1,5 +1,5 @@
 import { themeVars, typography } from '@kds/ui/styles';
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 
 export const container = style({
   display: 'flex',
@@ -23,7 +23,18 @@ export const title = style({
 
 export const itemCount = style({
   ...typography.cap2_m_12,
-  color: themeVars.color.grayscale.gray500,
+});
+
+export const itemCountVariants = styleVariants({
+  Visa: {
+    color: themeVars.color.pastel.kapurple_500,
+  },
+  Career: {
+    color: themeVars.color.pastel.kaskyblue_500,
+  },
+  Done: {
+    color: themeVars.color.grayscale.gray400,
+  },
 });
 
 export const contentWrapper = style({
@@ -48,4 +59,9 @@ export const sectionContent = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
+});
+
+export const sectionItemCount = style({
+  ...typography.cap1_sb_12,
+  color: themeVars.color.grayscale.gray500,
 });
