@@ -1,3 +1,5 @@
+import { Tag } from '@kds/ui';
+
 import * as styles from './career-roadmap-step-info.css';
 
 interface CareerRoadmapStepInfoProps {
@@ -8,10 +10,10 @@ interface CareerRoadmapStepInfoProps {
 }
 
 const TAG_LIST = [
-  { label: 'All completed', style: 'completed' },
-  { label: 'Incompleted works', style: 'incompleted' },
-  { label: 'Remained works', style: 'remained' },
-  { label: 'Scheduled works', style: 'scheduled' },
+  { label: 'All completed', style: 'pastel_mint' },
+  { label: 'Incompleted works', style: 'pastel_red' },
+  { label: 'Remained works', style: 'pastel_blue' },
+  { label: 'Scheduled works', style: 'outlined_blue' },
 ] as const;
 
 const CareerRoadmapStepInfo = ({
@@ -27,9 +29,11 @@ const CareerRoadmapStepInfo = ({
   return (
     <div className={styles.container}>
       <div className={styles.phase({ isActive: isActive })}>{status} Phase</div>
-      <div className={styles.tag({ tag: curTag?.style })}>
-        {curTag?.label} {count}
-      </div>
+      {curTag?.style && (
+        <Tag color={curTag.style}>
+          {curTag?.label} {count}
+        </Tag>
+      )}
     </div>
   );
 };

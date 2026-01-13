@@ -23,33 +23,3 @@ export const phase = recipe({
     },
   },
 });
-
-export const tag = recipe({
-  base: {
-    ...typography.cap1_sb_12,
-    padding: '0.5rem 1.2rem',
-    border: '1px solid transparent',
-    borderRadius: '20px',
-  },
-  variants: {
-    tag: {
-      completed: {
-        color: themeVars.color.pastel.kamint_500,
-        backgroundColor: themeVars.color.pastel.kamint_100,
-      },
-      incompleted: {
-        color: themeVars.color.pastel.kared_500,
-        backgroundColor: themeVars.color.pastel.kared_100,
-      },
-      remained: {
-        color: themeVars.color.primary[500],
-        backgroundColor: themeVars.color.primary[100],
-      },
-      scheduled: {
-        color: themeVars.color.primary[500],
-        borderColor: themeVars.color.grayscale.gray300,
-        backgroundColor: themeVars.color.grayscale.white,
-      },
-    },
-  },
-});
