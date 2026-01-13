@@ -46,7 +46,7 @@ const Header = () => {
           {curHeader?.title}
           {greeting}
         </h1>
-        <h2 className={styles.subTitle}>{curHeader?.subTitle}</h2>
+        <p className={styles.subTitle}>{curHeader?.subTitle}</p>
       </div>
 
       {mockUser.profileUrl ? (
