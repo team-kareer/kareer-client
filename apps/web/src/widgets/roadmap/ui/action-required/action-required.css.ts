@@ -1,5 +1,6 @@
 import { themeVars, typography } from '@kds/ui/styles';
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const container = style({
   display: 'flex',
@@ -38,18 +39,21 @@ export const sectionType = style({
   gap: '0.8rem',
 });
 
-export const typeItemCount = style({
-  ...typography.cap1_sb_12,
-});
-
-export const typeItemCountVariants = styleVariants({
-  Visa: {
-    color: themeVars.color.pastel.kapurple_500,
+export const typeItemCount = recipe({
+  base: {
+    ...typography.cap1_sb_12,
   },
-  Career: {
-    color: themeVars.color.pastel.kaskyblue_500,
-  },
-  Done: {
-    color: themeVars.color.grayscale.gray400,
+  variants: {
+    color: {
+      Visa: {
+        color: themeVars.color.pastel.kapurple_500,
+      },
+      Career: {
+        color: themeVars.color.pastel.kaskyblue_500,
+      },
+      Done: {
+        color: themeVars.color.grayscale.gray400,
+      },
+    },
   },
 });

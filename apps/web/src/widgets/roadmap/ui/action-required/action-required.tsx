@@ -54,9 +54,7 @@ const ActionRequired = ({ data }: ActionRequiredProps) => {
           <section key={type} className={styles.section}>
             <div className={styles.sectionType}>
               <Tag color={TAG_COLOR_PALETTE[type]}>{type}</Tag>
-              <span
-                className={`${styles.typeItemCount} ${styles.typeItemCountVariants[type]}`}
-              >
+              <span className={styles.typeItemCount({ color: type })}>
                 {group.count}
               </span>
             </div>
