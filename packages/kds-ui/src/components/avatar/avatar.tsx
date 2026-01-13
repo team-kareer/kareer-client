@@ -3,7 +3,7 @@ import { AvatarIcon } from '@kds/icons';
 import * as styles from './avatar.css';
 
 interface AvatarProps {
-  profileUrl: string | undefined;
+  profileUrl?: string;
   size?: 'mini'; //| 'default'
 }
 
