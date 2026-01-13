@@ -3,7 +3,7 @@ import * as styles from './career-roadmap-step-info.css';
 interface CareerRoadmapStepInfoProps {
   status: string;
   label: string;
-  workscount: number;
+  worksCount: number;
   isActive: boolean;
 }
 
@@ -17,12 +17,12 @@ const TAG_LIST = [
 const CareerRoadmapStepInfo = ({
   status,
   label,
-  workscount,
+  worksCount,
   isActive,
 }: CareerRoadmapStepInfoProps) => {
   const curTag = TAG_LIST.find((tag) => tag.label === label);
   const showWorkscount = curTag?.label !== 'All completed';
-  const count = showWorkscount ? workscount : '';
+  const count = showWorkscount ? worksCount : '';
 
   return (
     <div className={styles.container}>

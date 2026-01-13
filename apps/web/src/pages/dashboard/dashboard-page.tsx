@@ -17,7 +17,7 @@ const DashboardPage = () => {
           <CareerRoadmapStepInfo
             status="Past"
             label="Incompleted works"
-            workscount={2}
+            worksCount={2}
             isActive={clickedPhase === 0}
           />
         }
@@ -32,7 +32,7 @@ const DashboardPage = () => {
           <CareerRoadmapStepInfo
             status="Current"
             label="Remained works"
-            workscount={2}
+            worksCount={2}
             isActive={clickedPhase === 1}
           />
         }
