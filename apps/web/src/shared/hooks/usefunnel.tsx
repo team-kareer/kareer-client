@@ -3,7 +3,6 @@ import {
   isValidElement,
   ReactElement,
   ReactNode,
-  useCallback,
   useEffect,
   useState,
 } from 'react';
@@ -56,7 +55,7 @@ const useFunnel = (steps: readonly string[], completePath: string) => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, [steps]);
 
-  const goToNextStep = useCallback(() => {
+  const goToNextStep = () => {
     const nextStep = steps[currentStepIndex + 1];
     if (nextStep) {
       window.history.pushState({ step: nextStep }, '');
@@ -64,15 +63,15 @@ const useFunnel = (steps: readonly string[], completePath: string) => {
     } else {
       navigate(completePath);
     }
-  }, [currentStepIndex, steps, navigate, completePath]);
+  };
 
-  const goToPrevStep = useCallback(() => {
+  const goToPrevStep = () => {
     const prevStep = steps[currentStepIndex - 1];
     if (prevStep) {
       window.history.pushState({ step: prevStep }, '');
       setCurrentStep(prevStep);
     }
-  }, [currentStepIndex, steps]);
+  };
 
   const Funnel = ({ children }: FunnelProps) => {
     const targetStep = Children.toArray(children).find((child) => {
