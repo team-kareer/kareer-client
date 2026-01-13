@@ -1,29 +1,27 @@
-import { ReactNode } from 'react';
+import { TodoCheckIcon, TodoIcon } from '@kds/icons';
 
 import * as styles from './todo-item.css';
 
 type TodoItemSize = 'sm' | 'lg';
 
 interface TodoItemProps {
-  icon: ReactNode;
   title: string;
   description: string;
   size: TodoItemSize;
-  checked: boolean;
+  isChecked: boolean;
 }
 
-const TodoItem = ({
-  icon,
-  title,
-  description,
-  size,
-  checked,
-}: TodoItemProps) => {
-  const showDescription = size !== 'sm' || !checked;
+const TodoItem = ({ title, description, size, isChecked }: TodoItemProps) => {
+  const showDescription = size === 'lg' || !isChecked;
+  const todoIcon = isChecked ? (
+    <TodoCheckIcon width={24} height={24} />
+  ) : (
+    <TodoIcon width={24} height={24} />
+  );
 
   return (
     <article className={styles.container}>
-      {icon}
+      {todoIcon}
       <div className={styles.contentWrapper}>
         <p className={styles.title}>{title}</p>
         {showDescription && <p className={styles.description}>{description}</p>}
