@@ -1,5 +1,6 @@
 import { ComponentProps } from 'react';
 import { Tag } from '@kds/ui';
+import { useNavigate } from 'react-router';
 
 import * as styles from './required-action-card.css';
 
@@ -8,6 +9,7 @@ interface RequiredActionCardProps {
   tagLabel: 'Visa' | 'Career';
   title: string;
   dueDate: string;
+  onClick?: () => void;
 }
 
 const RequiredActionCard = ({
@@ -16,14 +18,24 @@ const RequiredActionCard = ({
   title,
   dueDate,
 }: RequiredActionCardProps) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate('/');
+  };
+
   return (
-    <article className={styles.container}>
+    <button
+      className={styles.container}
+      onClick={handleCardClick}
+      type="button"
+    >
       <Tag color={tagColor}>{tagLabel}</Tag>
-      <article className={styles.content}>
+      <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.dueDate}>{dueDate}</p>
-      </article>
-    </article>
+      </div>
+    </button>
   );
 };
 
