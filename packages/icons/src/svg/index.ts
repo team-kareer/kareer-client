@@ -4,6 +4,7 @@ export { default as ArrowDownIcon } from './ic_arrow_down.svg?react';
 export { default as ArrowLeftIcon } from './ic_arrow_left.svg?react';
 export { default as ArrowRightIcon } from './ic_arrow_right.svg?react';
 export { default as ArrowUpIcon } from './ic_arrow_up.svg?react';
+export { default as AvatarIcon } from './ic_avatar.svg?react';
 export { default as BangCircleIcon } from './ic_bang_circle.svg?react';
 export { default as BookmarkIcon } from './ic_bookmark.svg?react';
 export { default as BookmarkCheckIcon } from './ic_bookmark_check.svg?react';
