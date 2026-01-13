@@ -7,38 +7,26 @@ import * as styles from './action-required.css';
 const TITLE = 'Action Required';
 
 interface ActionRequiredItem {
-  type: 'Visa' | 'Career' | 'Done';
   title: string;
   subTitle: string;
   dueDate: string;
 }
 
-const ACTION_REQUIRED_ITEMS: ActionRequiredItem[] = [
-  {
-    type: 'Visa',
-    title: 'Prepare internship log',
-    subTitle: 'Document all work exprience during internship period',
-    dueDate: '2026-01-13',
-  },
-  {
-    type: 'Career',
-    title: 'Prepare internship log',
-    subTitle: 'Document all work exprience during internship period',
-    dueDate: '2026-01-13',
-  },
-  {
-    type: 'Done',
-    title: 'Prepare internship log',
-    subTitle: 'Document all work exprience during internship period',
-    dueDate: '2026-01-13',
-  },
-  {
-    type: 'Career',
-    title: 'Prepare internship log',
-    subTitle: 'Document all work exprience during internship period',
-    dueDate: '2026-01-13',
-  },
-];
+interface ActionRequiredGroup {
+  count: number;
+  list: ActionRequiredItem[];
+}
+
+interface ActionRequiredData {
+  Visa: ActionRequiredGroup;
+  Career: ActionRequiredGroup;
+  Done: ActionRequiredGroup;
+  totalCount: number;
+}
+
+interface ActionRequiredProps {
+  data: ActionRequiredData;
+}
 
 const TAG_COLOR_PALETTE = {
   Visa: 'pastel_purple',
@@ -46,60 +34,49 @@ const TAG_COLOR_PALETTE = {
   Done: 'disabled_gray',
 } as const;
 
-const ActionRequired = () => {
-  // 타입별로 그룹화
-  const groupedItems = ACTION_REQUIRED_ITEMS.reduce(
-    (acc, item) => {
-      const type = item.type;
-      if (!acc[type]) {
-        acc[type] = [];
-      }
-      acc[type].push(item);
-      return acc;
-    },
-    {} as Record<string, ActionRequiredItem[]>,
-  );
+const ActionRequired = ({ data }: ActionRequiredProps) => {
+  const types: Array<keyof typeof TAG_COLOR_PALETTE> = [
+    'Visa',
+    'Career',
+    'Done',
+  ];
 
   return (
-    <article className={styles.container}>
+    <section className={styles.container}>
       <header className={styles.header}>
         <p className={styles.title}>{TITLE}</p>
-        <p className={styles.headerItemCount}>
-          {ACTION_REQUIRED_ITEMS.length} items
-        </p>
+        <p className={styles.headerItemCount}>{data.totalCount} items</p>
       </header>
       <div className={styles.contentWrapper}>
-        {Object.entries(groupedItems).map(([type, items]) => (
-          <section key={type} className={styles.section}>
-            <div className={styles.sectionType}>
-              <Tag
-                color={
-                  TAG_COLOR_PALETTE[type as keyof typeof TAG_COLOR_PALETTE]
-                }
-              >
-                {type}
-              </Tag>
-              <span
-                className={`${styles.typeItemCount} ${styles.typeItemCountVariants[type as keyof typeof styles.typeItemCountVariants]}`}
-              >
-                {items.length}
-              </span>
-            </div>
-            <div className={styles.sectionContent}>
-              {items.map((item, index) => (
-                <ActionCard
-                  key={`${type}-${index}`}
-                  title={item.title}
-                  subTitle={item.subTitle}
-                  dueDate={item.dueDate}
-                  disabled={type === 'Done'}
-                />
-              ))}
-            </div>
-          </section>
-        ))}
+        {types.map((type) => {
+          const group = data[type];
+
+          return (
+            <section key={type} className={styles.section}>
+              <div className={styles.sectionType}>
+                <Tag color={TAG_COLOR_PALETTE[type]}>{type}</Tag>
+                <span
+                  className={`${styles.typeItemCount} ${styles.typeItemCountVariants[type]}`}
+                >
+                  {group.count}
+                </span>
+              </div>
+              <div className={styles.sectionContent}>
+                {group.list.map((item, index) => (
+                  <ActionCard
+                    key={`${type}-${index}`}
+                    title={item.title}
+                    subTitle={item.subTitle}
+                    dueDate={item.dueDate}
+                    disabled={type === 'Done'}
+                  />
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </div>
-    </article>
+    </section>
   );
 };
 
