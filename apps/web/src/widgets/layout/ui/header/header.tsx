@@ -1,5 +1,5 @@
 import { UserProfileIcon } from '@kds/icons';
-import { UserProfile } from '@kds/ui';
+import { Avatar } from '@kds/ui';
 import { useLocation } from 'react-router';
 
 import { ROUTE_PATH } from '@shared/router';
@@ -50,7 +50,7 @@ const Header = () => {
       </div>
 
       {mockUser.profileUrl ? (
-        <UserProfile profileUrl={mockUser.profileUrl} size="mini" />
+        <Avatar profileUrl={mockUser.profileUrl} size="mini" />
       ) : (
         <UserProfileIcon />
       )}
