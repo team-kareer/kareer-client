@@ -1,11 +1,11 @@
-import * as styles from './user-profile.css';
+import * as styles from './avatar.css';
 
-interface UserProfileProps {
+interface AvatarProps {
   profileUrl: string;
   size?: 'mini'; //| 'default'
 }
 
-const UserProfile = ({ profileUrl, size }: UserProfileProps) => {
+const Avatar = ({ profileUrl, size }: AvatarProps) => {
   return (
     <img
       src={profileUrl}
@@ -15,4 +15,4 @@ const UserProfile = ({ profileUrl, size }: UserProfileProps) => {
   );
 };
 
-export default UserProfile;
+export default Avatar;
