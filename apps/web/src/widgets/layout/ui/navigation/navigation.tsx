@@ -7,7 +7,7 @@ import {
 } from '@kds/icons';
 import { useLocation, useNavigate } from 'react-router';
 
-import { ROUTE_PATH } from '@shared/router';
+import { ROUTE_PATH } from '@shared/router/path';
 
 import IconWrapper from './icon-wrapper/icon-wrapper';
 
