@@ -1,4 +1,4 @@
-import { useFunnel } from '@shared/hooks/usefunnel';
+import useFunnel from '@shared/hooks/usefunnel';
 
 const TestPage = () => {
   const {

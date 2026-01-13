@@ -32,7 +32,7 @@ interface FunnelProps {
  * - steps : 전체 스텝 배열
  */
 
-export const useFunnel = (steps: readonly string[], completePath: string) => {
+const useFunnel = (steps: readonly string[], completePath: string) => {
   const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState(steps[0] ?? '');
@@ -88,3 +88,5 @@ export const useFunnel = (steps: readonly string[], completePath: string) => {
     steps,
   };
 };
+
+export default useFunnel;
