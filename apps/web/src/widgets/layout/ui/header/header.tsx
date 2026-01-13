@@ -1,7 +1,7 @@
 import { Avatar } from '@kds/ui';
 import { useLocation } from 'react-router';
 
-import { ROUTE_PATH } from '@shared/router';
+import { ROUTE_PATH } from '@shared/router/path';
 
 import * as styles from './header.css';
 
@@ -27,8 +27,6 @@ const Header = () => {
   // 추후 api response로 대체
   const mockUser = {
     username: 'Yoonseo Bong',
-    profileUrl:
-      'https://www.biteme.co.kr/blog/wp-content/uploads/2025/04/491b87a0-1913-43ab-92e3-b16c2a1e6f82.jpg',
   };
 
   const location = useLocation();
@@ -49,7 +47,7 @@ const Header = () => {
         <p className={styles.subTitle}>{curHeader?.subTitle}</p>
       </div>
 
-      <Avatar profileUrl={mockUser.profileUrl} size="mini" />
+      <Avatar size="mini" />
     </header>
   );
 };
