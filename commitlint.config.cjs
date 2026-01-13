@@ -30,8 +30,9 @@ const allowedTypes = [
   'deploy',
 ];
 
+const firstLine = commitMessage.split('\n')[0];
 const commitRegex = /^(\w+):\s{1,}(.+)$/;
-const match = commitMessage.match(commitRegex);
+const match = firstLine.match(commitRegex);
 
 if (!match) {
   console.error(`
