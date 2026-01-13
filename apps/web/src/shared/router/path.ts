@@ -3,7 +3,6 @@ export const ROUTE_PATH = {
   ROADMAP: '/roadmap',
   FITANALYSIS: '/fit-analysis',
   MY_PAGE: '/my-page',
-  ONBOARDING: '/onboarding',
 };
 
 export type Routes = (typeof ROUTE_PATH)[keyof typeof ROUTE_PATH];
