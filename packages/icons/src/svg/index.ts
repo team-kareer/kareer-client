@@ -20,6 +20,7 @@ export { default as HomeIcon } from './ic_home.svg?react';
 export { default as InfoIcon } from './ic_info.svg?react';
 export { default as InfoCircleIcon } from './ic_info_circle.svg?react';
 export { default as LogoIcon } from './ic_logo.svg?react';
+export { default as LogoTypoIcon } from './ic_logo_typo.svg?react';
 export { default as PlusIcon } from './ic_plus.svg?react';
 export { default as ProfileIcon } from './ic_profile.svg?react';
 export { default as RoadmapIcon } from './ic_roadmap.svg?react';
