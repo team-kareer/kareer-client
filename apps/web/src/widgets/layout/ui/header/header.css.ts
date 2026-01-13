@@ -24,9 +24,3 @@ export const subTitle = style({
   ...typography.body6_r_16,
   color: themeVars.color.grayscale.gray500,
 });
-
-export const img = style({
-  width: '5.2rem',
-  height: '5.2rem',
-  borderRadius: '50%',
-});
