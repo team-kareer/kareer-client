@@ -23,7 +23,7 @@ interface FunnelProps {
  * @param completePath - 퍼널 완료 후 이동할 경로
  *
  * @returns
- * - goToStep : 다음 스텝 이동
+ * - goToNextStep : 다음 스텝 이동
  * - goToPrevStep : 이전 스텝 이동
  * - Funnel : 현재 스텝에 해당하는 컴포넌트 렌더링 컴포넌트
  * - Step : 단순 children 렌더링 컴포넌트
@@ -56,7 +56,7 @@ const useFunnel = (steps: readonly string[], completePath: string) => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, [steps]);
 
-  const goToStep = useCallback(() => {
+  const goToNextStep = useCallback(() => {
     const nextStep = steps[currentStepIndex + 1];
     if (nextStep) {
       window.history.pushState({ step: nextStep }, '');
@@ -89,7 +89,7 @@ const useFunnel = (steps: readonly string[], completePath: string) => {
   return {
     Funnel,
     Step,
-    goToStep,
+    goToNextStep,
     goToPrevStep,
     currentStep,
     currentStepIndex,
