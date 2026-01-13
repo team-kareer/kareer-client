@@ -1,5 +1,11 @@
+import ActionRequired from '@widgets/roadmap/ui/action-required/action-required';
+
 const DashboardPage = () => {
-  return <>dashboard page</>;
+  return (
+    <>
+      <ActionRequired />
+    </>
+  );
 };
 
 export default DashboardPage;

@@ -1,0 +1,51 @@
+import { themeVars, typography } from '@kds/ui/styles';
+import { style } from '@vanilla-extract/css';
+
+export const container = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
+  padding: '1.6rem 2rem',
+  borderRadius: '10px',
+  backgroundColor: themeVars.color.grayscale.gray100,
+});
+
+export const header = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+});
+
+export const title = style({
+  ...typography.body7_sb_14,
+  color: themeVars.color.grayscale.gray800,
+});
+
+export const itemCount = style({
+  ...typography.cap2_m_12,
+  color: themeVars.color.grayscale.gray500,
+});
+
+export const contentWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.6rem',
+});
+
+export const section = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+});
+
+export const sectionHeader = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+});
+
+export const sectionContent = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
+});
