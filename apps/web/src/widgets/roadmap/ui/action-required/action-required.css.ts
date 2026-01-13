@@ -13,7 +13,7 @@ export const container = style({
 export const header = style({
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center',
+  alignItems: 'flex-start',
 });
 
 export const title = style({
@@ -24,12 +24,6 @@ export const title = style({
 export const headerItemCount = style({
   ...typography.cap2_m_12,
   color: themeVars.color.grayscale.gray500,
-});
-
-export const contentWrapper = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1.2rem',
 });
 
 export const section = style({

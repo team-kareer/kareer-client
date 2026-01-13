@@ -47,35 +47,33 @@ const ActionRequired = ({ data }: ActionRequiredProps) => {
         <p className={styles.title}>{TITLE}</p>
         <p className={styles.headerItemCount}>{data.totalCount} items</p>
       </header>
-      <div className={styles.contentWrapper}>
-        {types.map((type) => {
-          const group = data[type];
+      {types.map((type) => {
+        const group = data[type];
 
-          return (
-            <section key={type} className={styles.section}>
-              <div className={styles.sectionType}>
-                <Tag color={TAG_COLOR_PALETTE[type]}>{type}</Tag>
-                <span
-                  className={`${styles.typeItemCount} ${styles.typeItemCountVariants[type]}`}
-                >
-                  {group.count}
-                </span>
-              </div>
-              <div className={styles.sectionContent}>
-                {group.list.map((item, index) => (
-                  <ActionCard
-                    key={`${type}-${index}`}
-                    title={item.title}
-                    subTitle={item.subTitle}
-                    dueDate={item.dueDate}
-                    disabled={type === 'Done'}
-                  />
-                ))}
-              </div>
-            </section>
-          );
-        })}
-      </div>
+        return (
+          <section key={type} className={styles.section}>
+            <div className={styles.sectionType}>
+              <Tag color={TAG_COLOR_PALETTE[type]}>{type}</Tag>
+              <span
+                className={`${styles.typeItemCount} ${styles.typeItemCountVariants[type]}`}
+              >
+                {group.count}
+              </span>
+            </div>
+            <div className={styles.sectionContent}>
+              {group.list.map((item, index) => (
+                <ActionCard
+                  key={`${type}-${index}`}
+                  title={item.title}
+                  subTitle={item.subTitle}
+                  dueDate={item.dueDate}
+                  disabled={type === 'Done'}
+                />
+              ))}
+            </div>
+          </section>
+        );
+      })}
     </section>
   );
 };
