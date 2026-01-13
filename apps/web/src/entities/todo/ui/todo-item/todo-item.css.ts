@@ -16,6 +16,12 @@ export const contentWrapper = style({
   gap: '0.2rem',
 });
 
+export const icon = style({
+  backgroundColor: 'transparent',
+  padding: 0,
+  cursor: 'pointer',
+});
+
 export const title = style({
   ...typography.body8_m_14,
   color: themeVars.color.grayscale.gray800,

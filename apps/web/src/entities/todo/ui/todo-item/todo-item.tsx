@@ -9,9 +9,16 @@ interface TodoItemProps {
   description: string;
   size: TodoItemSize;
   isChecked: boolean;
+  onClick?: () => void;
 }
 
-const TodoItem = ({ title, description, size, isChecked }: TodoItemProps) => {
+const TodoItem = ({
+  title,
+  description,
+  size,
+  isChecked,
+  onClick,
+}: TodoItemProps) => {
   const showDescription = size === 'lg' || !isChecked;
   const todoIcon = isChecked ? (
     <TodoCheckIcon width={24} height={24} />
@@ -21,7 +28,9 @@ const TodoItem = ({ title, description, size, isChecked }: TodoItemProps) => {
 
   return (
     <article className={styles.container}>
-      {todoIcon}
+      <button type="button" className={styles.icon} onClick={onClick}>
+        {todoIcon}
+      </button>
       <div className={styles.contentWrapper}>
         <p className={styles.title}>{title}</p>
         {showDescription && <p className={styles.description}>{description}</p>}
