@@ -1,4 +1,3 @@
-import { UserProfileIcon } from '@kds/icons';
 import { Avatar } from '@kds/ui';
 import { useLocation } from 'react-router';
 
@@ -31,6 +30,7 @@ const Header = () => {
     profileUrl:
       'https://www.biteme.co.kr/blog/wp-content/uploads/2025/04/491b87a0-1913-43ab-92e3-b16c2a1e6f82.jpg',
   };
+
   const location = useLocation();
   const curHeader = HEADER_LIST.find(
     (header) => header.path === location.pathname,
@@ -49,11 +49,7 @@ const Header = () => {
         <p className={styles.subTitle}>{curHeader?.subTitle}</p>
       </div>
 
-      {mockUser.profileUrl ? (
-        <Avatar profileUrl={mockUser.profileUrl} size="mini" />
-      ) : (
-        <UserProfileIcon />
-      )}
+      <Avatar profileUrl={mockUser.profileUrl} size="mini" />
     </header>
   );
 };
