@@ -22,6 +22,7 @@ export const button = recipe({
     border: '1px solid',
     borderRadius: '8px',
     backgroundColor: themeVars.color.grayscale.white,
+    cursor: 'pointer',
     vars: {
       [titleColor]: themeVars.color.primary[500],
       [timeColor]: themeVars.color.primary[400],

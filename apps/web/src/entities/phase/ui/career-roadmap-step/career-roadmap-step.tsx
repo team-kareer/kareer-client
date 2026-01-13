@@ -1,21 +1,31 @@
-import * as styles from './career-roadmap-step-title.css';
+import { ReactNode } from 'react';
 
-interface CareerRoadmapStepTitleProps {
+import * as styles from './career-roadmap-step.css';
+
+interface CareerRoadmapStepProps {
   title: string;
   period: string;
   phase: number;
+  onClick: () => void;
   isActive: boolean;
+  bottom: ReactNode;
 }
 
-const CareerRoadmapStepTitle = ({
+const CareerRoadmapStep = ({
   title,
   period,
   phase,
+  onClick,
   isActive,
-}: CareerRoadmapStepTitleProps) => {
+  bottom,
+}: CareerRoadmapStepProps) => {
   return (
     <div className={styles.container}>
-      <button type="button" className={styles.button({ isActive: isActive })}>
+      <button
+        type="button"
+        className={styles.button({ isActive: isActive })}
+        onClick={onClick}
+      >
         <h3 className={styles.title}>{title}</h3>
         <time className={styles.time}>{period}</time>
       </button>
@@ -23,8 +33,9 @@ const CareerRoadmapStepTitle = ({
         <div className={styles.line({ isActive: isActive })} />
         <div className={styles.circle({ isActive: isActive })}>{phase}</div>
       </div>
+      {bottom}
     </div>
   );
 };
 
-export default CareerRoadmapStepTitle;
+export default CareerRoadmapStep;
