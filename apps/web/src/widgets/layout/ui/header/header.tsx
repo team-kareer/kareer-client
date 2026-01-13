@@ -1,11 +1,12 @@
 import { UserProfileIcon } from '@kds/icons';
+import { UserProfile } from '@kds/ui';
 import { useLocation } from 'react-router';
 
 import { ROUTE_PATH } from '@shared/router';
 
 import * as styles from './header.css';
 
-const TITLE_LIST = [
+const HEADER_LIST = [
   {
     title: 'Your Personalized Career Plan',
     subTitle: 'Built from your visa status, background, and career goals.',
@@ -30,37 +31,26 @@ const Header = () => {
     profileUrl:
       'https://www.biteme.co.kr/blog/wp-content/uploads/2025/04/491b87a0-1913-43ab-92e3-b16c2a1e6f82.jpg',
   };
-  // const mockUser = {
-  //   username: undefined,
-  //   profileUrl: undefined,
-  // };
   const location = useLocation();
+  const curHeader = HEADER_LIST.find(
+    (header) => header.path === location.pathname,
+  );
+  const showUsername =
+    curHeader?.path === ROUTE_PATH.DASHBOARD && mockUser.username;
+  const greeting = showUsername ? `, ${mockUser.username}!` : '';
 
   return (
     <header className={styles.container}>
-      {TITLE_LIST.map(({ title, subTitle, path }) => {
-        if (location.pathname === path) {
-          const showUsername =
-            path === ROUTE_PATH.DASHBOARD && mockUser.username;
-
-          return (
-            <div key={path} className={styles.left_section}>
-              <h1 className={styles.title}>
-                {title}
-                {showUsername ? `, ${mockUser.username}!` : ''}
-              </h1>
-              <h2 className={styles.subTitle}>{subTitle}</h2>
-            </div>
-          );
-        }
-      })}
+      <div key={curHeader?.path} className={styles.left_section}>
+        <h1 className={styles.title}>
+          {curHeader?.title}
+          {greeting}
+        </h1>
+        <h2 className={styles.subTitle}>{curHeader?.subTitle}</h2>
+      </div>
 
       {mockUser.profileUrl ? (
-        <img
-          src={mockUser.profileUrl}
-          alt="사용자 프로필 이미지"
-          className={styles.img}
-        />
+        <UserProfile profileUrl={mockUser.profileUrl} size="mini" />
       ) : (
         <UserProfileIcon />
       )}
