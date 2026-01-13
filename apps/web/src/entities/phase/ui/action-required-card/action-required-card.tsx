@@ -12,7 +12,7 @@ interface ActionRequiredCardProps {
   children?: ReactNode;
 }
 
-export const ActionRequiredCard = ({
+const ActionRequiredCard = ({
   title,
   subTitle,
   dueDate,
@@ -57,3 +57,5 @@ export const ActionRequiredCard = ({
     </article>
   );
 };
+
+export default ActionRequiredCard;
