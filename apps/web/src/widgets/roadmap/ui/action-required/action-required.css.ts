@@ -38,12 +38,6 @@ export const sectionType = style({
   gap: '0.8rem',
 });
 
-export const sectionContent = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-});
-
 export const typeItemCount = style({
   ...typography.cap1_sb_12,
 });

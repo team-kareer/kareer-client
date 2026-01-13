@@ -60,17 +60,15 @@ const ActionRequired = ({ data }: ActionRequiredProps) => {
                 {group.count}
               </span>
             </div>
-            <div className={styles.sectionContent}>
-              {group.list.map((item, index) => (
-                <ActionCard
-                  key={`${type}-${index}`}
-                  title={item.title}
-                  subTitle={item.subTitle}
-                  dueDate={item.dueDate}
-                  disabled={type === 'Done'}
-                />
-              ))}
-            </div>
+            {group.list.map((item, index) => (
+              <ActionCard
+                key={`${type}-${index}`}
+                title={item.title}
+                subTitle={item.subTitle}
+                dueDate={item.dueDate}
+                disabled={type === 'Done'}
+              />
+            ))}
           </section>
         );
       })}
