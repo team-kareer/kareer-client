@@ -1,6 +1,6 @@
-import ActionCard from '@widgets/roadmap/ui/action-card';
-
 import { Tag } from '@kds/ui';
+
+import ActionCard from '@widgets/roadmap/ui/action-card';
 
 import * as styles from './action-required.css';
 
@@ -80,7 +80,7 @@ const ActionRequired = () => {
                 {type}
               </Tag>
               <span
-                className={`${styles.typeItemCount}, ${styles.typeItemCountVariants[type as keyof typeof styles.typeItemCountVariants]}`}
+                className={`${styles.typeItemCount} ${styles.typeItemCountVariants[type as keyof typeof styles.typeItemCountVariants]}`}
               >
                 {items.length}
               </span>
