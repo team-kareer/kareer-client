@@ -27,7 +27,7 @@ const TodoItem = ({
   );
 
   return (
-    <article className={styles.container}>
+    <li className={styles.container}>
       <button type="button" className={styles.icon} onClick={onClick}>
         {todoIcon}
       </button>
@@ -35,7 +35,7 @@ const TodoItem = ({
         <p className={styles.title}>{title}</p>
         {showDescription && <p className={styles.description}>{description}</p>}
       </div>
-    </article>
+    </li>
   );
 };
 
