@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 
-import Header from '@widgets/layout/components/header/header';
-import Navigation from '@widgets/layout/components/navigation/navigation';
-import TodoPanel from '@widgets/layout/components/todo-panel/todo-panel';
+import { Header, Navigation, TodoPanel } from '@widgets/layout';
 
 import * as styles from './app-layout.css';
 

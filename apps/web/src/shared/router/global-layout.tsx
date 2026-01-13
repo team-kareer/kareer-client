@@ -3,7 +3,7 @@ import * as Sentry from '@sentry/react';
 import { Outlet } from 'react-router';
 
 import ErrorPage from '@pages/error/error';
-import AppLayout from '@widgets/layout/components/app-layout/app-layout';
+import { AppLayout } from '@widgets/layout';
 
 const GlobalLayout = () => {
   return (
