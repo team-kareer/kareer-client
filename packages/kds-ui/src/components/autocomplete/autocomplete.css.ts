@@ -3,16 +3,12 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars, typography } from '../../styles';
 
-export const container = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-});
+import { zIndex } from '../../styles/tokens/zIndex.css';
 
 export const inputContainer = style({
   position: 'relative',
   display: 'flex',
-  width: '33rem',
+  minWidth: '33rem',
   height: '5rem',
   padding: '1.55rem 2rem',
   borderRadius: '1rem',
@@ -23,11 +19,6 @@ export const inputContainer = style({
       border: `1.5px solid ${themeVars.color.primary[500]}`,
     },
   },
-});
-
-export const title = style({
-  ...typography.body7_sb_14,
-  color: themeVars.color.grayscale.gray500,
 });
 
 export const label = style({
@@ -70,6 +61,10 @@ export const iconWrapper = style({
   outline: 'none',
 });
 
+export const icon = style({
+  color: themeVars.color.grayscale.gray800,
+});
+
 export const dropdown = style({
   ...typography.body6_r_16,
   color: themeVars.color.grayscale.gray800,
@@ -78,8 +73,8 @@ export const dropdown = style({
   left: 0,
   right: 0,
   padding: 0,
-  zIndex: 1000,
-  borderRadius: '1rem',
+  zIndex: zIndex.autocomplete,
+  borderRadius: '10px',
   backgroundColor: themeVars.color.grayscale.white,
   maxHeight: '20rem',
   overflowY: 'auto',
@@ -92,19 +87,19 @@ export const option = style({
   minHeight: '5rem',
   cursor: 'pointer',
   ':hover': {
-    backgroundColor: themeVars.color.grayscale.gray100,
+    backgroundColor: themeVars.color.grayscale.gray300,
   },
   ':active': {
     backgroundColor: themeVars.color.grayscale.gray400,
   },
   selectors: {
     '&:first-child:hover': {
-      borderTopLeftRadius: '1rem',
-      borderTopRightRadius: '1rem',
+      borderTopLeftRadius: '10px',
+      borderTopRightRadius: '10px',
     },
     '&:last-child:hover': {
-      borderBottomLeftRadius: '1rem',
-      borderBottomRightRadius: '1rem',
+      borderBottomLeftRadius: '10px',
+      borderBottomRightRadius: '10px',
     },
   },
 });
