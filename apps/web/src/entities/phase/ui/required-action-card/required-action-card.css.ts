@@ -1,14 +1,31 @@
 import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
-export const container = style({
+const baseContainerStyles = style({
   display: 'flex',
   alignItems: 'center',
   padding: '1.2rem 1.6rem',
   borderRadius: '10px',
   gap: '1.2rem',
-  backgroundColor: themeVars.color.grayscale.white,
 });
+
+export const container = style([
+  baseContainerStyles,
+  {
+    backgroundColor: themeVars.color.grayscale.white,
+    transition: 'background-color 0.2s ease',
+    cursor: 'pointer',
+
+    selectors: {
+      [`&:hover`]: {
+        backgroundColor: themeVars.color.grayscale.gray200,
+      },
+      '&:active:not(:has(button:active))': {
+        backgroundColor: themeVars.color.grayscale.gray300,
+      },
+    },
+  },
+]);
 
 export const content = style({
   display: 'flex',
