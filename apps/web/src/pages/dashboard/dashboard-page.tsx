@@ -21,7 +21,13 @@ const DashboardPage = () => {
   const [business, setBusiness] = useState('');
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '69.9rem',
+      }}
+    >
       <TextField
         value={developer}
         onChange={(e) => setDeveloper(e.target.value)}

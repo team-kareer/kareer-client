@@ -23,7 +23,6 @@ export const TextField = ({
     <div className={styles.textFieldContainer}>
       <textarea
         className={styles.textFieldRecipe({ error: lengthError })}
-        maxLength={maxLength}
         value={value}
         {...textareaProps}
       />
