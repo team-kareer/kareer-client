@@ -15,7 +15,12 @@ const Checkbox = ({ isChecked, ...props }: CheckboxProps) => {
   );
 
   return (
-    <button className={styles.icon} {...props}>
+    <button
+      className={styles.icon}
+      role="checkbox"
+      aria-checked={isChecked}
+      {...props}
+    >
       {todoIcon}
     </button>
   );
