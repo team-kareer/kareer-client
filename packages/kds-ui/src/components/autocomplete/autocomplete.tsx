@@ -30,7 +30,7 @@ interface DropDownProps {
   onClick: (index: number) => void;
 }
 
-export const Autocomplete = () => {
+const Autocomplete = () => {
   // 입력값
   const [inputValue, setInputValue] = useState('');
 
@@ -119,3 +119,5 @@ export const DropDown = ({ options, onClick }: DropDownProps) => {
     </div>
   );
 };
+
+export default Autocomplete;
