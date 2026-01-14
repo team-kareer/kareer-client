@@ -8,10 +8,8 @@ import { zIndex } from '../../styles/tokens/zIndex.css';
 export const inputContainer = style({
   position: 'relative',
   display: 'flex',
-  minWidth: '33rem',
-  height: '5rem',
   padding: '1.55rem 2rem',
-  borderRadius: '1rem',
+  borderRadius: '10px',
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
   backgroundColor: themeVars.color.grayscale.white,
   selectors: {
@@ -45,7 +43,7 @@ export const input = recipe({
   },
 });
 
-export const iconWrapper = style({
+export const toggle = style({
   display: 'flex',
   flexShrink: 0,
   padding: 0,
@@ -55,13 +53,10 @@ export const iconWrapper = style({
   outline: 'none',
 });
 
-export const icon = style({
-  color: themeVars.color.grayscale.gray800,
-});
-
 export const dropdown = style({
   ...typography.body6_r_16,
   color: themeVars.color.grayscale.gray800,
+  backgroundColor: themeVars.color.grayscale.white,
   position: 'absolute',
   top: '100%',
   left: 0,
@@ -69,7 +64,6 @@ export const dropdown = style({
   padding: 0,
   zIndex: zIndex.autocomplete,
   borderRadius: '10px',
-  backgroundColor: themeVars.color.grayscale.white,
   maxHeight: '20rem',
   overflowY: 'auto',
   listStyle: 'none',

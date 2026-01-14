@@ -59,12 +59,8 @@ const Autocomplete = ({
         onBlur={() => setIsOpen(false)}
         placeholder={placeholder}
       />
-      <button
-        type="button"
-        className={styles.iconWrapper}
-        onClick={toggleDropdown}
-      >
-        <Chevron width={19} height={19} className={styles.icon} />
+      <button type="button" className={styles.toggle} onClick={toggleDropdown}>
+        <Chevron width={19} height={19} />
       </button>
       {isOpen && filteredOptions.length > 0 && (
         <DropList options={filteredOptions} onClick={handleOptionClick} />
