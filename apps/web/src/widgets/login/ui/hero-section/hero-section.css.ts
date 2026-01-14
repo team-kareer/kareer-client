@@ -10,7 +10,7 @@ export const container = style({
 
 export const copy = style({
   ...typography.head1_sb_40,
-  color: themeVars.color.grayscale.gray900,
+  color: themeVars.color.grayscale.gray800,
   whiteSpace: 'pre-wrap',
 });
 
