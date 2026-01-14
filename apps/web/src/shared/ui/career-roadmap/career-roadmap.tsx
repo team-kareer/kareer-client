@@ -5,9 +5,10 @@ import * as styles from './career-roadmap.css';
 interface CareerRoadmapProps {
   goal: string;
   children: ReactNode;
+  actions?: ReactNode;
 }
 
-const CareerRoadmap = ({ goal, children }: CareerRoadmapProps) => {
+const CareerRoadmap = ({ goal, children, actions }: CareerRoadmapProps) => {
   return (
     <section className={styles.container}>
       <header>
@@ -17,6 +18,7 @@ const CareerRoadmap = ({ goal, children }: CareerRoadmapProps) => {
         <span className={styles.header({ variant: 'goal' })}>{goal}</span>
       </header>
       <div className={styles.roadmap}>{children}</div>
+      {actions}
     </section>
   );
 };
