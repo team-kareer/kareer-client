@@ -1,24 +1,40 @@
-import { Textarea } from '@kds/ui';
+import { ComponentProps } from 'react';
 
-import * as styles from './text-area.css';
+import * as styles from './text-field.css';
+interface TextFieldProps extends Omit<ComponentProps<'textarea'>, 'className'> {
+  isError?: boolean;
+  maxLength: number;
+  value: string;
+  showCount?: boolean;
+}
 
 export const TextField = ({
-  error = false,
+  isError = false,
   maxLength,
   value = '',
+  showCount = true,
   ...textareaProps
 }: TextFieldProps) => {
   const textCount = value.length;
-  const isError = error || textCount > maxLength;
+
+  const lengthError = isError || textCount > maxLength;
 
   return (
-    <div>
-      <Textarea error={isError} {...props} />
-      {showCount && (
-        <div className={styles.textCountRecipe({ error: isError })}>
+    <div className={styles.textFieldContainer}>
+      <textarea
+        className={styles.textFieldRecipe({ error: lengthError })}
+        maxLength={maxLength}
+        value={value}
+        {...textareaProps}
+      />
+      {showCount && maxLength && (
+        <div className={styles.textCountRecipe({ error: lengthError })}>
           {textCount}/{maxLength}
         </div>
       )}
     </div>
   );
 };
+
+TextField.displayName = 'TextField';
+export default TextField;

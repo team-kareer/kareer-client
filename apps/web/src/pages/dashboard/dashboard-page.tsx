@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { TextField } from '@kds/ui';
+
+import { TextField } from '../../shared/ui/text-field/text-field';
 
 const MAX_LENGTH = 1000;
 
