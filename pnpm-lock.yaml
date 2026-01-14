@@ -224,6 +224,10 @@ importers:
         version: 4.5.0(rollup@4.54.0)(typescript@5.9.2)(vite@7.3.1(@types/node@22.15.3)(jiti@2.6.1))
 
   packages/kds-ui:
+    dependencies:
+      '@kds/icons':
+        specifier: workspace:*
+        version: link:../icons
     devDependencies:
       '@kareer/eslint-config':
         specifier: workspace:*
@@ -264,6 +268,9 @@ importers:
       vite:
         specifier: 'catalog:'
         version: 7.3.1(@types/node@22.15.3)(jiti@2.6.1)
+      vite-plugin-svgr:
+        specifier: 'catalog:'
+        version: 4.5.0(rollup@4.54.0)(typescript@5.9.2)(vite@7.3.1(@types/node@22.15.3)(jiti@2.6.1))
 
 packages:
   '@babel/code-frame@7.27.1':

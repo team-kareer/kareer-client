@@ -7,4 +7,11 @@ export const RoadmapPage = lazy(() => import('@pages/roadmap/roadmap-page'));
 export const FitAnalysisPage = lazy(
   () => import('@pages/fit-analysis/fit-analysis-page'),
 );
-export const MyPage = lazy(() => import('@pages/my-page/my-page'));
+// export const MyPage = lazy(() => import('@pages/my-page/my-page'));
+
+export const ErrorPage = lazy(() => import('@pages/error/error'));
+
+export const LoginPage = lazy(() => import('@pages/login/login'));
+export const OnboardingPage = lazy(
+  () => import('@pages/onboarding/onboarding-page'),
+);
