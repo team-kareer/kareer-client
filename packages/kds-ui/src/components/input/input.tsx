@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react';
 
-import * as styles from './input-text.css';
+import * as styles from './input.css';
 
 interface InputProps extends Omit<ComponentProps<'input'>, 'className'> {
   error?: boolean;
