@@ -11,7 +11,7 @@ interface LoginButtonProps {
 
 const LoginButton = ({ onClick }: LoginButtonProps) => {
   return (
-    <Button preset="large_primary" onClick={onClick}>
+    <Button preset="large_outlined" onClick={onClick}>
       <p className={styles.text}>{BUTTON_TEXT}</p>
       <ArrowRightIcon width={19} height={19} />
     </Button>
