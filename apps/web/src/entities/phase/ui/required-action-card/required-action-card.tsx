@@ -6,14 +6,14 @@ type RequiredActionType = 'Visa' | 'Career';
 
 const TAG_CONFIG = {
   Visa: {
-    color: 'pastel_purple' as const,
-    label: 'Visa' as const,
+    color: 'pastel_purple',
+    label: 'Visa',
   },
   Career: {
-    color: 'pastel_blue' as const,
-    label: 'Career' as const,
+    color: 'pastel_blue',
+    label: 'Career',
   },
-};
+} as const;
 interface RequiredActionCardProps {
   tagType: RequiredActionType;
   title: string;
