@@ -7,7 +7,6 @@ const DashboardPage = () => {
         backgroundColor: 'lightgray',
         padding: '2rem',
         width: '400px',
-        height: '100vh',
         display: 'flex',
       }}
     >
