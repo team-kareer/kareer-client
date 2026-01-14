@@ -12,7 +12,7 @@ interface AutocompleteProps {
 
 interface DropDownProps {
   options: string[];
-  onClick: (index: number) => void;
+  onClick: (option: string) => void;
 }
 
 const Autocomplete = ({
@@ -35,16 +35,9 @@ const Autocomplete = ({
     setIsOpen(newValue.length > 0);
   };
 
-  const handleOptionClick = (clickedOption: number) => {
-    const selectedOption = filteredOptions[clickedOption];
-    if (selectedOption) {
-      onChange(selectedOption);
-    }
+  const handleOptionClick = (option: string) => {
+    onChange(option);
     setIsOpen(false);
-  };
-
-  const handleFocusBlur = (isFocus: boolean) => {
-    setIsOpen(isFocus);
   };
 
   const toggleDropdown = () => {
@@ -61,15 +54,15 @@ const Autocomplete = ({
           className={styles.input({ hasValue: value.length > 0 })}
           value={value}
           onChange={handleInputChange}
-          onFocus={() => handleFocusBlur(true)}
-          onBlur={() => handleFocusBlur(false)}
+          onFocus={() => setIsOpen(true)}
+          onBlur={() => setIsOpen(false)}
           placeholder={placeholder}
         />
         <button
           type="button"
           className={styles.iconWrapper}
           onClick={toggleDropdown}
-          onBlur={() => handleFocusBlur(false)}
+          onBlur={() => setIsOpen(false)}
         >
           <Chevron width={19} height={19} className={styles.icon} />
         </button>
@@ -84,11 +77,11 @@ const Autocomplete = ({
 const DropList = ({ options, onClick }: DropDownProps) => {
   return (
     <ul className={styles.dropdown}>
-      {options.map((option, index) => (
+      {options.map((option) => (
         <li
-          key={index}
+          key={option}
           className={styles.option}
-          onMouseDown={() => onClick(index)}
+          onMouseDown={() => onClick(option)}
         >
           {option}
         </li>

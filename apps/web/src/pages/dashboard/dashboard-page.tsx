@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { Autocomplete } from '@kds/ui';
 
 const MAJOR_OPTIONS = [
