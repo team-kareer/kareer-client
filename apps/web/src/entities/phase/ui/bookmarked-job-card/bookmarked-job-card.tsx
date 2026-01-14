@@ -1,9 +1,8 @@
 import { ReactNode } from 'react';
 
-import * as styles from './bookmarked-job-card.css';
+import DefaultJobImage from '@shared/assets/images/default-image.webp';
 
-// import DefaultImage from '@/shared/assets/images/default-job.webp';
-
+import * as styles from './bookmarked-job-card.css.ts';
 interface BookmarkedJobCardProps {
   companyName: string;
   title: string;
@@ -28,18 +27,20 @@ const BookmarkedJobCard = ({
     <article className={styles.container} onClick={onClick}>
       <figure className={styles.imageBox}>
         <img
-          src={imageUrl || '' /*DefaultImage*/}
+          src={imageUrl || DefaultJobImage}
           alt={`${companyName} 채용 공고 이미지`}
           className={styles.image}
         />
-        <div className={styles.scrapButtonWrapper}>{children}</div>
       </figure>
 
       <section className={styles.content}>
-        <div className={styles.textBox}>
-          <h3 className={styles.companyName}>{companyName}</h3>
-          <h2 className={styles.title}>{title}</h2>
-          <p className={styles.dueDate}>{dueDate}</p>
+        <div className={styles.header}>
+          <div className={styles.textBox}>
+            <h3 className={styles.companyName}>{companyName}</h3>
+            <h2 className={styles.title}>{title}</h2>
+            <p className={styles.dueDate}>{dueDate}</p>
+          </div>
+          <div className={styles.scrapButtonWrapper}>{children}</div>
         </div>
         <div className={styles.tagsWrapper}>{tags}</div>
       </section>

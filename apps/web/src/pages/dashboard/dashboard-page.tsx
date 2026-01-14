@@ -1,16 +1,45 @@
 import { Tag } from '@kds/ui';
 
+import ScrapButton from '@features/phase/ui/job-bookmark/job-bookmark';
 import { BookmarkedJobCard } from '@entities/phase';
 
 const DashboardPage = () => {
+  const mockJob = {
+    companyName: 'THEIA',
+    title: 'Hiring Japanese Marketers',
+    dueDate: 'Jan 24, 2026',
+    imageUrl: undefined,
+    isScraped: true,
+    tags: [
+      { label: 'Part-time worker', color: 'pastel_skyblue' as const },
+      { label: 'Seocho-gu, Seoul +1', color: 'disabled_gray' as const }, // disabled_gray 태그 스타일 확인 필요
+    ],
+  };
+
+  const handleCardClick = () => {
+    // 카드 클릭 시 동작할 함수
+  };
+
   return (
     <div>
       <BookmarkedJobCard
-        companyName={'Company Name'}
-        title="2 lined title here 2 lined title here 2 lined title he"
-        dueDate={'Mon XX, 20XX'}
-        tags={<Tag color={'primary_blue'} children={'text'} />}
-      />
+        companyName={mockJob.companyName}
+        title={mockJob.title}
+        dueDate={mockJob.dueDate}
+        imageUrl={mockJob.imageUrl}
+        onClick={handleCardClick}
+        tags={
+          <>
+            {mockJob.tags.map((tag) => (
+              <Tag key={tag.label} color={tag.color}>
+                {tag.label}
+              </Tag>
+            ))}
+          </>
+        }
+      >
+        <ScrapButton isScraped={mockJob.isScraped} />
+      </BookmarkedJobCard>
     </div>
   );
 };

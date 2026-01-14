@@ -14,7 +14,7 @@ export const container = style({
   transition: 'all 0.2s ease',
 
   ':hover': {
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)', // 확인 필요
+    // 어두워지고 버튼이 생김
   },
 });
 
@@ -34,10 +34,7 @@ export const image = style({
 });
 
 export const scrapButtonWrapper = style({
-  position: 'absolute',
-  // top: '0.8rem',
-  // right: '0.8rem',
-  zIndex: 1,
+  flexShrink: 0,
 });
 
 export const content = style({
@@ -46,6 +43,13 @@ export const content = style({
   alignItems: 'flex-start',
   alignSelf: 'stretch',
   gap: '1.2rem',
+});
+
+export const header = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+  width: '100%',
 });
 
 export const textBox = style({
@@ -78,8 +82,7 @@ export const dueDate = style([
 
 export const tagsWrapper = style({
   display: 'flex',
-  alignItems: 'center',
-  // alignContent: 'center',
+  alignItems: 'flex-start',
   gap: '0.4rem',
   flexWrap: 'wrap',
 });
