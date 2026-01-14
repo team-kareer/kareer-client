@@ -1,4 +1,4 @@
-import { ComponentProps, forwardRef } from 'react';
+import { ComponentProps } from 'react';
 
 import {
   textCountRecipe,
@@ -8,32 +8,34 @@ import {
 
 interface TextFieldProps extends Omit<ComponentProps<'textarea'>, 'className'> {
   error?: boolean;
-  textCount: number;
-  maxLength?: number;
+  maxLength: number;
 }
 
-export const TextField = forwardRef<HTMLTextAreaElement, TextFieldProps>(
-  ({ error = false, textCount, maxLength, ...textareaProps }, ref) => {
-    const isError =
-      error ||
-      (textCount !== undefined &&
-        maxLength !== undefined &&
-        textCount > maxLength);
+export const TextField = ({
+  error = false,
+  maxLength,
+  value = '',
+  ...textareaProps
+}: TextFieldProps) => {
+  const textValue = typeof value === 'string' ? value : String(value || '');
+  const textCount = textValue.length;
 
-    return (
-      <div className={textFieldContainer()}>
-        <textarea
-          ref={ref}
-          className={textFieldRecipe({ error: isError })}
-          {...textareaProps}
-        />
-        <div className={textCountRecipe({ error: isError })}>
-          {textCount}/{maxLength}
-        </div>
+  const isError = error || textCount > maxLength;
+
+  return (
+    <div className={textFieldContainer()}>
+      <textarea
+        className={textFieldRecipe({ error: isError })}
+        maxLength={maxLength}
+        value={value}
+        {...textareaProps}
+      />
+      <div className={textCountRecipe({ error: isError })}>
+        {textCount}/{maxLength}
       </div>
-    );
-  },
-);
+    </div>
+  );
+};
 
 TextField.displayName = 'TextField';
 export default TextField;
