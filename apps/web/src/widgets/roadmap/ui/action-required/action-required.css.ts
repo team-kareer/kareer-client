@@ -14,7 +14,7 @@ export const container = style({
 export const header = style({
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'flex-start',
+  // alignItems: 'flex-start',
 });
 
 export const title = style({
@@ -52,7 +52,7 @@ export const typeItemCount = recipe({
         color: themeVars.color.pastel.kaskyblue_500,
       },
       Done: {
-        color: themeVars.color.grayscale.gray400,
+        color: themeVars.color.grayscale.gray500,
       },
     },
   },
