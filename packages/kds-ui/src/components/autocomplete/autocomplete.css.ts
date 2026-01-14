@@ -77,12 +77,14 @@ export const dropdown = style({
   top: '100%',
   left: 0,
   right: 0,
-  marginTop: '0.8rem',
+  padding: 0,
+  zIndex: 1000,
   borderRadius: '1rem',
   backgroundColor: themeVars.color.grayscale.white,
-  zIndex: 1000,
   maxHeight: '20rem',
   overflowY: 'auto',
+  listStyle: 'none',
+  marginTop: '0.8rem',
 });
 
 export const option = style({

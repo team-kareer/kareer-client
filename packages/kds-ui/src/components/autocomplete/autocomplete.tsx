@@ -62,8 +62,8 @@ const Autocomplete = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <p className={styles.title}>Target Job</p>
+    <section className={styles.container}>
+      <h2 className={styles.title}>Target Job</h2>
       <div className={styles.inputContainer}>
         <label className={styles.label}>
           <input
@@ -100,23 +100,23 @@ const Autocomplete = () => {
           <DropDown options={filteredOptions} onClick={handleOptionClick} />
         )}
       </div>
-    </div>
+    </section>
   );
 };
 
 export const DropDown = ({ options, onClick }: DropDownProps) => {
   return (
-    <div className={styles.dropdown}>
+    <ul className={styles.dropdown}>
       {options.map((option, index) => (
-        <div
+        <li
           key={index}
           className={styles.option}
           onMouseDown={() => onClick(index)}
         >
           {option}
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
