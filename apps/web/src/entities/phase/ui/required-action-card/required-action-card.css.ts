@@ -41,5 +41,5 @@ export const title = style({
 
 export const dueDate = style({
   ...typography.cap2_m_12,
-  color: '#6B7281',
+  color: themeVars.color.grayscale.gray500,
 });
