@@ -1,43 +1,53 @@
-import { useState } from 'react';
+import { Button, Tab, useTabContext } from '@kds/ui';
 
-import { CareerRoadmapStep, CareerRoadmapStepInfo } from '@entities/phase';
-
-const DashboardPage = () => {
-  const [clickedPhase, setClickedPhase] = useState(0);
+const DashboardTabButtons = () => {
+  const { setSelectedTab } = useTabContext();
 
   return (
-    <div>
-      <CareerRoadmapStep
-        title="OPT Preparation"
-        period="Sep. 25 - Nov. 25"
-        phase={0}
-        onClick={() => setClickedPhase(0)}
-        isActive={clickedPhase === 0}
-        bottom={
-          <CareerRoadmapStepInfo
-            status="Past"
-            label="Incompleted works"
-            worksCount={2}
-            isActive={clickedPhase === 0}
-          />
-        }
-      />
-      <CareerRoadmapStep
-        title="OPT Preparation"
-        period="Sep. 25 - Nov. 25"
-        phase={1}
-        onClick={() => setClickedPhase(1)}
-        isActive={clickedPhase === 1}
-        bottom={
-          <CareerRoadmapStepInfo
-            status="Current"
-            label="Remained works"
-            worksCount={2}
-            isActive={clickedPhase === 1}
-          />
-        }
-      />
-    </div>
+    <>
+      Tab.List 부분
+      <Button
+        preset="medium_primary"
+        onClick={() => setSelectedTab('overview')}
+      >
+        Overview
+      </Button>
+      <Button preset="medium_primary" onClick={() => setSelectedTab('stats')}>
+        Stats
+      </Button>
+    </>
+  );
+};
+
+const DashboardPage = () => {
+  return (
+    <Tab.Container
+      initialValue="overview"
+      style={{ padding: '10rem', border: '1px solid gray' }}
+    >
+      컨테이너
+      <Tab.List
+        style={{
+          display: 'flex',
+          gap: '1.2rem',
+          padding: '1.2rem',
+          margin: '1.2rem',
+          border: '1px solid red',
+        }}
+      >
+        <DashboardTabButtons />
+      </Tab.List>
+      <div
+        style={{
+          padding: '1.2rem',
+          margin: '1.2rem',
+          border: '1px solid blue',
+        }}
+      >
+        <Tab.Panel tab="overview">Overview content</Tab.Panel>
+        <Tab.Panel tab="stats">Stats content</Tab.Panel>
+      </div>
+    </Tab.Container>
   );
 };
 
