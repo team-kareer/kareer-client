@@ -21,12 +21,6 @@ export const inputContainer = style({
   },
 });
 
-export const label = style({
-  display: 'flex',
-  alignItems: 'center',
-  flex: 1,
-});
-
 export const input = recipe({
   base: {
     outline: 'none',

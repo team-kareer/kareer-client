@@ -29,12 +29,14 @@ const Autocomplete = ({
     option.toLowerCase().includes(value.toLowerCase()),
   );
 
+  // 입력 처리
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     onChange(newValue);
     setIsOpen(newValue.length > 0);
   };
 
+  // 옵션 선택 처리
   const handleOptionClick = (option: string) => {
     onChange(option);
     setIsOpen(false);
@@ -48,25 +50,22 @@ const Autocomplete = ({
 
   return (
     <div className={styles.inputContainer}>
-      <label className={styles.label}>
-        <input
-          type="text"
-          className={styles.input({ hasValue: value.length > 0 })}
-          value={value}
-          onChange={handleInputChange}
-          onFocus={() => setIsOpen(true)}
-          onBlur={() => setIsOpen(false)}
-          placeholder={placeholder}
-        />
-        <button
-          type="button"
-          className={styles.iconWrapper}
-          onClick={toggleDropdown}
-          onBlur={() => setIsOpen(false)}
-        >
-          <Chevron width={19} height={19} className={styles.icon} />
-        </button>
-      </label>
+      <input
+        type="text"
+        className={styles.input({ hasValue: value.length > 0 })}
+        value={value}
+        onChange={handleInputChange}
+        onFocus={() => setIsOpen(true)}
+        onBlur={() => setIsOpen(false)}
+        placeholder={placeholder}
+      />
+      <button
+        type="button"
+        className={styles.iconWrapper}
+        onClick={toggleDropdown}
+      >
+        <Chevron width={19} height={19} className={styles.icon} />
+      </button>
       {isOpen && filteredOptions.length > 0 && (
         <DropList options={filteredOptions} onClick={handleOptionClick} />
       )}
