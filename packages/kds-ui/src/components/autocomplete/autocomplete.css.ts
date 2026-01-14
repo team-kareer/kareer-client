@@ -12,7 +12,6 @@ export const container = style({
 export const inputContainer = style({
   position: 'relative',
   display: 'flex',
-  // alignItems: 'center',
   width: '33rem',
   height: '5rem',
   padding: '1.55rem 2rem',
