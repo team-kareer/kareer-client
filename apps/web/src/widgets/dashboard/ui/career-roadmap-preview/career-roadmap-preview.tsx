@@ -43,7 +43,10 @@ const CareerRoadmapPreview = () => {
 
   const [clickedPhase, setClickedPhase] = useState(0);
   return (
-    <CareerRoadmap goal={mockData.phases[2] ? mockData.phases[2].goal : ''}>
+    <CareerRoadmap
+      goal={mockData.phases[2]?.goal ?? ''}
+      actions={<div>actions</div>}
+    >
       {mockData.phases.map((phase, idx) => {
         const isActive = clickedPhase === idx;
 
