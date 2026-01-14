@@ -1,39 +1,47 @@
-import { ReactNode, useState } from 'react';
+import { HTMLAttributes, ReactNode, useState } from 'react';
 
 import { TabContext, useTabContext } from './hooks/use-tab-context';
 
-interface ContainerProps {
+interface ContainerProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
   initialValue: string;
-  className?: string;
 }
 
-interface ListProps {
+interface ListProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  className?: string;
 }
 
-interface PanelProps {
+interface PanelProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
   tab: string;
-  className?: string;
 }
 
-const Container = ({ children, initialValue, className }: ContainerProps) => {
+const Container = ({
+  children,
+  initialValue,
+  className,
+  ...props
+}: ContainerProps) => {
   const [selectedTab, setSelectedTab] = useState(initialValue);
 
   return (
     <TabContext.Provider value={{ selectedTab, setSelectedTab }}>
-      <nav className={className}>{children}</nav>
+      <section className={className} {...props}>
+        {children}
+      </section>
     </TabContext.Provider>
   );
 };
 
-const List = ({ children, className }: ListProps) => {
-  return <div className={className}>{children}</div>;
+const List = ({ children, className, ...props }: ListProps) => {
+  return (
+    <div className={className} {...props}>
+      {children}
+    </div>
+  );
 };
 
-const Panel = ({ children, tab, className }: PanelProps) => {
+const Panel = ({ children, tab, className, ...props }: PanelProps) => {
   const { selectedTab } = useTabContext();
   const isActive = selectedTab === tab;
 
@@ -41,7 +49,11 @@ const Panel = ({ children, tab, className }: PanelProps) => {
     return null;
   }
 
-  return <article className={className}>{children}</article>;
+  return (
+    <article className={className} {...props}>
+      {children}
+    </article>
+  );
 };
 
 const Tab = {
