@@ -39,6 +39,7 @@ export const text = recipe({
 });
 
 export const icon = style({
+  color: themeVars.color.grayscale.gray800,
   cursor: 'pointer',
 });
 

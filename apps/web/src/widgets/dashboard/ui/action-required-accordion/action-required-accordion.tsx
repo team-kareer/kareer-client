@@ -1,5 +1,4 @@
 import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
-import { themeVars } from '@kds/ui/styles';
 
 import { RequiredActionCard } from '@entities/phase';
 import { useAccordion } from '@shared/hooks/useAccordion';
@@ -46,6 +45,7 @@ const ActionRequiredAccordion = ({ counts }: ActionRequiredAccordion) => {
     },
   ];
   const { isOpen, shouldRender, toggle } = useAccordion();
+  const Chevron = isOpen ? ArrowUpIcon : ArrowDownIcon;
 
   return (
     // accordionItem
@@ -57,23 +57,12 @@ const ActionRequiredAccordion = ({ counts }: ActionRequiredAccordion) => {
         </div>
 
         {/* accordionTrigger */}
-        {isOpen ? (
-          <ArrowUpIcon
-            width={16}
-            height={16}
-            color={themeVars.color.grayscale.gray800}
-            className={styles.icon}
-            onClick={toggle}
-          />
-        ) : (
-          <ArrowDownIcon
-            width={16}
-            height={16}
-            color={themeVars.color.grayscale.gray800}
-            className={styles.icon}
-            onClick={toggle}
-          />
-        )}
+        <Chevron
+          width={16}
+          height={16}
+          className={styles.icon}
+          onClick={toggle}
+        />
       </header>
 
       {/* accordionContent */}
