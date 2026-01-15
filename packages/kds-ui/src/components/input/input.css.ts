@@ -43,25 +43,31 @@ export const inputBox = recipe({
 
     ':focus': {
       outline: 'none',
-      border: `1.5px solid ${themeVars.color.primary[500]}`,
+      border: `1px solid ${themeVars.color.primary[500]}`,
+      boxShadow: `0 0 0 0.5px ${themeVars.color.primary[500]}`,
     },
   },
 
   variants: {
-    error: {
-      true: {
+    status: {
+      default: {},
+      error: {
         border: `1px solid ${themeVars.color.pastel.kared_500}`,
         paddingRight: errorPaddingRight,
         ':focus': {
           border: `1px solid ${themeVars.color.pastel.kared_500}`,
+          boxShadow: 'none',
           paddingRight: errorPaddingRight,
         },
       },
-    },
-    success: {
-      true: {
+      success: {
         border: `1px solid ${themeVars.color.pastel.kamint_500}`,
         paddingRight: errorPaddingRight,
+        ':focus': {
+          border: `1px solid ${themeVars.color.pastel.kamint_500}`,
+          boxShadow: `0 0 0 0.5px ${themeVars.color.pastel.kamint_500}`,
+          paddingRight: errorPaddingRight,
+        },
       },
     },
   },

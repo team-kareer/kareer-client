@@ -1,7 +1,6 @@
 import { Input } from '@kds/ui';
 
 const DashboardPage = () => {
-  const isError = false;
   return (
     <div
       style={{
@@ -11,16 +10,11 @@ const DashboardPage = () => {
         width: '33rem',
       }}
     >
-      <Input
-        placeholder="Enter your point"
-        error={!isError}
-        onChange={() => {}}
-      />
-      <Input
-        placeholder="Enter your name"
-        error={isError}
-        onChange={() => {}}
-      />
+      <Input placeholder="기본 입력창" status="default" />
+
+      <Input placeholder="에러 상태" status="error" />
+
+      <Input placeholder="성공 상태" status="success" />
     </div>
   );
 };

@@ -1,21 +1,26 @@
 import { ComponentProps } from 'react';
-import { XCircleIcon } from '@kds/icons';
+import { SuccessCircleIcon, XCircleIcon } from '@kds/icons';
 
 import * as styles from './input.css';
 
+export type InputStatus = 'default' | 'error' | 'success';
+
 interface InputProps extends Omit<ComponentProps<'input'>, 'className'> {
-  error?: boolean;
+  status?: InputStatus;
 }
 
-const Input = ({ error = false, ...props }: InputProps) => {
+const STATUS_ICONS = {
+  default: null,
+  error: <XCircleIcon width={19} height={19} />,
+  success: <SuccessCircleIcon width={19} height={19} />,
+};
+
+const Input = ({ status = 'default', ...props }: InputProps) => {
+  const statusIcon = STATUS_ICONS[status];
   return (
     <div className={styles.inputWrapper}>
-      <input className={styles.inputBox({ error })} {...props} />
-      {error && (
-        <div className={styles.icon}>
-          <XCircleIcon width={19} height={19} />
-        </div>
-      )}
+      <input className={styles.inputBox({ status })} {...props} />
+      {statusIcon && <div className={styles.icon}>{statusIcon}</div>}
     </div>
   );
 };
