@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { CareerRoadmapStep, CareerRoadmapStepInfo } from '@entities/phase';
 import { CareerRoadmap } from '@shared/ui';
 
-const CareerRoadmapDetail = () => {
+const PhaseOverview = () => {
   // api response 값으로 변경 예정
   const mockData = {
     phases: [
@@ -69,4 +69,4 @@ const CareerRoadmapDetail = () => {
   );
 };
 
-export default CareerRoadmapDetail;
+export default PhaseOverview;

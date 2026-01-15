@@ -1,11 +1,11 @@
-import { CareerRoadmapPreview } from '@widgets/dashboard/ui';
-import { CareerRoadmapDetail } from '@widgets/roadmap';
+import { PhaseOverview } from '@widgets/dashboard';
+// import { PhaseOverview } from '@widgets/roadmap';
 
 const DashboardPage = () => {
   return (
     <div>
-      <CareerRoadmapPreview />
-      <CareerRoadmapDetail />
+      <PhaseOverview />
+      <PhaseOverview />
     </div>
   );
 };

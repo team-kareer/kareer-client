@@ -4,7 +4,7 @@ import { LogoIcon } from '@kds/icons';
 import { CareerRoadmapStep } from '@entities/phase';
 import { CareerRoadmap } from '@shared/ui';
 
-const CareerRoadmapPreview = () => {
+const PhaseOverview = () => {
   // api response 값으로 변경 예정
   const mockData = {
     phases: [
@@ -66,4 +66,4 @@ const CareerRoadmapPreview = () => {
   );
 };
 
-export default CareerRoadmapPreview;
+export default PhaseOverview;
