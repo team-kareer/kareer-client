@@ -7,7 +7,7 @@ import * as styles from './bookmarked-job-card.css.ts';
 interface BookmarkedJobCardProps {
   companyName: string;
   title: string;
-  dueDate: string;
+  dueDate?: string;
   imageUrl?: string;
   locations: string[];
   jobTypes?: string[];
@@ -68,10 +68,10 @@ const BookmarkedJobCard = ({
           </div>
         </div>
         <div className={styles.tagsWrapper}>
-          <Tag color={'pastel_skyblue'}>{formatListText(locations)}</Tag>
           {jobTypes && (
             <Tag color="disabled_gray">{formatListText(jobTypes)}</Tag>
           )}
+          <Tag color={'pastel_skyblue'}>{formatListText(locations)}</Tag>
         </div>
       </section>
     </article>
