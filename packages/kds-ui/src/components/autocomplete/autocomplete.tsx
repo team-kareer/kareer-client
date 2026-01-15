@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
 
+import { color } from '../../styles';
+
 import * as styles from './autocomplete.css';
 
 interface AutocompleteProps {
@@ -60,7 +62,7 @@ const Autocomplete = ({
         placeholder={placeholder}
       />
       <button type="button" className={styles.toggle} onClick={toggleDropdown}>
-        <Chevron width={19} height={19} />
+        <Chevron width={19} height={19} color={color.grayscale.gray800} />
       </button>
       {isOpen && filteredOptions.length > 0 && (
         <DropList options={filteredOptions} onClick={handleOptionClick} />
