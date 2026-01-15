@@ -1,6 +1,6 @@
 import {
-  OnboardingStepHeader,
   type OnboardingStepData,
+  OnboardingStepHeader,
 } from '@widgets/onboarding';
 
 const ONBOARDING_STEPS: OnboardingStepData[] = [
