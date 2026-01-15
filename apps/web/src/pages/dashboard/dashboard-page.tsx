@@ -1,4 +1,4 @@
-import OnboardingStep from '@widgets/onboarding/ui/step/onboarding-step';
+import { OnboardingStep } from '@widgets/onboarding';
 
 const ONBOARDING_STEPS = [
   {
