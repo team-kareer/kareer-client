@@ -6,7 +6,3 @@ export const container = style({
   gap: '5rem',
   padding: '4.8rem 0rem 4.2rem 6.6rem',
 });
-
-export const stepItem = style({
-  flexShrink: 0,
-});
