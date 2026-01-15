@@ -8,8 +8,9 @@ const DashboardPage = () => {
     companyName: 'THEIA',
     title: 'Hiring Japanese Marketers',
     dueDate: 'Jan 24, 2026',
-    imageUrl: undefined,
+    imageUrl: undefined, // 임시
     isScraped: true,
+    tag: { label: 'D-2', color: 'outlined_blue' as const },
     tags: [
       { label: 'Part-time worker', color: 'pastel_skyblue' as const },
       { label: 'Seocho-gu, Seoul +1', color: 'disabled_gray' as const },
@@ -28,6 +29,7 @@ const DashboardPage = () => {
         dueDate={mockJob.dueDate}
         imageUrl={mockJob.imageUrl}
         onClick={handleCardClick}
+        tag={<Tag color={mockJob.tag.color}>{mockJob.tag.label}</Tag>}
         tags={
           <>
             {mockJob.tags.map((tag) => (

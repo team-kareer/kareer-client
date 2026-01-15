@@ -8,6 +8,7 @@ interface BookmarkedJobCardProps {
   title: string;
   dueDate: string;
   imageUrl?: string;
+  tag: ReactNode;
   tags: ReactNode;
   children: ReactNode;
   onScrapClick?: () => void;
@@ -18,6 +19,7 @@ const BookmarkedJobCard = ({
   companyName,
   title,
   dueDate,
+  tag,
   imageUrl,
   tags,
   children,
@@ -26,6 +28,7 @@ const BookmarkedJobCard = ({
   return (
     <article className={styles.container} onClick={onClick}>
       <figure className={styles.imageBox}>
+        <div className={styles.tagWrapper}>{tag}</div>
         <img
           src={imageUrl || DefaultJobImage}
           alt={`${companyName} 채용 공고 이미지`}

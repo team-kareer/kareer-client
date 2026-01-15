@@ -9,12 +9,14 @@ export const container = style({
   borderRadius: '20px',
   backgroundColor: themeVars.color.grayscale.white,
   flexDirection: 'column',
-  width: '20.2rem',
+  width: '23.4rem',
   cursor: 'pointer',
   transition: 'all 0.2s ease',
 
-  ':hover': {
-    // 어두워지고 버튼이 생김
+  selectors: {
+    '&:hover': {
+      transform: 'translateY(-4px)',
+    },
   },
 });
 
@@ -25,6 +27,13 @@ export const imageBox = style({
   borderRadius: '10px',
   backgroundColor: themeVars.color.grayscale.gray100,
   overflow: 'hidden', // 이미지가 borderRadius 밖으로 나가지 않도록
+});
+
+export const tagWrapper = style({
+  position: 'absolute',
+  top: '0.8rem',
+  left: '0.8rem',
+  zIndex: 'tag',
 });
 
 export const image = style({
