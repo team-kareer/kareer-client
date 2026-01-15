@@ -25,11 +25,11 @@ const Container = ({
   const [selectedTab, setSelectedTab] = useState(initialValue);
 
   return (
-    <TabContext.Provider value={{ selectedTab, setSelectedTab }}>
+    <TabContext value={{ selectedTab, setSelectedTab }}>
       <section className={className} {...props}>
         {children}
       </section>
-    </TabContext.Provider>
+    </TabContext>
   );
 };
 
