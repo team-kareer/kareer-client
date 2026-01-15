@@ -11,8 +11,16 @@ const DashboardPage = () => {
         width: '33rem',
       }}
     >
-      <Input placeholder="Enter your point" error={!isError} />
-      <Input placeholder="Enter your name" error={isError} />
+      <Input
+        placeholder="Enter your point"
+        error={!isError}
+        onChange={() => {}}
+      />
+      <Input
+        placeholder="Enter your name"
+        error={isError}
+        onChange={() => {}}
+      />
     </div>
   );
 };

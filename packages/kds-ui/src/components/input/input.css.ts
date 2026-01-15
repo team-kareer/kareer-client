@@ -48,7 +48,7 @@ export const inputBox = recipe({
         paddingRight: '3.9rem',
         ':focus': {
           border: `1px solid ${themeVars.color.pastel.kared_500}`,
-          paddingRight: '4rem',
+          paddingRight: '3.9rem',
         },
       },
     },
