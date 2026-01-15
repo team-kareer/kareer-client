@@ -29,13 +29,12 @@ const OnboardingStepHeader = () => {
     <div className={styles.container}>
       {ONBOARDING_STEPS.map((step) => {
         return (
-          <div key={step.stepNumber} className={styles.stepItem}>
-            <OnboardingStep
-              stepNumber={step.stepNumber}
-              title={step.title}
-              status={step.status}
-            />
-          </div>
+          <OnboardingStep
+            key={step.stepNumber}
+            stepNumber={step.stepNumber}
+            title={step.title}
+            status={step.status}
+          />
         );
       })}
     </div>

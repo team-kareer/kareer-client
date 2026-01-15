@@ -4,12 +4,5 @@ export const container = style({
   display: 'flex',
   flexDirection: 'row',
   gap: '5rem',
-  paddingLeft: '6.6rem',
-  paddingTop: '4.8rem',
-  paddingBottom: '4.2rem',
-});
-
-export const stepItem = style({
-  width: '12.8rem',
-  flexShrink: 0,
+  padding: '4.8rem 0rem 4.2rem 6.6rem',
 });
