@@ -37,9 +37,11 @@ export const content = style({
 export const title = style({
   ...typography.body8_m_14,
   color: themeVars.color.grayscale.gray900,
+  userSelect: 'none',
 });
 
 export const dueDate = style({
   ...typography.cap2_m_12,
   color: themeVars.color.grayscale.gray500,
+  userSelect: 'none',
 });
