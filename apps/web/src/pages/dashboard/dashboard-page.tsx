@@ -12,7 +12,7 @@ const DashboardPage = () => {
     isScraped: true,
     tags: [
       { label: 'Part-time worker', color: 'pastel_skyblue' as const },
-      { label: 'Seocho-gu, Seoul +1', color: 'disabled_gray' as const }, // disabled_gray 태그 스타일 확인 필요
+      { label: 'Seocho-gu, Seoul +1', color: 'disabled_gray' as const },
     ],
   };
 
