@@ -1,5 +1,6 @@
-import * as styles from './onboarding-step-header.css';
 import OnboardingStep from '../step/onboarding-step';
+
+import * as styles from './onboarding-step-header.css';
 
 export interface OnboardingStepData {
   stepNumber: number;
