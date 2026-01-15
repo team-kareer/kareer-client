@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars, typography } from '../../styles';
 
@@ -19,27 +18,18 @@ export const inputContainer = style({
   },
 });
 
-export const input = recipe({
-  base: {
-    outline: 'none',
-    border: 'none',
-    flex: 1,
-    backgroundColor: 'transparent',
-  },
-  variants: {
-    hasValue: {
-      false: {
-        ...typography.body6_r_16,
-        color: themeVars.color.grayscale.gray400,
-      },
-      true: {
-        ...typography.body5_m_16,
-        color: themeVars.color.grayscale.gray800,
-      },
+export const input = style({
+  outline: 'none',
+  border: 'none',
+  flex: 1,
+  backgroundColor: 'transparent',
+  ...typography.body5_m_16,
+  color: themeVars.color.grayscale.gray800,
+  selectors: {
+    '&::placeholder': {
+      color: themeVars.color.grayscale.gray400,
+      ...typography.body6_r_16,
     },
-  },
-  defaultVariants: {
-    hasValue: false,
   },
 });
 

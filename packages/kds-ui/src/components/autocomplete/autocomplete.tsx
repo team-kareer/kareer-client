@@ -52,7 +52,7 @@ const Autocomplete = ({
     <div className={styles.inputContainer}>
       <input
         type="text"
-        className={styles.input({ hasValue: value.length > 0 })}
+        className={styles.input}
         value={value}
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
