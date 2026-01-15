@@ -7,7 +7,7 @@ export const container = style({
   flexShrink: 0,
   width: '25.6rem',
   padding: '2rem',
-  marginTop: '1.6rem',
+  margin: '1.6rem 0',
   gap: '1.6rem',
 
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
