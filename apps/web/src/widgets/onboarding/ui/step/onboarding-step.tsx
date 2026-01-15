@@ -1,5 +1,6 @@
-import * as styles from './onboarding-step.css';
 import { Tag } from '@kds/ui';
+
+import * as styles from './onboarding-step.css';
 
 interface OnboardingStepProps {
   stepNumber: number;
