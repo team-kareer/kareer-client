@@ -20,7 +20,6 @@ export const statusColorVariants = {
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start',
 });
 
 export const stepNumber = recipe({
@@ -40,17 +39,11 @@ export const title = recipe({
   },
   variants: {
     status: {
+      ...statusColorVariants,
       'In Progress': {
         ...typography.body7_sb_14,
         color: themeVars.color.grayscale.gray800,
       },
-      Next: statusColorVariants['Next'],
-      Later: statusColorVariants['Later'],
-      Completed: statusColorVariants['Completed'],
     },
   },
-});
-
-export const tagWrapper = style({
-  alignSelf: 'flex-start',
 });

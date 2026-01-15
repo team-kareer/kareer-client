@@ -20,7 +20,7 @@ const OnboardingStep = ({ stepNumber, title, status }: OnboardingStepProps) => {
     <div className={styles.container}>
       <p className={styles.stepNumber({ status })}>STEP {stepNumber}</p>
       <h2 className={styles.title({ status })}>{title}</h2>
-      <div className={styles.tagWrapper}>
+      <div>
         <Tag color={tagColor[status]}>{status}</Tag>
       </div>
     </div>
