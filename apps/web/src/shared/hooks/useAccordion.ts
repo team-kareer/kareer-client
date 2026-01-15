@@ -1,11 +1,11 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 export const useAccordion = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const animationDuration = 500;
 
-  const toggle = useCallback(() => {
+  const toggle = () => {
     if (!isOpen) {
       // 열 때: 먼저 렌더링하고 애니메이션 시작
       setShouldRender(true);
@@ -19,7 +19,7 @@ export const useAccordion = () => {
         setShouldRender(false);
       }, animationDuration);
     }
-  }, [isOpen, animationDuration]);
+  };
 
   return { isOpen, shouldRender, toggle };
 };
