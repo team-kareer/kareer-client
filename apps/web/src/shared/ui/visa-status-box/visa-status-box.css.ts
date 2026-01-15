@@ -9,7 +9,7 @@ export const container = style({
   gap: '0.8rem',
   padding: '1.6rem 2rem',
   border: `1.5px solid ${themeVars.color.primary[300]}`,
-  borderRadius: `10px`,
+  borderRadius: '10px',
   backgroundImage: `url(${bg_progress_bar})`,
   backgroundSize: 'cover',
 });
