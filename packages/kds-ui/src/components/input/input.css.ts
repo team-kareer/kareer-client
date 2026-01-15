@@ -37,7 +37,7 @@ export const inputBox = recipe({
 
     ':focus': {
       outline: 'none',
-      border: `1px solid ${themeVars.color.primary[500]}`,
+      border: `1.5px solid ${themeVars.color.primary[500]}`,
     },
   },
 
