@@ -36,12 +36,10 @@ export const input = style({
 
 export const toggle = style({
   display: 'flex',
-  flexShrink: 0,
+  alignItems: 'center',
   padding: 0,
   cursor: 'pointer',
   backgroundColor: 'transparent',
-  border: 'none',
-  outline: 'none',
 });
 
 export const dropdown = style({
