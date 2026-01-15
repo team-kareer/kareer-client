@@ -63,7 +63,6 @@ export const dropdown = style({
 
 export const option = style({
   padding: '1.55rem 2rem',
-  minHeight: '5rem',
   cursor: 'pointer',
   ':hover': {
     backgroundColor: themeVars.color.grayscale.gray300,
