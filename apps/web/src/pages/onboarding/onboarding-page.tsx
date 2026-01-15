@@ -1,5 +1,11 @@
+import { OnboardingStepHeader } from '@widgets/onboarding';
+
 const OnboardingPage = () => {
-  return <div>OnboardingPage</div>;
+  return (
+    <div>
+      <OnboardingStepHeader />
+    </div>
+  );
 };
 
 export default OnboardingPage;
