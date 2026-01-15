@@ -5,6 +5,7 @@ export const container = style({
   display: 'flex',
   flexDirection: 'column',
   flexShrink: 0,
+  alignSelf: 'flex-start',
   width: '25.6rem',
   padding: '2rem',
   margin: '1.6rem 0',
