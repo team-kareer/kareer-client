@@ -5,7 +5,6 @@ import { recipe } from '@vanilla-extract/recipes';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
-  padding: '1.6rem 2rem',
   borderRadius: '10px',
   backgroundColor: themeVars.color.grayscale.gray100,
 });
@@ -13,6 +12,8 @@ export const container = style({
 export const header = style({
   display: 'flex',
   justifyContent: 'space-between',
+  padding: '1.6rem 2rem',
+  cursor: 'pointer',
 });
 
 export const left_section = style({
@@ -40,7 +41,6 @@ export const text = recipe({
 
 export const icon = style({
   color: themeVars.color.grayscale.gray800,
-  cursor: 'pointer',
 });
 
 export const wrapper = recipe({
@@ -69,7 +69,7 @@ export const content = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
-  marginTop: '1.6rem',
+  margin: '0 2rem 1.6rem 2rem',
   maxHeight: '16.2rem',
   overflowY: 'scroll',
 });
