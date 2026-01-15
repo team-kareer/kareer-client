@@ -13,7 +13,8 @@ export const inputContainer = style({
   backgroundColor: themeVars.color.grayscale.white,
   selectors: {
     '&:focus-within': {
-      border: `1.5px solid ${themeVars.color.primary[500]}`,
+      border: `1px solid ${themeVars.color.primary[500]}`,
+      boxShadow: `0 0 0 0.5px ${themeVars.color.primary[500]}`,
     },
   },
 });
