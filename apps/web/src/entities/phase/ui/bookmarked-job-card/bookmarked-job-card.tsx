@@ -16,6 +16,16 @@ interface BookmarkedJobCardProps {
   onClick?: () => void;
 }
 
+const formatListText = (items?: string[]) => {
+  if (!items || items.length === 0) {
+    return '-';
+  }
+  if (items.length === 1) {
+    return items[0];
+  }
+  return `${items[0]} +${items.length - 1}`;
+};
+
 const BookmarkedJobCard = ({
   title,
   companyName,
@@ -27,7 +37,7 @@ const BookmarkedJobCard = ({
   dDayTag,
   onClick,
 }: BookmarkedJobCardProps) => {
-  // 디데이 계산 로직 shared에서 구현 예정 후 추가 예정
+  // 디데이 계산 로직 구현 후 추가 예정
 
   return (
     <article className={styles.container} onClick={onClick}>
@@ -46,7 +56,9 @@ const BookmarkedJobCard = ({
               {companyName}
             </h3>
             <h2 className={styles.textStyle({ type: 'title' })}>{title}</h2>
-            <p className={styles.textStyle({ type: 'dueDate' })}>{dueDate}</p>
+            <p className={styles.textStyle({ type: 'dueDate' })}>
+              {dueDate || '-'}
+            </p>
           </div>
           <div
             className={styles.scrapButtonWrapper}
@@ -56,8 +68,10 @@ const BookmarkedJobCard = ({
           </div>
         </div>
         <div className={styles.tagsWrapper}>
-          <Tag color={'pastel_skyblue'}>{locations}</Tag>
-          {jobTypes && <Tag color="disabled_gray">{jobTypes}</Tag>}
+          <Tag color={'pastel_skyblue'}>{formatListText(locations)}</Tag>
+          {jobTypes && (
+            <Tag color="disabled_gray">{formatListText(jobTypes)}</Tag>
+          )}
         </div>
       </section>
     </article>
