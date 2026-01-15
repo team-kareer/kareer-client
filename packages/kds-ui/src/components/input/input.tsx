@@ -18,8 +18,8 @@ const STATUS_ICONS = {
 const Input = ({ status = 'default', ...props }: InputProps) => {
   const statusIcon = STATUS_ICONS[status];
   return (
-    <div className={styles.inputWrapper}>
-      <input className={styles.inputBox({ status })} {...props} />
+    <div className={styles.inputWrapper({ status })}>
+      <input className={styles.inputBox} {...props} />{' '}
       {statusIcon && <div className={styles.icon}>{statusIcon}</div>}
     </div>
   );
