@@ -2,6 +2,12 @@ import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+const X_PADDING = '2rem';
+const ICON_SIZE = '1.9rem';
+const TEXT_ICON_GAP = '2rem';
+
+const errorPaddingRight = `calc(${X_PADDING} + ${ICON_SIZE} + ${TEXT_ICON_GAP})`;
+
 export const inputWrapper = style({
   position: 'relative',
   display: 'flex',
@@ -12,7 +18,7 @@ export const inputWrapper = style({
 
 export const icon = style({
   position: 'absolute',
-  right: '1.2rem',
+  right: X_PADDING,
   display: 'flex',
   alignItems: 'center',
   pointerEvents: 'none',
@@ -20,9 +26,9 @@ export const icon = style({
 
 export const inputBox = recipe({
   base: {
-    display: 'block',
+    display: 'inline-block',
     width: '100%',
-    padding: '1.55rem 2rem',
+    padding: `1.55rem ${X_PADDING}`,
     borderRadius: '10px',
     border: `1px solid ${themeVars.color.grayscale.gray300}`,
     backgroundColor: themeVars.color.grayscale.white,
@@ -45,10 +51,10 @@ export const inputBox = recipe({
     error: {
       true: {
         border: `1px solid ${themeVars.color.pastel.kared_500}`,
-        paddingRight: '3.9rem',
+        paddingRight: errorPaddingRight,
         ':focus': {
           border: `1px solid ${themeVars.color.pastel.kared_500}`,
-          paddingRight: '3.9rem',
+          paddingRight: errorPaddingRight,
         },
       },
     },
