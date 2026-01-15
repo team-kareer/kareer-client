@@ -50,19 +50,13 @@ const ActionRequiredAccordion = ({ counts }: ActionRequiredAccordion) => {
   return (
     // accordionItem
     <section className={styles.container}>
-      <header className={styles.header}>
+      {/* accordionTrigger */}
+      <header className={styles.header} onClick={toggle}>
         <div className={styles.left_section}>
           <h3 className={styles.text({ textTone: 'gray' })}>Action Required</h3>
           <span className={styles.text({ textTone: 'primary' })}>{counts}</span>
         </div>
-
-        {/* accordionTrigger */}
-        <Chevron
-          width={16}
-          height={16}
-          className={styles.icon}
-          onClick={toggle}
-        />
+        <Chevron width={16} height={16} className={styles.icon} />
       </header>
 
       {/* accordionContent */}
