@@ -1,5 +1,25 @@
 import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
+
+export const textStyle = recipe({
+  variants: {
+    type: {
+      company: {
+        ...typography.cap2_m_12,
+        color: themeVars.color.grayscale.gray400,
+      },
+      title: {
+        ...typography.body4_sb_16,
+        color: themeVars.color.grayscale.gray800,
+      },
+      dueDate: {
+        ...typography.cap2_m_12,
+        color: themeVars.color.grayscale.gray500,
+      },
+    },
+  },
+});
 
 export const container = style({
   display: 'flex',
@@ -13,33 +33,31 @@ export const container = style({
   cursor: 'pointer',
   transition: 'all 0.2s ease',
 
-  selectors: {
-    '&:hover': {
-      transform: 'translateY(-4px)',
-    },
+  ':hover': {
+    transform: 'translateY(-8px)',
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
   },
 });
 
 export const imageBox = style({
-  position: 'relative', // 스크랩 버튼 absolute 위치 지정용
+  position: 'relative',
   width: '100%',
   height: '12rem',
   borderRadius: '10px',
-  backgroundColor: themeVars.color.grayscale.gray100,
-  overflow: 'hidden', // 이미지가 borderRadius 밖으로 나가지 않도록
-});
-
-export const tagWrapper = style({
-  position: 'absolute',
-  top: '0.8rem',
-  left: '0.8rem',
-  zIndex: 'tag',
+  overflow: 'hidden',
 });
 
 export const image = style({
   width: '100%',
   height: '100%',
-  objectFit: 'cover', // 이미지 비율 유지하면서 영역 채우기
+  objectFit: 'cover',
+});
+
+export const dDayTag = style({
+  position: 'absolute',
+  top: '0.8rem',
+  left: '0.8rem',
+  zIndex: 'tag',
 });
 
 export const scrapButtonWrapper = style({
@@ -50,7 +68,6 @@ export const content = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
-  alignSelf: 'stretch',
   gap: '1.2rem',
 });
 
@@ -67,31 +84,10 @@ export const textBox = style({
   gap: '0.4rem',
 });
 
-export const companyName = style([
-  typography.cap2_m_12,
-  {
-    color: themeVars.color.grayscale.gray400,
-  },
-]);
-
-export const title = style([
-  typography.body4_sb_16,
-  {
-    color: themeVars.color.grayscale.gray800,
-    // 말줄임 표 추가
-  },
-]);
-
-export const dueDate = style([
-  typography.cap2_m_12,
-  {
-    color: themeVars.color.grayscale.gray500,
-  },
-]);
-
 export const tagsWrapper = style({
   display: 'flex',
   alignItems: 'flex-start',
   gap: '0.4rem',
   flexWrap: 'wrap',
+  flexDirection: 'column',
 });

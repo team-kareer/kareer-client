@@ -1,47 +1,30 @@
+import { useState } from 'react';
 import { Tag } from '@kds/ui';
 
-import ScrapButton from '@features/phase/ui/job-bookmark/job-bookmark';
+import ScrapButton from '@features/phase/ui/scrap-button/scrap-button';
 import { BookmarkedJobCard } from '@entities/phase';
 
 const DashboardPage = () => {
-  const mockJob = {
-    companyName: 'THEIA',
-    title: 'Hiring Japanese Marketers',
-    dueDate: 'Jan 24, 2026',
-    imageUrl: undefined, // 임시
-    isScraped: true,
-    tag: { label: 'D-2', color: 'outlined_blue' as const },
-    tags: [
-      { label: 'Part-time worker', color: 'pastel_skyblue' as const },
-      { label: 'Seocho-gu, Seoul +1', color: 'disabled_gray' as const },
-    ],
-  };
-
-  const handleCardClick = () => {
-    // 카드 클릭 시 동작할 함수
-  };
-
+  const [isScraped, setIsScraped] = useState(true);
   return (
     <div>
       <BookmarkedJobCard
-        companyName={mockJob.companyName}
-        title={mockJob.title}
-        dueDate={mockJob.dueDate}
-        imageUrl={mockJob.imageUrl}
-        onClick={handleCardClick}
-        tag={<Tag color={mockJob.tag.color}>{mockJob.tag.label}</Tag>}
-        tags={
-          <>
-            {mockJob.tags.map((tag) => (
-              <Tag key={tag.label} color={tag.color}>
-                {tag.label}
-              </Tag>
-            ))}
-          </>
+        companyName="THEIA"
+        title="Hiring Japanese Marketers"
+        dueDate="Jan 24, 2026"
+        locations={['Seocho-gu, Seoul +1']}
+        jobTypes={['Part-time worker']}
+        dDayTag={<Tag color={'outlined_blue'}>D-5</Tag>}
+        scrapAction={
+          <ScrapButton
+            isScraped={isScraped}
+            onClick={() => setIsScraped((prev) => !prev)}
+          />
         }
-      >
-        <ScrapButton isScraped={mockJob.isScraped} />
-      </BookmarkedJobCard>
+        onClick={() => {
+          window.location.href = 'https://www.naver.com/';
+        }}
+      />
     </div>
   );
 };
