@@ -1,40 +1,28 @@
 import * as styles from './onboarding-step-header.css';
 import OnboardingStep from '../step/onboarding-step';
 
-const ONBOARDING_STEPS = [
-  {
-    stepNumber: 1,
-    title: 'Personal Information',
-    status: 'In Progress',
-  },
-  {
-    stepNumber: 2,
-    title: 'Visa Information',
-    status: 'Next',
-  },
-  {
-    stepNumber: 3,
-    title: 'Target Role',
-    status: 'Later',
-  },
-  {
-    stepNumber: 4,
-    title: 'Background',
-    status: 'Later',
-  },
-] as const;
+export interface OnboardingStepData {
+  stepNumber: number;
+  title: string;
+  status: 'In Progress' | 'Next' | 'Later' | 'Completed';
+}
 
-const OnboardingStepHeader = () => {
+interface OnboardingStepHeaderProps {
+  steps: OnboardingStepData[];
+}
+
+const OnboardingStepHeader = ({ steps }: OnboardingStepHeaderProps) => {
   return (
     <div className={styles.container}>
-      {ONBOARDING_STEPS.map((step) => {
+      {steps.map((step) => {
         return (
-          <OnboardingStep
-            key={step.stepNumber}
-            stepNumber={step.stepNumber}
-            title={step.title}
-            status={step.status}
-          />
+          <div key={step.stepNumber} className={styles.stepItem}>
+            <OnboardingStep
+              stepNumber={step.stepNumber}
+              title={step.title}
+              status={step.status}
+            />
+          </div>
         );
       })}
     </div>
