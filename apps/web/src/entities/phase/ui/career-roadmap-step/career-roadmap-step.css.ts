@@ -100,12 +100,13 @@ export const line = recipe({
 export const circle = recipe({
   base: {
     ...typography.body7_sb_14,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '2.4rem',
     height: '2.4rem',
     border: `2px solid transparent`,
     borderRadius: '10px',
-    textAlign: 'center',
-    lineHeight: '2rem',
     position: 'absolute',
     top: '50%',
     left: '50%',
