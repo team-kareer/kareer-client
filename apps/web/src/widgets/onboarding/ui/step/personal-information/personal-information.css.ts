@@ -44,3 +44,10 @@ export const buttonWrapper = style({
   paddingBottom: '0.8rem',
   gap: '0.4rem',
 });
+
+export const errorMessage = style({
+  ...typography.cap2_m_12,
+  color: themeVars.color.pastel.kared_500,
+  paddingTop: '0.8rem',
+  minHeight: '1.2rem',
+});

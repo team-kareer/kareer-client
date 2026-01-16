@@ -1,12 +1,33 @@
-import { ReactNode } from 'react';
-
+import { ReactNode, useState } from 'react';
 import { Autocomplete, Button, Input, Tab, useTabContext } from '@kds/ui';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
+import {
+  validateDate,
+  validateName,
+} from '@features/onboarding/hooks/validators';
 
 import * as styles from './personal-information.css';
 
 const PersonalInformation = () => {
+  const [name, setName] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [dateError, setDateError] = useState('');
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setName(value);
+    const result = validateName(value);
+    setNameError(result === true ? '' : result);
+  };
+
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setDateOfBirth(value);
+    const result = validateDate(value);
+    setDateError(result === true ? '' : result);
+  };
   const DegreeLocationButton = ({
     value,
     children,
@@ -32,11 +53,23 @@ const PersonalInformation = () => {
       <div className={styles.inputContainer}>
         <div className={styles.inputWrapper}>
           <p className={styles.label}>Name</p>
-          <Input placeholder="Enter your name" />
+          <Input
+            placeholder="Enter your name"
+            value={name}
+            onChange={handleNameChange}
+            status={nameError ? 'error' : 'default'}
+          />
+          <p className={styles.errorMessage}>{nameError || '\u00A0'}</p>
         </div>
         <div className={styles.inputWrapper}>
           <p className={styles.label}>Date of Birth(YYYY.MM.DD)</p>
-          <Input placeholder="Enter the Date" />
+          <Input
+            placeholder="Enter the Date"
+            value={dateOfBirth}
+            onChange={handleDateChange}
+            status={dateError ? 'error' : 'default'}
+          />
+          <p className={styles.errorMessage}>{dateError || '\u00A0'}</p>
         </div>
       </div>
       <div className={styles.inputContainer}>
