@@ -6,10 +6,18 @@ import * as styles from './visa-status-box.css';
 interface VisaStatusBoxProps {
   isCurrent: boolean;
   goal: string;
-  percent: number;
+  total: number;
+  done: number;
 }
 
-const VisaStatusBox = ({ isCurrent, goal, percent }: VisaStatusBoxProps) => {
+const VisaStatusBox = ({
+  isCurrent,
+  goal,
+  total,
+  done,
+}: VisaStatusBoxProps) => {
+  const percent = Math.round((done / total) * 100);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -25,7 +33,7 @@ const VisaStatusBox = ({ isCurrent, goal, percent }: VisaStatusBoxProps) => {
         </div>
         <p className={styles.percent}>{percent}%</p>
       </div>
-      <ProgressBar percent={percent} />
+      <ProgressBar total={total} done={done} />
     </div>
   );
 };

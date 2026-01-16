@@ -1,11 +1,12 @@
 import * as styles from './progress-bar.css';
 
 interface ProgressBarProps {
-  percent: number;
+  total: number;
+  done: number;
 }
 
-const ProgressBar = ({ percent }: ProgressBarProps) => {
-  return <progress value={percent} max={100} className={styles.progress} />;
+const ProgressBar = ({ total, done }: ProgressBarProps) => {
+  return <progress value={done} max={total} className={styles.progress} />;
 };
 
 export default ProgressBar;
