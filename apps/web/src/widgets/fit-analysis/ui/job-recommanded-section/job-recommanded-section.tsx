@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { SectionHeader } from '@kds/ui';
 
 import UploadBox from '@widgets/fit-analysis/ui/upload-box/upload-box';
-// 업로드 박스 머지 이후 추가 예정
 import BookmarkedJobList from '@features/job/ui/bookmarked-job-list/bookmarked-job-list';
 import { MOCK_JOBS } from '@shared/mocks/job-mocks';
 

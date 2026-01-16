@@ -1,22 +1,10 @@
-import { ReactNode } from 'react';
 import { Tag } from '@kds/ui';
 
 import { default_company_image } from '@shared/assets';
-import { TagColor } from '@shared/utils/job-tag-color.ts';
+
+import { BookmarkedJobCardProps } from '../../model/job.types';
 
 import * as styles from './bookmarked-job-card.css';
-interface BookmarkedJobCardProps {
-  companyName: string;
-  title: string;
-  dueDate?: string;
-  imageUrl?: string;
-  locations: string[];
-  jobTypes?: string[];
-  scrapAction?: ReactNode;
-  dDay?: number;
-  onClick?: () => void;
-  jobTagColor?: TagColor;
-}
 
 const formatListText = (items?: string[]) => {
   if (!items || items.length === 0) {
