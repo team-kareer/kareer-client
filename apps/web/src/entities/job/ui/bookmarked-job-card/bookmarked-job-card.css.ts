@@ -12,6 +12,12 @@ export const textStyle = recipe({
       title: {
         ...typography.body4_sb_16,
         color: themeVars.color.grayscale.gray800,
+        width: '100%',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: 'vertical',
+        display: '-webkit-box',
       },
       dueDate: {
         ...typography.cap2_m_12,
@@ -82,6 +88,8 @@ export const textBox = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.4rem',
+  flex: 1,
+  minWidth: 0,
 });
 
 export const tagsWrapper = style({

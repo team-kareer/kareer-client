@@ -1,18 +1,19 @@
 import { useState } from 'react';
-import { Tag } from '@kds/ui';
 
 import ScrapButton from '@features/job/ui/scrap-button/scrap-button';
 import { BookmarkedJobCard } from '@entities/job';
+import { getJobTagColor } from '@shared/utils/job-tag-color';
 
 const MOCK_JOBS = [
   {
     id: 1,
     companyName: 'THEIA',
-    title: 'Hiring Japanese Marketers',
+    title: 'Hiring Japanese MarketersMarketersMarketersMarketerMarketerss',
     dueDate: 'Jan 24, 2026',
     locations: ['Seocho-gu, Seoul', 'Gangwon Goseong-gun'],
-    jobTypes: ['Part-time worker', 'Regular worker'],
-    isScraped: true,
+    jobTypes: ['Contract worker', 'Regular worker'],
+    isScraped: false,
+    imageUrl: '',
     dDay: 5,
   },
   {
@@ -21,8 +22,53 @@ const MOCK_JOBS = [
     title: 'Company 291 - Salary: 2 people blabla',
     dueDate: 'Jan 24, 2026',
     locations: ['Seocho-gu, Seoul', 'Gangwon Goseong-gun'],
-    jobTypes: ['Part-time worker', 'Regular worker'],
+    jobTypes: ['Temporary worker', 'Contract worker'],
     isScraped: false,
+    imageUrl: '',
+    dDay: 2,
+  },
+  {
+    id: 3,
+    companyName: '골드윈행정사무소',
+    title: 'Company 291 - Salary: 2 people blabla',
+    dueDate: 'Jan 24, 2026',
+    locations: ['Seocho-gu, Seoul', 'Gangwon Goseong-gun'],
+    jobTypes: ['Freelancer'],
+    isScraped: false,
+    imageUrl: '',
+    dDay: 2,
+  },
+  {
+    id: 4,
+    companyName: '골드윈행정사무소',
+    title: 'Company 291 - Salary: 2 people blabla',
+    dueDate: 'Jan 24, 2026',
+    locations: ['Seocho-gu, Seoul', 'Gangwon Goseong-gun'],
+    jobTypes: ['Part-time job'],
+    isScraped: false,
+    imageUrl: '',
+    dDay: 2,
+  },
+  {
+    id: 5,
+    companyName: '골드윈행정사무소',
+    title: 'Company 291 - Salary: 2 people blabla',
+    dueDate: 'Jan 24, 2026',
+    locations: ['Seocho-gu, Seoul', 'Gangwon Goseong-gun'],
+    jobTypes: ['Intern'],
+    isScraped: false,
+    imageUrl: '',
+    dDay: 2,
+  },
+  {
+    id: 6,
+    companyName: '골드윈행정사무소',
+    title: 'Company 291 - Salary: 2 people blabla',
+    dueDate: 'Jan 24, 2026',
+    locations: ['Seocho-gu, Seoul', 'Gangwon Goseong-gun'],
+    jobTypes: ['Full-time'],
+    isScraped: false,
+    imageUrl: '',
     dDay: 2,
   },
 ];
@@ -38,28 +84,34 @@ const DashboardPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', gap: '1rem' }}>
-      {jobs.map((job) => (
-        <BookmarkedJobCard
-          key={job.id}
-          companyName={job.companyName}
-          title={job.title}
-          dueDate={job.dueDate}
-          dDayTag={<Tag color={'outlined_blue'}>D-5</Tag>}
-          locations={job.locations}
-          jobTypes={job.jobTypes}
-          scrapAction={
-            <ScrapButton
-              isScraped={job.isScraped}
-              onClick={() => handleToggleScrap(job.id)}
-            />
-          }
-          onClick={() => {
-            window.location.href = 'https://www.naver.com/';
-            handleToggleScrap(job.id);
-          }}
-        />
-      ))}
+    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+      {jobs.map((job) => {
+        const mainJobType = job.jobTypes?.[0];
+        const tagColor = getJobTagColor(mainJobType);
+
+        return (
+          <BookmarkedJobCard
+            key={job.id}
+            companyName={job.companyName}
+            title={job.title}
+            dueDate={job.dueDate}
+            dDay={job.dDay}
+            locations={job.locations}
+            jobTypes={job.jobTypes}
+            jobTagColor={tagColor}
+            scrapAction={
+              <ScrapButton
+                isScraped={job.isScraped}
+                onClick={() => handleToggleScrap(job.id)}
+              />
+            }
+            onClick={() => {
+              window.location.href = job.imageUrl;
+              handleToggleScrap(job.id);
+            }}
+          />
+        );
+      })}
     </div>
   );
 };
