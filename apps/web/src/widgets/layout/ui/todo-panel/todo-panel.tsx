@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import { Button, Tab, useTabContext } from '@kds/ui';
 
 import TodoItem from '@entities/todo/ui/todo-item/todo-item';
 
-import * as styles from './todo-panel.css';
+import { useSortedTodos } from './hooks/use-sorted-todos';
+import { formatDueInDays } from './utils/format-due-in-days';
 
-type TabKey = 'visa' | 'career';
+import * as styles from './todo-panel.css';
 
 const TABS = [
   { id: 1, value: 'visa' },
@@ -16,62 +16,53 @@ const MOCK_TODO = {
   visa: [
     {
       id: 1,
-      title: 'visa 투두',
-      description: 'Due in 1 days',
+      title: '1',
       isChecked: false,
+      dueDate: '2026-01-20T00:00:00Z',
     },
     {
       id: 2,
-      title: 'Submit OPT Application',
-      description: 'Due in 1 days',
+      title: '2',
       isChecked: true,
+      dueDate: '2026-01-21T00:00:00Z',
     },
     {
       id: 3,
-      title: '2 lines gonna be aware like this',
-      description: 'Due in 1 days',
+      title: '3',
       isChecked: false,
+      dueDate: '2026-01-22T00:00:00Z',
     },
     {
       id: 4,
-      title: 'Submit OPT Application',
-      description: 'Due in 1 days',
+      title: '4',
       isChecked: false,
+      dueDate: '2026-01-23T00:00:00Z',
     },
   ],
   career: [
     {
       id: 1,
       title: 'career 투두',
-      description: 'Due in 1 days',
       isChecked: false,
+      dueDate: '2026-01-24T00:00:00Z',
     },
     {
       id: 2,
       title: 'Submit OPT Application',
-      description: 'Due in 1 days',
       isChecked: true,
+      dueDate: '2026-01-25T00:00:00Z',
     },
     {
       id: 3,
       title: 'Submit OPT Application',
-      description: 'Due in 1 days',
       isChecked: false,
+      dueDate: '2026-01-26T00:00:00Z',
     },
   ],
 };
 
 const TodoPanel = () => {
-  const [todos, setTodos] = useState(MOCK_TODO);
-
-  const handleToggle = (tab: TabKey, id: number) => {
-    setTodos((prev) => ({
-      ...prev,
-      [tab]: prev[tab].map((todo) =>
-        todo.id === id ? { ...todo, isChecked: !todo.isChecked } : todo,
-      ),
-    }));
-  };
+  const { todos, toggleTodo } = useSortedTodos(MOCK_TODO);
 
   return (
     <aside className={styles.container}>
@@ -82,14 +73,14 @@ const TodoPanel = () => {
         </Tab.List>
         {TABS.map(({ id, value }) => (
           <Tab.Panel key={id} tab={value} className={styles.tabPanel}>
-            {todos[value].map(({ id, title, description, isChecked }) => (
+            {todos[value].map(({ id, title, isChecked, dueDate }) => (
               <TodoItem
                 key={id}
                 title={title}
-                description={description}
+                description={formatDueInDays(dueDate)}
                 size="sm"
                 isChecked={isChecked}
-                onToggle={() => handleToggle(value, id)}
+                onToggle={() => toggleTodo(value, id)}
               />
             ))}
           </Tab.Panel>
