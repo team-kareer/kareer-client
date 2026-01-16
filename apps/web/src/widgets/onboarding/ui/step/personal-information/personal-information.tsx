@@ -109,12 +109,15 @@ const PersonalInformation = () => {
                 <p>Outside Korea</p>
               </DegreeLocationButton>
             </Tab.List>
-            <Autocomplete
-              placeholder="Select the degree"
-              value={''}
-              onChange={() => {}}
-              options={[]}
-            />
+
+            <div className={styles.autoWrapper}>
+              <Autocomplete
+                placeholder="Select the degree"
+                value={''}
+                onChange={() => {}}
+                options={[]}
+              />
+            </div>
           </Tab.Container>
         </div>
       </div>

@@ -40,9 +40,10 @@ export const labelWrapper = style({
 export const label = style({
   ...typography.body7_sb_14,
   color: themeVars.color.grayscale.gray500,
-  paddingBottom: '1.1rem',
+  paddingBottom: '0.8rem',
 });
 
+// Degree 전용
 export const subLabel = style({
   ...typography.body8_m_14,
   color: themeVars.color.grayscale.gray400,
@@ -59,7 +60,7 @@ export const errorMessage = style({
   ...typography.cap2_m_12,
   color: themeVars.color.pastel.kared_500,
   marginTop: '0.8rem',
-  minHeight: '1.1rem',
+  minHeight: '1.4rem',
 });
 
 export const textCount = style({
