@@ -1,4 +1,4 @@
-import OnboardingStep from '../step/onboarding-step';
+import OnboardingStep from '../onboarding-step/onboarding-step';
 
 import * as styles from './onboarding-step-header.css';
 
