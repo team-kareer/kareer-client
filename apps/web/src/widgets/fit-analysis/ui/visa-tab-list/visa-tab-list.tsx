@@ -1,19 +1,15 @@
 import { Button, useTabContext } from '@kds/ui';
 
-const VISA_LIST = {
-  D2: 'D-2 Student',
-  D10: 'D-10 Job Seeker',
-  E7: 'E-7 Foreign National of Special Ability',
-} as const;
+import { VISA_LIST } from '@widgets/fit-analysis';
+
+interface VisaTabListProps {
+  visa: string;
+}
 
 const PRESET_LIST = {
   active: 'mini_primary',
   inactive: 'mini_outlined',
 } as const;
-
-interface VisaTabListProps {
-  visa: string;
-}
 
 const VisaTabList = ({ visa }: VisaTabListProps) => {
   const { selectedTab, setSelectedTab } = useTabContext();
@@ -22,28 +18,26 @@ const VisaTabList = ({ visa }: VisaTabListProps) => {
     return selectedTab === value ? PRESET_LIST.active : PRESET_LIST.inactive;
   };
 
+  const VISA_BUTTONS = [
+    { label: VISA_LIST.D2, show: isD2 },
+    { label: VISA_LIST.D10, show: true },
+    { label: VISA_LIST.E7, show: true },
+  ] as const;
+
   return (
     <>
-      {isD2 && (
-        <Button
-          preset={preset(VISA_LIST.D2)}
-          onClick={() => setSelectedTab(VISA_LIST.D2)}
-        >
-          {VISA_LIST.D2}
-        </Button>
+      {VISA_BUTTONS.map(
+        ({ label, show }) =>
+          show && (
+            <Button
+              key={label}
+              preset={preset(label)}
+              onClick={() => setSelectedTab(label)}
+            >
+              {label}
+            </Button>
+          ),
       )}
-      <Button
-        preset={preset(VISA_LIST.D10)}
-        onClick={() => setSelectedTab(VISA_LIST.D10)}
-      >
-        {VISA_LIST.D10}
-      </Button>
-      <Button
-        preset={preset(VISA_LIST.E7)}
-        onClick={() => setSelectedTab(VISA_LIST.E7)}
-      >
-        {VISA_LIST.E7}
-      </Button>
     </>
   );
 };
