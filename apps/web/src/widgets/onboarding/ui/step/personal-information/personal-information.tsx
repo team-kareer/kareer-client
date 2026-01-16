@@ -51,7 +51,8 @@ const PersonalInformation = () => {
         <OnboardingStepTitle stepNumber={1} title="Personal Information" />
       </div>
       <div className={styles.inputContainer}>
-        <div className={styles.inputWrapper}>
+        {/* Name - 1열 */}
+        <div className={`${styles.infoWrapperCol1}`}>
           <p className={styles.label}>Name</p>
           <Input
             placeholder="Enter your name"
@@ -61,7 +62,8 @@ const PersonalInformation = () => {
           />
           <p className={styles.errorMessage}>{nameError || '\u00A0'}</p>
         </div>
-        <div className={styles.inputWrapper}>
+        {/* Date - 2열 */}
+        <div className={` ${styles.infoWrapperCol2}`}>
           <p className={styles.label}>Date of Birth(YYYY.MM.DD)</p>
           <Input
             placeholder="Enter the Date"
@@ -71,9 +73,8 @@ const PersonalInformation = () => {
           />
           <p className={styles.errorMessage}>{dateError || '\u00A0'}</p>
         </div>
-      </div>
-      <div className={styles.inputContainer}>
-        <div className={styles.inputWrapper}>
+        {/* Country - 1열 */}
+        <div className={`${styles.autoWrapper} ${styles.infoWrapperCol1}`}>
           <p className={styles.label}>Country</p>
           <Autocomplete
             placeholder="Select the Country"
@@ -82,7 +83,8 @@ const PersonalInformation = () => {
             options={[]}
           />
         </div>
-        <div className={styles.inputWrapper}>
+        {/* OPIK Level - 2열 */}
+        <div className={`${styles.autoWrapper} ${styles.infoWrapperCol2}`}>
           <p className={styles.label}>OPIK / KIIP Level</p>
           <Autocomplete
             placeholder="Select the level"
@@ -91,7 +93,8 @@ const PersonalInformation = () => {
             options={[]}
           />
         </div>
-        <div className={styles.inputWrapper}>
+        {/* Degree - 1열 */}
+        <div className={`${styles.infoWrapperCol1}`}>
           <div className={styles.labelWrapper}>
             <p className={styles.label}>Degree</p>
             <p className={styles.subLabel}>Graduating students are included.</p>

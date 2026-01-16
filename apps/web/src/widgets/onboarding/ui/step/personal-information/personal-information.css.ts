@@ -8,17 +8,27 @@ export const contentTitleWrapper = style({
 export const inputContainer = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '2.4rem',
-  paddingRight: '6.6rem',
-  paddingBottom: '1.1rem',
+  gap: '1.1rem',
+  padding: '0 6.6rem 0 0',
 });
 
-export const inputWrapper = style({
-  width: '100%',
+export const autoWrapper = style({
+  paddingBottom: '2.5rem',
 });
 
-export const inputWrapperLeft = style({
+// 첫 번째 열
+export const infoWrapperCol1 = style({
   gridColumn: '1 / 2',
+});
+
+// 두 번째 열
+export const infoWrapperCol2 = style({
+  gridColumn: '2 / 3',
+});
+
+// 전체 너비 (Degree)
+export const infoWrapperFull = style({
+  gridColumn: '1 / 3',
 });
 
 export const labelWrapper = style({
@@ -30,7 +40,7 @@ export const labelWrapper = style({
 export const label = style({
   ...typography.body7_sb_14,
   color: themeVars.color.grayscale.gray500,
-  paddingBottom: '0.8rem',
+  paddingBottom: '1.1rem',
 });
 
 export const subLabel = style({
@@ -48,6 +58,6 @@ export const buttonWrapper = style({
 export const errorMessage = style({
   ...typography.cap2_m_12,
   color: themeVars.color.pastel.kared_500,
-  paddingTop: '0.8rem',
-  minHeight: '1.2rem',
+  marginTop: '0.8rem',
+  minHeight: '1.1rem', // 에러 메시지가 없어도 공간 유지
 });
