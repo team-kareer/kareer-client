@@ -2,7 +2,7 @@ import OnboardingStep from '../step/onboarding-step';
 
 import * as styles from './onboarding-step-header.css';
 
-export interface OnboardingStepData {
+interface OnboardingStepData {
   stepNumber: number;
   title: string;
   status: 'In Progress' | 'Next' | 'Later' | 'Completed';
