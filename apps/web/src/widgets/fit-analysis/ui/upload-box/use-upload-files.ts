@@ -15,7 +15,7 @@ interface FileItem {
 
 const createFileItems = (files: File[]) =>
   files.map((file) => ({
-    id: `${file.name}-${Date.now()}`,
+    id: crypto.randomUUID(),
     name: file.name,
     file,
   }));
