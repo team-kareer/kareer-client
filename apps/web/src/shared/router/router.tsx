@@ -15,21 +15,21 @@ import {
 export const router = createBrowserRouter([
   ...publicRoutes,
   {
+    Component: GlobalLayout,
+    children: [
+      {
+        Component: ProtectedRoute,
+        children: protectedAppRoutes,
+      },
+    ],
+  },
+  {
     Component: OnboardingRouteLayout,
     children: [
       ...publicOnboardingRoutes,
       {
         Component: ProtectedRoute,
         children: protectedOnboardingRoutes,
-      },
-    ],
-  },
-  {
-    Component: GlobalLayout,
-    children: [
-      {
-        Component: ProtectedRoute,
-        children: protectedAppRoutes,
       },
     ],
   },
