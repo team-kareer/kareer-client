@@ -1,5 +1,10 @@
 import ky, { HTTPError } from 'ky';
 
+import { appConfig } from '@shared/apis/configs/app-config';
+import { authService } from '@shared/auth/auth-service';
+import { tokenService } from '@shared/auth/token-service';
+import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
+
 const normalizePathParams = (path: string) =>
   path.replace(/\/\d+(?=\/|$)/g, '/{id}');
 
@@ -12,7 +17,7 @@ const buildSentryErrorName = (request: Request, status?: number) => {
 };
 
 export const api = ky.create({
-  prefixUrl: import.meta.env.VITE_BASE_URL,
+  prefixUrl: appConfig.api.baseUrl,
   retry: 0,
   hooks: {
     beforeError: [
@@ -24,6 +29,21 @@ export const api = ky.create({
           );
         }
         return error;
+      },
+    ],
+    beforeRequest: [
+      (request: Request) => {
+        const token = tokenService.getAccessToken();
+        if (token) {
+          request.headers.set('Authorization', `Bearer ${token}`);
+        }
+      },
+    ],
+    afterResponse: [
+      async (_request, _options, response) => {
+        if (response.status === HTTP_STATUS_CODE.UNAUTHORIZED) {
+          authService.logout();
+        }
       },
     ],
   },
