@@ -1,11 +1,5 @@
-import { AccordionList } from '@widgets/roadmap';
-
 const DashboardPage = () => {
-  return (
-    <div>
-      <AccordionList />
-    </div>
-  );
+  return <div>DashboardPage</div>;
 };
 
 export default DashboardPage;
