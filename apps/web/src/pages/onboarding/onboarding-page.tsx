@@ -1,5 +1,7 @@
+import * as styles from './onboarding-page.css';
+
 const OnboardingPage = () => {
-  return <div>OnboardingPage</div>;
+  return <div className={styles.onboardingSection}>OnboardingPage</div>;
 };
 
 export default OnboardingPage;
