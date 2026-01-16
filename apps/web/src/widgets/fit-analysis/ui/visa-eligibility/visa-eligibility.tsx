@@ -4,6 +4,7 @@ import {
   VISA_CHECKLIST_D2,
   VISA_CHECKLIST_D10,
   VISA_CHECKLIST_E7,
+  VISA_LIST,
   VisaChecklist,
   VisaTabList,
 } from '@widgets/fit-analysis';
@@ -13,12 +14,6 @@ import * as styles from './visa-eligibility.css';
 interface VisaEligibilityProps {
   visa: string;
 }
-
-const VISA_LIST = {
-  D2: 'D-2 Student',
-  D10: 'D-10 Job Seeker',
-  E7: 'E-7 Foreign National of Special Ability',
-} as const;
 
 const VISA_TAB_PANELS = [
   { tab: VISA_LIST.D2, checklistData: VISA_CHECKLIST_D2 },
