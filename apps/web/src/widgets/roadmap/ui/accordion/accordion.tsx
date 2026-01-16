@@ -53,7 +53,7 @@ const mockData = {
   totalCount: 4,
 };
 
-const PhaseListAccordionItem = ({
+const Accordion = ({
   phase,
   title,
   subTitle,
@@ -104,4 +104,4 @@ const PhaseListAccordionItem = ({
   );
 };
 
-export default PhaseListAccordionItem;
+export default Accordion;

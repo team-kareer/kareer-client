@@ -23,7 +23,7 @@ const mockData = [
   },
 ];
 
-const PhaseListAccordion = () => {
+const AccordionList = () => {
   // 추후 api 응답 값으로 변경
   return (
     <section className={styles.container}>
@@ -40,4 +40,4 @@ const PhaseListAccordion = () => {
   );
 };
 
-export default PhaseListAccordion;
+export default AccordionList;
