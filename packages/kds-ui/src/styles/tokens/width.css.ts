@@ -1,3 +1,3 @@
 export const width = {
-  minWidth: '1336px',
+  minWidth: '1366px',
 };
