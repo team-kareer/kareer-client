@@ -14,12 +14,14 @@ interface ChecklistData {
 interface VisaChecklistProps {
   isCurrentVisa: boolean;
   curTab: string;
+  date: string;
   checklistData: readonly ChecklistData[];
 }
 
 const VisaChecklist = ({
   isCurrentVisa,
   curTab,
+  date,
   checklistData,
 }: VisaChecklistProps) => {
   const STORAGE_KEY = `checked_ids_${curTab}`;
@@ -47,6 +49,7 @@ const VisaChecklist = ({
       <VisaStatusBox
         isCurrent={isCurrentVisa}
         goal={curTab}
+        date={date}
         total={totalCount}
         done={checkedCount}
       />

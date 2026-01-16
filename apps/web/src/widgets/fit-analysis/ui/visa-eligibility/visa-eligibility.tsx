@@ -13,6 +13,7 @@ import * as styles from './visa-eligibility.css';
 
 interface VisaEligibilityProps {
   visa: string;
+  date: string;
 }
 
 const VISA_TAB_PANELS = [
@@ -21,7 +22,7 @@ const VISA_TAB_PANELS = [
   { tab: VISA_LIST.E7, checklistData: VISA_CHECKLIST_E7 },
 ] as const;
 
-const VisaEligibility = ({ visa }: VisaEligibilityProps) => {
+const VisaEligibility = ({ visa, date }: VisaEligibilityProps) => {
   return (
     <Tab.Container initialValue={visa} className={styles.container}>
       <Tab.List className={styles.tabContainer}>
@@ -32,6 +33,7 @@ const VisaEligibility = ({ visa }: VisaEligibilityProps) => {
           <VisaChecklist
             isCurrentVisa={visa === tab}
             curTab={tab}
+            date={date}
             checklistData={checklistData}
           />
         </Tab.Panel>
