@@ -4,5 +4,4 @@ export const container = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(4, 1fr)',
   gap: '1rem',
-  width: '100%', // 확인해바야댐 !
 });

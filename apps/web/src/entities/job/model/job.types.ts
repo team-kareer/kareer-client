@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import { TagColor } from '@shared/utils/job-tag-color';
 
 export interface JobItem {
