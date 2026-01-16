@@ -4,7 +4,8 @@ export type TagColor =
   | 'pastel_orange'
   | 'pastel_skyblue'
   | 'pastel_pink'
-  | 'pastel_purple';
+  | 'pastel_purple'
+  | 'disabled_gray';
 
 const JOB_COLOR_MAP: Record<string, TagColor> = {
   'Contract worker': 'pastel_red',
@@ -17,7 +18,7 @@ const JOB_COLOR_MAP: Record<string, TagColor> = {
 
 export const getJobTagColor = (jobType?: string): TagColor => {
   if (!jobType) {
-    return 'pastel_purple';
+    return 'disabled_gray';
   }
-  return JOB_COLOR_MAP[jobType] || 'pastel_purple';
+  return JOB_COLOR_MAP[jobType] || 'disabled_gray';
 };
