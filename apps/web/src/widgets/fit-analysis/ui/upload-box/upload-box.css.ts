@@ -59,11 +59,6 @@ export const checkText = style({
   color: themeVars.color.grayscale.gray500,
 });
 
-export const buttonSection = style({
-  display: 'flex',
-  alignItems: 'center',
-});
-
 export const infoSection = style({
   display: 'flex',
   gap: '1.6rem',

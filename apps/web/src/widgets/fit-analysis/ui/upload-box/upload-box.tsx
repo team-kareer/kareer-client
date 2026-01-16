@@ -76,11 +76,9 @@ const UploadBox = () => {
           </div>
         </div>
         {hasFiles && (
-          <div className={styles.buttonSection}>
-            <Button preset="medium_primary" onClick={handleClickFindPosition}>
-              <span>Find Position</span>
-            </Button>
-          </div>
+          <Button preset="medium_primary" onClick={handleClickFindPosition}>
+            <span>Find Position</span>
+          </Button>
         )}
       </div>
       <div className={styles.infoSection}>
