@@ -5,7 +5,7 @@ import * as styles from './scrap-button.css.ts';
 
 interface ScrapButtonProps {
   isScraped: boolean;
-  onClick?: (e: MouseEvent<HTMLButtonElement>) => void; // 피쳐 레이어는 어디로 navigate 하는지 몰라야함
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ScrapButton = ({ isScraped, onClick }: ScrapButtonProps) => {
