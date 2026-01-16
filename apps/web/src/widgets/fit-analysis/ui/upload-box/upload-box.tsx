@@ -64,7 +64,7 @@ const UploadBox = () => {
                     onClick={() => removeFile(file.id)}
                   >
                     <span className={styles.fileName}>{file.name}</span>
-                    <XIcon width={19} height={19} />
+                    <XIcon width={16} height={16} />
                   </Button>
                 ))}
               </div>
