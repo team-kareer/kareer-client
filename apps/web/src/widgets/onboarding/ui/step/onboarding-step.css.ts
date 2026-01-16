@@ -19,6 +19,7 @@ export const statusColorVariants = {
 
 export const container = style({
   display: 'flex',
+  flexShrink: 0,
   flexDirection: 'column',
 });
 
