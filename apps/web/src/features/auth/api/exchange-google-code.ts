@@ -1,3 +1,4 @@
+import { END_POINT } from '@features/auth/model/end_point';
 import { api } from '@shared/apis/configs/instance';
 
 export interface GoogleLoginResponse {
@@ -11,7 +12,7 @@ export interface GoogleLoginResponse {
 
 export const exchangeGoogleCode = (code: string) =>
   api
-    .post('api/v1/auth/code/exchange', {
+    .post(END_POINT.LOGIN.EXCHANGE_GOOGLE_CODE, {
       json: { code },
     })
     .json<GoogleLoginResponse>();
