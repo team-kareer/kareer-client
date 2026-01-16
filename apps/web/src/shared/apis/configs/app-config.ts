@@ -5,12 +5,13 @@ import { ROUTE_PATH } from '@shared/router';
  */
 const DEFAULT_CONFIG = {
   auth: {
-    isEnabled: false, // 인증 기능 활성화 여부
-
+    isEnabled: true, // 인증 기능 활성화 여부
     loginSuccessUrl: ROUTE_PATH.LOGIN_CALLBACK,
     loginFailureUrl: ROUTE_PATH.LOGIN,
-
     googleLoginUrl: import.meta.env.VITE_GOOGLE_LOGIN_URL || '',
+    // googleLocalRedirectUrl:
+    //   import.meta.env.VITE_GOOGLE_LOCAL_REDIRECT_URI || '',
+    // googleProdRedirectUrl: import.meta.env.VITE_GOOGLE_PROD_REDIRECT_URI || '',
   },
 
   api: {
