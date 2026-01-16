@@ -1,3 +1,5 @@
+// TODO : 유효성 방식 추후 수정 필요(아직 전달 못 받음)
+
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
 
 export const validateNumber = (value: string) => {

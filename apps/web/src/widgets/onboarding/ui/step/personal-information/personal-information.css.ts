@@ -13,7 +13,7 @@ export const inputContainer = style({
 });
 
 export const autoWrapper = style({
-  paddingBottom: '2.5rem',
+  paddingBottom: '2.2rem',
 });
 
 // 첫 번째 열
@@ -66,6 +66,6 @@ export const errorMessage = style({
 export const textCount = style({
   ...typography.cap2_m_12,
   color: themeVars.color.grayscale.gray500,
-  marginTop: '0.8rem',
+  paddingTop: '0.8rem',
   textAlign: 'right',
 });
