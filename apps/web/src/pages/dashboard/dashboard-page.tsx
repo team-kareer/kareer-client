@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Tag } from '@kds/ui';
 
 import ScrapButton from '@features/phase/ui/scrap-button/scrap-button';
-import { BookmarkedJobCard } from '@entities/phase';
+import { BookmarkedJobCard } from '@entities/job';
 
 const MOCK_JOBS = [
   {

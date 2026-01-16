@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 import { Tag } from '@kds/ui';
 
-import DefaultJobImage from '@shared/assets/images/default_company_image.webp';
+import { default_company_image } from '@shared/assets';
 
 import * as styles from './bookmarked-job-card.css.ts';
+
 interface BookmarkedJobCardProps {
   companyName: string;
   title: string;
@@ -42,7 +43,7 @@ const BookmarkedJobCard = ({
       <figure className={styles.imageBox}>
         <div className={styles.dDayTag}>{dDayTag}</div>
         <img
-          src={imageUrl || DefaultJobImage}
+          src={imageUrl || default_company_image}
           alt={`${companyName} 채용 공고 이미지`}
           className={styles.image}
         />
