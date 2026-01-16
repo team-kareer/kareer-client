@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type TabKey = 'visa' | 'career';
 
@@ -34,7 +34,14 @@ export const useSortedTodos = (initialTodos: TodosByTab) => {
     career: sortByCheckedAndDueDate(initialTodos.career),
   }));
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     setTodos({
       visa: sortByCheckedAndDueDate(initialTodos.visa),
       career: sortByCheckedAndDueDate(initialTodos.career),
