@@ -44,27 +44,6 @@ export const right_section = style({
   gap: '1.6rem',
 });
 
-export const text = recipe({
-  base: {
-    ...typography.body7_sb_14,
-    userSelect: 'none',
-  },
-  variants: {
-    textTone: {
-      gray: {
-        color: themeVars.color.grayscale.gray800,
-      },
-      primary: {
-        color: themeVars.color.primary[500],
-      },
-    },
-  },
-});
-
-export const icon = style({
-  color: themeVars.color.grayscale.gray800,
-});
-
 export const wrapper = recipe({
   base: {
     display: 'grid',
