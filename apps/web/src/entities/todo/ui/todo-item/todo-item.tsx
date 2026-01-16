@@ -1,4 +1,4 @@
-import { TodoCheckIcon, TodoIcon } from '@kds/icons';
+import { Checkbox } from '@kds/ui';
 
 import * as styles from './todo-item.css';
 
@@ -9,7 +9,7 @@ interface TodoItemProps {
   description: string;
   size: TodoItemSize;
   isChecked: boolean;
-  onClick?: () => void;
+  onToggle: () => void;
 }
 
 const TodoItem = ({
@@ -17,20 +17,13 @@ const TodoItem = ({
   description,
   size,
   isChecked,
-  onClick,
+  onToggle,
 }: TodoItemProps) => {
   const showDescription = size === 'lg' || !isChecked;
-  const todoIcon = isChecked ? (
-    <TodoCheckIcon width={24} height={24} />
-  ) : (
-    <TodoIcon width={24} height={24} />
-  );
 
   return (
     <li className={styles.container}>
-      <button type="button" className={styles.icon} onClick={onClick}>
-        {todoIcon}
-      </button>
+      <Checkbox isChecked={isChecked} onClick={onToggle} />
       <div className={styles.contentWrapper}>
         <p className={styles.title}>{title}</p>
         {showDescription && <p className={styles.description}>{description}</p>}

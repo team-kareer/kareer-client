@@ -10,7 +10,7 @@ const TAG_CONFIG = {
     label: 'Visa',
   },
   Career: {
-    color: 'pastel_blue',
+    color: 'pastel_skyblue',
     label: 'Career',
   },
 } as const;
