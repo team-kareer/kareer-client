@@ -68,9 +68,9 @@ const BookmarkedJobCard = ({
         </div>
         <div className={styles.tagsWrapper}>
           {jobTypes && (
-            <Tag color="disabled_gray">{formatListText(jobTypes)}</Tag>
+            <Tag color="pastel_skyblue">{formatListText(jobTypes)}</Tag>
           )}
-          <Tag color={'pastel_skyblue'}>{formatListText(locations)}</Tag>
+          <Tag color="disabled_gray">{formatListText(locations)}</Tag>
         </div>
       </section>
     </article>
