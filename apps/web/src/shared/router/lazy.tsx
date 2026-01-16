@@ -13,7 +13,7 @@ export const ErrorPage = lazy(() => import('@pages/error/error'));
 
 export const LoginPage = lazy(() => import('@pages/login/login'));
 export const LoginCallbackPage = lazy(
-  () => import('@pages/login-callback/login-callback'),
+  () => import('@pages/login-callback/login-callback-page'),
 );
 
 export const OnboardingPage = lazy(
