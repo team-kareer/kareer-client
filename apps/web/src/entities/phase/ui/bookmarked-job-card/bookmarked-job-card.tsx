@@ -37,8 +37,6 @@ const BookmarkedJobCard = ({
   dDayTag,
   onClick,
 }: BookmarkedJobCardProps) => {
-  // 디데이 계산 로직 구현 후 추가 예정
-
   return (
     <article className={styles.container} onClick={onClick}>
       <figure className={styles.imageBox}>
