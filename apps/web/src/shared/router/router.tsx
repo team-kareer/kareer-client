@@ -2,16 +2,35 @@ import { createBrowserRouter } from 'react-router';
 
 import GlobalLayout from '@shared/router/global-layout';
 import OnboardingRouteLayout from '@shared/router/onboarding-route-layout';
-import { globalRoutes } from '@shared/router/routes/global-routes';
-import { onboardingRoutes } from '@shared/router/routes/onboarding-routes';
+import ProtectedRoute from '@shared/router/protected-route';
+import {
+  protectedAppRoutes,
+  publicRoutes,
+} from '@shared/router/routes/global-routes';
+import {
+  protectedOnboardingRoutes,
+  publicOnboardingRoutes,
+} from '@shared/router/routes/onboarding-routes';
 
 export const router = createBrowserRouter([
-  {
-    Component: GlobalLayout,
-    children: [...globalRoutes],
-  },
+  ...publicRoutes,
   {
     Component: OnboardingRouteLayout,
-    children: [...onboardingRoutes],
+    children: [
+      ...publicOnboardingRoutes,
+      {
+        Component: ProtectedRoute,
+        children: protectedOnboardingRoutes,
+      },
+    ],
+  },
+  {
+    Component: GlobalLayout,
+    children: [
+      {
+        Component: ProtectedRoute,
+        children: protectedAppRoutes,
+      },
+    ],
   },
 ]);
