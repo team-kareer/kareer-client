@@ -1,4 +1,4 @@
-import exampleImage from '@/shared/assets/images/example-image.png';
+import exampleImage from './example.png';
 
 // 추후에 api response로 대체 예정
 export const MOCK_JOBS = [
