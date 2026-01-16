@@ -1,9 +1,7 @@
 import { Button, Tag } from '@kds/ui';
 
+import { ActionRequired, AIGuide } from '@widgets/roadmap';
 import { useAccordion } from '@shared/hooks/useAccordion';
-
-import ActionRequired from '../action-required/action-required';
-import AIGuide from '../ai-guide/ai-guide';
 
 import * as styles from './accordion.css';
 
