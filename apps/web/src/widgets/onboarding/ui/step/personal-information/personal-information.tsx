@@ -2,24 +2,22 @@ import { ReactNode, useState } from 'react';
 import { Autocomplete, Button, Input, Tab, useTabContext } from '@kds/ui';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
-import {
-  validateDate,
-  validateName,
-} from '@features/onboarding/hooks/validators';
+import { validateDate } from '@features/onboarding/hooks/validators';
 
 import * as styles from './personal-information.css';
 
 const PersonalInformation = () => {
   const [name, setName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  const [nameError, setNameError] = useState('');
   const [dateError, setDateError] = useState('');
+
+  const MAX_LENGTH = 30;
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setName(value);
-    const result = validateName(value);
-    setNameError(result === true ? '' : result);
+    if (value.length <= MAX_LENGTH) {
+      setName(value);
+    }
   };
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +26,7 @@ const PersonalInformation = () => {
     const result = validateDate(value);
     setDateError(result === true ? '' : result);
   };
+
   const DegreeLocationButton = ({
     value,
     children,
@@ -45,6 +44,7 @@ const PersonalInformation = () => {
       </Button>
     );
   };
+
   return (
     <section>
       <div className={styles.contentTitleWrapper}>
@@ -58,9 +58,10 @@ const PersonalInformation = () => {
             placeholder="Enter your name"
             value={name}
             onChange={handleNameChange}
-            status={nameError ? 'error' : 'default'}
           />
-          <p className={styles.errorMessage}>{nameError || '\u00A0'}</p>
+          <div className={styles.textCount}>
+            {name.length}/{MAX_LENGTH}
+          </div>
         </div>
         {/* Date - 2열 */}
         <div className={` ${styles.infoWrapperCol2}`}>
@@ -83,7 +84,7 @@ const PersonalInformation = () => {
             options={[]}
           />
         </div>
-        {/* OPIK Level - 2열 */}
+        {/* 오픽 Level - 2열 */}
         <div className={`${styles.autoWrapper} ${styles.infoWrapperCol2}`}>
           <p className={styles.label}>OPIK / KIIP Level</p>
           <Autocomplete

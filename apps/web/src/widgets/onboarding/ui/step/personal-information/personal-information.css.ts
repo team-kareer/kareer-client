@@ -26,7 +26,7 @@ export const infoWrapperCol2 = style({
   gridColumn: '2 / 3',
 });
 
-// 전체 너비 (Degree)
+// 전체 너비 - Degree
 export const infoWrapperFull = style({
   gridColumn: '1 / 3',
 });
@@ -59,5 +59,12 @@ export const errorMessage = style({
   ...typography.cap2_m_12,
   color: themeVars.color.pastel.kared_500,
   marginTop: '0.8rem',
-  minHeight: '1.1rem', // 에러 메시지가 없어도 공간 유지
+  minHeight: '1.1rem',
+});
+
+export const textCount = style({
+  ...typography.cap2_m_12,
+  color: themeVars.color.grayscale.gray500,
+  marginTop: '0.8rem',
+  textAlign: 'right',
 });
