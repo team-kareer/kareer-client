@@ -1,50 +1,41 @@
+import { useFunnel } from '@shared/hooks/usefunnel';
 import {
-  type OnboardingStepData,
   OnboardingStepLayout,
+  PersonalInformationStep,
 } from '@widgets/onboarding';
-// import { PersonalInformationStep } from '@widgets/onboarding';
-import { PersonalBackgroundStep } from '@widgets/onboarding';
-
-const ONBOARDING_STEPS: OnboardingStepData[] = [
-  {
-    stepNumber: 1,
-    title: 'Personal Information',
-    status: 'Later',
-  },
-  {
-    stepNumber: 2,
-    title: 'Visa Information',
-    status: 'Later',
-  },
-  {
-    stepNumber: 3,
-    title: 'Target Role',
-    status: 'Later',
-  },
-  {
-    stepNumber: 4,
-    title: 'Background',
-    status: 'In Progress',
-  },
-];
 
 const OnboardingPage = () => {
+  const { Funnel, Step, goToNextStep, goToPrevStep } = useFunnel(
+    ['PersonalInformation', 'VisaInformation', 'TargetRole', 'Background'],
+    '/dashboard',
+  );
+
+  const STEP_NAMES = [
+    'Personal information',
+    'Visa information',
+    'Target role',
+    'Background',
+  ] as const;
+
   const handleBack = () => {
-    // TODO: 이전 스텝 이동
+    goToPrevStep();
   };
 
   const handleNext = () => {
-    // TODO: 다음 스텝 이동
+    goToNextStep();
   };
 
   return (
     <OnboardingStepLayout
-      steps={ONBOARDING_STEPS}
+      steps={STEP_NAMES}
       onBack={handleBack}
       onNext={handleNext}
     >
-      {/* <PersonalInformationStep /> */}
-      <PersonalBackgroundStep />
+      <Funnel>
+        <Step name={STEP_NAMES[0]}>
+          <PersonalInformationStep />
+        </Step>
+      </Funnel>
     </OnboardingStepLayout>
   );
 };
