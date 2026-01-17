@@ -6,6 +6,16 @@ import { validateDate } from '@features/onboarding/hooks/validators';
 
 import * as styles from './personal-information.css';
 
+const PLACEHOLDER = {
+  NAME: 'Enter your name',
+  DATE: 'Enter the Date',
+  COUNTRY: 'Select the Country',
+  OPIK_LEVEL: 'Select the level',
+  DEGREE: 'Select the degree',
+} as const;
+
+const NON_BREAKING_SPACE = '\u00A0';
+
 const PersonalInformation = () => {
   const [name, setName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -36,7 +46,7 @@ const PersonalInformation = () => {
         <div>
           <p className={styles.label}>Name</p>
           <Input
-            placeholder="Enter your name"
+            placeholder={PLACEHOLDER.NAME}
             value={name}
             onChange={handleNameChange}
           />
@@ -48,18 +58,20 @@ const PersonalInformation = () => {
         <div>
           <p className={styles.label}>Date of Birth(YYYY.MM.DD)</p>
           <Input
-            placeholder="Enter the Date"
+            placeholder={PLACEHOLDER.DATE}
             value={dateOfBirth}
             onChange={handleDateChange}
             status={dateError ? 'error' : 'default'}
           />
-          <p className={styles.errorMessage}>{dateError || '\u00A0'}</p>
+          <p className={styles.errorMessage}>
+            {dateError || NON_BREAKING_SPACE}
+          </p>
         </div>
         {/* Country - 1열 */}
         <div className={styles.autoWrapper}>
           <p className={styles.label}>Country</p>
           <Autocomplete
-            placeholder="Select the Country"
+            placeholder={PLACEHOLDER.COUNTRY}
             value={''}
             onChange={() => {}}
             options={[]}
@@ -69,7 +81,7 @@ const PersonalInformation = () => {
         <div className={styles.autoWrapper}>
           <p className={styles.label}>OPIK / KIIP Level</p>
           <Autocomplete
-            placeholder="Select the level"
+            placeholder={PLACEHOLDER.OPIK_LEVEL}
             value={''}
             onChange={() => {}}
             options={[]}
