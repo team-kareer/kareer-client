@@ -11,10 +11,18 @@ import { ROUTE_PATH } from '@shared/router';
  * 토큰 재발급을 위한 API 엔드포인트 URL입니다.
  */
 const REFRESH_ENDPOINT = 'api/v1/auth/reissue';
+const AUTH_EXCHANGE_ENDPOINT = 'api/v1/auth/code/exchange';
+
+type RetryOptions = Options & {
+  kareerAuthRetry?: boolean;
+};
+
+const isAuthExchangeRequest = (url: string) =>
+  url.includes(AUTH_EXCHANGE_ENDPOINT);
+
+const isRefreshRequest = (url: string) => url.includes(REFRESH_ENDPOINT);
 
 interface ReissueResponse {
-  code: number;
-  message: string;
   data: {
     accessToken: string;
   };
@@ -25,8 +33,13 @@ interface ReissueResponse {
  *
  * @param request - 전송할 요청 객체
  */
-export const handleCheckAndSetToken = (request: Request): void => {
+export const handleCheckAndSetToken = (request: Request) => {
+  const requestUrl = request.url;
   const accessToken = tokenService.getAccessToken();
+
+  if (isRefreshRequest(requestUrl) || isAuthExchangeRequest(requestUrl)) {
+    return;
+  }
 
   if (accessToken) {
     request.headers.set('Authorization', `Bearer ${accessToken}`);
@@ -37,11 +50,16 @@ export const handleCheckAndSetToken = (request: Request): void => {
  * 인증 실패 시 로그아웃 처리 후 로그인 페이지로 리다이렉트합니다.
  *
  * - 저장된 인증 정보를 제거합니다.
- * - '/login' 페이지로 강제 이동합니다.
+ * - '/login' 페이지로 이동합니다.
  */
-const redirectToLogin = (): void => {
+const redirectToLogin = () => {
   authService.logout();
   window.location.replace(ROUTE_PATH.LOGIN);
+};
+
+const rejectToLogin = () => {
+  redirectToLogin();
+  return Promise.reject();
 };
 
 /**
@@ -49,11 +67,10 @@ const redirectToLogin = (): void => {
  *
  * 동작 방식:
  * - 응답이 401이 아닌 경우 → 원래 응답을 그대로 반환합니다.
- * - 401이면서 refreshToken이 없는 경우 → 로그인 페이지로 리다이렉트합니다.
- * - refreshToken이 존재하는 경우:
- *   - 재발급 API에 요청을 보냅니다.
- *   - 성공 시 새 토큰을 저장하고 원래 요청을 재시도합니다.
- *   - 실패 시 로그인 페이지로 이동합니다.
+ * - 재발급 대상이 아닌 요청은 로그인 페이지로 리다이렉트합니다.
+ * - 재발급 API에 요청을 보냅니다.
+ * - 성공 시 새 토큰을 저장하고 원래 요청을 재시도합니다.
+ * - 실패 시 로그인 페이지로 이동합니다.
  *
  * @param request - 실패했던 원래 요청 객체
  * @param options - 요청에 사용된 fetch 옵션
@@ -67,14 +84,20 @@ export const handleUnauthorizedResponse = async (
   request: Request,
   options: Options,
   response: Response,
-): Promise<Response> => {
+) => {
+  const requestUrl = request.url;
+  const { kareerAuthRetry } = options as RetryOptions;
+
   if (response.status !== HTTP_STATUS_CODE.UNAUTHORIZED) {
     return response;
   }
 
-  if (request.url.includes(REFRESH_ENDPOINT)) {
-    redirectToLogin();
-    return Promise.reject();
+  if (isAuthExchangeRequest(requestUrl)) {
+    return response;
+  }
+
+  if (isRefreshRequest(requestUrl) || kareerAuthRetry) {
+    return rejectToLogin();
   }
 
   try {
@@ -82,14 +105,10 @@ export const handleUnauthorizedResponse = async (
     const refreshResponse = await fetch(refreshUrl, {
       method: 'POST',
       credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     if (!refreshResponse.ok) {
-      redirectToLogin();
-      return Promise.reject();
+      return rejectToLogin();
     }
 
     const refreshData: ReissueResponse = await refreshResponse.json();
@@ -99,12 +118,14 @@ export const handleUnauthorizedResponse = async (
     const retryHeaders = new Headers(request.headers);
     retryHeaders.set('Authorization', `Bearer ${refreshData.data.accessToken}`);
 
-    return api(request, {
+    const nextOptions: RetryOptions = {
       ...options,
       headers: retryHeaders,
-    });
+      kareerAuthRetry: true,
+    };
+
+    return api(request, nextOptions);
   } catch {
-    redirectToLogin();
-    return Promise.reject();
+    return rejectToLogin();
   }
 };
