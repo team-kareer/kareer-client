@@ -61,7 +61,6 @@ const EmptyLayout = ({ variant, onAction }: EmptyLayoutProps) => {
   return (
     <div className={styles.container({ variant })}>
       <div className={styles.iconWrapper({ variant })}>{config.icon}</div>
-
       <div className={styles.content}>
         <div className={styles.title({ variant })}>{config.title}</div>
 

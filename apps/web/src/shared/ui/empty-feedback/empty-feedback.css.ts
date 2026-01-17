@@ -9,25 +9,25 @@ export const container = recipe({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '1.6rem',
   },
   variants: {
     variant: {
-      // 수정
       page: {
         width: '100%',
-        height: '113.6rem',
+        minHeight: '100vh',
         backgroundColor: themeVars.color.grayscale.gray100,
       },
       section: {
-        width: '96.6rem',
-        height: '30.2rem',
+        maxWidth: '96.6rem',
+        minHeight: '30.2rem',
         backgroundColor: themeVars.color.grayscale.gray200,
+        borderRadius: '2rem',
       },
       card: {
-        width: '21.6rem',
-        height: '29.9rem',
+        maxWidth: '21.6rem',
+        minHeight: '29.9rem',
         backgroundColor: themeVars.color.grayscale.gray100,
+        borderRadius: '1rem',
       },
     },
   },
@@ -47,12 +47,10 @@ export const content = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
-  gap: '0.8rem',
+  textAlign: 'center',
 });
 
 export const title = recipe({
-  base: { textAlign: 'center' },
   variants: {
     variant: {
       page: [
@@ -72,20 +70,23 @@ export const title = recipe({
 });
 
 export const subtitle = recipe({
-  base: { textAlign: 'center', marginTop: '8px', whiteSpace: 'pre-wrap' }, // 줄바꿈 처리용
+  base: { whiteSpace: 'pre-wrap' },
   variants: {
     variant: {
       page: [
         typography.head5_r_24,
-        { color: themeVars.color.grayscale.gray600 },
+        { color: themeVars.color.grayscale.gray400 },
+        { marginBottom: '2.4rem' },
       ],
       section: [
         typography.body2_m_18,
         { color: themeVars.color.grayscale.gray500 },
+        { marginBottom: '1.6rem' },
       ],
       card: [
         typography.body9_r_14,
         { color: themeVars.color.grayscale.gray400 },
+        { marginBottom: '2rem' },
       ],
     },
   },
