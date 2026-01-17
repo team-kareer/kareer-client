@@ -28,7 +28,6 @@ export const checklist = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: '0.8rem',
-  listStyle: 'none',
   padding: 0,
   flex: 1,
   overflowY: 'auto',
