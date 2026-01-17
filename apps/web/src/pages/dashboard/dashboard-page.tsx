@@ -10,9 +10,9 @@ const DashboardPage = () => {
       style={{
         display: 'flex',
         flexDirection: 'column',
+        gap: '2rem',
       }}
     >
-      <div style={{ gap: '1rem' }}></div>
       <EmptyLayout variant="page" onAction={handleAdd} />
       <EmptyLayout variant="section" onAction={handleAdd} />
       <EmptyLayout variant="card" onAction={handleAdd} />

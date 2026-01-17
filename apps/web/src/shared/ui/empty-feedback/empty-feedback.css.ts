@@ -2,7 +2,6 @@ import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-// 개선 필요, 중복 코드 제거도
 export const container = recipe({
   base: {
     display: 'flex',
