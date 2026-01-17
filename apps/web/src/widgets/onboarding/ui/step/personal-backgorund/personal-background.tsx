@@ -12,6 +12,16 @@ const MAX_LENGTH = 1000;
 const PLACEHOLDER =
   'e.g : I built a campus delivery app using React and Spring Boot for my Capstone project. I manage my GitHub actively and placed 2nd in a university hackathon. I also worked as a back-end intern at a fintech startup and hold an Engineer Information Processing certification.         ';
 
+const INFO_MESSAGES = [
+  'For your privacy, please avoid sharing sensitive information (e.g. ID numbers, passport details, or bank account information)',
+  'This information is self-described by you and used only as a reference for AI guidance. It is not used for any legal, official, or immigration decisions',
+] as const;
+
+const TITLE =
+  'Share anything that might help us better understand your situation and goals.';
+const DESCRIPTION =
+  'This helps us tailor your career roadmap and recommendations.';
+
 const PersonalBackground = () => {
   const [text, setText] = useState('');
   return (
@@ -19,13 +29,8 @@ const PersonalBackground = () => {
       <OnboardingStepTitle stepNumber={4} title="Personal Background" />
       <div className={styles.container}>
         <div className={styles.contentWrapper}>
-          <h2 className={styles.title}>
-            Share anything that might help us better understand your situation
-            and goals.
-          </h2>
-          <p className={styles.description}>
-            This helps us tailor your career roadmap and recommendations.
-          </p>
+          <h2 className={styles.title}>{TITLE}</h2>
+          <p className={styles.description}>{DESCRIPTION}</p>
         </div>
         <div className={styles.textAreaWrapper}>
           <TextField
@@ -39,25 +44,14 @@ const PersonalBackground = () => {
           />
         </div>
         <div className={styles.infoContainer}>
-          <div className={styles.intoText}>
-            <span className={styles.iconWrapper}>
-              <BangCircleIcon />
-            </span>
-            <p className={styles.infoText}>
-              For your privacy, please avoid sharing sensitive information (e.g.
-              ID numbers, passport details, or bank account information)
-            </p>
-          </div>
-          <div className={styles.intoText}>
-            <span className={styles.iconWrapper}>
-              <BangCircleIcon />
-            </span>
-            <p className={styles.infoText}>
-              This information is self-described by you and used only as a
-              reference for AI guidance. It is not used for any legal, official,
-              or immigration decisions
-            </p>
-          </div>
+          {INFO_MESSAGES.map((message, index) => (
+            <div key={index} className={styles.intoText}>
+              <span className={styles.iconWrapper}>
+                <BangCircleIcon />
+              </span>
+              <p className={styles.infoText}>{message}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
