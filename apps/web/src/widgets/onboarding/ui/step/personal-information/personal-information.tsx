@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Autocomplete, Input } from '@kds/ui';
 
-import { validateDate } from '@features/onboarding/hooks/validators';
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
+import { validateDate } from '@features/onboarding/hooks/validators';
 
 import * as styles from './personal-information.css';
 

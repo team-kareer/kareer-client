@@ -1,6 +1,6 @@
 import {
-  OnboardingStepLayout,
   type OnboardingStepData,
+  OnboardingStepLayout,
 } from '@widgets/onboarding';
 import PersonalInformation from '@widgets/onboarding/ui/step/personal-information/personal-information';
 

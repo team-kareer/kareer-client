@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 import { Button } from '@kds/ui';
 
 import {
-  OnboardingStepHeader,
   type OnboardingStepData,
+  OnboardingStepHeader,
 } from '@widgets/onboarding';
 
 import * as styles from './onboarding-step-layout.css';
