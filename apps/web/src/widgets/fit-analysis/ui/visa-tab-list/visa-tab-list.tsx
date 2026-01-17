@@ -12,17 +12,16 @@ const PRESET_LIST = {
 } as const;
 
 const VisaTabList = ({ visa }: VisaTabListProps) => {
-  const { selectedTab, setSelectedTab } = useTabContext();
-  const isD2 = visa === VISA_LIST.D2;
-  const preset = (value: string) => {
-    return selectedTab === value ? PRESET_LIST.active : PRESET_LIST.inactive;
-  };
-
   const VISA_BUTTONS = [
-    { label: VISA_LIST.D2, show: isD2 },
+    { label: VISA_LIST.D2, show: visa === VISA_LIST.D2 },
     { label: VISA_LIST.D10, show: true },
     { label: VISA_LIST.E7, show: true },
   ] as const;
+
+  const { selectedTab, setSelectedTab } = useTabContext();
+  const preset = (value: string) => {
+    return selectedTab === value ? PRESET_LIST.active : PRESET_LIST.inactive;
+  };
 
   return (
     <>
