@@ -43,6 +43,7 @@ export const stepFormSection = style({
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
+  height: '100%',
   minWidth: 0,
   backgroundColor: themeVars.color.grayscale.gray200,
 });
