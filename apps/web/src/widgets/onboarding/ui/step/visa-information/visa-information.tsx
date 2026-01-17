@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Autocomplete, Input } from '@kds/ui';
 
-import * as styles from './visa-information.css';
-
 import { OnboardingStepTitle } from '@widgets/onboarding';
+
+import * as styles from './visa-information.css';
 
 const PLACEHOLDER = {
   ISSUANCE_DATE: 'Enter the Date',

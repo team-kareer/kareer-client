@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Autocomplete } from '@kds/ui';
 
-import * as styles from './target-role.css';
-
 import { OnboardingStepTitle } from '@widgets/onboarding';
+
+import * as styles from './target-role.css';
 
 const TargetRole = () => {
   const [primaryMajor, setPrimaryMajor] = useState('');
