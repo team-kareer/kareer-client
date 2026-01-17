@@ -54,8 +54,8 @@ const PersonalBackground = () => {
             </span>
             <p className={styles.infoText}>
               This information is self-described by you and used only as a
-              reference for AI guidance. <br />
-              It is not used for any legal, official, or immigration decisions
+              reference for AI guidance. It is not used for any legal, official,
+              or immigration decisions
             </p>
           </div>
         </div>
