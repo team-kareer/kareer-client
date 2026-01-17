@@ -4,4 +4,5 @@ export const icon = style({
   backgroundColor: 'transparent',
   padding: 0,
   cursor: 'pointer',
+  flexShrink: 0,
 });
