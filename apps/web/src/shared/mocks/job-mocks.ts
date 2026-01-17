@@ -11,7 +11,6 @@ export const MOCK_JOBS = [
     jobTypes: ['Contract worker', 'Regular worker'],
     isScraped: false,
     imageUrl: exampleImage,
-    dDay: 5,
     url: 'https://naver.com/',
   },
   {
@@ -23,7 +22,6 @@ export const MOCK_JOBS = [
     jobTypes: [],
     isScraped: false,
     imageUrl: '',
-    dDay: 2,
     url: '',
   },
   {
@@ -35,7 +33,6 @@ export const MOCK_JOBS = [
     jobTypes: ['Freelancer'],
     isScraped: false,
     imageUrl: exampleImage,
-    dDay: 2,
     url: '',
   },
   {
@@ -47,7 +44,6 @@ export const MOCK_JOBS = [
     jobTypes: ['Part-time job'],
     isScraped: false,
     imageUrl: '',
-    dDay: 2,
     url: '',
   },
   {
@@ -59,7 +55,6 @@ export const MOCK_JOBS = [
     jobTypes: ['Intern'],
     isScraped: false,
     imageUrl: '',
-    dDay: 2,
     url: '',
   },
   {
@@ -71,7 +66,6 @@ export const MOCK_JOBS = [
     jobTypes: ['Full-time'],
     isScraped: false,
     imageUrl: '',
-    dDay: 2,
     url: '',
   },
 ];

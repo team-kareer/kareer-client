@@ -25,7 +25,7 @@ const BookmarkedJobCard = ({
   jobTypes,
   scrapAction,
   dDay,
-  jobTagColor = 'pastel_purple',
+  jobTagColor = 'disabled_gray',
   onClick,
 }: BookmarkedJobCardProps) => {
   return (
