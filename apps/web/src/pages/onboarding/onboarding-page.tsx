@@ -29,7 +29,8 @@ const OnboardingPage = () => {
     useFunnel(FUNNEL_STEPS, '/');
 
   const form = useForm<OnboardingForm>({
-    mode: 'onChange',
+    mode: 'onChange', // 입력 시 실시간 검증
+    reValidateMode: 'onChange', // 재검증도 입력 시
     defaultValues: {
       name: '',
       birthDate: '',

@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
 import { ChangeEvent } from 'react';
 import { BangCircleIcon } from '@kds/icons';
 
-import { OnboardingStepTitle } from '@widgets/onboarding';
+import { OnboardingForm, OnboardingStepTitle } from '@widgets/onboarding';
 import { TextField } from '@shared/ui/text-field/text-field';
 
 import * as styles from './personal-background.css';
@@ -23,7 +23,11 @@ const DESCRIPTION =
   'This helps us tailor your career roadmap and recommendations.';
 
 const PersonalBackground = () => {
-  const [text, setText] = useState('');
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<OnboardingForm>();
+
   return (
     <section>
       <OnboardingStepTitle stepNumber={4} title="Personal Background" />
@@ -33,14 +37,24 @@ const PersonalBackground = () => {
           <p className={styles.description}>{DESCRIPTION}</p>
         </div>
         <div className={styles.textAreaWrapper}>
-          <TextField
-            placeholder={PLACEHOLDER}
-            value={text}
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setText(e.target.value)
-            }
-            maxLength={MAX_LENGTH}
-            showCount={true}
+          <Controller
+            name="personalBackground"
+            control={control}
+            rules={{ required: 'Enter your personal background' }}
+            render={({ field }) => (
+              <>
+                <TextField
+                  {...field}
+                  placeholder={PLACEHOLDER}
+                  value={field.value || ''}
+                  onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                    field.onChange(e.target.value)
+                  }
+                  maxLength={MAX_LENGTH}
+                  showCount={true}
+                />
+              </>
+            )}
           />
         </div>
         <div className={styles.infoContainer}>
