@@ -3,7 +3,7 @@ import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
 import { RequiredActionCard } from '@entities/phase';
 import { useAccordion } from '@shared/hooks/useAccordion';
 
-import * as styles from './action-required-accordion.css';
+import * as styles from './accordion.css';
 
 interface ActionRequiredAccordion {
   counts: number;

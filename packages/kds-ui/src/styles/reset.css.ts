@@ -9,6 +9,7 @@ globalStyle('*, *::before, *::after', {
 
 globalStyle('*:not(dialog)', {
   margin: 0,
+  padding: 0,
 });
 
 globalStyle('img, picture, video, canvas, svg', {
