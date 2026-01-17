@@ -1,12 +1,25 @@
+import { ReactNode } from 'react';
 import { Tag } from '@kds/ui';
 
 import { default_company_image } from '@shared/assets';
-
-import { BookmarkedJobCardProps } from '../../model/job.types';
+import { TagColor } from '@shared/utils/job-tag-color';
 
 import * as styles from './bookmarked-job-card.css';
 
-const getDDayLabel = (dDay?: number) => {
+interface BookmarkedJobCardProps {
+  companyName: string;
+  title: string;
+  dueDate?: string;
+  dDay?: number;
+  imageUrl?: string;
+  locations: string[];
+  jobTypes?: string[];
+  jobTagColor?: TagColor;
+  scrapAction?: ReactNode;
+  onClick?: () => void;
+}
+
+const formatDeadLine = (dDay?: number) => {
   if (dDay === undefined) {
     return '-';
   }
@@ -43,7 +56,7 @@ const BookmarkedJobCard = ({
     <article className={styles.container} onClick={onClick}>
       <figure className={styles.imageBox}>
         <Tag color="outlined_blue" className={styles.dDayTag}>
-          {getDDayLabel(dDay)}
+          {formatDeadLine(dDay)}
         </Tag>
         <img
           src={imageUrl || default_company_image}
