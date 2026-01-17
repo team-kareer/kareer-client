@@ -5,7 +5,7 @@ export interface JobItem {
   dueDate?: string;
   locations: string[];
   jobTypes?: string[];
-  isScraped: boolean; // 데이터에는 상태가 포함됨
+  isScraped: boolean;
   imageUrl?: string;
   url: string;
 }
