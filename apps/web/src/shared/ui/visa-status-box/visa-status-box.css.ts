@@ -22,6 +22,7 @@ export const header = style({
 
 export const left_section = style({
   display: 'flex',
+  alignItems: 'center',
   gap: '0.4rem',
 });
 
@@ -34,6 +35,17 @@ export const guide = style({
 export const current = style({
   ...typography.body5_m_16,
   color: themeVars.color.grayscale.gray800,
+  marginRight: '0.8rem',
+});
+
+export const date = style({
+  ...typography.cap3_r_12,
+  color: themeVars.color.grayscale.gray500,
+});
+
+export const right_section = style({
+  display: 'flex',
+  gap: '0.8rem',
 });
 
 export const percent = style({
