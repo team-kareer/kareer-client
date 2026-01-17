@@ -110,14 +110,12 @@ const PersonalInformation = () => {
               </DegreeLocationButton>
             </Tab.List>
 
-            <div className={styles.autoWrapper}>
-              <Autocomplete
-                placeholder="Select the degree"
-                value={''}
-                onChange={() => {}}
-                options={[]}
-              />
-            </div>
+            <Autocomplete
+              placeholder="Select the degree"
+              value={''}
+              onChange={() => {}}
+              options={[]}
+            />
           </Tab.Container>
         </div>
       </div>
