@@ -8,8 +8,8 @@ import { formatDueInDays } from './utils/format-due-in-days';
 import * as styles from './todo-panel.css';
 
 const TABS = [
-  { id: 1, value: 'visa' },
-  { id: 2, value: 'career' },
+  { id: 1, value: 'visa', label: 'Visa' },
+  { id: 2, value: 'career', label: 'Career' },
 ] as const;
 
 const MOCK_TODO = {
@@ -66,7 +66,7 @@ const TodoPanel = () => {
 
   return (
     <aside className={styles.container}>
-      <h3 className={styles.title}>To Do</h3>
+      <h3 className={styles.title}>To-Do</h3>
       <Tab.Container initialValue="visa">
         <Tab.List className={styles.tabList}>
           <TodoTabButtons />
@@ -95,18 +95,15 @@ const TodoTabButtons = () => {
 
   return (
     <>
-      <Button
-        preset={selectedTab === 'visa' ? 'mini_primary' : 'mini_outlined'}
-        onClick={() => setSelectedTab('visa')}
-      >
-        Visa
-      </Button>
-      <Button
-        preset={selectedTab === 'career' ? 'mini_primary' : 'mini_outlined'}
-        onClick={() => setSelectedTab('career')}
-      >
-        Career
-      </Button>
+      {TABS.map(({ id, value, label }) => (
+        <Button
+          key={id}
+          preset={selectedTab === value ? 'mini_primary' : 'mini_outlined'}
+          onClick={() => setSelectedTab(value)}
+        >
+          {label}
+        </Button>
+      ))}
     </>
   );
 };
