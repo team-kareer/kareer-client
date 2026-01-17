@@ -2,21 +2,33 @@ import { ReactNode } from 'react';
 import { Tag } from '@kds/ui';
 
 import { default_company_image } from '@shared/assets';
-import { TagColor } from '@shared/utils/job-tag-color.ts';
+import { TagColor } from '@shared/utils/job-tag-color';
 
 import * as styles from './bookmarked-job-card.css';
+
 interface BookmarkedJobCardProps {
   companyName: string;
   title: string;
   dueDate?: string;
+  dDay?: number;
   imageUrl?: string;
   locations: string[];
   jobTypes?: string[];
-  scrapAction?: ReactNode;
-  dDay?: number;
-  onClick?: () => void;
   jobTagColor?: TagColor;
+  scrapAction?: ReactNode;
+  onClick?: () => void;
 }
+
+const formatDeadLine = (dDay?: number) => {
+  if (dDay === undefined) {
+    return '-';
+  }
+
+  if (dDay === 0) {
+    return 'D-Day';
+  }
+  return `D-${dDay}`;
+};
 
 const formatListText = (items?: string[]) => {
   if (!items || items.length === 0) {
@@ -37,14 +49,14 @@ const BookmarkedJobCard = ({
   jobTypes,
   scrapAction,
   dDay,
-  jobTagColor = 'pastel_purple',
+  jobTagColor = 'disabled_gray',
   onClick,
 }: BookmarkedJobCardProps) => {
   return (
     <article className={styles.container} onClick={onClick}>
       <figure className={styles.imageBox}>
         <Tag color="outlined_blue" className={styles.dDayTag}>
-          D-{dDay}
+          {formatDeadLine(dDay)}
         </Tag>
         <img
           src={imageUrl || default_company_image}
