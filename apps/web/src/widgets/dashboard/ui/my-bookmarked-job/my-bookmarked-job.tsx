@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import BookmarkedJobList from '@features/job/ui/bookmarked-job-list/bookmarked-job-list';
+import { BookmarkedJobList } from '@features/job';
 import { MOCK_JOBS } from '@shared/mocks/job-mocks.ts';
 
 export const MyBookmarkedJobs = () => {
