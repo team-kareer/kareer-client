@@ -13,6 +13,7 @@ const PersonalInformation = () => {
 
   const MAX_LENGTH = 30;
 
+  // input 유효성 검사 리뷰 제외!!
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value.length <= MAX_LENGTH) {

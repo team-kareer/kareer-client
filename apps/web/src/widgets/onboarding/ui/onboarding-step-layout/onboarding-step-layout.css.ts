@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
+  height: '100%',
   padding: '4.8rem 0rem 4.8rem 6.6rem',
 });
 
