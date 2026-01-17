@@ -2,7 +2,6 @@ import {
   type OnboardingStepData,
   OnboardingStepLayout,
 } from '@widgets/onboarding';
-// import { PersonalInformationStep } from '@widgets/onboarding';
 import { PersonalBackgroundStep } from '@widgets/onboarding';
 
 const ONBOARDING_STEPS: OnboardingStepData[] = [
