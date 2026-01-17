@@ -16,21 +16,6 @@ export const autoWrapper = style({
   paddingBottom: '2.2rem',
 });
 
-// 첫 번째 열
-export const infoWrapperCol1 = style({
-  gridColumn: '1 / 2',
-});
-
-// 두 번째 열
-export const infoWrapperCol2 = style({
-  gridColumn: '2 / 3',
-});
-
-// 전체 너비 - Degree
-export const infoWrapperFull = style({
-  gridColumn: '1 / 3',
-});
-
 export const labelWrapper = style({
   display: 'flex',
   flexDirection: 'row',

@@ -36,7 +36,7 @@ const PersonalInformation = () => {
       </div>
       <div className={styles.inputContainer}>
         {/* Name - 1열 */}
-        <div className={`${styles.infoWrapperCol1}`}>
+        <div>
           <p className={styles.label}>Name</p>
           <Input
             placeholder="Enter your name"
@@ -48,7 +48,7 @@ const PersonalInformation = () => {
           </div>
         </div>
         {/* Date - 2열 */}
-        <div className={` ${styles.infoWrapperCol2}`}>
+        <div>
           <p className={styles.label}>Date of Birth(YYYY.MM.DD)</p>
           <Input
             placeholder="Enter the Date"
@@ -59,7 +59,7 @@ const PersonalInformation = () => {
           <p className={styles.errorMessage}>{dateError || '\u00A0'}</p>
         </div>
         {/* Country - 1열 */}
-        <div className={`${styles.autoWrapper} ${styles.infoWrapperCol1}`}>
+        <div className={styles.autoWrapper}>
           <p className={styles.label}>Country</p>
           <Autocomplete
             placeholder="Select the Country"
@@ -69,7 +69,7 @@ const PersonalInformation = () => {
           />
         </div>
         {/* 오픽 Level - 2열 */}
-        <div className={`${styles.autoWrapper} ${styles.infoWrapperCol2}`}>
+        <div className={styles.autoWrapper}>
           <p className={styles.label}>OPIK / KIIP Level</p>
           <Autocomplete
             placeholder="Select the level"
@@ -79,7 +79,7 @@ const PersonalInformation = () => {
           />
         </div>
         {/* Degree - 1열 */}
-        <div className={`${styles.infoWrapperCol1}`}>
+        <div>
           <div className={styles.labelWrapper}>
             <p className={styles.label}>Degree</p>
             <p className={styles.subLabel}>Graduating students are included.</p>
