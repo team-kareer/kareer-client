@@ -5,7 +5,7 @@ import { MOCK_JOBS } from '@shared/mocks/job-mocks.ts';
 
 export const MyBookmarkedJobs = () => {
   // todo: api hook으로 교체
-  const [bookmarks, setBookmarks] = useState(MOCK_JOBS.slice(0, 4));
+  const [bookmarks, setBookmarks] = useState(MOCK_JOBS);
 
   const handleRemove = (id: number) => {
     // 임시 삭제 로직

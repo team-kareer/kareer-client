@@ -1,8 +1,9 @@
 import ScrapButton from '@features/job/ui/scrap-button/scrap-button';
 import { BookmarkedJobCard } from '@entities/job';
-import { JobItem } from '@entities/job/model/job.types';
+import { JobItem } from '@entities/job/model/types';
 import { calculateDDay } from '@shared/utils/dday-calculate';
-import { getJobTagColor } from '@shared/utils/job-tag-color';
+
+import { useBookmarkedJobs } from '../../model/use-bookmarked-jobs';
 
 import * as styles from './bookmarked-job-list.css';
 
@@ -12,23 +13,24 @@ interface BookmarkedJobListProps {
 }
 
 const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
+  const { formattedJobs } = useBookmarkedJobs(jobs);
+
   return (
     <div className={styles.container}>
-      {jobs.map((job) => {
+      {formattedJobs.map((job) => {
         const dDay = calculateDDay(job.dueDate);
         return (
           <BookmarkedJobCard
             key={job.id}
             {...job}
             dDay={dDay}
-            jobTagColor={getJobTagColor(job.jobTypes?.[0])}
             scrapAction={
               <ScrapButton
                 isScraped={job.isScraped}
                 onClick={() => onScrap(job.id)}
               />
             }
-            onClick={() => job.url && window.open(job.url, '_blank')}
+            onClick={job.handleOpenDetail}
           />
         );
       })}
