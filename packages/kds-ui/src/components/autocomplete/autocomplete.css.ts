@@ -53,7 +53,7 @@ export const dropdown = style({
   padding: 0,
   zIndex: zIndex.autocomplete,
   borderRadius: '10px',
-  maxHeight: '20rem',
+  maxHeight: '15rem',
   overflowY: 'auto',
   listStyle: 'none',
   marginTop: '0.8rem',
