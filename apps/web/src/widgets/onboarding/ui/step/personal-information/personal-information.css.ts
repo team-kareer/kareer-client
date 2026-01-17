@@ -1,15 +1,11 @@
 import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
-export const contentTitleWrapper = style({
-  paddingBottom: '3.2rem',
-});
-
 export const inputContainer = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '1.1rem',
-  padding: '0 6.6rem 0 0',
+  gap: '1.1rem 2.4rem',
+  paddingRight: '6.6rem',
 });
 
 export const autoWrapper = style({
@@ -45,7 +41,6 @@ export const errorMessage = style({
   ...typography.cap2_m_12,
   color: themeVars.color.pastel.kared_500,
   marginTop: '0.8rem',
-  minHeight: '1.4rem',
 });
 
 export const textCount = style({

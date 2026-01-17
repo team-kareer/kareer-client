@@ -1,4 +1,4 @@
-import OnboardingStep from '../onboarding-step/onboarding-step';
+import { OnboardingStep } from '@widgets/onboarding';
 
 import * as styles from './onboarding-step-header.css';
 

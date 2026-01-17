@@ -3,7 +3,7 @@ import { Autocomplete, Input } from '@kds/ui';
 
 import { validateDate } from '@features/onboarding/hooks/validators';
 import { OnboardingStepTitle } from '@widgets/onboarding';
-import OnboardingDegreeStep from '@widgets/onboarding/ui/onboarding-degree-step/onboarding-degree-step';
+import { OnboardingDegreeStep } from '@widgets/onboarding';
 
 import * as styles from './personal-information.css';
 
@@ -31,9 +31,7 @@ const PersonalInformation = () => {
 
   return (
     <section>
-      <div className={styles.contentTitleWrapper}>
-        <OnboardingStepTitle stepNumber={1} title="Personal Information" />
-      </div>
+      <OnboardingStepTitle stepNumber={1} title="Personal Information" />
       <div className={styles.inputContainer}>
         {/* Name - 1열 */}
         <div>
