@@ -9,6 +9,7 @@ export const container = style({
   padding: '2rem',
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
   borderRadius: '20px',
+  backgroundColor: themeVars.color.grayscale.white,
 });
 
 export const header = recipe({
