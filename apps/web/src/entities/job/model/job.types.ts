@@ -7,7 +7,6 @@ export interface JobItem {
   companyName: string;
   title: string;
   dueDate?: string;
-  dDay: number;
   locations: string[];
   jobTypes?: string[];
   isScraped: boolean; // 데이터에는 상태가 포함됨
@@ -19,7 +18,7 @@ export interface BookmarkedJobCardProps {
   companyName: string;
   title: string;
   dueDate?: string;
-  dDay: number;
+  dDay?: number;
   imageUrl?: string;
   locations: string[];
   jobTypes?: string[];

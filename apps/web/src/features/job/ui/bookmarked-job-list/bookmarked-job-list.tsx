@@ -15,7 +15,7 @@ const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
   return (
     <div className={styles.container}>
       {jobs.map((job) => {
-        const dDay = calculateDDay(job.dueDate) ?? 0;
+        const dDay = calculateDDay(job.dueDate);
         return (
           <BookmarkedJobCard
             key={job.id}

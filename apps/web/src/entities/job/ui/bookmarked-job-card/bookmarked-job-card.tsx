@@ -6,6 +6,17 @@ import { BookmarkedJobCardProps } from '../../model/job.types';
 
 import * as styles from './bookmarked-job-card.css';
 
+const getDDayLabel = (dDay?: number) => {
+  if (dDay === undefined) {
+    return '-';
+  }
+
+  if (dDay === 0) {
+    return 'D-Day';
+  }
+  return `D-${dDay}`;
+};
+
 const formatListText = (items?: string[]) => {
   if (!items || items.length === 0) {
     return '-';
@@ -32,7 +43,7 @@ const BookmarkedJobCard = ({
     <article className={styles.container} onClick={onClick}>
       <figure className={styles.imageBox}>
         <Tag color="outlined_blue" className={styles.dDayTag}>
-          D-{dDay}
+          {getDDayLabel(dDay)}
         </Tag>
         <img
           src={imageUrl || default_company_image}
