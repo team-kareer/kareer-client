@@ -1,8 +1,9 @@
-import { ReactNode, useState } from 'react';
-import { Autocomplete, Button, Input, Tab, useTabContext } from '@kds/ui';
+import { useState } from 'react';
+import { Autocomplete, Input } from '@kds/ui';
 
-import { OnboardingStepTitle } from '@widgets/onboarding';
 import { validateDate } from '@features/onboarding/hooks/validators';
+import { OnboardingStepTitle } from '@widgets/onboarding';
+import OnboardingDegreeStep from '@widgets/onboarding/ui/onboarding-degree-step/onboarding-degree-step';
 
 import * as styles from './personal-information.css';
 
@@ -26,24 +27,6 @@ const PersonalInformation = () => {
     setDateOfBirth(value);
     const result = validateDate(value);
     setDateError(result === true ? '' : result);
-  };
-
-  const DegreeLocationButton = ({
-    value,
-    children,
-  }: {
-    value: string;
-    children: ReactNode;
-  }) => {
-    const { selectedTab, setSelectedTab } = useTabContext();
-    return (
-      <Button
-        preset={selectedTab === value ? 'mini_primary' : 'mini_outlined'}
-        onClick={() => setSelectedTab(value)}
-      >
-        {children}
-      </Button>
-    );
   };
 
   return (
@@ -101,23 +84,7 @@ const PersonalInformation = () => {
             <p className={styles.label}>Degree</p>
             <p className={styles.subLabel}>Graduating students are included.</p>
           </div>
-          <Tab.Container initialValue="south-korea">
-            <Tab.List className={styles.buttonWrapper}>
-              <DegreeLocationButton value="south-korea">
-                <p>South Korea</p>
-              </DegreeLocationButton>
-              <DegreeLocationButton value="outside-korea">
-                <p>Outside Korea</p>
-              </DegreeLocationButton>
-            </Tab.List>
-
-            <Autocomplete
-              placeholder="Select the degree"
-              value={''}
-              onChange={() => {}}
-              options={[]}
-            />
-          </Tab.Container>
+          <OnboardingDegreeStep />
         </div>
       </div>
     </section>
