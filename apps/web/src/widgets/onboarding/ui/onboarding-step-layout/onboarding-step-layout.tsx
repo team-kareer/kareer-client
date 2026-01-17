@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { Button } from '@kds/ui';
 import { SymbolLightIcon } from '@kds/icons/svg';
+import { Button } from '@kds/ui';
 
 import {
   type OnboardingStepData,

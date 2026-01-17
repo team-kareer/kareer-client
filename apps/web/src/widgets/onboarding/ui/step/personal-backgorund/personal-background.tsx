@@ -1,9 +1,9 @@
-import { OnboardingStepTitle } from '@widgets/onboarding';
-import { TextField } from '@shared/ui/text-field/text-field';
 import { useState } from 'react';
 import { ChangeEvent } from 'react';
-
 import { BangCircleIcon } from '@kds/icons';
+
+import { OnboardingStepTitle } from '@widgets/onboarding';
+import { TextField } from '@shared/ui/text-field/text-field';
 
 import * as styles from './personal-background.css';
 
