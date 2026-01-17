@@ -2,7 +2,9 @@ import {
   type OnboardingStepData,
   OnboardingStepLayout,
 } from '@widgets/onboarding';
-import { VisaInformationStep } from '@widgets/onboarding';
+// import { TargetRoleStep, VisaInformationStep } from '@widgets/onboarding';
+// import { VisaInformationStep } from '@widgets/onboarding';
+import { TargetRoleStep } from '@widgets/onboarding';
 
 const ONBOARDING_STEPS: OnboardingStepData[] = [
   {
@@ -43,7 +45,8 @@ const OnboardingPage = () => {
       onNext={handleNext}
     >
       {/* <PersonalInformationStep /> */}
-      <VisaInformationStep />
+      {/* <VisaInformationStep /> */}
+      <TargetRoleStep />
     </OnboardingStepLayout>
   );
 };
