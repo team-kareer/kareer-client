@@ -5,6 +5,7 @@ export { type OnboardingStepData } from './ui/onboarding-step-header/onboarding-
 export { default as OnboardingStepHeader } from './ui/onboarding-step-header/onboarding-step-header';
 export { default as OnboardingStepLayout } from './ui/onboarding-step-layout/onboarding-step-layout';
 export { default as OnboardingStepTitle } from './ui/onboarding-step-title/onboarding-step-title';
+export { default as PersonalBackgroundStep } from './ui/step/personal-backgorund/personal-background';
 export { default as PersonalInformationStep } from './ui/step/personal-information/personal-information';
 export { default as TargetRoleStep } from './ui/step/target-role/target-role';
 export { default as VisaInformationStep } from './ui/step/visa-information/visa-information';

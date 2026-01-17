@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { SymbolLightIcon } from '@kds/icons/svg';
 import { Button } from '@kds/ui';
 
 import {
@@ -21,6 +22,11 @@ const OnboardingStepLayout = ({
   onBack,
   onNext,
 }: OnboardingStepLayoutProps) => {
+  const currentStep = steps.find((step) => step.status === 'In Progress');
+  const isLastStep =
+    currentStep &&
+    currentStep.stepNumber === steps[steps.length - 1]?.stepNumber;
+
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
@@ -35,7 +41,14 @@ const OnboardingStepLayout = ({
         )}
         {onNext && (
           <Button preset="large_primary" onClick={onNext}>
-            Next
+            {isLastStep ? (
+              <span className={styles.buttonContent}>
+                <SymbolLightIcon width={19} height={19} />
+                <span>Start your career journey</span>
+              </span>
+            ) : (
+              'Next'
+            )}
           </Button>
         )}
       </div>

@@ -2,20 +2,18 @@ import {
   type OnboardingStepData,
   OnboardingStepLayout,
 } from '@widgets/onboarding';
-// import { TargetRoleStep, VisaInformationStep } from '@widgets/onboarding';
-import { VisaInformationStep } from '@widgets/onboarding';
-// import { TargetRoleStep } from '@widgets/onboarding';
+import { PersonalBackgroundStep } from '@widgets/onboarding';
 
 const ONBOARDING_STEPS: OnboardingStepData[] = [
   {
     stepNumber: 1,
     title: 'Personal Information',
-    status: 'In Progress',
+    status: 'Later',
   },
   {
     stepNumber: 2,
     title: 'Visa Information',
-    status: 'Next',
+    status: 'Later',
   },
   {
     stepNumber: 3,
@@ -25,7 +23,7 @@ const ONBOARDING_STEPS: OnboardingStepData[] = [
   {
     stepNumber: 4,
     title: 'Background',
-    status: 'Later',
+    status: 'In Progress',
   },
 ];
 
@@ -45,8 +43,7 @@ const OnboardingPage = () => {
       onNext={handleNext}
     >
       {/* <PersonalInformationStep /> */}
-      <VisaInformationStep />
-      {/* <TargetRoleStep /> */}
+      <PersonalBackgroundStep />
     </OnboardingStepLayout>
   );
 };
