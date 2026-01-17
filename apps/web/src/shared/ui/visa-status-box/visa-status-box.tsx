@@ -1,11 +1,12 @@
 import { CheckCircleIcon } from '@kds/icons';
-import { ProgressBar } from '@kds/ui';
+import { ProgressBar, Tag } from '@kds/ui';
 
 import * as styles from './visa-status-box.css';
 
 interface VisaStatusBoxProps {
   isCurrent: boolean;
   goal: string;
+  date: string;
   total: number;
   done: number;
 }
@@ -13,10 +14,14 @@ interface VisaStatusBoxProps {
 const VisaStatusBox = ({
   isCurrent,
   goal,
+  date,
   total,
   done,
 }: VisaStatusBoxProps) => {
-  const percent = Math.round((done / total) * 100);
+  const percent = Math.floor((done / total) * 100);
+  const completed = percent === 100;
+  const color = completed ? 'pastel_mint' : 'pastel_orange';
+  const tagText = completed ? 'Eligible' : 'Not Eligible';
 
   return (
     <div className={styles.container}>
@@ -28,10 +33,13 @@ const VisaStatusBox = ({
               <span className={styles.guide}>Current Visa Status</span>
             </>
           )}
-
           <span className={styles.current}>{goal}</span>
+          <span className={styles.date}>{date}</span>
         </div>
-        <p className={styles.percent}>{percent}%</p>
+        <div className={styles.right_section}>
+          <Tag color={color}>{tagText}</Tag>
+          <p className={styles.percent}>{percent}%</p>
+        </div>
       </div>
       <ProgressBar total={total} done={done} />
     </div>
