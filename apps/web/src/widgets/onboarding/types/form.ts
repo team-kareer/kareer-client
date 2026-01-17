@@ -1,30 +1,18 @@
-export interface PersonalInformationForm {
-  name: string;
-  Birth: string;
-  Country: string;
-  OpikKiip: string;
-}
-
-export interface VisaInformationForm {
-  visaType: string;
-  GraduationDate: string;
-  IssuanceDate: string;
-  ExpirationDate: string;
-}
-
-export interface TargetRole {
-  PrimaruMajor: string;
-  SecondaryMajor: string;
-  TargetJob: string;
-}
-
-export interface BackgroundForm {
-  UserCareerIntroduction: string;
-}
-
+// API Request 타입
 export interface OnboardingForm {
-  personalInformation: PersonalInformationForm;
-  visaInformation: VisaInformationForm;
-  targetRole: TargetRole;
-  background: BackgroundForm;
+  name: string;
+  birthDate: string; // "YYYY-MM-DD"
+  country: string;
+  languageLevel: string; // "LEVEL_1"
+  degree: string; // "DOMESTIC_ASSOCIATE"
+  visaType: string; // "D2"
+  expectedGraduationDate: string; // "YYYY-MM-DD"
+  visaStartDate: string; // "YYYY-MM-DD"
+  visaExpiredAt: string; // "YYYY-MM-DD"
+  visaPoint: number;
+  primaryMajor: string;
+  secondaryMajor: string;
+  targetJob: string;
+  targetJobSkill: string;
+  personalBackground: string;
 }

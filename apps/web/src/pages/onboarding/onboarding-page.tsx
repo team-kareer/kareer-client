@@ -31,26 +31,21 @@ const OnboardingPage = () => {
   const form = useForm<OnboardingForm>({
     mode: 'onChange',
     defaultValues: {
-      personalInformation: {
-        name: '',
-        Birth: '',
-        Country: '',
-        OpikKiip: '',
-      },
-      visaInformation: {
-        visaType: '',
-        GraduationDate: '',
-        IssuanceDate: '',
-        ExpirationDate: '',
-      },
-      targetRole: {
-        PrimaruMajor: '',
-        SecondaryMajor: '',
-        TargetJob: '',
-      },
-      background: {
-        UserCareerIntroduction: '',
-      },
+      name: '',
+      birthDate: '',
+      country: '',
+      languageLevel: '',
+      degree: '',
+      visaType: '',
+      expectedGraduationDate: '',
+      visaStartDate: '',
+      visaExpiredAt: '',
+      visaPoint: 0,
+      primaryMajor: '',
+      secondaryMajor: '',
+      targetJob: '',
+      targetJobSkill: '',
+      personalBackground: '',
     },
   });
 

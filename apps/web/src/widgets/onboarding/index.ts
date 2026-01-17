@@ -9,10 +9,4 @@ export { default as PersonalBackgroundStep } from './ui/step/personal-backgorund
 export { default as PersonalInformationStep } from './ui/step/personal-information/personal-information';
 export { default as TargetRoleStep } from './ui/step/target-role/target-role';
 export { default as VisaInformationStep } from './ui/step/visa-information/visa-information';
-export {
-  type BackgroundForm,
-  type OnboardingForm,
-  type PersonalInformationForm,
-  type TargetRole,
-  type VisaInformationForm,
-} from './types/form';
+export { type OnboardingForm } from './types/form';
