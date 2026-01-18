@@ -10,6 +10,8 @@ export const container = style({
   backgroundColor: themeVars.color.grayscale.white,
   borderRadius: '20px',
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
+  minWidth: '24.6rem',
+  maxWidth: '25.8rem',
 });
 
 export const header = style({
@@ -39,7 +41,10 @@ export const iconWrapper = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: '20px',
+  borderRadius: '10px',
+  width: '6.4rem',
+  height: '6.4rem',
+  overflow: 'hidden',
 });
 
 export const textContent = style({

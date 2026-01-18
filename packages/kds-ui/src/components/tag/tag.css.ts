@@ -12,6 +12,7 @@ const base = style({
   borderRadius: '20px',
   userSelect: 'none',
   ...typography.cap1_sb_12,
+  border: '1px solid transparent',
 });
 
 export const tagColor = styleVariants({

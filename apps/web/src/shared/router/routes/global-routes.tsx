@@ -1,3 +1,4 @@
+import ErrorPage from '@pages/error/error';
 import {
   DashboardPage,
   FitAnalysisPage,
@@ -26,6 +27,10 @@ export const protectedAppRoutes = [
   {
     path: ROUTE_PATH.FITANALYSIS,
     Component: FitAnalysisPage,
+  },
+  {
+    path: '*',
+    element: <ErrorPage isNotFound={true} />,
   },
   // {
   //   path: ROUTE_PATH.MY_PAGE,
