@@ -1,10 +1,7 @@
-import { EmptyLayout } from '@shared/ui';
+import { BookmarkedJobList } from '@features/job';
+// import { MOCK_JOBS } from '@shared/mocks/job-mocks';
 
 const DashboardPage = () => {
-  const handleAdd = () => {
-    window.open('/', '_blank');
-  };
-
   return (
     <div
       style={{
@@ -13,8 +10,7 @@ const DashboardPage = () => {
         gap: '2rem',
       }}
     >
-      <EmptyLayout variant="section" onAction={handleAdd} />
-      <EmptyLayout variant="card" onAction={handleAdd} />
+      <BookmarkedJobList jobs={[]} onScrap={() => {}} />
     </div>
   );
 };
