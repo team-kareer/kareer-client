@@ -6,6 +6,7 @@ import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import {
   validateDate,
   validateNumber,
+  validateVisaExpirationDate,
 } from '@features/onboarding/hooks/validators';
 import { useEffect, useRef } from 'react';
 
@@ -21,11 +22,16 @@ const PLACEHOLDER = {
 const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
 
 const VisaInformation = () => {
-  const { control, resetField } = useFormContext<OnboardingForm>();
+  const { control, resetField, trigger } = useFormContext<OnboardingForm>();
 
   const visaType = useWatch({
     control,
     name: 'visaType',
+  });
+
+  const visaStartDate = useWatch({
+    control,
+    name: 'visaStartDate',
   });
 
   const prevVisaTypeRef = useRef<string | undefined>(visaType);
@@ -42,6 +48,13 @@ const VisaInformation = () => {
     }
     prevVisaTypeRef.current = visaType;
   }, [visaType, resetField]);
+
+  // 발급일이 변경되면 만료일 재검증
+  useEffect(() => {
+    if (visaStartDate) {
+      trigger('visaExpiredAt');
+    }
+  }, [visaStartDate, trigger]);
 
   return (
     <section>
@@ -76,7 +89,7 @@ const VisaInformation = () => {
                 rules={{
                   required: 'Enter the graduation date',
                   validate: (value) => {
-                    const result = validateDate(value);
+                    const result = validateDate(value, true); // 미래 날짜 허용
                     return result === true || result;
                   },
                 }}
@@ -133,7 +146,7 @@ const VisaInformation = () => {
             rules={{
               required: 'Enter the issuance date',
               validate: (value) => {
-                const result = validateDate(value);
+                const result = validateDate(value, true);
                 return result === true || result;
               },
             }}
@@ -159,8 +172,18 @@ const VisaInformation = () => {
             rules={{
               required: 'Enter the expiration date',
               validate: (value) => {
-                const result = validateDate(value);
-                return result === true || result;
+                // 기본 날짜 형식 체크
+                const result = validateDate(value, true);
+                if (result !== true) {
+                  return result;
+                }
+
+                // 비자 만료일 검증 (비자 타입별 규칙 적용)
+                return validateVisaExpirationDate(
+                  value,
+                  visaType,
+                  visaStartDate,
+                );
               },
             }}
             render={({ field, fieldState }) => (

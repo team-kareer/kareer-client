@@ -5,6 +5,13 @@ export const VALIDATION_MESSAGE = {
   DATE: {
     INVALID_FORMAT: 'Please use the format YYYY-MM-DD.',
     FUTURE_NOT_ALLOWED: 'Future dates are not allowed.',
+    MUST_BE_AFTER_ISSUANCE: 'The date must be after the visa issuance date.',
+  },
+  VISA: {
+    D2_EXCEEDS_ONE_YEAR:
+      'D-2 visa must be valid for at most one year from the issuance date.',
+    D10_LESS_THAN_SIX_MONTHS:
+      'D-10 visa must be valid for at least six months from the issuance date.',
   },
   NAME: {
     EMPTY: "Your name can't be empty.",

@@ -13,7 +13,7 @@ export const validateNumber = (value: string) => {
   return true;
 };
 
-export const validateDate = (value: string) => {
+export const validateDate = (value: string, allowFuture = false) => {
   if (!value) {
     return true;
   }
@@ -54,8 +54,8 @@ export const validateDate = (value: string) => {
     return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
   }
 
-  // 미래 날짜 체크
-  if (inputDate > today) {
+  // 미래 날짜 체크 (allowFuture가 false일 때만)
+  if (!allowFuture && inputDate > today) {
     return VALIDATION_MESSAGE.DATE.FUTURE_NOT_ALLOWED;
   }
 
@@ -72,6 +72,53 @@ export const validateName = (value: string) => {
   const restrictedChars = /[()@#$%!]/;
   if (restrictedChars.test(value)) {
     return VALIDATION_MESSAGE.NAME.SPECIAL_CHARACTERS;
+  }
+
+  return true;
+};
+
+export const validateVisaExpirationDate = (
+  expirationDate: string,
+  visaType: string | undefined,
+  issuanceDate: string | undefined,
+) => {
+  // 발급일이 없으면 통과 (발급일 입력 후 재검증됨)
+  if (!issuanceDate) {
+    return true;
+  }
+
+  // 날짜 형식 체크
+  const dateRegex = /^\d{4}\-\d{2}\-\d{2}$/;
+  if (!dateRegex.test(expirationDate) || !dateRegex.test(issuanceDate)) {
+    return true; // 형식 체크는 validateDate에서 처리
+  }
+
+  // 날짜 파싱
+  const expiration = new Date(expirationDate);
+  const issuance = new Date(issuanceDate);
+
+  // 발급일 이후인지 체크
+  if (expiration <= issuance) {
+    return VALIDATION_MESSAGE.DATE.MUST_BE_AFTER_ISSUANCE;
+  }
+
+  // 비자 타입별 검증
+  if (visaType === 'D-2') {
+    // D-2: 발급일로부터 1년을 초과하면 에러
+    const oneYearLater = new Date(issuance);
+    oneYearLater.setFullYear(oneYearLater.getFullYear() + 2);
+
+    if (expiration > oneYearLater) {
+      return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_ONE_YEAR;
+    }
+  } else if (visaType === 'D-10') {
+    // D-10: 발급일로부터 6개월 미만이면 에러
+    const sixMonthsLater = new Date(issuance);
+    sixMonthsLater.setMonth(sixMonthsLater.getMonth() + 6);
+
+    if (expiration < sixMonthsLater) {
+      return VALIDATION_MESSAGE.VISA.D10_LESS_THAN_SIX_MONTHS;
+    }
   }
 
   return true;

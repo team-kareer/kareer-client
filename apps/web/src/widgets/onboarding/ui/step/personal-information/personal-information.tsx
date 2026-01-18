@@ -1,6 +1,6 @@
 import { Autocomplete, Input } from '@kds/ui';
 
-import { Controller, useFormContext, useWatch } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import { type OnboardingForm } from '@widgets/onboarding';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
@@ -39,16 +39,7 @@ const LANGUAGE_LEVEL_OPTIONS = [
 ];
 
 const PersonalInformation = () => {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext<OnboardingForm>();
-
-  const nameValue = useWatch({
-    control,
-    name: 'name',
-    defaultValue: '',
-  });
+  const { control } = useFormContext<OnboardingForm>();
 
   const MAX_LENGTH = 30;
 
@@ -78,7 +69,7 @@ const PersonalInformation = () => {
                   placeholder={PLACEHOLDER.NAME}
                 />
                 <p className={styles.textCount}>
-                  {nameValue?.length || 0}/{MAX_LENGTH}
+                  {field.value?.length || 0}/{MAX_LENGTH}
                 </p>
               </>
             )}

@@ -19,6 +19,7 @@ const DEFAULT_VALUES: OnboardingForm = {
   birthDate: '',
   country: '',
   languageLevel: '',
+  degreeLocation: 'south-korea',
   degree: '',
   visaType: '',
   expectedGraduationDate: '',
@@ -35,7 +36,7 @@ const DEFAULT_VALUES: OnboardingForm = {
 // 스탭별 필수 필드
 const STEP_REQUIRED_FIELDS: ReadonlyArray<ReadonlyArray<keyof OnboardingForm>> =
   [
-    ['name', 'birthDate', 'country', 'languageLevel'],
+    ['name', 'birthDate', 'country', 'languageLevel', 'degree'],
     ['visaType', 'expectedGraduationDate', 'visaStartDate', 'visaExpiredAt'],
     ['primaryMajor', 'targetJob'],
     ['personalBackground'],

@@ -4,6 +4,7 @@ export interface OnboardingForm {
   birthDate: string; // "YYYY-MM-DD"
   country: string;
   languageLevel: string; // "LEVEL_1"
+  degreeLocation: string; // "south-korea" | "outside-korea"
   degree: string; // "DOMESTIC_ASSOCIATE"
   visaType: string; // "D2"
   expectedGraduationDate: string; // "YYYY-MM-DD"
