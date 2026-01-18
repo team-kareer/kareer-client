@@ -29,6 +29,7 @@ const COUNTRY_OPTIONS = [
   'Japan',
 ];
 
+// 임시 옵션 데이터
 const LANGUAGE_LEVEL_OPTIONS = [
   'LEVEL_1',
   'LEVEL_2',

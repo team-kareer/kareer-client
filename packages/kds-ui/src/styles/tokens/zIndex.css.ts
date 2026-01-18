@@ -5,4 +5,5 @@ export const zIndex = {
   backgroundFill: '1',
   introSection: '2',
   contentSection: '3',
+  buttonContainer: '1000',
 } as const;
