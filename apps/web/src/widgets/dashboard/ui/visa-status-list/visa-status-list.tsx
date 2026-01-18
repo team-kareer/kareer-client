@@ -32,13 +32,12 @@ export const VisaStatusList = () => {
   }
 
   const { currentVisa, graduation, remaining } = uiProps;
-  const isD2 = data.visaType === 'D2';
 
   return (
     <div className={styles.container}>
       <VisaStatusCard icon={<DefaultStatusIcon />} {...currentVisa} />
 
-      {isD2 ? (
+      {data.visaType === 'D2' ? (
         <VisaStatusCard icon={<GraduationCountDownIcon />} {...graduation} />
       ) : (
         <VisaStatusCard icon={<RemainingStayIcon />} {...remaining} />

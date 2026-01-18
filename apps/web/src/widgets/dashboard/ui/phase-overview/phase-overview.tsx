@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LogoIcon } from '@kds/icons';
 
+import { ActionRequiredAccordion } from '@widgets/dashboard/ui';
 import { CareerRoadmapStep } from '@entities/phase';
 import { CareerRoadmap } from '@shared/ui';
 
@@ -44,8 +45,12 @@ const PhaseOverview = () => {
   const [clickedPhase, setClickedPhase] = useState(0);
   return (
     <CareerRoadmap
-      goal={mockData.phases[2]?.goal ?? ''}
-      actions={<div>actions</div>}
+      goal={mockData.phases[clickedPhase]?.goal ?? ''}
+      actions={
+        <ActionRequiredAccordion
+          counts={mockData.phases[clickedPhase]?.worksCount ?? 0}
+        />
+      }
     >
       {mockData.phases.map((phase, idx) => {
         const isActive = clickedPhase === idx;

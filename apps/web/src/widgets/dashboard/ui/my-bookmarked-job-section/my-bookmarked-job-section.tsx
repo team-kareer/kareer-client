@@ -1,6 +1,5 @@
+import { MyBookmarkedJobs } from '@widgets/dashboard/ui';
 import { Section } from '@shared/ui';
-
-import MyBookmarkedJobs from '../my-bookmarked-job/my-bookmarked-job';
 
 const MyBookmarkedJobsSection = () => {
   return (

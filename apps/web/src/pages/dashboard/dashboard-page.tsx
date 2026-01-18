@@ -1,8 +1,6 @@
-import {
-  UserCareerRoadmapSection,
-  VisaStatusListSection,
-} from '@widgets/dashboard/ui';
-import MyBookmarkedJobsSection from '@widgets/dashboard/ui/my-bookmarked-job-section/my-bookmarked-job-section';
+import { PhaseOverview } from '@widgets/dashboard';
+import { VisaStatusListSection } from '@widgets/dashboard/ui';
+import { MyBookmarkedJobsSection } from '@widgets/dashboard/ui';
 
 import * as styles from './dashboard-page.css';
 
@@ -10,7 +8,7 @@ const DashboardPage = () => {
   return (
     <main className={styles.container}>
       <VisaStatusListSection />
-      <UserCareerRoadmapSection />
+      <PhaseOverview />
       <MyBookmarkedJobsSection />
     </main>
   );
