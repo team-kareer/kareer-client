@@ -1,6 +1,7 @@
-import ky, { HTTPError } from '@toss/ky';
+import ky from '@toss/ky';
 
 import { appConfig } from '@shared/apis/configs/app-config';
+import { isHttpError } from '@shared/utils/http-error';
 
 import {
   handleCheckAndSetToken,
@@ -18,24 +19,23 @@ const buildSentryErrorName = (request: Request, status?: number) => {
   return `[${statusLabel} Error] - ${url.origin}${normalizedPath}`;
 };
 
-type ApiClient = ReturnType<typeof ky.create>;
+type KyCreateOptions = Parameters<typeof ky.create>[0];
+type KyHooks = NonNullable<KyCreateOptions['hooks']>;
+type BeforeErrorHook = NonNullable<KyHooks['beforeError']>[number];
 
-export const api: ApiClient = ky.create({
+const beforeErrorHook: BeforeErrorHook = (error) => {
+  if (isHttpError(error)) {
+    error.name = buildSentryErrorName(error.request, error.response?.status);
+  }
+  return error;
+};
+
+export const api: ReturnType<typeof ky.create> = ky.create({
   prefixUrl: appConfig.api.baseUrl,
   credentials: 'include',
   retry: 0,
   hooks: {
-    beforeError: [
-      (error) => {
-        if (error instanceof HTTPError) {
-          error.name = buildSentryErrorName(
-            error.request,
-            error.response?.status,
-          );
-        }
-        return error;
-      },
-    ],
+    beforeError: [beforeErrorHook],
     beforeRequest: [handleCheckAndSetToken],
     afterResponse: [handleUnauthorizedResponse],
   },

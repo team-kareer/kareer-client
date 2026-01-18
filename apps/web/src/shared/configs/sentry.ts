@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/react';
-import { HTTPError } from '@toss/ky';
 
+import { isHttpError } from '@shared/utils/http-error';
 import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
 
 const IGNORED_STATUS_SET = new Set<number>([
@@ -16,7 +16,7 @@ const InitSentry = () => {
     sendDefaultPii: false,
     beforeSend(event, hint) {
       const error = hint?.originalException;
-      if (error instanceof HTTPError) {
+      if (isHttpError(error)) {
         const status = error.response?.status;
         if (status && IGNORED_STATUS_SET.has(status)) {
           return null;

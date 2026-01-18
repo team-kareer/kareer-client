@@ -1,5 +1,3 @@
-import type { Options } from '@toss/ky';
-
 import { appConfig } from '@shared/apis/configs/app-config';
 import { api } from '@shared/apis/configs/instance';
 import { authService } from '@shared/auth/auth-service';
@@ -14,7 +12,9 @@ import type { paths } from '@shared/types/schema';
 const REFRESH_ENDPOINT = 'api/v1/auth/reissue';
 const AUTH_EXCHANGE_ENDPOINT = 'api/v1/auth/code/exchange';
 
-type RetryOptions = Options & {
+type KyOptions = NonNullable<Parameters<typeof api>[1]>;
+
+type RetryOptions = KyOptions & {
   kareerAuthRetry?: boolean;
 };
 
@@ -132,7 +132,7 @@ const rejectToLogin = () => {
  */
 export const handleUnauthorizedResponse = async (
   request: Request,
-  options: Options,
+  options: KyOptions,
   response: Response,
 ) => {
   const requestUrl = request.url;
