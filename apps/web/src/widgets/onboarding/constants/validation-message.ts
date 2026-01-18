@@ -3,7 +3,7 @@ export const VALIDATION_MESSAGE = {
     INVALID: 'Please enter a valid number',
   },
   DATE: {
-    INVALID_FORMAT: 'Please use the format YYYY.MM.DD.',
+    INVALID_FORMAT: 'Please use the format YYYY-MM-DD.',
     FUTURE_NOT_ALLOWED: 'Future dates are not allowed.',
   },
   NAME: {

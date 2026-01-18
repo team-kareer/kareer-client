@@ -14,6 +14,7 @@ interface OnboardingStepLayoutProps {
   steps: OnboardingStepData[];
   onBack?: () => void;
   onNext?: () => void;
+  isNextDisabled?: boolean;
 }
 
 const OnboardingStepLayout = ({
@@ -21,6 +22,7 @@ const OnboardingStepLayout = ({
   steps,
   onBack,
   onNext,
+  isNextDisabled,
 }: OnboardingStepLayoutProps) => {
   const currentStep = steps.find((step) => step.status === 'In Progress');
   const isLastStep =
@@ -45,7 +47,11 @@ const OnboardingStepLayout = ({
           </Button>
         )}
         {onNext && (
-          <Button preset="large_primary" onClick={onNext}>
+          <Button
+            preset={isNextDisabled ? 'large_outlined' : 'large_primary'}
+            onClick={onNext}
+            disabled={isNextDisabled}
+          >
             {isLastStep ? (
               <span className={styles.buttonContent}>
                 <SymbolLightIcon width={19} height={19} />

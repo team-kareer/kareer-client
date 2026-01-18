@@ -23,40 +23,10 @@ const NON_BREAKING_SPACE = '\u00A0';
 
 // 임시 옵션 데이터
 const COUNTRY_OPTIONS = [
-  'Afghanistan',
-  'Albania',
-  'Algeria',
-  'Argentina',
-  'Australia',
-  'Austria',
-  'Bangladesh',
-  'Belgium',
-  'Brazil',
-  'Canada',
-  'China',
-  'Colombia',
-  'Egypt',
-  'France',
-  'Germany',
-  'India',
-  'Indonesia',
-  'Iran',
-  'Italy',
-  'Japan',
-  'Mexico',
-  'Netherlands',
-  'Pakistan',
-  'Philippines',
-  'Poland',
-  'Russia',
   'South Korea',
-  'Spain',
-  'Thailand',
-  'Turkey',
-  'Ukraine',
   'United Kingdom',
   'United States',
-  'Vietnam',
+  'Japan',
 ];
 
 const LANGUAGE_LEVEL_OPTIONS = [
@@ -70,7 +40,6 @@ const LANGUAGE_LEVEL_OPTIONS = [
 
 const PersonalInformation = () => {
   const {
-    register,
     control,
     formState: { errors },
   } = useFormContext<OnboardingForm>();
@@ -90,25 +59,34 @@ const PersonalInformation = () => {
         {/* Name - 1열 */}
         <div>
           <p className={styles.label}>Name</p>
-          <Input
-            {...register('name', {
+          <Controller
+            name="name"
+            control={control}
+            rules={{
               required: 'Enter your name',
               validate: (value) => {
                 const result = validateName(value);
                 return result === true || result;
               },
-            })}
-            maxLength={MAX_LENGTH}
-            status={errors.name ? 'error' : 'default'}
-            placeholder={PLACEHOLDER.NAME}
+            }}
+            render={({ field, fieldState }) => (
+              <>
+                <Input
+                  {...field}
+                  maxLength={MAX_LENGTH}
+                  status={fieldState.error ? 'error' : 'default'}
+                  placeholder={PLACEHOLDER.NAME}
+                />
+                <p className={styles.textCount}>
+                  {nameValue?.length || 0}/{MAX_LENGTH}
+                </p>
+              </>
+            )}
           />
-          <p className={styles.textCount}>
-            {nameValue?.length || 0}/{MAX_LENGTH}
-          </p>
         </div>
         {/* Date - 2열 */}
         <div>
-          <p className={styles.label}>Date of Birth(YYYY.MM.DD)</p>
+          <p className={styles.label}>Date of Birth(YYYY-MM-DD)</p>
           <Controller
             name="birthDate"
             control={control}

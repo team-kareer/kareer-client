@@ -7,6 +7,9 @@ export const validateNumber = (value: string) => {
   if (!/^\d+$/.test(value)) {
     return VALIDATION_MESSAGE.NUMEBR.INVALID;
   }
+  if (Number(value) <= 60 || Number(value) > 190) {
+    return VALIDATION_MESSAGE.NUMEBR.INVALID;
+  }
   return true;
 };
 
@@ -16,15 +19,15 @@ export const validateDate = (value: string) => {
   }
 
   // 숫자와 점만 허용
-  if (!/^[\d.]+$/.test(value)) {
+  if (!/^[\d-]+$/.test(value)) {
     return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
   }
 
-  // 완전한 형식 체크 (YYYY.MM.DD)
-  const regex = /^\d{4}\.\d{2}\.\d{2}$/;
+  // 완전한 형식 체크 (YYYY-MM-DD)
+  const regex = /^\d{4}\-\d{2}\-\d{2}$/;
   if (!regex.test(value)) {
     // 부분 형식 체크 (입력 중일 때는 통과)
-    const partialPattern = /^(\d{0,4})(\.\d{0,2})?(\.\d{0,2})?$/;
+    const partialPattern = /^(\d{0,4})(\-\d{0,2})?(\-\d{0,2})?$/;
     if (partialPattern.test(value)) {
       return true; // 입력 중이면 통과
     }
@@ -32,7 +35,7 @@ export const validateDate = (value: string) => {
   }
 
   // 날짜 파싱 및 미래 날짜 체크
-  const dateParts = value.split('.');
+  const dateParts = value.split('-');
   const year = parseInt(dateParts[0] || '', 10);
   const month = parseInt(dateParts[1] || '', 10);
   const day = parseInt(dateParts[2] || '', 10);

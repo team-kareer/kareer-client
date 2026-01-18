@@ -13,6 +13,7 @@ import {
 
 const STORAGE_KEY = 'onboarding-form-data';
 
+// 폼 필드 초기값
 const DEFAULT_VALUES: OnboardingForm = {
   name: '',
   birthDate: '',
@@ -31,7 +32,17 @@ const DEFAULT_VALUES: OnboardingForm = {
   personalBackground: '',
 };
 
+// 스탭별 필수 필드
+const STEP_REQUIRED_FIELDS: ReadonlyArray<ReadonlyArray<keyof OnboardingForm>> =
+  [
+    ['name', 'birthDate', 'country', 'languageLevel'],
+    ['visaType', 'expectedGraduationDate', 'visaStartDate', 'visaExpiredAt'],
+    ['primaryMajor', 'targetJob'],
+    ['personalBackground'],
+  ] as const;
+
 const OnboardingPage = () => {
+  // Funnel 스텝 설정
   const FUNNEL_STEPS = [
     'PersonalInformation',
     'VisaInformation',
@@ -39,6 +50,7 @@ const OnboardingPage = () => {
     'Background',
   ] as const;
 
+  // 스텝 타이틀
   const STEP_TITLES = [
     'Personal Information',
     'Visa Information',
@@ -56,15 +68,40 @@ const OnboardingPage = () => {
       if (typeof window !== 'undefined') {
         const savedData = localStorage.getItem(STORAGE_KEY);
         if (savedData) {
-          return JSON.parse(savedData);
+          const parsed = JSON.parse(savedData);
+          // visaPoint가 0이면 빈 문자열로 변환
+          if (parsed.visaPoint === 0 || parsed.visaPoint === '0') {
+            parsed.visaPoint = '';
+          }
+          return parsed;
         }
       }
       return DEFAULT_VALUES;
     },
   });
 
+  // 버튼 비활성화 로직
   const allValues = form.watch();
+  const requiredFields = STEP_REQUIRED_FIELDS[currentStepIndex] ?? [];
 
+  // 모든 필드 존재 체크
+  const hasAllRequiredValues = requiredFields.every((fieldName) => {
+    const value = allValues[fieldName];
+    if (typeof value === 'string') {
+      return value.trim().length > 0;
+    }
+    if (typeof value === 'number') {
+      return !Number.isNaN(value);
+    }
+    return Boolean(value);
+  });
+  const hasStepErrors = requiredFields.some((fieldName) =>
+    Boolean(form.formState.errors[fieldName]),
+  );
+  const isNextDisabled =
+    form.formState.isLoading || !hasAllRequiredValues || hasStepErrors;
+
+  // 로컬스토리지 저장
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(allValues));
   }, [allValues]);
@@ -87,7 +124,7 @@ const OnboardingPage = () => {
   };
 
   const handleNext = async () => {
-    const isValid = await form.trigger();
+    const isValid = await form.trigger(requiredFields);
     if (isValid) {
       goToNextStep();
     }
@@ -99,6 +136,7 @@ const OnboardingPage = () => {
         steps={steps}
         onBack={handleBack}
         onNext={handleNext}
+        isNextDisabled={isNextDisabled}
       >
         <Funnel>
           <Step name={FUNNEL_STEPS[0]}>
