@@ -39,7 +39,10 @@ export const iconWrapper = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: '20px',
+  borderRadius: '10px',
+  width: '6.4rem',
+  height: '6.4rem',
+  overflow: 'hidden',
 });
 
 export const textContent = style({

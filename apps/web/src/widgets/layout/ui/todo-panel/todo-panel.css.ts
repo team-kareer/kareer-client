@@ -10,6 +10,8 @@ export const container = style({
   padding: '2rem',
   margin: '1.6rem 0',
   gap: '1.6rem',
+  maxHeight: 'calc(100% - 5.6rem)',
+  overflowY: 'auto',
 
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
   borderRadius: '20px',
