@@ -2,7 +2,7 @@ import { VisaStatusResponse } from '@entities/job/model/types';
 
 import { calculateDDay } from './dday-calculate';
 
-const formatDate = (dateStr?: string) => {
+const formatDate = (dateStr?: string | null) => {
   if (!dateStr) {
     return '-';
   }
@@ -13,46 +13,48 @@ const formatDate = (dateStr?: string) => {
   });
 };
 
-export const VisaStatusMapper = (
-  data: VisaStatusResponse | null | undefined,
-) => {
+const formatDDayText = (dDay: number | undefined, pastLabel: string = '-') => {
+  if (dDay === undefined) {
+    return '-';
+  }
+
+  if (dDay < 0) {
+    return pastLabel;
+  }
+  if (dDay === 0) {
+    return 'D-Day';
+  }
+  return `D-${dDay}`;
+};
+
+export const VisaStatusMapper = (data?: VisaStatusResponse | null) => {
   if (!data) {
     return null;
   }
 
   const { visaType, visaExpiredAt, expectedGraduationDate } = data;
 
-  const daysDiff = calculateDDay(expectedGraduationDate);
+  const gradDDay = calculateDDay(expectedGraduationDate);
+  const remainDDay = calculateDDay(visaExpiredAt);
 
-  // current visa
   const currentVisa = {
-    title: visaType ? `${visaType.replace(/(\D)(\d)/, '$1-$2')} Student` : '-',
     statusName: 'Current Visa Status',
+    title: visaType ? `${visaType.replace(/(\D)(\d)/, '$1-$2')} Student` : '-',
     date: `Expires ${formatDate(visaExpiredAt)}`,
     isActive: true,
   };
 
-  // 졸업 카운트다운 카드 (D-2)
   const graduation = {
     statusName: 'Graduation Countdown',
     title: formatDate(expectedGraduationDate),
-    date:
-      daysDiff !== undefined
-        ? daysDiff < 0
-          ? 'Graduated'
-          : daysDiff === 0
-            ? 'D-Day'
-            : `D-${daysDiff}`
-        : '-',
+    date: formatDDayText(gradDDay, 'Graduated'),
     isActive: false,
   };
 
-  // 체류 기간 카드 (D-10)
-  const remainingDDay = calculateDDay(visaExpiredAt);
   const remaining = {
     statusName: 'Remaining Stay',
     title: 'Job Seeker',
-    date: remainingDDay !== undefined ? `D-${remainingDDay}` : '-',
+    date: formatDDayText(remainDDay, 'Expired'),
     isActive: false,
   };
 
