@@ -19,7 +19,7 @@ const buildSentryErrorName = (request: Request, status?: number) => {
   return `[${statusLabel} Error] - ${url.origin}${normalizedPath}`;
 };
 
-type KyCreateOptions = Parameters<typeof ky.create>[0];
+type KyCreateOptions = NonNullable<Parameters<typeof ky.create>[0]>;
 type KyHooks = NonNullable<KyCreateOptions['hooks']>;
 type BeforeErrorHook = NonNullable<KyHooks['beforeError']>[number];
 
