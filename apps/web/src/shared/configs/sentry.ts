@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/react';
-import { HTTPError } from 'ky';
+import { HTTPError } from '@toss/ky';
 
 import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
 
