@@ -94,9 +94,6 @@ importers:
       '@toss/ky':
         specifier: ^1.2.1
         version: 1.2.1
-      ky:
-        specifier: ^0.31.1
-        version: 0.31.4
       react:
         specifier: 'catalog:'
         version: 19.2.0
@@ -3144,13 +3141,6 @@ packages:
       {
         integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==,
       }
-
-  ky@0.31.4:
-    resolution:
-      {
-        integrity: sha512-OFuAD3riwhAfHK3J4FrhlujFRpm0ELBEfDHZfFpw89OTozQt3NLF39lNblUO5udj5vSkyaBKnLai/rFCzBfISQ==,
-      }
-    engines: { node: '>=14.16' }
 
   lefthook-darwin-arm64@2.0.13:
     resolution:
@@ -6389,8 +6379,6 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
-
-  ky@0.31.4: {}
 
   lefthook-darwin-arm64@2.0.13:
     optional: true
