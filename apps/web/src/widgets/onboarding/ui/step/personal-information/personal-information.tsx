@@ -4,7 +4,10 @@ import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { type OnboardingForm } from '@widgets/onboarding';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
-import { validateDate } from '@features/onboarding/hooks/validators';
+import {
+  validateDate,
+  validateName,
+} from '@features/onboarding/hooks/validators';
 
 import * as styles from './personal-information.css';
 
@@ -62,7 +65,7 @@ const LANGUAGE_LEVEL_OPTIONS = [
   'LEVEL_3',
   'LEVEL_4',
   'LEVEL_5',
-  'LEVEL_6',
+  'Not taken yet',
 ];
 
 const PersonalInformation = () => {
@@ -90,6 +93,10 @@ const PersonalInformation = () => {
           <Input
             {...register('name', {
               required: 'Enter your name',
+              validate: (value) => {
+                const result = validateName(value);
+                return result === true || result;
+              },
             })}
             maxLength={MAX_LENGTH}
             status={errors.name ? 'error' : 'default'}

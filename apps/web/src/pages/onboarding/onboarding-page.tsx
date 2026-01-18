@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import useFunnel from '@shared/hooks/usefunnel';
 import { FormProvider, useForm } from 'react-hook-form';
 import {
@@ -9,6 +10,26 @@ import {
   TargetRoleStep,
   VisaInformationStep,
 } from '@widgets/onboarding';
+
+const STORAGE_KEY = 'onboarding-form-data';
+
+const DEFAULT_VALUES: OnboardingForm = {
+  name: '',
+  birthDate: '',
+  country: '',
+  languageLevel: '',
+  degree: '',
+  visaType: '',
+  expectedGraduationDate: '',
+  visaStartDate: '',
+  visaExpiredAt: '',
+  visaPoint: 0,
+  primaryMajor: '',
+  secondaryMajor: '',
+  targetJob: '',
+  targetJobSkill: '',
+  personalBackground: '',
+};
 
 const OnboardingPage = () => {
   const FUNNEL_STEPS = [
@@ -31,24 +52,22 @@ const OnboardingPage = () => {
   const form = useForm<OnboardingForm>({
     mode: 'onChange', // 입력 시 실시간 검증
     reValidateMode: 'onChange', // 재검증도 입력 시
-    defaultValues: {
-      name: '',
-      birthDate: '',
-      country: '',
-      languageLevel: '',
-      degree: '',
-      visaType: '',
-      expectedGraduationDate: '',
-      visaStartDate: '',
-      visaExpiredAt: '',
-      visaPoint: 0,
-      primaryMajor: '',
-      secondaryMajor: '',
-      targetJob: '',
-      targetJobSkill: '',
-      personalBackground: '',
+    defaultValues: async () => {
+      if (typeof window !== 'undefined') {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (savedData) {
+          return JSON.parse(savedData);
+        }
+      }
+      return DEFAULT_VALUES;
     },
   });
+
+  const allValues = form.watch();
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allValues));
+  }, [allValues]);
 
   const steps: OnboardingStepData[] = STEP_TITLES.map((title, index) => ({
     stepNumber: index + 1,
@@ -67,8 +86,11 @@ const OnboardingPage = () => {
     goToPrevStep();
   };
 
-  const handleNext = () => {
-    goToNextStep();
+  const handleNext = async () => {
+    const isValid = await form.trigger();
+    if (isValid) {
+      goToNextStep();
+    }
   };
 
   return (

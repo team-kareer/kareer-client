@@ -74,7 +74,7 @@ const TargetRole = () => {
                 <Autocomplete
                   {...field}
                   placeholder={PLACEHOLDER.SECONDARY_MAJOR}
-                  options={MAJOR_OPTIONS}
+                  options={SECONDARY_MAJOR_OPTIONS}
                 />
               </>
             )}

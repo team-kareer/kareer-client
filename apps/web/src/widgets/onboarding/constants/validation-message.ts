@@ -3,9 +3,11 @@ export const VALIDATION_MESSAGE = {
     INVALID: 'Please enter a valid number',
   },
   DATE: {
-    INVALID: 'Please enter a valid date',
+    INVALID_FORMAT: 'Please use the format YYYY.MM.DD.',
+    FUTURE_NOT_ALLOWED: 'Future dates are not allowed.',
   },
   NAME: {
-    EMPTY: 'Please enter your name',
+    EMPTY: "Your name can't be empty.",
+    SPECIAL_CHARACTERS: 'Please use standard letters only.',
   },
 } as const;

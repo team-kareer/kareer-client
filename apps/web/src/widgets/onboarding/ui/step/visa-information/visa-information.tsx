@@ -13,7 +13,7 @@ const PLACEHOLDER = {
 };
 
 // 임시 옵션 데이터
-const VISA_TYPE_OPTIONS = ['D-2', 'D-10', 'E-7'];
+const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
 
 const VisaInformation = () => {
   const {
