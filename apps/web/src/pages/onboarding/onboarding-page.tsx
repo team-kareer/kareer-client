@@ -83,7 +83,30 @@ const OnboardingPage = () => {
 
   // 버튼 비활성화 로직
   const allValues = form.watch();
-  const requiredFields = STEP_REQUIRED_FIELDS[currentStepIndex] ?? [];
+  let requiredFields = STEP_REQUIRED_FIELDS[currentStepIndex] ?? [];
+
+  // 2번째 스텝(Visa Information)에서 비자 타입에 따라 필수 필드 동적 변경
+  if (currentStepIndex === 1) {
+    const visaType = allValues.visaType;
+    if (visaType === 'D-2') {
+      requiredFields = [
+        'visaType',
+        'expectedGraduationDate',
+        'visaStartDate',
+        'visaExpiredAt',
+      ];
+    } else if (visaType === 'D-10') {
+      requiredFields = [
+        'visaType',
+        'visaPoint',
+        'visaStartDate',
+        'visaExpiredAt',
+      ];
+    } else {
+      // 비자 타입이 선택되지 않았을 때는 기본 필드만
+      requiredFields = ['visaType', 'visaStartDate', 'visaExpiredAt'];
+    }
+  }
 
   // 모든 필드 존재 체크
   const hasAllRequiredValues = requiredFields.every((fieldName) => {
@@ -92,7 +115,7 @@ const OnboardingPage = () => {
       return value.trim().length > 0;
     }
     if (typeof value === 'number') {
-      return !Number.isNaN(value);
+      return value !== 0 && !Number.isNaN(value);
     }
     return Boolean(value);
   });

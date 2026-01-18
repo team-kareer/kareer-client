@@ -49,9 +49,11 @@ const VisaInformation = () => {
     prevVisaTypeRef.current = visaType;
   }, [visaType, resetField]);
 
-  // 발급일이 변경되면 만료일 재검증
+  // 발급일이 완전히 입력되었을 때만 만료일 재검증
   useEffect(() => {
-    if (visaStartDate) {
+    // YYYY-MM-DD 형식이 완성되었을 때만 검증
+    const isValidDateFormat = /^\d{4}-\d{2}-\d{2}$/.test(visaStartDate || '');
+    if (isValidDateFormat) {
       trigger('visaExpiredAt');
     }
   }, [visaStartDate, trigger]);
@@ -191,10 +193,16 @@ const VisaInformation = () => {
                 <Input
                   {...field}
                   placeholder={PLACEHOLDER.EXPIRATION_DATE}
-                  status={fieldState.error ? 'error' : 'default'}
+                  status={
+                    fieldState.isTouched && fieldState.error
+                      ? 'error'
+                      : 'default'
+                  }
                 />
                 <p className={styles.errorMessage}>
-                  {fieldState.error?.message || ''}
+                  {fieldState.isTouched && fieldState.error?.message
+                    ? fieldState.error.message
+                    : ''}
                 </p>
               </>
             )}

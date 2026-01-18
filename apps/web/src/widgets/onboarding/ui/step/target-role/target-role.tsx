@@ -241,7 +241,7 @@ const TargetRole = () => {
           />
         </div>
       </div>
-      {targetJob && currentJobSkills.length > 0 && (
+      {targetJob && (
         <div className={styles.checkboxContainer}>
           {currentJobSkills.map((skill) => (
             <div

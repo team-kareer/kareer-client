@@ -104,11 +104,11 @@ export const validateVisaExpirationDate = (
 
   // 비자 타입별 검증
   if (visaType === 'D-2') {
-    // D-2: 발급일로부터 1년을 초과하면 에러
+    // D-2: 발급일로부터 2년을 초과하면 에러
     const oneYearLater = new Date(issuance);
     oneYearLater.setFullYear(oneYearLater.getFullYear() + 2);
 
-    if (expiration > oneYearLater) {
+    if (expiration < oneYearLater) {
       return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_ONE_YEAR;
     }
   } else if (visaType === 'D-10') {

@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css';
-import { zIndex } from '@kds/ui/styles';
 
 export const container = style({
   display: 'flex',
@@ -21,8 +20,6 @@ export const buttonContainer = style({
   flexDirection: 'row',
   paddingTop: '6.5rem',
   gap: '1.6rem',
-  position: 'relative',
-  zIndex: zIndex.buttonContainer,
 });
 
 export const buttonContainerStep3 = style({
