@@ -6,6 +6,7 @@ import { authService } from '@shared/auth/auth-service';
 import { tokenService } from '@shared/auth/token-service';
 import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
 import { ROUTE_PATH } from '@shared/router';
+import type { paths } from '@shared/types/schema';
 
 /**
  * 토큰 재발급을 위한 API 엔드포인트 URL입니다.
@@ -22,11 +23,8 @@ const isAuthExchangeRequest = (url: string) =>
 
 const isRefreshRequest = (url: string) => url.includes(REFRESH_ENDPOINT);
 
-interface ReissueResponse {
-  data: {
-    accessToken: string;
-  };
-}
+type ReissueResponse =
+  paths['/api/v1/auth/reissue']['post']['responses']['200']['content']['*/*']['data'];
 
 /**
  * 토큰 재발급 요청의 중복 호출을 방지하기 위한 단일화 Promise입니다.
@@ -55,7 +53,11 @@ const requestReissue = async (): Promise<string> => {
 
   const refreshData: ReissueResponse = await refreshResponse.json();
 
-  return refreshData.data.accessToken;
+  if (!refreshData?.accessToken) {
+    throw new Error('accessToken이 없습니다');
+  }
+
+  return refreshData.accessToken;
 };
 
 /**

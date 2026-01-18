@@ -1,14 +1,6 @@
 import { END_POINT } from '@features/auth/model/end_point';
+import { GoogleLoginResponse } from '@features/auth/model/types';
 import { api } from '@shared/apis/configs/instance';
-
-export interface GoogleLoginResponse {
-  code: number;
-  message: string;
-  data: {
-    accessToken: string;
-    onboardingRequired: boolean;
-  };
-}
 
 export const exchangeGoogleCode = (code: string) =>
   api

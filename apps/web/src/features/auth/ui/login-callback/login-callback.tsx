@@ -20,10 +20,14 @@ const LoginCallback = () => {
       try {
         const response = await exchangeGoogleCode(code);
 
-        tokenService.saveAccessToken(response.data.accessToken);
+        if (!response?.accessToken) {
+          throw new Error('AccessToekn을 찾을 수 없습니다.');
+        }
+
+        tokenService.saveAccessToken(response.accessToken);
 
         navigate(
-          response.data.onboardingRequired
+          response.onboardingRequired
             ? ROUTE_PATH.ONBOARDING
             : ROUTE_PATH.DASHBOARD,
           { replace: true },
