@@ -13,7 +13,6 @@ const DashboardPage = () => {
         gap: '2rem',
       }}
     >
-      <EmptyLayout variant="page" onAction={handleAdd} />
       <EmptyLayout variant="section" onAction={handleAdd} />
       <EmptyLayout variant="card" onAction={handleAdd} />
     </div>

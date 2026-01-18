@@ -52,28 +52,39 @@ const LAYOUT_CONFIG: Record<EmptyLayoutVariant, LayoutConfigItem> = {
 interface EmptyLayoutProps {
   variant: EmptyLayoutVariant;
   onAction: () => void;
+  title?: string;
+  subtitle?: string;
+  buttonLabel?: string;
 }
 
-const EmptyLayout = ({ variant, onAction }: EmptyLayoutProps) => {
+const EmptyLayout = ({
+  variant,
+  onAction,
+  title,
+  subtitle,
+  buttonLabel,
+}: EmptyLayoutProps) => {
   const config = LAYOUT_CONFIG[variant];
   const { button } = config;
 
   return (
-    <div className={styles.container({ variant })}>
-      <div className={styles.iconWrapper({ variant })}>{config.icon}</div>
-      <div className={styles.content}>
-        <div className={styles.title({ variant })}>{config.title}</div>
-
-        {config.subtitle && (
-          <div className={styles.subtitle({ variant })}>{config.subtitle}</div>
-        )}
-
-        <Button preset={button.preset} onClick={onAction}>
-          {button.icon && <span>{button.icon}</span>}
-          {button.label}
-        </Button>
+    <main className={styles.container({ layout: variant })}>
+      <div className={styles.iconWrapper({ layout: variant })}>
+        {config.icon}
       </div>
-    </div>
+      <div className={styles.textContent}>
+        <h3 className={styles.title({ layout: variant })}>
+          {title || config.title}
+        </h3>
+        <p className={styles.subtitle({ layout: variant })}>
+          {subtitle || config.subtitle}
+        </p>
+      </div>
+      <Button preset={button.preset} onClick={onAction}>
+        {button.icon && <span>{button.icon}</span>}
+        {buttonLabel || button.label}
+      </Button>
+    </main>
   );
 };
 
