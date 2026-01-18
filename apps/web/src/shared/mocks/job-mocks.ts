@@ -1,5 +1,3 @@
-import exampleImage from './example.png';
-
 // 추후에 api response로 대체 예정
 export const MOCK_JOBS = [
   {
@@ -10,7 +8,7 @@ export const MOCK_JOBS = [
     locations: ['Seocho-gu, Seoul', 'Gangwon Goseong-gun'],
     jobTypes: ['Contract worker', 'Regular worker'],
     isScraped: false,
-    imageUrl: exampleImage,
+    imageUrl: '',
     url: 'https://naver.com/',
   },
   {
@@ -32,7 +30,7 @@ export const MOCK_JOBS = [
     locations: ['Seocho-gu, Seoul', 'Gangwon Goseong-gun'],
     jobTypes: ['Freelancer'],
     isScraped: false,
-    imageUrl: exampleImage,
+    imageUrl: '',
     url: '',
   },
   {

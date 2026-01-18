@@ -1,17 +1,14 @@
-import { BookmarkedJobList } from '@features/job';
-// import { MOCK_JOBS } from '@shared/mocks/job-mocks';
+import { VisaStatusListSection } from '@widgets/dashboard/ui';
+import { MyBookmarkedJobsSection } from '@widgets/dashboard/ui';
+import { PhaseOverviewSection } from '@widgets/dashboard/ui';
 
 const DashboardPage = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2rem',
-      }}
-    >
-      <BookmarkedJobList jobs={[]} onScrap={() => {}} />
-    </div>
+    <>
+      <VisaStatusListSection />
+      <PhaseOverviewSection />
+      <MyBookmarkedJobsSection />
+    </>
   );
 };
 

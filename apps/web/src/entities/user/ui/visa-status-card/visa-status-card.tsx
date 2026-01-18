@@ -21,7 +21,6 @@ export const VisaStatusCard = ({
   return (
     <article className={styles.container}>
       <div className={styles.iconWrapper}>{icon}</div>
-
       <div className={styles.textContent}>
         <div className={styles.header}>
           {isActive && <CheckCircleIcon width={14} height={14} />}

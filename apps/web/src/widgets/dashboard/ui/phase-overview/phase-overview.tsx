@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LogoIcon } from '@kds/icons';
 
+import { ActionRequiredAccordion } from '@widgets/dashboard/ui';
 import { CareerRoadmapStep } from '@entities/phase';
 import { CareerRoadmap } from '@shared/ui';
 
@@ -15,8 +16,8 @@ const PhaseOverview = () => {
         goal: 'Verify Requirement',
         workStatus: 'Incompleted works',
         worksCount: 2,
-        startDate: 'Sep. 25', // 2025-11-01
-        endDate: 'Nov. 25', // 2025-11-01
+        startDate: '2025-11-01',
+        endDate: '2025-11-01',
       },
       {
         phaseId: 'Long',
@@ -25,8 +26,8 @@ const PhaseOverview = () => {
         goal: 'Build Experience',
         workStatus: 'Remained works',
         worksCount: 2,
-        startDate: 'Sep. 25', // 2025-11-01
-        endDate: 'Nov. 25', // 2025-11-01
+        startDate: '2025-09-25',
+        endDate: '2025-11-25',
       },
       {
         phaseId: 'Long',
@@ -35,8 +36,8 @@ const PhaseOverview = () => {
         goal: 'D-10 Transition',
         workStatus: 'Scheduled works',
         worksCount: 8,
-        startDate: 'Sep. 25', // 2025-11-01
-        endDate: 'Nov. 25', // 2025-11-01
+        startDate: '2025-09-25',
+        endDate: '2025-11-25',
       },
     ],
   };
@@ -44,8 +45,12 @@ const PhaseOverview = () => {
   const [clickedPhase, setClickedPhase] = useState(0);
   return (
     <CareerRoadmap
-      goal={mockData.phases[2]?.goal ?? ''}
-      actions={<div>actions</div>}
+      goal={mockData.phases[clickedPhase]?.goal ?? ''}
+      actions={
+        <ActionRequiredAccordion
+          counts={mockData.phases[clickedPhase]?.worksCount ?? 0}
+        />
+      }
     >
       {mockData.phases.map((phase, idx) => {
         const isActive = clickedPhase === idx;
