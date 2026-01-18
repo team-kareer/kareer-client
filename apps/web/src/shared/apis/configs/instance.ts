@@ -24,7 +24,7 @@ type KyHooks = NonNullable<KyCreateOptions['hooks']>;
 type BeforeErrorHook = NonNullable<KyHooks['beforeError']>[number];
 
 const beforeErrorHook: BeforeErrorHook = (error) => {
-  if (isHttpError(error)) {
+  if (isHttpError(error) && error.request instanceof Request) {
     error.name = buildSentryErrorName(error.request, error.response?.status);
   }
   return error;
