@@ -36,21 +36,12 @@ export const VisaStatusList = () => {
 
   return (
     <div className={styles.container}>
-      <VisaStatusCard
-        icon={<DefaultStatusIcon width={64} height={64} />}
-        {...currentVisa}
-      />
+      <VisaStatusCard icon={<DefaultStatusIcon />} {...currentVisa} />
 
       {isD2 ? (
-        <VisaStatusCard
-          icon={<GraduationCountDownIcon width={64} height={64} />}
-          {...graduation}
-        />
+        <VisaStatusCard icon={<GraduationCountDownIcon />} {...graduation} />
       ) : (
-        <VisaStatusCard
-          icon={<RemainingStayIcon width={64} height={64} />}
-          {...remaining}
-        />
+        <VisaStatusCard icon={<RemainingStayIcon />} {...remaining} />
       )}
     </div>
   );

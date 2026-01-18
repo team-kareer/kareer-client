@@ -40,6 +40,8 @@ export const iconWrapper = style({
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '10px',
+  width: '6.4rem',
+  height: '6.4rem',
   overflow: 'hidden',
 });
 
