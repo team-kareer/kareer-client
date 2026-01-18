@@ -48,6 +48,7 @@ export const textContent = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  textAlign: 'center',
   gap: '0.4rem',
   width: '100%',
 });
