@@ -1,4 +1,4 @@
-import type { Options } from 'ky';
+import type { Options } from '@toss/ky';
 
 import { appConfig } from '@shared/apis/configs/app-config';
 import { api } from '@shared/apis/configs/instance';

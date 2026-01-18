@@ -10,7 +10,7 @@ const RETRY_BLACKLIST = new Set<number>([
 
 const MAX_RETRY_COUNT = 1;
 
-import { HTTPError } from 'ky';
+import { HTTPError } from '@toss/ky';
 
 export const shouldRetry = (failureCount: number, error: unknown) => {
   if (failureCount > MAX_RETRY_COUNT) {

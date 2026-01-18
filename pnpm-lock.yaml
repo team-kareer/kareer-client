@@ -91,6 +91,9 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^5.91.2
         version: 5.91.2(@tanstack/react-query@5.90.16(react@19.2.0))(react@19.2.0)
+      '@toss/ky':
+        specifier: ^1.2.1
+        version: 1.2.1
       ky:
         specifier: ^0.31.1
         version: 0.31.4
@@ -1426,6 +1429,12 @@ packages:
       }
     peerDependencies:
       react: ^18 || ^19
+
+  '@toss/ky@1.2.1':
+    resolution:
+      {
+        integrity: sha512-72qJyUVyyNC7d4EOKVyjPQH3UH3GnVSAo3mM+3vqGVTgh84vPPW3KPFvrV/DZe33dHMygCUsmIhnP9G5T5n9AQ==,
+      }
 
   '@types/babel__core@7.20.5':
     resolution:
@@ -5162,6 +5171,8 @@ snapshots:
     dependencies:
       '@tanstack/query-core': 5.90.16
       react: 19.2.0
+
+  '@toss/ky@1.2.1': {}
 
   '@types/babel__core@7.20.5':
     dependencies:
