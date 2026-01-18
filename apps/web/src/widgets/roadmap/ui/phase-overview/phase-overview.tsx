@@ -14,8 +14,8 @@ const PhaseOverview = () => {
         goal: 'Verify Requirement',
         workStatus: 'Incompleted works',
         worksCount: 2,
-        startDate: 'Sep. 25', // 2025-11-01
-        endDate: 'Nov. 25', // 2025-11-01
+        startDate: '2025-11-01',
+        endDate: '2025-11-01',
       },
       {
         phaseId: 'Long',
@@ -24,8 +24,8 @@ const PhaseOverview = () => {
         goal: 'Build Experience',
         workStatus: 'Remained works',
         worksCount: 2,
-        startDate: 'Sep. 25', // 2025-11-01
-        endDate: 'Nov. 25', // 2025-11-01
+        startDate: '2025-11-01',
+        endDate: '2025-11-01',
       },
       {
         phaseId: 'Long',
@@ -34,8 +34,8 @@ const PhaseOverview = () => {
         goal: 'D-10 Transition',
         workStatus: 'Scheduled works',
         worksCount: 8,
-        startDate: 'Sep. 25', // 2025-11-01
-        endDate: 'Nov. 25', // 2025-11-01
+        startDate: '2025-11-01',
+        endDate: '2025-11-01',
       },
     ],
   };

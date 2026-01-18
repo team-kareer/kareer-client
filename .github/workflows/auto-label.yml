@@ -56,7 +56,7 @@ jobs:
             // 사용자 기반 라벨 매칭
             const userLabels = {
               "jeonghoon11": "🦊 정훈", 
-              "huniversal": "🐶 훈진",
+              "huniversal": "🦍 훈진",
               "sonnnnhe": "🐯 하은",
               "yooncandooit": "🪼 윤지"
             };
