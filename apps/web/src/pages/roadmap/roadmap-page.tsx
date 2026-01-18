@@ -1,5 +1,4 @@
-import CareerRoadmapSection from '@widgets/roadmap/ui/career-roadmap-section/career-roadmap-section';
-import PhaseListSection from '@widgets/roadmap/ui/phase-list-section/phase-list-section';
+import { CareerRoadmapSection, PhaseListSection } from '@widgets/roadmap';
 
 const RoadmapPage = () => {
   return (
