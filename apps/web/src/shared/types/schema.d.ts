@@ -44,7 +44,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/phase-actions/{phase-action-id}/todo': {
+  '/api/v1/phase-actions/{phaseActionId}/todo': {
     parameters: {
       query?: never;
       header?: never;
@@ -104,7 +104,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/job-postings/{job-posting-id}/bookmarks': {
+  '/api/v1/job-postings/{jobPostingId}/bookmarks': {
     parameters: {
       query?: never;
       header?: never;
@@ -204,7 +204,27 @@ export interface paths {
     patch: operations['toggleActionItemCompletion'];
     trace?: never;
   };
-  '/api/v1/{phaseId}/roadmap': {
+  '/api/v1/phases': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Phase 리스트 조회
+     * @description Phase 리스트를 조회합니다.
+     */
+    get: operations['getPhaseList'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/phases/{phaseId}/roadmap': {
     parameters: {
       query?: never;
       header?: never;
@@ -224,7 +244,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/phases': {
+  '/api/v1/phases/{phaseId}/home': {
     parameters: {
       query?: never;
       header?: never;
@@ -232,10 +252,10 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Phase 리스트 조회
-     * @description Phase 리스트를 조회합니다.
+     * 홈 Phase 상세정보 조회
+     * @description 홈 Phase 상세조회를 조회합니다.
      */
-    get: operations['getPhaseList'];
+    get: operations['getHomePhaseDetail'];
     put?: never;
     post?: never;
     delete?: never;
@@ -411,22 +431,6 @@ export interface components {
       message?: string;
       messageDetail?: string;
     };
-    BaseResponseDocumentUploadResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['DocumentUploadResponse'];
-    };
-    DocumentUploadResponse: {
-      /** @description 문서 ID */
-      documentId?: string;
-    };
-    JobPostingEmbeddingRequest: {
-      jobPostingIds?: number[];
-    };
     BaseResponseVoid: {
       /**
        * Format: int32
@@ -435,6 +439,9 @@ export interface components {
       code?: number;
       message?: string;
       data?: Record<string, never>;
+    };
+    JobPostingEmbeddingRequest: {
+      jobPostingIds?: number[];
     };
     MemberOnboardRequest: {
       name: string;
@@ -756,58 +763,6 @@ export interface components {
       accessToken?: string;
       onboardingRequired?: boolean;
     };
-    /** @description Phase에 해당하는 그룹화된 PhaseAction */
-    ActionGroupResponse: {
-      /**
-       * Format: int64
-       * @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 수
-       * @example 1
-       */
-      count?: number;
-      /** @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 리스트 */
-      items?: components['schemas']['ActionResponse'][];
-    };
-    /** @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 리스트 */
-    ActionResponse: {
-      /**
-       * @description Phase Action 제목
-       * @example Prepare internship log
-       */
-      title?: string;
-      /**
-       * @description Phase Action 설명
-       * @example Document all work experience during internship period
-       */
-      description?: string;
-      /**
-       * Format: date
-       * @description Phase Action 마감 기한
-       * @example 2026-01-24
-       */
-      deadline?: string;
-    };
-    BaseResponseRoadmapPhaseDetailResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['RoadmapPhaseDetailResponse'];
-    };
-    /** @description 로드맵 Phase 상세 조회 응답 */
-    RoadmapPhaseDetailResponse: {
-      /**
-       * Format: int64
-       * @description Phase의 PhaseAction 수
-       * @example 1
-       */
-      totalCount?: number;
-      /** @description Phase에 해당하는 그룹화된 PhaseAction */
-      actions?: {
-        [key: string]: components['schemas']['ActionGroupResponse'];
-      };
-    };
     BaseResponsePhaseListResponse: {
       /**
        * Format: int32
@@ -874,6 +829,109 @@ export interface components {
        * @example 2025-12-01
        */
       endDate?: string;
+    };
+    /** @description Phase에 해당하는 그룹화된 PhaseAction */
+    ActionGroupResponse: {
+      /**
+       * Format: int64
+       * @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 수
+       * @example 1
+       */
+      count?: number;
+      /** @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 리스트 */
+      items?: components['schemas']['ActionResponse'][];
+    };
+    /** @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 리스트 */
+    ActionResponse: {
+      /**
+       * Format: int64
+       * @description Phase Action 고유번호
+       * @example 1
+       */
+      phaseActionId?: number;
+      /**
+       * @description Phase Action 제목
+       * @example Prepare internship log
+       */
+      title?: string;
+      /**
+       * @description Phase Action 설명
+       * @example Document all work experience during internship period
+       */
+      description?: string;
+      /**
+       * Format: date
+       * @description Phase Action 마감 기한
+       * @example 2026-01-24
+       */
+      deadline?: string;
+    };
+    BaseResponseRoadmapPhaseDetailResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['RoadmapPhaseDetailResponse'];
+    };
+    /** @description 로드맵 Phase 상세 조회 응답 */
+    RoadmapPhaseDetailResponse: {
+      /**
+       * Format: int64
+       * @description Phase의 PhaseAction 수
+       * @example 1
+       */
+      totalCount?: number;
+      /** @description Phase에 해당하는 그룹화된 PhaseAction */
+      actions?: {
+        [key: string]: components['schemas']['ActionGroupResponse'];
+      };
+    };
+    BaseResponseHomePhaseDetailResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['HomePhaseDetailResponse'];
+    };
+    /** @description Phase의 PhaseAction 리스트 */
+    HomePhaseActionResponse: {
+      /**
+       * Format: int64
+       * @description Phase Action 고유번호
+       * @example 1
+       */
+      phaseActionId?: number;
+      /**
+       * @description Phase Action 타입
+       * @example Visa
+       */
+      type?: string;
+      /**
+       * @description Phase Action 제목
+       * @example Prepare OPT application documents
+       */
+      title?: string;
+      /**
+       * Format: date
+       * @description Phase Action 마감기한
+       * @example 2026-01-01
+       */
+      deadline?: string;
+    };
+    /** @description 홈 Phase 리스트 조회 응답 */
+    HomePhaseDetailResponse: {
+      /**
+       * Format: int64
+       * @description Phase의 PhaseAction 수
+       * @example 1
+       */
+      count?: number;
+      /** @description Phase의 PhaseAction 리스트 */
+      actions?: components['schemas']['HomePhaseActionResponse'][];
     };
     /** @description AI 가이드 응답 */
     AiGuideResponse: {
@@ -1340,11 +1398,8 @@ export interface operations {
     requestBody?: {
       content: {
         'multipart/form-data': {
-          /**
-           * Format: binary
-           * @description 업로드할 PDF 파일
-           */
-          file: string;
+          /** @description 업로드할 PDF 파일 */
+          files: string[];
         };
       };
     };
@@ -1355,7 +1410,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['BaseResponseDocumentUploadResponse'];
+          '*/*': components['schemas']['BaseResponseVoid'];
         };
       };
       400: {
@@ -1485,7 +1540,7 @@ export interface operations {
       query?: never;
       header?: never;
       path: {
-        'phase-action-id': number;
+        phaseActionId: number;
       };
       cookie?: never;
     };
@@ -1695,7 +1750,7 @@ export interface operations {
       query?: never;
       header?: never;
       path: {
-        'job-posting-id': number;
+        jobPostingId: number;
       };
       cookie?: never;
     };
@@ -2052,6 +2107,53 @@ export interface operations {
       };
     };
   };
+  getPhaseList: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponsePhaseListResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   getRoadmapPhaseDetail: {
     parameters: {
       query?: never;
@@ -2122,11 +2224,13 @@ export interface operations {
       };
     };
   };
-  getPhaseList: {
+  getHomePhaseDetail: {
     parameters: {
       query?: never;
       header?: never;
-      path?: never;
+      path: {
+        phaseId: number;
+      };
       cookie?: never;
     };
     requestBody?: never;
@@ -2137,34 +2241,55 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['BaseResponsePhaseListResponse'];
+          '*/*': components['schemas']['BaseResponseHomePhaseDetailResponse'];
         };
       };
-      /** @description Bad Request */
       400: {
         headers: {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['BaseErrorResponse'];
+          'application/json': unknown;
         };
       };
-      /** @description Method Not Allowed */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
       405: {
         headers: {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['BaseErrorResponse'];
+          'application/json': unknown;
         };
       };
-      /** @description Internal Server Error */
       500: {
         headers: {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['BaseErrorResponse'];
+          'application/json': unknown;
         };
       };
     };

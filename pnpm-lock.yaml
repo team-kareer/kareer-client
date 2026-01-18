@@ -94,9 +94,9 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^5.91.2
         version: 5.91.2(@tanstack/react-query@5.90.16(react@19.2.0))(react@19.2.0)
-      ky:
-        specifier: ^1.14.2
-        version: 1.14.2
+      '@toss/ky':
+        specifier: ^1.2.1
+        version: 1.2.1
       lottie-react:
         specifier: ^2.4.1
         version: 2.4.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -109,9 +109,6 @@ importers:
       react-router:
         specifier: ^7.11.0
         version: 7.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      react-router-dom:
-        specifier: ^7.12.0
-        version: 7.12.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
     devDependencies:
       '@kareer/eslint-config':
         specifier: workspace:*
@@ -1449,6 +1446,12 @@ packages:
       }
     peerDependencies:
       react: ^18 || ^19
+
+  '@toss/ky@1.2.1':
+    resolution:
+      {
+        integrity: sha512-72qJyUVyyNC7d4EOKVyjPQH3UH3GnVSAo3mM+3vqGVTgh84vPPW3KPFvrV/DZe33dHMygCUsmIhnP9G5T5n9AQ==,
+      }
 
   '@types/babel__core@7.20.5':
     resolution:
@@ -3159,13 +3162,6 @@ packages:
         integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==,
       }
 
-  ky@1.14.2:
-    resolution:
-      {
-        integrity: sha512-q3RBbsO5A5zrPhB6CaCS8ZUv+NWCXv6JJT4Em0i264G9W0fdPB8YRfnnEi7Dm7X7omAkBIPojzYJ2D1oHTHqug==,
-      }
-    engines: { node: '>=18' }
-
   lefthook-darwin-arm64@2.0.13:
     resolution:
       {
@@ -3780,33 +3776,10 @@ packages:
       }
     engines: { node: '>=0.10.0' }
 
-  react-router-dom@7.12.0:
-    resolution:
-      {
-        integrity: sha512-pfO9fiBcpEfX4Tx+iTYKDtPbrSLLCbwJ5EqP+SPYQu1VYCXdy79GSj0wttR0U4cikVdlImZuEZ/9ZNCgoaxwBA==,
-      }
-    engines: { node: '>=20.0.0' }
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-
   react-router@7.11.0:
     resolution:
       {
         integrity: sha512-uI4JkMmjbWCZc01WVP2cH7ZfSzH91JAZUDd7/nIprDgWxBV1TkkmLToFh7EbMTcMak8URFRa2YoBL/W8GWnCTQ==,
-      }
-    engines: { node: '>=20.0.0' }
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-
-  react-router@7.12.0:
-    resolution:
-      {
-        integrity: sha512-kTPDYPFzDVGIIGNLS5VJykK0HfHLY5MF3b+xj0/tTyNYL1gF1qs7u67Z9jEhQk2sQ98SUaHxlG31g1JtF7IfVw==,
       }
     engines: { node: '>=20.0.0' }
     peerDependencies:
@@ -5231,6 +5204,8 @@ snapshots:
       '@tanstack/query-core': 5.90.16
       react: 19.2.0
 
+  '@toss/ky@1.2.1': {}
+
   '@types/babel__core@7.20.5':
     dependencies:
       '@babel/parser': 7.28.5
@@ -6447,8 +6422,6 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  ky@1.14.2: {}
-
   lefthook-darwin-arm64@2.0.13:
     optional: true
 
@@ -6763,21 +6736,7 @@ snapshots:
 
   react-refresh@0.18.0: {}
 
-  react-router-dom@7.12.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
-    dependencies:
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
-      react-router: 7.12.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-
   react-router@7.11.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
-    dependencies:
-      cookie: 1.1.1
-      react: 19.2.0
-      set-cookie-parser: 2.7.2
-    optionalDependencies:
-      react-dom: 19.2.0(react@19.2.0)
-
-  react-router@7.12.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       cookie: 1.1.1
       react: 19.2.0
