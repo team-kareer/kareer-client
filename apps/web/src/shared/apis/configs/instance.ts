@@ -23,7 +23,9 @@ type KyCreateOptions = Parameters<typeof ky.create>[0];
 type KyHooks = NonNullable<KyCreateOptions['hooks']>;
 type BeforeErrorHook = NonNullable<KyHooks['beforeError']>[number];
 
-const beforeErrorHook: BeforeErrorHook = (error) => {
+const beforeErrorHook: BeforeErrorHook = (
+  error: Parameters<BeforeErrorHook>[0],
+) => {
   if (isHttpError(error) && error.request instanceof Request) {
     error.name = buildSentryErrorName(error.request, error.response?.status);
   }
