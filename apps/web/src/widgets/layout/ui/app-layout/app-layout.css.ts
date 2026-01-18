@@ -28,8 +28,9 @@ export const mainArea = style({
 });
 
 export const mainPage = style({
-  padding: '1.6rem 2rem 0 2rem',
+  padding: '1.6rem 0.35rem 0 2rem',
   flex: 1,
   minHeight: 0,
   overflowY: 'auto',
+  scrollbarGutter: 'stable',
 });
