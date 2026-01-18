@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 export const listWrapper = style({
-  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.6rem',
 });
