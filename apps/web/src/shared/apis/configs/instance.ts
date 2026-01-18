@@ -18,7 +18,9 @@ const buildSentryErrorName = (request: Request, status?: number) => {
   return `[${statusLabel} Error] - ${url.origin}${normalizedPath}`;
 };
 
-export const api = ky.create({
+type ApiClient = ReturnType<typeof ky.create>;
+
+export const api: ApiClient = ky.create({
   prefixUrl: appConfig.api.baseUrl,
   credentials: 'include',
   retry: 0,
