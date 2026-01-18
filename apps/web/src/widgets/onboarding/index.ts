@@ -1,3 +1,11 @@
-export { default as OnboardingStepHeader } from './ui/onboarding-step-headear/onboarding-step-header';
+export { VALIDATION_MESSAGE } from './constants/validation-message';
+export { default as OnboardingDegreeStep } from './ui/onboarding-degree-step/onboarding-degree-step';
+export { default as OnboardingStep } from './ui/onboarding-step/onboarding-step';
+export { type OnboardingStepData } from './ui/onboarding-step-header/onboarding-step-header';
+export { default as OnboardingStepHeader } from './ui/onboarding-step-header/onboarding-step-header';
+export { default as OnboardingStepLayout } from './ui/onboarding-step-layout/onboarding-step-layout';
 export { default as OnboardingStepTitle } from './ui/onboarding-step-title/onboarding-step-title';
-export { default as OnboardingStep } from './ui/step/onboarding-step';
+export { default as PersonalBackgroundStep } from './ui/step/personal-backgorund/personal-background';
+export { default as PersonalInformationStep } from './ui/step/personal-information/personal-information';
+export { default as TargetRoleStep } from './ui/step/target-role/target-role';
+export { default as VisaInformationStep } from './ui/step/visa-information/visa-information';

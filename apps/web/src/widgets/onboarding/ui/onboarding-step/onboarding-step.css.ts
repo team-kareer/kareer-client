@@ -26,7 +26,7 @@ export const container = style({
 export const stepNumber = recipe({
   base: {
     ...typography.cap2_m_12,
-    marginBottom: '0.4rem',
+    paddingBottom: '0.4rem',
   },
   variants: {
     status: statusColorVariants,
@@ -36,7 +36,7 @@ export const stepNumber = recipe({
 export const title = recipe({
   base: {
     ...typography.body9_r_14,
-    marginBottom: '0.8rem',
+    paddingBottom: '0.8rem',
   },
   variants: {
     status: {

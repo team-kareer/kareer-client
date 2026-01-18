@@ -23,7 +23,8 @@ export const mainArea = style({
   flex: 1,
   alignItems: 'stretch',
   minHeight: 0,
-  marginRight: '2rem',
+  paddingRight: '2rem',
+  backgroundColor: themeVars.color.grayscale.gray100,
 });
 
 export const mainPage = style({

@@ -21,6 +21,10 @@ globalStyle('input, button, textarea, select', {
   font: 'inherit',
 });
 
+globalStyle('ul', {
+  listStyle: 'none',
+});
+
 globalStyle('p, h1, h2, h3, h4, h5, h6', {
   overflowWrap: 'break-word',
 });
