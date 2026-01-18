@@ -1,1 +1,2 @@
-export { default as ActionRequiredAccordion } from './action-required-accordion/action-required-accordion';
+export { default as Accordion } from './accordion/accordion';
+export { MyBookmarkedJobs } from './my-bookmarked-job/my-bookmarked-job';

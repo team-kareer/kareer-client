@@ -5,7 +5,7 @@ export const container = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1.2rem',
-  paddingLeft: '6.6rem',
+  paddingBottom: '3.2rem',
 });
 
 export const numbering = style({
