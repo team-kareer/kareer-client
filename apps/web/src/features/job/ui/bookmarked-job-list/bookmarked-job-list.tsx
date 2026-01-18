@@ -1,13 +1,12 @@
 import { useNavigate } from 'react-router';
 
 import { ScrapButton } from '@features/job';
+import { useBookmarkedJobs } from '@features/job/model';
 import { BookmarkedJobCard } from '@entities/job';
 import { JobItem } from '@entities/job/model/types';
 import { ROUTE_PATH } from '@shared/router';
 import { EmptyLayout } from '@shared/ui';
 import { calculateDDay } from '@shared/utils/dday-calculate';
-
-import { useBookmarkedJobs } from '../../model/use-bookmarked-jobs';
 
 import * as styles from './bookmarked-job-list.css';
 
