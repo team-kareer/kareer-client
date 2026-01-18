@@ -53,7 +53,7 @@ export const VisaStatusMapper = (data?: VisaStatusResponse | null) => {
 
   const remaining = {
     statusName: 'Remaining Stay',
-    title: 'Job Seeker',
+    title: formatDate(visaExpiredAt),
     date: formatDDayText(remainDDay, 'Expired'),
     isActive: false,
   };

@@ -11,10 +11,10 @@ import { VisaStatusMapper } from '@shared/utils/visa-status-mapper';
 import * as styles from './visa-status-list.css';
 
 const MOCK_DATA: VisaStatusResponse = {
-  visaType: 'D2',
+  visaType: 'D10',
   visaExpiredAt: '2026-01-17',
   expectedGraduationDate: '2026-05-20',
-  graduationDate: null,
+  graduationDate: '2026-05-20',
 };
 
 export const VisaStatusList = () => {
