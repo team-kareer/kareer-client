@@ -21,3 +21,9 @@ export const buttonContainer = style({
   paddingTop: '6.5rem',
   gap: '1.6rem',
 });
+
+export const buttonContent = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+});
