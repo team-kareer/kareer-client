@@ -29,6 +29,54 @@ interface ReissueResponse {
 }
 
 /**
+ * 토큰 재발급 요청의 중복 호출을 방지하기 위한 단일화 Promise입니다.
+ *
+ * - 재발급 진행 중에는 동일 Promise를 공유합니다.
+ * - 완료되면 null로 초기화하여 다음 재발급을 허용합니다.
+ */
+let refreshPromise: Promise<string> | null = null;
+
+/**
+ * 재발급 API를 호출해 accessToken을 반환합니다.
+ *
+ * @returns accessToken
+ * @throws 재발급 실패 시 에러를 던집니다.
+ */
+const requestReissue = async (): Promise<string> => {
+  const refreshUrl = new URL(REFRESH_ENDPOINT, appConfig.api.baseUrl);
+  const refreshResponse = await fetch(refreshUrl, {
+    method: 'POST',
+    credentials: 'include',
+  });
+
+  if (!refreshResponse.ok) {
+    throw new Error('accessToken 재발급에 실패했습니다.');
+  }
+
+  const refreshData: ReissueResponse = await refreshResponse.json();
+
+  return refreshData.data.accessToken;
+};
+
+/**
+ * 재발급 요청을 단일화해서 accessToken을 가져옵니다.
+ *
+ * - 진행 중인 재발급이 있으면 해당 Promise를 재사용합니다.
+ * - 없으면 새로 재발급을 시작합니다.
+ *
+ * @returns accessToken Promise
+ */
+const getReissueToken = () => {
+  if (!refreshPromise) {
+    refreshPromise = requestReissue().finally(() => {
+      refreshPromise = null;
+    });
+  }
+
+  return refreshPromise;
+};
+
+/**
  * 요청 전에 accessToken을 Authorization 헤더에 설정합니다.
  *
  * @param request - 전송할 요청 객체
@@ -101,22 +149,11 @@ export const handleUnauthorizedResponse = async (
   }
 
   try {
-    const refreshUrl = new URL(REFRESH_ENDPOINT, appConfig.api.baseUrl);
-    const refreshResponse = await fetch(refreshUrl, {
-      method: 'POST',
-      credentials: 'include',
-    });
-
-    if (!refreshResponse.ok) {
-      return rejectToLogin();
-    }
-
-    const refreshData: ReissueResponse = await refreshResponse.json();
-
-    tokenService.saveAccessToken(refreshData.data.accessToken);
+    const accessToken = await getReissueToken();
+    tokenService.saveAccessToken(accessToken);
 
     const retryHeaders = new Headers(request.headers);
-    retryHeaders.set('Authorization', `Bearer ${refreshData.data.accessToken}`);
+    retryHeaders.set('Authorization', `Bearer ${accessToken}`);
 
     const nextOptions: RetryOptions = {
       ...options,
