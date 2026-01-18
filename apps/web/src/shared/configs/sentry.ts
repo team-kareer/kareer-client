@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/react';
 
-import { isHttpError } from '@shared/utils/http-error';
 import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
+import { isHttpError } from '@shared/utils/http-error';
 
 const IGNORED_STATUS_SET = new Set<number>([
   HTTP_STATUS_CODE.UNAUTHORIZED,

@@ -1,5 +1,5 @@
-import { isHttpError } from '@shared/utils/http-error';
 import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
+import { isHttpError } from '@shared/utils/http-error';
 
 const RETRY_BLACKLIST = new Set<number>([
   HTTP_STATUS_CODE.BAD_REQUEST,
