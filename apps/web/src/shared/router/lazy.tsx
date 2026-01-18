@@ -10,6 +10,10 @@ export const FitAnalysisPage = lazy(
 // export const MyPage = lazy(() => import('@pages/my-page/my-page'));
 
 export const LoginPage = lazy(() => import('@pages/login/login'));
+export const LoginCallbackPage = lazy(
+  () => import('@pages/login-callback/login-callback-page'),
+);
+
 export const OnboardingPage = lazy(
   () => import('@pages/onboarding/onboarding-page'),
 );
