@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 
 import { exchangeGoogleCode } from '@features/auth/api/exchange-google-code';
@@ -7,8 +7,14 @@ import { ROUTE_PATH } from '@shared/router';
 
 const LoginCallback = () => {
   const navigate = useNavigate();
+  const hasExchangedRef = useRef(false);
 
   useEffect(() => {
+    if (hasExchangedRef.current) {
+      return;
+    }
+    hasExchangedRef.current = true;
+
     const code = new URLSearchParams(window.location.search).get('code');
 
     if (!code) {
