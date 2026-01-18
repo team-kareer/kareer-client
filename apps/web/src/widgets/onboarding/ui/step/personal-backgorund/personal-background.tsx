@@ -1,4 +1,4 @@
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { ChangeEvent } from 'react';
 import { BangCircleIcon } from '@kds/icons';
 
@@ -9,8 +9,17 @@ import * as styles from './personal-background.css';
 
 const MAX_LENGTH = 1000;
 
-const PLACEHOLDER =
-  'e.g : I built a campus delivery app using React and Spring Boot for my Capstone project. I manage my GitHub actively and placed 2nd in a university hackathon. I also worked as a back-end intern at a fintech startup and hold an Engineer Information Processing certification.         ';
+// TargetJob별 Placeholder 매핑
+const PLACEHOLDER_BY_TARGET_JOB: Record<string, string> = {
+  'Business / Sales':
+    "e.g. [Academic] In my 'Global Marketing' course, I analyzed consumer trends in my home country and presented an entry strategy for Korean appliances, earning an A+. [Professional] Later, as a trade intern, I managed email correspondence with buyers and assisted in preparing trade documents like Invoices.",
+  Marketer:
+    "e.g. [Academic] Conducted a survey of 100 international students for a 'Consumer Psychology' course to analyze K-brand awareness. [Professional] As a marketing intern, I managed local social media channels and improved post reach by 30% through data-driven targeting and localized content.",
+  'Data Analyst':
+    "e.g. [Academic] Developed a startup business model and designed risk management strategies using SWOT analysis in a 'Business Strategy' course. [Professional] During a field practicum, I organized inventory data to identify cost-saving opportunities and suggested streamlining report procedures.",
+  Developer:
+    "e.g. [Academic] In an 'Operations Management' course, I studied SCM principles and completed a simulation project on MRP using ERP systems. [Professional] During a manufacturing internship, I tracked inventory flow and analyzed supplier prices for cost reduction. I also updated quality checklists.",
+};
 
 const INFO_MESSAGES = [
   'For your privacy, please avoid sharing sensitive information (e.g. ID numbers, passport details, or bank account information)',
@@ -23,10 +32,18 @@ const DESCRIPTION =
   'This helps us tailor your career roadmap and recommendations.';
 
 const PersonalBackground = () => {
-  const {
+  const { control } = useFormContext<OnboardingForm>();
+
+  const targetJob = useWatch({
     control,
-    formState: { errors },
-  } = useFormContext<OnboardingForm>();
+    name: 'targetJob',
+  });
+
+  // TargetJob에 따른 placeholder 선택
+  const placeholder =
+    targetJob && PLACEHOLDER_BY_TARGET_JOB[targetJob]
+      ? PLACEHOLDER_BY_TARGET_JOB[targetJob]
+      : '';
 
   return (
     <section>
@@ -45,7 +62,7 @@ const PersonalBackground = () => {
               <>
                 <TextField
                   {...field}
-                  placeholder={PLACEHOLDER}
+                  placeholder={placeholder}
                   value={field.value || ''}
                   onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                     field.onChange(e.target.value)

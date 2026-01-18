@@ -30,11 +30,10 @@ const SECONDARY_MAJOR_OPTIONS = [
 ];
 
 const TARGET_JOB_OPTIONS = [
-  'Software Engineer',
-  'Data Scientist',
-  'Product Manager',
-  'Designer',
-  'Other',
+  'Developer',
+  'Data Analyst',
+  'Marketer',
+  'Business / Sales',
 ];
 
 const TargetRole = () => {
