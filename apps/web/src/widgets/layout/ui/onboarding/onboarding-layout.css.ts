@@ -1,42 +1,53 @@
-import { themeVars, typography } from '@kds/ui/styles';
+import { themeVars, typography, zIndex } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
   display: 'flex',
   flex: 1,
+  position: 'relative',
   width: '100%',
   height: '100%',
+  zIndex: zIndex.contentSection,
+  selectors: {
+    '&::before': {
+      content: '',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      height: '52.6rem',
+      zIndex: zIndex.backgroundFill,
+      pointerEvents: 'none',
+      background:
+        'linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%)',
+    },
+  },
+});
+
+export const lottieWrapper = style({
+  position: 'relative',
+  zIndex: zIndex.lottie,
 });
 
 export const introSection = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  gap: '3.9rem',
-  padding: '12.7rem 8.4rem',
-  width: '55rem',
-
-  borderRight: `1px solid ${themeVars.color.grayscale.gray300}`,
-  backgroundColor: themeVars.color.grayscale.white,
+  padding: '4.8rem 0 0 3.6rem',
+  position: 'absolute',
+  zIndex: zIndex.introSection,
+  gap: '0.8rem',
 });
 
 export const logoWrapper = style({
-  padding: '1rem',
   display: 'flex',
   alignItems: 'center',
 });
 
 export const text = style({
-  ...typography.head4_sb_24,
+  ...typography.sub5_m_20,
   color: themeVars.color.grayscale.gray500,
   whiteSpace: 'pre-wrap',
-  textAlign: 'center',
-  width: '38.2rem',
-});
-
-export const logoIcon = style({
-  padding: '1rem',
-  boxSizing: 'content-box',
+  textAlign: 'left',
 });
 
 export const stepFormSection = style({
@@ -45,5 +56,7 @@ export const stepFormSection = style({
   flex: 1,
   height: '100%',
   minWidth: 0,
+  position: 'relative',
+  zIndex: zIndex.contentSection,
   backgroundColor: themeVars.color.grayscale.gray200,
 });
