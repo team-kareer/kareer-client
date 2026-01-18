@@ -1,4 +1,4 @@
-import ky, { HTTPError } from '@toss/ky';
+import ky, { HTTPError } from 'ky';
 
 import { appConfig } from '@shared/apis/configs/app-config';
 
