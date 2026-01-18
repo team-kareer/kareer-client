@@ -6,7 +6,7 @@ import {
 
 import { VisaStatusResponse } from '@entities/job/model/types';
 import { VisaStatusCard } from '@entities/user';
-import { VisaStatusMapper } from '@shared/utils/visa-status-mapper';
+import { getVisaStatusRenderData } from '@shared/utils/visa-status-mapper';
 
 import * as styles from './visa-status-list.css';
 
@@ -25,7 +25,7 @@ export const VisaStatusList = () => {
     return null;
   }
 
-  const uiProps = VisaStatusMapper(data);
+  const uiProps = getVisaStatusRenderData(data);
 
   if (!uiProps) {
     return null;

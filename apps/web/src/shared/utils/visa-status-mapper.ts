@@ -27,7 +27,7 @@ const formatDDayText = (dDay: number | undefined, pastLabel: string = '-') => {
   return `D-${dDay}`;
 };
 
-export const VisaStatusMapper = (data?: VisaStatusResponse | null) => {
+export const getVisaStatusRenderData = (data?: VisaStatusResponse | null) => {
   if (!data) {
     return null;
   }
