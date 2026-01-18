@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import { PlusIcon, XIcon } from '@kds/icons';
 import { Button, Checkbox } from '@kds/ui';
 
@@ -9,9 +9,14 @@ import * as styles from './upload-box.css';
 const INFO_MESSAGE = 'Up to 2 files · 20 MB max';
 const CHECK_MESSAGE = 'Include completed to-dos';
 
-const UploadBox = () => {
+interface UploadBoxProps {
+  isChecked: boolean;
+  setIsChecked: (value: boolean) => void;
+  onClick: () => void;
+}
+
+const UploadBox = ({ isChecked, setIsChecked, onClick }: UploadBoxProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isChecked, setIsChecked] = useState(false);
   const { files, noticeMessage, addFiles, removeFile } = useUploadFiles();
   const hasFiles = files.length > 0;
 
@@ -30,12 +35,7 @@ const UploadBox = () => {
   };
 
   const handleToggleCheckBox = () => {
-    setIsChecked((prev) => !prev);
-    // TODO: API 연동
-  };
-
-  const handleClickFindPosition = () => {
-    // @TODO: PDF 업로드
+    setIsChecked(!isChecked);
   };
 
   return (
@@ -76,7 +76,7 @@ const UploadBox = () => {
           </div>
         </div>
         {hasFiles && (
-          <Button preset="medium_primary" onClick={handleClickFindPosition}>
+          <Button preset="medium_primary" onClick={onClick}>
             <span>Find Position</span>
           </Button>
         )}
