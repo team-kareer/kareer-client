@@ -13,11 +13,11 @@ import { OnboardingForm } from '@entities/onboarding/model/types';
 import {
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
-  STEP_REQUIRED_FIELDS,
   STEP_TITLES,
   STORAGE_KEY,
 } from '@entities/onboarding/model/constants';
 import { getRequiredFieldsForStep } from '@entities/onboarding/model/validation';
+import { getLocalStorageData } from '@entities/onboarding/model/storage';
 
 const OnboardingPage = () => {
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
@@ -27,16 +27,9 @@ const OnboardingPage = () => {
     mode: 'onChange', // 입력 시 실시간 검증
     reValidateMode: 'onChange', // 재검증도 입력 시
     defaultValues: async () => {
-      if (typeof window !== 'undefined') {
-        const savedData = localStorage.getItem(STORAGE_KEY);
-        if (savedData) {
-          const parsed = JSON.parse(savedData);
-          // visaPoint가 0이면 빈 문자열로 변환
-          if (parsed.visaPoint === 0 || parsed.visaPoint === '0') {
-            parsed.visaPoint = '';
-          }
-          return parsed;
-        }
+      const savedData = getLocalStorageData();
+      if (savedData) {
+        return savedData;
       }
       return DEFAULT_ONBOARDING_FORM;
     },
