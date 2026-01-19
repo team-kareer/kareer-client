@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import useFunnel from '@shared/hooks/usefunnel';
 import { FormProvider, useForm } from 'react-hook-form';
 import {
@@ -14,10 +13,10 @@ import {
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
   STEP_TITLES,
-  STORAGE_KEY,
 } from '@entities/onboarding/model/constants';
 import { getRequiredFieldsForStep } from '@entities/onboarding/model/validation';
 import { getLocalStorageData } from '@entities/onboarding/model/storage';
+import { useOnboardingStorage } from '@features/onboarding/hooks/useOnboardingStorage';
 
 const OnboardingPage = () => {
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
@@ -60,9 +59,7 @@ const OnboardingPage = () => {
     form.formState.isLoading || !hasAllRequiredValues || hasStepErrors;
 
   // 로컬스토리지 저장
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(allValues));
-  }, [allValues]);
+  useOnboardingStorage(allValues);
 
   const steps: OnboardingStepData[] = STEP_TITLES.map((title, index) => ({
     stepNumber: index + 1,
