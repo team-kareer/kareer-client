@@ -31,9 +31,9 @@ const SECONDARY_MAJOR_OPTIONS = [
 
 const TARGET_JOB_OPTIONS = [
   'Developer',
-  'Data Analyst',
+  'Production',
   'Marketer',
-  'Business / Sales',
+  'Planning & Strategy',
 ];
 
 // 직무별 스킬/경험 옵션

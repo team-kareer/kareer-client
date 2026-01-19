@@ -108,7 +108,7 @@ export const validateVisaExpirationDate = (
     const oneYearLater = new Date(issuance);
     oneYearLater.setFullYear(oneYearLater.getFullYear() + 2);
 
-    if (expiration < oneYearLater) {
+    if (expiration > oneYearLater) {
       return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_ONE_YEAR;
     }
   } else if (visaType === 'D-10') {
