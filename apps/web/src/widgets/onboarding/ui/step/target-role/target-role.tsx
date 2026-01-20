@@ -1,4 +1,4 @@
-import { Autocomplete, Checkbox } from '@kds/ui';
+import { Autocomplete, Checkbox, Input } from '@kds/ui';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
@@ -61,10 +61,9 @@ const TargetRole = () => {
             name="secondaryMajor"
             control={control}
             render={({ field }) => (
-              <Autocomplete
+              <Input
                 {...field}
                 placeholder={TARGET_ROLE_PLACEHOLDERS.SECONDARY_MAJOR}
-                options={SECONDARY_MAJOR_OPTIONS}
               />
             )}
           />
