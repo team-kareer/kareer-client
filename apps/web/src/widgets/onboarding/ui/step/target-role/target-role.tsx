@@ -1,5 +1,8 @@
 import { Autocomplete, Checkbox, Input } from '@kds/ui';
+import { useQuery } from '@tanstack/react-query';
 import { Controller, useFormContext } from 'react-hook-form';
+
+import { MAJOR_LIST_QUERY_OPTIONS } from '@entities/onboarding';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
@@ -9,17 +12,11 @@ import { TARGET_JOB_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './target-role.css';
 
-// // TODO: 임시 옵션 아이템 -> API 연동 후 삭제
-const MAJOR_OPTIONS = [
-  'Computer Science',
-  'Mathematics',
-  'Physics',
-  'Chemistry',
-  'Biology',
-];
-
 const TargetRole = () => {
   const { control } = useFormContext<OnboardingForm>();
+  const { data: majorList } = useQuery({
+    ...MAJOR_LIST_QUERY_OPTIONS.GET_MAJOR_LIST(),
+  });
   const { targetJob, selectedSkills, currentJobSkills, handleSkillToggle } =
     useTargetJobSkills();
 
@@ -37,7 +34,7 @@ const TargetRole = () => {
               <Autocomplete
                 {...field}
                 placeholder={TARGET_ROLE_PLACEHOLDERS.PRIMARY_MAJOR}
-                options={MAJOR_OPTIONS}
+                options={majorList?.majors || []}
               />
             )}
           />
