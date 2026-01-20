@@ -1,16 +1,15 @@
 import { Tag } from '@kds/ui';
+import { useMutation } from '@tanstack/react-query';
 
 import ActionCard from '@widgets/roadmap/ui/action-card';
+import { TODO_MUTATION_OPTIONS } from '@features/todo/queries/queires';
+import { components } from '@shared/types/schema';
 
 import * as styles from './action-required.css';
 
 const TITLE = 'Action Required';
 
-interface ActionRequiredItem {
-  title: string;
-  subTitle: string;
-  dueDate: string;
-}
+type ActionRequiredItem = components['schemas']['ActionResponse'];
 
 interface ActionRequiredGroup {
   count: number;
@@ -40,6 +39,14 @@ const ActionRequired = ({ data }: ActionRequiredProps) => {
     'Career',
     'Done',
   ];
+  const { mutate } = useMutation({ ...TODO_MUTATION_OPTIONS.POST_TODO() });
+
+  const handleTodoItem = (phaseActionId?: number) => {
+    if (phaseActionId == null) {
+      return;
+    }
+    mutate(phaseActionId);
+  };
 
   return (
     <section className={styles.container}>
@@ -61,10 +68,11 @@ const ActionRequired = ({ data }: ActionRequiredProps) => {
             {group.list.map((item, index) => (
               <ActionCard
                 key={`${type}-${index}`}
-                title={item.title}
-                subTitle={item.subTitle}
-                dueDate={item.dueDate}
+                title={item.title ?? ''}
+                subTitle={item.description ?? ''}
+                dueDate={item.deadline ?? ''}
                 disabled={type === 'Done'}
+                onClick={() => handleTodoItem(item.phaseActionId)}
               />
             ))}
           </section>
