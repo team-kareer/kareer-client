@@ -2,13 +2,14 @@ import { Autocomplete, Checkbox, Input } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { MAJOR_LIST_QUERY_OPTIONS } from '@entities/onboarding';
-
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
-import { type OnboardingForm } from '@entities/onboarding';
-import { TARGET_JOB_OPTIONS } from '@entities/onboarding';
+import {
+  MAJOR_LIST_QUERY_OPTIONS,
+  type OnboardingForm,
+  TARGET_JOB_OPTIONS,
+} from '@entities/onboarding';
 
 import * as styles from './target-role.css';
 

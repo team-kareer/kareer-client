@@ -8,10 +8,10 @@ export * from './model/steps';
 export * from './model/storage';
 export * from './model/target-job-skills';
 export * from './model/validation';
+export * from './qureies';
 export { END_POINT } from './model/end_point';
 export {
   type GetMajorListResponse,
   type OnboardingForm,
   type OnboardingFormRequest,
 } from './model/types';
-export * from './qureies';
