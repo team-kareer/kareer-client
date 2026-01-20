@@ -1,4 +1,4 @@
-import { ActionTodoButton } from '@features/phase';
+import { ActionTodoButton } from '@features/todo';
 import { ActionRequiredCard } from '@entities/phase';
 
 interface ActionCardProps {
