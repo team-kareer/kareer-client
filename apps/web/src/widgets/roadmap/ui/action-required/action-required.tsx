@@ -1,8 +1,9 @@
 import { Tag } from '@kds/ui';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import ActionCard from '@widgets/roadmap/ui/action-card';
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries/queires';
+import { TODO_QUERY_KEY } from '@entities/todo';
 import { components } from '@shared/types/schema';
 
 import * as styles from './action-required.css';
@@ -39,7 +40,15 @@ const ActionRequired = ({ data }: ActionRequiredProps) => {
     'Career',
     'Done',
   ];
-  const { mutate } = useMutation({ ...TODO_MUTATION_OPTIONS.POST_TODO() });
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    ...TODO_MUTATION_OPTIONS.POST_TODO(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: TODO_QUERY_KEY.TODO_LIST(),
+      });
+    },
+  });
 
   const handleTodoItem = (phaseActionId?: number) => {
     if (phaseActionId == null) {
