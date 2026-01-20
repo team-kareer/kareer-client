@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getUserStatus } from '@entities/user/api/get-user-status';
+import { getUserStatus } from '@entities/user';
 
 import { USER_STATUS_QUERY_KEY } from './query-key';
 
