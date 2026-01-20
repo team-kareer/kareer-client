@@ -1,5 +1,5 @@
-import { END_POINT } from '@entities/onboarding';
 import type { GetMajorListResponse } from '@entities/onboarding';
+import { END_POINT } from '@entities/onboarding';
 import { api } from '@shared/apis/configs/instance';
 
 export const getMajorList = async () => {
