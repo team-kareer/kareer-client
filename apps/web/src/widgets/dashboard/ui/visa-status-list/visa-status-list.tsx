@@ -18,7 +18,7 @@ export const VisaStatusList = () => {
     return null;
   }
 
-  const renderData = getVisaStatusRenderData(data);
+  const renderData = getVisaStatusRenderData(data.data);
 
   if (!renderData) {
     return null;
@@ -29,7 +29,7 @@ export const VisaStatusList = () => {
     <div className={styles.container}>
       <VisaStatusCard icon={<DefaultStatusIcon />} {...currentVisa} />
 
-      {data.visaType === 'D2' ? (
+      {data.data?.visaType === 'D2' ? (
         <VisaStatusCard icon={<GraduationCountDownIcon />} {...graduation} />
       ) : (
         <VisaStatusCard icon={<RemainingStayIcon />} {...remaining} />

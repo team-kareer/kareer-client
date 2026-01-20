@@ -16,6 +16,5 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "workbench.experimental.cloudChanges.partialMatches.enabled": true
+  }
 }
