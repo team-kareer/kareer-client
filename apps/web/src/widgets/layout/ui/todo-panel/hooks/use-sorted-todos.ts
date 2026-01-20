@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
+import type { components } from '@shared/types/schema';
+
 type TabKey = 'visa' | 'career';
 
-type Todo = {
-  id: number;
-  title: string;
-  isChecked: boolean;
-  dueDate: string;
-};
+type Todo = components['schemas']['ActionItemResponse'];
 
 type TodosByTab = {
   visa: Todo[];
@@ -19,12 +16,12 @@ const sortByCheckedAndDueDate = (list: Todo[]) => {
 
   return [...list].sort((firstTodo, secondTodo) => {
     const checkedDiff =
-      Number(firstTodo.isChecked) - Number(secondTodo.isChecked);
+      Number(firstTodo.completed) - Number(secondTodo.completed);
     if (checkedDiff !== 0) {
       return checkedDiff;
     }
 
-    return toTime(firstTodo.dueDate) - toTime(secondTodo.dueDate);
+    return toTime(firstTodo.deadline ?? '') - toTime(secondTodo.deadline ?? '');
   });
 };
 
@@ -53,7 +50,9 @@ export const useSortedTodos = (initialTodos: TodosByTab) => {
       ...prev,
       [tab]: sortByCheckedAndDueDate(
         prev[tab].map((todo) =>
-          todo.id === id ? { ...todo, isChecked: !todo.isChecked } : todo,
+          todo.actionItemId === id
+            ? { ...todo, completed: !todo.completed }
+            : todo,
         ),
       ),
     }));

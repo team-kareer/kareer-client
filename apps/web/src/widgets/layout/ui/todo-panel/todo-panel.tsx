@@ -1,6 +1,8 @@
 import { Button, Tab, useTabContext } from '@kds/ui';
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
+import { TODO_QUERY_OPTIONS } from '@entities/todo/queries/queries';
 import TodoItem from '@entities/todo/ui/todo-item/todo-item';
 import { ROUTE_PATH } from '@shared/router/path';
 import { EmptyLayout } from '@shared/ui';
@@ -15,27 +17,13 @@ const TABS = [
   { id: 2, value: 'career', label: 'Career' },
 ] as const;
 
-const MOCK_TODO = {
-  visa: [],
-  career: [
-    {
-      id: 1,
-      title: 'career 투두',
-      isChecked: false,
-      dueDate: '2026-01-24T00:00:00Z',
-    },
-    {
-      id: 2,
-      title: 'Submit OPT Application',
-      isChecked: false,
-      dueDate: '2026-01-25T00:00:00Z',
-    },
-  ],
-};
-
 const TodoPanel = () => {
   const navigate = useNavigate();
-  const { todos, toggleTodo } = useSortedTodos(MOCK_TODO);
+  const { data } = useQuery({ ...TODO_QUERY_OPTIONS.GET_TODO_LIST() });
+  const { todos, toggleTodo } = useSortedTodos({
+    visa: data?.visaActionItems ?? [],
+    career: data?.careerActionItems ?? [],
+  });
 
   const handleAddTodo = () => {
     navigate(ROUTE_PATH.ROADMAP);
@@ -57,16 +45,18 @@ const TodoPanel = () => {
               {isEmpty ? (
                 <EmptyLayout variant="card" onAction={handleAddTodo} />
               ) : (
-                currentTodos.map(({ id, title, isChecked, dueDate }) => (
-                  <TodoItem
-                    key={id}
-                    title={title}
-                    description={formatDueInDays(dueDate)}
-                    size="sm"
-                    isChecked={isChecked}
-                    onToggle={() => toggleTodo(value, id)}
-                  />
-                ))
+                currentTodos.map(
+                  ({ actionItemId, title, completed, deadline }) => (
+                    <TodoItem
+                      key={actionItemId}
+                      title={title ?? ''}
+                      description={formatDueInDays(deadline ?? '')}
+                      size="sm"
+                      isChecked={completed ?? false}
+                      onToggle={() => toggleTodo(value, Number(actionItemId))}
+                    />
+                  ),
+                )
               )}
             </Tab.Panel>
           );
