@@ -6,17 +6,15 @@ import { type OnboardingForm } from '@entities/onboarding';
 
 import * as styles from './onboarding-degree-step.css';
 
-const SOUTH_KOREA_DEGREE_OPTIONS = [
-  'Associate Degree',
+const OUTSIDE_KOREA_DEGREE_OPTIONS = [
   "Bachelor's Degree",
   "Master's Degree",
   'Doctoral(PhD)',
 ];
 
-const OUTSIDE_KOREA_DEGREE_OPTIONS = [
-  "Bachelor's Degree",
-  "Master's Degree",
-  'Doctoral(PhD)',
+const SOUTH_KOREA_DEGREE_OPTIONS = [
+  'Associate Degree',
+  ...OUTSIDE_KOREA_DEGREE_OPTIONS,
 ];
 
 /**
