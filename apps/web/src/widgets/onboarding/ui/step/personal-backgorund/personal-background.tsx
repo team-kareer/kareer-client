@@ -1,20 +1,20 @@
-import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { ChangeEvent } from 'react';
 import { BangCircleIcon } from '@kds/icons';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
-import { type OnboardingForm } from '@entities/onboarding';
-import { TextField } from '@shared/ui/text-field/text-field';
-import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeholders';
 import {
-  PERSONAL_BACKGROUND_TITLE,
   PERSONAL_BACKGROUND_DESCRIPTION,
   PERSONAL_BACKGROUND_INFO_MESSAGES,
+  PERSONAL_BACKGROUND_TITLE,
 } from '@widgets/onboarding/constants/personal-background';
+import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeholders';
+import { type OnboardingForm } from '@entities/onboarding';
 import {
   FIELD_MAX_LENGTHS,
   getPlaceholderByTargetJob,
 } from '@entities/onboarding';
+import { TextField } from '@shared/ui/text-field/text-field';
 
 import * as styles from './personal-background.css';
 

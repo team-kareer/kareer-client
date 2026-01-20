@@ -1,5 +1,5 @@
-import { type OnboardingForm } from './types';
 import { STEP_REQUIRED_FIELDS, VISA_TYPE_REQUIRED_FIELDS } from './constants';
+import { type OnboardingForm } from './types';
 
 const VISA_STEP_INDEX = 1;
 

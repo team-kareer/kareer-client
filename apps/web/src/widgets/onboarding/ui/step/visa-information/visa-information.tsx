@@ -1,16 +1,17 @@
 import { Autocomplete, Input } from '@kds/ui';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
-import { type OnboardingForm } from '@entities/onboarding';
-import * as styles from './visa-information.css';
-import { Controller, useFormContext } from 'react-hook-form';
+import { VISA_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
+import { useVisaInformation } from '@features/onboarding/hooks/useVisaInformation';
 import {
   validateDate,
   validateNumber,
   validateVisaExpirationDate,
 } from '@features/onboarding/hooks/validators';
-import { useVisaInformation } from '@features/onboarding/hooks/useVisaInformation';
-import { VISA_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
+import { type OnboardingForm } from '@entities/onboarding';
+
+import * as styles from './visa-information.css';
 
 // 임시 옵션 데이터
 const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];

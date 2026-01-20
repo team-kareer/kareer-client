@@ -1,16 +1,15 @@
 import { Autocomplete, Input } from '@kds/ui';
-
 import { Controller, useFormContext } from 'react-hook-form';
-import { type OnboardingForm } from '@entities/onboarding';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
+import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import {
   validateDate,
   validateName,
 } from '@features/onboarding/hooks/validators';
+import { type OnboardingForm } from '@entities/onboarding';
 
 import * as styles from './personal-information.css';
-import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 
 const NON_BREAKING_SPACE = '\u00A0';
 

@@ -9,6 +9,7 @@ import type { OnboardingForm, OnboardingFormRequest } from './types';
 export const convertFormToRequest = (
   formData: OnboardingForm,
 ): OnboardingFormRequest => {
-  const { degreeLocation, ...requestData } = formData;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { degreeLocation: _degreeLocation, ...requestData } = formData;
   return requestData;
 };

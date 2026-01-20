@@ -1,14 +1,12 @@
 import { Autocomplete, Checkbox } from '@kds/ui';
-
-import { Controller } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
+import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
+import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
 import { type OnboardingForm } from '@entities/onboarding';
 
 import * as styles from './target-role.css';
-import { useFormContext } from 'react-hook-form';
-import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
-import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
 
 const MAJOR_OPTIONS = [
   'Computer Science',

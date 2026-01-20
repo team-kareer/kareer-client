@@ -34,10 +34,10 @@ export const validateDate = (value: string, allowFuture = false) => {
   }
 
   // 완전한 형식 체크 (YYYY-MM-DD)
-  const regex = /^\d{4}\-\d{2}\-\d{2}$/;
+  const regex = /^\d{4}-\d{2}-\d{2}$/;
   if (!regex.test(value)) {
     // 부분 형식 체크 (입력 중일 때는 통과)
-    const partialPattern = /^(\d{0,4})(\-\d{0,2})?(\-\d{0,2})?$/;
+    const partialPattern = /^(\d{0,4})(-\d{0,2})?(-\d{0,2})?$/;
     if (partialPattern.test(value)) {
       return true; // 입력 중이면 통과
     }
@@ -112,7 +112,7 @@ export const validateVisaExpirationDate = (
   }
 
   // 날짜 형식 체크
-  const dateRegex = /^\d{4}\-\d{2}\-\d{2}$/;
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
   if (!dateRegex.test(expirationDate) || !dateRegex.test(issuanceDate)) {
     return true; // 형식 체크는 validateDate에서 처리
   }

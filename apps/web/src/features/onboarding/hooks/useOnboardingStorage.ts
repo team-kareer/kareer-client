@@ -1,6 +1,7 @@
-import { STORAGE_KEY } from '@entities/onboarding/model/constants';
 import { useEffect } from 'react';
-import { OnboardingForm } from '@entities/onboarding/model/types';
+
+import { type OnboardingForm } from '@entities/onboarding';
+import { STORAGE_KEY } from '@entities/onboarding/model/constants';
 
 export const useOnboardingStorage = (allValues: OnboardingForm) => {
   useEffect(() => {

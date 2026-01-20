@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import { SymbolPrimaryIcon, LogoTypoIcon } from '@kds/icons';
+import { LogoTypoIcon, SymbolPrimaryIcon } from '@kds/icons';
 import Lottie from 'lottie-react';
+
 import { onboarding_lottie } from '@shared/assets';
 
 import * as styles from './onboarding-layout.css';

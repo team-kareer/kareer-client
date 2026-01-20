@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { useWatch, useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
+
 import { type OnboardingForm } from '@entities/onboarding';
 
 /**

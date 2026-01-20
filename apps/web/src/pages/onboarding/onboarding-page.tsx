@@ -1,5 +1,5 @@
-import useFunnel from '@shared/hooks/usefunnel';
 import { FormProvider, useForm } from 'react-hook-form';
+
 import {
   OnboardingStepLayout,
   PersonalBackgroundStep,
@@ -7,6 +7,7 @@ import {
   TargetRoleStep,
   VisaInformationStep,
 } from '@widgets/onboarding';
+import { useOnboardingStorage } from '@features/onboarding';
 import { OnboardingForm } from '@entities/onboarding';
 import {
   DEFAULT_ONBOARDING_FORM,
@@ -17,8 +18,8 @@ import {
   getRequiredFieldsForStep,
   hasAllRequiredFieldValues,
 } from '@entities/onboarding';
-import { getLocalStorageData, createStepData } from '@entities/onboarding';
-import { useOnboardingStorage } from '@features/onboarding';
+import { createStepData, getLocalStorageData } from '@entities/onboarding';
+import useFunnel from '@shared/hooks/usefunnel';
 
 const OnboardingPage = () => {
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =

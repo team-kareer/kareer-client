@@ -3,6 +3,7 @@ import { Autocomplete, Button, Tab, useTabContext } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { type OnboardingForm } from '@entities/onboarding';
+
 import * as styles from './onboarding-degree-step.css';
 
 const SOUTH_KOREA_DEGREE_OPTIONS = [
@@ -22,7 +23,9 @@ const OUTSIDE_KOREA_DEGREE_OPTIONS = [
  * @param value - API에서 받은 학위
  */
 const getDegreeLabel = (value: string): string => {
-  if (!value) return '';
+  if (!value) {
+    return '';
+  }
 
   // SOUTHKOREA_ 또는 OUTSIDEKOREA_ 접두사 제거
   if (value.startsWith('SOUTHKOREA_')) {
