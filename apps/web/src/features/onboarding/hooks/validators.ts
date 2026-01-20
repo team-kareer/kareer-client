@@ -1,5 +1,8 @@
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
 
+const D10_MIN_VISA_POINT = 60;
+const D10_MAX_VISA_POINT = 190;
+
 /**
  * 비자 포인트 숫자 값 검증
  * @description 숫자 형식이며 60 초과 190 이하인지 검증
@@ -11,7 +14,10 @@ export const validateNumber = (value: string) => {
   if (!/^\d+$/.test(value)) {
     return VALIDATION_MESSAGE.NUMEBR.INVALID;
   }
-  if (Number(value) <= 60 || Number(value) > 190) {
+  if (
+    Number(value) <= D10_MIN_VISA_POINT ||
+    Number(value) > D10_MAX_VISA_POINT
+  ) {
     return VALIDATION_MESSAGE.NUMEBR.INVALID;
   }
   return true;
