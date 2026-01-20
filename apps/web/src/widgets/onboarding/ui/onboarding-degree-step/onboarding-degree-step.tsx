@@ -18,33 +18,46 @@ const SOUTH_KOREA_DEGREE_OPTIONS = [
 ];
 
 /**
- * @param value - API에서 받은 학위
+ * API 값(서버 형식)을 표시용 텍스트로 변환하는 함수
+ * @returns 표시용 텍스트
  */
 const getDegreeLabel = (value: string): string => {
   if (!value) {
     return '';
   }
 
-  // SOUTHKOREA_ 또는 OUTSIDEKOREA_ 접두사 제거
-  if (value.startsWith('SOUTHKOREA_')) {
-    return value.replace('SOUTHKOREA_', '');
-  }
-  if (value.startsWith('OUTSIDEKOREA_')) {
-    return value.replace('OUTSIDEKOREA_', '');
-  }
+  // 표시 텍스트 매핑
+  const degreeMap: Record<string, string> = {
+    DOMESTIC_ASSOCIATE: 'Associate Degree',
+    DOMESTIC_BACHELORS: "Bachelor's Degree",
+    DOMESTIC_MASTERS: "Master's Degree",
+    DOMESTIC_DOCTORATE: 'Doctoral(PhD)',
+    OVERSEAS_BACHELORS: "Bachelor's Degree",
+    OVERSEAS_MASTERS: "Master's Degree",
+    OVERSEAS_DOCTORATE: 'Doctoral(PhD)',
+  };
 
-  return value; // 접두사가 없으면 원본 값 반환
+  return degreeMap[value] || value;
 };
 
 /**
- * 표시용 텍스트를 API 값으로 변환하는 함수
- * @returns {string} API에 전송할 형식의 값
- * @description 학위 지역에 따라 적절한 접두사를 추가하여 API 형식으로 변환
+ * 표시용 텍스트를 API 값(서버 형식)으로 변환하는 함수
+ * @param label - 표시용 텍스트
  */
 const getDegreeValue = (label: string, degreeLocation: string): string => {
-  const prefix =
-    degreeLocation === 'south-korea' ? 'SOUTHKOREA_' : 'OUTSIDEKOREA_';
-  return `${prefix}${label}`;
+  const prefix = degreeLocation === 'south-korea' ? 'DOMESTIC_' : 'OVERSEAS_';
+
+  // 표시 텍스트 -> API 값 매핑
+  const labelToDegreeMap: Record<string, string> = {
+    'Associate Degree': 'ASSOCIATE',
+    "Bachelor's Degree": 'BACHELORS',
+    "Master's Degree": 'MASTERS',
+    'Doctoral(PhD)': 'DOCTORATE',
+  };
+
+  const degreeType =
+    labelToDegreeMap[label] || label.toUpperCase().replace(/\s+/g, '_');
+  return `${prefix}${degreeType}`;
 };
 
 export const DegreeLocationButton = ({

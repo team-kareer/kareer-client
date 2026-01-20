@@ -1,4 +1,4 @@
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import {
   OnboardingStepLayout,
@@ -38,15 +38,24 @@ const OnboardingPage = () => {
   });
 
   // 버튼 비활성화 로직
-  const allValues = form.watch();
-  const requiredFields = getRequiredFieldsForStep(
-    currentStepIndex,
-    allValues.visaType,
-  );
+  // 필요한 필드만 선택적으로 감시 (전체 구독 방지)
+  const visaType = useWatch({ control: form.control, name: 'visaType' });
+  const requiredFields = getRequiredFieldsForStep(currentStepIndex, visaType);
+
+  // 현재 단계의 필수 필드만 감시
+  const watchedRequiredFields = useWatch({
+    control: form.control,
+    name: requiredFields,
+  });
+
+  // 전체 폼 값 감시 (로컬스토리지 저장용)
+  const allFormValues = useWatch({
+    control: form.control,
+  }) as OnboardingForm;
 
   // 모든 필드 존재 체크
   const hasAllRequiredValues = hasAllRequiredFieldValues(
-    allValues,
+    { ...allFormValues, ...watchedRequiredFields } as OnboardingForm,
     requiredFields,
   );
 
@@ -58,7 +67,7 @@ const OnboardingPage = () => {
     form.formState.isLoading || !hasAllRequiredValues || hasStepErrors;
 
   // 로컬스토리지 저장
-  useOnboardingStorage(allValues);
+  useOnboardingStorage(allFormValues);
 
   const steps = createStepData(STEP_TITLES, currentStepIndex);
 
