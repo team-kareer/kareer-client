@@ -1265,7 +1265,6 @@ export interface components {
       message?: string;
       data?: components['schemas']['MemberStatusResponse'];
     };
-    // 여기 !
     MemberStatusResponse: {
       /**
        * @description 비자 상태

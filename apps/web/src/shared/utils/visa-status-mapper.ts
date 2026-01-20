@@ -15,13 +15,13 @@ const formatDate = (dateStr?: string | null) => {
   });
 };
 
-const formatDDayText = (dDay: number | undefined, pastLabel: string = '-') => {
+const formatDDayText = (dDay: number | undefined, dDayLabel: string = '-') => {
   if (dDay === undefined) {
     return '-';
   }
 
   if (dDay < 0) {
-    return pastLabel;
+    return dDayLabel;
   }
   if (dDay === 0) {
     return 'D-Day';
