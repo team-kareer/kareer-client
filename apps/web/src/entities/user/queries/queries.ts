@@ -9,7 +9,6 @@ export const USER_STATUS_QUERY_OPTIONS = {
     return queryOptions({
       queryKey: USER_STATUS_QUERY_KEY.USER_STATUS(),
       queryFn: getUserStatus,
-      select: (response) => response.data,
     });
   },
 };
