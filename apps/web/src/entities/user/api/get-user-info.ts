@@ -4,8 +4,8 @@ import { END_POINT } from '../model/end_point';
 import { GetUserInfoResponse } from '../model/types';
 
 export const getUserInfo = async () => {
-  const response = api
+  const response = await api
     .get(END_POINT.USER.GET_USER_INFO)
     .json<GetUserInfoResponse>();
-  return response;
+  return response.data;
 };
