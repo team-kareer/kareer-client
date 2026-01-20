@@ -82,16 +82,16 @@ const OnboardingPage = () => {
         isNextDisabled={isNextDisabled}
       >
         <Funnel>
-          <Step name={FUNNEL_STEPS[0]}>
+          <Step name="PersonalInformation">
             <PersonalInformationStep />
           </Step>
-          <Step name={FUNNEL_STEPS[1]}>
+          <Step name="VisaInformation">
             <VisaInformationStep />
           </Step>
-          <Step name={FUNNEL_STEPS[2]}>
+          <Step name="TargetRole">
             <TargetRoleStep />
           </Step>
-          <Step name={FUNNEL_STEPS[3]}>
+          <Step name="Background">
             <PersonalBackgroundStep />
           </Step>
         </Funnel>
