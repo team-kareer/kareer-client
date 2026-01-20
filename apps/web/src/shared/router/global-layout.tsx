@@ -5,6 +5,7 @@ import { Outlet } from 'react-router';
 
 import ErrorPage from '@pages/error/error';
 import { AppLayout } from '@widgets/layout';
+import { PageLoader } from '@shared/ui';
 
 const GlobalLayout = () => {
   return (
@@ -15,7 +16,7 @@ const GlobalLayout = () => {
             onReset={reset}
             fallback={({ resetError }) => <ErrorPage onAction={resetError} />}
           >
-            <Suspense fallback={null}>
+            <Suspense fallback={<PageLoader />}>
               <Outlet />
             </Suspense>
           </Sentry.ErrorBoundary>
