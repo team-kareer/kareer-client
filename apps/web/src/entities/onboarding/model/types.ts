@@ -16,3 +16,9 @@ export interface OnboardingForm {
   targetJobSkill: string;
   personalBackground: string;
 }
+
+/**
+ * API 요청용 온보딩 폼 타입
+ * @description degreeLocation은 UI에서만 사용하고 API에는 전송하지 않음
+ */
+export type OnboardingFormRequest = Omit<OnboardingForm, 'degreeLocation'>;

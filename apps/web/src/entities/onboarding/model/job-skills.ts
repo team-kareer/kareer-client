@@ -4,6 +4,10 @@ export interface SkillOption {
   description: string;
 }
 
+/**
+ * 직무별 스킬 옵션 배열
+ * @description 각 직무에 대한 스킬 체크박스 옵션
+ */
 export const JOB_SKILL_OPTIONS: Record<string, SkillOption[]> = {
   Developer: [
     {

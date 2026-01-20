@@ -1,6 +1,6 @@
 import { Autocomplete, Checkbox } from '@kds/ui';
 
-import { Controller, useWatch } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { type OnboardingForm } from '@entities/onboarding';
@@ -8,7 +8,7 @@ import { type OnboardingForm } from '@entities/onboarding';
 import * as styles from './target-role.css';
 import { useFormContext } from 'react-hook-form';
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
-import { JOB_SKILL_OPTIONS } from '@entities/onboarding';
+import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
 
 const MAJOR_OPTIONS = [
   'Computer Science',
@@ -34,40 +34,9 @@ const TARGET_JOB_OPTIONS = [
 ];
 
 const TargetRole = () => {
-  const {
-    control,
-    setValue,
-    // formState: { errors },
-  } = useFormContext<OnboardingForm>();
-
-  const targetJob = useWatch({
-    control,
-    name: 'targetJob',
-    defaultValue: '',
-  });
-
-  const targetJobSkill = useWatch({
-    control,
-    name: 'targetJobSkill',
-    defaultValue: '',
-  });
-
-  // 선택된 스킬들을 배열로 변환
-  const selectedSkills = targetJobSkill
-    ? targetJobSkill.split(',').filter(Boolean)
-    : [];
-
-  // 현재 직무에 해당하는 스킬 옵션들
-  const currentJobSkills = targetJob ? JOB_SKILL_OPTIONS[targetJob] || [] : [];
-
-  // 스킬 체크박스 토글
-  const handleSkillToggle = (skillId: string) => {
-    const isSelected = selectedSkills.includes(skillId);
-    const newSkills = isSelected
-      ? selectedSkills.filter((id) => id !== skillId)
-      : [...selectedSkills, skillId];
-    setValue('targetJobSkill', newSkills.join(','));
-  };
+  const { control } = useFormContext<OnboardingForm>();
+  const { targetJob, selectedSkills, currentJobSkills, handleSkillToggle } =
+    useTargetJobSkills();
 
   return (
     <section>

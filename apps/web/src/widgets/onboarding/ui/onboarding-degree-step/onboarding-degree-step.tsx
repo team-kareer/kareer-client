@@ -18,7 +18,9 @@ const OUTSIDE_KOREA_DEGREE_OPTIONS = [
   'Doctoral(PhD)',
 ];
 
-// API 값을 표시 텍스트로 변환하는 함수
+/**
+ * @param value - API에서 받은 학위
+ */
 const getDegreeLabel = (value: string): string => {
   if (!value) return '';
 
@@ -33,6 +35,11 @@ const getDegreeLabel = (value: string): string => {
   return value; // 접두사가 없으면 원본 값 반환
 };
 
+/**
+ * 표시용 텍스트를 API 값으로 변환하는 함수
+ * @returns {string} API에 전송할 형식의 값
+ * @description 학위 지역에 따라 적절한 접두사를 추가하여 API 형식으로 변환
+ */
 const getDegreeValue = (label: string, degreeLocation: string): string => {
   const prefix =
     degreeLocation === 'south-korea' ? 'SOUTHKOREA_' : 'OUTSIDEKOREA_';

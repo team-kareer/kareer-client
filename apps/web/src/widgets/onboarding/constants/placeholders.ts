@@ -1,3 +1,6 @@
+/**
+ * Personal Information placeholder
+ */
 export const PERSONAL_INFORMATION_PLACEHOLDERS = {
   NAME: 'Enter your name',
   DATE: 'Enter the Date',
@@ -6,6 +9,10 @@ export const PERSONAL_INFORMATION_PLACEHOLDERS = {
   DEGREE: 'Select the degree',
 } as const;
 
+/**
+ * Visa Information placeholder
+ * @constant
+ */
 export const VISA_INFORMATION_PLACEHOLDERS = {
   CURRENT_VISA_TYPE: 'Select the visa type',
   ISSUANCE_DATE: 'Enter the Date',
@@ -14,12 +21,18 @@ export const VISA_INFORMATION_PLACEHOLDERS = {
   NUMBER: 'Enter the Number',
 } as const;
 
+/**
+ * Target Role placeholder
+ */
 export const TARGET_ROLE_PLACEHOLDERS = {
   PRIMARY_MAJOR: 'Enter your major',
   SECONDARY_MAJOR: 'Enter your major',
   TARGET_JOB: 'Enter your job',
 } as const;
 
+/**
+ * Target Job에 따라 Personal Background placeholder 텍스트 매핑
+ */
 export const PLACEHOLDER_BY_TARGET_JOB: Record<string, string> = {
   'Business / Sales':
     "e.g. [Academic] In my 'Global Marketing' course, I analyzed consumer trends in my home country and presented an entry strategy for Korean appliances, earning an A+. [Professional] Later, as a trade intern, I managed email correspondence with buyers and assisted in preparing trade documents like Invoices.",

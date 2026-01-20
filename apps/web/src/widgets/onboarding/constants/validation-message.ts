@@ -1,3 +1,11 @@
+/**
+ * 폼 검증 시 사용되는 에러 메시지 상수
+ * @constant
+ * @property NUMEBR - 숫자 검증 관련
+ * @property DATE - 날짜 검증 관련
+ * @property VISA - 비자 검증 관련
+ * @property NAME - 이름 검증 관련
+ */
 export const VALIDATION_MESSAGE = {
   NUMEBR: {
     INVALID: 'Please enter a valid number',

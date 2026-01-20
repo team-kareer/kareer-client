@@ -1,5 +1,9 @@
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
 
+/**
+ * 비자 포인트 숫자 값 검증
+ * @description 숫자 형식이며 60 초과 190 이하인지 검증
+ */
 export const validateNumber = (value: string) => {
   if (!value) {
     return VALIDATION_MESSAGE.NUMEBR.INVALID;
@@ -13,6 +17,12 @@ export const validateNumber = (value: string) => {
   return true;
 };
 
+/**
+ * 날짜 형식을 검증하는 함수
+ * @param value - 검증할 날짜 문자열
+ * @param [allowFuture=false] - 미래 날짜 허용 여부
+ * @description YYYY-MM-DD 형식 검증 및 유효한 날짜인지 확인, false면 미래 날짜 거부
+ */
 export const validateDate = (value: string, allowFuture = false) => {
   if (!value) {
     return true;
@@ -62,6 +72,12 @@ export const validateDate = (value: string, allowFuture = false) => {
   return true;
 };
 
+/**
+ * 이름 값을 검증하는 함수
+ * @param value - 검증할 이름 문자열
+ * @returns 검증 통과 시 true, 실패 시 에러 메시지 반환
+ * @description 공백 있는지 체크하고 특수문자 사용 여부 검증
+ */
 export const validateName = (value: string) => {
   // 공백
   if (value.trim().length === 0) {
@@ -77,6 +93,14 @@ export const validateName = (value: string) => {
   return true;
 };
 
+/**
+ * 비자 만료일을 검증하는 함수
+ * @param expirationDate - 검증할 만료일
+ * @param visaType - 비자 타입
+ * @param issuanceDate - 비자 발급일
+ * @returns 검증 통과 시 true, 실패 시 에러 메시지 반환
+ * @description 발급일 이후인지 확인하고, 비자 타입별 규칙 검증 (D-2: 발급일로부터 2년 이내, D-10: 발급일로부터 6개월 이상)
+ */
 export const validateVisaExpirationDate = (
   expirationDate: string,
   visaType: string | undefined,
