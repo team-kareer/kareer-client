@@ -24,6 +24,12 @@ export const label = style({
   paddingBottom: '0.8rem',
 });
 
+export const errorMessage = style({
+  ...typography.cap2_m_12,
+  color: themeVars.color.pastel.kared_500,
+  marginTop: '0.8rem',
+});
+
 export const buttonWrapper = style({
   ...typography.cap2_m_12,
   color: themeVars.color.pastel.kared_500,

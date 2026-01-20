@@ -1,5 +1,8 @@
 import { ReactNode } from 'react';
-import { LogoIcon, LogoTypoIcon } from '@kds/icons';
+import { LogoTypoIcon, SymbolPrimaryIcon } from '@kds/icons';
+import Lottie from 'lottie-react';
+
+import { onboarding_lottie } from '@shared/assets';
 
 import * as styles from './onboarding-layout.css';
 
@@ -12,12 +15,14 @@ const DESCRIPTION_TEXT = `Guiding your career journey\nwith trusted visa and car
 const OnboardingLayout = ({ children }: OnboardingLayoutProps) => {
   return (
     <div className={styles.container}>
+      <div className={styles.lottieWrapper}>
+        <Lottie animationData={onboarding_lottie} loop={true} />
+      </div>
       <div className={styles.introSection}>
         <span className={styles.logoWrapper}>
-          <LogoIcon className={styles.logoIcon} width={28} height={28} />
-          <LogoTypoIcon />
+          <SymbolPrimaryIcon width={48} height={48} />
+          <LogoTypoIcon width={121} height={48} />
         </span>
-        <LogoIcon width={326} height={326} />
         <p className={styles.text}>{DESCRIPTION_TEXT}</p>
       </div>
       <div className={styles.stepFormSection}>{children}</div>

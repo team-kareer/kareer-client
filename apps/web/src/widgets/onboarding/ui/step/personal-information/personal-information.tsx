@@ -1,42 +1,26 @@
-import { useState } from 'react';
 import { Autocomplete, Input } from '@kds/ui';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
-import { validateDate } from '@features/onboarding/hooks/validators';
+import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
+import {
+  validateDate,
+  validateName,
+} from '@features/onboarding/hooks/validators';
+import { type OnboardingForm } from '@entities/onboarding';
+import {
+  COUNTRY_OPTIONS,
+  LANGUAGE_LEVEL_OPTIONS,
+} from '@entities/onboarding/model/options';
 
 import * as styles from './personal-information.css';
-
-const PLACEHOLDER = {
-  NAME: 'Enter your name',
-  DATE: 'Enter the Date',
-  COUNTRY: 'Select the Country',
-  OPIK_LEVEL: 'Select the level',
-  DEGREE: 'Select the degree',
-} as const;
 
 const NON_BREAKING_SPACE = '\u00A0';
 
 const PersonalInformation = () => {
-  const [name, setName] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  const [dateError, setDateError] = useState('');
+  const { control } = useFormContext<OnboardingForm>();
 
   const MAX_LENGTH = 30;
-
-  // input 유효성 검사 리뷰 제외!!
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (value.length <= MAX_LENGTH) {
-      setName(value);
-    }
-  };
-
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setDateOfBirth(value);
-    const result = validateDate(value);
-    setDateError(result === true ? '' : result);
-  };
 
   return (
     <section>
@@ -45,46 +29,90 @@ const PersonalInformation = () => {
         {/* Name - 1열 */}
         <div>
           <p className={styles.label}>Name</p>
-          <Input
-            placeholder={PLACEHOLDER.NAME}
-            value={name}
-            onChange={handleNameChange}
+          <Controller
+            name="name"
+            control={control}
+            rules={{
+              required: 'Enter your name',
+              validate: (value) => {
+                const result = validateName(value);
+                return result === true || result;
+              },
+            }}
+            render={({ field, fieldState }) => (
+              <>
+                <Input
+                  {...field}
+                  maxLength={MAX_LENGTH}
+                  status={fieldState.error ? 'error' : 'default'}
+                  placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.NAME}
+                />
+                <p className={styles.textCount}>
+                  {field.value?.length || 0}/{MAX_LENGTH}
+                </p>
+              </>
+            )}
           />
-          <div className={styles.textCount}>
-            {name.length}/{MAX_LENGTH}
-          </div>
         </div>
         {/* Date - 2열 */}
         <div>
-          <p className={styles.label}>Date of Birth(YYYY.MM.DD)</p>
-          <Input
-            placeholder={PLACEHOLDER.DATE}
-            value={dateOfBirth}
-            onChange={handleDateChange}
-            status={dateError ? 'error' : 'default'}
+          <p className={styles.label}>Date of Birth(YYYY-MM-DD)</p>
+          <Controller
+            name="birthDate"
+            control={control}
+            rules={{
+              required: 'Enter the birth',
+              validate: (value) => {
+                const result = validateDate(value);
+                return result === true || result;
+              },
+            }}
+            render={({ field, fieldState }) => (
+              <>
+                <Input
+                  {...field}
+                  placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.DATE}
+                  status={fieldState.error ? 'error' : 'default'}
+                />
+                <p className={styles.errorMessage}>
+                  {fieldState.error?.message || NON_BREAKING_SPACE}
+                </p>
+              </>
+            )}
           />
-          <p className={styles.errorMessage}>
-            {dateError || NON_BREAKING_SPACE}
-          </p>
         </div>
         {/* Country - 1열 */}
         <div className={styles.autoWrapper}>
           <p className={styles.label}>Country</p>
-          <Autocomplete
-            placeholder={PLACEHOLDER.COUNTRY}
-            value={''}
-            onChange={() => {}}
-            options={[]}
+          <Controller
+            name="country"
+            control={control}
+            rules={{ required: 'Select the Country' }}
+            render={({ field }) => (
+              <Autocomplete
+                placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
+                value={field.value || ''}
+                onChange={(value) => field.onChange(value)}
+                options={COUNTRY_OPTIONS}
+              />
+            )}
           />
         </div>
         {/* 오픽 Level - 2열 */}
         <div className={styles.autoWrapper}>
           <p className={styles.label}>OPIK / KIIP Level</p>
-          <Autocomplete
-            placeholder={PLACEHOLDER.OPIK_LEVEL}
-            value={''}
-            onChange={() => {}}
-            options={[]}
+          <Controller
+            name="languageLevel"
+            control={control}
+            rules={{ required: 'Select the level' }}
+            render={({ field }) => (
+              <Autocomplete
+                placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.OPIK_LEVEL}
+                value={field.value || ''}
+                onChange={(value) => field.onChange(value)}
+                options={LANGUAGE_LEVEL_OPTIONS}
+              />
+            )}
           />
         </div>
         {/* Degree - 1열 */}
