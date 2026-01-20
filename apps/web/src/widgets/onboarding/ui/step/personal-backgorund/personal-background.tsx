@@ -48,18 +48,16 @@ const PersonalBackground = () => {
             control={control}
             rules={{ required: 'Enter your personal background' }}
             render={({ field }) => (
-              <>
-                <TextField
-                  {...field}
-                  placeholder={placeholder}
-                  value={field.value || ''}
-                  onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                    field.onChange(e.target.value)
-                  }
-                  maxLength={FIELD_MAX_LENGTHS.PERSONAL_BACKGROUND}
-                  showCount={true}
-                />
-              </>
+              <TextField
+                {...field}
+                placeholder={placeholder}
+                value={field.value || ''}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                  field.onChange(e.target.value)
+                }
+                maxLength={FIELD_MAX_LENGTHS.PERSONAL_BACKGROUND}
+                showCount={true}
+              />
             )}
           />
         </div>

@@ -47,13 +47,11 @@ const TargetRole = () => {
             control={control}
             rules={{ required: 'Enter your major' }}
             render={({ field }) => (
-              <>
-                <Autocomplete
-                  {...field}
-                  placeholder={TARGET_ROLE_PLACEHOLDERS.PRIMARY_MAJOR}
-                  options={MAJOR_OPTIONS}
-                />
-              </>
+              <Autocomplete
+                {...field}
+                placeholder={TARGET_ROLE_PLACEHOLDERS.PRIMARY_MAJOR}
+                options={MAJOR_OPTIONS}
+              />
             )}
           />
         </div>
@@ -63,13 +61,11 @@ const TargetRole = () => {
             name="secondaryMajor"
             control={control}
             render={({ field }) => (
-              <>
-                <Autocomplete
-                  {...field}
-                  placeholder={TARGET_ROLE_PLACEHOLDERS.SECONDARY_MAJOR}
-                  options={SECONDARY_MAJOR_OPTIONS}
-                />
-              </>
+              <Autocomplete
+                {...field}
+                placeholder={TARGET_ROLE_PLACEHOLDERS.SECONDARY_MAJOR}
+                options={SECONDARY_MAJOR_OPTIONS}
+              />
             )}
           />
         </div>
@@ -80,13 +76,11 @@ const TargetRole = () => {
             control={control}
             rules={{ required: 'Enter your job' }}
             render={({ field }) => (
-              <>
-                <Autocomplete
-                  {...field}
-                  placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
-                  options={TARGET_JOB_OPTIONS}
-                />
-              </>
+              <Autocomplete
+                {...field}
+                placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
+                options={TARGET_JOB_OPTIONS}
+              />
             )}
           />
         </div>
