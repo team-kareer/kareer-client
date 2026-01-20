@@ -1,7 +1,7 @@
 import { Autocomplete, Input } from '@kds/ui';
 
 import { Controller, useFormContext } from 'react-hook-form';
-import { type OnboardingForm } from '@widgets/onboarding';
+import { type OnboardingForm } from '@entities/onboarding';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
 import {
@@ -10,14 +10,7 @@ import {
 } from '@features/onboarding/hooks/validators';
 
 import * as styles from './personal-information.css';
-
-const PLACEHOLDER = {
-  NAME: 'Enter your name',
-  DATE: 'Enter the Date',
-  COUNTRY: 'Select the Country',
-  OPIK_LEVEL: 'Select the level',
-  DEGREE: 'Select the degree',
-} as const;
+import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 
 const NON_BREAKING_SPACE = '\u00A0';
 
@@ -67,7 +60,7 @@ const PersonalInformation = () => {
                   {...field}
                   maxLength={MAX_LENGTH}
                   status={fieldState.error ? 'error' : 'default'}
-                  placeholder={PLACEHOLDER.NAME}
+                  placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.NAME}
                 />
                 <p className={styles.textCount}>
                   {field.value?.length || 0}/{MAX_LENGTH}
@@ -93,7 +86,7 @@ const PersonalInformation = () => {
               <>
                 <Input
                   {...field}
-                  placeholder={PLACEHOLDER.DATE}
+                  placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.DATE}
                   status={fieldState.error ? 'error' : 'default'}
                 />
                 <p className={styles.errorMessage}>
@@ -112,7 +105,7 @@ const PersonalInformation = () => {
             rules={{ required: 'Select the Country' }}
             render={({ field }) => (
               <Autocomplete
-                placeholder={PLACEHOLDER.COUNTRY}
+                placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
                 value={field.value || ''}
                 onChange={(value) => field.onChange(value)}
                 options={COUNTRY_OPTIONS}
@@ -129,7 +122,7 @@ const PersonalInformation = () => {
             rules={{ required: 'Select the level' }}
             render={({ field }) => (
               <Autocomplete
-                placeholder={PLACEHOLDER.OPIK_LEVEL}
+                placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.OPIK_LEVEL}
                 value={field.value || ''}
                 onChange={(value) => field.onChange(value)}
                 options={LANGUAGE_LEVEL_OPTIONS}

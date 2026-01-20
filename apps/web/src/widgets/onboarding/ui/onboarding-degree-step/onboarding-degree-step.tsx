@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useRef } from 'react';
 import { Autocomplete, Button, Tab, useTabContext } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
-import { type OnboardingForm } from '@widgets/onboarding';
+import { type OnboardingForm } from '@entities/onboarding';
 import * as styles from './onboarding-degree-step.css';
 
 const SOUTH_KOREA_DEGREE_OPTIONS = [
@@ -19,7 +19,6 @@ const OUTSIDE_KOREA_DEGREE_OPTIONS = [
 ];
 
 // API 값을 표시 텍스트로 변환하는 함수
-// 예: "SOUTHKOREA_Bachelor's Degree" -> "Bachelor's Degree"
 const getDegreeLabel = (value: string): string => {
   if (!value) return '';
 
@@ -34,8 +33,6 @@ const getDegreeLabel = (value: string): string => {
   return value; // 접두사가 없으면 원본 값 반환
 };
 
-// 표시 텍스트를 API 값으로 변환하는 함수
-// 예: "Bachelor's Degree" + "south-korea" -> "SOUTHKOREA_Bachelor's Degree"
 const getDegreeValue = (label: string, degreeLocation: string): string => {
   const prefix =
     degreeLocation === 'south-korea' ? 'SOUTHKOREA_' : 'OUTSIDEKOREA_';
@@ -115,7 +112,6 @@ const OnboardingDegreeStep = () => {
         control={control}
         rules={{ required: 'Select the degree' }}
         render={({ field }) => {
-          // API 값(예: SOUTHKOREA_Bachelor's Degree)을 표시 텍스트로 변환
           const displayValue = field.value ? getDegreeLabel(field.value) : '';
 
           return (
@@ -124,7 +120,6 @@ const OnboardingDegreeStep = () => {
               value={displayValue}
               onChange={(label) => {
                 // 표시 텍스트를 API 값으로 변환하여 저장
-                // 예: "Bachelor's Degree" -> "SOUTHKOREA_Bachelor's Degree"
                 const apiValue = getDegreeValue(
                   label,
                   degreeLocation || 'south-korea',

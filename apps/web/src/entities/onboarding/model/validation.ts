@@ -28,3 +28,19 @@ export const getRequiredFieldsForStep = (
   }
   return requiredFields;
 };
+
+export const hasAllRequiredFieldValues = (
+  formValues: OnboardingForm,
+  requiredFields: Array<keyof OnboardingForm>,
+): boolean => {
+  return requiredFields.every((fieldName) => {
+    const value = formValues[fieldName];
+    if (typeof value === 'string') {
+      return value.trim().length > 0;
+    }
+    if (typeof value === 'number') {
+      return value !== 0 && !Number.isNaN(value);
+    }
+    return Boolean(value);
+  });
+};

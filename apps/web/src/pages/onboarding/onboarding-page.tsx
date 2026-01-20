@@ -1,30 +1,32 @@
 import useFunnel from '@shared/hooks/usefunnel';
 import { FormProvider, useForm } from 'react-hook-form';
 import {
-  type OnboardingStepData,
   OnboardingStepLayout,
   PersonalBackgroundStep,
   PersonalInformationStep,
   TargetRoleStep,
   VisaInformationStep,
 } from '@widgets/onboarding';
-import { OnboardingForm } from '@entities/onboarding/model/types';
+import { OnboardingForm } from '@entities/onboarding';
 import {
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
   STEP_TITLES,
-} from '@entities/onboarding/model/constants';
-import { getRequiredFieldsForStep } from '@entities/onboarding/model/validation';
-import { getLocalStorageData } from '@entities/onboarding/model/storage';
-import { useOnboardingStorage } from '@features/onboarding/hooks/useOnboardingStorage';
+} from '@entities/onboarding';
+import {
+  getRequiredFieldsForStep,
+  hasAllRequiredFieldValues,
+} from '@entities/onboarding';
+import { getLocalStorageData, createStepData } from '@entities/onboarding';
+import { useOnboardingStorage } from '@features/onboarding';
 
 const OnboardingPage = () => {
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
     useFunnel(FUNNEL_STEPS, '/');
 
   const form = useForm<OnboardingForm>({
-    mode: 'onChange', // 입력 시 실시간 검증
-    reValidateMode: 'onChange', // 재검증도 입력 시
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     defaultValues: async () => {
       const savedData = getLocalStorageData();
       if (savedData) {
@@ -42,37 +44,22 @@ const OnboardingPage = () => {
   );
 
   // 모든 필드 존재 체크
-  const hasAllRequiredValues = requiredFields.every((fieldName) => {
-    const value = allValues[fieldName];
-    if (typeof value === 'string') {
-      return value.trim().length > 0;
-    }
-    if (typeof value === 'number') {
-      return value !== 0 && !Number.isNaN(value);
-    }
-    return Boolean(value);
-  });
+  const hasAllRequiredValues = hasAllRequiredFieldValues(
+    allValues,
+    requiredFields,
+  );
+
   const hasStepErrors = requiredFields.some((fieldName) =>
     Boolean(form.formState.errors[fieldName]),
   );
+
   const isNextDisabled =
     form.formState.isLoading || !hasAllRequiredValues || hasStepErrors;
 
   // 로컬스토리지 저장
   useOnboardingStorage(allValues);
 
-  const steps: OnboardingStepData[] = STEP_TITLES.map((title, index) => ({
-    stepNumber: index + 1,
-    title,
-    status:
-      index < currentStepIndex
-        ? 'Completed'
-        : index === currentStepIndex
-          ? 'In Progress'
-          : index === currentStepIndex + 1
-            ? 'Next'
-            : 'Later',
-  }));
+  const steps = createStepData(STEP_TITLES, currentStepIndex);
 
   const handleBack = () => {
     goToPrevStep();

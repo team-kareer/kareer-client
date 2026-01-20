@@ -3,7 +3,7 @@ export interface OnboardingForm {
   birthDate: string;
   country: string;
   languageLevel: string;
-  degreeLocation: 'south-korea';
+  degreeLocation: string;
   degree: string;
   visaType: string;
   expectedGraduationDate: string;

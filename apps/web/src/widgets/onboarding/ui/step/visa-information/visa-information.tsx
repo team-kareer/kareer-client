@@ -1,6 +1,7 @@
 import { Autocomplete, Input } from '@kds/ui';
 
-import { OnboardingStepTitle, type OnboardingForm } from '@widgets/onboarding';
+import { OnboardingStepTitle } from '@widgets/onboarding';
+import { type OnboardingForm } from '@entities/onboarding';
 import * as styles from './visa-information.css';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import {
@@ -9,14 +10,7 @@ import {
   validateVisaExpirationDate,
 } from '@features/onboarding/hooks/validators';
 import { useEffect, useRef } from 'react';
-
-const PLACEHOLDER = {
-  CURRENT_VISA_TYPE: 'Select the visa type',
-  ISSUANCE_DATE: 'Enter the Date',
-  GRADUATION_DATE: 'Enter the Date',
-  EXPIRATION_DATE: 'Enter the Date',
-  NUMBER: 'Enter the Number',
-};
+import { VISA_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 
 // 임시 옵션 데이터
 const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
@@ -70,7 +64,7 @@ const VisaInformation = () => {
             rules={{ required: 'Select the visa type' }}
             render={({ field }) => (
               <Autocomplete
-                placeholder={PLACEHOLDER.CURRENT_VISA_TYPE}
+                placeholder={VISA_INFORMATION_PLACEHOLDERS.CURRENT_VISA_TYPE}
                 value={field.value || ''}
                 onChange={(value) => field.onChange(value)}
                 options={VISA_TYPE_OPTIONS}
@@ -99,7 +93,9 @@ const VisaInformation = () => {
                   <>
                     <Input
                       {...field}
-                      placeholder={PLACEHOLDER.GRADUATION_DATE}
+                      placeholder={
+                        VISA_INFORMATION_PLACEHOLDERS.GRADUATION_DATE
+                      }
                       status={fieldState.error ? 'error' : 'default'}
                     />
                     <p className={styles.errorMessage}>
@@ -127,7 +123,7 @@ const VisaInformation = () => {
                     <>
                       <Input
                         {...field}
-                        placeholder={PLACEHOLDER.NUMBER}
+                        placeholder={VISA_INFORMATION_PLACEHOLDERS.NUMBER}
                         status={fieldState.error ? 'error' : 'default'}
                       />
                       <p className={styles.errorMessage}>
@@ -156,7 +152,7 @@ const VisaInformation = () => {
               <>
                 <Input
                   {...field}
-                  placeholder={PLACEHOLDER.ISSUANCE_DATE}
+                  placeholder={VISA_INFORMATION_PLACEHOLDERS.ISSUANCE_DATE}
                   status={fieldState.error ? 'error' : 'default'}
                 />
                 <p className={styles.errorMessage}>
@@ -180,7 +176,7 @@ const VisaInformation = () => {
                   return result;
                 }
 
-                // 비자 만료일 검증 (비자 타입별 규칙 적용)
+                // 비자 만료일 검증
                 return validateVisaExpirationDate(
                   value,
                   visaType,
@@ -192,7 +188,7 @@ const VisaInformation = () => {
               <>
                 <Input
                   {...field}
-                  placeholder={PLACEHOLDER.EXPIRATION_DATE}
+                  placeholder={VISA_INFORMATION_PLACEHOLDERS.EXPIRATION_DATE}
                   status={
                     fieldState.isTouched && fieldState.error
                       ? 'error'

@@ -55,3 +55,8 @@ export const VISA_TYPE_REQUIRED_FIELDS: Record<
   'D-10': ['visaType', 'visaPoint', 'visaStartDate', 'visaExpiredAt'],
   default: ['visaType', 'visaStartDate', 'visaExpiredAt'],
 };
+
+export const FIELD_MAX_LENGTHS = {
+  NAME: 30,
+  PERSONAL_BACKGROUND: 1000,
+} as const;
