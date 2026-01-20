@@ -13,3 +13,6 @@ export type OnboardingForm = Omit<
   visaType: OnboardingFormRequest['visaType'] | '';
   degreeLocation: string;
 };
+
+export type GetMajorListResponse =
+  paths['/api/v1/members/onboard/majors']['get']['responses']['200']['content']['*/*'];
