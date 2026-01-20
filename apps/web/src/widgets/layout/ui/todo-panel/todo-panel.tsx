@@ -1,6 +1,9 @@
 import { Button, Tab, useTabContext } from '@kds/ui';
+import { useNavigate } from 'react-router';
 
 import TodoItem from '@entities/todo/ui/todo-item/todo-item';
+import { ROUTE_PATH } from '@shared/router/path';
+import { EmptyLayout } from '@shared/ui';
 
 import { useSortedTodos } from './hooks/use-sorted-todos';
 import { formatDueInDays } from './utils/format-due-in-days';
@@ -13,32 +16,7 @@ const TABS = [
 ] as const;
 
 const MOCK_TODO = {
-  visa: [
-    {
-      id: 1,
-      title: '1',
-      isChecked: false,
-      dueDate: '2026-01-20T00:00:00Z',
-    },
-    {
-      id: 2,
-      title: '2',
-      isChecked: true,
-      dueDate: '2026-01-21T00:00:00Z',
-    },
-    {
-      id: 3,
-      title: '3',
-      isChecked: false,
-      dueDate: '2026-01-22T00:00:00Z',
-    },
-    {
-      id: 4,
-      title: '4',
-      isChecked: false,
-      dueDate: '2026-01-23T00:00:00Z',
-    },
-  ],
+  visa: [],
   career: [
     {
       id: 1,
@@ -49,20 +27,19 @@ const MOCK_TODO = {
     {
       id: 2,
       title: 'Submit OPT Application',
-      isChecked: true,
-      dueDate: '2026-01-25T00:00:00Z',
-    },
-    {
-      id: 3,
-      title: 'Submit OPT Application',
       isChecked: false,
-      dueDate: '2026-01-26T00:00:00Z',
+      dueDate: '2026-01-25T00:00:00Z',
     },
   ],
 };
 
 const TodoPanel = () => {
+  const navigate = useNavigate();
   const { todos, toggleTodo } = useSortedTodos(MOCK_TODO);
+
+  const handleAddTodo = () => {
+    navigate(ROUTE_PATH.ROADMAP);
+  };
 
   return (
     <aside className={styles.container}>
@@ -71,20 +48,29 @@ const TodoPanel = () => {
         <Tab.List className={styles.tabList}>
           <TodoTabButtons />
         </Tab.List>
-        {TABS.map(({ id, value }) => (
-          <Tab.Panel key={id} tab={value} className={styles.tabPanel}>
-            {todos[value].map(({ id, title, isChecked, dueDate }) => (
-              <TodoItem
-                key={id}
-                title={title}
-                description={formatDueInDays(dueDate)}
-                size="sm"
-                isChecked={isChecked}
-                onToggle={() => toggleTodo(value, id)}
-              />
-            ))}
-          </Tab.Panel>
-        ))}
+        {TABS.map(({ id, value }) => {
+          const currentTodos = todos[value];
+          const isEmpty = currentTodos.length === 0;
+
+          return (
+            <Tab.Panel key={id} tab={value} className={styles.tabPanel}>
+              {isEmpty ? (
+                <EmptyLayout variant="card" onAction={handleAddTodo} />
+              ) : (
+                currentTodos.map(({ id, title, isChecked, dueDate }) => (
+                  <TodoItem
+                    key={id}
+                    title={title}
+                    description={formatDueInDays(dueDate)}
+                    size="sm"
+                    isChecked={isChecked}
+                    onToggle={() => toggleTodo(value, id)}
+                  />
+                ))
+              )}
+            </Tab.Panel>
+          );
+        })}
       </Tab.Container>
     </aside>
   );

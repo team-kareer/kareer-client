@@ -1,5 +1,12 @@
+import { CareerRoadmapSection, PhaseListSection } from '@widgets/roadmap';
+
 const RoadmapPage = () => {
-  return <div>RoadmapPage</div>;
+  return (
+    <>
+      <CareerRoadmapSection />
+      <PhaseListSection />
+    </>
+  );
 };
 
 export default RoadmapPage;

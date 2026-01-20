@@ -1,4 +1,12 @@
-import ky, { HTTPError } from 'ky';
+import ky from '@toss/ky';
+
+import { appConfig } from '@shared/apis/configs/app-config';
+import { isHttpError } from '@shared/utils/http-error';
+
+import {
+  handleCheckAndSetToken,
+  handleUnauthorizedResponse,
+} from './interceptor';
 
 const normalizePathParams = (path: string) =>
   path.replace(/\/\d+(?=\/|$)/g, '/{id}');
@@ -11,20 +19,26 @@ const buildSentryErrorName = (request: Request, status?: number) => {
   return `[${statusLabel} Error] - ${url.origin}${normalizedPath}`;
 };
 
-export const api = ky.create({
-  prefixUrl: import.meta.env.VITE_BASE_URL,
+type KyCreateOptions = NonNullable<Parameters<typeof ky.create>[0]>;
+type KyHooks = NonNullable<KyCreateOptions['hooks']>;
+type BeforeErrorHook = NonNullable<KyHooks['beforeError']>[number];
+
+const beforeErrorHook: BeforeErrorHook = (
+  error: Parameters<BeforeErrorHook>[0],
+) => {
+  if (isHttpError(error) && error.request instanceof Request) {
+    error.name = buildSentryErrorName(error.request, error.response?.status);
+  }
+  return error;
+};
+
+export const api: ReturnType<typeof ky.create> = ky.create({
+  prefixUrl: appConfig.api.baseUrl,
+  credentials: 'include',
   retry: 0,
   hooks: {
-    beforeError: [
-      (error) => {
-        if (error instanceof HTTPError) {
-          error.name = buildSentryErrorName(
-            error.request,
-            error.response?.status,
-          );
-        }
-        return error;
-      },
-    ],
+    beforeError: [beforeErrorHook],
+    beforeRequest: [handleCheckAndSetToken],
+    afterResponse: [handleUnauthorizedResponse],
   },
 });

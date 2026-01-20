@@ -21,6 +21,7 @@ export const fileContainer = style({
   justifyContent: 'space-between',
   padding: '1.2rem 1.6rem',
   backgroundColor: themeVars.color.grayscale.white,
+  border: `1px solid ${themeVars.color.grayscale.gray300}`,
   borderRadius: '10px',
   flex: 1,
   minWidth: 0,

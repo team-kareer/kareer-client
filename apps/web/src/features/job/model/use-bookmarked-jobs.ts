@@ -4,7 +4,7 @@ import { JobItem } from '@entities/job/model/types';
 import { calculateDDay } from '@shared/utils/dday-calculate';
 import { getJobTagColor } from '@shared/utils/job-tag-color';
 
-export const useBookmarkedJobs = (jobs: JobItem[]) => {
+const useBookmarkedJobs = (jobs: JobItem[]) => {
   const formattedJobs = useMemo(() => {
     return jobs.map((job) => ({
       ...job,
@@ -16,3 +16,5 @@ export const useBookmarkedJobs = (jobs: JobItem[]) => {
 
   return { formattedJobs };
 };
+
+export default useBookmarkedJobs;

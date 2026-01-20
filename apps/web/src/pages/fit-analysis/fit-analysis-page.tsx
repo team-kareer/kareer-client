@@ -1,5 +1,12 @@
+import { UploadSection, VisaEligibilitySection } from '@widgets/fit-analysis';
+
 const FitAnalysisPage = () => {
-  return <div>FitAnalysisPage</div>;
+  return (
+    <>
+      <VisaEligibilitySection />
+      <UploadSection />
+    </>
+  );
 };
 
 export default FitAnalysisPage;
