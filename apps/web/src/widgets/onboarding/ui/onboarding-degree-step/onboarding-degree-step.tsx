@@ -4,8 +4,8 @@ import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { type OnboardingForm } from '@entities/onboarding';
 import {
-  SOUTH_KOREA_DEGREE_OPTIONS,
   OUTSIDE_KOREA_DEGREE_OPTIONS,
+  SOUTH_KOREA_DEGREE_OPTIONS,
 } from '@entities/onboarding';
 
 import * as styles from './onboarding-degree-step.css';

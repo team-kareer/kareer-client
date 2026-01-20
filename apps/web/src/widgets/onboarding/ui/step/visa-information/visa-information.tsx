@@ -11,6 +11,7 @@ import {
 } from '@features/onboarding/hooks/validators';
 import { type OnboardingForm } from '@entities/onboarding';
 import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
+
 import * as styles from './visa-information.css';
 
 const getVisaTypeLabel = (value: string): string => {
