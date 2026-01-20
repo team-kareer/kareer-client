@@ -8,28 +8,14 @@ import {
   validateName,
 } from '@features/onboarding/hooks/validators';
 import { type OnboardingForm } from '@entities/onboarding';
+import {
+  COUNTRY_OPTIONS,
+  LANGUAGE_LEVEL_OPTIONS,
+} from '@entities/onboarding/model/options';
 
 import * as styles from './personal-information.css';
 
 const NON_BREAKING_SPACE = '\u00A0';
-
-// 임시 옵션 데이터
-const COUNTRY_OPTIONS = [
-  'South Korea',
-  'United Kingdom',
-  'United States',
-  'Japan',
-];
-
-// 임시 옵션 데이터
-const LANGUAGE_LEVEL_OPTIONS = [
-  'LEVEL_1',
-  'LEVEL_2',
-  'LEVEL_3',
-  'LEVEL_4',
-  'LEVEL_5',
-  'Not taken yet',
-];
 
 const PersonalInformation = () => {
   const { control } = useFormContext<OnboardingForm>();

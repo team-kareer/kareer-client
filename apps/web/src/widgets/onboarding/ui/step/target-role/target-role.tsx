@@ -5,30 +5,17 @@ import { OnboardingStepTitle } from '@widgets/onboarding';
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
 import { type OnboardingForm } from '@entities/onboarding';
+import { TARGET_JOB_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './target-role.css';
 
+// TODO: 임시 옵션 아이템 -> API 연동 후 삭제
 const MAJOR_OPTIONS = [
   'Computer Science',
   'Mathematics',
   'Physics',
   'Chemistry',
   'Biology',
-];
-
-const SECONDARY_MAJOR_OPTIONS = [
-  'Software Engineer',
-  'Data Scientist',
-  'Product Manager',
-  'Designer',
-  'Other',
-];
-
-const TARGET_JOB_OPTIONS = [
-  'Developer',
-  'Data Analyst',
-  'Marketer',
-  'Business / Sales',
 ];
 
 const TargetRole = () => {

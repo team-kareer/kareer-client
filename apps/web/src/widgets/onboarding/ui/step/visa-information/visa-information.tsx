@@ -10,15 +10,9 @@ import {
   validateVisaExpirationDate,
 } from '@features/onboarding/hooks/validators';
 import { type OnboardingForm } from '@entities/onboarding';
-
+import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
 import * as styles from './visa-information.css';
 
-// 임시 옵션 데이터
-const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
-
-/**
- * 서버 값(하이픈 없음)을 UI 표시용 텍스트로 변환
- */
 const getVisaTypeLabel = (value: string): string => {
   if (!value) {
     return '';
@@ -31,7 +25,7 @@ const getVisaTypeLabel = (value: string): string => {
 };
 
 /**
- * UI 표시용 텍스트를 서버 값(하이픈 제거)으로 변환
+ * UI 표시용 텍스트를 서버 값으로 변환
  */
 const getVisaTypeValue = (label: string): string => {
   const labelToValueMap: Record<string, string> = {

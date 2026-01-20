@@ -3,19 +3,12 @@ import { Autocomplete, Button, Tab, useTabContext } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { type OnboardingForm } from '@entities/onboarding';
+import {
+  SOUTH_KOREA_DEGREE_OPTIONS,
+  OUTSIDE_KOREA_DEGREE_OPTIONS,
+} from '@entities/onboarding';
 
 import * as styles from './onboarding-degree-step.css';
-
-const OUTSIDE_KOREA_DEGREE_OPTIONS = [
-  "Bachelor's Degree",
-  "Master's Degree",
-  'Doctoral(PhD)',
-];
-
-const SOUTH_KOREA_DEGREE_OPTIONS = [
-  'Associate Degree',
-  ...OUTSIDE_KOREA_DEGREE_OPTIONS,
-];
 
 /**
  * API 값(서버 형식)을 표시용 텍스트로 변환하는 함수

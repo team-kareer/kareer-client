@@ -7,3 +7,4 @@ export * from './model/storage';
 export * from './model/target-job-skills';
 export { type OnboardingForm, type OnboardingFormRequest } from './model/types';
 export * from './model/validation';
+export * from './model/options';
