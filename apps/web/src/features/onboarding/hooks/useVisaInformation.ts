@@ -29,9 +29,9 @@ export const useVisaInformation = () => {
   useEffect(() => {
     const preVisaType = prevVisaTypeRef.current;
     if (preVisaType && preVisaType !== visaType) {
-      if (visaType === 'D-2') {
+      if (visaType === 'D2') {
         resetField('visaPoint');
-      } else if (visaType === 'D-10') {
+      } else if (visaType === 'D10') {
         resetField('expectedGraduationDate');
       }
     }

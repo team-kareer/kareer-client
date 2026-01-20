@@ -63,19 +63,14 @@ export const STEP_REQUIRED_FIELDS: Array<Array<keyof OnboardingForm>> = [
 
 /**
  * 비자 타입별 필수 입력 필드 매핑
- * @description D-2, D-10 비자 타입에 따라 필드 요구
+ * @description D2, D10 비자 타입에 따라 필드 요구
  */
 export const VISA_TYPE_REQUIRED_FIELDS: Record<
-  'D-2' | 'D-10' | 'default',
+  'D2' | 'D10' | 'default',
   Array<keyof OnboardingForm>
 > = {
-  'D-2': [
-    'visaType',
-    'expectedGraduationDate',
-    'visaStartDate',
-    'visaExpiredAt',
-  ],
-  'D-10': ['visaType', 'visaPoint', 'visaStartDate', 'visaExpiredAt'],
+  D2: ['visaType', 'expectedGraduationDate', 'visaStartDate', 'visaExpiredAt'],
+  D10: ['visaType', 'visaPoint', 'visaStartDate', 'visaExpiredAt'],
   default: ['visaType', 'visaStartDate', 'visaExpiredAt'],
 };
 
