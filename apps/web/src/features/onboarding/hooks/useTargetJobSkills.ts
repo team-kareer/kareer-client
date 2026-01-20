@@ -30,7 +30,7 @@ export const useTargetJobSkills = () => {
     defaultValue: '',
   });
 
-  const selectedSkills = parseSkillsFromString(targetJobSkill);
+  const selectedSkills = parseSkillsFromString(targetJobSkill || '');
   const currentJobSkills = getJobSkills(targetJob);
 
   const handleSkillToggle = (skillId: string) => {

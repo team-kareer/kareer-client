@@ -11,5 +11,5 @@ export const convertFormToRequest = (
 ): OnboardingFormRequest => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { degreeLocation: _degreeLocation, ...requestData } = formData;
-  return requestData;
+  return requestData as OnboardingFormRequest;
 };
