@@ -26,7 +26,6 @@ export const container = style({
 
 export const lottieWrapper = style({
   position: 'relative',
-  zIndex: zIndex.lottie,
 });
 
 export const introSection = style({

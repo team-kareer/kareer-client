@@ -9,7 +9,7 @@ import { TARGET_JOB_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './target-role.css';
 
-// TODO: 임시 옵션 아이템 -> API 연동 후 삭제
+// // TODO: 임시 옵션 아이템 -> API 연동 후 삭제
 const MAJOR_OPTIONS = [
   'Computer Science',
   'Mathematics',
