@@ -1,6 +1,8 @@
-import { VisaStatusResponse } from '@entities/job/model/types';
+import { components } from '@shared/types/schema';
 
 import { calculateDDay } from './dday-calculate';
+
+type UserStatus = components['schemas']['MemberStatusResponse'];
 
 const formatDate = (dateStr?: string | null) => {
   if (!dateStr) {
@@ -13,13 +15,13 @@ const formatDate = (dateStr?: string | null) => {
   });
 };
 
-const formatDDayText = (dDay: number | undefined, pastLabel: string = '-') => {
+const formatDDayText = (dDay: number | undefined, dDayLabel: string = '-') => {
   if (dDay === undefined) {
     return '-';
   }
 
   if (dDay < 0) {
-    return pastLabel;
+    return dDayLabel;
   }
   if (dDay === 0) {
     return 'D-Day';
@@ -27,7 +29,7 @@ const formatDDayText = (dDay: number | undefined, pastLabel: string = '-') => {
   return `D-${dDay}`;
 };
 
-export const getVisaStatusRenderData = (data?: VisaStatusResponse | null) => {
+export const getVisaStatusRenderData = (data?: UserStatus | null) => {
   if (!data) {
     return null;
   }

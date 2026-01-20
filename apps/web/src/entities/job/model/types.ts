@@ -9,10 +9,3 @@ export interface JobItem {
   imageUrl?: string;
   url: string;
 }
-
-export interface VisaStatusResponse {
-  visaType: string;
-  visaExpiredAt: string;
-  expectedGraduationDate: string;
-  graduationDate: string | null;
-}
