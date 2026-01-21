@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getMajorList } from '@entities/onboarding/api/get-major-list';
-import { ONBOARDING_QUERY_KEY } from '@entities/onboarding/qureies/query-key';
+import { getMajorList } from '@entities/onboarding';
+import { ONBOARDING_QUERY_KEY } from '@entities/onboarding';
 
 export const MAJOR_LIST_QUERY_OPTIONS = {
   GET_MAJOR_LIST: () => {
