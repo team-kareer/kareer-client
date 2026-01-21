@@ -1,4 +1,4 @@
-import { DEGREE_MAP, LABEL_TO_DEGREE_TYPE_MAP } from './options';
+import { DEGREE_MAP, LABEL_AND_LOCATION_TO_DEGREE_MAP } from './options';
 
 /**
  * API 값(서버 형식)을 표시용 텍스트로 변환하는 함수
@@ -11,17 +11,15 @@ export const getDegreeLabel = (value: string): string => {
   return DEGREE_MAP[value] || value;
 };
 
-/**
- * 표시용 텍스트를 API 값(서버 형식)으로 변환하는 함수
- * @param label - 표시용 텍스트
- */
 export const getDegreeValue = (
   label: string,
   degreeLocation: string,
 ): string => {
-  const prefix = degreeLocation === 'south-korea' ? 'DOMESTIC_' : 'OVERSEAS_';
+  const apiValue = LABEL_AND_LOCATION_TO_DEGREE_MAP[label]?.[degreeLocation];
 
-  const degreeType =
-    LABEL_TO_DEGREE_TYPE_MAP[label] || label.toUpperCase().replace(/\s+/g, '_');
-  return `${prefix}${degreeType}`;
+  if (!apiValue) {
+    return '';
+  }
+
+  return apiValue;
 };

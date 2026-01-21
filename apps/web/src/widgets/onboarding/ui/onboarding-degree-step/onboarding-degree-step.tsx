@@ -12,6 +12,13 @@ import {
 
 import * as styles from './onboarding-degree-step.css';
 
+const DEFAULT_DEGREE_LOCATION = 'south-korea';
+
+const getDegreeOptions = (degreeLocation: string) =>
+  degreeLocation === 'south-korea'
+    ? SOUTH_KOREA_DEGREE_OPTIONS
+    : OUTSIDE_KOREA_DEGREE_OPTIONS;
+
 const DegreeLocationButton = ({
   value,
   children,
@@ -62,10 +69,7 @@ const DegreeInput = ({
       onChange={(label) => {
         setInputValue(label);
         if (options.includes(label)) {
-          const apiValue = getDegreeValue(
-            label,
-            degreeLocation || 'south-korea',
-          );
+          const apiValue = getDegreeValue(label, degreeLocation);
           field.onChange(apiValue);
         }
       }}
@@ -75,38 +79,31 @@ const DegreeInput = ({
 };
 
 const OnboardingDegreeStep = () => {
-  const { control, resetField, setValue } = useFormContext<OnboardingForm>();
+  const { control, resetField } = useFormContext<OnboardingForm>();
 
-  const degreeLocation = useWatch({
-    control,
-    name: 'degreeLocation',
-  });
+  const degreeLocation =
+    useWatch({
+      control,
+      name: 'degreeLocation',
+    }) || DEFAULT_DEGREE_LOCATION;
 
-  const prevDegreeLocationRef = useRef<string | undefined>(degreeLocation);
+  const prevDegreeLocationRef = useRef<string | undefined>(undefined);
 
   useEffect(() => {
-    if (!degreeLocation) {
-      setValue('degreeLocation', 'south-korea');
-    }
-  }, [degreeLocation, setValue]);
-
-  // degreeLocation이 변경될 때 이전 degree 값 초기화
-  useEffect(() => {
-    const prevDegreeLocation = prevDegreeLocationRef.current;
-    if (prevDegreeLocation && prevDegreeLocation !== degreeLocation) {
+    if (
+      prevDegreeLocationRef.current &&
+      prevDegreeLocationRef.current !== degreeLocation
+    ) {
       resetField('degree');
     }
     prevDegreeLocationRef.current = degreeLocation;
   }, [degreeLocation, resetField]);
 
-  const options =
-    degreeLocation === 'south-korea'
-      ? SOUTH_KOREA_DEGREE_OPTIONS
-      : OUTSIDE_KOREA_DEGREE_OPTIONS;
+  const options = getDegreeOptions(degreeLocation);
 
   return (
-    <Tab.Container initialValue={degreeLocation || 'south-korea'}>
-      <TabSync degreeLocation={degreeLocation || 'south-korea'} />
+    <Tab.Container initialValue={degreeLocation}>
+      <TabSync degreeLocation={degreeLocation} />
       <Tab.List className={styles.buttonWrapper}>
         <DegreeLocationButton value="south-korea">
           <p>South Korea</p>
@@ -124,7 +121,7 @@ const OnboardingDegreeStep = () => {
           <DegreeInput
             field={field}
             options={options}
-            degreeLocation={degreeLocation || 'south-korea'}
+            degreeLocation={degreeLocation}
           />
         )}
       />

@@ -37,9 +37,23 @@ export const DEGREE_MAP: Record<string, string> = {
   OVERSEAS_DOCTORATE: 'Doctoral(PhD)',
 };
 
-export const LABEL_TO_DEGREE_TYPE_MAP: Record<string, string> = {
-  'Associate Degree': 'ASSOCIATE',
-  "Bachelor's Degree": 'BACHELORS',
-  "Master's Degree": 'MASTERS',
-  'Doctoral(PhD)': 'DOCTORATE',
+export const LABEL_AND_LOCATION_TO_DEGREE_MAP: Record<
+  string,
+  Record<string, string>
+> = {
+  'Associate Degree': {
+    'south-korea': 'DOMESTIC_ASSOCIATE',
+  },
+  "Bachelor's Degree": {
+    'south-korea': 'DOMESTIC_BACHELORS',
+    'outside-korea': 'OVERSEAS_BACHELORS',
+  },
+  "Master's Degree": {
+    'south-korea': 'DOMESTIC_MASTERS',
+    'outside-korea': 'OVERSEAS_MASTERS',
+  },
+  'Doctoral(PhD)': {
+    'south-korea': 'DOMESTIC_DOCTORATE',
+    'outside-korea': 'OVERSEAS_DOCTORATE',
+  },
 };
