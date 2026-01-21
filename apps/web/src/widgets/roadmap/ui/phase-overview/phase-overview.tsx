@@ -1,64 +1,32 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { CareerRoadmapStep, CareerRoadmapStepInfo } from '@entities/phase';
+import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 import { CareerRoadmap } from '@shared/ui';
 
 const PhaseOverview = () => {
-  // api response 값으로 변경 예정
-  const mockData = {
-    phases: [
-      {
-        phaseId: 'Long',
-        phaseStatus: 'Past',
-        sequence: 1,
-        goal: 'Verify Requirement',
-        workStatus: 'Incompleted works',
-        worksCount: 2,
-        startDate: '2025-11-01',
-        endDate: '2025-11-01',
-      },
-      {
-        phaseId: 'Long',
-        phaseStatus: 'Current',
-        sequence: 2,
-        goal: 'Build Experience',
-        workStatus: 'Remained works',
-        worksCount: 2,
-        startDate: '2025-11-01',
-        endDate: '2025-11-01',
-      },
-      {
-        phaseId: 'Long',
-        phaseStatus: 'Future',
-        sequence: 3,
-        goal: 'D-10 Transition',
-        workStatus: 'Scheduled works',
-        worksCount: 8,
-        startDate: '2025-11-01',
-        endDate: '2025-11-01',
-      },
-    ],
-  };
+  const { data } = useQuery({ ...PHASE_QUERY_OPTIONS.GET_PHASE_LIST() });
 
   const [clickedPhase, setClickedPhase] = useState(0);
   return (
-    <CareerRoadmap goal={mockData.phases[2]?.goal ?? ''}>
-      {mockData.phases.map((phase, idx) => {
+    <CareerRoadmap goal={data?.phases?.[2]?.goal ?? ''}>
+      {data?.phases?.map((phase, idx) => {
         const isActive = clickedPhase === idx;
 
         return (
           <CareerRoadmapStep
             key={phase.goal}
-            title={phase.goal}
+            title={phase.goal ?? ''}
             period={`${phase.startDate} - ${phase.endDate}`}
-            phase={phase.sequence}
+            phase={phase.sequence ?? 0}
             onClick={() => setClickedPhase(idx)}
             isActive={isActive}
             bottom={
               <CareerRoadmapStepInfo
-                status={phase.phaseStatus}
-                label={phase.workStatus}
-                worksCount={phase.worksCount}
+                status={phase.phaseStatus ?? ''}
+                label={phase.workStatus ?? ''}
+                worksCount={phase.worksCount ?? 0}
                 isActive={isActive}
               />
             }
