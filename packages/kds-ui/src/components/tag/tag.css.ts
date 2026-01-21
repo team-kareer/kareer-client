@@ -1,6 +1,7 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 
-import { color } from '../../styles/tokens/color.css';
+import { themeVars } from '../../styles';
+
 import { typography } from '../../styles/typography.css';
 
 const base = style({
@@ -11,6 +12,7 @@ const base = style({
   borderRadius: '20px',
   userSelect: 'none',
   ...typography.cap1_sb_12,
+  border: '1px solid transparent',
 });
 
 export const tagColor = styleVariants({
@@ -18,15 +20,15 @@ export const tagColor = styleVariants({
   primary_blue: [
     base,
     {
-      color: color.grayscale.white,
-      backgroundColor: color.primary[500],
+      color: themeVars.color.grayscale.white,
+      backgroundColor: themeVars.color.primary[500],
     },
   ],
   primary_black: [
     base,
     {
-      color: color.grayscale.white,
-      backgroundColor: color.grayscale.gray800,
+      color: themeVars.color.grayscale.white,
+      backgroundColor: themeVars.color.grayscale.gray800,
     },
   ],
 
@@ -34,50 +36,50 @@ export const tagColor = styleVariants({
   pastel_blue: [
     base,
     {
-      color: color.primary[500],
-      backgroundColor: color.primary[100],
+      color: themeVars.color.primary[500],
+      backgroundColor: themeVars.color.primary[100],
     },
   ],
   pastel_red: [
     base,
     {
-      color: color.pastel.kared_500,
-      backgroundColor: color.pastel.kared_100,
+      color: themeVars.color.pastel.kared_500,
+      backgroundColor: themeVars.color.pastel.kared_100,
     },
   ],
   pastel_mint: [
     base,
     {
-      color: color.pastel.kamint_500,
-      backgroundColor: color.pastel.kamint_100,
+      color: themeVars.color.pastel.kamint_500,
+      backgroundColor: themeVars.color.pastel.kamint_100,
     },
   ],
   pastel_orange: [
     base,
     {
-      color: color.pastel.kaorange_500,
-      backgroundColor: color.pastel.kaorange_100,
+      color: themeVars.color.pastel.kaorange_500,
+      backgroundColor: themeVars.color.pastel.kaorange_100,
     },
   ],
   pastel_pink: [
     base,
     {
-      color: color.pastel.kapink_500,
-      backgroundColor: color.pastel.kapink_100,
+      color: themeVars.color.pastel.kapink_500,
+      backgroundColor: themeVars.color.pastel.kapink_100,
     },
   ],
   pastel_purple: [
     base,
     {
-      color: color.pastel.kapurple_500,
-      backgroundColor: color.pastel.kapurple_100,
+      color: themeVars.color.pastel.kapurple_500,
+      backgroundColor: themeVars.color.pastel.kapurple_100,
     },
   ],
   pastel_skyblue: [
     base,
     {
-      color: color.pastel.kaskyblue_500,
-      backgroundColor: color.pastel.kaskyblue_100,
+      color: themeVars.color.pastel.kaskyblue_500,
+      backgroundColor: themeVars.color.pastel.kaskyblue_100,
     },
   ],
 
@@ -85,8 +87,8 @@ export const tagColor = styleVariants({
   disabled_gray: [
     base,
     {
-      color: color.grayscale.gray500,
-      backgroundColor: color.grayscale.gray100,
+      color: themeVars.color.grayscale.gray500,
+      backgroundColor: themeVars.color.grayscale.gray100,
     },
   ],
 
@@ -94,17 +96,17 @@ export const tagColor = styleVariants({
   outlined_blue: [
     base,
     {
-      color: color.primary[500],
-      backgroundColor: color.grayscale.white,
-      border: `1px solid ${color.grayscale.gray300}`,
+      color: themeVars.color.primary[500],
+      backgroundColor: themeVars.color.grayscale.white,
+      border: `1px solid ${themeVars.color.grayscale.gray300}`,
     },
   ],
   outlined_black: [
     base,
     {
-      color: color.grayscale.gray800,
-      backgroundColor: color.grayscale.white,
-      border: `1px solid ${color.grayscale.gray300}`,
+      color: themeVars.color.grayscale.gray800,
+      backgroundColor: themeVars.color.grayscale.white,
+      border: `1px solid ${themeVars.color.grayscale.gray300}`,
     },
   ],
 
@@ -114,8 +116,8 @@ export const tagColor = styleVariants({
     {
       ...typography.cap2_m_12,
       padding: '0.8rem 1rem',
-      color: color.grayscale.white,
-      backgroundColor: color.grayscale.gray800,
+      color: themeVars.color.grayscale.white,
+      backgroundColor: themeVars.color.grayscale.gray800,
       borderRadius: '10px',
       boxShadow: '0 0 12px 0 rgba(0, 0, 0, 0.25)',
     },

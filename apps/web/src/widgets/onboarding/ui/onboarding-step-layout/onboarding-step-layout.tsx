@@ -1,0 +1,75 @@
+import { ReactNode } from 'react';
+import { SymbolLightIcon } from '@kds/icons/svg';
+import { Button } from '@kds/ui';
+
+import {
+  type OnboardingStepData,
+  OnboardingStepHeader,
+} from '@widgets/onboarding';
+
+import * as styles from './onboarding-step-layout.css';
+
+interface OnboardingStepLayoutProps {
+  children: ReactNode;
+  steps: OnboardingStepData[];
+  onBack?: () => void;
+  onNext?: () => void;
+  isNextDisabled?: boolean;
+}
+
+const OnboardingStepLayout = ({
+  children,
+  steps,
+  onBack,
+  onNext,
+  isNextDisabled,
+}: OnboardingStepLayoutProps) => {
+  const currentStep = steps.find((step) => step.status === 'In Progress');
+  const isLastStep =
+    currentStep &&
+    currentStep.stepNumber === steps[steps.length - 1]?.stepNumber;
+  const isFirstStep = currentStep?.stepNumber === 1;
+  const isStep3 = currentStep?.stepNumber === 3;
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.headerContainer}>
+        <OnboardingStepHeader steps={steps} />
+      </div>
+      <div className={styles.contentContainer}>{children}</div>
+      <div
+        className={`${styles.buttonContainer} ${
+          isStep3 ? styles.buttonContainerStep3 : ''
+        }`}
+      >
+        {onBack && (
+          <Button
+            preset="large_outlined"
+            onClick={onBack}
+            disabled={isFirstStep}
+          >
+            Back
+          </Button>
+        )}
+        {onNext && (
+          <Button
+            preset={isNextDisabled ? 'large_outlined' : 'large_primary'}
+            onClick={onNext}
+            disabled={isNextDisabled}
+          >
+            {isLastStep ? (
+              <span className={styles.buttonContent}>
+                <SymbolLightIcon width={19} height={19} />
+                <span>Start your career journey</span>
+              </span>
+            ) : (
+              'Next'
+            )}
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default OnboardingStepLayout;

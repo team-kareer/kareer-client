@@ -1,5 +1,43 @@
 // 아이콘 배럴 파일
-// TODO: SVG 파일 추가 후 여기서 export (아래 예시 참고)
 
-// 예시:
-// export { default as BirdIcon } from './ic_bird.svg?react';
+export { default as ArrowDownIcon } from './ic_arrow_down.svg?react';
+export { default as ArrowLeftIcon } from './ic_arrow_left.svg?react';
+export { default as ArrowRightIcon } from './ic_arrow_right.svg?react';
+export { default as ArrowUpIcon } from './ic_arrow_up.svg?react';
+export { default as AvatarIcon } from './ic_avatar.svg?react';
+export { default as BangCircleIcon } from './ic_bang_circle.svg?react';
+export { default as BookmarkIcon } from './ic_bookmark.svg?react';
+export { default as BookmarkCheckIcon } from './ic_bookmark_check.svg?react';
+export { default as CalendarIcon } from './ic_calendar.svg?react';
+export { default as CheckIcon } from './ic_check.svg?react';
+export { default as CheckCircleIcon } from './ic_check-circle.svg?react';
+export { default as CuriousIcon } from './ic_curious.svg?react';
+export { default as CurrentIcon } from './ic_current.svg?react';
+export { default as CustomMapIcon } from './ic_custom-map.svg?react';
+export { default as DefaultStatusIcon } from './ic_default.svg?react';
+export { default as EditIcon } from './ic_edit.svg?react';
+export { default as FitAnalysisIcon } from './ic_fit-analysis.svg?react';
+export { default as GoogleIcon } from './ic_google.svg?react';
+export { default as GraduationCountDownIcon } from './ic_graduation-countdown.svg?react';
+export { default as HomeIcon } from './ic_home.svg?react';
+export { default as InfoIcon } from './ic_info.svg?react';
+export { default as InfoCircleIcon } from './ic_info_circle.svg?react';
+export { default as LogoIcon } from './ic_logo.svg?react';
+export { default as LogoTypoIcon } from './ic_logo_typo.svg?react';
+export { default as MagniIcon } from './ic_magnifier.svg?react';
+export { default as PlusIcon } from './ic_plus.svg?react';
+export { default as ProfileIcon } from './ic_profile.svg?react';
+export { default as RemainingStayIcon } from './ic_remaining-stay.svg?react';
+export { default as RoadmapIcon } from './ic_roadmap.svg?react';
+export { default as SparkleIcon } from './ic_sparkle.svg?react';
+export { default as SuccessCircleIcon } from './ic_success-circle.svg?react';
+export { default as SurpriseIcon } from './ic_surprised.svg?react';
+export { default as SymbolGrayIcon } from './ic_symbol_gray.svg?react';
+export { default as SymbolLightIcon } from './ic_symbol_light.svg?react';
+export { default as SymbolPrimaryIcon } from './ic_symbol_primary.svg?react';
+export { default as TimerIcon } from './ic_timer.svg?react';
+export { default as TodoIcon } from './ic_todo.svg?react';
+export { default as TodoCheckIcon } from './ic_todo_check.svg?react';
+export { default as UpdateIcon } from './ic_update.svg?react';
+export { default as XIcon } from './ic_x.svg?react';
+export { default as XCircleIcon } from './ic_x-circle.svg?react';

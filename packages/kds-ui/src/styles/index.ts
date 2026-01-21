@@ -3,4 +3,6 @@ import './global.css';
 import './theme.css';
 
 export * from './theme.css';
+export { color } from './tokens/color.css';
+export { zIndex } from './tokens/zIndex.css';
 export { typography } from './typography.css';

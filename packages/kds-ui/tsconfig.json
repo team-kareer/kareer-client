@@ -1,7 +1,9 @@
 {
   "extends": "@kareer/typescript-config/react-library.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "rootDir": "src",
+    "outDir": "dist",
+    "types": ["vite-plugin-svgr/client"]
   },
   "include": ["src", "vite.config.ts"],
   "exclude": ["node_modules", "dist"]

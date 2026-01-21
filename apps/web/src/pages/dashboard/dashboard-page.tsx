@@ -1,5 +1,15 @@
+import { VisaStatusListSection } from '@widgets/dashboard/ui';
+import { MyBookmarkedJobsSection } from '@widgets/dashboard/ui';
+import { PhaseOverviewSection } from '@widgets/dashboard/ui';
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return (
+    <>
+      <VisaStatusListSection />
+      <PhaseOverviewSection />
+      <MyBookmarkedJobsSection />
+    </>
+  );
 };
 
 export default DashboardPage;

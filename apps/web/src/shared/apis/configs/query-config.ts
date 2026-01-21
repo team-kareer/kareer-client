@@ -1,6 +1,5 @@
-import { HTTPError } from 'ky';
-
 import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
+import { isHttpError } from '@shared/utils/http-error';
 
 const RETRY_BLACKLIST = new Set<number>([
   HTTP_STATUS_CODE.BAD_REQUEST,
@@ -11,13 +10,12 @@ const RETRY_BLACKLIST = new Set<number>([
 ]);
 
 const MAX_RETRY_COUNT = 1;
-
 export const shouldRetry = (failureCount: number, error: unknown) => {
   if (failureCount > MAX_RETRY_COUNT) {
     return false;
   }
 
-  if (error instanceof HTTPError) {
+  if (isHttpError(error) && error.response) {
     const { status } = error.response;
 
     if (RETRY_BLACKLIST.has(status)) {

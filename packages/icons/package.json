@@ -4,6 +4,14 @@
   "private": true,
   "type": "module",
   "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./svg": {
+      "types": "./src/index.d.ts",
+      "default": "./src/svg/index.ts"
+    },
     "./*": "./src/components/*.tsx"
   },
   "scripts": {
@@ -22,6 +30,6 @@
     "react": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
-    "vite-plugin-svgr": "^4.5.0"
+    "vite-plugin-svgr": "catalog:"
   }
 }
