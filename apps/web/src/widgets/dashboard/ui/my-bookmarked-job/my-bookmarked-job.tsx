@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { BookmarkedJobList } from '@features/job';
-import { BOOKMARKED_JOB_QUERY_OPTIONS } from '@entities/job/queries/queries';
+import { BOOKMARKED_JOB_QUERY_OPTIONS } from '@entities/job/queries';
 
 export const MyBookmarkedJobs = () => {
   const { data } = useQuery(BOOKMARKED_JOB_QUERY_OPTIONS.GET_BOOKMARKED_JOB());
@@ -9,7 +9,7 @@ export const MyBookmarkedJobs = () => {
   const jobs = data?.jobPostingResponses ?? [];
 
   const handleRemove = () => {
-    // 임시 삭제 로직
+    // TODO: 삭제 api 추가
   };
 
   return <BookmarkedJobList jobs={jobs} onScrap={handleRemove} />;

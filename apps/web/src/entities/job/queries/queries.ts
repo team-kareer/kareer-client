@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getBookmarkedJob } from '../api/get-bookmarked-job-list';
-import { BOOKMARKED_JOB_QUERY_KEY } from './query-key';
+import { getBookmarkedJob } from '@entities/job/api';
+import { BOOKMARKED_JOB_QUERY_KEY } from '@entities/job/queries';
 
 export const BOOKMARKED_JOB_QUERY_OPTIONS = {
   GET_BOOKMARKED_JOB: () => {
