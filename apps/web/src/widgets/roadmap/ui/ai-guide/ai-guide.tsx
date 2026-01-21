@@ -11,8 +11,8 @@ const CONTENT = {
 
 interface AIGuideProps {
   importance: string;
-  guideline: string;
-  commonMistakes: string;
+  guideline: string[];
+  commonMistakes: string[];
 }
 
 const AIGuide = ({ importance, guideline, commonMistakes }: AIGuideProps) => {
