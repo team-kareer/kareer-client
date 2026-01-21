@@ -9,59 +9,33 @@ export interface SkillOption {
  * @description 각 직무에 대한 스킬 체크박스 옵션
  */
 export const JOB_SKILL_OPTIONS: Record<string, SkillOption[]> = {
-  Developer: [
+  Sales: [
     {
-      id: 'tech-stack',
-      title: 'Tech Stack',
+      id: 'client-communication',
+      title: 'Client Communication',
       description:
-        'I have experience with these languages / frameworks (e.g., Java, Python, JavaScript, Spring, React, Node.js).',
+        'I am comfortable with professional business communication (email, calls, meetings) in English or Korean.',
     },
     {
-      id: 'cs-tools',
-      title: 'CS & Tools',
+      id: 'sales-tools-process',
+      title: 'Sales Process & Tools',
       description:
-        'I understand basic CS topics (data structures, algorithms, databases) and use Git / GitHub regularly.',
+        'I understand the sales cycle (prospecting → closing) and can use CRM tools or Excel for lead management.',
     },
     {
-      id: 'projects',
-      title: 'Projects',
+      id: 'trade-knowledge',
+      title: 'Trade Knowledge',
       description:
-        'I have 1+ completed projects (personal, school, or team) with code on GitHub or a portfolio site.',
+        'I have basic knowledge of export/import procedures, Incoterms, or trade documentation (Invoices, PL).',
     },
     {
-      id: 'team-work',
-      title: 'Team / Work Experience',
+      id: 'persuasion-negotiation',
+      title: 'Persuasion & Negotiation',
       description:
-        'I have worked on a team or real-world setting (internship, part-time, open-source, or collaboration with designers/PMs) as a developer.',
-    },
-  ],
-  'Data Analyst': [
-    {
-      id: 'data-tools',
-      title: 'Data Tools',
-      description:
-        'I can work with data using Excel/Google Sheets (formulas, pivot tables) and at least one BI tool (e.g., Tableau, Power BI)',
-    },
-    {
-      id: 'sql-programming',
-      title: 'SQL & Programming',
-      description:
-        'I can write basic SQL queries (SELECT, JOIN, GROUP BY) and have some experience with Python or R for data analysis.',
-    },
-    {
-      id: 'analysis-storytelling',
-      title: 'Analysis & Storytelling',
-      description:
-        'I have practiced turning data into insights (simple analysis, charts, or reports) and explaining results in plain language.',
-    },
-    {
-      id: 'projects',
-      title: 'Projects',
-      description:
-        'I have 1+ data projects (school, Kaggle, personal) that I can show in a portfolio or GitHub.',
+        'I have experience in customer-facing roles where I had to persuade, negotiate, or resolve conflicts.',
     },
   ],
-  Marketer: [
+  Marketing: [
     {
       id: 'content-creative',
       title: 'Content & Creative',
@@ -75,42 +49,68 @@ export const JOB_SKILL_OPTIONS: Record<string, SkillOption[]> = {
         'I understand social media algorithms (Instagram, TikTok, Blog) and digital advertising basics.',
     },
     {
-      id: 'data-experimentation',
-      title: 'Data & Experimentation',
+      id: 'data-insights',
+      title: 'Data & Insights',
       description:
-        'I have looked at simple marketing metrics (clicks, conversions, followers) and tried A/B tests or small experiments.',
+        'I can analyze marketing metrics (Reach, CTR, ROAS) to measure performance and improve strategies.',
     },
     {
-      id: 'projects',
-      title: 'Projects',
+      id: 'global-localization',
+      title: 'Global/Localization',
       description:
-        'I have participated in at least one campaign or project (school club, side project, internship) with measurable outcomes.',
+        'I have experience adapting global campaigns to fit specific local cultures or languages.',
     },
   ],
-  'Business / Sales': [
+  'Planning & Strategy': [
     {
-      id: 'client-communication',
-      title: 'Client Communication',
+      id: 'research-analysis',
+      title: 'Research & Analysis',
       description:
-        'I am comfortable talking or writing with customers/partners in English or Korean (email, calls, meetings).',
+        'I can conduct market research, analyze competitors, and derive logical insights from data.',
     },
     {
-      id: 'sales-tools-process',
-      title: 'Sales Tools & Process',
+      id: 'documentation-tools',
+      title: 'Documentation & Tools',
       description:
-        'I understand basic sales steps (prospection → meeting → proposal → follow-up) and have used simple CRM/spreadsheet tracking.',
+        'I am proficient in creating business proposals and reports using PowerPoint, Excel, or Notion.',
     },
     {
-      id: 'numbers-targets',
-      title: 'Numbers & Targets',
+      id: 'project-management',
+      title: 'Project Management',
       description:
-        'I am used to working with simple sales KPIs (leads, meetings, revenue) and tracking them over time.',
+        'I have experience managing schedules, defining KPIs, or leading a project from start to finish.',
     },
     {
-      id: 'projects',
-      title: 'Projects',
+      id: 'communication-flow',
+      title: 'Communication Flow',
       description:
-        'I have experience in a customer-facing role (part-time, internship, club, volunteering) where I had to persuade or negotiate.',
+        'I can clearly summarize complex issues and facilitate communication between different teams.',
+    },
+  ],
+  Production: [
+    {
+      id: 'process-scm',
+      title: 'Process & SCM',
+      description:
+        'I understand the basics of manufacturing flows, supply chain management, or inventory cycles.',
+    },
+    {
+      id: 'data-erp',
+      title: 'Data & ERP',
+      description:
+        'I can manage production data (defect rates, inventory levels) using Excel or ERP systems.',
+    },
+    {
+      id: 'quality-safety',
+      title: 'Quality & Safety',
+      description:
+        'I am familiar with Quality Control (QC) standards or basic industrial safety regulations.',
+    },
+    {
+      id: 'onsite-coordination',
+      title: 'On-site Coordination',
+      description:
+        'I can bridge communication between field workers, management, and external suppliers effectively.',
     },
   ],
 };
