@@ -2,7 +2,7 @@ import { Button, Tab, useTabContext } from '@kds/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
-import { TODO_MUTATION_OPTIONS } from '@features/todo/queries/queires';
+import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
 import { TODO_QUERY_KEY } from '@entities/todo';
 import { TODO_QUERY_OPTIONS } from '@entities/todo/queries/queries';
 import TodoItem from '@entities/todo/ui/todo-item/todo-item';

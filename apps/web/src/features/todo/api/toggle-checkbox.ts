@@ -1,8 +1,8 @@
-import { END_POINT } from '@features/todo/model/end-point';
 import {
-  PatchToggleCheckboxRequest,
+  END_POINT,
   PatchToggleCHeckboxResponse,
-} from '@features/todo/model/types';
+  PatchToggleCheckboxRequest,
+} from '@features/todo/model';
 import { api } from '@shared/apis/configs/instance';
 
 export const toggleCheckbox = async (

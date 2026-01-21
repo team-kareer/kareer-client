@@ -1,8 +1,8 @@
-import { END_POINT } from '@features/todo/model/end-point';
 import {
+  END_POINT,
   PostAddTodoItemRequest,
   PostAddTodoItemResponse,
-} from '@features/todo/model/types';
+} from '@features/todo/model';
 import { api } from '@shared/apis/configs/instance';
 
 export const addTodoItem = async (
