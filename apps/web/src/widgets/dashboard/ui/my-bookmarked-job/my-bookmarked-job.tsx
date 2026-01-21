@@ -1,18 +1,20 @@
-import { useState } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { BookmarkedJobList } from '@features/job';
-import { MOCK_JOBS } from '@shared/mocks/job-mocks.ts';
+import { BOOKMARKED_JOB_QUERY_OPTIONS } from '@entities/job/queries/queries';
 
 export const MyBookmarkedJobs = () => {
-  // todo: api hook으로 교체
-  const [bookmarks, setBookmarks] = useState(MOCK_JOBS);
+  const { data } = useSuspenseQuery(
+    BOOKMARKED_JOB_QUERY_OPTIONS.GET_BOOKMARKED_JOB(),
+  );
 
-  const handleRemove = (id: number) => {
+  const jobs = data?.jobPostingResponses ?? [];
+
+  const handleRemove = () => {
     // 임시 삭제 로직
-    setBookmarks((prev) => prev.filter((job) => job.id !== id));
   };
 
-  return <BookmarkedJobList jobs={bookmarks} onScrap={handleRemove} />;
+  return <BookmarkedJobList jobs={jobs} onScrap={handleRemove} />;
 };
 
 export default MyBookmarkedJobs;
