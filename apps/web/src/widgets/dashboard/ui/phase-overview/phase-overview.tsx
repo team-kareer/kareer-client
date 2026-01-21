@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { ActionRequiredAccordion } from '@widgets/dashboard/ui';
 import { CareerRoadmapStep } from '@entities/phase';
+import type { Phase } from '@entities/phase/model';
 import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 import { CareerRoadmap } from '@shared/ui';
 
@@ -20,16 +21,16 @@ const PhaseOverview = () => {
         />
       }
     >
-      {data?.phases?.map(({ goal, startDate, endDate, sequence }) => {
-        const isActive = clickedPhase === sequence;
+      {data?.phases?.map((phase: Phase) => {
+        const isActive = clickedPhase === phase.sequence;
 
         return (
           <CareerRoadmapStep
-            key={goal}
-            title={goal ?? ''}
-            period={`${startDate} - ${endDate}`}
-            phase={Number(sequence)}
-            onClick={() => setClickedPhase(Number(sequence))}
+            key={phase.goal}
+            title={phase.goal ?? ''}
+            period={`${phase.startDate} - ${phase.endDate}`}
+            phase={Number(phase.sequence)}
+            onClick={() => setClickedPhase(Number(phase.sequence))}
             isActive={isActive}
             bottom={isActive && <LogoIcon width={60} height={60} />}
           />
