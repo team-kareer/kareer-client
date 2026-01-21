@@ -10,10 +10,10 @@ export const LANGUAGE_LEVEL_OPTIONS = [
 export const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
 
 export const TARGET_JOB_OPTIONS = [
-  'Developer',
-  'Data Analyst',
-  'Marketer',
-  'Business / Sales',
+  'Planning & Strategy',
+  'Production',
+  'Marketing',
+  'Sales',
 ];
 
 export const OUTSIDE_KOREA_DEGREE_OPTIONS = [
