@@ -2,40 +2,17 @@ import { ReactNode, useEffect, useRef, useState } from 'react';
 import { Autocomplete, Button, Tab, useTabContext } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
-import { type OnboardingForm } from '@entities/onboarding';
 import {
-  DEGREE_MAP,
-  LABEL_TO_DEGREE_TYPE_MAP,
+  getDegreeLabel,
+  getDegreeValue,
+  type OnboardingForm,
   OUTSIDE_KOREA_DEGREE_OPTIONS,
   SOUTH_KOREA_DEGREE_OPTIONS,
 } from '@entities/onboarding';
 
 import * as styles from './onboarding-degree-step.css';
 
-/**
- * API 값(서버 형식)을 표시용 텍스트로 변환하는 함수
- * @returns 표시용 텍스트
- */
-const getDegreeLabel = (value: string): string => {
-  if (!value) {
-    return '';
-  }
-  return DEGREE_MAP[value] || value;
-};
-
-/**
- * 표시용 텍스트를 API 값(서버 형식)으로 변환하는 함수
- * @param label - 표시용 텍스트
- */
-const getDegreeValue = (label: string, degreeLocation: string): string => {
-  const prefix = degreeLocation === 'south-korea' ? 'DOMESTIC_' : 'OVERSEAS_';
-
-  const degreeType =
-    LABEL_TO_DEGREE_TYPE_MAP[label] || label.toUpperCase().replace(/\s+/g, '_');
-  return `${prefix}${degreeType}`;
-};
-
-export const DegreeLocationButton = ({
+const DegreeLocationButton = ({
   value,
   children,
 }: {
@@ -83,8 +60,7 @@ const DegreeInput = ({
       placeholder="Select the degree"
       value={inputValue}
       onChange={(label) => {
-        setInputValue(label); // 입력 중인 텍스트 표시
-        // 옵션 목록에 있는 값인 경우에만 변환하여 저장
+        setInputValue(label);
         if (options.includes(label)) {
           const apiValue = getDegreeValue(
             label,
@@ -108,7 +84,6 @@ const OnboardingDegreeStep = () => {
 
   const prevDegreeLocationRef = useRef<string | undefined>(degreeLocation);
 
-  // 초기값 설정
   useEffect(() => {
     if (!degreeLocation) {
       setValue('degreeLocation', 'south-korea');
