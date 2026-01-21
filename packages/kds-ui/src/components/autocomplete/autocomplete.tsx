@@ -26,10 +26,13 @@ const Autocomplete = ({
   // 드롭메뉴 열림 여부
   const [isOpen, setIsOpen] = useState(false);
 
-  // 입력값 필터링
-  const filteredOptions = options.filter((option) =>
-    option.toLowerCase().includes(value.toLowerCase()),
-  );
+  // value가 undefined일 수 있으므로 빈 문자열로 처리
+  const safeValue = value || '';
+
+  // 입력값 필터링 (undefined/null 값 제거)
+  const filteredOptions = options
+    .filter((option) => option != null)
+    .filter((option) => option.toLowerCase().includes(safeValue.toLowerCase()));
 
   // 입력 처리
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +58,7 @@ const Autocomplete = ({
       <input
         type="text"
         className={styles.input}
-        value={value}
+        value={safeValue}
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
         onBlur={() => setIsOpen(false)}

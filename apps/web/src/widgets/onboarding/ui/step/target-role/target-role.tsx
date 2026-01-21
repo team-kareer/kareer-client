@@ -1,14 +1,27 @@
-import { useState } from 'react';
-import { Autocomplete } from '@kds/ui';
+import { Autocomplete, Checkbox, Input } from '@kds/ui';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
+import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
+import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
+import { type OnboardingForm } from '@entities/onboarding';
+import { TARGET_JOB_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './target-role.css';
 
+// // TODO: 임시 옵션 아이템 -> API 연동 후 삭제
+const MAJOR_OPTIONS = [
+  'Computer Science',
+  'Mathematics',
+  'Physics',
+  'Chemistry',
+  'Biology',
+];
+
 const TargetRole = () => {
-  const [primaryMajor, setPrimaryMajor] = useState('');
-  const [secondaryMajor, setSecondaryMajor] = useState('');
-  const [targetJob, setTargetJob] = useState('');
+  const { control } = useFormContext<OnboardingForm>();
+  const { targetJob, selectedSkills, currentJobSkills, handleSkillToggle } =
+    useTargetJobSkills();
 
   return (
     <section>
@@ -16,29 +29,70 @@ const TargetRole = () => {
       <div className={styles.inputContainer}>
         <div className={styles.autoWrapper}>
           <p className={styles.label}>Primary Major</p>
-          <Autocomplete
-            value={primaryMajor}
-            onChange={(value) => setPrimaryMajor(value)}
-            options={[]}
+          <Controller
+            name="primaryMajor"
+            control={control}
+            rules={{ required: 'Enter your major' }}
+            render={({ field }) => (
+              <Autocomplete
+                {...field}
+                placeholder={TARGET_ROLE_PLACEHOLDERS.PRIMARY_MAJOR}
+                options={MAJOR_OPTIONS}
+              />
+            )}
           />
         </div>
         <div className={styles.autoWrapper}>
           <p className={styles.label}>Secondary Major (Optional)</p>
-          <Autocomplete
-            value={secondaryMajor}
-            onChange={(value) => setSecondaryMajor(value)}
-            options={[]}
+          <Controller
+            name="secondaryMajor"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder={TARGET_ROLE_PLACEHOLDERS.SECONDARY_MAJOR}
+              />
+            )}
           />
         </div>
         <div className={styles.autoWrapper}>
           <p className={styles.label}>Target Job</p>
-          <Autocomplete
-            value={targetJob}
-            onChange={(value) => setTargetJob(value)}
-            options={[]}
+          <Controller
+            name="targetJob"
+            control={control}
+            rules={{ required: 'Enter your job' }}
+            render={({ field }) => (
+              <Autocomplete
+                {...field}
+                placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
+                options={TARGET_JOB_OPTIONS}
+              />
+            )}
           />
         </div>
       </div>
+      {targetJob && (
+        <div className={styles.checkboxContainer}>
+          {currentJobSkills.map((skill) => (
+            <div
+              key={skill.id}
+              className={styles.checkboxWrapper}
+              onClick={() => handleSkillToggle(skill.id)}
+            >
+              <Checkbox
+                isChecked={selectedSkills.includes(skill.id)}
+                onChange={() => handleSkillToggle(skill.id)}
+              />
+              <div className={styles.checkboxContent}>
+                <h3 className={styles.checkboxTitle}>{skill.title}</h3>
+                <p className={styles.checkboxDescription}>
+                  {skill.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 };

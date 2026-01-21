@@ -22,6 +22,10 @@ export const buttonContainer = style({
   gap: '1.6rem',
 });
 
+export const buttonContainerStep3 = style({
+  paddingTop: '2rem',
+});
+
 export const buttonContent = style({
   display: 'flex',
   alignItems: 'center',

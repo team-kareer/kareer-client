@@ -24,8 +24,33 @@ export const label = style({
   paddingBottom: '0.8rem',
 });
 
-export const buttonWrapper = style({
+export const checkboxContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
+  marginTop: '-0.2rem',
+});
+
+export const checkboxWrapper = style({
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '0.8rem',
+  alignItems: 'center',
+  cursor: 'pointer',
+});
+
+export const checkboxContent = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.4rem',
+});
+
+export const checkboxTitle = style({
   ...typography.cap2_m_12,
-  color: themeVars.color.pastel.kared_500,
-  marginTop: '0.8rem',
+  color: themeVars.color.grayscale.gray800,
+});
+
+export const checkboxDescription = style({
+  ...typography.cap3_r_12,
+  color: themeVars.color.grayscale.gray500,
 });

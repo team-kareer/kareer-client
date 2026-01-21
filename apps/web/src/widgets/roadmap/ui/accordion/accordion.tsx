@@ -18,8 +18,9 @@ const mockData = {
     list: [
       {
         title: 'Prepare internship log',
-        subTitle: 'Document all work experience during internship period',
-        dueDate: '2026-01-13',
+        description: 'Document all work experience during internship period',
+        deadline: '2026-01-13',
+        phaseActionId: 1,
       },
     ],
   },
@@ -28,13 +29,15 @@ const mockData = {
     list: [
       {
         title: 'Prepare internship log',
-        subTitle: 'Document all work experience during internship period',
-        dueDate: '2026-01-13',
+        description: 'Document all work experience during internship period',
+        deadline: '2026-01-13',
+        phaseActionId: 2,
       },
       {
         title: 'Prepare internship log',
-        subTitle: 'Document all work experience during internship period',
-        dueDate: '2026-01-13',
+        description: 'Document all work experience during internship period',
+        deadline: '2026-01-13',
+        phaseActionId: 3,
       },
     ],
   },
@@ -43,8 +46,9 @@ const mockData = {
     list: [
       {
         title: 'Prepare internship log',
-        subTitle: 'Document all work experience during internship period',
-        dueDate: '2026-01-13',
+        description: 'Document all work experience during internship period',
+        deadline: '2026-01-13',
+        phaseActionId: 4,
       },
     ],
   },
