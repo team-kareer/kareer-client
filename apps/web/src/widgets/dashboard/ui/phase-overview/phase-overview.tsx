@@ -13,7 +13,7 @@ const PhaseOverview = () => {
   const [clickedPhase, setClickedPhase] = useState(1);
   return (
     <CareerRoadmap
-      goal={data?.phases?.[clickedPhase - 1]?.goal ?? ''}
+      goal={data?.phases?.[2]?.goal ?? ''}
       actions={
         <ActionRequiredAccordion
           counts={data?.phases?.[clickedPhase]?.worksCount ?? 0}
