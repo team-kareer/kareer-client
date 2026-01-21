@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
 import BookmarkedJobList from '@features/job/ui/bookmarked-job-list/bookmarked-job-list';
@@ -14,24 +14,25 @@ export type JobItem = JobPostingItem & {
   handleOpenDetail?: () => void;
 };
 
-export const JobRecommendationList = () => {
+const JobRecommendationList = () => {
   const [isChecked, setIsChecked] = useState(false);
-
   const { files, noticeMessage, addFiles, removeFile } = useUploadFiles();
-
-  const { mutate } = useMutation(JOB_MUTATION_OPTIONS.RECOMMEND_JOB_POSTINGS());
-
   const [recommendations, setRecommendations] = useState<JobItem[]>([]);
 
-  const handleToggle = (id: number) => {
-    setRecommendations((prev) =>
-      prev.map((job) =>
-        job.jobPostingId === id
-          ? { ...job, isBookmarked: !job.isBookmarked }
-          : job,
-      ),
-    );
-  };
+  const { mutate, isPending } = useMutation({
+    ...JOB_MUTATION_OPTIONS.RECOMMEND_JOB_POSTINGS(),
+    onSuccess: (response) => {
+      const dataList = response.data?.jobPostingResponses ?? [];
+      setRecommendations(dataList as JobItem[]);
+    },
+  });
+
+  useEffect(() => {
+    mutate({
+      files: [],
+      includeCompletedTodo: false,
+    });
+  }, [mutate]);
 
   const handleClickFindPosition = () => {
     if (files.length === 0) {
@@ -40,18 +41,19 @@ export const JobRecommendationList = () => {
 
     const rawFiles = files.map((f) => f.file);
 
-    mutate(
-      { files: rawFiles },
-      {
-        onSuccess: (response) => {
-          console.log('성공:', response);
-          const dataList = response.data?.jobPostingResponses ?? [];
-          setRecommendations(dataList as JobItem[]);
-        },
-        onError: (error) => {
-          console.error('실패:', error);
-        },
-      },
+    mutate({
+      files: rawFiles,
+      includeCompletedTodo: isChecked,
+    });
+  };
+
+  const handleToggle = (id: number) => {
+    setRecommendations((prev) =>
+      prev.map((job) =>
+        job.jobPostingId === id
+          ? { ...job, isBookmarked: !job.isBookmarked }
+          : job,
+      ),
     );
   };
 
@@ -65,6 +67,7 @@ export const JobRecommendationList = () => {
         noticeMessage={noticeMessage}
         onAddFiles={addFiles}
         onRemoveFile={removeFile}
+        isLoading={isPending}
       />
       <BookmarkedJobList jobs={recommendations} onScrap={handleToggle} />
     </div>

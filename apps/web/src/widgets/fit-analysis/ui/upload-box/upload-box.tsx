@@ -17,6 +17,7 @@ interface UploadBoxProps {
   noticeMessage: string;
   onAddFiles: (files: File[]) => void;
   onRemoveFile: (id: string) => void;
+  isLoading: boolean;
 }
 
 const UploadBox = ({
@@ -27,6 +28,7 @@ const UploadBox = ({
   noticeMessage,
   onAddFiles,
   onRemoveFile,
+  isLoading,
 }: UploadBoxProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const hasFiles = files.length > 0;
@@ -54,7 +56,11 @@ const UploadBox = ({
       <div className={styles.actionSection}>
         <div className={styles.fileContainer}>
           <div className={styles.fileSection}>
-            <Button preset="medium_secondary" onClick={handleClickUpload}>
+            <Button
+              preset="medium_secondary"
+              onClick={handleClickUpload}
+              disabled={isLoading}
+            >
               <PlusIcon width={16} height={16} />
               <span>Upload</span>
             </Button>
@@ -73,6 +79,7 @@ const UploadBox = ({
                     key={file.id}
                     preset="medium_outlined"
                     onClick={() => onRemoveFile(file.id)}
+                    disabled={isLoading}
                   >
                     <span className={styles.fileName}>{file.name}</span>
                     <XIcon width={16} height={16} />
@@ -82,12 +89,20 @@ const UploadBox = ({
             )}
           </div>
           <div className={styles.checkSection}>
-            <Checkbox isChecked={isChecked} onClick={handleToggleCheckBox} />
+            <Checkbox
+              isChecked={isChecked}
+              onClick={handleToggleCheckBox}
+              disabled={isLoading}
+            />
             <p className={styles.checkText}>{CHECK_MESSAGE}</p>
           </div>
         </div>
         {hasFiles && (
-          <Button preset="medium_primary" onClick={onClick}>
+          <Button
+            preset="medium_primary"
+            onClick={onClick}
+            disabled={isLoading}
+          >
             <span>Find Position</span>
           </Button>
         )}

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { BookmarkedJobList } from '@features/job';
+import { BookmarkedJobList } from '@features/job/ui';
 import { BOOKMARKED_JOB_QUERY_OPTIONS } from '@entities/job/queries';
 
 export const MyBookmarkedJobs = () => {

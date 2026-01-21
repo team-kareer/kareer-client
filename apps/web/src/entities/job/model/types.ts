@@ -8,6 +8,7 @@ export type RecommendJobPostingsResponse =
   paths['/api/v1/job-postings/recommend']['post']['responses']['200']['content']['*/*'];
 
 export interface RecommendJobPostingsParams {
+  includeCompletedTodo: boolean;
   files: File[];
 }
 

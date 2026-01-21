@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 
-import { ScrapButton } from '@features/job';
 import { useBookmarkedJobs } from '@features/job/model';
+import { ScrapButton } from '@features/job/ui';
 import { BookmarkedJobCard } from '@entities/job';
 import { JobPostingItem } from '@entities/job/model/types';
 import { ROUTE_PATH } from '@shared/router';
