@@ -29,7 +29,7 @@ const AIGuideCard = ({ type, description }: AIGuideCardProps) => {
 
   return (
     <article className={styles.container}>
-      {icon}
+      <div className={styles.icon}>{icon}</div>
       <div>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
