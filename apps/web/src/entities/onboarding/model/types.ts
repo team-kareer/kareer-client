@@ -16,3 +16,6 @@ export type OnboardingForm = Omit<
 
 export type GetMajorListResponse =
   paths['/api/v1/members/onboard/majors']['get']['responses']['200']['content']['*/*'];
+
+export type GetCountryListResponse =
+  paths['/api/v1/members/onboard/countries']['get']['responses']['200']['content']['*/*'];
