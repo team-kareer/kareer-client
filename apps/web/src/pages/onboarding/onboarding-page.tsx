@@ -41,7 +41,6 @@ const OnboardingPage = () => {
   });
 
   // 버튼 비활성화 로직
-  // 필요한 필드만 선택적으로 감시 (전체 구독 방지)
   const visaType = useWatch({ control: form.control, name: 'visaType' });
   const requiredFields = getRequiredFieldsForStep(currentStepIndex, visaType);
 
@@ -51,7 +50,7 @@ const OnboardingPage = () => {
     name: requiredFields,
   });
 
-  // 전체 폼 값 감시 (로컬스토리지 저장용)
+  // 전체 폼 값 감시
   const allFormValues = useWatch({
     control: form.control,
   }) as OnboardingForm;
