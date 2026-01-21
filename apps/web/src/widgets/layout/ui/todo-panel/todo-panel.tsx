@@ -1,10 +1,13 @@
 import { Button, Tab, useTabContext } from '@kds/ui';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
+import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
+import { TODO_QUERY_KEY } from '@entities/todo';
 import { TODO_QUERY_OPTIONS } from '@entities/todo/queries/queries';
 import TodoItem from '@entities/todo/ui/todo-item/todo-item';
 import { ROUTE_PATH } from '@shared/router/path';
+import type { components } from '@shared/types/schema';
 import { EmptyLayout } from '@shared/ui';
 
 import { useSortedTodos } from './hooks/use-sorted-todos';
@@ -17,12 +20,66 @@ const TABS = [
   { id: 2, value: 'career', label: 'Career' },
 ] as const;
 
+type ActionItemListResponse = components['schemas']['ActionItemListResponse'];
+
+const toggleCompleted = (
+  items: ActionItemListResponse['visaActionItems'],
+  actionItemId: number,
+) =>
+  items?.map((item) =>
+    item.actionItemId === actionItemId
+      ? { ...item, completed: !item.completed }
+      : item,
+  );
+
 const TodoPanel = () => {
   const navigate = useNavigate();
   const { data } = useQuery({ ...TODO_QUERY_OPTIONS.GET_TODO_LIST() });
-  const { todos, toggleTodo } = useSortedTodos({
+  const { todos } = useSortedTodos({
     visa: data?.visaActionItems ?? [],
     career: data?.careerActionItems ?? [],
+  });
+
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    ...TODO_MUTATION_OPTIONS.PATCH_TODO(),
+    onMutate: async (actionItemId) => {
+      const queryKey = TODO_QUERY_KEY.TODO_LIST();
+
+      await queryClient.cancelQueries({ queryKey });
+
+      const prev = queryClient.getQueryData<ActionItemListResponse>(queryKey);
+
+      queryClient.setQueryData<ActionItemListResponse>(queryKey, (current) => {
+        if (!current) {
+          return current;
+        }
+
+        return {
+          ...current,
+          visaActionItems: toggleCompleted(
+            current.visaActionItems,
+            actionItemId,
+          ),
+          careerActionItems: toggleCompleted(
+            current.careerActionItems,
+            actionItemId,
+          ),
+        };
+      });
+
+      return { prev };
+    },
+    onError: (_error, _variables, context) => {
+      const queryKey = TODO_QUERY_KEY.TODO_LIST();
+
+      if (context?.prev) {
+        queryClient.setQueryData(queryKey, context.prev);
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: TODO_QUERY_KEY.TODO_LIST() });
+    },
   });
 
   const handleAddTodo = () => {
@@ -53,7 +110,9 @@ const TodoPanel = () => {
                       description={formatDueInDays(deadline ?? '')}
                       size="sm"
                       isChecked={completed ?? false}
-                      onToggle={() => toggleTodo(value, Number(actionItemId))}
+                      onToggle={() => {
+                        mutate(Number(actionItemId));
+                      }}
                     />
                   ),
                 )

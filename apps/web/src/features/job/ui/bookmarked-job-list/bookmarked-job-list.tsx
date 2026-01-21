@@ -3,15 +3,14 @@ import { useNavigate } from 'react-router';
 import { ScrapButton } from '@features/job';
 import { useBookmarkedJobs } from '@features/job/model';
 import { BookmarkedJobCard } from '@entities/job';
-import { JobItem } from '@entities/job/model/types';
+import { JobPostingItem } from '@entities/job/model/types';
 import { ROUTE_PATH } from '@shared/router';
 import { EmptyLayout } from '@shared/ui';
-import { calculateDDay } from '@shared/utils/dday-calculate';
 
 import * as styles from './bookmarked-job-list.css';
 
 interface BookmarkedJobListProps {
-  jobs: JobItem[];
+  jobs: JobPostingItem[];
   onScrap: (id: number) => void;
 }
 
@@ -30,16 +29,20 @@ const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
   return (
     <div className={styles.container}>
       {formattedJobs.map((job) => {
-        const dDay = calculateDDay(job.dueDate);
+        if (!job.jobPostingId) {
+          return null;
+        }
+
         return (
           <BookmarkedJobCard
-            key={job.id}
+            key={job.jobPostingId}
             {...job}
-            dDay={dDay}
+            jobPostingId={job.jobPostingId}
+            dDay={job.dDay}
             scrapAction={
               <ScrapButton
-                isScraped={job.isScraped}
-                onClick={() => onScrap(job.id)}
+                isScraped={job.isBookmarked ?? true}
+                onClick={() => onScrap(job.jobPostingId!)}
               />
             }
             onClick={job.handleOpenDetail}
