@@ -22,7 +22,7 @@ const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
     navigate(ROUTE_PATH.FITANALYSIS);
   };
 
-  if (!formattedJobs || formattedJobs.length === 0) {
+  if (formattedJobs.length === 0) {
     return <EmptyLayout variant="section" onAction={handleMoveToFitAnalysis} />;
   }
 

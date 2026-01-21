@@ -7,14 +7,10 @@ import { TagColor } from '@shared/utils/job-tag-color';
 
 import * as styles from './bookmarked-job-card.css';
 
-interface BookmarkedJobCardProps extends Omit<
-  JobPostingItem,
-  'jobPostingId' | 'isBookmarked'
-> {
-  jobPostingId: number;
+interface BookmarkedJobCardProps extends JobPostingItem {
   dDay?: number;
-  jobTagColor?: TagColor;
-  scrapAction?: ReactNode;
+  jobTagColor: TagColor;
+  scrapAction: ReactNode;
   onClick?: () => void;
 }
 
@@ -38,7 +34,7 @@ const BookmarkedJobCard = ({
   arrangement,
   dDay,
   scrapAction,
-  jobTagColor = 'disabled_gray',
+  jobTagColor,
   onClick,
 }: BookmarkedJobCardProps) => {
   return (
