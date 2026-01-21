@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getPhaseList } from '@entities/phase/api';
+import { getPhaseItemHome, getPhaseList } from '@entities/phase/api';
 import { PHASE_QUERY_KEY } from '@entities/phase/queries';
 
 export const PHASE_QUERY_OPTIONS = {
@@ -8,6 +8,13 @@ export const PHASE_QUERY_OPTIONS = {
     return queryOptions({
       queryKey: PHASE_QUERY_KEY.PHASE_LIST(),
       queryFn: getPhaseList,
+    });
+  },
+  GET_PHASE_ITEM_HOME: (phaseId: number) => {
+    return queryOptions({
+      queryKey: PHASE_QUERY_KEY.PHASE_ITEM_HOME(phaseId),
+      queryFn: () => getPhaseItemHome(phaseId),
+      enabled: !!phaseId && phaseId > 0,
     });
   },
 };
