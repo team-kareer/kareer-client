@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
@@ -27,6 +28,7 @@ import useFunnel from '@shared/hooks/usefunnel';
 const OnboardingPage = () => {
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
     useFunnel(FUNNEL_STEPS, '/');
+  const [error, setError] = useState<Error | null>(null);
 
   const form = useForm<OnboardingForm>({
     mode: 'onChange',
@@ -71,6 +73,12 @@ const OnboardingPage = () => {
   // 로컬스토리지 저장
   useOnboardingStorage(allFormValues);
 
+  useEffect(() => {
+    if (error) {
+      throw error;
+    }
+  }, [error]);
+
   const steps = createStepData(STEP_TITLES, currentStepIndex);
 
   const handleBack = () => {
@@ -90,8 +98,7 @@ const OnboardingPage = () => {
       goToNextStep();
     },
     onError: (error) => {
-      // eslint-disable-next-line no-console
-      console.error('온보딩 제출 실패: ', error);
+      setError(error instanceof Error ? error : new Error('온보딩 제출 실패'));
     },
   });
 
