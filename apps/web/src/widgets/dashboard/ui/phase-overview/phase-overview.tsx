@@ -10,10 +10,10 @@ import { CareerRoadmap } from '@shared/ui';
 const PhaseOverview = () => {
   const { data } = useQuery({ ...PHASE_QUERY_OPTIONS.GET_PHASE_LIST() });
 
-  const [clickedPhase, setClickedPhase] = useState(0);
+  const [clickedPhase, setClickedPhase] = useState(1);
   return (
     <CareerRoadmap
-      goal={data?.phases?.[clickedPhase]?.goal ?? ''}
+      goal={data?.phases?.[clickedPhase - 1]?.goal ?? ''}
       actions={
         <ActionRequiredAccordion
           counts={data?.phases?.[clickedPhase]?.worksCount ?? 0}
