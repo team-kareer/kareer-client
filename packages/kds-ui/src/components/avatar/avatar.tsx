@@ -15,7 +15,7 @@ const Avatar = ({ profileUrl, size }: AvatarProps) => {
       className={styles.img({ size: size })}
     />
   ) : (
-    <AvatarIcon />
+    <AvatarIcon width={52} height={52} />
   );
 };
 
