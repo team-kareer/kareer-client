@@ -33,14 +33,15 @@ const OnboardingPage = () => {
   const form = useForm<OnboardingForm>({
     mode: 'onChange',
     reValidateMode: 'onChange',
-    defaultValues: async () => {
-      const savedData = getLocalStorageData();
-      if (savedData) {
-        return savedData;
-      }
-      return DEFAULT_ONBOARDING_FORM;
-    },
+    defaultValues: DEFAULT_ONBOARDING_FORM,
   });
+
+  useEffect(() => {
+    const savedData = getLocalStorageData();
+    if (savedData) {
+      form.reset(savedData);
+    }
+  }, [form]);
 
   // 버튼 비활성화 로직
   const visaType = useWatch({ control: form.control, name: 'visaType' });

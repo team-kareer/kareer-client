@@ -1,9 +1,11 @@
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import { Autocomplete, Button, Tab, useTabContext } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { type OnboardingForm } from '@entities/onboarding';
 import {
+  DEGREE_MAP,
+  LABEL_TO_DEGREE_TYPE_MAP,
   OUTSIDE_KOREA_DEGREE_OPTIONS,
   SOUTH_KOREA_DEGREE_OPTIONS,
 } from '@entities/onboarding';
@@ -18,19 +20,7 @@ const getDegreeLabel = (value: string): string => {
   if (!value) {
     return '';
   }
-
-  // 표시 텍스트 매핑
-  const degreeMap: Record<string, string> = {
-    DOMESTIC_ASSOCIATE: 'Associate Degree',
-    DOMESTIC_BACHELORS: "Bachelor's Degree",
-    DOMESTIC_MASTERS: "Master's Degree",
-    DOMESTIC_DOCTORATE: 'Doctoral(PhD)',
-    OVERSEAS_BACHELORS: "Bachelor's Degree",
-    OVERSEAS_MASTERS: "Master's Degree",
-    OVERSEAS_DOCTORATE: 'Doctoral(PhD)',
-  };
-
-  return degreeMap[value] || value;
+  return DEGREE_MAP[value] || value;
 };
 
 /**
@@ -40,16 +30,8 @@ const getDegreeLabel = (value: string): string => {
 const getDegreeValue = (label: string, degreeLocation: string): string => {
   const prefix = degreeLocation === 'south-korea' ? 'DOMESTIC_' : 'OVERSEAS_';
 
-  // 표시 텍스트 -> API 값 매핑
-  const labelToDegreeMap: Record<string, string> = {
-    'Associate Degree': 'ASSOCIATE',
-    "Bachelor's Degree": 'BACHELORS',
-    "Master's Degree": 'MASTERS',
-    'Doctoral(PhD)': 'DOCTORATE',
-  };
-
   const degreeType =
-    labelToDegreeMap[label] || label.toUpperCase().replace(/\s+/g, '_');
+    LABEL_TO_DEGREE_TYPE_MAP[label] || label.toUpperCase().replace(/\s+/g, '_');
   return `${prefix}${degreeType}`;
 };
 
@@ -75,6 +57,44 @@ export const DegreeLocationButton = ({
     >
       {children}
     </Button>
+  );
+};
+
+// 입력값 상태 관리 컴포넌트
+const DegreeInput = ({
+  field,
+  options,
+  degreeLocation,
+}: {
+  field: { value: string; onChange: (value: string) => void };
+  options: string[];
+  degreeLocation: string;
+}) => {
+  const displayValue = field.value ? getDegreeLabel(field.value) : '';
+  const [inputValue, setInputValue] = useState(displayValue);
+
+  // 폼 값이 변경되면 입력값 동기화
+  useEffect(() => {
+    setInputValue(displayValue);
+  }, [displayValue]);
+
+  return (
+    <Autocomplete
+      placeholder="Select the degree"
+      value={inputValue}
+      onChange={(label) => {
+        setInputValue(label); // 입력 중인 텍스트 표시
+        // 옵션 목록에 있는 값인 경우에만 변환하여 저장
+        if (options.includes(label)) {
+          const apiValue = getDegreeValue(
+            label,
+            degreeLocation || 'south-korea',
+          );
+          field.onChange(apiValue);
+        }
+      }}
+      options={options}
+    />
   );
 };
 
@@ -125,25 +145,13 @@ const OnboardingDegreeStep = () => {
         name="degree"
         control={control}
         rules={{ required: 'Select the degree' }}
-        render={({ field }) => {
-          const displayValue = field.value ? getDegreeLabel(field.value) : '';
-
-          return (
-            <Autocomplete
-              placeholder="Select the degree"
-              value={displayValue}
-              onChange={(label) => {
-                // 표시 텍스트를 API 값으로 변환하여 저장
-                const apiValue = getDegreeValue(
-                  label,
-                  degreeLocation || 'south-korea',
-                );
-                field.onChange(apiValue);
-              }}
-              options={options}
-            />
-          );
-        }}
+        render={({ field }) => (
+          <DegreeInput
+            field={field}
+            options={options}
+            degreeLocation={degreeLocation || 'south-korea'}
+          />
+        )}
       />
     </Tab.Container>
   );
