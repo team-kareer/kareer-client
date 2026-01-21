@@ -83,7 +83,9 @@ const VisaInformation = () => {
                 rules={{
                   required: 'Enter the graduation date',
                   validate: (value) => {
-                    if (!value) return 'Enter the graduation date';
+                    if (!value) {
+                      return 'Enter the graduation date';
+                    }
                     const result = validateDate(value, true); // 미래 날짜 허용
                     return result === true || result;
                   },
@@ -143,7 +145,9 @@ const VisaInformation = () => {
             rules={{
               required: 'Enter the issuance date',
               validate: (value) => {
-                if (!value) return 'Enter the issuance date';
+                if (!value) {
+                  return 'Enter the issuance date';
+                }
                 const result = validateDate(value, true);
                 return result === true || result;
               },
@@ -170,7 +174,9 @@ const VisaInformation = () => {
             rules={{
               required: 'Enter the expiration date',
               validate: (value) => {
-                if (!value) return 'Enter the expiration date';
+                if (!value) {
+                  return 'Enter the expiration date';
+                }
                 // 기본 날짜 형식 체크
                 const result = validateDate(value, true);
                 if (result !== true) {
