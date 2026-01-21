@@ -381,7 +381,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  // 여기!
   '/api/v1/job-postings/bookmarks': {
     parameters: {
       query?: never;
@@ -694,7 +693,6 @@ export interface components {
       message?: string;
       data?: components['schemas']['JobPostingListResponse'];
     };
-    // 여기!
     JobPostingListResponse: {
       jobPostingResponses?: components['schemas']['JobPostingResponse'][];
     };
