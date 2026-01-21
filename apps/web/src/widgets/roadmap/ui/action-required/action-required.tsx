@@ -26,6 +26,7 @@ interface ActionRequiredData {
 
 interface ActionRequiredProps {
   data: ActionRequiredData;
+  onSelect?: (phaseActionId: number) => void;
 }
 
 const TAG_COLOR_PALETTE = {
@@ -34,7 +35,7 @@ const TAG_COLOR_PALETTE = {
   Done: 'disabled_gray',
 } as const;
 
-const ActionRequired = ({ data }: ActionRequiredProps) => {
+const ActionRequired = ({ data, onSelect }: ActionRequiredProps) => {
   const types: Array<keyof typeof TAG_COLOR_PALETTE> = [
     'Visa',
     'Career',
@@ -55,6 +56,13 @@ const ActionRequired = ({ data }: ActionRequiredProps) => {
       return;
     }
     mutate(phaseActionId);
+  };
+
+  const handleSelect = (phaseActionId?: number) => {
+    if (phaseActionId == null) {
+      return;
+    }
+    onSelect?.(phaseActionId);
   };
 
   return (
@@ -81,7 +89,8 @@ const ActionRequired = ({ data }: ActionRequiredProps) => {
                 subTitle={item.description ?? ''}
                 dueDate={item.deadline ?? ''}
                 disabled={type === 'Done'}
-                onClick={() => handleTodoItem(item.phaseActionId)}
+                onSelect={() => handleSelect(item.phaseActionId)}
+                onTodoClick={() => handleTodoItem(item.phaseActionId)}
               />
             ))}
           </section>
