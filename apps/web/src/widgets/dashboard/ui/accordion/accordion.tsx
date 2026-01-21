@@ -5,8 +5,11 @@ import { RequiredActionCard } from '@entities/phase';
 import { RequiredActionType } from '@entities/phase/model';
 import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 import { useAccordion } from '@shared/hooks/useAccordion';
+import { components } from '@shared/types/schema';
 
 import * as styles from './accordion.css';
+
+type Action = components['schemas']['HomePhaseActionResponse'];
 
 interface ActionRequiredAccordion {
   phaseId: number;
@@ -38,7 +41,7 @@ const ActionRequiredAccordion = ({ phaseId }: ActionRequiredAccordion) => {
         <div className={styles.inner}>
           {shouldRender && (
             <div className={styles.content}>
-              {data?.actions?.map((action) => (
+              {data?.actions?.map((action: Action) => (
                 <RequiredActionCard
                   key={`${action.phaseActionId}`}
                   tagType={(action.type as RequiredActionType) ?? 'Career'}
