@@ -10,6 +10,7 @@ import {
 } from '@widgets/onboarding';
 import type { PostOnboardingForm } from '@features/onboarding';
 import { postOnboardingForm, useOnboardingStorage } from '@features/onboarding';
+import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
 import {
   convertFormToRequest,
   createStepData,
@@ -77,9 +78,16 @@ const OnboardingPage = () => {
     goToPrevStep();
   };
 
+  // 로드맵 생성 mutation
+  const { mutate: generateRoadmap } = useMutation({
+    ...ONBOARDING_MUTATION_OPTIONS.POST_AI_ROADMAP(),
+  });
+
   const { mutate: submitOnboarding } = useMutation({
     mutationFn: postOnboardingForm,
     onSuccess: () => {
+      // 온보딩 성공 후 로드맵 생성 API 호출
+      generateRoadmap();
       goToNextStep();
     },
     onError: (error) => {

@@ -1,11 +1,16 @@
 import { mutationOptions } from '@tanstack/react-query';
 
-import { postOnboardingForm } from '@features/onboarding';
+import { postOnboardingForm, postAiRoadMap } from '@features/onboarding';
 
 export const ONBOARDING_MUTATION_OPTIONS = {
   POST_ONBOARDING_FORM: () => {
     return mutationOptions({
       mutationFn: postOnboardingForm,
+    });
+  },
+  POST_AI_ROADMAP: () => {
+    return mutationOptions({
+      mutationFn: postAiRoadMap,
     });
   },
 };
