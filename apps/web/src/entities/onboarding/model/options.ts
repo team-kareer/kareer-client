@@ -1,10 +1,3 @@
-export const COUNTRY_OPTIONS = [
-  'South Korea',
-  'United Kingdom',
-  'United States',
-  'Japan',
-];
-
 export const LANGUAGE_LEVEL_OPTIONS = [
   'LEVEL_1',
   'LEVEL_2',

@@ -1,4 +1,5 @@
 import { Autocomplete, Input } from '@kds/ui';
+import { useQuery } from '@tanstack/react-query';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
@@ -7,11 +8,11 @@ import {
   validateDate,
   validateName,
 } from '@features/onboarding/hooks/validators';
-import { type OnboardingForm } from '@entities/onboarding';
 import {
-  COUNTRY_OPTIONS,
-  LANGUAGE_LEVEL_OPTIONS,
-} from '@entities/onboarding/model/options';
+  COUNTRY_LIST_QUERY_OPTIONS,
+  type OnboardingForm,
+} from '@entities/onboarding';
+import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding/model/options';
 
 import * as styles from './personal-information.css';
 
@@ -19,6 +20,9 @@ const NON_BREAKING_SPACE = '\u00A0';
 
 const PersonalInformation = () => {
   const { control } = useFormContext<OnboardingForm>();
+  const { data: countryList } = useQuery({
+    ...COUNTRY_LIST_QUERY_OPTIONS.GET_COUNTRY_LIST(),
+  });
 
   const MAX_LENGTH = 30;
 
@@ -93,7 +97,7 @@ const PersonalInformation = () => {
                 placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
                 value={field.value || ''}
                 onChange={(value) => field.onChange(value)}
-                options={COUNTRY_OPTIONS}
+                options={countryList?.countries || []}
               />
             )}
           />
