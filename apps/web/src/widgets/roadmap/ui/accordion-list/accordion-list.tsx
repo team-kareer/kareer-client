@@ -8,18 +8,21 @@ const mockData = [
     title: 'Verify Requirements',
     subTitle: 'Initial setup and documentation',
     dueDate: 'Sep. 2025 - Nov.  2025',
+    phaseActionId: 1,
   },
   {
     phase: 2,
     title: 'Title Here',
     subTitle: 'Sub-text here',
     dueDate: 'Mon. 20XX - Mon.  20XX',
+    phaseActionId: 2,
   },
   {
     phase: 3,
     title: 'D-10 Transition',
     subTitle: 'Initial setup and documentation',
     dueDate: 'Sep. 2025 - Nov.  2025',
+    phaseActionId: 3,
   },
 ];
 
@@ -34,6 +37,7 @@ const AccordionList = () => {
           title={data.title}
           subTitle={data.subTitle}
           dueDate={data.dueDate}
+          phaseActionId={data.phaseActionId}
         />
       ))}
     </section>
