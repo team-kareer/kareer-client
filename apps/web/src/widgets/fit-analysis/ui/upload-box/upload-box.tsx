@@ -2,7 +2,7 @@ import { ChangeEvent, useRef } from 'react';
 import { PlusIcon, XIcon } from '@kds/icons';
 import { Button, Checkbox } from '@kds/ui';
 
-import { useUploadFiles } from './use-upload-files';
+import { FileItem } from './use-upload-files';
 
 import * as styles from './upload-box.css';
 
@@ -13,11 +13,22 @@ interface UploadBoxProps {
   isChecked: boolean;
   setIsChecked: (value: boolean) => void;
   onClick: () => void;
+  files: FileItem[];
+  noticeMessage: string;
+  onAddFiles: (files: File[]) => void;
+  onRemoveFile: (id: string) => void;
 }
 
-const UploadBox = ({ isChecked, setIsChecked, onClick }: UploadBoxProps) => {
+const UploadBox = ({
+  isChecked,
+  setIsChecked,
+  onClick,
+  files,
+  noticeMessage,
+  onAddFiles,
+  onRemoveFile,
+}: UploadBoxProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { files, noticeMessage, addFiles, removeFile } = useUploadFiles();
   const hasFiles = files.length > 0;
 
   const handleClickUpload = () => {
@@ -30,7 +41,7 @@ const UploadBox = ({ isChecked, setIsChecked, onClick }: UploadBoxProps) => {
       return;
     }
 
-    addFiles(selectedFiles);
+    onAddFiles(selectedFiles);
     event.target.value = '';
   };
 
@@ -61,7 +72,7 @@ const UploadBox = ({ isChecked, setIsChecked, onClick }: UploadBoxProps) => {
                   <Button
                     key={file.id}
                     preset="medium_outlined"
-                    onClick={() => removeFile(file.id)}
+                    onClick={() => onRemoveFile(file.id)}
                   >
                     <span className={styles.fileName}>{file.name}</span>
                     <XIcon width={16} height={16} />
