@@ -1,17 +1,3 @@
 export * from './api';
-export * from './model/constants';
-export { END_POINT } from './model/end_point';
-export * from './model/form-to-request';
-export * from './model/job-skills';
-export * from './model/options';
-export * from './model/personal-background';
-export * from './model/steps';
-export * from './model/storage';
-export * from './model/target-job-skills';
-export {
-  type GetMajorListResponse,
-  type OnboardingForm,
-  type OnboardingFormRequest,
-} from './model/types';
-export * from './model/validation';
+export * from './model';
 export * from './qureies';
