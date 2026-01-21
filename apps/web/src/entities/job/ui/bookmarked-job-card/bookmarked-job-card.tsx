@@ -25,6 +25,20 @@ const formatDeadLine = (dDay?: number) => {
   return `D-${dDay}`;
 };
 
+{
+  /*
+const formatListText = (items?: string[]) => {
+  if (!items || items.length === 0) {
+    return '-';
+  }
+  if (items.length === 1) {
+    return items[0];
+  }
+  return `${items[0]} +${items.length - 1}`;
+};
+*/
+}
+
 const BookmarkedJobCard = ({
   title,
   company,
