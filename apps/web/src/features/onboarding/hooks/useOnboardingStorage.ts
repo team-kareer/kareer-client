@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { type OnboardingForm } from '@entities/onboarding';
-import { STORAGE_KEY } from '@entities/onboarding/model/constants';
+import { type OnboardingForm, STORAGE_KEY } from '@entities/onboarding';
 
 export const useOnboardingStorage = (allValues: OnboardingForm) => {
   const prevValuesRef = useRef<string>('');

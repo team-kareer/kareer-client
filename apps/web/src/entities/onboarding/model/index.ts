@@ -8,8 +8,8 @@ export * from './steps';
 export * from './storage';
 export * from './target-job-skills';
 export {
-  type GetMajorListResponse,
   type GetCountryListResponse,
+  type GetMajorListResponse,
   type OnboardingForm,
   type OnboardingFormRequest,
 } from './types';

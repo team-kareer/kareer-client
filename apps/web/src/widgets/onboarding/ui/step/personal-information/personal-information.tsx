@@ -12,7 +12,7 @@ import {
   COUNTRY_LIST_QUERY_OPTIONS,
   type OnboardingForm,
 } from '@entities/onboarding';
-import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding/model/options';
+import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './personal-information.css';
 
