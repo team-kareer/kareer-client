@@ -9,7 +9,8 @@ interface PhaseListAccordionItemProps {
   phase: number;
   title: string;
   subTitle: string;
-  dueDate: string;
+  startDate: string;
+  endDate: string;
 }
 
 const mockData = {
@@ -59,7 +60,8 @@ const Accordion = ({
   phase,
   title,
   subTitle,
-  dueDate,
+  startDate,
+  endDate,
 }: PhaseListAccordionItemProps) => {
   // 추후 api 응답 값으로 변경
   const { isOpen, shouldRender, toggle } = useAccordion();
@@ -79,7 +81,9 @@ const Accordion = ({
           </div>
         </div>
         <div className={styles.right_section}>
-          <span className={styles.grayText}>{dueDate}</span>
+          <span className={styles.grayText}>
+            {startDate} - {endDate}
+          </span>
           <Button preset="text_ghost" onClick={toggle}>
             {buttonText}
           </Button>

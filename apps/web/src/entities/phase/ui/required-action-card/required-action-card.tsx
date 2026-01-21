@@ -1,8 +1,8 @@
 import { Tag } from '@kds/ui';
 
-import * as styles from './required-action-card.css';
+import type { RequiredActionType } from '@entities/phase/model';
 
-type RequiredActionType = 'Visa' | 'Career';
+import * as styles from './required-action-card.css';
 
 const TAG_CONFIG = {
   Visa: {
