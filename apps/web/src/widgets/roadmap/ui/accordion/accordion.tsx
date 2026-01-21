@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { Button, Tag } from '@kds/ui';
+import { useQuery } from '@tanstack/react-query';
 
 import { ActionRequired, AIGuide } from '@widgets/roadmap';
+import { PHASE_OPTIONS } from '@entities/phase/queries/queries';
 import { useAccordion } from '@shared/hooks/useAccordion';
 
 import * as styles from './accordion.css';
@@ -10,6 +13,7 @@ interface PhaseListAccordionItemProps {
   title: string;
   subTitle: string;
   dueDate: string;
+  phaseActionId: number;
 }
 
 const mockData = {
@@ -20,7 +24,7 @@ const mockData = {
         title: 'Prepare internship log',
         description: 'Document all work experience during internship period',
         deadline: '2026-01-13',
-        phaseActionId: 1,
+        phaseActionId: 36,
       },
     ],
   },
@@ -60,11 +64,20 @@ const Accordion = ({
   title,
   subTitle,
   dueDate,
+  phaseActionId,
 }: PhaseListAccordionItemProps) => {
   // 추후 api 응답 값으로 변경
   const { isOpen, shouldRender, toggle } = useAccordion();
   const tagStyle = isOpen ? 'pastel_blue' : 'disabled_gray';
   const buttonText = isOpen ? 'Show less' : 'Show all';
+  const [selectedPhaseActionId, setSelectedPhaseActionId] =
+    useState<number>(phaseActionId);
+
+  const { data } = useQuery({
+    ...PHASE_OPTIONS.GET_AI_GUIDE({
+      phaseActionId: selectedPhaseActionId,
+    }),
+  });
 
   return (
     // accordionItem
@@ -92,11 +105,14 @@ const Accordion = ({
           <div className={styles.line} />
           {shouldRender && (
             <div className={styles.content}>
-              <ActionRequired data={mockData} />
+              <ActionRequired
+                data={mockData}
+                onSelect={(id) => setSelectedPhaseActionId(id)}
+              />
               <AIGuide
-                importance="This is placeholder text for Required Action section."
-                guideline="This is placeholder text for Required Action section."
-                commonMistakes="This is placeholder text for Required Action section."
+                importance={data?.importance ?? ''}
+                guideline={data?.guidelines ?? []}
+                commonMistakes={data?.mistakes ?? []}
               />
             </div>
           )}
