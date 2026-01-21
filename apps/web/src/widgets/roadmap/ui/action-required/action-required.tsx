@@ -2,7 +2,7 @@ import { Tag } from '@kds/ui';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import ActionCard from '@widgets/roadmap/ui/action-card';
-import { TODO_MUTATION_OPTIONS } from '@features/todo/queries/queires';
+import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
 import { TODO_QUERY_KEY } from '@entities/todo';
 import { components } from '@shared/types/schema';
 
