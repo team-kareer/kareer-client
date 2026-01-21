@@ -1,7 +1,7 @@
 import {
   END_POINT,
-  PatchToggleCHeckboxResponse,
   PatchToggleCheckboxRequest,
+  PatchToggleCHeckboxResponse,
 } from '@features/todo/model';
 import { api } from '@shared/apis/configs/instance';
 
