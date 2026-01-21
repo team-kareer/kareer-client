@@ -17,7 +17,7 @@ const PhaseOverview = () => {
       goal={data?.phases?.[2]?.goal ?? ''}
       actions={
         <ActionRequiredAccordion
-          counts={data?.phases?.[clickedPhase]?.worksCount ?? 0}
+          counts={data?.phases?.[clickedPhase - 1]?.worksCount ?? 0}
         />
       }
     >
