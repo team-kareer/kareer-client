@@ -1,67 +1,35 @@
 import { useState } from 'react';
 import { LogoIcon } from '@kds/icons';
+import { useQuery } from '@tanstack/react-query';
 
 import { ActionRequiredAccordion } from '@widgets/dashboard/ui';
 import { CareerRoadmapStep } from '@entities/phase';
+import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 import { CareerRoadmap } from '@shared/ui';
 
 const PhaseOverview = () => {
-  // api response 값으로 변경 예정
-  const mockData = {
-    phases: [
-      {
-        phaseId: 'Long',
-        phaseStatus: 'Past',
-        sequence: 1,
-        goal: 'Verify Requirement',
-        workStatus: 'Incompleted works',
-        worksCount: 2,
-        startDate: '2025-11-01',
-        endDate: '2025-11-01',
-      },
-      {
-        phaseId: 'Long',
-        phaseStatus: 'Current',
-        sequence: 2,
-        goal: 'Build Experience',
-        workStatus: 'Remained works',
-        worksCount: 2,
-        startDate: '2025-09-25',
-        endDate: '2025-11-25',
-      },
-      {
-        phaseId: 'Long',
-        phaseStatus: 'Future',
-        sequence: 3,
-        goal: 'D-10 Transition',
-        workStatus: 'Scheduled works',
-        worksCount: 8,
-        startDate: '2025-09-25',
-        endDate: '2025-11-25',
-      },
-    ],
-  };
+  const { data } = useQuery({ ...PHASE_QUERY_OPTIONS.GET_PHASE_LIST() });
 
   const [clickedPhase, setClickedPhase] = useState(0);
   return (
     <CareerRoadmap
-      goal={mockData.phases[clickedPhase]?.goal ?? ''}
+      goal={data?.phases?.[clickedPhase]?.goal ?? ''}
       actions={
         <ActionRequiredAccordion
-          counts={mockData.phases[clickedPhase]?.worksCount ?? 0}
+          counts={data?.phases?.[clickedPhase]?.worksCount ?? 0}
         />
       }
     >
-      {mockData.phases.map((phase, idx) => {
-        const isActive = clickedPhase === idx;
+      {data?.phases?.map(({ goal, startDate, endDate, sequence }) => {
+        const isActive = clickedPhase === sequence;
 
         return (
           <CareerRoadmapStep
-            key={phase.goal}
-            title={phase.goal}
-            period={`${phase.startDate} - ${phase.endDate}`}
-            phase={phase.sequence}
-            onClick={() => setClickedPhase(idx)}
+            key={goal}
+            title={goal ?? ''}
+            period={`${startDate} - ${endDate}`}
+            phase={Number(sequence)}
+            onClick={() => setClickedPhase(Number(sequence))}
             isActive={isActive}
             bottom={isActive && <LogoIcon width={60} height={60} />}
           />
