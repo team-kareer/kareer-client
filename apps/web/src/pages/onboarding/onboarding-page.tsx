@@ -1,3 +1,4 @@
+import { useMutation } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import {
@@ -7,18 +8,19 @@ import {
   TargetRoleStep,
   VisaInformationStep,
 } from '@widgets/onboarding';
-import { useOnboardingStorage } from '@features/onboarding';
-import { OnboardingForm } from '@entities/onboarding';
+import type { PostOnboardingForm } from '@features/onboarding';
+import { postOnboardingForm, useOnboardingStorage } from '@features/onboarding';
 import {
+  convertFormToRequest,
+  createStepData,
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
-  STEP_TITLES,
-} from '@entities/onboarding';
-import {
+  getLocalStorageData,
   getRequiredFieldsForStep,
   hasAllRequiredFieldValues,
+  OnboardingForm,
+  STEP_TITLES,
 } from '@entities/onboarding';
-import { createStepData, getLocalStorageData } from '@entities/onboarding';
 import useFunnel from '@shared/hooks/usefunnel';
 
 const OnboardingPage = () => {
@@ -75,10 +77,30 @@ const OnboardingPage = () => {
     goToPrevStep();
   };
 
+  const { mutate: submitOnboarding } = useMutation({
+    mutationFn: postOnboardingForm,
+    onSuccess: () => {
+      goToNextStep();
+    },
+    onError: (error) => {
+      // eslint-disable-next-line no-console
+      console.error('온보딩 제출 실패: ', error);
+    },
+  });
+
   const handleNext = async () => {
     const isValid = await form.trigger(requiredFields);
     if (isValid) {
-      goToNextStep();
+      const isLastStep = currentStepIndex === FUNNEL_STEPS.length - 1;
+      if (isLastStep) {
+        const formData = form.getValues();
+        const requestData = convertFormToRequest(
+          formData,
+        ) as PostOnboardingForm;
+        submitOnboarding(requestData);
+      } else {
+        goToNextStep();
+      }
     }
   };
 
