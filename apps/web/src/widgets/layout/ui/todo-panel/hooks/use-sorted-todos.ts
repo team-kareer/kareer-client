@@ -1,8 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-
 import type { components } from '@shared/types/schema';
-
-type TabKey = 'visa' | 'career';
 
 type Todo = components['schemas']['ActionItemResponse'];
 
@@ -26,37 +22,10 @@ const sortByCheckedAndDueDate = (list: Todo[]) => {
 };
 
 export const useSortedTodos = (initialTodos: TodosByTab) => {
-  const [todos, setTodos] = useState(() => ({
+  const todos = {
     visa: sortByCheckedAndDueDate(initialTodos.visa),
     career: sortByCheckedAndDueDate(initialTodos.career),
-  }));
-
-  const isFirstRender = useRef(true);
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    setTodos({
-      visa: sortByCheckedAndDueDate(initialTodos.visa),
-      career: sortByCheckedAndDueDate(initialTodos.career),
-    });
-  }, [initialTodos]);
-
-  const toggleTodo = (tab: TabKey, id: number) => {
-    setTodos((prev) => ({
-      ...prev,
-      [tab]: sortByCheckedAndDueDate(
-        prev[tab].map((todo) =>
-          todo.actionItemId === id
-            ? { ...todo, completed: !todo.completed }
-            : todo,
-        ),
-      ),
-    }));
   };
 
-  return { todos, toggleTodo };
+  return { todos };
 };
