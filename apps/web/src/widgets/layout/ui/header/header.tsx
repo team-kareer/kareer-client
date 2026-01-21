@@ -26,7 +26,6 @@ const HEADER_LIST = [
 ] as const;
 
 const Header = () => {
-  // 추후 api response로 대체
   const { data } = useQuery({ ...USER_QUERY_OPTIONS.GET_USER_INFO() });
 
   const location = useLocation();
@@ -45,7 +44,6 @@ const Header = () => {
         </h1>
         <p className={styles.subTitle}>{curHeader?.subTitle}</p>
       </div>
-
       <Avatar profileUrl={data?.profileImageUrl} size="mini" />
     </header>
   );
