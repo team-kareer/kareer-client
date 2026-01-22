@@ -16,4 +16,5 @@ export const PHASE_QUERY_KEY = {
     'phaseItemRoadmap',
     phaseId,
   ],
+  PHASE_ITEM_ROADMAP_ALL: () => [...PHASE_QUERY_KEY.ALL, 'phaseItemRoadmap'],
 };
