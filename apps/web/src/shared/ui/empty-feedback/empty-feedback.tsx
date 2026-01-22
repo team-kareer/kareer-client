@@ -1,5 +1,5 @@
 import { ComponentProps, ReactNode } from 'react';
-import { CuriousIcon, MagniIcon, PlusIcon, SurpriseIcon } from '@kds/icons';
+import { CuriousIcon, MagnifierIcon, PlusIcon, SurpriseIcon } from '@kds/icons';
 import { Button } from '@kds/ui';
 
 import * as styles from './empty-feedback.css';
@@ -30,7 +30,7 @@ const LAYOUT_CONFIG: Record<EmptyLayoutVariant, LayoutConfigItem> = {
     },
   },
   section: {
-    icon: <MagniIcon width={100} height={100} />,
+    icon: <MagnifierIcon width={100} height={100} />,
     title: 'Let’s find the job opportunities that fit me',
     subtitle: 'Find jobs that fit you and save them',
     button: {

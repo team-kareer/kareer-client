@@ -1,5 +1,5 @@
-import { END_POINT } from '@entities/job/model/end_point';
-import { JobPostingListResponse } from '@entities/job/model/types';
+import { END_POINT } from '@entities/job';
+import { JobPostingListResponse } from '@entities/job';
 import { api } from '@shared/apis/configs/instance';
 
 export const getBookmarkedJob = async () => {
