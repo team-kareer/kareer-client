@@ -8,6 +8,7 @@ interface ActionCardProps {
   disabled?: boolean;
   onSelect?: () => void;
   onTodoClick?: () => void;
+  isButtonDisabled?: boolean;
 }
 
 const ActionCard = ({
@@ -17,6 +18,7 @@ const ActionCard = ({
   onSelect,
   onTodoClick,
   disabled = false,
+  isButtonDisabled = false,
 }: ActionCardProps) => {
   return (
     <ActionRequiredCard
@@ -26,7 +28,11 @@ const ActionCard = ({
       disabled={disabled}
       onClick={onSelect}
     >
-      <ActionTodoButton text="To-Do" onClick={onTodoClick} />
+      <ActionTodoButton
+        text="To-Do"
+        onClick={onTodoClick}
+        isDisabled={isButtonDisabled}
+      />
     </ActionRequiredCard>
   );
 };
