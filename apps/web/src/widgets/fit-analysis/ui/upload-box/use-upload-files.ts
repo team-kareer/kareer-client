@@ -7,7 +7,7 @@ const SIZE_NOTICE_MESSAGE = 'The file size exceeds the 20 MB limit.';
 const DUPLICATE_NOTICE_MESSAGE =
   'Resume and cover letter must have different file names. Rename one file and upload again.';
 
-interface FileItem {
+export interface FileItem {
   id: string;
   name: string;
   file: File;

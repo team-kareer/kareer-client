@@ -2,7 +2,7 @@ import { ChangeEvent, useRef } from 'react';
 import { PlusIcon, XIcon } from '@kds/icons';
 import { Button, Checkbox } from '@kds/ui';
 
-import { useUploadFiles } from './use-upload-files';
+import { FileItem } from './use-upload-files';
 
 import * as styles from './upload-box.css';
 
@@ -13,11 +13,24 @@ interface UploadBoxProps {
   isChecked: boolean;
   setIsChecked: (value: boolean) => void;
   onClick: () => void;
+  files: FileItem[];
+  noticeMessage: string;
+  onAddFiles: (files: File[]) => void;
+  onRemoveFile: (id: string) => void;
+  isLoading: boolean;
 }
 
-const UploadBox = ({ isChecked, setIsChecked, onClick }: UploadBoxProps) => {
+const UploadBox = ({
+  isChecked,
+  setIsChecked,
+  onClick,
+  files,
+  noticeMessage,
+  onAddFiles,
+  onRemoveFile,
+  isLoading,
+}: UploadBoxProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { files, noticeMessage, addFiles, removeFile } = useUploadFiles();
   const hasFiles = files.length > 0;
 
   const handleClickUpload = () => {
@@ -30,7 +43,7 @@ const UploadBox = ({ isChecked, setIsChecked, onClick }: UploadBoxProps) => {
       return;
     }
 
-    addFiles(selectedFiles);
+    onAddFiles(selectedFiles);
     event.target.value = '';
   };
 
@@ -43,7 +56,11 @@ const UploadBox = ({ isChecked, setIsChecked, onClick }: UploadBoxProps) => {
       <div className={styles.actionSection}>
         <div className={styles.fileContainer}>
           <div className={styles.fileSection}>
-            <Button preset="medium_secondary" onClick={handleClickUpload}>
+            <Button
+              preset="medium_secondary"
+              onClick={handleClickUpload}
+              disabled={isLoading}
+            >
               <PlusIcon width={16} height={16} />
               <span>Upload</span>
             </Button>
@@ -61,7 +78,8 @@ const UploadBox = ({ isChecked, setIsChecked, onClick }: UploadBoxProps) => {
                   <Button
                     key={file.id}
                     preset="medium_outlined"
-                    onClick={() => removeFile(file.id)}
+                    onClick={() => onRemoveFile(file.id)}
+                    disabled={isLoading}
                   >
                     <span className={styles.fileName}>{file.name}</span>
                     <XIcon width={16} height={16} />
@@ -71,12 +89,20 @@ const UploadBox = ({ isChecked, setIsChecked, onClick }: UploadBoxProps) => {
             )}
           </div>
           <div className={styles.checkSection}>
-            <Checkbox isChecked={isChecked} onClick={handleToggleCheckBox} />
+            <Checkbox
+              isChecked={isChecked}
+              onClick={handleToggleCheckBox}
+              disabled={isLoading}
+            />
             <p className={styles.checkText}>{CHECK_MESSAGE}</p>
           </div>
         </div>
         {hasFiles && (
-          <Button preset="medium_primary" onClick={onClick}>
+          <Button
+            preset="medium_primary"
+            onClick={onClick}
+            disabled={isLoading}
+          >
             <span>Find Position</span>
           </Button>
         )}
