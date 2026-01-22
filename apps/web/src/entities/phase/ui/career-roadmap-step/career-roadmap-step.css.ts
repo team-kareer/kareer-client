@@ -17,7 +17,11 @@ export const button = recipe({
   base: {
     display: 'flex',
     flexDirection: 'column',
-    width: 'fit-content',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '0.4rem',
+    width: '22rem',
+    height: '7.4rem',
     padding: '1.2rem 1.6rem',
     border: '1px solid',
     borderRadius: '8px',
