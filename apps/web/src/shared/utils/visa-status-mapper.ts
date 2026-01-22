@@ -29,6 +29,19 @@ const formatDDayText = (dDay: number | undefined, dDayLabel: string = '-') => {
   return `D-${dDay}`;
 };
 
+const getVisaStatusLabel = (visaType?: string | null): string => {
+  if (!visaType) {
+    return '-';
+  }
+
+  const visaStatusMap: Record<string, string> = {
+    D10: 'Job Seeker',
+    D2: 'Student',
+  };
+
+  return visaStatusMap[visaType] || visaType;
+};
+
 export const getVisaStatusRenderData = (data?: UserStatus | null) => {
   if (!data) {
     return null;
@@ -41,7 +54,9 @@ export const getVisaStatusRenderData = (data?: UserStatus | null) => {
 
   const currentVisa = {
     statusName: 'Current Visa Status',
-    title: visaType ? `${visaType.replace(/(\D)(\d)/, '$1-$2')} Student` : '-',
+    title: visaType
+      ? `${visaType.replace(/(\D)(\d)/, '$1-$2')} ${getVisaStatusLabel(visaType)}`
+      : '-',
     date: `Expires ${formatDate(visaExpiredAt)}`,
     isActive: true,
   };
