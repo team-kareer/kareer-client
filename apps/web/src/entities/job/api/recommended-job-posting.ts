@@ -1,5 +1,5 @@
-import { END_POINT } from '@entities/job';
 import {
+  END_POINT,
   RecommendJobPostingsParams,
   RecommendJobPostingsResponse,
 } from '@entities/job';
@@ -9,11 +9,7 @@ export const recommendJobPostings = async (
   params: RecommendJobPostingsParams,
 ): Promise<RecommendJobPostingsResponse> => {
   const formData = new FormData();
-  if (params.files && params.files.length > 0) {
-    params.files.forEach((file) => {
-      formData.append('files', file);
-    });
-  }
+  params.files?.forEach((file) => formData.append('files', file));
 
   return api
     .post(END_POINT.JOB.POST_JOB_RECOMMEND, {
