@@ -5,6 +5,9 @@ import { recipe } from '@vanilla-extract/recipes';
 export const wrapper = recipe({
   base: {
     color: themeVars.color.grayscale.gray900,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'relative',
     overflow: 'visible',
     padding: '2rem',
