@@ -4,6 +4,72 @@ const D10_MIN_VISA_POINT = 60;
 const D10_MAX_VISA_POINT = 190;
 
 /**
+ * 날짜 입력 포맷팅 함수
+ * @param value - 입력된 날짜 문자열
+ * @returns 포맷팅된 날짜 문자열 (YYYY-MM-DD 형식)
+ * @description 숫자만 입력해도 하이픈을 자동으로 추가하고, 한 자리 숫자는 앞에 0을 추가
+ */
+export const formatDateInput = (value: string): string => {
+  // 숫자와 하이픈만 허용
+  const cleaned = value.replace(/[^\d-]/g, '');
+
+  if (cleaned.length === 0) {
+    return '';
+  }
+
+  // 하이픈이 있는 경우와 없는 경우를 구분
+  if (cleaned.includes('-')) {
+    // 하이픈이 이미 있는 경우: 2023-1-02 같은 형식 처리
+    const parts = cleaned.split('-');
+    const year = parts[0]?.slice(0, 4) || '';
+    const month = parts[1]?.slice(0, 2) || '';
+    const day = parts[2]?.slice(0, 2) || '';
+
+    if (!year) {
+      return '';
+    }
+
+    let formatted = year;
+
+    if (month) {
+      // 월을 2자리로 정규화 (한 자리면 앞에 0 추가)
+      const formattedMonth = month.length === 1 ? `0${month}` : month;
+      formatted += `-${formattedMonth}`;
+    }
+
+    if (day) {
+      // 일을 2자리로 정규화 (한 자리면 앞에 0 추가)
+      const formattedDay = day.length === 1 ? `0${day}` : day;
+      formatted += `-${formattedDay}`;
+    }
+
+    return formatted;
+  } else {
+    // 하이픈이 없는 경우: 숫자만 입력한 경우 (예: 20231225)
+    const numbers = cleaned;
+
+    if (numbers.length === 0) {
+      return '';
+    }
+
+    // 숫자를 YYYY-MM-DD 형식으로 포맷팅
+    let formatted = numbers.slice(0, 4); // 연도 (최대 4자리)
+
+    if (numbers.length > 4) {
+      const month = numbers.slice(4, 6);
+      formatted += `-${month}`;
+    }
+
+    if (numbers.length > 6) {
+      const day = numbers.slice(6, 8);
+      formatted += `-${day}`;
+    }
+
+    return formatted;
+  }
+};
+
+/**
  * Autocomplete 옵션 검증 함수
  * @param value - 검증할 값
  * @param options - 허용된 옵션 배열
@@ -106,13 +172,13 @@ export const validateDate = (
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // 날짜가 유효한지 체크 (예: 2024.13.32 같은 경우)
+  // 날짜가 유효한지 체크 (예: 2023-02-29, 2023-13-01 같은 경우)
   if (
     inputDate.getFullYear() !== year ||
     inputDate.getMonth() !== month - 1 ||
     inputDate.getDate() !== day
   ) {
-    return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
+    return VALIDATION_MESSAGE.DATE.INVALID_DATE;
   }
 
   // 미래 날짜 체크 (allowFuture가 false일 때만)

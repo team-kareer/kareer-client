@@ -12,6 +12,7 @@ export const VALIDATION_MESSAGE = {
   },
   DATE: {
     INVALID_FORMAT: 'Please use the format YYYY-MM-DD.',
+    INVALID_DATE: 'Invalid date. Please enter a valid calendar date.',
     FUTURE_NOT_ALLOWED: 'Future dates are not allowed.',
     PAST_NOT_ALLOWED:
       'Please enter a future date for your expected graduation.',
