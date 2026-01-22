@@ -41,7 +41,7 @@ const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
             dDay={job.dDay}
             scrapAction={
               <ScrapButton
-                isScraped={job.isBookmarked ?? true}
+                isScraped={job.isBookmarked ?? false}
                 onClick={() => onScrap(job.jobPostingId!)}
               />
             }
