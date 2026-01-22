@@ -10,14 +10,13 @@ import {
   VisaInformationStep,
 } from '@widgets/onboarding';
 import type { PostOnboardingForm } from '@features/onboarding';
-import { postOnboardingForm, useOnboardingStorage } from '@features/onboarding';
+import { postOnboardingForm } from '@features/onboarding';
 import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
 import {
   convertFormToRequest,
   createStepData,
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
-  getLocalStorageData,
   getRequiredFieldsForStep,
   hasAllRequiredFieldValues,
   OnboardingForm,
@@ -35,16 +34,6 @@ const OnboardingPage = () => {
     reValidateMode: 'onChange',
     defaultValues: DEFAULT_ONBOARDING_FORM,
   });
-
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  useEffect(() => {
-    const savedData = getLocalStorageData();
-    if (savedData) {
-      form.reset(savedData);
-    }
-    setIsInitialized(true);
-  }, [form]);
 
   // 버튼 비활성화 로직
   const visaType = useWatch({ control: form.control, name: 'visaType' });
@@ -73,9 +62,6 @@ const OnboardingPage = () => {
 
   const isNextDisabled =
     form.formState.isLoading || !hasAllRequiredValues || hasStepErrors;
-
-  // 로컬스토리지 저장 (초기화 완료 후에만)
-  useOnboardingStorage(isInitialized ? allFormValues : ({} as OnboardingForm));
 
   useEffect(() => {
     if (error) {
