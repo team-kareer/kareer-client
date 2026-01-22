@@ -4,72 +4,6 @@ const D10_MIN_VISA_POINT = 60;
 const D10_MAX_VISA_POINT = 190;
 
 /**
- * 날짜 입력 포맷팅 함수
- * @param value - 입력된 날짜 문자열
- * @returns 포맷팅된 날짜 문자열 (YYYY-MM-DD 형식)
- * @description 숫자만 입력해도 하이픈을 자동으로 추가하고, 한 자리 숫자는 앞에 0을 추가
- */
-export const formatDateInput = (value: string): string => {
-  // 숫자와 하이픈만 허용
-  const cleaned = value.replace(/[^\d-]/g, '');
-
-  if (cleaned.length === 0) {
-    return '';
-  }
-
-  // 하이픈이 있는 경우와 없는 경우를 구분
-  if (cleaned.includes('-')) {
-    // 하이픈이 이미 있는 경우: 2023-1-02 같은 형식 처리
-    const parts = cleaned.split('-');
-    const year = parts[0]?.slice(0, 4) || '';
-    const month = parts[1]?.slice(0, 2) || '';
-    const day = parts[2]?.slice(0, 2) || '';
-
-    if (!year) {
-      return '';
-    }
-
-    let formatted = year;
-
-    if (month) {
-      // 월을 2자리로 정규화 (한 자리면 앞에 0 추가)
-      const formattedMonth = month.length === 1 ? `0${month}` : month;
-      formatted += `-${formattedMonth}`;
-    }
-
-    if (day) {
-      // 일을 2자리로 정규화 (한 자리면 앞에 0 추가)
-      const formattedDay = day.length === 1 ? `0${day}` : day;
-      formatted += `-${formattedDay}`;
-    }
-
-    return formatted;
-  } else {
-    // 하이픈이 없는 경우: 숫자만 입력한 경우 (예: 20231225)
-    const numbers = cleaned;
-
-    if (numbers.length === 0) {
-      return '';
-    }
-
-    // 숫자를 YYYY-MM-DD 형식으로 포맷팅
-    let formatted = numbers.slice(0, 4); // 연도 (최대 4자리)
-
-    if (numbers.length > 4) {
-      const month = numbers.slice(4, 6);
-      formatted += `-${month}`;
-    }
-
-    if (numbers.length > 6) {
-      const day = numbers.slice(6, 8);
-      formatted += `-${day}`;
-    }
-
-    return formatted;
-  }
-};
-
-/**
  * Autocomplete 옵션 검증 함수
  * @param value - 검증할 값
  * @param options - 허용된 옵션 배열
@@ -292,9 +226,21 @@ export const validateVisaExpirationDate = (
     oneYearLater.setFullYear(oneYearLater.getFullYear() + 2);
 
     if (expiration > oneYearLater) {
-      return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_ONE_YEAR;
+      return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_TWO_YEARS;
     }
   } else if (visaType === 'D-10') {
+    // 오늘 날짜 체크 (시간 부분 제거)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const expirationDateOnly = new Date(expiration);
+    expirationDateOnly.setHours(0, 0, 0, 0);
+
+    // 만료일이 오늘보다 과거이면 에러
+    if (expirationDateOnly < today) {
+      return VALIDATION_MESSAGE.VISA.D10_EXPIRATION_IN_PAST;
+    }
+
     // 발급일로부터 6개월 단위가 아니면 에러
     // ex-> 2025-01-01 ~ 2025-06-01
     const allowedMonths = [6, 12, 18, 24, 30, 36];
@@ -305,9 +251,6 @@ export const validateVisaExpirationDate = (
       date.setHours(0, 0, 0, 0);
       return date.getTime();
     });
-
-    const expirationDateOnly = new Date(expiration);
-    expirationDateOnly.setHours(0, 0, 0, 0);
 
     if (!allowedDates.includes(expirationDateOnly.getTime())) {
       return VALIDATION_MESSAGE.VISA.D10_LESS_THAN_SIX_MONTHS;

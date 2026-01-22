@@ -181,8 +181,8 @@ const VisaInformation = () => {
                 if (!completeFormatRegex.test(value)) {
                   return true;
                 }
-                // 기본 날짜 형식 체크
-                const result = validateDate(value, true);
+                // 기본 날짜 형식 체크 (과거 날짜 허용)
+                const result = validateDate(value, true, true);
                 if (result !== true) {
                   return result;
                 }
