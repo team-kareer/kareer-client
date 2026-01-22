@@ -1,11 +1,14 @@
 import { Button, Tag } from '@kds/ui';
+import { useQuery } from '@tanstack/react-query';
 
 import { ActionRequired, AIGuide } from '@widgets/roadmap';
+import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 import { useAccordion } from '@shared/hooks/useAccordion';
 
 import * as styles from './accordion.css';
 
 interface PhaseListAccordionItemProps {
+  phaseId: number;
   phase: number;
   title: string;
   subTitle: string;
@@ -13,57 +16,17 @@ interface PhaseListAccordionItemProps {
   endDate: string;
 }
 
-const mockData = {
-  Visa: {
-    count: 1,
-    list: [
-      {
-        title: 'Prepare internship log',
-        description: 'Document all work experience during internship period',
-        deadline: '2026-01-13',
-        phaseActionId: 1,
-      },
-    ],
-  },
-  Career: {
-    count: 2,
-    list: [
-      {
-        title: 'Prepare internship log',
-        description: 'Document all work experience during internship period',
-        deadline: '2026-01-13',
-        phaseActionId: 2,
-      },
-      {
-        title: 'Prepare internship log',
-        description: 'Document all work experience during internship period',
-        deadline: '2026-01-13',
-        phaseActionId: 3,
-      },
-    ],
-  },
-  Done: {
-    count: 1,
-    list: [
-      {
-        title: 'Prepare internship log',
-        description: 'Document all work experience during internship period',
-        deadline: '2026-01-13',
-        phaseActionId: 4,
-      },
-    ],
-  },
-  totalCount: 4,
-};
-
 const Accordion = ({
+  phaseId,
   phase,
   title,
   subTitle,
   startDate,
   endDate,
 }: PhaseListAccordionItemProps) => {
-  // 추후 api 응답 값으로 변경
+  const { data } = useQuery({
+    ...PHASE_QUERY_OPTIONS.GET_PAHSE_ITEM_ROADMAP(phaseId),
+  });
   const { isOpen, shouldRender, toggle } = useAccordion();
   const tagStyle = isOpen ? 'pastel_blue' : 'disabled_gray';
   const buttonText = isOpen ? 'Show less' : 'Show all';
@@ -96,7 +59,12 @@ const Accordion = ({
           <div className={styles.line} />
           {shouldRender && (
             <div className={styles.content}>
-              <ActionRequired data={mockData} />
+              {data && (
+                <ActionRequired
+                  totalCnt={data.totalCount}
+                  actions={data.actions}
+                />
+              )}
               <AIGuide
                 importance="This is placeholder text for Required Action section."
                 guideline="This is placeholder text for Required Action section."
