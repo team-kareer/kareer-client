@@ -38,6 +38,9 @@ yarn-error.log*
 .DS_Store
 *.pem
 
+# IDE / Editor
+.history/
+
 # Lefthook
 .lefthook
 .lefthook-local.yml

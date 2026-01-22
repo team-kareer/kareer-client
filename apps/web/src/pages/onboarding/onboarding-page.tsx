@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import {
@@ -7,38 +9,44 @@ import {
   TargetRoleStep,
   VisaInformationStep,
 } from '@widgets/onboarding';
-import { useOnboardingStorage } from '@features/onboarding';
-import { OnboardingForm } from '@entities/onboarding';
+import type { PostOnboardingForm } from '@features/onboarding';
+import { postOnboardingForm, useOnboardingStorage } from '@features/onboarding';
+import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
 import {
+  convertFormToRequest,
+  createStepData,
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
-  STEP_TITLES,
-} from '@entities/onboarding';
-import {
+  getLocalStorageData,
   getRequiredFieldsForStep,
   hasAllRequiredFieldValues,
+  OnboardingForm,
+  STEP_TITLES,
 } from '@entities/onboarding';
-import { createStepData, getLocalStorageData } from '@entities/onboarding';
 import useFunnel from '@shared/hooks/usefunnel';
 
 const OnboardingPage = () => {
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
     useFunnel(FUNNEL_STEPS, '/');
+  const [error, setError] = useState<Error | null>(null);
 
   const form = useForm<OnboardingForm>({
     mode: 'onChange',
     reValidateMode: 'onChange',
-    defaultValues: async () => {
-      const savedData = getLocalStorageData();
-      if (savedData) {
-        return savedData;
-      }
-      return DEFAULT_ONBOARDING_FORM;
-    },
+    defaultValues: DEFAULT_ONBOARDING_FORM,
   });
 
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    const savedData = getLocalStorageData();
+    if (savedData) {
+      form.reset(savedData);
+    }
+    setIsInitialized(true);
+  }, [form]);
+
   // 버튼 비활성화 로직
-  // 필요한 필드만 선택적으로 감시 (전체 구독 방지)
   const visaType = useWatch({ control: form.control, name: 'visaType' });
   const requiredFields = getRequiredFieldsForStep(currentStepIndex, visaType);
 
@@ -48,7 +56,7 @@ const OnboardingPage = () => {
     name: requiredFields,
   });
 
-  // 전체 폼 값 감시 (로컬스토리지 저장용)
+  // 전체 폼 값 감시
   const allFormValues = useWatch({
     control: form.control,
   }) as OnboardingForm;
@@ -66,8 +74,14 @@ const OnboardingPage = () => {
   const isNextDisabled =
     form.formState.isLoading || !hasAllRequiredValues || hasStepErrors;
 
-  // 로컬스토리지 저장
-  useOnboardingStorage(allFormValues);
+  // 로컬스토리지 저장 (초기화 완료 후에만)
+  useOnboardingStorage(isInitialized ? allFormValues : ({} as OnboardingForm));
+
+  useEffect(() => {
+    if (error) {
+      throw error;
+    }
+  }, [error]);
 
   const steps = createStepData(STEP_TITLES, currentStepIndex);
 
@@ -75,10 +89,36 @@ const OnboardingPage = () => {
     goToPrevStep();
   };
 
+  // 로드맵 생성 mutation
+  const { mutate: generateRoadmap } = useMutation({
+    ...ONBOARDING_MUTATION_OPTIONS.POST_AI_ROADMAP(),
+  });
+
+  const { mutate: submitOnboarding } = useMutation({
+    mutationFn: postOnboardingForm,
+    onSuccess: () => {
+      // 온보딩 성공 후 로드맵 생성 API 호출
+      generateRoadmap();
+      goToNextStep();
+    },
+    onError: (error) => {
+      setError(error instanceof Error ? error : new Error('온보딩 제출 실패'));
+    },
+  });
+
   const handleNext = async () => {
     const isValid = await form.trigger(requiredFields);
     if (isValid) {
-      goToNextStep();
+      const isLastStep = currentStepIndex === FUNNEL_STEPS.length - 1;
+      if (isLastStep) {
+        const formData = form.getValues();
+        const requestData = convertFormToRequest(
+          formData,
+        ) as PostOnboardingForm;
+        submitOnboarding(requestData);
+      } else {
+        goToNextStep();
+      }
     }
   };
 

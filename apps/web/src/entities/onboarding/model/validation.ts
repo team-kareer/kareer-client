@@ -5,8 +5,6 @@ const VISA_STEP_INDEX = 1;
 
 /**
  * 특정 단계에 대한 필수 필드 목록을 반환하는 함수
- * @param stepIndex - 단계 인덱스 (0부터 시작)
- * @param [visaType] - 비자 타입 ('D-2' 또는 'D-10')
  * @description 비자 정보 단계(stepIndex === 1)인 경우 비자 타입에 따라 다른 필드 반환
  */
 export const getRequiredFieldsForStep = (
@@ -16,9 +14,9 @@ export const getRequiredFieldsForStep = (
   let requiredFields: Array<keyof OnboardingForm> =
     STEP_REQUIRED_FIELDS[stepIndex] ?? [];
   if (stepIndex === VISA_STEP_INDEX) {
-    if (visaType === 'D2') {
+    if (visaType === 'D-2') {
       requiredFields = VISA_TYPE_REQUIRED_FIELDS['D2'];
-    } else if (visaType === 'D10') {
+    } else if (visaType === 'D-10') {
       requiredFields = VISA_TYPE_REQUIRED_FIELDS['D10'];
     } else {
       // 비자 타입이 선택되지 않았을 때는 기본 필드만

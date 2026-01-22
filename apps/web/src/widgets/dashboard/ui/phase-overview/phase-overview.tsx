@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { LogoIcon } from '@kds/icons';
 import { useQuery } from '@tanstack/react-query';
 
 import { ActionRequiredAccordion } from '@widgets/dashboard/ui';
 import { CareerRoadmapStep } from '@entities/phase';
 import type { Phase } from '@entities/phase/model';
 import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
+import { img_roadmap_character } from '@shared/assets';
 import { CareerRoadmap } from '@shared/ui';
 
 const PhaseOverview = () => {
@@ -32,7 +32,16 @@ const PhaseOverview = () => {
             phase={Number(phase.sequence)}
             onClick={() => setClickedPhase(Number(phase.sequence))}
             isActive={isActive}
-            bottom={isActive && <LogoIcon width={60} height={60} />}
+            bottom={
+              isActive && (
+                <img
+                  src={img_roadmap_character}
+                  width={60}
+                  height={60}
+                  alt="로드맵 캐릭터"
+                />
+              )
+            }
           />
         );
       })}

@@ -4,12 +4,20 @@ import { type OnboardingForm, STORAGE_KEY } from '@entities/onboarding';
 
 export const useOnboardingStorage = (allValues: OnboardingForm) => {
   const prevValuesRef = useRef<string>('');
+  const isInitialMountRef = useRef(true);
 
   useEffect(() => {
-    const currentValues = JSON.stringify(allValues);
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false;
+      return;
+    }
 
-    // 값이 실제로 변경된 경우에만 저장 (불필요한 저장 방지)
-    if (prevValuesRef.current !== currentValues) {
+    const currentValues = JSON.stringify(allValues);
+    const hasValues = Object.values(allValues).some(
+      (value) =>
+        value !== '' && value !== 0 && value !== null && value !== undefined,
+    );
+    if (hasValues && prevValuesRef.current !== currentValues) {
       localStorage.setItem(STORAGE_KEY, currentValues);
       prevValuesRef.current = currentValues;
     }

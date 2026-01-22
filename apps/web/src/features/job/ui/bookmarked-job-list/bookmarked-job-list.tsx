@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 
-import { ScrapButton } from '@features/job';
 import { useBookmarkedJobs } from '@features/job/model';
+import { ScrapButton } from '@features/job/ui';
 import { BookmarkedJobCard } from '@entities/job';
 import { JobPostingItem } from '@entities/job/model/types';
 import { ROUTE_PATH } from '@shared/router';
@@ -22,7 +22,7 @@ const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
     navigate(ROUTE_PATH.FITANALYSIS);
   };
 
-  if (formattedJobs.length === 0) {
+  if (jobs.length === 0) {
     return <EmptyLayout variant="section" onAction={handleMoveToFitAnalysis} />;
   }
 
@@ -41,7 +41,7 @@ const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
             dDay={job.dDay}
             scrapAction={
               <ScrapButton
-                isScraped={job.isBookmarked ?? true}
+                isScraped={job.isBookmarked ?? false}
                 onClick={() => onScrap(job.jobPostingId!)}
               />
             }

@@ -14,6 +14,7 @@ const AccordionList = () => {
       {data?.phases?.map((phase: Phase) => (
         <Accordion
           key={phase.phaseId}
+          phaseId={phase.phaseId ?? 0}
           phase={phase.sequence ?? 0}
           title={phase.goal ?? ''}
           subTitle={phase.description ?? ''}

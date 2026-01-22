@@ -9,8 +9,8 @@ export type OnboardingForm = Omit<
 > & {
   country: OnboardingFormRequest['country'] | '';
   languageLevel: OnboardingFormRequest['languageLevel'] | '';
-  degree: OnboardingFormRequest['degree'] | '';
-  visaType: OnboardingFormRequest['visaType'] | '';
+  degree: string;
+  visaType: 'D-2' | 'D-10' | '';
   degreeLocation: string;
 };
 
