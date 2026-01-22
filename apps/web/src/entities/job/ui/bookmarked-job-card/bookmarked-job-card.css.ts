@@ -37,8 +37,6 @@ export const container = style({
   flexDirection: 'column',
   width: '100%',
   aspectRatio: '234 / 302',
-  // // justifyContent: 'center',
-  // width: '100%',
   cursor: 'pointer',
   transition: 'all 0.2s ease',
 
@@ -61,7 +59,7 @@ export const imageBox = style({
 export const image = style({
   width: '100%',
   height: '100%',
-  objectFit: 'contain',
+  objectFit: 'inherit',
 });
 
 export const dDayTag = style({
