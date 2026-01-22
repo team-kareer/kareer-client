@@ -29,7 +29,11 @@ export const validateNumber = (value: string) => {
  * @param [allowFuture=false] - 미래 날짜 허용 여부
  * @description YYYY-MM-DD 형식 검증 및 유효한 날짜인지 확인, false면 미래 날짜 거부
  */
-export const validateDate = (value: string, allowFuture = false) => {
+export const validateDate = (
+  value: string,
+  allowFuture = false,
+  allowPast = false,
+) => {
   if (!value) {
     return true;
   }
@@ -73,6 +77,11 @@ export const validateDate = (value: string, allowFuture = false) => {
   // 미래 날짜 체크 (allowFuture가 false일 때만)
   if (!allowFuture && inputDate > today) {
     return VALIDATION_MESSAGE.DATE.FUTURE_NOT_ALLOWED;
+  }
+
+  // 과거 날짜 체크 (allowFuture가 false일 때만)
+  if (!allowPast && inputDate < today) {
+    return VALIDATION_MESSAGE.DATE.PAST_NOT_ALLOWED;
   }
 
   return true;

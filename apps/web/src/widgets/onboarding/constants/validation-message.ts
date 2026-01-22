@@ -13,6 +13,8 @@ export const VALIDATION_MESSAGE = {
   DATE: {
     INVALID_FORMAT: 'Please use the format YYYY-MM-DD.',
     FUTURE_NOT_ALLOWED: 'Future dates are not allowed.',
+    PAST_NOT_ALLOWED:
+      'Please enter a future date for your expected graduation.',
     MUST_BE_AFTER_ISSUANCE: 'The date must be after the visa issuance date.',
   },
   VISA: {
