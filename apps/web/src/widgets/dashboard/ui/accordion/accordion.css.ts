@@ -9,11 +9,23 @@ export const container = style({
   backgroundColor: themeVars.color.grayscale.gray100,
 });
 
-export const header = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '1.6rem 2rem',
-  cursor: 'pointer',
+export const header = recipe({
+  base: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '1.6rem 2rem',
+    cursor: 'pointer',
+  },
+  variants: {
+    isDone: {
+      true: {
+        cursor: 'auto',
+      },
+      false: {
+        cursor: 'pointer',
+      },
+    },
+  },
 });
 
 export const left_section = style({
@@ -57,6 +69,10 @@ export const wrapper = recipe({
         gridTemplateRows: '0fr',
       },
     },
+    isDone: {
+      true: { transition: 'none' },
+      false: {},
+    },
   },
 });
 
@@ -65,11 +81,23 @@ export const inner = style({
   overflow: 'hidden',
 });
 
-export const content = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-  margin: '0 2rem 1.6rem 2rem',
-  maxHeight: '16.2rem',
-  overflowY: 'scroll',
+export const content = recipe({
+  base: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.8rem',
+    margin: '0 2rem 1.6rem 2rem',
+    maxHeight: '16.2rem',
+    overflowY: 'scroll',
+  },
+  variants: {
+    isDone: {
+      true: {
+        margin: '0 2rem',
+      },
+      false: {
+        margin: '0 2rem 1.6rem 2rem',
+      },
+    },
+  },
 });
