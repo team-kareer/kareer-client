@@ -5,7 +5,6 @@ export const container = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  // justifyContent: 'center',
   flexShrink: 0,
   gap: '1.2rem',
   width: '8.4rem',
