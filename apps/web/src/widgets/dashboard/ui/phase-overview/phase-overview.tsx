@@ -12,7 +12,7 @@ const PhaseOverview = () => {
   const { data } = useQuery({ ...PHASE_QUERY_OPTIONS.GET_PHASE_LIST() });
   const [clickedPhase, setClickedPhase] = useState(0);
   const cur_phase = data?.phases?.find(
-    (phase) => phase.phaseStatus === 'Current',
+    (phase: Phase) => phase.phaseStatus === 'Current',
   );
 
   useEffect(() => {
