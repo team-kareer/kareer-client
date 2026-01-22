@@ -24,7 +24,7 @@ export { default as InfoIcon } from './ic_info.svg?react';
 export { default as InfoCircleIcon } from './ic_info_circle.svg?react';
 export { default as LogoIcon } from './ic_logo.svg?react';
 export { default as LogoTypoIcon } from './ic_logo_typo.svg?react';
-export { default as MagniIcon } from './ic_magnifier.svg?react';
+export { default as MagnifierIcon } from './ic_magnifier.svg?react';
 export { default as PlusIcon } from './ic_plus.svg?react';
 export { default as ProfileIcon } from './ic_profile.svg?react';
 export { default as RemainingStayIcon } from './ic_remaining-stay.svg?react';
