@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Tag } from '@kds/ui';
 
-import { JobPostingItem } from '@entities/job/model/types';
+import { JobPostingItem } from '@entities/job';
 import { default_company_image } from '@shared/assets';
 import { formatDate } from '@shared/utils/date-formatter';
 import { TagColor } from '@shared/utils/job-formatter';

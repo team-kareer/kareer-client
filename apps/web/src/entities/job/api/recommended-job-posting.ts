@@ -1,8 +1,8 @@
-import { END_POINT } from '@entities/job/model/end_point';
+import { END_POINT } from '@entities/job';
 import {
   RecommendJobPostingsParams,
   RecommendJobPostingsResponse,
-} from '@entities/job/model/types';
+} from '@entities/job';
 import { api } from '@shared/apis/configs/instance';
 
 export const recommendJobPostings = async (

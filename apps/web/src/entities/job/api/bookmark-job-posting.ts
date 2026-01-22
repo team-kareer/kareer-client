@@ -1,4 +1,4 @@
-import { END_POINT } from '@entities/job/model/end_point';
+import { END_POINT } from '@entities/job';
 import {
   BookmarkJobPostingParams,
   BookmarkJobPostingResponse,
