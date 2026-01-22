@@ -1,29 +1,81 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import BookmarkedJobList from '@features/job/ui/bookmarked-job-list/bookmarked-job-list';
-import { MOCK_JOBS } from '@shared/mocks/job-mocks';
+import { JobPostingItem } from '@entities/job/model/types';
+import {
+  BOOKMARKED_JOB_QUERY_KEY,
+  JOB_MUTATION_OPTIONS,
+} from '@entities/job/queries';
 
 import UploadBox from '../upload-box/upload-box';
+import { useUploadFiles } from '../upload-box/use-upload-files';
 
 import * as styles from './job-recommended-list.css';
 
-export const JobRecommendationList = () => {
-  const [isChecked, setIsChecked] = useState(false);
-  // todo: api hook으로 교체
-  const [recommendations, setRecommendations] = useState(MOCK_JOBS);
+export type JobItem = JobPostingItem & {
+  handleOpenDetail?: () => void;
+};
 
-  const handleToggle = (id: number) => {
-    // 토글 로직
-    setRecommendations((prev) =>
-      prev.map((job) =>
-        job.id === id ? { ...job, isScraped: !job.isScraped } : job,
-      ),
-    );
-  };
+const JobRecommendationList = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  const { files, noticeMessage, addFiles, removeFile } = useUploadFiles();
+  const [recommendations, setRecommendations] = useState<JobItem[]>([]);
+  const queryClient = useQueryClient();
+
+  const { mutate: recommendMutate, isPending: isRecommendPending } =
+    useMutation({
+      ...JOB_MUTATION_OPTIONS.RECOMMEND_JOB_POSTINGS(),
+      onSuccess: (response) => {
+        const dataList = response.data?.jobPostingResponses ?? [];
+        setRecommendations(dataList as JobItem[]);
+      },
+    });
+
+  const { mutate: bookmarkMutate, isPending: isBookmarkPending } = useMutation({
+    ...JOB_MUTATION_OPTIONS.TOGGLE_BOOKMARK_JOB_POSTING(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: BOOKMARKED_JOB_QUERY_KEY.BOOKMARKED_JOB(),
+      });
+    },
+  });
+
+  useEffect(() => {
+    recommendMutate({
+      files: [],
+      includeCompletedTodo: false,
+    });
+  }, [recommendMutate]);
 
   const handleClickFindPosition = () => {
-    // @TODO: PDF 업로드
+    if (files.length === 0) {
+      return;
+    }
+
+    const rawFiles = files.map((f) => f.file);
+
+    recommendMutate({
+      files: rawFiles,
+      includeCompletedTodo: isChecked,
+    });
   };
+
+  const handleToggle = (jobPostingId: number) => {
+    setRecommendations((prev) =>
+      prev.map((job) =>
+        job.jobPostingId === jobPostingId
+          ? { ...job, isBookmarked: !job.isBookmarked }
+          : job,
+      ),
+    );
+
+    bookmarkMutate({
+      jobPostingId,
+    });
+  };
+
+  const isPending = isRecommendPending || isBookmarkPending;
 
   return (
     <div className={styles.listWrapper}>
@@ -31,6 +83,11 @@ export const JobRecommendationList = () => {
         isChecked={isChecked}
         setIsChecked={setIsChecked}
         onClick={handleClickFindPosition}
+        files={files}
+        noticeMessage={noticeMessage}
+        onAddFiles={addFiles}
+        onRemoveFile={removeFile}
+        isLoading={isPending}
       />
       <BookmarkedJobList jobs={recommendations} onScrap={handleToggle} />
     </div>

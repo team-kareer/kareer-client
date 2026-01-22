@@ -22,7 +22,7 @@ const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
     navigate(ROUTE_PATH.FITANALYSIS);
   };
 
-  if (formattedJobs.length === 0) {
+  if (jobs.length === 0) {
     return <EmptyLayout variant="section" onAction={handleMoveToFitAnalysis} />;
   }
 
@@ -41,7 +41,7 @@ const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
             dDay={job.dDay}
             scrapAction={
               <ScrapButton
-                isScraped={job.isBookmarked ?? true}
+                isScraped={job.isBookmarked ?? false}
                 onClick={() => onScrap(job.jobPostingId!)}
               />
             }
