@@ -59,7 +59,7 @@ const VisaInformation = () => {
                     if (!value) {
                       return 'Enter the graduation date';
                     }
-                    const result = validateDate(value, true, false); // 미래 날짜 허용
+                    const result = validateDate(value, true, false);
                     return result === true || result;
                   },
                 }}
@@ -121,7 +121,7 @@ const VisaInformation = () => {
                 if (!value) {
                   return 'Enter the issuance date';
                 }
-                const result = validateDate(value, true);
+                const result = validateDate(value, false);
                 return result === true || result;
               },
             }}
