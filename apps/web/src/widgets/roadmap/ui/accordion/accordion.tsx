@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import { Button, Tag } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
@@ -15,6 +16,7 @@ interface PhaseListAccordionItemProps {
   subTitle: string;
   startDate: string;
   endDate: string;
+  clickedPhase: number;
 }
 
 const Accordion = ({
@@ -24,13 +26,39 @@ const Accordion = ({
   subTitle,
   startDate,
   endDate,
+  clickedPhase,
 }: PhaseListAccordionItemProps) => {
   const { data: roadmapPhaseData } = useQuery({
     ...PHASE_QUERY_OPTIONS.GET_PAHSE_ITEM_ROADMAP(phaseId),
   });
-  const { isOpen, shouldRender, toggle } = useAccordion();
+  const { isOpen, shouldRender, toggle, open, close } = useAccordion();
   const tagStyle = isOpen ? 'pastel_blue' : 'disabled_gray';
   const buttonText = isOpen ? 'Show less' : 'Show all';
+  const prevClickedPhaseRef = useRef(clickedPhase);
+  const containerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (prevClickedPhaseRef.current === clickedPhase) {
+      return;
+    }
+
+    if (clickedPhase === phase) {
+      if (!isOpen) {
+        open();
+      }
+      setTimeout(() => {
+        containerRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 251);
+    } else {
+      if (isOpen) {
+        close();
+      }
+    }
+    prevClickedPhaseRef.current = clickedPhase;
+  }, [clickedPhase, isOpen, close, open, phase]);
   const [selectedPhaseActionId, setSelectedPhaseActionId] = useState<
     number | undefined
   >(undefined);
@@ -49,7 +77,7 @@ const Accordion = ({
 
   return (
     // accordionItem
-    <section className={styles.container}>
+    <section ref={containerRef} className={styles.container}>
       {/* accordionTrigger */}
       <header className={styles.header}>
         <div className={styles.left_section}>

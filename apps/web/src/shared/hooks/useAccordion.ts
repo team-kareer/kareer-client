@@ -5,14 +5,22 @@ export const useAccordion = () => {
   const [shouldRender, setShouldRender] = useState(false);
   const animationDuration = 500;
 
+  const open = () => {
+    setShouldRender(true);
+  };
+
+  const close = () => {
+    setIsOpen(false);
+    setTimeout(() => {
+      setShouldRender(false);
+    }, animationDuration);
+  };
+
   const toggle = () => {
     if (!isOpen) {
-      setShouldRender(true);
+      open();
     } else {
-      setIsOpen(false);
-      setTimeout(() => {
-        setShouldRender(false);
-      }, animationDuration);
+      close();
     }
   };
 
@@ -26,5 +34,5 @@ export const useAccordion = () => {
     }
   }, [shouldRender]);
 
-  return { isOpen, shouldRender, toggle };
+  return { isOpen, shouldRender, toggle, open, close };
 };
