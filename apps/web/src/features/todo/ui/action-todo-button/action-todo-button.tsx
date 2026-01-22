@@ -5,9 +5,14 @@ import { Button } from '@kds/ui';
 interface ActionTodoButtonProps {
   text: string;
   onClick?: () => void;
+  isDisabled?: boolean;
 }
 
-const ActionTodoButton = ({ text, onClick }: ActionTodoButtonProps) => {
+const ActionTodoButton = ({
+  text,
+  onClick,
+  isDisabled,
+}: ActionTodoButtonProps) => {
   const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (onClick) {
@@ -16,7 +21,11 @@ const ActionTodoButton = ({ text, onClick }: ActionTodoButtonProps) => {
   };
 
   return (
-    <Button preset="small_outlined" onClick={handleButtonClick}>
+    <Button
+      preset="small_outlined"
+      onClick={handleButtonClick}
+      disabled={isDisabled}
+    >
       <PlusIcon width={16} height={16} />
       {text}
     </Button>

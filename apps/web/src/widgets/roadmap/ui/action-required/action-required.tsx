@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import ActionCard from '@widgets/roadmap/ui/action-card';
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
+import { PHASE_QUERY_KEY } from '@entities/phase/queries';
 import { TODO_QUERY_KEY } from '@entities/todo';
 import { components } from '@shared/types/schema';
 
@@ -43,6 +44,9 @@ const ActionRequired = ({
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: TODO_QUERY_KEY.TODO_LIST(),
+      });
+      queryClient.invalidateQueries({
+        queryKey: PHASE_QUERY_KEY.PHASE_ITEM_ROADMAP_ALL(),
       });
     },
   });
@@ -87,6 +91,7 @@ const ActionRequired = ({
                 subTitle={item.description ?? ''}
                 dueDate={item.deadline ?? ''}
                 disabled={key === 'Done'}
+                isButtonDisabled={item.added}
                 onSelect={() => handleSelect(item.phaseActionId)}
                 onTodoClick={() => handleTodoItem(item.phaseActionId)}
               />
