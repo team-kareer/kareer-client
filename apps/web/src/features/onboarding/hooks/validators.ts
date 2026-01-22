@@ -26,7 +26,7 @@ export const validateNumber = (value: string) => {
 /**
  * 날짜 형식을 검증하는 함수
  * @param value - 검증할 날짜 문자열
- * @param [allowFuture=false] - 미래 날짜 허용 여부
+ * @param 미래 날짜 허용 여부
  * @description YYYY-MM-DD 형식 검증 및 유효한 날짜인지 확인, false면 미래 날짜 거부
  */
 export const validateDate = (
@@ -38,20 +38,41 @@ export const validateDate = (
     return true;
   }
 
-  // 숫자와 점만 허용
+  // 숫자와 하이픈만 허용
   if (!/^[\d-]+$/.test(value)) {
     return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
   }
 
-  // 완전한 형식 체크 (YYYY-MM-DD)
-  const regex = /^\d{4}-\d{2}-\d{2}$/;
-  if (!regex.test(value)) {
-    // 부분 형식 체크 (입력 중일 때는 통과)
-    const partialPattern = /^(\d{0,4})(-\d{0,2})?(-\d{0,2})?$/;
-    if (partialPattern.test(value)) {
-      return true; // 입력 중이면 통과
+  // 완전한 형식 체크 (YYYY-MM-DD) - 반드시 2자리 숫자
+  const completeFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
+  const hasCompleteFormat = completeFormatRegex.test(value);
+
+  // 완전한 형식이 아니면 부분 형식 체크
+  if (!hasCompleteFormat) {
+    // 하이픈으로 구분된 3부분이 모두 있는지 체크 (한 자리 숫자 포함)
+    const threePartsPattern = /^(\d+)-(\d+)-(\d+)$/;
+    const threePartsMatch = value.match(threePartsPattern);
+
+    if (threePartsMatch) {
+      // 완전한 형식이지만 월이나 일이 2자리가 아니면 에러
+      const yearPart = threePartsMatch[1] ?? '';
+      const monthPart = threePartsMatch[2] ?? '';
+      const dayPart = threePartsMatch[3] ?? '';
+      if (
+        yearPart.length !== 4 ||
+        monthPart.length !== 2 ||
+        dayPart.length !== 2
+      ) {
+        return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
+      }
+    } else {
+      // 부분 형식 체크 (입력 중일 때는 통과)
+      const partialPattern = /^(\d{0,4})(-\d{0,2})?(-\d{0,2})?$/;
+      if (partialPattern.test(value)) {
+        return true; // 입력 중이면 통과
+      }
+      return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
     }
-    return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
   }
 
   // 날짜 파싱 및 미래 날짜 체크
@@ -79,7 +100,7 @@ export const validateDate = (
     return VALIDATION_MESSAGE.DATE.FUTURE_NOT_ALLOWED;
   }
 
-  // 과거 날짜 체크 (allowFuture가 false일 때만)
+  // 과거 날짜 체크 (allowPast가 false일 때만)
   if (!allowPast && inputDate < today) {
     return VALIDATION_MESSAGE.DATE.PAST_NOT_ALLOWED;
   }
