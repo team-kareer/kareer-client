@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
 import { useQuery } from '@tanstack/react-query';
 
