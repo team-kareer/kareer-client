@@ -56,7 +56,7 @@ export const imageBox = style({
 export const image = style({
   width: '100%',
   height: '100%',
-  objectFit: 'cover',
+  objectFit: 'contain',
 });
 
 export const dDayTag = style({
