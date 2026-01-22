@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 import { BookmarkCheckIcon, BookmarkIcon } from '@kds/icons';
 
-import * as styles from './scrap-button.css.ts';
+import * as styles from './scrap-button.css';
 
 interface ScrapButtonProps {
   isScraped: boolean;
@@ -9,8 +9,14 @@ interface ScrapButtonProps {
 }
 
 const ScrapButton = ({ isScraped, onClick }: ScrapButtonProps) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onClick?.(e);
+  };
+
   return (
-    <button type="button" className={styles.scrapButton} onClick={onClick}>
+    <button type="button" className={styles.scrapButton} onClick={handleClick}>
       {isScraped ? (
         <BookmarkCheckIcon width={24} height={24} />
       ) : (

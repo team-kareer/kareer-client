@@ -1,0 +1,21 @@
+import { END_POINT } from '@entities/job/model/end_point';
+import {
+  BookmarkJobPostingParams,
+  BookmarkJobPostingResponse,
+} from '@entities/job/model/types';
+import { api } from '@shared/apis/configs/instance';
+
+export const toggleBookmarkJobPosting = async (
+  params: BookmarkJobPostingParams,
+): Promise<BookmarkJobPostingResponse> => {
+  const endpoint = END_POINT.JOB.POST_JOB_BOOKMARK.replace(
+    '{jobPostingId}',
+    String(params.jobPostingId),
+  );
+
+  return api
+    .post(endpoint, {
+      timeout: false,
+    })
+    .json<BookmarkJobPostingResponse>();
+};

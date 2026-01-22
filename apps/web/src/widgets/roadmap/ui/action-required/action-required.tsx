@@ -19,6 +19,7 @@ type TagType = 'Visa' | 'Career' | 'Done';
 interface ActionRequiredProps {
   totalCnt?: number;
   actions?: ActionsObject;
+  onSelect?: (phaseActionId: number) => void;
 }
 
 const TAG_COLOR_PALETTE = {
@@ -27,9 +28,14 @@ const TAG_COLOR_PALETTE = {
   Done: 'disabled_gray',
 } as const;
 
+const isTagType = (key: string): key is TagType => {
+  return key in TAG_COLOR_PALETTE;
+};
+
 const ActionRequired = ({
   totalCnt = 0,
   actions = {},
+  onSelect,
 }: ActionRequiredProps) => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
@@ -48,8 +54,11 @@ const ActionRequired = ({
     mutate(phaseActionId);
   };
 
-  const isTagType = (key: string): key is TagType => {
-    return key in TAG_COLOR_PALETTE;
+  const handleSelect = (phaseActionId?: number) => {
+    if (phaseActionId == null) {
+      return;
+    }
+    onSelect?.(phaseActionId);
   };
 
   return (
@@ -78,7 +87,8 @@ const ActionRequired = ({
                 subTitle={item.description ?? ''}
                 dueDate={item.deadline ?? ''}
                 disabled={key === 'Done'}
-                onClick={() => handleTodoItem(item.phaseActionId)}
+                onSelect={() => handleSelect(item.phaseActionId)}
+                onTodoClick={() => handleTodoItem(item.phaseActionId)}
               />
             ))}
           </section>

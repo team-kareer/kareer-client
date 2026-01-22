@@ -1,4 +1,9 @@
-import { components, paths } from '@shared/types/schema';
+import { components, operations, paths } from '@shared/types/schema';
+
+export type GetAiGuideRequest = operations['getAiGuide']['parameters']['path'];
+
+export type GetAIGuideResponse =
+  paths['/api/v1/phase-actions/{phaseActionId}/guide']['get']['responses']['200']['content']['*/*'];
 
 export type GetPhaseListResponse =
   paths['/api/v1/phases']['get']['responses']['200']['content']['*/*'];

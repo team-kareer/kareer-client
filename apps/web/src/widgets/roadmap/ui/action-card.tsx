@@ -6,14 +6,16 @@ interface ActionCardProps {
   subTitle: string;
   dueDate: string;
   disabled?: boolean;
-  onClick: () => void;
+  onSelect?: () => void;
+  onTodoClick?: () => void;
 }
 
 const ActionCard = ({
   title,
   subTitle,
   dueDate,
-  onClick,
+  onSelect,
+  onTodoClick,
   disabled = false,
 }: ActionCardProps) => {
   return (
@@ -22,8 +24,9 @@ const ActionCard = ({
       subTitle={subTitle}
       dueDate={dueDate}
       disabled={disabled}
+      onClick={onSelect}
     >
-      <ActionTodoButton text="To-Do" onClick={onClick} />
+      <ActionTodoButton text="To-Do" onClick={onTodoClick} />
     </ActionRequiredCard>
   );
 };
