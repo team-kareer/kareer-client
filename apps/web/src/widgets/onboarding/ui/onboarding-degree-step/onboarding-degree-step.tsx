@@ -58,10 +58,8 @@ const DegreeInput = ({
       placeholder="Select the degree"
       value={displayValue}
       onChange={(label) => {
-        if (options.includes(label)) {
-          // UI 값 그대로 저장
-          field.onChange(label);
-        }
+        // 타이핑 중에도 입력 허용, 옵션 선택 시에만 검증
+        field.onChange(label);
       }}
       options={options}
     />
