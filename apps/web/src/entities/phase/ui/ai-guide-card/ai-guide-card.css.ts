@@ -9,6 +9,10 @@ export const container = style({
   backgroundColor: themeVars.color.grayscale.gray700,
 });
 
+export const icon = style({
+  flexShrink: 0,
+});
+
 export const title = style({
   ...typography.body7_sb_14,
   color: themeVars.color.grayscale.gray100,

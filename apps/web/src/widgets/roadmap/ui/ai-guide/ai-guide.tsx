@@ -11,9 +11,13 @@ const CONTENT = {
 
 interface AIGuideProps {
   importance: string;
-  guideline: string;
-  commonMistakes: string;
+  guideline: string[];
+  commonMistakes: string[];
 }
+
+const formatDescription = (value: string | string[]) => {
+  return Array.isArray(value) ? value.join('\n') : value;
+};
 
 const AIGuide = ({ importance, guideline, commonMistakes }: AIGuideProps) => {
   const GUIDE_ITEMS = [
@@ -41,7 +45,11 @@ const AIGuide = ({ importance, guideline, commonMistakes }: AIGuideProps) => {
         </div>
       </div>
       {GUIDE_ITEMS.map(({ type, description }) => (
-        <AIGuideCard key={type} type={type} description={description} />
+        <AIGuideCard
+          key={type}
+          type={type}
+          description={formatDescription(description)}
+        />
       ))}
     </article>
   );

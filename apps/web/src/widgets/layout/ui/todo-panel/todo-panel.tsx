@@ -3,8 +3,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
-import { TODO_QUERY_KEY } from '@entities/todo';
-import { TODO_QUERY_OPTIONS } from '@entities/todo/queries/queries';
+import { PHASE_QUERY_KEY } from '@entities/phase/queries';
+import { TODO_QUERY_KEY, TODO_QUERY_OPTIONS } from '@entities/todo';
 import TodoItem from '@entities/todo/ui/todo-item/todo-item';
 import { ROUTE_PATH } from '@shared/router/path';
 import type { components } from '@shared/types/schema';
@@ -31,6 +31,19 @@ const toggleCompleted = (
       ? { ...item, completed: !item.completed }
       : item,
   );
+
+const areAllTodosCompleted = (data?: ActionItemListResponse) => {
+  const allItems = [
+    ...(data?.visaActionItems ?? []),
+    ...(data?.careerActionItems ?? []),
+  ];
+
+  if (allItems.length === 0) {
+    return false;
+  }
+
+  return allItems.every((item) => item.completed);
+};
 
 const TodoPanel = () => {
   const navigate = useNavigate();
@@ -76,6 +89,19 @@ const TodoPanel = () => {
       if (context?.prev) {
         queryClient.setQueryData(queryKey, context.prev);
       }
+    },
+    onSuccess: () => {
+      const queryKey = TODO_QUERY_KEY.TODO_LIST();
+      const current =
+        queryClient.getQueryData<ActionItemListResponse>(queryKey);
+
+      if (!areAllTodosCompleted(current)) {
+        return;
+      }
+
+      queryClient.invalidateQueries({
+        queryKey: PHASE_QUERY_KEY.PHASE_ITEM_ROADMAP_ALL(),
+      });
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: TODO_QUERY_KEY.TODO_LIST() });
