@@ -6,6 +6,8 @@ import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
 import { TODO_QUERY_KEY } from '@entities/todo';
 import { components } from '@shared/types/schema';
 
+import { formatDate } from '../../../../shared/utils/date-formatter';
+
 import * as styles from './action-required.css';
 
 const TITLE = 'Action Required';
@@ -85,7 +87,7 @@ const ActionRequired = ({
                 key={item.phaseActionId}
                 title={item.title ?? ''}
                 subTitle={item.description ?? ''}
-                dueDate={item.deadline ?? ''}
+                dueDate={formatDate(item.deadline) ?? ''}
                 disabled={key === 'Done'}
                 onSelect={() => handleSelect(item.phaseActionId)}
                 onTodoClick={() => handleTodoItem(item.phaseActionId)}
