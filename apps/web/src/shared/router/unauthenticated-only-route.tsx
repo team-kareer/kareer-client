@@ -3,7 +3,7 @@ import { Navigate, Outlet, useLocation } from 'react-router';
 import { authService } from '@shared/auth/auth-service';
 import { ROUTE_PATH } from '@shared/router/path';
 
-const PublicOnlyRoute = () => {
+const UnauthenticatedOnlyRoute = () => {
   const isAuthenticated = authService.isAuthenticated();
   const location = useLocation();
 
@@ -15,4 +15,4 @@ const PublicOnlyRoute = () => {
   return <Outlet />;
 };
 
-export default PublicOnlyRoute;
+export default UnauthenticatedOnlyRoute;

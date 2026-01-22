@@ -3,7 +3,6 @@ import { createBrowserRouter } from 'react-router';
 import GlobalLayout from '@shared/router/global-layout';
 import OnboardingRouteLayout from '@shared/router/onboarding-route-layout';
 import ProtectedRoute from '@shared/router/protected-route';
-import PublicOnlyRoute from '@shared/router/public-only-route';
 import {
   protectedAppRoutes,
   publicRoutes,
@@ -12,6 +11,7 @@ import {
   protectedOnboardingRoutes,
   publicOnboardingRoutes,
 } from '@shared/router/routes/onboarding-routes';
+import UnauthenticatedOnlyRoute from '@shared/router/unauthenticated-only-route';
 
 export const router = createBrowserRouter([
   ...publicRoutes,
@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
     Component: OnboardingRouteLayout,
     children: [
       {
-        Component: PublicOnlyRoute,
+        Component: UnauthenticatedOnlyRoute,
         children: publicOnboardingRoutes,
       },
       {
