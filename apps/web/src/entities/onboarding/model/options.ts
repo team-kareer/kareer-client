@@ -27,16 +27,6 @@ export const SOUTH_KOREA_DEGREE_OPTIONS = [
   ...OUTSIDE_KOREA_DEGREE_OPTIONS,
 ];
 
-export const DEGREE_MAP: Record<string, string> = {
-  DOMESTIC_ASSOCIATE: 'Associate Degree',
-  DOMESTIC_BACHELORS: "Bachelor's Degree",
-  DOMESTIC_MASTERS: "Master's Degree",
-  DOMESTIC_DOCTORATE: 'Doctoral(PhD)',
-  OVERSEAS_BACHELORS: "Bachelor's Degree",
-  OVERSEAS_MASTERS: "Master's Degree",
-  OVERSEAS_DOCTORATE: 'Doctoral(PhD)',
-};
-
 export const LABEL_AND_LOCATION_TO_DEGREE_MAP: Record<
   string,
   Record<string, string>
