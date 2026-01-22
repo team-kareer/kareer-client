@@ -3,6 +3,7 @@ import { Tag } from '@kds/ui';
 
 import { JobPostingItem } from '@entities/job/model/types';
 import { default_company_image } from '@shared/assets';
+import { formatDate } from '@shared/utils/date-formatter';
 import { TagColor } from '@shared/utils/job-tag-color';
 
 import * as styles from './bookmarked-job-card.css';
@@ -70,7 +71,7 @@ const BookmarkedJobCard = ({
             <h2 className={styles.textStyle({ type: 'title' })}>{title}</h2>
             {deadline && (
               <p className={styles.textStyle({ type: 'dueDate' })}>
-                {deadline || '-'}
+                {formatDate(deadline) || '-'}
               </p>
             )}
           </div>
