@@ -20,7 +20,6 @@ export const convertFormToRequest = (
 ): OnboardingFormRequest => {
   const { degreeLocation, ...rest } = formData;
 
-  // UI 값 → 서버 값 변환
   const serverVisaType = rest.visaType
     ? convertVisaTypeToServerValue(rest.visaType)
     : rest.visaType;

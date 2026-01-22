@@ -36,11 +36,14 @@ const OnboardingPage = () => {
     defaultValues: DEFAULT_ONBOARDING_FORM,
   });
 
+  const [isInitialized, setIsInitialized] = useState(false);
+
   useEffect(() => {
     const savedData = getLocalStorageData();
     if (savedData) {
       form.reset(savedData);
     }
+    setIsInitialized(true);
   }, [form]);
 
   // 버튼 비활성화 로직
@@ -71,8 +74,8 @@ const OnboardingPage = () => {
   const isNextDisabled =
     form.formState.isLoading || !hasAllRequiredValues || hasStepErrors;
 
-  // 로컬스토리지 저장
-  useOnboardingStorage(allFormValues);
+  // 로컬스토리지 저장 (초기화 완료 후에만)
+  useOnboardingStorage(isInitialized ? allFormValues : ({} as OnboardingForm));
 
   useEffect(() => {
     if (error) {

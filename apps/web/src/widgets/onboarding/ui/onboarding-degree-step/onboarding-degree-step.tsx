@@ -42,30 +42,6 @@ const DegreeLocationButton = ({
   );
 };
 
-// 입력값 상태 관리 컴포넌트
-const DegreeInput = ({
-  field,
-  options,
-}: {
-  field: { value: string; onChange: (value: string) => void };
-  options: string[];
-  degreeLocation: string;
-}) => {
-  const displayValue = field.value || '';
-
-  return (
-    <Autocomplete
-      placeholder="Select the degree"
-      value={displayValue}
-      onChange={(label) => {
-        // 타이핑 중에도 입력 허용, 옵션 선택 시에만 검증
-        field.onChange(label);
-      }}
-      options={options}
-    />
-  );
-};
-
 const OnboardingDegreeStep = () => {
   const { control, resetField } = useFormContext<OnboardingForm>();
 
@@ -106,10 +82,13 @@ const OnboardingDegreeStep = () => {
         control={control}
         rules={{ required: 'Select the degree' }}
         render={({ field }) => (
-          <DegreeInput
-            field={field}
+          <Autocomplete
+            placeholder="Select the degree"
+            value={field.value || ''}
+            onChange={(label) => {
+              field.onChange(label);
+            }}
             options={options}
-            degreeLocation={degreeLocation}
           />
         )}
       />
