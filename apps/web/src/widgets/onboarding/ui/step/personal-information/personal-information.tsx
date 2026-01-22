@@ -104,7 +104,7 @@ const PersonalInformation = () => {
         </div>
         {/* 오픽 Level - 2열 */}
         <div className={styles.autoWrapper}>
-          <p className={styles.label}>OPIK / KIIP Level</p>
+          <p className={styles.label}>TOPIK / KIIP Level</p>
           <Controller
             name="languageLevel"
             control={control}
