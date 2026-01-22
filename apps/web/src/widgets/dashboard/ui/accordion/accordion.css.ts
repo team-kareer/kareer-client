@@ -86,7 +86,6 @@ export const content = recipe({
     display: 'flex',
     flexDirection: 'column',
     gap: '0.8rem',
-    margin: '0 2rem 1.6rem 2rem',
     maxHeight: '16.2rem',
     overflowY: 'scroll',
   },
