@@ -1,19 +1,9 @@
 import { components } from '@shared/types/schema';
 
+import { formatDate } from './date-formatter';
 import { calculateDDay } from './dday-calculate';
 
 type UserStatus = components['schemas']['MemberStatusResponse'];
-
-const formatDate = (dateStr?: string | null) => {
-  if (!dateStr) {
-    return '-';
-  }
-  return new Date(dateStr).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
-};
 
 const formatDDayText = (dDay: number | undefined, dDayLabel: string = '-') => {
   if (dDay === undefined) {
