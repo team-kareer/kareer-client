@@ -25,15 +25,15 @@ const getVisaTypeLabel = (value: string): string => {
   return visaTypeMap[value] || value;
 };
 
-/**
- * UI 표시용 텍스트를 서버 값으로 변환
- */
-const getVisaTypeValue = (label: string): string => {
+const getVisaTypeValue = (label: string, isOptionSelected: boolean): string => {
   const labelToValueMap: Record<string, string> = {
     'D-2': 'D2',
     'D-10': 'D10',
   };
-  return labelToValueMap[label] || label.replace(/-/g, '');
+  if (isOptionSelected && labelToValueMap[label]) {
+    return labelToValueMap[label];
+  }
+  return label;
 };
 
 const VisaInformation = () => {
@@ -60,8 +60,8 @@ const VisaInformation = () => {
                   placeholder={VISA_INFORMATION_PLACEHOLDERS.CURRENT_VISA_TYPE}
                   value={displayValue}
                   onChange={(label) => {
-                    // UI 텍스트를 서버 값으로 변환하여 저장
-                    const apiValue = getVisaTypeValue(label);
+                    const isOptionSelected = VISA_TYPE_OPTIONS.includes(label);
+                    const apiValue = getVisaTypeValue(label, isOptionSelected);
                     field.onChange(apiValue);
                   }}
                   options={VISA_TYPE_OPTIONS}
