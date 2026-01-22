@@ -11,6 +11,7 @@ import {
   protectedOnboardingRoutes,
   publicOnboardingRoutes,
 } from '@shared/router/routes/onboarding-routes';
+import UnauthenticatedOnlyRoute from '@shared/router/unauthenticated-only-route';
 
 export const router = createBrowserRouter([
   ...publicRoutes,
@@ -26,7 +27,10 @@ export const router = createBrowserRouter([
   {
     Component: OnboardingRouteLayout,
     children: [
-      ...publicOnboardingRoutes,
+      {
+        Component: UnauthenticatedOnlyRoute,
+        children: publicOnboardingRoutes,
+      },
       {
         Component: ProtectedRoute,
         children: protectedOnboardingRoutes,
