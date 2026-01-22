@@ -1,10 +1,8 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { Autocomplete, Button, Tab, useTabContext } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import {
-  getDegreeLabel,
-  getDegreeValue,
   type OnboardingForm,
   OUTSIDE_KOREA_DEGREE_OPTIONS,
   SOUTH_KOREA_DEGREE_OPTIONS,
@@ -48,29 +46,21 @@ const DegreeLocationButton = ({
 const DegreeInput = ({
   field,
   options,
-  degreeLocation,
 }: {
   field: { value: string; onChange: (value: string) => void };
   options: string[];
   degreeLocation: string;
 }) => {
-  const displayValue = field.value ? getDegreeLabel(field.value) : '';
-  const [inputValue, setInputValue] = useState(displayValue);
-
-  // 폼 값이 변경되면 입력값 동기화
-  useEffect(() => {
-    setInputValue(displayValue);
-  }, [displayValue]);
+  const displayValue = field.value || '';
 
   return (
     <Autocomplete
       placeholder="Select the degree"
-      value={inputValue}
+      value={displayValue}
       onChange={(label) => {
-        setInputValue(label);
         if (options.includes(label)) {
-          const apiValue = getDegreeValue(label, degreeLocation);
-          field.onChange(apiValue);
+          // UI 값 그대로 저장
+          field.onChange(label);
         }
       }}
       options={options}

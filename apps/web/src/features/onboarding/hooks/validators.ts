@@ -132,8 +132,8 @@ export const validateVisaExpirationDate = (
     return VALIDATION_MESSAGE.DATE.MUST_BE_AFTER_ISSUANCE;
   }
 
-  // 비자 타입별 검증
-  if (visaType === 'D2') {
+  // 비자 타입별 검증 (UI 값으로 비교)
+  if (visaType === 'D-2') {
     // D-2: 발급일로부터 2년을 초과하면 에러
     const oneYearLater = new Date(issuance);
     oneYearLater.setFullYear(oneYearLater.getFullYear() + 2);
@@ -141,7 +141,7 @@ export const validateVisaExpirationDate = (
     if (expiration > oneYearLater) {
       return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_ONE_YEAR;
     }
-  } else if (visaType === 'D10') {
+  } else if (visaType === 'D-10') {
     // D-10: 발급일로부터 6개월 미만이면 에러
     const sixMonthsLater = new Date(issuance);
     sixMonthsLater.setMonth(sixMonthsLater.getMonth() + 6);

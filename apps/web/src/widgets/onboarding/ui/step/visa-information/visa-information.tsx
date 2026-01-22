@@ -14,28 +14,6 @@ import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './visa-information.css';
 
-const getVisaTypeLabel = (value: string): string => {
-  if (!value) {
-    return '';
-  }
-  const visaTypeMap: Record<string, string> = {
-    D2: 'D-2',
-    D10: 'D-10',
-  };
-  return visaTypeMap[value] || value;
-};
-
-const getVisaTypeValue = (label: string, isOptionSelected: boolean): string => {
-  const labelToValueMap: Record<string, string> = {
-    'D-2': 'D2',
-    'D-10': 'D10',
-  };
-  if (isOptionSelected && labelToValueMap[label]) {
-    return labelToValueMap[label];
-  }
-  return label;
-};
-
 const VisaInformation = () => {
   const { control } = useFormContext<OnboardingForm>();
   const { visaType, visaStartDate } = useVisaInformation();
@@ -51,18 +29,13 @@ const VisaInformation = () => {
             control={control}
             rules={{ required: 'Select the visa type' }}
             render={({ field }) => {
-              const displayValue = field.value
-                ? getVisaTypeLabel(field.value)
-                : '';
-
               return (
                 <Autocomplete
                   placeholder={VISA_INFORMATION_PLACEHOLDERS.CURRENT_VISA_TYPE}
-                  value={displayValue}
+                  value={field.value || ''}
                   onChange={(label) => {
-                    const isOptionSelected = VISA_TYPE_OPTIONS.includes(label);
-                    const apiValue = getVisaTypeValue(label, isOptionSelected);
-                    field.onChange(apiValue);
+                    // UI 값 그대로 저장
+                    field.onChange(label);
                   }}
                   options={VISA_TYPE_OPTIONS}
                 />
@@ -72,7 +45,7 @@ const VisaInformation = () => {
         </div>
         {/* D-2 & D-10 비자 타입 조건부 렌더링 */}
         <div style={{ visibility: visaType ? 'visible' : 'hidden' }}>
-          {visaType === 'D2' ? (
+          {visaType === 'D-2' ? (
             <div>
               <p className={styles.label}>
                 Expected Graducation Date (YYYY-MM-DD)
@@ -106,7 +79,7 @@ const VisaInformation = () => {
                 )}
               />
             </div>
-          ) : visaType === 'D10' ? (
+          ) : visaType === 'D-10' ? (
             <div>
               <div>
                 <p className={styles.label}>Visa Point</p>
