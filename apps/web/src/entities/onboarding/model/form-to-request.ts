@@ -27,25 +27,34 @@ export const convertFormToRequest = (
   const serverDegree =
     rest.degree && degreeLocation
       ? getDegreeValue(rest.degree, degreeLocation)
-      : rest.degree;
+      : '';
+
+  // 조건부 필드 제거를 위해 destructure
+  const {
+    expectedGraduationDate,
+    visaPoint,
+    secondaryMajor,
+    targetJobSkill,
+    ...baseFields
+  } = rest;
 
   return {
-    ...rest,
+    ...baseFields,
     visaType: serverVisaType,
     degree: serverDegree,
-    ...(rest.secondaryMajor?.trim() && {
-      secondaryMajor: rest.secondaryMajor,
+    ...(secondaryMajor?.trim() && {
+      secondaryMajor,
     }),
-    ...(rest.targetJobSkill?.trim() && {
-      targetJobSkill: rest.targetJobSkill,
+    ...(targetJobSkill?.trim() && {
+      targetJobSkill,
     }),
     ...(rest.visaType === 'D-2' &&
-      rest.expectedGraduationDate && {
-        expectedGraduationDate: rest.expectedGraduationDate,
+      expectedGraduationDate && {
+        expectedGraduationDate,
       }),
     ...(rest.visaType === 'D-10' &&
-      rest.visaPoint !== undefined && {
-        visaPoint: rest.visaPoint,
+      visaPoint !== undefined && {
+        visaPoint,
       }),
   } as OnboardingFormRequest;
 };
