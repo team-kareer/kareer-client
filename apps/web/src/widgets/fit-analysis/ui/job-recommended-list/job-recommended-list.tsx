@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import BookmarkedJobList from '@features/job/ui/bookmarked-job-list/bookmarked-job-list';
 import { JobPostingItem } from '@entities/job/model/types';
 import { JOB_MUTATION_OPTIONS } from '@entities/job/queries/queries';
 import { BOOKMARKED_JOB_QUERY_KEY } from '@entities/job/queries/query-key';
+import { TODO_QUERY_OPTIONS } from '@entities/todo/queries/queries';
 
 import UploadBox from '../upload-box/upload-box';
 import { useUploadFiles } from '../upload-box/use-upload-files';
@@ -21,6 +22,27 @@ const JobRecommendationList = () => {
   const [recommendations, setRecommendations] = useState<JobItem[]>([]);
 
   const queryClient = useQueryClient();
+
+  // 투두 리스트 조회
+  const { data: todoData } = useQuery(TODO_QUERY_OPTIONS.GET_TODO_LIST());
+
+  // 완료된 투두가 하나라도 있는지 확인
+  const hasCompletedTodo = () => {
+    if (!todoData) {
+      return false;
+    }
+
+    const visaCompleted = todoData.visaActionItems?.some(
+      (item) => item.completed,
+    );
+    const careerCompleted = todoData.careerActionItems?.some(
+      (item) => item.completed,
+    );
+
+    return visaCompleted || careerCompleted;
+  };
+
+  const isCheckboxDisabled = !hasCompletedTodo();
 
   const { mutate: recommendMutate, isPending: isRecommendPending } =
     useMutation({
@@ -46,6 +68,7 @@ const JobRecommendationList = () => {
       includeCompletedTodo: false,
     });
   }, [recommendMutate]);
+
   const handleClickFindPosition = () => {
     if (files.length === 0) {
       return;
@@ -74,6 +97,7 @@ const JobRecommendationList = () => {
   };
 
   const isPending = isRecommendPending || isBookmarkPending;
+
   return (
     <div className={styles.listWrapper}>
       <UploadBox
@@ -85,6 +109,7 @@ const JobRecommendationList = () => {
         onAddFiles={addFiles}
         onRemoveFile={removeFile}
         isLoading={isPending}
+        isCheckboxDisabled={isCheckboxDisabled}
       />
       <BookmarkedJobList jobs={recommendations} onScrap={handleToggle} />
     </div>

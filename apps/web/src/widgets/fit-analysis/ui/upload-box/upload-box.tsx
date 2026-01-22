@@ -6,7 +6,7 @@ import { FileItem } from './use-upload-files';
 
 import * as styles from './upload-box.css';
 
-const INFO_MESSAGE = 'Up to 2 files · 20 MB max';
+const INFO_MESSAGE = 'Up to 2 files · 40 MB max';
 const CHECK_MESSAGE = 'Include completed to-dos';
 
 interface UploadBoxProps {
@@ -18,6 +18,7 @@ interface UploadBoxProps {
   onAddFiles: (files: File[]) => void;
   onRemoveFile: (id: string) => void;
   isLoading: boolean;
+  isCheckboxDisabled: boolean;
 }
 
 const UploadBox = ({
@@ -29,6 +30,7 @@ const UploadBox = ({
   onAddFiles,
   onRemoveFile,
   isLoading,
+  isCheckboxDisabled,
 }: UploadBoxProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const hasFiles = files.length > 0;
@@ -48,7 +50,9 @@ const UploadBox = ({
   };
 
   const handleToggleCheckBox = () => {
-    setIsChecked(!isChecked);
+    if (!isCheckboxDisabled) {
+      setIsChecked(!isChecked);
+    }
   };
 
   return (
@@ -92,7 +96,7 @@ const UploadBox = ({
             <Checkbox
               isChecked={isChecked}
               onClick={handleToggleCheckBox}
-              disabled={isLoading}
+              disabled={isLoading || isCheckboxDisabled}
             />
             <p className={styles.checkText}>{CHECK_MESSAGE}</p>
           </div>
