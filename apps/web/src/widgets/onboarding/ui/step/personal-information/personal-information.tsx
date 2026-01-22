@@ -5,6 +5,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
 import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import {
+  validateAutocompleteOption,
   validateDate,
   validateName,
 } from '@features/onboarding/hooks/validators';
@@ -91,7 +92,16 @@ const PersonalInformation = () => {
           <Controller
             name="country"
             control={control}
-            rules={{ required: 'Select the Country' }}
+            rules={{
+              required: 'Select the Country',
+              validate: (value) => {
+                const result = validateAutocompleteOption(
+                  value,
+                  countryList?.countries || [],
+                );
+                return result === true || result;
+              },
+            }}
             render={({ field }) => (
               <Autocomplete
                 placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
@@ -108,7 +118,16 @@ const PersonalInformation = () => {
           <Controller
             name="languageLevel"
             control={control}
-            rules={{ required: 'Select the level' }}
+            rules={{
+              required: 'Select the level',
+              validate: (value) => {
+                const result = validateAutocompleteOption(
+                  value,
+                  LANGUAGE_LEVEL_OPTIONS,
+                );
+                return result === true || result;
+              },
+            }}
             render={({ field }) => (
               <Autocomplete
                 placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.OPIK_LEVEL}

@@ -5,6 +5,7 @@ import { OnboardingStepTitle } from '@widgets/onboarding';
 import { VISA_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { useVisaInformation } from '@features/onboarding/hooks/useVisaInformation';
 import {
+  validateAutocompleteOption,
   validateDate,
   validateNumber,
   validateVisaExpirationDate,
@@ -32,7 +33,16 @@ const VisaInformation = () => {
           <Controller
             name="visaType"
             control={control}
-            rules={{ required: 'Select the visa type' }}
+            rules={{
+              required: 'Select the visa type',
+              validate: (value) => {
+                const result = validateAutocompleteOption(
+                  value,
+                  VISA_TYPE_OPTIONS,
+                );
+                return result === true || result;
+              },
+            }}
             render={({ field }) => {
               return (
                 <Autocomplete

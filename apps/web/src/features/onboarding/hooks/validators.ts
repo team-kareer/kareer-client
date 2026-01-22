@@ -4,6 +4,26 @@ const D10_MIN_VISA_POINT = 60;
 const D10_MAX_VISA_POINT = 190;
 
 /**
+ * Autocomplete 옵션 검증 함수
+ * @param value - 검증할 값
+ * @param options - 허용된 옵션 배열
+ * @returns 검증 통과 시 true, 실패 시 에러 메시지 반환
+ * @description 선택된 값이 옵션 목록에 있는지 확인
+ */
+export const validateAutocompleteOption = (
+  value: string | undefined,
+  options: string[],
+): true | string => {
+  if (!value) {
+    return true; // 빈 값은 required 규칙에서 처리
+  }
+  if (!options.includes(value)) {
+    return 'Please select a valid option from the list.';
+  }
+  return true;
+};
+
+/**
  * 비자 포인트 숫자 값 검증
  * @description 숫자 형식이며 60 이상 190 이하인지 검증
  */
