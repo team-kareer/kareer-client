@@ -52,9 +52,14 @@ const PersonalInformation = () => {
                   status={fieldState.error ? 'error' : 'default'}
                   placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.NAME}
                 />
-                <p className={styles.textCount}>
-                  {field.value?.length || 0}/{MAX_LENGTH}
-                </p>
+                <div className={styles.nameFooter}>
+                  <p className={styles.errorMessage}>
+                    {fieldState.error?.message || ''}
+                  </p>
+                  <p className={styles.textCount}>
+                    {field.value?.length || 0}/{MAX_LENGTH}
+                  </p>
+                </div>
               </>
             )}
           />

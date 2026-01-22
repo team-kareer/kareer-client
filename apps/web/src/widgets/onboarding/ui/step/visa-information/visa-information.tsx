@@ -115,9 +115,11 @@ const VisaInformation = () => {
                         placeholder={VISA_INFORMATION_PLACEHOLDERS.NUMBER}
                         status={fieldState.error ? 'error' : 'default'}
                       />
-                      <p className={styles.errorMessage}>
-                        {fieldState.error?.message || ''}
-                      </p>
+                      <div>
+                        <p className={styles.errorMessage}>
+                          {fieldState.error?.message || ''}
+                        </p>
+                      </div>
                     </>
                   )}
                 />

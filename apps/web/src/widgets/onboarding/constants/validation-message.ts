@@ -24,7 +24,7 @@ export const VALIDATION_MESSAGE = {
     D10_LESS_THAN_SIX_MONTHS:
       'D-10 visa must be valid for at least six months from the issuance date.',
     D2_ISSUANCE_AFTER_GRADUATION:
-      'Visa issuance date must be before the expected graduation date.',
+      'Please enter a graduation date that is later than your visa issuance date.',
   },
   NAME: {
     EMPTY: "Your name can't be empty.",

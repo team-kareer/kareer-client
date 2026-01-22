@@ -52,9 +52,14 @@ const PersonalBackground = () => {
                 {...field}
                 placeholder={placeholder}
                 value={field.value || ''}
-                onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                  field.onChange(e.target.value)
-                }
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+                  const newValue = e.target.value;
+                  if (
+                    newValue.length <= FIELD_MAX_LENGTHS.PERSONAL_BACKGROUND
+                  ) {
+                    field.onChange(newValue);
+                  }
+                }}
                 maxLength={FIELD_MAX_LENGTHS.PERSONAL_BACKGROUND}
                 showCount={true}
               />

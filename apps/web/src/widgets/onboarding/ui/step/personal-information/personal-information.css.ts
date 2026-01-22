@@ -46,6 +46,11 @@ export const errorMessage = style({
 export const textCount = style({
   ...typography.cap2_m_12,
   color: themeVars.color.grayscale.gray500,
-  paddingTop: '0.8rem',
-  textAlign: 'right',
+  marginTop: '0.8rem',
+});
+
+export const nameFooter = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 });
