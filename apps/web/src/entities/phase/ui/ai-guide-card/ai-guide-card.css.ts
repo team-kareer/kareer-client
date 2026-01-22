@@ -20,5 +20,5 @@ export const title = style({
 
 export const description = style({
   ...typography.cap3_r_12,
-  color: themeVars.color.grayscale.gray500,
+  color: themeVars.color.grayscale.gray400,
 });
