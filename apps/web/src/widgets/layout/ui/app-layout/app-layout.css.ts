@@ -21,16 +21,36 @@ export const mainArea = style({
   display: 'flex',
   flexDirection: 'row',
   flex: 1,
+  justifyContent: 'flex-start',
   alignItems: 'stretch',
+  width: '100%',
   minHeight: 0,
   paddingRight: '2rem',
   backgroundColor: themeVars.color.grayscale.gray100,
 });
 
+export const pageWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'stretch',
+  justifyContent: 'center',
+  flex: 1,
+  width: '100%',
+  minWidth: 0,
+});
+
 export const mainPage = style({
   padding: '1.6rem 0.35rem 0 2rem',
   flex: 1,
+  width: '100%',
+  margin: '0 auto',
   minHeight: 0,
   overflowY: 'auto',
   scrollbarGutter: 'stable',
+});
+
+export const todoPanelWrapper = style({
+  display: 'flex',
+  flexShrink: 0,
+  marginLeft: 'auto',
 });
