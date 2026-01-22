@@ -21,7 +21,7 @@ export const recommendJobPostings = async (
         includeCompletedTodo: params.includeCompletedTodo ?? false,
       },
       body: formData,
-      timeout: false, // 여기!
+      timeout: false,
     })
     .json<RecommendJobPostingsResponse>();
 };

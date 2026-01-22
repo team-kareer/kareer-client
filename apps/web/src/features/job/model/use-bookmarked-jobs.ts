@@ -9,7 +9,6 @@ const useBookmarkedJobs = (jobs: JobPostingItem[]) => {
     return jobs.map((job) => ({
       ...job,
       dDay: calculateDDay(job.deadline),
-      // jobTagColor: getJobTagColor(job.arrangement?.[0]),
       jobTagColor: getJobTagColor(job.arrangement),
       handleOpenDetail: () =>
         job.websiteUrl && window.open(job.websiteUrl, '_blank'),
