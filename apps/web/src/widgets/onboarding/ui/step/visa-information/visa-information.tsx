@@ -1,5 +1,5 @@
 import { Autocomplete, Input } from '@kds/ui';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { VISA_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
@@ -8,6 +8,7 @@ import {
   validateDate,
   validateNumber,
   validateVisaExpirationDate,
+  validateVisaIssuanceDate,
 } from '@features/onboarding/hooks/validators';
 import { type OnboardingForm } from '@entities/onboarding';
 import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
@@ -17,6 +18,10 @@ import * as styles from './visa-information.css';
 const VisaInformation = () => {
   const { control } = useFormContext<OnboardingForm>();
   const { visaType, visaStartDate } = useVisaInformation();
+  const expectedGraduationDate = useWatch({
+    control,
+    name: 'expectedGraduationDate',
+  });
 
   return (
     <section>
@@ -121,8 +126,17 @@ const VisaInformation = () => {
                 if (!value) {
                   return 'Enter the issuance date';
                 }
-                const result = validateDate(value, false);
-                return result === true || result;
+                // 기본 날짜 형식 체크 (미래/과거 날짜 모두 허용)
+                const result = validateDate(value, true, true);
+                if (result !== true) {
+                  return result;
+                }
+                // D-2 비자 타입일 경우 졸업 예정일과 비교
+                return validateVisaIssuanceDate(
+                  value,
+                  visaType,
+                  expectedGraduationDate,
+                );
               },
             }}
             render={({ field, fieldState }) => (
@@ -138,17 +152,22 @@ const VisaInformation = () => {
               </>
             )}
           />
-        </div>
+        </div>{' '}
         <div>
           <p className={styles.label}>Visa Expiration Date (YYYY-MM-DD)</p>
           <Controller
             name="visaExpiredAt"
             control={control}
             rules={{
-              required: 'Enter the expiration date',
               validate: (value) => {
+                // 값이 없으면 통과 (사용자가 입력할 때까지 대기)
                 if (!value) {
-                  return 'Enter the expiration date';
+                  return true;
+                }
+                // 완전한 형식(YYYY-MM-DD)이 아니면 통과 (입력 중)
+                const completeFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
+                if (!completeFormatRegex.test(value)) {
+                  return true;
                 }
                 // 기본 날짜 형식 체크
                 const result = validateDate(value, true);
@@ -169,16 +188,10 @@ const VisaInformation = () => {
                 <Input
                   {...field}
                   placeholder={VISA_INFORMATION_PLACEHOLDERS.EXPIRATION_DATE}
-                  status={
-                    fieldState.isTouched && fieldState.error
-                      ? 'error'
-                      : 'default'
-                  }
+                  status={fieldState.error ? 'error' : 'default'}
                 />
                 <p className={styles.errorMessage}>
-                  {fieldState.isTouched && fieldState.error?.message
-                    ? fieldState.error.message
-                    : ''}
+                  {fieldState.error?.message || ''}
                 </p>
               </>
             )}

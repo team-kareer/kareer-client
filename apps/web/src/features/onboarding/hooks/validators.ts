@@ -130,12 +130,49 @@ export const validateName = (value: string) => {
 };
 
 /**
+ * 비자 발급일을 검증하는 함수
+ * @param issuanceDate - 검증할 발급일
+ * @param visaType - 비자 타입
+ * @param expectedGraduationDate - 졸업 예정일 (D-2인 경우)
+ * @returns 검증 통과 시 true, 실패 시 에러 메시지 반환
+ * @description D-2 비자 타입일 경우, 발급일이 졸업 예정일보다 미래인지 확인
+ */
+export const validateVisaIssuanceDate = (
+  issuanceDate: string,
+  visaType: string | undefined,
+  expectedGraduationDate: string | undefined,
+) => {
+  // D-2 비자 타입이고 졸업 예정일이 있는 경우만 검증
+  if (visaType === 'D-2' && expectedGraduationDate) {
+    // 날짜 형식 체크
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (
+      !dateRegex.test(issuanceDate) ||
+      !dateRegex.test(expectedGraduationDate)
+    ) {
+      return true; // 형식 체크는 validateDate에서 처리
+    }
+
+    // 날짜 파싱
+    const issuance = new Date(issuanceDate);
+    const graduation = new Date(expectedGraduationDate);
+
+    // 발급일이 졸업 예정일보다 미래이면 에러
+    if (issuance >= graduation) {
+      return VALIDATION_MESSAGE.VISA.D2_ISSUANCE_AFTER_GRADUATION;
+    }
+  }
+
+  return true;
+};
+
+/**
  * 비자 만료일을 검증하는 함수
  * @param expirationDate - 검증할 만료일
  * @param visaType - 비자 타입
  * @param issuanceDate - 비자 발급일
  * @returns 검증 통과 시 true, 실패 시 에러 메시지 반환
- * @description 발급일 이후인지 확인하고, 비자 타입별 규칙 검증 (D-2: 발급일로부터 2년 이내, D-10: 발급일로부터 6개월 이상)
+ * @description 발급일 이후인지 확인하고, 비자 타입별 규칙 검증 (D-2: 발급일로부터 2년 이내, D-10: 발급일로부터 딱 6개월이 아닌 경우) ex-> 2025-01-01 ~ 2025-06-01
  */
 export const validateVisaExpirationDate = (
   expirationDate: string,
@@ -172,11 +209,21 @@ export const validateVisaExpirationDate = (
       return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_ONE_YEAR;
     }
   } else if (visaType === 'D-10') {
-    // D-10: 발급일로부터 6개월 미만이면 에러
-    const sixMonthsLater = new Date(issuance);
-    sixMonthsLater.setMonth(sixMonthsLater.getMonth() + 6);
+    // 발급일로부터 6개월 단위가 아니면 에러
+    // ex-> 2025-01-01 ~ 2025-06-01
+    const allowedMonths = [6, 12, 18, 24, 30, 36];
 
-    if (expiration < sixMonthsLater) {
+    const allowedDates = allowedMonths.map((months) => {
+      const date = new Date(issuance);
+      date.setMonth(date.getMonth() + months);
+      date.setHours(0, 0, 0, 0);
+      return date.getTime();
+    });
+
+    const expirationDateOnly = new Date(expiration);
+    expirationDateOnly.setHours(0, 0, 0, 0);
+
+    if (!allowedDates.includes(expirationDateOnly.getTime())) {
       return VALIDATION_MESSAGE.VISA.D10_LESS_THAN_SIX_MONTHS;
     }
   }
