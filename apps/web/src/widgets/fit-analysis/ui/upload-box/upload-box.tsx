@@ -15,9 +15,9 @@ interface UploadBoxProps {
   onClick: () => void;
   files: FileItem[];
   noticeMessage: string;
-  onAddFiles: (selectedFiles: File[]) => void;
+  onAddFiles: (files: File[]) => void;
   onRemoveFile: (id: string) => void;
-  isLoading?: boolean;
+  isLoading: boolean;
 }
 
 const UploadBox = ({
@@ -28,7 +28,7 @@ const UploadBox = ({
   noticeMessage,
   onAddFiles,
   onRemoveFile,
-  isLoading = false,
+  isLoading,
 }: UploadBoxProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const hasFiles = files.length > 0;

@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
 import BookmarkedJobList from '@features/job/ui/bookmarked-job-list/bookmarked-job-list';
 import { JobPostingItem } from '@entities/job/model/types';
-import {
-  BOOKMARKED_JOB_QUERY_KEY,
-  JOB_MUTATION_OPTIONS,
-} from '@entities/job/queries';
+import { JOB_MUTATION_OPTIONS } from '@entities/job/queries/queries';
 
 import UploadBox from '../upload-box/upload-box';
 import { useUploadFiles } from '../upload-box/use-upload-files';
@@ -21,32 +18,21 @@ const JobRecommendationList = () => {
   const [isChecked, setIsChecked] = useState(false);
   const { files, noticeMessage, addFiles, removeFile } = useUploadFiles();
   const [recommendations, setRecommendations] = useState<JobItem[]>([]);
-  const queryClient = useQueryClient();
 
-  const { mutate: recommendMutate, isPending: isRecommendPending } =
-    useMutation({
-      ...JOB_MUTATION_OPTIONS.RECOMMEND_JOB_POSTINGS(),
-      onSuccess: (response) => {
-        const dataList = response.data?.jobPostingResponses ?? [];
-        setRecommendations(dataList as JobItem[]);
-      },
-    });
-
-  const { mutate: bookmarkMutate, isPending: isBookmarkPending } = useMutation({
-    ...JOB_MUTATION_OPTIONS.TOGGLE_BOOKMARK_JOB_POSTING(),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: BOOKMARKED_JOB_QUERY_KEY.BOOKMARKED_JOB(),
-      });
+  const { mutate, isPending } = useMutation({
+    ...JOB_MUTATION_OPTIONS.RECOMMEND_JOB_POSTINGS(),
+    onSuccess: (response) => {
+      const dataList = response.data?.jobPostingResponses ?? [];
+      setRecommendations(dataList as JobItem[]);
     },
   });
 
   useEffect(() => {
-    recommendMutate({
+    mutate({
       files: [],
       includeCompletedTodo: false,
     });
-  }, [recommendMutate]);
+  }, [mutate]);
 
   const handleClickFindPosition = () => {
     if (files.length === 0) {
@@ -55,27 +41,21 @@ const JobRecommendationList = () => {
 
     const rawFiles = files.map((f) => f.file);
 
-    recommendMutate({
+    mutate({
       files: rawFiles,
       includeCompletedTodo: isChecked,
     });
   };
 
-  const handleToggle = (jobPostingId: number) => {
+  const handleToggle = (id: number) => {
     setRecommendations((prev) =>
       prev.map((job) =>
-        job.jobPostingId === jobPostingId
+        job.jobPostingId === id
           ? { ...job, isBookmarked: !job.isBookmarked }
           : job,
       ),
     );
-
-    bookmarkMutate({
-      jobPostingId,
-    });
   };
-
-  const isPending = isRecommendPending || isBookmarkPending;
 
   return (
     <div className={styles.listWrapper}>
