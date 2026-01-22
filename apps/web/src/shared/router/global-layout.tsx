@@ -16,7 +16,7 @@ const GlobalLayout = () => {
             onReset={reset}
             fallback={({ resetError }) => <ErrorPage onAction={resetError} />}
           >
-            <Suspense fallback={<PageLoader />}>
+            <Suspense fallback={<PageLoader text="Please wait a bit..." />}>
               <Outlet />
             </Suspense>
           </Sentry.ErrorBoundary>
