@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
 import { useQuery } from '@tanstack/react-query';
 
@@ -19,6 +20,7 @@ const ActionRequiredAccordion = ({ phaseId }: ActionRequiredAccordion) => {
   const { data } = useQuery({
     ...PHASE_QUERY_OPTIONS.GET_PHASE_ITEM_HOME(phaseId),
   });
+
   const { isOpen, shouldRender, toggle } = useAccordion();
   const Chevron = isOpen ? ArrowUpIcon : ArrowDownIcon;
 
