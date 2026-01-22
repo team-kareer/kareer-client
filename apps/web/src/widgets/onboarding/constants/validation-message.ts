@@ -17,7 +17,7 @@ export const VALIDATION_MESSAGE = {
   },
   VISA: {
     D2_EXCEEDS_ONE_YEAR:
-      'D-2 visa must be valid for at most one year from the issuance date.',
+      'D-2 visa must be valid for at most two years from the issuance date.',
     D10_LESS_THAN_SIX_MONTHS:
       'D-10 visa must be valid for at least six months from the issuance date.',
   },
