@@ -6,6 +6,7 @@ import { RequiredActionCard } from '@entities/phase';
 import { RequiredActionType } from '@entities/phase/model';
 import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 import { useAccordion } from '@shared/hooks/useAccordion';
+import { ROUTE_PATH } from '@shared/router';
 import { components } from '@shared/types/schema';
 
 import * as styles from './accordion.css';
@@ -26,7 +27,7 @@ const ActionRequiredAccordion = ({ phaseId }: ActionRequiredAccordion) => {
   const isDone = data?.count === 0;
 
   const onClick = () => {
-    navigate('/roadmap');
+    navigate(ROUTE_PATH.ROADMAP);
   };
 
   return (
