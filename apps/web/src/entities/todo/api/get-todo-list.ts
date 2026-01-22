@@ -4,7 +4,11 @@ import { api } from '@shared/apis/configs/instance';
 
 export const getTodoList = async () => {
   const response = await api
-    .get(END_POINT.TODO.GET_TODO_ITEMS)
+    .get(END_POINT.TODO.GET_TODO_ITEMS, {
+      searchParams: {
+        includeCompleted: true,
+      },
+    })
     .json<GetTodoListResponse>();
 
   return response.data;

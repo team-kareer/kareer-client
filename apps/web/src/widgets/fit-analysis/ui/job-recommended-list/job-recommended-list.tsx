@@ -6,6 +6,7 @@ import { JobPostingItem } from '@entities/job/model/types';
 import { JOB_MUTATION_OPTIONS } from '@entities/job/queries/queries';
 import { BOOKMARKED_JOB_QUERY_KEY } from '@entities/job/queries/query-key';
 import { TODO_QUERY_OPTIONS } from '@entities/todo/queries/queries';
+import { TODO_QUERY_KEY } from '@entities/todo/queries/query-key';
 
 import UploadBox from '../upload-box/upload-box';
 import { useUploadFiles } from '../upload-box/use-upload-files';
@@ -23,10 +24,8 @@ const JobRecommendationList = () => {
 
   const queryClient = useQueryClient();
 
-  // 투두 리스트 조회
   const { data: todoData } = useQuery(TODO_QUERY_OPTIONS.GET_TODO_LIST());
 
-  // 완료된 투두가 하나라도 있는지 확인
   const hasCompletedTodo = () => {
     if (!todoData) {
       return false;
@@ -95,6 +94,19 @@ const JobRecommendationList = () => {
       jobPostingId,
     });
   };
+
+  // 외부에서 투두가 변경되었을 때
+  useEffect(() => {
+    // window 이벤트를 통한 투두 변경 감지
+    const handleTodoChanged = () => {
+      queryClient.invalidateQueries({
+        queryKey: TODO_QUERY_KEY.TODO_LIST(),
+      });
+    };
+
+    window.addEventListener('todoChanged', handleTodoChanged);
+    return () => window.removeEventListener('todoChanged', handleTodoChanged);
+  }, [queryClient]);
 
   const isPending = isRecommendPending || isBookmarkPending;
 
