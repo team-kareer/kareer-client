@@ -6,7 +6,11 @@ import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 
 import * as styles from './accordion-list.css';
 
-const AccordionList = () => {
+interface AccordionListProps {
+  clickedPhase: number;
+}
+
+const AccordionList = ({ clickedPhase }: AccordionListProps) => {
   const { data } = useQuery({ ...PHASE_QUERY_OPTIONS.GET_PHASE_LIST() });
   return (
     <section className={styles.container}>
@@ -19,6 +23,7 @@ const AccordionList = () => {
           subTitle={phase.description ?? ''}
           startDate={phase.startDate ?? ''}
           endDate={phase.endDate ?? ''}
+          clickedPhase={clickedPhase}
         />
       ))}
     </section>
