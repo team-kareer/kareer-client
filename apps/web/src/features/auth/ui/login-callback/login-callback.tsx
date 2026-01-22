@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { exchangeGoogleCode } from '@features/auth/api/exchange-google-code';
 import { tokenService } from '@shared/auth/token-service';
 import { ROUTE_PATH } from '@shared/router';
+import { PageLoader } from '@shared/ui';
 
 const LoginCallback = () => {
   const navigate = useNavigate();
@@ -46,7 +47,11 @@ const LoginCallback = () => {
     exchangeCode();
   }, [navigate]);
 
-  return <div>Loading</div>;
+  return (
+    <>
+      <PageLoader text="Please wait a bit..." />;
+    </>
+  );
 };
 
 export default LoginCallback;
