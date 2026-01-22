@@ -3,80 +3,48 @@ import { Button, Tag } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
 
 import { ActionRequired, AIGuide } from '@widgets/roadmap';
-import { PHASE_OPTIONS } from '@entities/phase/queries/queries';
+import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 import { useAccordion } from '@shared/hooks/useAccordion';
 
 import * as styles from './accordion.css';
 
 interface PhaseListAccordionItemProps {
+  phaseId: number;
   phase: number;
   title: string;
   subTitle: string;
-  dueDate: string;
-  phaseActionId: number;
+  startDate: string;
+  endDate: string;
 }
 
-const mockData = {
-  Visa: {
-    count: 1,
-    list: [
-      {
-        title: 'Prepare internship log',
-        description: 'Document all work experience during internship period',
-        deadline: '2026-01-13',
-        phaseActionId: 36,
-      },
-    ],
-  },
-  Career: {
-    count: 2,
-    list: [
-      {
-        title: 'Prepare internship log',
-        description: 'Document all work experience during internship period',
-        deadline: '2026-01-13',
-        phaseActionId: 2,
-      },
-      {
-        title: 'Prepare internship log',
-        description: 'Document all work experience during internship period',
-        deadline: '2026-01-13',
-        phaseActionId: 3,
-      },
-    ],
-  },
-  Done: {
-    count: 1,
-    list: [
-      {
-        title: 'Prepare internship log',
-        description: 'Document all work experience during internship period',
-        deadline: '2026-01-13',
-        phaseActionId: 4,
-      },
-    ],
-  },
-  totalCount: 4,
-};
-
 const Accordion = ({
+  phaseId,
   phase,
   title,
   subTitle,
-  dueDate,
-  phaseActionId,
+  startDate,
+  endDate,
 }: PhaseListAccordionItemProps) => {
-  // 추후 api 응답 값으로 변경
+  const { data } = useQuery({
+    ...PHASE_QUERY_OPTIONS.GET_PAHSE_ITEM_ROADMAP(phaseId),
+  });
   const { isOpen, shouldRender, toggle } = useAccordion();
   const tagStyle = isOpen ? 'pastel_blue' : 'disabled_gray';
   const buttonText = isOpen ? 'Show less' : 'Show all';
-  const [selectedPhaseActionId, setSelectedPhaseActionId] =
-    useState<number>(phaseActionId);
+  const [selectedPhaseActionId, setSelectedPhaseActionId] = useState<
+    number | undefined
+  >(undefined);
 
-  const { data } = useQuery({
-    ...PHASE_OPTIONS.GET_AI_GUIDE({
-      phaseActionId: selectedPhaseActionId,
+  const initialPhaseActionId = Object.values(data?.actions ?? {})
+    .flatMap((group) => group.items ?? [])
+    .find((item) => item.phaseActionId != null)?.phaseActionId;
+  const phaseActionId = selectedPhaseActionId ?? initialPhaseActionId;
+
+  const { data: aiGuideData } = useQuery({
+    ...PHASE_QUERY_OPTIONS.GET_AI_GUIDE({
+      phaseActionId: phaseActionId ?? 0,
     }),
+    enabled: phaseActionId != null,
   });
 
   return (
@@ -92,7 +60,9 @@ const Accordion = ({
           </div>
         </div>
         <div className={styles.right_section}>
-          <span className={styles.grayText}>{dueDate}</span>
+          <span className={styles.grayText}>
+            {startDate} - {endDate}
+          </span>
           <Button preset="text_ghost" onClick={toggle}>
             {buttonText}
           </Button>
@@ -105,14 +75,17 @@ const Accordion = ({
           <div className={styles.line} />
           {shouldRender && (
             <div className={styles.content}>
-              <ActionRequired
-                data={mockData}
-                onSelect={(id) => setSelectedPhaseActionId(id)}
-              />
+              {data && (
+                <ActionRequired
+                  totalCnt={data.totalCount}
+                  actions={data.actions}
+                  onSelect={(id) => setSelectedPhaseActionId(id)}
+                />
+              )}
               <AIGuide
-                importance={data?.importance ?? ''}
-                guideline={data?.guidelines ?? []}
-                commonMistakes={data?.mistakes ?? []}
+                importance={aiGuideData?.importance ?? ''}
+                guideline={aiGuideData?.guidelines ?? []}
+                commonMistakes={aiGuideData?.mistakes ?? []}
               />
             </div>
           )}

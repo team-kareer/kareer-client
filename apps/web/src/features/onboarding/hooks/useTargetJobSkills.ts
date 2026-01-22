@@ -1,11 +1,11 @@
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { type OnboardingForm } from '@entities/onboarding';
 import {
   getJobSkills,
   parseSkillsFromString,
   toggleSkill,
-} from '@entities/onboarding/model/target-job-skills';
+} from '@entities/onboarding';
+import { type OnboardingForm } from '@entities/onboarding';
 
 /**
  * Target Job 스킬 관련 로직을 관리하는 커스텀 훅

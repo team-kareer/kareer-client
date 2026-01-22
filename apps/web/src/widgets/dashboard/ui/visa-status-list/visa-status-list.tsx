@@ -5,14 +5,14 @@ import {
 } from '@kds/icons';
 import { useQuery } from '@tanstack/react-query';
 
-import { VisaStatusCard } from '@entities/user';
-import { USER_STATUS_QUERY_OPTIONS } from '@entities/user/queries/queries';
+import { USER_QUERY_OPTIONS } from '@entities/user/queries';
+import { VisaStatusCard } from '@entities/user/ui';
 import { getVisaStatusRenderData } from '@shared/utils/visa-status-mapper';
 
 import * as styles from './visa-status-list.css';
 
 export const VisaStatusList = () => {
-  const { data } = useQuery({ ...USER_STATUS_QUERY_OPTIONS.GET_USER_STATUS() });
+  const { data } = useQuery({ ...USER_QUERY_OPTIONS.GET_USER_STATUS() });
 
   if (!data) {
     return null;

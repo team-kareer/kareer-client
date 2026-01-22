@@ -1,6 +1,8 @@
 import { Avatar } from '@kds/ui';
+import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router';
 
+import { USER_QUERY_OPTIONS } from '@entities/user/queries/queries';
 import { ROUTE_PATH } from '@shared/router/path';
 
 import * as styles from './header.css';
@@ -24,18 +26,14 @@ const HEADER_LIST = [
 ] as const;
 
 const Header = () => {
-  // 추후 api response로 대체
-  const mockUser = {
-    username: 'Yoonseo Bong',
-  };
+  const { data } = useQuery({ ...USER_QUERY_OPTIONS.GET_USER_INFO() });
 
   const location = useLocation();
   const curHeader = HEADER_LIST.find(
     (header) => header.path === location.pathname,
   );
-  const showUsername =
-    curHeader?.path === ROUTE_PATH.DASHBOARD && mockUser.username;
-  const greeting = showUsername ? `, ${mockUser.username}!` : '';
+  const showUsername = curHeader?.path === ROUTE_PATH.DASHBOARD && data?.name;
+  const greeting = showUsername ? `, ${data?.name}!` : '';
 
   return (
     <header className={styles.container}>
@@ -46,8 +44,7 @@ const Header = () => {
         </h1>
         <p className={styles.subTitle}>{curHeader?.subTitle}</p>
       </div>
-
-      <Avatar size="mini" />
+      <Avatar profileUrl={data?.profileImageUrl} size="mini" />
     </header>
   );
 };

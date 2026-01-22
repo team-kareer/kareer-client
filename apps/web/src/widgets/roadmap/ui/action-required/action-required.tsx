@@ -2,7 +2,7 @@ import { Tag } from '@kds/ui';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import ActionCard from '@widgets/roadmap/ui/action-card';
-import { TODO_MUTATION_OPTIONS } from '@features/todo/queries/queires';
+import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
 import { TODO_QUERY_KEY } from '@entities/todo';
 import { components } from '@shared/types/schema';
 
@@ -10,22 +10,15 @@ import * as styles from './action-required.css';
 
 const TITLE = 'Action Required';
 
-type ActionRequiredItem = components['schemas']['ActionResponse'];
+type ActionsObject = {
+  [key: string]: components['schemas']['ActionGroupResponse'];
+};
 
-interface ActionRequiredGroup {
-  count: number;
-  list: ActionRequiredItem[];
-}
-
-interface ActionRequiredData {
-  Visa: ActionRequiredGroup;
-  Career: ActionRequiredGroup;
-  Done: ActionRequiredGroup;
-  totalCount: number;
-}
+type TagType = 'Visa' | 'Career' | 'Done';
 
 interface ActionRequiredProps {
-  data: ActionRequiredData;
+  totalCnt?: number;
+  actions?: ActionsObject;
   onSelect?: (phaseActionId: number) => void;
 }
 
@@ -35,12 +28,15 @@ const TAG_COLOR_PALETTE = {
   Done: 'disabled_gray',
 } as const;
 
-const ActionRequired = ({ data, onSelect }: ActionRequiredProps) => {
-  const types: Array<keyof typeof TAG_COLOR_PALETTE> = [
-    'Visa',
-    'Career',
-    'Done',
-  ];
+const isTagType = (key: string): key is TagType => {
+  return key in TAG_COLOR_PALETTE;
+};
+
+const ActionRequired = ({
+  totalCnt = 0,
+  actions = {},
+  onSelect,
+}: ActionRequiredProps) => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     ...TODO_MUTATION_OPTIONS.POST_TODO(),
@@ -69,26 +65,28 @@ const ActionRequired = ({ data, onSelect }: ActionRequiredProps) => {
     <section className={styles.container}>
       <header className={styles.header}>
         <p className={styles.title}>{TITLE}</p>
-        <p className={styles.headerItemCount}>{data.totalCount} items</p>
+        <p className={styles.headerItemCount}>{totalCnt} items</p>
       </header>
-      {types.map((type) => {
-        const group = data[type];
+      {Object.entries(actions).map(([key, value]) => {
+        if (!isTagType(key)) {
+          return null;
+        }
 
         return (
-          <section key={type} className={styles.section}>
+          <section key={key} className={styles.section}>
             <div className={styles.sectionType}>
-              <Tag color={TAG_COLOR_PALETTE[type]}>{type}</Tag>
-              <span className={styles.typeItemCount({ color: type })}>
-                {group.count}
+              <Tag color={TAG_COLOR_PALETTE[key]}>{key}</Tag>
+              <span className={styles.typeItemCount({ color: key })}>
+                {value.count}
               </span>
             </div>
-            {group.list.map((item, index) => (
+            {value.items?.map((item) => (
               <ActionCard
-                key={`${type}-${index}`}
+                key={item.phaseActionId}
                 title={item.title ?? ''}
                 subTitle={item.description ?? ''}
                 dueDate={item.deadline ?? ''}
-                disabled={type === 'Done'}
+                disabled={key === 'Done'}
                 onSelect={() => handleSelect(item.phaseActionId)}
                 onTodoClick={() => handleTodoItem(item.phaseActionId)}
               />

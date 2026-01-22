@@ -34,12 +34,12 @@ export const TARGET_ROLE_PLACEHOLDERS = {
  * Target Job에 따라 Personal Background placeholder 텍스트 매핑
  */
 export const PLACEHOLDER_BY_TARGET_JOB: Record<string, string> = {
-  'Business / Sales':
-    "e.g. [Academic] In my 'Global Marketing' course, I analyzed consumer trends in my home country and presented an entry strategy for Korean appliances, earning an A+. [Professional] Later, as a trade intern, I managed email correspondence with buyers and assisted in preparing trade documents like Invoices.",
-  Marketer:
-    "e.g. [Academic] Conducted a survey of 100 international students for a 'Consumer Psychology' course to analyze K-brand awareness. [Professional] As a marketing intern, I managed local social media channels and improved post reach by 30% through data-driven targeting and localized content.",
-  'Data Analyst':
-    "e.g. [Academic] Developed a startup business model and designed risk management strategies using SWOT analysis in a 'Business Strategy' course. [Professional] During a field practicum, I organized inventory data to identify cost-saving opportunities and suggested streamlining report procedures.",
-  Developer:
-    "e.g. [Academic] In an 'Operations Management' course, I studied SCM principles and completed a simulation project on MRP using ERP systems. [Professional] During a manufacturing internship, I tracked inventory flow and analyzed supplier prices for cost reduction. I also updated quality checklists.",
+  Sales:
+    "e.g. [Academic] In my 'Global Marketing' course, I analyzed consumer trends in my home country and presented an entry strategy for Korean appliances, earning an A+.[Professional] Later, as a trade intern, I managed email correspondence with buyers and assisted in preparing trade documents like Invoices.",
+  Marketing:
+    "e.g. [Academic] Conducted a survey of 100 international students for a 'Consumer Psychology' course to analyze K-brand awareness.[Professional] As a marketing intern, I managed local social media channels and improved post reach by 30% through data-driven targeting and localized content.",
+  'Planning & Strategy':
+    "e.g. [Academic] Developed a startup business model and designed risk management strategies using SWOT analysis in a 'Business Strategy' course.[Professional] During a field practicum, I organized inventory data to identify cost-saving opportunities and suggested streamlining report procedures.",
+  Production:
+    "e.g. [Academic] In an 'Operations Management' course, I studied SCM principles and completed a simulation project on MRP using ERP systems.[Professional] During a manufacturing internship, I tracked inventory flow and analyzed supplier prices for cost reduction. I also updated quality checklists.",
 };

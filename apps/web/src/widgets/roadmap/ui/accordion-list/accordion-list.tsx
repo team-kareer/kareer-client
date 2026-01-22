@@ -1,43 +1,25 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { Accordion } from '@widgets/roadmap';
+import { Phase } from '@entities/phase/model';
+import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 
 import * as styles from './accordion-list.css';
 
-const mockData = [
-  {
-    phase: 1,
-    title: 'Verify Requirements',
-    subTitle: 'Initial setup and documentation',
-    dueDate: 'Sep. 2025 - Nov.  2025',
-    phaseActionId: 1,
-  },
-  {
-    phase: 2,
-    title: 'Title Here',
-    subTitle: 'Sub-text here',
-    dueDate: 'Mon. 20XX - Mon.  20XX',
-    phaseActionId: 2,
-  },
-  {
-    phase: 3,
-    title: 'D-10 Transition',
-    subTitle: 'Initial setup and documentation',
-    dueDate: 'Sep. 2025 - Nov.  2025',
-    phaseActionId: 3,
-  },
-];
-
 const AccordionList = () => {
   // 추후 api 응답 값으로 변경
+  const { data } = useQuery({ ...PHASE_QUERY_OPTIONS.GET_PHASE_LIST() });
   return (
     <section className={styles.container}>
-      {mockData.map((data) => (
+      {data?.phases?.map((phase: Phase) => (
         <Accordion
-          key={data.title}
-          phase={data.phase}
-          title={data.title}
-          subTitle={data.subTitle}
-          dueDate={data.dueDate}
-          phaseActionId={data.phaseActionId}
+          key={phase.phaseId}
+          phaseId={phase.phaseId ?? 0}
+          phase={phase.sequence ?? 0}
+          title={phase.goal ?? ''}
+          subTitle={phase.description ?? ''}
+          startDate={phase.startDate ?? ''}
+          endDate={phase.endDate ?? ''}
         />
       ))}
     </section>

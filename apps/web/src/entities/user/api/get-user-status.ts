@@ -1,5 +1,4 @@
-import { END_POINT } from '@entities/user/model/end_point';
-import { GetUserStatusResponse } from '@entities/user/model/types';
+import { END_POINT, GetUserStatusResponse } from '@entities/user/model';
 import { api } from '@shared/apis/configs/instance';
 
 export const getUserStatus = async () => {

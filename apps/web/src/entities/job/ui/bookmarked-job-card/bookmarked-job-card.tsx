@@ -1,21 +1,16 @@
 import { ReactNode } from 'react';
 import { Tag } from '@kds/ui';
 
+import { JobPostingItem } from '@entities/job/model/types';
 import { default_company_image } from '@shared/assets';
 import { TagColor } from '@shared/utils/job-tag-color';
 
 import * as styles from './bookmarked-job-card.css';
 
-interface BookmarkedJobCardProps {
-  companyName: string;
-  title: string;
-  dueDate?: string;
+interface BookmarkedJobCardProps extends JobPostingItem {
   dDay?: number;
-  imageUrl?: string;
-  locations: string[];
-  jobTypes?: string[];
-  jobTagColor?: TagColor;
-  scrapAction?: ReactNode;
+  jobTagColor: TagColor;
+  scrapAction: ReactNode;
   onClick?: () => void;
 }
 
@@ -30,6 +25,8 @@ const formatDeadLine = (dDay?: number) => {
   return `D-${dDay}`;
 };
 
+{
+  /*
 const formatListText = (items?: string[]) => {
   if (!items || items.length === 0) {
     return '-';
@@ -39,17 +36,19 @@ const formatListText = (items?: string[]) => {
   }
   return `${items[0]} +${items.length - 1}`;
 };
+*/
+}
 
 const BookmarkedJobCard = ({
   title,
-  companyName,
-  dueDate,
+  company,
+  deadline,
   imageUrl,
-  locations,
-  jobTypes,
-  scrapAction,
+  address,
+  arrangement,
   dDay,
-  jobTagColor = 'disabled_gray',
+  scrapAction,
+  jobTagColor,
   onClick,
 }: BookmarkedJobCardProps) => {
   return (
@@ -60,20 +59,18 @@ const BookmarkedJobCard = ({
         </Tag>
         <img
           src={imageUrl || default_company_image}
-          alt={`${companyName} 채용 공고 이미지`}
+          alt={`${company} 채용 공고 이미지`}
           className={styles.image}
         />
       </figure>
       <section className={styles.content}>
         <div className={styles.header}>
           <div className={styles.textBox}>
-            <h3 className={styles.textStyle({ type: 'company' })}>
-              {companyName}
-            </h3>
+            <h3 className={styles.textStyle({ type: 'company' })}>{company}</h3>
             <h2 className={styles.textStyle({ type: 'title' })}>{title}</h2>
-            {dueDate && (
+            {deadline && (
               <p className={styles.textStyle({ type: 'dueDate' })}>
-                {dueDate || '-'}
+                {deadline || '-'}
               </p>
             )}
           </div>
@@ -85,10 +82,8 @@ const BookmarkedJobCard = ({
           </div>
         </div>
         <div className={styles.tagsWrapper}>
-          {jobTypes && (
-            <Tag color={jobTagColor}>{formatListText(jobTypes)}</Tag>
-          )}
-          <Tag color="disabled_gray">{formatListText(locations)}</Tag>
+          {arrangement && <Tag color={jobTagColor}>{arrangement}</Tag>}
+          {address && <Tag color="disabled_gray">{address}</Tag>}
         </div>
       </section>
     </article>
