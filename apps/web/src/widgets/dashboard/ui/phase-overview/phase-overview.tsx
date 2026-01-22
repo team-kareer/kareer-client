@@ -7,6 +7,7 @@ import type { Phase } from '@entities/phase/model';
 import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 import { img_roadmap_character } from '@shared/assets';
 import { CareerRoadmap } from '@shared/ui';
+import { formatMonthYear } from '@shared/utils';
 
 const PhaseOverview = () => {
   const { data } = useQuery({ ...PHASE_QUERY_OPTIONS.GET_PHASE_LIST() });
@@ -37,7 +38,7 @@ const PhaseOverview = () => {
           <CareerRoadmapStep
             key={phase.goal}
             title={phase.goal ?? ''}
-            period={`${phase.startDate} - ${phase.endDate}`}
+            period={`${formatMonthYear(phase.startDate ?? '')} - ${formatMonthYear(phase.endDate ?? '')}`}
             phase={Number(phase.sequence)}
             onClick={() => setClickedPhase(Number(phase.sequence))}
             isActive={isActive}
