@@ -6,7 +6,7 @@ export const container = style({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  paddingTop: '22.6rem',
+  height: '100%',
   flexDirection: 'column',
 });
 
