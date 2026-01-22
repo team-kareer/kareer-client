@@ -4,6 +4,26 @@
  */
 
 export interface paths {
+  '/api/v1/rag/required': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 필수 참고 문서 업로드 (Server Only)
+     * @description 로드맵 생성 시 반드시 참고해야 하는 문서를 업로드합니다.
+     */
+    post: operations['uploadRequired'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/rag/policy': {
     parameters: {
       query?: never;
@@ -17,7 +37,7 @@ export interface paths {
      * 정책 PDF 문서 업로드 (Server Only)
      * @description 정책 관련 PDF 문서를 임베딩하여 vectorDB에 저장합니다.
      */
-    post: operations['uploadPdfFile'];
+    post: operations['uploadPolicyFile'];
     delete?: never;
     options?: never;
     head?: never;
@@ -78,6 +98,26 @@ export interface paths {
      * @description 사용자가 온보딩에 입력한 정보를 통해 로드맵을 생성합니다.
      */
     post: operations['generateRoadmap'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/members/roadmap/test': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * AI 로드맵 생성 테스트용 API (Server Only)
+     * @description 사용자가 온보딩에 입력한 정보를 통해 로드맵을 생성합니다.
+     */
+    post: operations['generateRoadmapForTest'];
     delete?: never;
     options?: never;
     head?: never;
@@ -443,6 +483,55 @@ export interface components {
     JobPostingEmbeddingRequest: {
       jobPostingIds?: number[];
     };
+    ActionItemPlan: {
+      title?: string;
+      actionsType?: string;
+      deadline?: string;
+    };
+    BaseResponseRoadmapTestResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['RoadmapTestResponse'];
+    };
+    PhaseActionPlan: {
+      title?: string;
+      description?: string;
+      type?: string;
+      deadline?: string;
+      importance?: string;
+      guideline?: string[];
+      commonMistakes?: string[];
+      actionItems?: components['schemas']['ActionItemPlan'][];
+    };
+    PhasePlan: {
+      status?: string;
+      /** Format: int32 */
+      sequence?: number;
+      goal?: string;
+      description?: string;
+      startDate?: string;
+      endDate?: string;
+      actions?: components['schemas']['PhaseActionPlan'][];
+    };
+    RetrievedChunk: {
+      /** Format: int32 */
+      index?: number;
+      textPreview?: string;
+      metadata?: {
+        [key: string]: Record<string, never>;
+      };
+    };
+    RoadmapResponse: {
+      phases?: components['schemas']['PhasePlan'][];
+    };
+    RoadmapTestResponse: {
+      roadmap?: components['schemas']['RoadmapResponse'];
+      retrieved?: components['schemas']['RetrievedChunk'][];
+    };
     MemberOnboardRequest: {
       name: string;
       /** Format: date */
@@ -661,7 +750,7 @@ export interface components {
         | 'OVERSEAS_MASTERS'
         | 'OVERSEAS_DOCTORATE';
       /** @enum {string} */
-      visaType: 'D2' | 'D10';
+      visaType: 'D2' | 'D10' | 'E7';
       /**
        * Format: date
        * @description 예상 졸업일, D2 비자인 경우만
@@ -724,12 +813,9 @@ export interface components {
        * @description 근무 형태
        * @example Part-time Worker
        */
-      arrangement?: string;
-      /**
-       * @description 주소
-       * @example Seocho-gu, Seoul
-       */
-      address?: string;
+      arrangement?: string[];
+      /** @description 주소 */
+      address?: string[];
       /** @description 공고 url */
       websiteUrl?: string;
       /** @description 북마크 여부 */
@@ -1255,6 +1341,11 @@ export interface components {
        * @example Java, Spring
        */
       targetJobSkill?: string;
+      /**
+       * @description 비자 유형
+       * @enum {string}
+       */
+      visaType?: 'D2' | 'D10' | 'E7';
     };
     BaseResponseMemberStatusResponse: {
       /**
@@ -1270,7 +1361,7 @@ export interface components {
        * @description 비자 상태
        * @enum {string}
        */
-      visaType?: 'D2' | 'D10';
+      visaType?: 'D2' | 'D10' | 'E7';
       /**
        * Format: date
        * @description 비자 만료일
@@ -1388,7 +1479,66 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  uploadPdfFile: {
+  uploadRequired: {
+    parameters: {
+      query: {
+        requiredCategory: 'VISA' | 'CAREER';
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: {
+      content: {
+        'multipart/form-data': {
+          /**
+           * Format: binary
+           * @description 업로드할 PDF 파일
+           */
+          file: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
+  uploadPolicyFile: {
     parameters: {
       query?: never;
       header?: never;
@@ -1673,6 +1823,74 @@ export interface operations {
       };
     };
   };
+  generateRoadmapForTest: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseRoadmapTestResponse'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
   onboardMember: {
     parameters: {
       query?: never;
@@ -1817,7 +2035,9 @@ export interface operations {
   };
   recommendJobPostings: {
     parameters: {
-      query?: never;
+      query?: {
+        includeCompletedTodo?: boolean;
+      };
       header?: never;
       path?: never;
       cookie?: never;
