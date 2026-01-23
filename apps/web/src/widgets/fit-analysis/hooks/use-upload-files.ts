@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 const MAX_FILES = 2;
-const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
+const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20 MB
 const LIMIT_NOTICE_MESSAGE = 'The file count exceeds the 2-file limit.';
-const SIZE_NOTICE_MESSAGE = 'The file size exceeds the 20 MB limit.';
+const SIZE_NOTICE_MESSAGE = 'The file size exceeds the 40 MB limit.';
 const DUPLICATE_NOTICE_MESSAGE =
   'Resume and cover letter must have different file names. Rename one file and upload again.';
 

@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import BookmarkedJobList from '@features/job/ui/bookmarked-job-list/bookmarked-job-list';
+import {
+  UploadBox,
+  useCompletedTodo,
+  useUploadFiles,
+} from '@widgets/fit-analysis';
+import { BookmarkedJobList } from '@features/job';
 import { JobPostingItem } from '@entities/job/model/types';
 import { JOB_MUTATION_OPTIONS } from '@entities/job/queries/queries';
 import { BOOKMARKED_JOB_QUERY_KEY } from '@entities/job/queries/query-key';
-import { TODO_QUERY_OPTIONS } from '@entities/todo/queries/queries';
 import { TODO_QUERY_KEY } from '@entities/todo/queries/query-key';
 import { PageLoader } from '@shared/ui';
-
-import UploadBox from '../upload-box/upload-box';
-import { useUploadFiles } from '../upload-box/use-upload-files';
 
 import * as styles from './job-recommended-list.css';
 
@@ -24,25 +25,8 @@ const JobRecommendationList = () => {
   const [recommendations, setRecommendations] = useState<JobItem[]>([]);
 
   const queryClient = useQueryClient();
-
-  const { data: todoData } = useQuery(TODO_QUERY_OPTIONS.GET_TODO_LIST());
-
-  const hasCompletedTodo = () => {
-    if (!todoData) {
-      return false;
-    }
-
-    const visaCompleted = todoData.visaActionItems?.some(
-      (item) => item.completed,
-    );
-    const careerCompleted = todoData.careerActionItems?.some(
-      (item) => item.completed,
-    );
-
-    return visaCompleted || careerCompleted;
-  };
-
-  const isCheckboxDisabled = !hasCompletedTodo();
+  const hasCompletedTodo = useCompletedTodo();
+  const isCheckboxDisabled = !hasCompletedTodo;
 
   const { mutate: recommendMutate, isPending: isRecommendPending } =
     useMutation({
@@ -98,7 +82,6 @@ const JobRecommendationList = () => {
 
   // 외부에서 투두가 변경되었을 때
   useEffect(() => {
-    // window 이벤트를 통한 투두 변경 감지
     const handleTodoChanged = () => {
       queryClient.invalidateQueries({
         queryKey: TODO_QUERY_KEY.TODO_LIST(),

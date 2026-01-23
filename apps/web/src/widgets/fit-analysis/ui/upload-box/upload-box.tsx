@@ -2,7 +2,7 @@ import { ChangeEvent, useRef } from 'react';
 import { PlusIcon, XIcon } from '@kds/icons';
 import { Button, Checkbox } from '@kds/ui';
 
-import { FileItem } from './use-upload-files';
+import { FileItem } from '../../hooks/use-upload-files';
 
 import * as styles from './upload-box.css';
 
