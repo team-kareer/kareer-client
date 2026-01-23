@@ -37,8 +37,20 @@ const Accordion = ({
   const buttonText = isOpen ? 'Show less' : 'Show all';
   const prevClickedPhaseRef = useRef(clickedPhase);
   const containerRef = useRef<HTMLElement>(null);
+  const isInitialized = useRef(false);
 
   useEffect(() => {
+    if (!isInitialized.current) {
+      if (clickedPhase === 0) {
+        prevClickedPhaseRef.current = clickedPhase;
+        return;
+      }
+
+      isInitialized.current = true;
+      prevClickedPhaseRef.current = clickedPhase;
+      return;
+    }
+
     if (prevClickedPhaseRef.current === clickedPhase) {
       return;
     }
@@ -104,13 +116,11 @@ const Accordion = ({
           <div className={styles.line} />
           {shouldRender && (
             <div className={styles.content}>
-              {roadmapPhaseData && (
-                <ActionRequired
-                  totalCnt={roadmapPhaseData.totalCount}
-                  actions={roadmapPhaseData.actions}
-                  onSelect={(id) => setSelectedPhaseActionId(id)}
-                />
-              )}
+              <ActionRequired
+                totalCnt={roadmapPhaseData?.totalCount}
+                actions={roadmapPhaseData?.actions}
+                onSelect={(id) => setSelectedPhaseActionId(id)}
+              />
               <AIGuide
                 importance={aiGuideData?.importance ?? ''}
                 guideline={aiGuideData?.guidelines ?? []}
