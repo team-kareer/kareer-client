@@ -100,6 +100,15 @@ export const tagsWrapper = style({
   display: 'flex',
   alignItems: 'flex-start',
   gap: '0.4rem',
-  flexWrap: 'wrap',
   flexDirection: 'column',
+  width: '100%',
+});
+
+export const tag = style({
+  display: 'inline-block',
+  maxWidth: '100%',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
 });
