@@ -117,52 +117,52 @@ export const VISA_CHECKLIST_E7 = [
   },
   {
     id: 3,
-    title: 'Confirm School GPA & Good attendance',
+    title: 'Verify major matches the job description',
     subTitle: 'Job Expertise',
   },
   {
     id: 4,
-    title: 'Prepare balance > (Tuition + Living cost)',
+    title: 'Maintain valid D-2/D-10 until approval',
     subTitle: 'Valid Visa Status',
   },
   {
     id: 5,
-    title: "Verify 'No Unpaid Premiums' (Zero balance)",
+    title: 'Check foreign hire ratio (often < 20%)',
     subTitle: 'Korean Employee Ratio',
   },
   {
     id: 6,
-    title: 'Valid contract & Address report complete',
+    title: 'Ensure 5+ or more full-time insured Korean employees',
     subTitle: 'Minimum Team Size',
   },
   {
     id: 7,
-    title: 'Check S-3 permit & Income limit',
+    title: "Request 'Tax Clearance Certificate' from HR",
     subTitle: 'Tax Payment Status',
   },
   {
     id: 8,
-    title: 'Check TB certificate (if required)',
+    title: 'Review recent financial statements',
     subTitle: 'Company Viability',
   },
   {
     id: 9,
-    title: 'Prepare ~60,000 KRW in Cash',
+    title: 'Sign contract over GNI 80% ',
     subTitle: 'Salary Standard',
   },
   {
     id: 10,
-    title: 'Verify no illegal work history ',
+    title: 'Select correct E-7 code',
     subTitle: 'Job Code Matching',
   },
   {
     id: 11,
-    title: 'Verify no illegal work history ',
+    title: 'Get Ministry recommendation (if required)',
     subTitle: 'Recommendation Letter',
   },
   {
     id: 12,
-    title: 'Verify no illegal work history ',
+    title: 'Verify no illegal work history',
     subTitle: 'Legal Compliance',
   },
 ] as const;
