@@ -50,7 +50,7 @@ const OnboardingPage = () => {
     control: form.control,
   }) as OnboardingForm;
 
-  // personalBackground 길이 체크
+  // 길이 체크
   const personalBackground = useWatch({
     control: form.control,
     name: 'personalBackground',
