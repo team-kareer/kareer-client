@@ -5,6 +5,7 @@ import BookmarkedJobList from '@features/job/ui/bookmarked-job-list/bookmarked-j
 import { JobPostingItem } from '@entities/job/model/types';
 import { JOB_MUTATION_OPTIONS } from '@entities/job/queries/queries';
 import { BOOKMARKED_JOB_QUERY_KEY } from '@entities/job/queries/query-key';
+import { PageLoader } from '@shared/ui';
 
 import UploadBox from '../upload-box/upload-box';
 import { useUploadFiles } from '../upload-box/use-upload-files';
@@ -86,7 +87,11 @@ const JobRecommendationList = () => {
         onRemoveFile={removeFile}
         isLoading={isPending}
       />
-      <BookmarkedJobList jobs={recommendations} onScrap={handleToggle} />
+      {recommendations.length === 0 ? (
+        <PageLoader text="Searching for a new job for you..." />
+      ) : (
+        <BookmarkedJobList jobs={recommendations} onScrap={handleToggle} />
+      )}
     </div>
   );
 };
