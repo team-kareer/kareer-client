@@ -90,6 +90,7 @@ export const line = recipe({
     width: '100%',
     height: '0.4rem',
     borderRadius: '100px',
+    transition: 'background-color 0.2s ease-in-out',
   },
   variants: {
     isActive: {
@@ -117,6 +118,8 @@ export const circle = recipe({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    transition:
+      'background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out',
   },
   variants: {
     isActive: {
