@@ -4,8 +4,8 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   gap: '0.8rem',
-  maxWidth: '21.3rem',
-  height: '18.8rem',
+  width: '100%',
+  height: '100%',
   padding: '1.6rem',
   borderRadius: '20px',
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
