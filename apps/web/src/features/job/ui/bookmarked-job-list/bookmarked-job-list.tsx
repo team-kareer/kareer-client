@@ -1,11 +1,7 @@
-import { useNavigate } from 'react-router';
-
 import { useBookmarkedJobs } from '@features/job/model';
 import { ScrapButton } from '@features/job/ui';
 import { BookmarkedJobCard } from '@entities/job';
 import { JobPostingItem } from '@entities/job/model/types';
-import { ROUTE_PATH } from '@shared/router';
-import { EmptyLayout } from '@shared/ui';
 
 import * as styles from './bookmarked-job-list.css';
 
@@ -15,16 +11,7 @@ interface BookmarkedJobListProps {
 }
 
 const BookmarkedJobList = ({ jobs, onScrap }: BookmarkedJobListProps) => {
-  const navigate = useNavigate();
   const { formattedJobs } = useBookmarkedJobs(jobs);
-
-  const handleMoveToFitAnalysis = () => {
-    navigate(ROUTE_PATH.FITANALYSIS);
-  };
-
-  if (jobs.length === 0) {
-    return <EmptyLayout variant="section" onAction={handleMoveToFitAnalysis} />;
-  }
 
   return (
     <div className={styles.container}>

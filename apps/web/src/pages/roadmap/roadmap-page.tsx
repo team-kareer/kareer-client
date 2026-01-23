@@ -1,10 +1,9 @@
-import { CareerRoadmapSection, PhaseListSection } from '@widgets/roadmap';
+import { RoadmapSection } from '@widgets/roadmap';
 
 const RoadmapPage = () => {
   return (
     <>
-      <CareerRoadmapSection />
-      <PhaseListSection />
+      <RoadmapSection />
     </>
   );
 };

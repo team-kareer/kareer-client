@@ -8,8 +8,6 @@ import {
 } from 'react';
 import { useNavigate } from 'react-router';
 
-import { deleteLocalStorageData } from '@entities/onboarding';
-
 interface StepProps {
   name: string;
   children: ReactNode;
@@ -63,8 +61,6 @@ const useFunnel = (steps: readonly string[], completePath: string) => {
       window.history.pushState({ step: nextStep }, '');
       setCurrentStep(nextStep);
     } else {
-      // 마지막 단계 완료 시 온보딩 데이터 삭제
-      deleteLocalStorageData();
       navigate(completePath);
     }
   };

@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check-types": "tsc --noEmit",
-    "generate:types": "openapi-typescript https://api.ka-reer.com/v3/api-docs -o ./src/shared/types/schema.d.ts"
+    "generate:types": "openapi-typescript https://kareer-test.dhxxn.dev/v3/api-docs -o ./src/shared/types/schema.d.ts"
   },
   "dependencies": {
     "@kds/icons": "workspace:*",

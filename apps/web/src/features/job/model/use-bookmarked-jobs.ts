@@ -2,7 +2,11 @@ import { useMemo } from 'react';
 
 import { JobPostingItem } from '@entities/job/model/types';
 import { calculateDDay } from '@shared/utils/dday-calculate';
-import { getJobTagColor } from '@shared/utils/job-tag-color';
+import {
+  formatAddressDisplay,
+  formatArrangementDisplay,
+  getJobTagColor,
+} from '@shared/utils/job-formatter';
 
 const useBookmarkedJobs = (jobs: JobPostingItem[]) => {
   const formattedJobs = useMemo(() => {
@@ -10,6 +14,8 @@ const useBookmarkedJobs = (jobs: JobPostingItem[]) => {
       ...job,
       dDay: calculateDDay(job.deadline),
       jobTagColor: getJobTagColor(job.arrangement),
+      arrangementDisplay: formatArrangementDisplay(job.arrangement),
+      addressDisplay: formatAddressDisplay(job.address),
       handleOpenDetail: () =>
         job.websiteUrl && window.open(job.websiteUrl, '_blank'),
     }));

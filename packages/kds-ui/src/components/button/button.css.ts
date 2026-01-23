@@ -10,6 +10,7 @@ export const button = recipe({
     border: '1px solid transparent',
     borderRadius: '10px',
     cursor: 'pointer',
+    flexShrink: 0,
   },
   variants: {
     variant: {

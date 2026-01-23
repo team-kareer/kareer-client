@@ -12,14 +12,21 @@ export const VALIDATION_MESSAGE = {
   },
   DATE: {
     INVALID_FORMAT: 'Please use the format YYYY-MM-DD.',
+    INVALID_DATE: 'Invalid date. Please enter a valid calendar date.',
     FUTURE_NOT_ALLOWED: 'Future dates are not allowed.',
+    PAST_NOT_ALLOWED:
+      'Please enter a future date for your expected graduation.',
     MUST_BE_AFTER_ISSUANCE: 'The date must be after the visa issuance date.',
   },
   VISA: {
-    D2_EXCEEDS_ONE_YEAR:
-      'D-2 visa must be valid for at most one year from the issuance date.',
+    D2_EXCEEDS_TWO_YEARS:
+      'D-2 visa must be valid for at least two year from the issuance date.',
     D10_LESS_THAN_SIX_MONTHS:
-      'D-10 visa must be valid for at least six months from the issuance date.',
+      'Invalid expiration date. The D-10 visa must be set in 6-month intervals.',
+    D10_EXPIRATION_IN_PAST:
+      'Please select a valid D-10 visa expiration date that is not in the past.',
+    D2_ISSUANCE_AFTER_GRADUATION:
+      'Please enter a graduation date that is later than your visa issuance date.',
   },
   NAME: {
     EMPTY: "Your name can't be empty.",

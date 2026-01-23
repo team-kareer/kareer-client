@@ -17,14 +17,12 @@ export const container = recipe({
         height: '100%',
       },
       section: {
-        maxWidth: '96.6rem',
         minHeight: '30.2rem',
         backgroundColor: themeVars.color.grayscale.gray200,
         borderRadius: '20px',
         gap: '1.6rem',
       },
       card: {
-        maxWidth: '21.6rem',
         minHeight: '29.9rem',
         backgroundColor: themeVars.color.grayscale.gray100,
         borderRadius: '20px',
