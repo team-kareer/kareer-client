@@ -18,19 +18,6 @@ export const JOB_MUTATION_OPTIONS = {
   },
 };
 
-export const JOB_MUTATION_OPTIONS = {
-  RECOMMEND_JOB_POSTINGS: () => {
-    return mutationOptions({
-      mutationFn: recommendJobPostings,
-    });
-  },
-  TOGGLE_BOOKMARK_JOB_POSTING: () => {
-    return mutationOptions({
-      mutationFn: toggleBookmarkJobPosting,
-    });
-  },
-};
-
 export const BOOKMARKED_JOB_QUERY_OPTIONS = {
   GET_BOOKMARKED_JOB: () => {
     return queryOptions({

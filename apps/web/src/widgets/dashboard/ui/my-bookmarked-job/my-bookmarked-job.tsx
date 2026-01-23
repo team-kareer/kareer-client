@@ -26,15 +26,6 @@ export const MyBookmarkedJobs = () => {
     },
   });
 
-  const { mutate: toggleBookmark } = useMutation({
-    ...JOB_MUTATION_OPTIONS.TOGGLE_BOOKMARK_JOB_POSTING(),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: BOOKMARKED_JOB_QUERY_KEY.BOOKMARKED_JOB(),
-      });
-    },
-  });
-
   const jobs = data?.jobPostingResponses ?? [];
 
   const handleRemove = (jobPostingId: number) => {

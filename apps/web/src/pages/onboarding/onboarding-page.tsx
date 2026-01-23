@@ -35,16 +35,6 @@ const OnboardingPage = () => {
     defaultValues: DEFAULT_ONBOARDING_FORM,
   });
 
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  useEffect(() => {
-    const savedData = getLocalStorageData();
-    if (savedData) {
-      form.reset(savedData);
-    }
-    setIsInitialized(true);
-  }, [form]);
-
   // 버튼 비활성화 로직
   const visaType = useWatch({ control: form.control, name: 'visaType' });
   const requiredFields = getRequiredFieldsForStep(currentStepIndex, visaType);
