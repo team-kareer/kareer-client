@@ -141,7 +141,7 @@ export const validateName = (value: string) => {
   }
 
   // 특수문자 제한
-  const restrictedChars = /[()@#$%!]/;
+  const restrictedChars = /[()@#$%!*&^_=+`~'"-<>,;.:\\/|{}[\]?]/;
   if (restrictedChars.test(value)) {
     return VALIDATION_MESSAGE.NAME.SPECIAL_CHARACTERS;
   }
