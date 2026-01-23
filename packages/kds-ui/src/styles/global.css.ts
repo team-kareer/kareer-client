@@ -5,8 +5,8 @@ import { themeVars } from './theme.css';
 globalStyle('html, body', {
   overflow: 'hidden',
   padding: '0',
-  fontSize: '78.125%',
-  // fontSize: '62.5%',
+  // fontSize: '78.125%',
+  fontSize: '62.5%',
   fontFamily: `'Pretendard Variable', sans-serif`,
 });
 
