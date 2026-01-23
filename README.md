@@ -1,3 +1,7 @@
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/be5a6b55-655c-4c49-8db4-3fe3c6a46211" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/4a60df5b-c5ab-4d56-b5a7-4f3b11c997a8" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/8bb20d3f-adf7-4000-9e11-fa26de85d116" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ff387f13-b7ce-4aaa-8a17-5f70c7d76c81" />
 <h1> 🐦 Kareer </h1>
 
 ${\textsf{\color{blue}한국 커리어 여정, Kareer와 함께 명확하게}}$
@@ -12,10 +16,10 @@ Korea + Career = Kareer, 나만의 커리어 여정을 정리하다
 
 ## 👨🏻‍💻 팀원 소개
 
-|                                                        👑 장정훈                                                        |                                                         이훈진                                                          |                                                         김윤지                                                          |                                                         손하은                                                          |
-| :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
-| <img width="200px" alt="Image" src="https://github.com/user-attachments/assets/a5e8fb90-b25e-427d-849e-01d3466bf3e2" /> | <img width="200px" alt="Image" src="https://github.com/user-attachments/assets/93c3d6bb-4fdc-469b-b101-6333d8e1b424" /> | <img width="200px" alt="Image" src="https://github.com/user-attachments/assets/f0188770-1a6f-4f9d-a9ce-919af523344c" /> | <img width="200px" alt="Image" src="https://github.com/user-attachments/assets/74307efc-8cb5-45e3-9ddd-9a69486e1cef" /> |
-|                                     [@jeonghoon11](https://github.com/jeonghoon11)                                      |                                      [@huniversal](https://github.com/huniversal)                                       |                                    [@yooncandooit](https://github.com/yooncandooit)                                     |                                        [@sonnnnhe](https://github.com/sonnnnhe)                                         |
+|                                                       👑 장정훈                                                       |                                                        이훈진                                                         |                                                        김윤지                                                         |                                                        손하은                                                         |
+| :-------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
+| <img width="200" alt="Image" src="https://github.com/user-attachments/assets/72a1a23c-4665-46d3-9c5f-a409941139ff" /> | <img width="200" alt="Image" src="https://github.com/user-attachments/assets/64fca264-eab9-440a-9122-6e8fba69afbe" /> | <img width="200" alt="Image" src="https://github.com/user-attachments/assets/be97f707-e6e9-4375-b5d4-62c4c1e796cb" /> | <img width="200" alt="Image" src="https://github.com/user-attachments/assets/c2109208-997c-4ba2-ba84-48b5a9d8507d" /> |
+|                                    [@jeonghoon11](https://github.com/jeonghoon11)                                     |                                     [@huniversal](https://github.com/huniversal)                                      |                                   [@yooncandooit](https://github.com/yooncandooit)                                    |                                       [@sonnnnhe](https://github.com/sonnnnhe)                                        |
 
 <br />
 
@@ -298,3 +302,9 @@ kareer-client/
 │       └── typescript/
 └── pnpm-workspace.yaml       # catalog 기반 버전 관리
 ```
+
+|                                                        👑 장정훈                                                        |                                                         이훈진                                                          |                                                         김윤지                                                          |                                                         손하은                                                          |
+| :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
+| <img width="200px" alt="Image" src="https://github.com/user-attachments/assets/a5e8fb90-b25e-427d-849e-01d3466bf3e2" /> | <img width="200px" alt="Image" src="https://github.com/user-attachments/assets/93c3d6bb-4fdc-469b-b101-6333d8e1b424" /> | <img width="200px" alt="Image" src="https://github.com/user-attachments/assets/f0188770-1a6f-4f9d-a9ce-919af523344c" /> | <img width="200px" alt="Image" src="https://github.com/user-attachments/assets/74307efc-8cb5-45e3-9ddd-9a69486e1cef" /> |
+
+<br />
