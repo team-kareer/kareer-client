@@ -20,6 +20,7 @@ const OnboardingLayout = ({ children }: OnboardingLayoutProps) => {
           <Lottie
             animationData={onboarding_lottie}
             loop={true}
+            rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
             className={styles.lottie}
           />
         </div>

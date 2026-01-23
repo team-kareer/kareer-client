@@ -42,7 +42,9 @@ export const lottieBackground = style({
   display: 'flex',
   justifyContent: 'center',
   position: 'absolute',
+  inset: 0,
   width: '100%',
+  height: '100%',
 });
 
 export const lottie = style({
