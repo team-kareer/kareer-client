@@ -172,22 +172,14 @@ const VisaInformation = () => {
             control={control}
             rules={{
               validate: (value) => {
-                // 값이 없으면 통과 (사용자가 입력할 때까지 대기)
                 if (!value) {
                   return true;
                 }
-                // 완전한 형식(YYYY-MM-DD)이 아니면 통과 (입력 중)
-                const completeFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
-                if (!completeFormatRegex.test(value)) {
-                  return true;
-                }
-                // 기본 날짜 형식 체크 (과거 날짜 허용)
                 const result = validateDate(value, true, true);
                 if (result !== true) {
                   return result;
                 }
 
-                // 비자 만료일 검증
                 return validateVisaExpirationDate(
                   value,
                   visaType,
