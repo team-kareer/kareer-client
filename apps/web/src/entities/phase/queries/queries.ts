@@ -9,11 +9,17 @@ import { getAiGuide } from '@entities/phase/api/get-ai-guide';
 import { GetAiGuideRequest } from '@entities/phase/model/types';
 import { PHASE_QUERY_KEY } from '@entities/phase/queries';
 
+const POLLING_COUNT_DOWM_TIMER = 2000;
+
 export const PHASE_QUERY_OPTIONS = {
   GET_PHASE_LIST: () => {
     return queryOptions({
       queryKey: PHASE_QUERY_KEY.PHASE_LIST(),
       queryFn: getPhaseList,
+      refetchInterval: (query) => {
+        const phases = query.state.data?.phases ?? [];
+        return phases.length === 0 ? POLLING_COUNT_DOWM_TIMER : false;
+      },
     });
   },
   GET_PHASE_ITEM_HOME: (phaseId: number) => {
