@@ -10,10 +10,7 @@ import {
 } from '@widgets/onboarding/constants/personal-background';
 import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeholders';
 import { type OnboardingForm } from '@entities/onboarding';
-import {
-  FIELD_MAX_LENGTHS,
-  getPlaceholderByTargetJob,
-} from '@entities/onboarding';
+import { getPlaceholderByTargetJob } from '@entities/onboarding';
 import { TextField } from '@shared/ui/text-field/text-field';
 
 import * as styles from './personal-background.css';
@@ -26,11 +23,18 @@ const PersonalBackground = () => {
     name: 'targetJob',
   });
 
+  const personalBackground = useWatch({
+    control,
+    name: 'personalBackground',
+  });
+
   // TargetJob에 따른 placeholder 선택
   const placeholder = getPlaceholderByTargetJob(
     targetJob,
     PLACEHOLDER_BY_TARGET_JOB,
   );
+
+  const isOverLimit = (personalBackground?.length || 0) > 1000;
 
   return (
     <section>
@@ -53,15 +57,11 @@ const PersonalBackground = () => {
                 placeholder={placeholder}
                 value={field.value || ''}
                 onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-                  const newValue = e.target.value;
-                  if (
-                    newValue.length <= FIELD_MAX_LENGTHS.PERSONAL_BACKGROUND
-                  ) {
-                    field.onChange(newValue);
-                  }
+                  field.onChange(e.target.value);
                 }}
-                maxLength={FIELD_MAX_LENGTHS.PERSONAL_BACKGROUND}
+                isError={isOverLimit}
                 showCount={true}
+                displayMaxLength={1000}
               />
             )}
           />

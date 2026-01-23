@@ -50,6 +50,14 @@ const OnboardingPage = () => {
     control: form.control,
   }) as OnboardingForm;
 
+  // personalBackground 길이 체크
+  const personalBackground = useWatch({
+    control: form.control,
+    name: 'personalBackground',
+  });
+  const isPersonalBackgroundOverLimit =
+    currentStepIndex === 3 && (personalBackground?.length || 0) > 1000;
+
   // 모든 필드 존재 체크
   const hasAllRequiredValues = hasAllRequiredFieldValues(
     { ...allFormValues, ...watchedRequiredFields } as OnboardingForm,
@@ -61,7 +69,10 @@ const OnboardingPage = () => {
   );
 
   const isNextDisabled =
-    form.formState.isLoading || !hasAllRequiredValues || hasStepErrors;
+    form.formState.isLoading ||
+    !hasAllRequiredValues ||
+    hasStepErrors ||
+    isPersonalBackgroundOverLimit;
 
   useEffect(() => {
     if (error) {
