@@ -1,4 +1,4 @@
-import { END_POINT } from '@entities/phase/model/end-point';
+import { END_POINT } from '@entities/phase/model/end_point';
 import { GetAIGuideResponse } from '@entities/phase/model/types';
 import { api } from '@shared/apis/configs/instance';
 

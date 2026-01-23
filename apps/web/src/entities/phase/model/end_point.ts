@@ -4,5 +4,7 @@ export const END_POINT = {
     GET_PHASE_ITEM_HOME: (phaseId: number) => `api/v1/phases/${phaseId}/home`,
     GET_PHASE_ITEM_ROADMAP: (phaseId: number) =>
       `api/v1/phases/${phaseId}/roadmap`,
+    GET_AI_GUIDE: (phaseActionId: number) =>
+      `api/v1/phase-actions/${phaseActionId}/guide`,
   },
 };
