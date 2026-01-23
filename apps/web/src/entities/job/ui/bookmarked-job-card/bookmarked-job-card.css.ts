@@ -100,17 +100,12 @@ export const tagsWrapper = style({
   display: 'flex',
   alignItems: 'flex-start',
   gap: '0.4rem',
-  flexWrap: 'wrap',
   flexDirection: 'column',
   width: '100%',
 });
 
 export const tag = style({
-  maxWidth: '100%',
-  minWidth: 0,
-});
-
-export const tagItem = style({
+  display: 'inline-block',
   maxWidth: '100%',
   overflow: 'hidden',
   textOverflow: 'ellipsis',

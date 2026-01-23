@@ -73,12 +73,12 @@ const BookmarkedJobCard = ({
         <div className={styles.tagsWrapper}>
           {arrangementDisplay && (
             <Tag color={jobTagColor} className={styles.tag}>
-              <span className={styles.tagItem}>{arrangementDisplay}</span>
+              {arrangementDisplay}
             </Tag>
           )}
           {addressDisplay && (
             <Tag color="disabled_gray" className={styles.tag}>
-              <span className={styles.tagItem}>{addressDisplay}</span>
+              {addressDisplay}
             </Tag>
           )}
         </div>
