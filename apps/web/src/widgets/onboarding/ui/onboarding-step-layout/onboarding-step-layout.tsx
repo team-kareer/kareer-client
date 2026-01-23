@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { SymbolLightIcon } from '@kds/icons/svg';
+import { SymbolGrayIcon, SymbolLightIcon } from '@kds/icons/svg';
 import { Button } from '@kds/ui';
 
 import {
@@ -59,7 +59,11 @@ const OnboardingStepLayout = ({
           >
             {isLastStep ? (
               <span className={styles.buttonContent}>
-                <SymbolLightIcon width={19} height={19} />
+                {isNextDisabled ? (
+                  <SymbolGrayIcon width={19} height={19} />
+                ) : (
+                  <SymbolLightIcon width={19} height={19} />
+                )}
                 <span>Start your career journey</span>
               </span>
             ) : (

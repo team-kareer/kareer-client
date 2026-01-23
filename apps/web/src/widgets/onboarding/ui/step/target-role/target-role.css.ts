@@ -54,3 +54,9 @@ export const checkboxDescription = style({
   ...typography.cap3_r_12,
   color: themeVars.color.grayscale.gray500,
 });
+
+export const errorMessage = style({
+  ...typography.cap2_m_12,
+  color: themeVars.color.pastel.kared_500,
+  marginTop: '0.8rem',
+});

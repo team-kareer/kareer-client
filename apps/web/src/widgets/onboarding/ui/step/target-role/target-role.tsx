@@ -5,6 +5,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
+import { validateAutocompleteOption } from '@features/onboarding/hooks/validators';
 import {
   MAJOR_LIST_QUERY_OPTIONS,
   type OnboardingForm,
@@ -30,7 +31,16 @@ const TargetRole = () => {
           <Controller
             name="primaryMajor"
             control={control}
-            rules={{ required: 'Enter your major' }}
+            rules={{
+              required: 'Enter your major',
+              validate: (value) => {
+                const result = validateAutocompleteOption(
+                  value,
+                  majorList?.majors || [],
+                );
+                return result === true || result;
+              },
+            }}
             render={({ field }) => (
               <Autocomplete
                 {...field}
@@ -58,7 +68,16 @@ const TargetRole = () => {
           <Controller
             name="targetJob"
             control={control}
-            rules={{ required: 'Enter your job' }}
+            rules={{
+              required: 'Enter your job',
+              validate: (value) => {
+                const result = validateAutocompleteOption(
+                  value,
+                  TARGET_JOB_OPTIONS,
+                );
+                return result === true || result;
+              },
+            }}
             render={({ field }) => (
               <Autocomplete
                 {...field}

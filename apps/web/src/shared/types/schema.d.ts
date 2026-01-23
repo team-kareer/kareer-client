@@ -951,6 +951,11 @@ export interface components {
        * @example 2026-01-24
        */
       deadline?: string;
+      /**
+       * @description Phase Action todo 추가 여부
+       * @example true
+       */
+      added?: boolean;
     };
     BaseResponseRoadmapPhaseDetailResponse: {
       /**

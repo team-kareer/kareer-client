@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ActionRequired, AIGuide } from '@widgets/roadmap';
 import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
 import { useAccordion } from '@shared/hooks/useAccordion';
+import { formatMonthYear } from '@shared/utils';
 
 import * as styles from './accordion.css';
 
@@ -89,7 +90,7 @@ const Accordion = ({
         </div>
         <div className={styles.right_section}>
           <span className={styles.grayText}>
-            {startDate} - {endDate}
+            {formatMonthYear(startDate)} - {formatMonthYear(endDate)}
           </span>
           <Button preset="text_ghost" onClick={toggle}>
             {buttonText}

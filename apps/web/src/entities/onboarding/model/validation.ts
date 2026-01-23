@@ -33,15 +33,32 @@ export const getRequiredFieldsForStep = (
  * @param formValues - 검증할 폼 값 객체
  * @returns 모든 필수 필드가 채워져 있으면 true 아니면 false
  * @description 문자열은 공백 제거 후 길이 체크, 숫자는 0이 아닌지 체크
+ * 날짜 필드는 완전한 형식(YYYY-MM-DD)인지도 체크
  */
 export const hasAllRequiredFieldValues = (
   formValues: OnboardingForm,
   requiredFields: Array<keyof OnboardingForm>,
 ): boolean => {
+  const dateFields: Array<keyof OnboardingForm> = [
+    'birthDate',
+    'visaStartDate',
+    'visaExpiredAt',
+    'expectedGraduationDate',
+  ];
+  const completeDateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
+
   return requiredFields.every((fieldName) => {
     const value = formValues[fieldName];
     if (typeof value === 'string') {
-      return value.trim().length > 0;
+      const trimmedValue = value.trim();
+      if (trimmedValue.length === 0) {
+        return false;
+      }
+      // 날짜 필드인 경우 완전한 형식인지 체크
+      if (dateFields.includes(fieldName)) {
+        return completeDateFormatRegex.test(trimmedValue);
+      }
+      return true;
     }
     if (typeof value === 'number') {
       return value !== 0 && !Number.isNaN(value);

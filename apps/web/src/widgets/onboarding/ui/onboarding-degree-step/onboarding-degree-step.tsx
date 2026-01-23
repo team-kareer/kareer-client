@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useRef } from 'react';
 import { Autocomplete, Button, Tab, useTabContext } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
+import { validateAutocompleteOption } from '@features/onboarding/hooks/validators';
 import {
   type OnboardingForm,
   OUTSIDE_KOREA_DEGREE_OPTIONS,
@@ -80,7 +81,13 @@ const OnboardingDegreeStep = () => {
       <Controller
         name="degree"
         control={control}
-        rules={{ required: 'Select the degree' }}
+        rules={{
+          required: 'Select the degree',
+          validate: (value) => {
+            const result = validateAutocompleteOption(value, options);
+            return result === true || result;
+          },
+        }}
         render={({ field }) => (
           <Autocomplete
             placeholder="Select the degree"

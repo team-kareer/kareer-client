@@ -35,7 +35,8 @@ export const container = style({
   borderRadius: '20px',
   backgroundColor: themeVars.color.grayscale.white,
   flexDirection: 'column',
-  width: '23.4rem',
+  width: '100%',
+  aspectRatio: '234 / 302',
   cursor: 'pointer',
   transition: 'all 0.2s ease',
 
@@ -48,7 +49,9 @@ export const container = style({
 export const imageBox = style({
   position: 'relative',
   width: '100%',
-  height: '12rem',
+  minWidth: '20.2rem',
+  minHeight: '12rem',
+  flex: 1,
   borderRadius: '10px',
   overflow: 'hidden',
 });
@@ -56,7 +59,7 @@ export const imageBox = style({
 export const image = style({
   width: '100%',
   height: '100%',
-  objectFit: 'contain',
+  objectFit: 'inherit',
 });
 
 export const dDayTag = style({
@@ -75,6 +78,7 @@ export const content = style({
   flexDirection: 'column',
   alignItems: 'flex-start',
   gap: '1.2rem',
+  flexShrink: 0,
 });
 
 export const header = style({

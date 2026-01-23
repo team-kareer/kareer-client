@@ -5,6 +5,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
 import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import {
+  validateAutocompleteOption,
   validateDate,
   validateName,
 } from '@features/onboarding/hooks/validators';
@@ -51,9 +52,14 @@ const PersonalInformation = () => {
                   status={fieldState.error ? 'error' : 'default'}
                   placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.NAME}
                 />
-                <p className={styles.textCount}>
-                  {field.value?.length || 0}/{MAX_LENGTH}
-                </p>
+                <div className={styles.nameFooter}>
+                  <p className={styles.errorMessage}>
+                    {fieldState.error?.message || ''}
+                  </p>
+                  <p className={styles.textCount}>
+                    {field.value?.length || 0}/{MAX_LENGTH}
+                  </p>
+                </div>
               </>
             )}
           />
@@ -67,7 +73,7 @@ const PersonalInformation = () => {
             rules={{
               required: 'Enter the birth',
               validate: (value) => {
-                const result = validateDate(value);
+                const result = validateDate(value, false, true);
                 return result === true || result;
               },
             }}
@@ -91,7 +97,16 @@ const PersonalInformation = () => {
           <Controller
             name="country"
             control={control}
-            rules={{ required: 'Select the Country' }}
+            rules={{
+              required: 'Select the Country',
+              validate: (value) => {
+                const result = validateAutocompleteOption(
+                  value,
+                  countryList?.countries || [],
+                );
+                return result === true || result;
+              },
+            }}
             render={({ field }) => (
               <Autocomplete
                 placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
@@ -104,11 +119,20 @@ const PersonalInformation = () => {
         </div>
         {/* 오픽 Level - 2열 */}
         <div className={styles.autoWrapper}>
-          <p className={styles.label}>OPIK / KIIP Level</p>
+          <p className={styles.label}>TOPIK / KIIP Level</p>
           <Controller
             name="languageLevel"
             control={control}
-            rules={{ required: 'Select the level' }}
+            rules={{
+              required: 'Select the level',
+              validate: (value) => {
+                const result = validateAutocompleteOption(
+                  value,
+                  LANGUAGE_LEVEL_OPTIONS,
+                );
+                return result === true || result;
+              },
+            }}
             render={({ field }) => (
               <Autocomplete
                 placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.OPIK_LEVEL}
