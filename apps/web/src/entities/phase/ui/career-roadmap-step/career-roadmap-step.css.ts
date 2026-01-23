@@ -27,6 +27,8 @@ export const button = recipe({
     borderRadius: '8px',
     backgroundColor: themeVars.color.grayscale.white,
     cursor: 'pointer',
+    transition:
+      'color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out',
     vars: {
       [titleColor]: themeVars.color.primary[500],
       [timeColor]: themeVars.color.primary[400],

@@ -10,6 +10,10 @@ export const container = style({
 });
 
 export const phase = recipe({
+  base: {
+    transition:
+      'color 0.3s ease-in-out, font-size 0.3s ease-in-out, font-weight 0.3s ease-in-out',
+  },
   variants: {
     isActive: {
       true: {

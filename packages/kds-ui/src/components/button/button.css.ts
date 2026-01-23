@@ -11,6 +11,8 @@ export const button = recipe({
     borderRadius: '10px',
     cursor: 'pointer',
     flexShrink: 0,
+    transition:
+      'background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out',
   },
   variants: {
     variant: {
