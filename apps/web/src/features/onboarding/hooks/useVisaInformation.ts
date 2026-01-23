@@ -23,6 +23,11 @@ export const useVisaInformation = () => {
     name: 'visaStartDate',
   });
 
+  const expectedGraduationDate = useWatch({
+    control,
+    name: 'expectedGraduationDate',
+  });
+
   const prevVisaTypeRef = useRef<string | undefined>(visaType);
 
   // 비자 타입이 변경될 때 이전 타입의 필드 데이터 초기화
@@ -46,6 +51,17 @@ export const useVisaInformation = () => {
       trigger('visaExpiredAt');
     }
   }, [visaStartDate, trigger]);
+
+  useEffect(() => {
+    if (visaType === 'D-2' && expectedGraduationDate) {
+      const isValidDateFormat = /^\d{4}-\d{2}-\d{2}$/.test(
+        expectedGraduationDate || '',
+      );
+      if (isValidDateFormat && visaStartDate) {
+        trigger('visaStartDate');
+      }
+    }
+  }, [expectedGraduationDate, visaType, visaStartDate, trigger]);
 
   return {
     visaType,
