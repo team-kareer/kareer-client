@@ -18,6 +18,7 @@ const VisaStatusBox = ({
   total,
   done,
 }: VisaStatusBoxProps) => {
+  const formattedDate = date.replace(', ', '. ');
   const percent = Math.floor((done / total) * 100);
   const completed = percent === 100;
   const color = completed ? 'pastel_mint' : 'pastel_orange';
@@ -34,7 +35,7 @@ const VisaStatusBox = ({
             </>
           )}
           <span className={styles.current}>{goal}</span>
-          <span className={styles.date}>{date}</span>
+          {isCurrent && <span className={styles.date}>{formattedDate}</span>}
         </div>
         <div className={styles.right_section}>
           <Tag color={color}>{tagText}</Tag>
