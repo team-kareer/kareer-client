@@ -1,8 +1,7 @@
 import { Tag } from '@kds/ui';
 
 import type { RequiredActionType } from '@entities/phase/model';
-
-import { formatDate } from '../../../../shared/utils/date-formatter';
+import { formatDate } from '@shared/utils';
 
 import * as styles from './required-action-card.css';
 
@@ -16,6 +15,7 @@ const TAG_CONFIG = {
     label: 'Career',
   },
 } as const;
+
 interface RequiredActionCardProps {
   tagType: RequiredActionType;
   title: string;
