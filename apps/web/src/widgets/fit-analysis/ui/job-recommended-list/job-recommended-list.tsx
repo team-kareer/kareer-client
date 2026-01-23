@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import BookmarkedJobList from '@features/job/ui/bookmarked-job-list/bookmarked-job-list';
@@ -22,6 +22,7 @@ const JobRecommendationList = () => {
   const [recommendations, setRecommendations] = useState<JobItem[]>([]);
 
   const queryClient = useQueryClient();
+  const pendingJobPostingIds = useRef(new Set<number>());
 
   const { mutate: recommendMutate, isPending: isRecommendPending } =
     useMutation({
@@ -34,10 +35,16 @@ const JobRecommendationList = () => {
 
   const { mutate: bookmarkMutate, isPending: isBookmarkPending } = useMutation({
     ...JOB_MUTATION_OPTIONS.TOGGLE_BOOKMARK_JOB_POSTING(),
+    onMutate: async ({ jobPostingId }) => {
+      pendingJobPostingIds.current.add(jobPostingId);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: BOOKMARKED_JOB_QUERY_KEY.BOOKMARKED_JOB(),
       });
+    },
+    onSettled: (_data, _error, variables) => {
+      pendingJobPostingIds.current.delete(variables.jobPostingId);
     },
   });
 
@@ -61,6 +68,9 @@ const JobRecommendationList = () => {
   };
 
   const handleToggle = (jobPostingId: number) => {
+    if (pendingJobPostingIds.current.has(jobPostingId)) {
+      return;
+    }
     setRecommendations((prev) =>
       prev.map((job) =>
         job.jobPostingId === jobPostingId

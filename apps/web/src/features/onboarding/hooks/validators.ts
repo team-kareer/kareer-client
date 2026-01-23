@@ -141,7 +141,7 @@ export const validateName = (value: string) => {
   }
 
   // 특수문자 제한
-  const restrictedChars = /[()@#$%!]/;
+  const restrictedChars = /[()@#$%!*&^_=+`~'"-<>,;.:\\/|{}[\]?]/;
   if (restrictedChars.test(value)) {
     return VALIDATION_MESSAGE.NAME.SPECIAL_CHARACTERS;
   }
@@ -162,25 +162,45 @@ export const validateVisaIssuanceDate = (
   visaType: string | undefined,
   expectedGraduationDate: string | undefined,
 ) => {
-  // D-2 비자 타입이고 졸업 예정일이 있는 경우만 검증
-  if (visaType === 'D-2' && expectedGraduationDate) {
-    // 날짜 형식 체크
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    if (
-      !dateRegex.test(issuanceDate) ||
-      !dateRegex.test(expectedGraduationDate)
-    ) {
-      return true; // 형식 체크는 validateDate에서 처리
+  // 날짜 형식 체크
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateRegex.test(issuanceDate)) {
+    return true; // 형식 체크는 validateDate에서 처리
+  }
+
+  // 오늘 날짜 (시간 부분 제거)
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // 날짜 파싱
+  const issuance = new Date(issuanceDate);
+  issuance.setHours(0, 0, 0, 0);
+
+  // D-2 비자 타입: 졸업예정일 없이 미래 날짜 입력 시 에러
+  if (visaType === 'D-2') {
+    // 졸업 예정일이 없고, 발급일이 현재 날짜 기준 미래면 에러
+    if (!expectedGraduationDate && issuance > today) {
+      return VALIDATION_MESSAGE.VISA.FUTURE_ISSUANCE_DATE;
     }
 
-    // 날짜 파싱
-    const issuance = new Date(issuanceDate);
-    const graduation = new Date(expectedGraduationDate);
+    // 졸업 예정일이 있는 경우 기존 검증
+    if (expectedGraduationDate) {
+      if (!dateRegex.test(expectedGraduationDate)) {
+        return true; // 형식 체크는 validateDate에서 처리
+      }
 
-    // 발급일이 졸업 예정일보다 미래이면 에러
-    if (issuance >= graduation) {
-      return VALIDATION_MESSAGE.VISA.D2_ISSUANCE_AFTER_GRADUATION;
+      const graduation = new Date(expectedGraduationDate);
+
+      // 발급일이 졸업 예정일보다 미래이면 에러
+      if (issuance >= graduation) {
+        return VALIDATION_MESSAGE.VISA.D2_ISSUANCE_AFTER_GRADUATION;
+      }
     }
+  }
+
+  // D-10 비자 타입: 발급일이 현재 날짜 기준 미래면 에러
+  if (visaType === 'D-10' && issuance > today) {
+    return VALIDATION_MESSAGE.VISA.FUTURE_ISSUANCE_DATE;
   }
 
   return true;

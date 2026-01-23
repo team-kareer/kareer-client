@@ -5,7 +5,7 @@ export const container = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1.2rem',
-  marginLeft: '8rem',
+  padding: '0 8rem 0 6.5rem',
 });
 
 export const title = style({

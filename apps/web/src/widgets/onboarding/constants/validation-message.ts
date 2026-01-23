@@ -27,6 +27,7 @@ export const VALIDATION_MESSAGE = {
       'Please select a valid D-10 visa expiration date that is not in the past.',
     D2_ISSUANCE_AFTER_GRADUATION:
       'Please enter a graduation date that is later than your visa issuance date.',
+    FUTURE_ISSUANCE_DATE: 'Please enter a valid date',
   },
   NAME: {
     EMPTY: "Your name can't be empty.",

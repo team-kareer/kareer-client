@@ -3,9 +3,10 @@ import { ComponentProps } from 'react';
 import * as styles from './text-field.css';
 interface TextFieldProps extends Omit<ComponentProps<'textarea'>, 'className'> {
   isError?: boolean;
-  maxLength: number;
+  maxLength?: number;
   value: string;
   showCount?: boolean;
+  displayMaxLength?: number;
 }
 
 export const TextField = ({
@@ -13,11 +14,13 @@ export const TextField = ({
   maxLength,
   value = '',
   showCount = true,
+  displayMaxLength,
   ...textareaProps
 }: TextFieldProps) => {
   const textCount = value.length;
+  const displayLimit = displayMaxLength ?? maxLength ?? 0;
 
-  const lengthError = isError || textCount > maxLength;
+  const lengthError = isError || (maxLength ? textCount > maxLength : false);
 
   return (
     <div className={styles.textFieldContainer}>
@@ -26,9 +29,9 @@ export const TextField = ({
         value={value}
         {...textareaProps}
       />
-      {showCount && maxLength && (
+      {showCount && displayLimit > 0 && (
         <div className={styles.textCountRecipe({ error: lengthError })}>
-          {textCount}/{maxLength}
+          {textCount}/{displayLimit}
         </div>
       )}
     </div>
