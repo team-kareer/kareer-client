@@ -47,7 +47,7 @@ export const right_section = style({
 export const wrapper = recipe({
   base: {
     display: 'grid',
-    transition: 'grid-template-rows 0.3s ease-out',
+    transition: 'grid-template-rows 0.25s ease-out',
   },
   variants: {
     isOpen: {

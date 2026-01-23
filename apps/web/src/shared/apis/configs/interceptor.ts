@@ -24,7 +24,7 @@ const isAuthExchangeRequest = (url: string) =>
 const isRefreshRequest = (url: string) => url.includes(REFRESH_ENDPOINT);
 
 type ReissueResponse =
-  paths['/api/v1/auth/reissue']['post']['responses']['200']['content']['*/*']['data'];
+  paths['/api/v1/auth/reissue']['post']['responses']['200']['content']['*/*'];
 
 /**
  * 토큰 재발급 요청의 중복 호출을 방지하기 위한 단일화 Promise입니다.
@@ -52,12 +52,13 @@ const requestReissue = async (): Promise<string> => {
   }
 
   const refreshData: ReissueResponse = await refreshResponse.json();
+  const accessToken = refreshData?.data?.accessToken;
 
-  if (!refreshData?.accessToken) {
+  if (!accessToken) {
     throw new Error('accessToken이 없습니다');
   }
 
-  return refreshData.accessToken;
+  return accessToken;
 };
 
 /**

@@ -1,8 +1,8 @@
-import { END_POINT } from '@entities/job/model/end_point';
 import {
   BookmarkJobPostingParams,
   BookmarkJobPostingResponse,
-} from '@entities/job/model/types';
+  END_POINT,
+} from '@entities/job';
 import { api } from '@shared/apis/configs/instance';
 
 export const toggleBookmarkJobPosting = async (

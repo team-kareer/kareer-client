@@ -1,15 +1,18 @@
 import { ReactNode } from 'react';
 import { Tag } from '@kds/ui';
 
-import { JobPostingItem } from '@entities/job/model/types';
+import { JobPostingItem } from '@entities/job';
 import { default_company_image } from '@shared/assets';
-import { TagColor } from '@shared/utils/job-tag-color';
+import { formatDate } from '@shared/utils/date-formatter';
+import { TagColor } from '@shared/utils/job-formatter';
 
 import * as styles from './bookmarked-job-card.css';
 
 interface BookmarkedJobCardProps extends JobPostingItem {
   dDay?: number;
   jobTagColor: TagColor;
+  arrangementDisplay: string;
+  addressDisplay: string;
   scrapAction: ReactNode;
   onClick?: () => void;
 }
@@ -25,30 +28,16 @@ const formatDeadLine = (dDay?: number) => {
   return `D-${dDay}`;
 };
 
-{
-  /*
-const formatListText = (items?: string[]) => {
-  if (!items || items.length === 0) {
-    return '-';
-  }
-  if (items.length === 1) {
-    return items[0];
-  }
-  return `${items[0]} +${items.length - 1}`;
-};
-*/
-}
-
 const BookmarkedJobCard = ({
   title,
   company,
   deadline,
   imageUrl,
-  address,
-  arrangement,
   dDay,
   scrapAction,
   jobTagColor,
+  arrangementDisplay,
+  addressDisplay,
   onClick,
 }: BookmarkedJobCardProps) => {
   return (
@@ -70,7 +59,7 @@ const BookmarkedJobCard = ({
             <h2 className={styles.textStyle({ type: 'title' })}>{title}</h2>
             {deadline && (
               <p className={styles.textStyle({ type: 'dueDate' })}>
-                {deadline || '-'}
+                {formatDate(deadline) || '-'}
               </p>
             )}
           </div>
@@ -82,8 +71,10 @@ const BookmarkedJobCard = ({
           </div>
         </div>
         <div className={styles.tagsWrapper}>
-          {arrangement && <Tag color={jobTagColor}>{arrangement}</Tag>}
-          {address && <Tag color="disabled_gray">{address}</Tag>}
+          {arrangementDisplay && (
+            <Tag color={jobTagColor}>{arrangementDisplay}</Tag>
+          )}
+          {addressDisplay && <Tag color="disabled_gray">{addressDisplay}</Tag>}
         </div>
       </section>
     </article>

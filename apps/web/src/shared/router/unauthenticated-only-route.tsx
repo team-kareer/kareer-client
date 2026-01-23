@@ -3,21 +3,16 @@ import { Navigate, Outlet, useLocation } from 'react-router';
 import { authService } from '@shared/auth/auth-service';
 import { ROUTE_PATH } from '@shared/router/path';
 
-const ProtectedRoute = () => {
+const UnauthenticatedOnlyRoute = () => {
   const isAuthenticated = authService.isAuthenticated();
   const location = useLocation();
 
-  if (!isAuthenticated) {
-    return (
-      <Navigate
-        to={ROUTE_PATH.LOGIN}
-        replace
-        state={{ from: location.pathname + location.search + location.hash }}
-      />
-    );
+  if (isAuthenticated) {
+    const from = location.state?.from;
+    return <Navigate to={from ?? ROUTE_PATH.DASHBOARD} replace />;
   }
 
   return <Outlet />;
 };
 
-export default ProtectedRoute;
+export default UnauthenticatedOnlyRoute;
