@@ -7,6 +7,8 @@ import { PHASE_QUERY_KEY } from '@entities/phase/queries';
 import { TODO_QUERY_KEY } from '@entities/todo';
 import { components } from '@shared/types/schema';
 
+import { formatDate } from '../../../../shared/utils/date-formatter';
+
 import * as styles from './action-required.css';
 
 const TITLE = 'Action Required';
@@ -89,7 +91,7 @@ const ActionRequired = ({
                 key={item.phaseActionId}
                 title={item.title ?? ''}
                 subTitle={item.description ?? ''}
-                dueDate={item.deadline ?? ''}
+                dueDate={formatDate(item.deadline) ?? ''}
                 disabled={key === 'Done'}
                 isButtonDisabled={item.added}
                 onSelect={() => handleSelect(item.phaseActionId)}

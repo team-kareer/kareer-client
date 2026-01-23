@@ -1,27 +1,18 @@
 import { globalStyle } from '@vanilla-extract/css';
 
 import { themeVars } from './theme.css';
-import { height } from './tokens/height.css';
-import { width } from './tokens/width.css';
 
 globalStyle('html, body', {
-  minWidth: '100vw',
-  minHeight: '100vh',
   overflow: 'hidden',
   padding: '0',
-  fontSize: '62.5%',
+  fontSize: '78.125%',
+  // fontSize: '62.5%',
   fontFamily: `'Pretendard Variable', sans-serif`,
 });
 
-globalStyle('body', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
-
 globalStyle('#root', {
-  width: width.minWidth,
-  height: height.minHeight,
+  width: '100%',
+  height: '100dvh',
   boxShadow: '0 0 24px rgba(0, 0, 0, 0.12)',
 });
 
@@ -46,9 +37,9 @@ globalStyle('main.scroll-hidden', {
 });
 
 globalStyle('main::-webkit-scrollbar-thumb', {
-  border: '4px solid transparent',
+  border: '5.3px solid transparent',
   borderRadius: '20px',
-  boxShadow: 'inset 9px 9px 0',
+  boxShadow: 'inset 11px 11px 0',
 });
 
 globalStyle('main::-webkit-scrollbar-track', {

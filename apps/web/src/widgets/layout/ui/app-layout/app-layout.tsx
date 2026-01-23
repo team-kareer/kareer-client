@@ -17,13 +17,17 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       <div className={styles.contentArea}>
         <Header />
         <div className={styles.mainArea}>
-          <main
-            className={`${styles.mainPage} ${className}`}
-            onScroll={onScroll}
-          >
-            {children}
-          </main>
-          <TodoPanel />
+          <div className={styles.pageWrapper}>
+            <main
+              className={`${styles.mainPage} ${className}`}
+              onScroll={onScroll}
+            >
+              {children}
+            </main>
+          </div>
+          <div className={styles.todoPanelWrapper}>
+            <TodoPanel />
+          </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,8 @@ import { Tag } from '@kds/ui';
 
 import type { RequiredActionType } from '@entities/phase/model';
 
+import { formatDate } from '../../../../shared/utils/date-formatter';
+
 import * as styles from './required-action-card.css';
 
 const TAG_CONFIG = {
@@ -33,7 +35,7 @@ const RequiredActionCard = ({
       <Tag color={tagConfig.color}>{tagConfig.label}</Tag>
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
-        <p className={styles.dueDate}>{dueDate}</p>
+        <p className={styles.dueDate}>{formatDate(dueDate)}</p>
       </div>
     </button>
   );

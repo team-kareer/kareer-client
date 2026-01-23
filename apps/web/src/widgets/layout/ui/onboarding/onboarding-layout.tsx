@@ -15,15 +15,21 @@ const DESCRIPTION_TEXT = `Guiding your career journey\nwith trusted visa and car
 const OnboardingLayout = ({ children }: OnboardingLayoutProps) => {
   return (
     <div className={styles.container}>
-      <div className={styles.lottieWrapper}>
-        <Lottie animationData={onboarding_lottie} loop={true} />
-      </div>
       <div className={styles.introSection}>
-        <span className={styles.logoWrapper}>
-          <SymbolPrimaryIcon width={48} height={48} />
-          <LogoTypoIcon width={121} height={48} />
-        </span>
-        <p className={styles.text}>{DESCRIPTION_TEXT}</p>
+        <div className={styles.lottieBackground}>
+          <Lottie
+            animationData={onboarding_lottie}
+            loop={true}
+            className={styles.lottie}
+          />
+        </div>
+        <div className={styles.textSection}>
+          <span className={styles.logoWrapper}>
+            <SymbolPrimaryIcon width={48} height={48} />
+            <LogoTypoIcon width={121} height={48} />
+          </span>
+          <p className={styles.text}>{DESCRIPTION_TEXT}</p>
+        </div>
       </div>
       <div className={styles.stepFormSection}>{children}</div>
     </div>
