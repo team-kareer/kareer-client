@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Button, Tab, useTabContext } from '@kds/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
@@ -54,9 +55,11 @@ const TodoPanel = () => {
   });
 
   const queryClient = useQueryClient();
+  const pendingActionItemIds = useRef(new Set<number>());
   const { mutate } = useMutation({
     ...TODO_MUTATION_OPTIONS.PATCH_TODO(),
     onMutate: async (actionItemId) => {
+      pendingActionItemIds.current.add(actionItemId);
       const queryKey = TODO_QUERY_KEY.TODO_LIST();
 
       await queryClient.cancelQueries({ queryKey });
@@ -103,13 +106,22 @@ const TodoPanel = () => {
         queryKey: PHASE_QUERY_KEY.PHASE_ITEM_ROADMAP_ALL(),
       });
     },
-    onSettled: () => {
+    onSettled: (_data, _error, actionItemId) => {
+      pendingActionItemIds.current.delete(actionItemId);
       queryClient.invalidateQueries({ queryKey: TODO_QUERY_KEY.TODO_LIST() });
     },
   });
 
   const handleAddTodo = () => {
     navigate(ROUTE_PATH.ROADMAP);
+  };
+
+  const handleTodoToggle = (actionItemId: number) => {
+    const id = Number(actionItemId);
+    if (pendingActionItemIds.current.has(id)) {
+      return;
+    }
+    mutate(id);
   };
 
   return (
@@ -136,9 +148,7 @@ const TodoPanel = () => {
                       description={formatDueInDays(deadline ?? '')}
                       size="sm"
                       isChecked={completed ?? false}
-                      onToggle={() => {
-                        mutate(Number(actionItemId));
-                      }}
+                      onToggle={() => handleTodoToggle(Number(actionItemId))}
                     />
                   ),
                 )

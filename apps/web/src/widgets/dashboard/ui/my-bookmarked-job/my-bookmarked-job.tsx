@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
@@ -13,22 +14,32 @@ import { EmptyLayout, PageLoader } from '@shared/ui';
 export const MyBookmarkedJobs = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const pendingJobPostingIds = useRef(new Set<number>());
   const { data, isPending } = useQuery(
     BOOKMARKED_JOB_QUERY_OPTIONS.GET_BOOKMARKED_JOB(),
   );
 
   const { mutate: toggleBookmark } = useMutation({
     ...JOB_MUTATION_OPTIONS.TOGGLE_BOOKMARK_JOB_POSTING(),
+    onMutate: async ({ jobPostingId }) => {
+      pendingJobPostingIds.current.add(jobPostingId);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: BOOKMARKED_JOB_QUERY_KEY.BOOKMARKED_JOB(),
       });
+    },
+    onSettled: (_data, _error, variables) => {
+      pendingJobPostingIds.current.delete(variables.jobPostingId);
     },
   });
 
   const jobs = data?.jobPostingResponses ?? [];
 
   const handleRemove = (jobPostingId: number) => {
+    if (pendingJobPostingIds.current.has(jobPostingId)) {
+      return;
+    }
     toggleBookmark({
       jobPostingId,
     });
