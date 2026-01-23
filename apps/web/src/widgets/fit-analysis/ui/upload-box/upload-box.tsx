@@ -101,15 +101,9 @@ const UploadBox = ({
             <p className={styles.checkText}>{CHECK_MESSAGE}</p>
           </div>
         </div>
-        {hasFiles && (
-          <Button
-            preset="medium_primary"
-            onClick={onClick}
-            disabled={isLoading}
-          >
-            <span>Find Position</span>
-          </Button>
-        )}
+        <Button preset="medium_primary" onClick={onClick} disabled={isLoading}>
+          <span>Find Position</span>
+        </Button>
       </div>
       <div className={styles.infoSection}>
         <p className={styles.info}>{INFO_MESSAGE}</p>
