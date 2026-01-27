@@ -1,7 +1,3 @@
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/be5a6b55-655c-4c49-8db4-3fe3c6a46211" />
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/4a60df5b-c5ab-4d56-b5a7-4f3b11c997a8" />
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/8bb20d3f-adf7-4000-9e11-fa26de85d116" />
-<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ff387f13-b7ce-4aaa-8a17-5f70c7d76c81" />
 <h1> 🐦 Kareer </h1>
 
 ${\textsf{\color{blue}한국 커리어 여정, Kareer와 함께 명확하게}}$
@@ -13,6 +9,12 @@ Korea + Career = Kareer, 나만의 커리어 여정을 정리하다
 ㄴ 전공/언어/비자 상태 기반으로 지원 가능한 직무,비자 옵션을 자동 제시
 ㄴ 개인 맞춤 타임라인과 To-Do로 준비 단계를 한눈에 정리
 ```
+
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/be5a6b55-655c-4c49-8db4-3fe3c6a46211" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/4a60df5b-c5ab-4d56-b5a7-4f3b11c997a8" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/8bb20d3f-adf7-4000-9e11-fa26de85d116" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ff387f13-b7ce-4aaa-8a17-5f70c7d76c81" />
 
 ## 👨🏻‍💻 팀원 소개
 
