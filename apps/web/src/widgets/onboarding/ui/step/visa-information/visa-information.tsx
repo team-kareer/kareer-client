@@ -7,9 +7,9 @@ import { useVisaInformation } from '@features/onboarding/hooks/useVisaInformatio
 import {
   validateAutocompleteOption,
   validateDate,
-  validateNumber,
   validateVisaExpirationDate,
   validateVisaIssuanceDate,
+  validateVisaPoint,
 } from '@features/onboarding/hooks/validators';
 import { type OnboardingForm } from '@entities/onboarding';
 import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
@@ -104,7 +104,7 @@ const VisaInformation = () => {
                   rules={{
                     required: 'Enter the visa point',
                     validate: (value) => {
-                      const result = validateNumber(String(value));
+                      const result = validateVisaPoint(String(value));
                       return result === true || result;
                     },
                   }}
