@@ -27,26 +27,6 @@ export const validateAutocompleteOption = (
  * 비자 포인트 숫자 값 검증
  * @description 숫자 형식이며 60 이상 190 이하인지 검증
  */
-// export const validateNumber = (value: string) => {
-//   if (!value) {
-//     return VALIDATION_MESSAGE.NUMEBR.INVALID;
-//   }
-//   if (!/^\d+$/.test(value)) {
-//     return VALIDATION_MESSAGE.NUMEBR.INVALID;
-//   }
-//   if (
-//     Number(value) < D10_MIN_VISA_POINT ||
-//     Number(value) > D10_MAX_VISA_POINT
-//   ) {
-//     return VALIDATION_MESSAGE.NUMEBR.INVALID;
-//   }
-//   return true;
-// };
-
-/**
- * 비자 포인트 숫자 값 검증
- * @description 숫자 형식이며 60 이상 190 이하인지 검증
- */
 export const validateVisaPoint = (value: string) => {
   const isValid =
     !!value &&
@@ -148,28 +128,21 @@ export const validateVisaIssuanceDate = (
   if (!dateRegex.test(issuanceDate)) {
     return true; // 형식 체크는 validateDate에서 처리
   }
-
-  // 오늘 날짜 (시간 부분 제거)
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // 날짜 파싱
   const issuance = new Date(issuanceDate);
   issuance.setHours(0, 0, 0, 0);
 
-  // D-2 비자 타입: 졸업예정일 없이 미래 날짜 입력 시 에러
+  // D-2, D-10 공통 : 발급일이 현재 날짜 기준 미래면 에러
+  if (issuance > today) {
+    return VALIDATION_MESSAGE.DATE.FUTURE_NOT_ALLOWED;
+  }
   if (visaType === 'D-2') {
-    // 졸업 예정일이 없고, 발급일이 현재 날짜 기준 미래면 에러
-    if (!expectedGraduationDate && issuance > today) {
-      return VALIDATION_MESSAGE.VISA.FUTURE_ISSUANCE_DATE;
-    }
-
-    // 졸업 예정일이 있는 경우 기존 검증
     if (expectedGraduationDate) {
       if (!dateRegex.test(expectedGraduationDate)) {
-        return true; // 형식 체크는 validateDate에서 처리
+        return true;
       }
-
       const graduation = new Date(expectedGraduationDate);
 
       // 발급일이 졸업 예정일보다 미래이면 에러
@@ -178,12 +151,6 @@ export const validateVisaIssuanceDate = (
       }
     }
   }
-
-  // D-10 비자 타입: 발급일이 현재 날짜 기준 미래면 에러
-  if (visaType === 'D-10' && issuance > today) {
-    return VALIDATION_MESSAGE.VISA.FUTURE_ISSUANCE_DATE;
-  }
-
   return true;
 };
 
