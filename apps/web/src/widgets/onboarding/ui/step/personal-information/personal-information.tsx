@@ -7,7 +7,7 @@ import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants
 import {
   validateAutocompleteOption,
   validateDate,
-  validateName,
+  validateTextField,
 } from '@features/onboarding/hooks/validators';
 import {
   COUNTRY_LIST_QUERY_OPTIONS,
@@ -40,7 +40,7 @@ const PersonalInformation = () => {
             rules={{
               required: 'Enter your name',
               validate: (value) => {
-                const result = validateName(value);
+                const result = validateTextField(value);
                 return result === true || result;
               },
             }}

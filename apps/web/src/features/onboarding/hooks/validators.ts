@@ -143,23 +143,22 @@ export const validateDate = (
 };
 
 /**
- * 이름 값을 검증하는 함수
+ * 텍스트 필드 값을 검증하는 함수
  * @param value - 검증할 이름 문자열
  * @returns 검증 통과 시 true, 실패 시 에러 메시지 반환
  * @description 공백 있는지 체크하고 특수문자 사용 여부 검증
  */
-export const validateName = (value: string) => {
+export const validateTextField = (value: string) => {
   // 공백
   if (value.trim().length === 0) {
     return VALIDATION_MESSAGE.NAME.EMPTY;
   }
 
-  // 특수문자 제한
-  const restrictedChars = /[()@#$%!*&^_=+`~'"-<>,;.:\\/|{}[\]?]/;
-  if (restrictedChars.test(value)) {
+  // 허용 키워드 정규식
+  const allowanceKeywords = /^[\p{L}\p{N}\s]+$/u;
+  if (!allowanceKeywords.test(value)) {
     return VALIDATION_MESSAGE.NAME.SPECIAL_CHARACTERS;
   }
-
   return true;
 };
 
