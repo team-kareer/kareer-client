@@ -97,16 +97,16 @@ const PersonalInformation = () => {
           <Controller
             name="country"
             control={control}
-            rules={{
-              required: 'Select the Country',
-              validate: (value) => {
-                const result = validateAutocompleteOption(
-                  value,
-                  countryList?.countries || [],
-                );
-                return result === true || result;
-              },
-            }}
+            // rules={{
+            //   required: 'Select the Country',
+            //   validate: (value) => {
+            //     const result = validateAutocompleteOption(
+            //       value,
+            //       countryList?.countries || [],
+            //     );
+            //     return result === true || result;
+            //   },
+            // }}
             render={({ field }) => (
               <Autocomplete
                 placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}

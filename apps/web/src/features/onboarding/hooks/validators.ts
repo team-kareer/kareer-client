@@ -63,6 +63,7 @@ export const validateVisaPoint = (value: string) => {
  * @param 미래 날짜 허용 여부
  * @description YYYY-MM-DD 형식 검증 및 유효한 날짜인지 확인, false면 미래 날짜 거부
  */
+// 단계 나누기 : 입력중 -> 형식 완성 -> 날짜 유효성 -> 미래 과거 규칙
 export const validateDate = (
   value: string,
   allowFuture = false,
@@ -77,65 +78,34 @@ export const validateDate = (
     return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
   }
 
-  // 완전한 형식 체크 (YYYY-MM-DD) - 반드시 2자리 숫자
   const completeFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
   const hasCompleteFormat = completeFormatRegex.test(value);
 
-  // 완전한 형식이 아니면 부분 형식 체크
+  // 완전한 형식 체크
   if (!hasCompleteFormat) {
-    // 하이픈으로 구분된 3부분이 모두 있는지 체크 (한 자리 숫자 포함)
-    const threePartsPattern = /^(\d+)-(\d+)-(\d+)$/;
-    const threePartsMatch = value.match(threePartsPattern);
-
-    if (threePartsMatch) {
-      // 완전한 형식이지만 월이나 일이 2자리가 아니면 에러
-      const yearPart = threePartsMatch[1] ?? '';
-      const monthPart = threePartsMatch[2] ?? '';
-      const dayPart = threePartsMatch[3] ?? '';
-      if (
-        yearPart.length !== 4 ||
-        monthPart.length !== 2 ||
-        dayPart.length !== 2
-      ) {
-        return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
-      }
-    } else {
-      // 부분 형식 체크 (입력 중일 때는 통과)
-      const partialPattern = /^(\d{0,4})(-\d{0,2})?(-\d{0,2})?$/;
-      if (partialPattern.test(value)) {
-        return true; // 입력 중이면 통과
-      }
-      return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
-    }
+    return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
   }
 
-  // 날짜 파싱 및 미래 날짜 체크
-  const dateParts = value.split('-');
-  const year = parseInt(dateParts[0] || '', 10);
-  const month = parseInt(dateParts[1] || '', 10);
-  const day = parseInt(dateParts[2] || '', 10);
+  const [year, month, day] = value.split('-');
+  const yearNumber = Number(year);
+  const monthNumber = Number(month);
+  const dayNumber = Number(day);
 
-  // 날짜 유효성 검사
-  const inputDate = new Date(year, month - 1, day);
+  const inputDate = new Date(yearNumber, monthNumber - 1, dayNumber);
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // 날짜가 유효한지 체크 (예: 2023-02-29, 2023-13-01 같은 경우)
   if (
-    inputDate.getFullYear() !== year ||
-    inputDate.getMonth() !== month - 1 ||
-    inputDate.getDate() !== day
+    inputDate.getFullYear() !== yearNumber ||
+    inputDate.getMonth() !== monthNumber - 1 ||
+    inputDate.getDate() !== dayNumber
   ) {
     return VALIDATION_MESSAGE.DATE.INVALID_DATE;
   }
 
-  // 미래 날짜 체크 (allowFuture가 false일 때만)
   if (!allowFuture && inputDate > today) {
     return VALIDATION_MESSAGE.DATE.FUTURE_NOT_ALLOWED;
-  }
-
-  // 과거 날짜 체크 (allowPast가 false일 때만)
-  if (!allowPast && inputDate < today) {
+  } else if (!allowPast && inputDate < today) {
     return VALIDATION_MESSAGE.DATE.PAST_NOT_ALLOWED;
   }
 
@@ -144,18 +114,16 @@ export const validateDate = (
 
 /**
  * 텍스트 필드 값을 검증하는 함수
- * @param value - 검증할 이름 문자열
- * @returns 검증 통과 시 true, 실패 시 에러 메시지 반환
- * @description 공백 있는지 체크하고 특수문자 사용 여부 검증
+ * @param value - 검증할 텍스트 필드
+ * @description 공백 체크 후 허용 정규식 키워드 검증 -> 이모티콘, 특수문자
  */
 export const validateTextField = (value: string) => {
-  // 공백
   if (value.trim().length === 0) {
     return VALIDATION_MESSAGE.NAME.EMPTY;
   }
 
   // 허용 키워드 정규식
-  const allowanceKeywords = /^[\p{L}\p{N}\s]+$/u;
+  const allowanceKeywords = /^[\p{L}\s]+$/u;
   if (!allowanceKeywords.test(value)) {
     return VALIDATION_MESSAGE.NAME.SPECIAL_CHARACTERS;
   }
