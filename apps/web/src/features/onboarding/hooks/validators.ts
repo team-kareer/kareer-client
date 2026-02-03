@@ -1,7 +1,9 @@
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
+import { type VisaType } from '@features/onboarding';
 
 const D10_MIN_VISA_POINT = 60;
 const D10_MAX_VISA_POINT = 190;
+const D10_ALLOWED_MONTHS = [6, 12, 18, 24, 30, 36];
 
 /**
  * Autocomplete 옵션 검증 함수
@@ -31,8 +33,8 @@ export const validateVisaPoint = (value: string) => {
   const isValid =
     !!value &&
     /^\d+$/.test(value) &&
-    Number(value) >= D10_MIN_VISA_POINT &&
-    Number(value) <= D10_MAX_VISA_POINT;
+    Number(value) > D10_MIN_VISA_POINT &&
+    Number(value) < D10_MAX_VISA_POINT;
 
   return isValid || VALIDATION_MESSAGE.NUMEBR.INVALID;
 };
@@ -120,7 +122,7 @@ export const validateTextField = (value: string) => {
  */
 export const validateVisaIssuanceDate = (
   issuanceDate: string,
-  visaType: string | undefined,
+  visaType: VisaType | undefined,
   expectedGraduationDate: string | undefined,
 ) => {
   // 날짜 형식 체크
@@ -164,10 +166,10 @@ export const validateVisaIssuanceDate = (
  */
 export const validateVisaExpirationDate = (
   expirationDate: string,
-  visaType: string | undefined,
+  visaType: VisaType | undefined,
   issuanceDate: string | undefined,
+  expectedGraduationDate: string | undefined,
 ) => {
-  // 발급일이 없으면 통과 (발급일 입력 후 재검증됨)
   if (!issuanceDate) {
     return true;
   }
@@ -187,17 +189,23 @@ export const validateVisaExpirationDate = (
     return VALIDATION_MESSAGE.DATE.MUST_BE_AFTER_ISSUANCE;
   }
 
-  // 비자 타입별 검증 (UI 값으로 비교)
+  // 비자 타입별 검증
   if (visaType === 'D-2') {
     // D-2: 발급일로부터 2년을 초과하면 에러
-    const oneYearLater = new Date(issuance);
-    oneYearLater.setFullYear(oneYearLater.getFullYear() + 2);
+    const twoYearLater = new Date(issuance);
+    twoYearLater.setFullYear(twoYearLater.getFullYear() + 2);
 
-    if (expiration > oneYearLater) {
+    if (expiration > twoYearLater) {
       return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_TWO_YEARS;
     }
+    // D-2: 졸업 예정일이 있으면 만료일이 졸업일보다 과거이면 에러
+    if (expectedGraduationDate && dateRegex.test(expectedGraduationDate)) {
+      const graduation = new Date(expectedGraduationDate);
+      if (expiration < graduation) {
+        return VALIDATION_MESSAGE.VISA.D2_EXPIRATION_BEFORE_GRADUATION;
+      }
+    }
   } else if (visaType === 'D-10') {
-    // 오늘 날짜 체크 (시간 부분 제거)
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -211,9 +219,8 @@ export const validateVisaExpirationDate = (
 
     // 발급일로부터 6개월 단위가 아니면 에러
     // ex-> 2025-01-01 ~ 2025-06-01
-    const allowedMonths = [6, 12, 18, 24, 30, 36];
 
-    const allowedDates = allowedMonths.map((months) => {
+    const allowedDates = D10_ALLOWED_MONTHS.map((months) => {
       const date = new Date(issuance);
       date.setMonth(date.getMonth() + months);
       date.setHours(0, 0, 0, 0);
@@ -221,7 +228,7 @@ export const validateVisaExpirationDate = (
     });
 
     if (!allowedDates.includes(expirationDateOnly.getTime())) {
-      return VALIDATION_MESSAGE.VISA.D10_LESS_THAN_SIX_MONTHS;
+      return VALIDATION_MESSAGE.VISA.D10_INVALID_DURATION;
     }
   }
 

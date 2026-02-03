@@ -5,3 +5,5 @@ export type PostOnboardingForm =
 
 export type PostAiRoadMapResponse =
   paths['/api/v1/members/roadmap']['post']['responses']['200']['content']['*/*'];
+
+export type VisaType = 'D-2' | 'D-10';

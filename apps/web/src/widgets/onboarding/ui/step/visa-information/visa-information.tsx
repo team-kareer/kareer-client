@@ -146,7 +146,7 @@ const VisaInformation = () => {
                 // D-2 비자 타입일 경우 졸업 예정일과 비교
                 return validateVisaIssuanceDate(
                   value,
-                  visaType,
+                  visaType === 'D-2' ? 'D-2' : 'D-10',
                   expectedGraduationDate,
                 );
               },
@@ -182,8 +182,9 @@ const VisaInformation = () => {
 
                 return validateVisaExpirationDate(
                   value,
-                  visaType,
+                  visaType === 'D-2' ? 'D-2' : 'D-10',
                   visaStartDate,
+                  expectedGraduationDate,
                 );
               },
             }}
