@@ -2,13 +2,11 @@ import { VALIDATION_MESSAGE } from '@widgets/onboarding';
 import { type VisaType } from '@features/onboarding';
 import { validateDate } from '@features/onboarding/model/validation';
 
-const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
-
 const validateD2Issuance = (
   issuance: Date,
   expectedGraduationDate?: string,
 ) => {
-  if (expectedGraduationDate && DATE_REGEX.test(expectedGraduationDate)) {
+  if (expectedGraduationDate) {
     const graduation = new Date(expectedGraduationDate);
     if (issuance >= graduation) {
       return VALIDATION_MESSAGE.VISA.D2_ISSUANCE_AFTER_GRADUATION;

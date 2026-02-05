@@ -9,6 +9,7 @@ import {
   PERSONAL_BACKGROUND_TITLE,
 } from '@widgets/onboarding/constants/personal-background';
 import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeholders';
+import { validateText } from '@features/onboarding/model/validation';
 import { type OnboardingForm } from '@entities/onboarding';
 import { getPlaceholderByTargetJob } from '@entities/onboarding';
 import { TextField } from '@shared/ui/text-field/text-field';
@@ -50,7 +51,12 @@ const PersonalBackground = () => {
           <Controller
             name="personalBackground"
             control={control}
-            rules={{ required: 'Enter your personal background' }}
+            rules={{
+              validate: (value) => {
+                const result = validateText(value, true, true);
+                return result === true || result;
+              },
+            }}
             render={({ field }) => (
               <TextField
                 {...field}

@@ -40,7 +40,7 @@ const PersonalInformation = () => {
             rules={{
               required: 'Enter your name',
               validate: (value) => {
-                const result = validateText(value);
+                const result = validateText(value, false, false);
                 return result === true || result;
               },
             }}

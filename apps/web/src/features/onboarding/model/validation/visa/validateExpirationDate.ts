@@ -4,7 +4,6 @@ import { validateDate } from '@features/onboarding/model/validation';
 
 const D10_ALLOWED_MONTHS = [6, 12, 18, 24, 30, 36];
 const D2_YEAR_LIMIT = 2;
-const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
 const validateD2Expiration = (
   expiration: Date,
@@ -16,10 +15,17 @@ const validateD2Expiration = (
   if (expiration > limit) {
     return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_TWO_YEARS;
   }
-  if (expectedGraduationDate && DATE_REGEX.test(expectedGraduationDate)) {
-    const graduation = new Date(expectedGraduationDate);
-    if (expiration < graduation) {
-      return VALIDATION_MESSAGE.VISA.D2_EXPIRATION_BEFORE_GRADUATION;
+  if (expectedGraduationDate) {
+    const graduationDateValidation = validateDate(
+      expectedGraduationDate,
+      true,
+      true,
+    );
+    if (graduationDateValidation === true) {
+      const graduation = new Date(expectedGraduationDate);
+      if (expiration < graduation) {
+        return VALIDATION_MESSAGE.VISA.D2_EXPIRATION_BEFORE_GRADUATION;
+      }
     }
   }
   return true;
@@ -53,17 +59,19 @@ export const validateExpirationDate = (
   if (!issuanceDate) {
     return true;
   }
-  if (!DATE_REGEX.test(issuanceDate) || !DATE_REGEX.test(expirationDate)) {
-    return true;
+
+  const issuanceDateValidation = validateDate(issuanceDate, true, true);
+  if (issuanceDateValidation !== true) {
+    return issuanceDateValidation;
+  }
+
+  const expirationDateValidation = validateDate(expirationDate, true, true);
+  if (expirationDateValidation !== true) {
+    return expirationDateValidation;
   }
 
   const expiration = new Date(expirationDate);
   const issuance = new Date(issuanceDate);
-
-  const dateValidation = validateDate(issuanceDate, true, true);
-  if (dateValidation !== true) {
-    return dateValidation;
-  }
   switch (visaType) {
     case 'D-2':
       return validateD2Expiration(expiration, issuance, expectedGraduationDate);
