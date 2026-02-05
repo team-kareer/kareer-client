@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import { BangCircleIcon } from '@kds/icons';
+import { TextField } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
@@ -11,7 +12,6 @@ import {
 import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeholders';
 import { type OnboardingForm } from '@entities/onboarding';
 import { getPlaceholderByTargetJob } from '@entities/onboarding';
-import { TextField } from '@shared/ui/text-field/text-field';
 
 import * as styles from './personal-background.css';
 
@@ -60,7 +60,6 @@ const PersonalBackground = () => {
                   field.onChange(e.target.value);
                 }}
                 isError={isOverLimit}
-                showCount={true}
                 displayMaxLength={1000}
               />
             )}

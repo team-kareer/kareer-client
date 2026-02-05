@@ -45,15 +45,13 @@ export const textFieldRecipe = recipe({
 export const textCountRecipe = recipe({
   base: {
     ...typography.cap2_m_12,
+    color: themeVars.color.grayscale.gray500,
   },
 
   variants: {
     error: {
       true: {
         color: themeVars.color.pastel.kared_500,
-      },
-      false: {
-        color: themeVars.color.grayscale.gray500,
       },
     },
   },
