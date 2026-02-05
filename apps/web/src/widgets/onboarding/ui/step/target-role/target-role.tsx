@@ -5,7 +5,8 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
-import { validateAutocompleteOption } from '@features/onboarding/hooks/validators';
+// import { validateAutocompleteOption } from '@features/onboarding/hooks/validators';
+import { validateAutocompleteOption } from '@features/onboarding/model/validation';
 import { validateText } from '@features/onboarding/model/validation';
 import {
   MAJOR_LIST_QUERY_OPTIONS,
