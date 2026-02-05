@@ -98,16 +98,16 @@ const PersonalInformation = () => {
             name="country"
             control={control}
             // TODO : 테스트 서버 꺼짐으로 임시 주석 처리
-            // rules={{
-            //   required: 'Select the Country',
-            //   validate: (value) => {
-            //     const result = validateAutocompleteOption(
-            //       value,
-            //       countryList?.countries || [],
-            //     );
-            //     return result === true || result;
-            //   },
-            // }}
+            rules={{
+              required: 'Select the Country',
+              validate: (value) => {
+                const result = validateAutocompleteOption(
+                  value,
+                  countryList?.countries || [],
+                );
+                return result === true || result;
+              },
+            }}
             render={({ field }) => (
               <Autocomplete
                 placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}

@@ -48,6 +48,7 @@ const validateD10Expiration = (expiration: Date, issuance: Date) => {
   if (!allowedDates.includes(expiration.getTime())) {
     return VALIDATION_MESSAGE.VISA.D10_INVALID_DURATION;
   }
+  return true;
 };
 
 export const validateExpirationDate = (

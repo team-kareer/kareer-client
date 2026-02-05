@@ -55,9 +55,7 @@ export const STEP_TITLES = [
  * 각 단계별 필수 입력 필드 배열
  * */
 export const STEP_REQUIRED_FIELDS: Array<Array<keyof OnboardingForm>> = [
-  ['name', 'birthDate', 'languageLevel', 'degree'],
-  // TODO : 테스트 서버 이슈로 인해 country 필드 제외
-  // ['name', 'birthDate', 'languageLevel', 'degree', 'country'],
+  ['name', 'birthDate', 'languageLevel', 'degree', 'country'],
   ['visaType', 'expectedGraduationDate', 'visaStartDate', 'visaExpiredAt'],
   ['primaryMajor', 'targetJob'],
   ['personalBackground'],
