@@ -3,14 +3,15 @@ import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { VISA_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
+import { type VisaType } from '@features/onboarding';
 import { useVisaInformation } from '@features/onboarding/hooks/useVisaInformation';
 import {
   validateAutocompleteOption,
   validateDate,
-  validateVisaExpirationDate,
-  validateVisaIssuanceDate,
+  validateExpirationDate,
+  validateIssuanceDate,
   validateVisaPoint,
-} from '@features/onboarding/hooks/validators';
+} from '@features/onboarding/model/validation';
 import { type OnboardingForm } from '@entities/onboarding';
 import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
 
@@ -144,7 +145,7 @@ const VisaInformation = () => {
                   return result;
                 }
                 // D-2 비자 타입일 경우 졸업 예정일과 비교
-                return validateVisaIssuanceDate(
+                return validateIssuanceDate(
                   value,
                   visaType === 'D-2' ? 'D-2' : 'D-10',
                   expectedGraduationDate,
@@ -180,11 +181,14 @@ const VisaInformation = () => {
                   return result;
                 }
 
-                return validateVisaExpirationDate(
+                if (!visaType) {
+                  return true;
+                }
+                return validateExpirationDate(
                   value,
-                  visaType === 'D-2' ? 'D-2' : 'D-10',
-                  visaStartDate,
-                  expectedGraduationDate,
+                  visaStartDate || '',
+                  expectedGraduationDate || '',
+                  visaType as VisaType,
                 );
               },
             }}

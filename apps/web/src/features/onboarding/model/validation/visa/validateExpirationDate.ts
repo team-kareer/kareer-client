@@ -1,17 +1,10 @@
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
 import { type VisaType } from '@features/onboarding';
+import { validateDate } from '@features/onboarding/model/validation';
 
 const D10_ALLOWED_MONTHS = [6, 12, 18, 24, 30, 36];
 const D2_YEAR_LIMIT = 2;
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
-
-// 발급일 이후인지 체크
-const isAfterIssuance = (expiration: Date, issuance: Date) => {
-  if (expiration <= issuance) {
-    return VALIDATION_MESSAGE.DATE.MUST_BE_AFTER_ISSUANCE;
-  }
-  return true;
-};
 
 const validateD2Expiration = (
   expiration: Date,
@@ -54,7 +47,7 @@ const validateD10Expiration = (expiration: Date, issuance: Date) => {
 export const validateExpirationDate = (
   expirationDate: string,
   issuanceDate: string,
-  expectedGraduationDate: string | undefined,
+  expectedGraduationDate: string,
   visaType: VisaType,
 ) => {
   if (!issuanceDate) {
@@ -67,9 +60,9 @@ export const validateExpirationDate = (
   const expiration = new Date(expirationDate);
   const issuance = new Date(issuanceDate);
 
-  const afterIssuance = isAfterIssuance(expiration, issuance);
-  if (afterIssuance !== true) {
-    return afterIssuance;
+  const dateValidation = validateDate(issuanceDate, true, true);
+  if (dateValidation !== true) {
+    return dateValidation;
   }
   switch (visaType) {
     case 'D-2':

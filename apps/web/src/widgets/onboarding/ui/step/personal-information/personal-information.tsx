@@ -7,8 +7,8 @@ import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants
 import {
   validateAutocompleteOption,
   validateDate,
-  validateTextField,
-} from '@features/onboarding/hooks/validators';
+  validateText,
+} from '@features/onboarding/model/validation';
 import {
   COUNTRY_LIST_QUERY_OPTIONS,
   type OnboardingForm,
@@ -40,7 +40,7 @@ const PersonalInformation = () => {
             rules={{
               required: 'Enter your name',
               validate: (value) => {
-                const result = validateTextField(value);
+                const result = validateText(value);
                 return result === true || result;
               },
             }}
@@ -97,6 +97,7 @@ const PersonalInformation = () => {
           <Controller
             name="country"
             control={control}
+            // TODO : 테스트 서버 꺼짐으로 임시 주석 처리
             // rules={{
             //   required: 'Select the Country',
             //   validate: (value) => {

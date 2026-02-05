@@ -1,16 +1,8 @@
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
 import { type VisaType } from '@features/onboarding';
+import { validateDate } from '@features/onboarding/model/validation';
 
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
-
-const isAfterToday = (issuance: Date) => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  if (issuance > today) {
-    return VALIDATION_MESSAGE.DATE.FUTURE_NOT_ALLOWED;
-  }
-  return true;
-};
 
 const validateD2Issuance = (
   issuance: Date,
@@ -34,12 +26,13 @@ export const validateIssuanceDate = (
     return true;
   }
 
+  const dateValidation = validateDate(issuanceDate, false, true);
+  if (dateValidation !== true) {
+    return dateValidation;
+  }
+
   const issuance = new Date(issuanceDate);
 
-  const afterToday = isAfterToday(issuance);
-  if (afterToday !== true) {
-    return afterToday;
-  }
   if (visaType === 'D-2') {
     return validateD2Issuance(issuance, expectedGraduationDate);
   }
