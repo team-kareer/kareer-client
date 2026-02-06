@@ -9,11 +9,6 @@ export const validateDate = (
     return true;
   }
 
-  // 숫자와 하이픈만 허용
-  if (!/^[\d-]+$/.test(value)) {
-    return VALIDATION_MESSAGE.DATE.INVALID_FORMAT;
-  }
-
   const completeFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
   const hasCompleteFormat = completeFormatRegex.test(value);
 
