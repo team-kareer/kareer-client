@@ -10,5 +10,5 @@ export const validateVisaPoint = (value: string) => {
     Number(value) > D10_MIN_VISA_POINT &&
     Number(value) < D10_MAX_VISA_POINT;
 
-  return isValid || VALIDATION_MESSAGE.NUMEBR.INVALID;
+  return isValid || VALIDATION_MESSAGE.NUMBER.INVALID;
 };

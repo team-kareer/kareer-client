@@ -7,7 +7,7 @@
  * @property NAME - 이름 검증 관련
  */
 export const VALIDATION_MESSAGE = {
-  NUMEBR: {
+  NUMBER: {
     INVALID: 'Please enter a valid number',
   },
   DATE: {
