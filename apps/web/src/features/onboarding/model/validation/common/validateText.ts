@@ -11,11 +11,12 @@ export const validateText = (
 
   const LETTER = '\\p{L}';
   const SPACE = ' ';
+  const NEW_LINE = '\n';
   const NUMBER = '0-9';
   const BASIC_SPECIAL = '_/,:;"\'\\\\!?.-';
 
   // 기본 패턴 설정
-  let patternRegex = LETTER + SPACE;
+  let patternRegex = LETTER + SPACE + NEW_LINE;
 
   if (allowNumber) {
     patternRegex += NUMBER;
