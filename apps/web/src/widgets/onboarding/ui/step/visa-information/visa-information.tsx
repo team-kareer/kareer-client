@@ -75,7 +75,10 @@ const VisaInformation = () => {
                     if (!value) {
                       return 'Enter the graduation date';
                     }
-                    const result = validateDate(value, true, false);
+                    const result = validateDate(value, {
+                      allowFuture: true,
+                      allowPast: false,
+                    });
                     return result === true || result;
                   },
                 }}
@@ -140,7 +143,10 @@ const VisaInformation = () => {
                   return 'Enter the issuance date';
                 }
                 // 기본 날짜 형식 체크 (미래/과거 날짜 모두 허용)
-                const result = validateDate(value, true, true);
+                const result = validateDate(value, {
+                  allowFuture: true,
+                  allowPast: true,
+                });
                 if (result !== true) {
                   return result;
                 }
@@ -176,7 +182,10 @@ const VisaInformation = () => {
                 if (!value) {
                   return true;
                 }
-                const result = validateDate(value, true, true);
+                const result = validateDate(value, {
+                  allowFuture: true,
+                  allowPast: true,
+                });
                 if (result !== true) {
                   return result;
                 }

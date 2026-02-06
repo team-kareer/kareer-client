@@ -1,10 +1,12 @@
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
+import { type ValidateDateOptions } from '@features/onboarding';
 
 export const validateDate = (
   value: string,
-  allowFuture = false,
-  allowPast = false,
+  options: ValidateDateOptions = {},
 ) => {
+  const { allowFuture = false, allowPast = false } = options;
+
   if (!value) {
     return true;
   }

@@ -16,11 +16,10 @@ const validateD2Expiration = (
     return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_TWO_YEARS;
   }
   if (expectedGraduationDate) {
-    const graduationDateValidation = validateDate(
-      expectedGraduationDate,
-      true,
-      true,
-    );
+    const graduationDateValidation = validateDate(expectedGraduationDate, {
+      allowFuture: true,
+      allowPast: true,
+    });
     if (graduationDateValidation === true) {
       const graduation = new Date(expectedGraduationDate);
       if (expiration < graduation) {
@@ -61,12 +60,18 @@ export const validateExpirationDate = (
     return true;
   }
 
-  const issuanceDateValidation = validateDate(issuanceDate, true, true);
+  const issuanceDateValidation = validateDate(issuanceDate, {
+    allowFuture: true,
+    allowPast: true,
+  });
   if (issuanceDateValidation !== true) {
     return issuanceDateValidation;
   }
 
-  const expirationDateValidation = validateDate(expirationDate, true, true);
+  const expirationDateValidation = validateDate(expirationDate, {
+    allowFuture: true,
+    allowPast: true,
+  });
   if (expirationDateValidation !== true) {
     return expirationDateValidation;
   }

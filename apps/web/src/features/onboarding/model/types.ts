@@ -13,3 +13,8 @@ export type VisaValidationContext = {
   expirationDate: string;
   expectedGraduationDate: string;
 };
+
+export type ValidateDateOptions = {
+  allowFuture?: boolean;
+  allowPast?: boolean;
+};

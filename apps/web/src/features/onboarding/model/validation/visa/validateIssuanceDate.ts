@@ -24,7 +24,7 @@ export const validateIssuanceDate = (
     return true;
   }
 
-  const dateValidation = validateDate(issuanceDate, false, true);
+  const dateValidation = validateDate(issuanceDate, { allowPast: true });
   if (dateValidation !== true) {
     return dateValidation;
   }

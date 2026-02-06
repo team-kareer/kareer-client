@@ -73,7 +73,7 @@ const PersonalInformation = () => {
             rules={{
               required: 'Enter the birth',
               validate: (value) => {
-                const result = validateDate(value, false, true);
+                const result = validateDate(value, { allowPast: true });
                 return result === true || result;
               },
             }}
