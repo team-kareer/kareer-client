@@ -37,14 +37,11 @@ const validateD10Expiration = (expiration: Date, issuance: Date) => {
   if (expiration < today) {
     return VALIDATION_MESSAGE.VISA.D10_EXPIRATION_IN_PAST;
   }
-  const allowedDates = D10_ALLOWED_MONTHS.map((months) => {
-    const date = new Date(issuance);
-    date.setMonth(date.getMonth() + months);
-    date.setHours(0, 0, 0, 0);
-    return date.getTime();
-  });
+  const diffMonths =
+    (expiration.getFullYear() - issuance.getFullYear()) * 12 +
+    (expiration.getMonth() - issuance.getMonth());
 
-  if (!allowedDates.includes(expiration.getTime())) {
+  if (!D10_ALLOWED_MONTHS.includes(diffMonths)) {
     return VALIDATION_MESSAGE.VISA.D10_INVALID_DURATION;
   }
   return true;
