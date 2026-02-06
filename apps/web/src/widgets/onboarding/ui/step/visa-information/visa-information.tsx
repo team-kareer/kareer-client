@@ -142,15 +142,6 @@ const VisaInformation = () => {
                 if (!value) {
                   return 'Enter the issuance date';
                 }
-                // 기본 날짜 형식 체크 (미래/과거 날짜 모두 허용)
-                const result = validateDate(value, {
-                  allowFuture: true,
-                  allowPast: true,
-                });
-                if (result !== true) {
-                  return result;
-                }
-                // D-2 비자 타입일 경우 졸업 예정일과 비교
                 return validateIssuanceDate(
                   value,
                   visaType === 'D-2' ? 'D-2' : 'D-10',
@@ -181,13 +172,6 @@ const VisaInformation = () => {
               validate: (value) => {
                 if (!value) {
                   return true;
-                }
-                const result = validateDate(value, {
-                  allowFuture: true,
-                  allowPast: true,
-                });
-                if (result !== true) {
-                  return result;
                 }
 
                 if (!visaType) {
