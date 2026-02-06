@@ -18,3 +18,8 @@ export type ValidateDateOptions = {
   allowFuture?: boolean;
   allowPast?: boolean;
 };
+
+export type ValidateTextOptions = {
+  allowNumber?: boolean;
+  allowBasicSpecialCharacters?: boolean;
+};

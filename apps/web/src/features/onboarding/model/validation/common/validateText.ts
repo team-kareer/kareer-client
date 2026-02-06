@@ -1,10 +1,12 @@
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
+import { type ValidateTextOptions } from '@features/onboarding';
 
 export const validateText = (
   value: string | undefined,
-  allowNumber: boolean = false,
-  allowBasicSpecialCharacters: boolean = false,
+  options: ValidateTextOptions = {},
 ) => {
+  const { allowNumber = false, allowBasicSpecialCharacters = false } = options;
+
   if (!value || value.trim().length === 0) {
     return VALIDATION_MESSAGE.NAME.EMPTY;
   }

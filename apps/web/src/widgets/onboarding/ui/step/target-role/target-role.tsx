@@ -59,7 +59,7 @@ const TargetRole = () => {
             control={control}
             rules={{
               validate: (value) => {
-                const result = validateText(value, false, false);
+                const result = validateText(value);
                 return result === true || result;
               },
             }}

@@ -53,7 +53,10 @@ const PersonalBackground = () => {
             control={control}
             rules={{
               validate: (value) => {
-                const result = validateText(value, true, true);
+                const result = validateText(value, {
+                  allowNumber: true,
+                  allowBasicSpecialCharacters: true,
+                });
                 return result === true || result;
               },
             }}
