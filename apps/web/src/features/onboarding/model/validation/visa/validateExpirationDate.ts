@@ -34,6 +34,8 @@ const validateD10Expiration = (expiration: Date, issuance: Date) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  const isSameDay = expiration.getDate() === issuance.getDate();
+
   if (expiration < today) {
     return VALIDATION_MESSAGE.VISA.D10_EXPIRATION_IN_PAST;
   }
@@ -41,7 +43,7 @@ const validateD10Expiration = (expiration: Date, issuance: Date) => {
     (expiration.getFullYear() - issuance.getFullYear()) * 12 +
     (expiration.getMonth() - issuance.getMonth());
 
-  if (!D10_ALLOWED_MONTHS.includes(diffMonths)) {
+  if (!D10_ALLOWED_MONTHS.includes(diffMonths) || !isSameDay) {
     return VALIDATION_MESSAGE.VISA.D10_INVALID_DURATION;
   }
   return true;
