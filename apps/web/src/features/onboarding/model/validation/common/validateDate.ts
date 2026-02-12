@@ -1,6 +1,8 @@
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
 import { type ValidateDateOptions } from '@features/onboarding';
 
+import { COMPLETE_FORMAT_REGEX } from './regex';
+
 export const validateDate = (
   value: string,
   options: ValidateDateOptions = {},
@@ -11,8 +13,7 @@ export const validateDate = (
     return true;
   }
 
-  const completeFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
-  const hasCompleteFormat = completeFormatRegex.test(value);
+  const hasCompleteFormat = COMPLETE_FORMAT_REGEX.test(value);
 
   // 완전한 형식 체크
   if (!hasCompleteFormat) {
