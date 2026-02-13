@@ -3,14 +3,15 @@ import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { VISA_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
+import { type VisaType } from '@features/onboarding';
 import { useVisaInformation } from '@features/onboarding/hooks/useVisaInformation';
 import {
   validateAutocompleteOption,
   validateDate,
-  validateNumber,
-  validateVisaExpirationDate,
-  validateVisaIssuanceDate,
-} from '@features/onboarding/hooks/validators';
+  validateExpirationDate,
+  validateIssuanceDate,
+  validateVisaPoint,
+} from '@features/onboarding/model/validation';
 import { type OnboardingForm } from '@entities/onboarding';
 import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
 
@@ -74,7 +75,10 @@ const VisaInformation = () => {
                     if (!value) {
                       return 'Enter the graduation date';
                     }
-                    const result = validateDate(value, true, false);
+                    const result = validateDate(value, {
+                      allowFuture: true,
+                      allowPast: false,
+                    });
                     return result === true || result;
                   },
                 }}
@@ -104,7 +108,7 @@ const VisaInformation = () => {
                   rules={{
                     required: 'Enter the visa point',
                     validate: (value) => {
-                      const result = validateNumber(String(value));
+                      const result = validateVisaPoint(String(value));
                       return result === true || result;
                     },
                   }}
@@ -138,15 +142,9 @@ const VisaInformation = () => {
                 if (!value) {
                   return 'Enter the issuance date';
                 }
-                // 기본 날짜 형식 체크 (미래/과거 날짜 모두 허용)
-                const result = validateDate(value, true, true);
-                if (result !== true) {
-                  return result;
-                }
-                // D-2 비자 타입일 경우 졸업 예정일과 비교
-                return validateVisaIssuanceDate(
+                return validateIssuanceDate(
                   value,
-                  visaType,
+                  visaType === 'D-2' ? 'D-2' : 'D-10',
                   expectedGraduationDate,
                 );
               },
@@ -175,15 +173,15 @@ const VisaInformation = () => {
                 if (!value) {
                   return true;
                 }
-                const result = validateDate(value, true, true);
-                if (result !== true) {
-                  return result;
-                }
 
-                return validateVisaExpirationDate(
+                if (!visaType) {
+                  return true;
+                }
+                return validateExpirationDate(
                   value,
-                  visaType,
-                  visaStartDate,
+                  visaStartDate || '',
+                  expectedGraduationDate || '',
+                  visaType as VisaType,
                 );
               },
             }}

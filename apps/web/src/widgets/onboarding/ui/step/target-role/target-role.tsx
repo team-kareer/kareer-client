@@ -5,7 +5,8 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
-import { validateAutocompleteOption } from '@features/onboarding/hooks/validators';
+import { validateAutocompleteOption } from '@features/onboarding/model/validation';
+import { validateText } from '@features/onboarding/model/validation';
 import {
   MAJOR_LIST_QUERY_OPTIONS,
   type OnboardingForm,
@@ -55,6 +56,12 @@ const TargetRole = () => {
           <Controller
             name="secondaryMajor"
             control={control}
+            rules={{
+              validate: (value) => {
+                const result = validateText(value);
+                return result === true || result;
+              },
+            }}
             render={({ field }) => (
               <Input
                 {...field}
