@@ -70,10 +70,7 @@ const PersonalInformation = () => {
           label="Name"
           rules={{
             required: 'Enter your name',
-            validate: (value) => {
-              const result = validateText(value);
-              return result === true || result;
-            },
+            validate: (value) => validateText(value),
           }}
         >
           {(field, fieldState) => (
