@@ -14,6 +14,7 @@ import {
   type OnboardingForm,
 } from '@entities/onboarding';
 import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding';
+import { FormField } from '@shared/ui';
 
 import * as styles from './personal-information.css';
 
@@ -32,7 +33,7 @@ const PersonalInformation = () => {
       <OnboardingStepTitle stepNumber={1} title="Personal Information" />
       <div className={styles.inputContainer}>
         {/* Name - 1열 */}
-        <div>
+        {/* <div>
           <p className={styles.label}>Name</p>
           <Controller
             name="name"
@@ -63,7 +64,27 @@ const PersonalInformation = () => {
               </>
             )}
           />
-        </div>
+        </div> */}
+        <FormField
+          name="name"
+          label="Name"
+          rules={{
+            required: 'Enter your name',
+            validate: (value) => {
+              const result = validateText(value);
+              return result === true || result;
+            },
+          }}
+        >
+          {(field, fieldState) => (
+            <Input
+              {...field}
+              maxLength={MAX_LENGTH}
+              placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.NAME}
+              status={fieldState.error ? 'error' : 'default'}
+            />
+          )}
+        </FormField>
         {/* Date - 2열 */}
         <div>
           <p className={styles.label}>Date of Birth(YYYY-MM-DD)</p>

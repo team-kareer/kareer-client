@@ -7,6 +7,8 @@ import {
   RegisterOptions,
 } from 'react-hook-form';
 
+import * as styles from './form-field.css';
+
 type FormFieldProps<T extends FieldValues, K extends FieldPath<T>> = {
   label: string;
   name: K;
@@ -25,14 +27,16 @@ export const FormField = <T extends FieldValues, K extends FieldPath<T>>({
 }: FormFieldProps<T, K>) => {
   return (
     <div>
-      <p>{label}</p>
+      <p className={styles.label}>{label}</p>
       <Controller
         name={name}
         rules={rules}
         render={({ field, fieldState }) => (
           <>
             {children(field, fieldState)}
-            <p>{fieldState.error?.message || ''}</p>
+            <p className={styles.errorMessage}>
+              {fieldState.error?.message || ''}
+            </p>
           </>
         )}
       />
