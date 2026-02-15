@@ -1,6 +1,5 @@
 import { Autocomplete, Input } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
-import { Controller, useFormContext } from 'react-hook-form';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
 import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
@@ -9,19 +8,13 @@ import {
   validateDate,
   validateText,
 } from '@features/onboarding/model/validation';
-import {
-  COUNTRY_LIST_QUERY_OPTIONS,
-  type OnboardingForm,
-} from '@entities/onboarding';
+import { COUNTRY_LIST_QUERY_OPTIONS } from '@entities/onboarding';
 import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding';
 import { FormField } from '@shared/ui';
 
 import * as styles from './personal-information.css';
 
-const NON_BREAKING_SPACE = '\u00A0';
-
 const PersonalInformation = () => {
-  const { control } = useFormContext<OnboardingForm>();
   const { data: countryList } = useQuery({
     ...COUNTRY_LIST_QUERY_OPTIONS.GET_COUNTRY_LIST(),
   });
@@ -32,39 +25,6 @@ const PersonalInformation = () => {
     <section>
       <OnboardingStepTitle stepNumber={1} title="Personal Information" />
       <div className={styles.inputContainer}>
-        {/* Name - 1열 */}
-        {/* <div>
-          <p className={styles.label}>Name</p>
-          <Controller
-            name="name"
-            control={control}
-            rules={{
-              required: 'Enter your name',
-              validate: (value) => {
-                const result = validateText(value);
-                return result === true || result;
-              },
-            }}
-            render={({ field, fieldState }) => (
-              <>
-                <Input
-                  {...field}
-                  maxLength={MAX_LENGTH}
-                  status={fieldState.error ? 'error' : 'default'}
-                  placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.NAME}
-                />
-                <div className={styles.nameFooter}>
-                  <p className={styles.errorMessage}>
-                    {fieldState.error?.message || ''}
-                  </p>
-                  <p className={styles.textCount}>
-                    {field.value?.length || 0}/{MAX_LENGTH}
-                  </p>
-                </div>
-              </>
-            )}
-          />
-        </div> */}
         <FormField
           name="name"
           label="Name"
@@ -82,87 +42,58 @@ const PersonalInformation = () => {
             />
           )}
         </FormField>
-        {/* Date - 2열 */}
-        <div>
-          <p className={styles.label}>Date of Birth(YYYY-MM-DD)</p>
-          <Controller
-            name="birthDate"
-            control={control}
-            rules={{
-              required: 'Enter the birth',
-              validate: (value) => {
-                const result = validateDate(value, { allowPast: true });
-                return result === true || result;
-              },
-            }}
-            render={({ field, fieldState }) => (
-              <>
-                <Input
-                  {...field}
-                  placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.DATE}
-                  status={fieldState.error ? 'error' : 'default'}
-                />
-                <p className={styles.errorMessage}>
-                  {fieldState.error?.message || NON_BREAKING_SPACE}
-                </p>
-              </>
-            )}
-          />
-        </div>
-        {/* Country - 1열 */}
-        <div className={styles.autoWrapper}>
-          <p className={styles.label}>Country</p>
-          <Controller
-            name="country"
-            control={control}
-            // TODO : 테스트 서버 꺼짐으로 임시 주석 처리
-            rules={{
-              required: 'Select the Country',
-              validate: (value) => {
-                const result = validateAutocompleteOption(
-                  value,
-                  countryList?.countries || [],
-                );
-                return result === true || result;
-              },
-            }}
-            render={({ field }) => (
-              <Autocomplete
-                placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
-                value={field.value || ''}
-                onChange={(value) => field.onChange(value)}
-                options={countryList?.countries || []}
-              />
-            )}
-          />
-        </div>
-        {/* 오픽 Level - 2열 */}
-        <div className={styles.autoWrapper}>
-          <p className={styles.label}>TOPIK / KIIP Level</p>
-          <Controller
-            name="languageLevel"
-            control={control}
-            rules={{
-              required: 'Select the level',
-              validate: (value) => {
-                const result = validateAutocompleteOption(
-                  value,
-                  LANGUAGE_LEVEL_OPTIONS,
-                );
-                return result === true || result;
-              },
-            }}
-            render={({ field }) => (
-              <Autocomplete
-                placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.OPIK_LEVEL}
-                value={field.value || ''}
-                onChange={(value) => field.onChange(value)}
-                options={LANGUAGE_LEVEL_OPTIONS}
-              />
-            )}
-          />
-        </div>
-        {/* Degree - 1열 */}
+        <FormField
+          name="birthDate"
+          label="Date of Birth(YYYY-MM-DD)"
+          rules={{
+            required: 'Enter the birth',
+            validate: (value) => validateDate(value, { allowPast: true }),
+          }}
+        >
+          {(field, fieldState) => (
+            <Input
+              {...field}
+              placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.DATE}
+              status={fieldState.error ? 'error' : 'default'}
+            />
+          )}
+        </FormField>
+        <FormField
+          name="country"
+          label="Country"
+          rules={{
+            required: 'Select the Country',
+            validate: (value) =>
+              validateAutocompleteOption(value, countryList?.countries || []),
+          }}
+        >
+          {(field) => (
+            <Autocomplete
+              placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
+              value={field.value || ''}
+              onChange={(value) => field.onChange(value)}
+              options={countryList?.countries || []}
+            />
+          )}
+        </FormField>
+        <FormField
+          name="languageLevel"
+          label="TOPIK / KIIP Level"
+          rules={{
+            required: 'Select the level',
+            validate: (value) =>
+              validateAutocompleteOption(value, LANGUAGE_LEVEL_OPTIONS),
+          }}
+        >
+          {(field) => (
+            <Autocomplete
+              placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.OPIK_LEVEL}
+              value={field.value || ''}
+              onChange={(value) => field.onChange(value)}
+              options={LANGUAGE_LEVEL_OPTIONS}
+            />
+          )}
+        </FormField>
         <div>
           <div className={styles.labelWrapper}>
             <p className={styles.label}>Degree</p>

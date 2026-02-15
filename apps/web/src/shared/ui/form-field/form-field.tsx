@@ -4,6 +4,8 @@ import { FormFieldProps } from './form-field-types';
 
 import * as styles from './form-field.css';
 
+const NON_BREAKING_SPACE = '\u00A0';
+
 export const FormField = <T extends FieldValues, K extends FieldPath<T>>({
   label,
   name,
@@ -20,7 +22,7 @@ export const FormField = <T extends FieldValues, K extends FieldPath<T>>({
           <>
             {children(field, fieldState)}
             <p className={styles.errorMessage}>
-              {fieldState.error?.message || ''}
+              {fieldState.error?.message || NON_BREAKING_SPACE}
             </p>
           </>
         )}
