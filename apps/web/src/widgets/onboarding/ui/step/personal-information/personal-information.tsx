@@ -11,6 +11,7 @@ import {
 import { COUNTRY_LIST_QUERY_OPTIONS } from '@entities/onboarding';
 import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding';
 import { FormField } from '@shared/ui';
+import { FormInputField } from '@shared/ui';
 
 import * as styles from './personal-information.css';
 
@@ -25,7 +26,7 @@ const PersonalInformation = () => {
     <section>
       <OnboardingStepTitle stepNumber={1} title="Personal Information" />
       <div className={styles.inputContainer}>
-        <FormField
+        {/* <FormField
           name="name"
           label="Name"
           rules={{
@@ -41,7 +42,17 @@ const PersonalInformation = () => {
               status={fieldState.error ? 'error' : 'default'}
             />
           )}
-        </FormField>
+        </FormField> */}
+        <FormInputField
+          name="name"
+          label="Name"
+          rules={{
+            required: 'Enter your name',
+            validate: (value) => validateText(value),
+          }}
+          placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.NAME}
+          maxLength={MAX_LENGTH}
+        />
         <FormField
           name="birthDate"
           label="Date of Birth(YYYY-MM-DD)"

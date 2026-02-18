@@ -19,7 +19,7 @@ export type FormFieldProps<T extends FieldValues, K extends FieldPath<T>> = {
 export type FormInputFieldProps<
   T extends FieldValues,
   K extends FieldPath<T>,
-> = FormFieldProps<T, K> & {
+> = Omit<FormFieldProps<T, K>, 'children'> & {
   placeholder: string;
   maxLength?: number;
 };
