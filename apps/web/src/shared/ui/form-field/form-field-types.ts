@@ -23,3 +23,11 @@ export type FormInputFieldProps<
   placeholder: string;
   maxLength?: number;
 };
+
+export type FormAutoCompleteFieldProps<
+  T extends FieldValues,
+  K extends FieldPath<T>,
+> = Omit<FormFieldProps<T, K>, 'children'> & {
+  placeholder: string;
+  options: string[];
+};
