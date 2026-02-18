@@ -15,3 +15,11 @@ export type FormFieldProps<T extends FieldValues, K extends FieldPath<T>> = {
     fieldState: ControllerFieldState,
   ) => React.ReactElement;
 };
+
+export type FormInputFieldProps<
+  T extends FieldValues,
+  K extends FieldPath<T>,
+> = FormFieldProps<T, K> & {
+  placeholder: string;
+  maxLength?: number;
+};
