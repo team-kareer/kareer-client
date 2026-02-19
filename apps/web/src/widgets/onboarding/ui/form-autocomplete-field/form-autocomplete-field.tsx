@@ -1,7 +1,7 @@
 import { Autocomplete } from '@kds/ui';
 import { FieldPath, FieldValues } from 'react-hook-form';
 
-import { FormField } from '@shared/ui';
+import { FormField } from '@widgets/onboarding';
 
 import { FormAutoCompleteFieldProps } from '../form-field/form-field-types';
 

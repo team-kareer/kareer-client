@@ -1,5 +1,8 @@
 export * from './constants/placeholders';
 export { VALIDATION_MESSAGE } from './constants/validation-message';
+export { default as FormAutocompleteField } from './ui/form-autocomplete-field/form-autocomplete-field';
+export { FormField } from './ui/form-field/form-field';
+export { default as FormInputField } from './ui/form-input-field/form-input-field';
 export { default as OnboardingDegreeStep } from './ui/onboarding-degree-step/onboarding-degree-step';
 export { default as OnboardingStep } from './ui/onboarding-step/onboarding-step';
 export { default as OnboardingStepHeader } from './ui/onboarding-step-header/onboarding-step-header';

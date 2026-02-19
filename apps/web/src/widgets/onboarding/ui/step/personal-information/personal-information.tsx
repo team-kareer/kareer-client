@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
+import { FormInputField } from '@widgets/onboarding';
+import { FormAutocompleteField } from '@widgets/onboarding';
 import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import {
   validateAutocompleteOption,
@@ -9,8 +11,6 @@ import {
 } from '@features/onboarding/model/validation';
 import { COUNTRY_LIST_QUERY_OPTIONS } from '@entities/onboarding';
 import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding';
-import { FormInputField } from '@shared/ui';
-import { FormAutocompleteField } from '@shared/ui';
 
 import * as styles from './personal-information.css';
 
