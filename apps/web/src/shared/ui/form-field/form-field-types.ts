@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import {
   ControllerFieldState,
   ControllerRenderProps,
@@ -13,7 +14,7 @@ export type FormFieldProps<T extends FieldValues, K extends FieldPath<T>> = {
   children: (
     field: ControllerRenderProps<T, K>,
     fieldState: ControllerFieldState,
-  ) => React.ReactElement;
+  ) => ReactElement;
 };
 
 export type FormInputFieldProps<
