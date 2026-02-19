@@ -3,7 +3,7 @@ import { FieldPath, FieldValues } from 'react-hook-form';
 
 import { FormField } from '@widgets/onboarding';
 
-import { FormInputFieldProps } from '../form-field/form-field-types';
+import { FormInputFieldProps } from '../../types/form-field-types';
 
 const FormInputField = <T extends FieldValues, K extends FieldPath<T>>({
   name,

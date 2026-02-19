@@ -3,7 +3,7 @@ import { FieldPath, FieldValues } from 'react-hook-form';
 
 import { FormField } from '@widgets/onboarding';
 
-import { FormAutoCompleteFieldProps } from '../form-field/form-field-types';
+import { FormAutoCompleteFieldProps } from '../../types/form-field-types';
 
 const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
   name,
