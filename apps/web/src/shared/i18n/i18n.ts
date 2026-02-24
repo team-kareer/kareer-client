@@ -3,12 +3,41 @@ import { initReactI18next } from 'react-i18next';
 
 import { resources } from '@shared/i18n/resources';
 
+const LANGUAGE_STORAGE_KEY = 'app-language';
+const SUPPORTED_LANGUAGES = ['en', 'ko', 'vi', 'zh-CN'] as const;
+const DEFAULT_LANGUAGE = 'en';
+
+const getInitialLanguage = () => {
+  if (typeof window === 'undefined') {
+    return DEFAULT_LANGUAGE;
+  }
+
+  const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+  const isSupported = SUPPORTED_LANGUAGES.some(
+    (language) => language === savedLanguage,
+  );
+
+  return isSupported && savedLanguage ? savedLanguage : DEFAULT_LANGUAGE;
+};
+
+i18n.on('languageChanged', (lng) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  if (!SUPPORTED_LANGUAGES.some((language) => language === lng)) {
+    return;
+  }
+
+  window.localStorage.setItem(LANGUAGE_STORAGE_KEY, lng);
+});
+
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'en',
-  fallbackLng: 'en',
-  supportedLngs: ['en', 'ko', 'vi', 'zh-CN'],
-  ns: ['common, todo'],
+  lng: getInitialLanguage(),
+  fallbackLng: DEFAULT_LANGUAGE,
+  supportedLngs: SUPPORTED_LANGUAGES,
+  ns: ['common', 'todo'],
   defaultNS: 'common',
   interpolation: {
     escapeValue: false,
