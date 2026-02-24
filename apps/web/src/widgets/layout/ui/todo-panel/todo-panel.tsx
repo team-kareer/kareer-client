@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Button, Tab, useTabContext } from '@kds/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
@@ -48,6 +49,7 @@ const areAllTodosCompleted = (data?: ActionItemListResponse) => {
 
 const TodoPanel = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation('todo');
   const { data } = useQuery({ ...TODO_QUERY_OPTIONS.GET_TODO_LIST() });
   const { todos } = useSortedTodos({
     visa: data?.visaActionItems ?? [],
@@ -126,7 +128,7 @@ const TodoPanel = () => {
 
   return (
     <aside className={styles.container}>
-      <h3 className={styles.title}>To-Do</h3>
+      <h3 className={styles.title}>{t('TodoTitle')}</h3>
       <Tab.Container initialValue="visa">
         <Tab.List className={styles.tabList}>
           <TodoTabButtons />
