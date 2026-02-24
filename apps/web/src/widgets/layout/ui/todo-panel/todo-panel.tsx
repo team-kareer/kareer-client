@@ -22,6 +22,14 @@ const TABS = [
   { id: 2, value: 'career', label: 'Career' },
 ] as const;
 
+// 테스트용 코드
+const LANGUAGE_OPTIONS = [
+  { code: 'en', label: 'EN' },
+  { code: 'ko', label: 'KO' },
+  { code: 'vi', label: 'VI' },
+  { code: 'zh-CN', label: 'ZH-CN' },
+] as const;
+
 type ActionItemListResponse = components['schemas']['ActionItemListResponse'];
 
 const toggleCompleted = (
@@ -49,7 +57,7 @@ const areAllTodosCompleted = (data?: ActionItemListResponse) => {
 
 const TodoPanel = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation('todo');
+  const { t, i18n } = useTranslation('todo');
   const { data } = useQuery({ ...TODO_QUERY_OPTIONS.GET_TODO_LIST() });
   const { todos } = useSortedTodos({
     visa: data?.visaActionItems ?? [],
@@ -128,6 +136,19 @@ const TodoPanel = () => {
 
   return (
     <aside className={styles.container}>
+      {/* 테스트용 코드 */}
+      <div>
+        {LANGUAGE_OPTIONS.map(({ code, label }) => (
+          <Button
+            key={code}
+            preset={i18n.language === code ? 'mini_primary' : 'mini_outlined'}
+            onClick={() => void i18n.changeLanguage(code)}
+          >
+            {label}
+          </Button>
+        ))}
+      </div>
+      {/* 테스트용 코드 */}
       <h3 className={styles.title}>{t('TodoTitle')}</h3>
       <Tab.Container initialValue="visa">
         <Tab.List className={styles.tabList}>
