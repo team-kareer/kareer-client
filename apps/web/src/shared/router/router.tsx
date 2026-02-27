@@ -6,7 +6,7 @@ import { LoginPage, OnboardingPage } from '@shared/router/lazy';
 import {
   guestOnlyLoader,
   onboardingGuardLoader,
-  requiredAuthLoader,
+  requireAuthLoader,
 } from '@shared/router/loader';
 import OnboardingRouteLayout from '@shared/router/onboarding-route-layout';
 import {
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
   },
   {
     Component: GlobalLayout,
-    loader: requiredAuthLoader,
+    loader: requireAuthLoader,
     children: protectedAppRoutes,
   },
 ]);
