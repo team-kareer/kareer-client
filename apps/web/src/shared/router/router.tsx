@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router';
 import { ROUTE_PATH } from '@shared/router';
 import GlobalLayout from '@shared/router/global-layout';
 import { LoginPage, OnboardingPage } from '@shared/router/lazy';
-import { guestOnlyLodaer, requiredAuthLoader } from '@shared/router/loader';
+import { guestOnlyLoader, requiredAuthLoader } from '@shared/router/loader';
 import OnboardingRouteLayout from '@shared/router/onboarding-route-layout';
 import {
   protectedAppRoutes,
@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: ROUTE_PATH.LOGIN,
-        loader: guestOnlyLodaer,
+        loader: guestOnlyLoader,
         Component: LoginPage,
       },
       {
