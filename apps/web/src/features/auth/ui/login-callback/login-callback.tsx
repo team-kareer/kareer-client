@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { exchangeGoogleCode } from '@features/auth/api/exchange-google-code';
+import { AUTH_QUERY_KEY } from '@features/auth/queries';
 import { tokenService } from '@shared/auth/token-service';
 import { ROUTE_PATH } from '@shared/router';
 import { PageLoader } from '@shared/ui';
@@ -9,6 +11,7 @@ import { PageLoader } from '@shared/ui';
 const LoginCallback = () => {
   const navigate = useNavigate();
   const hasExchangedRef = useRef(false);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (hasExchangedRef.current) {
@@ -33,6 +36,10 @@ const LoginCallback = () => {
 
         tokenService.saveAccessToken(response.accessToken);
 
+        queryClient.setQueryData(AUTH_QUERY_KEY.LOGIN_STATE(), {
+          onboardingRequired: response.onboardingRequired ?? false,
+        });
+
         navigate(
           response.onboardingRequired
             ? ROUTE_PATH.ONBOARDING
@@ -45,7 +52,7 @@ const LoginCallback = () => {
     };
 
     exchangeCode();
-  }, [navigate]);
+  }, [navigate, queryClient]);
 
   return (
     <>
