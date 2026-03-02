@@ -1,7 +1,37 @@
-import type { LoaderFunctionArgs } from 'react-router';
+import { type LoaderFunctionArgs, redirect } from 'react-router';
 
-export const guestOnlyLoader = (_args: LoaderFunctionArgs) => {};
+import { USER_QUERY_OPTIONS } from '@entities/user/queries';
+import { queryClient } from '@shared/apis/providers/query-provider';
+import { authService } from '@shared/auth/auth-service';
+import { ROUTE_PATH } from '@shared/router';
 
-export const requireAuthLoader = (_args: LoaderFunctionArgs) => {};
+export const guestOnlyLoader = ({ request }: LoaderFunctionArgs) => {
+  if (authService.isAuthenticated()) {
+    const from = new URL(request.url).searchParams.get('from');
+    throw redirect(from ?? ROUTE_PATH.DASHBOARD);
+  }
+  return null;
+};
 
-export const onboardingGuardLoader = (_args: LoaderFunctionArgs) => {};
+export const onboardingGuardLoader = async () => {
+  if (!authService.isAuthenticated()) {
+    throw redirect(ROUTE_PATH.LOGIN);
+  }
+
+  const userStatus = await queryClient.ensureQueryData(
+    USER_QUERY_OPTIONS.GET_USER_STATUS(),
+  );
+
+  if (userStatus.onboardingRequired === false) {
+    throw redirect(ROUTE_PATH.DASHBOARD);
+  }
+
+  return null;
+};
+
+export const requireAuthLoader = () => {
+  if (!authService.isAuthenticated()) {
+    throw redirect(ROUTE_PATH.LOGIN);
+  }
+  return null;
+};

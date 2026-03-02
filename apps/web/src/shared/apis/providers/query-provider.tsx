@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { shouldRetry } from '../configs/query-config';
 import DevtoolsProvider from './devtools-provider';
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: shouldRetry,
