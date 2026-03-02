@@ -1,7 +1,7 @@
 import { type LoaderFunctionArgs, redirect } from 'react-router';
 
 import { USER_QUERY_OPTIONS } from '@entities/user/queries';
-import { queryClient } from '@shared/apis/providers/query-provider';
+import { queryClient } from '@shared/apis/providers/query-client';
 import { authService } from '@shared/auth/auth-service';
 import { ROUTE_PATH } from '@shared/router';
 

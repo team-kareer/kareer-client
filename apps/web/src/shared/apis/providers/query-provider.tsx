@@ -1,19 +1,9 @@
 import { ReactNode } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 
-import { shouldRetry } from '../configs/query-config';
+import { queryClient } from '@shared/apis/providers/query-client';
+
 import DevtoolsProvider from './devtools-provider';
-
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: shouldRetry,
-      staleTime: 0,
-      gcTime: 1000 * 60 * 5,
-      refetchOnWindowFocus: true,
-    },
-  },
-});
 
 interface QueryProviderProps {
   children: ReactNode;
