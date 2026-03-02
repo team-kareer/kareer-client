@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router';
 
 import { ROUTE_PATH } from '@shared/router';
-import GlobalLayout from '@shared/router/global-layout';
+import AppRouteLayout from '@shared/router/app-route-layout';
 import { LoginPage, OnboardingPage } from '@shared/router/lazy';
 import {
   guestOnlyLoader,
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    Component: GlobalLayout,
+    Component: AppRouteLayout,
     loader: requireAuthLoader,
     children: protectedAppRoutes,
   },
