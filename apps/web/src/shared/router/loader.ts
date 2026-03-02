@@ -13,10 +13,15 @@ export const guestOnlyLoader = ({ request }: LoaderFunctionArgs) => {
   return null;
 };
 
-export const onboardingGuardLoader = async () => {
+export const requireAuthLoader = () => {
   if (!authService.isAuthenticated()) {
     throw redirect(ROUTE_PATH.LOGIN);
   }
+  return null;
+};
+
+export const onboardingGuardLoader = async () => {
+  requireAuthLoader();
 
   const userStatus = await queryClient.ensureQueryData(
     USER_QUERY_OPTIONS.GET_USER_STATUS(),
@@ -26,12 +31,5 @@ export const onboardingGuardLoader = async () => {
     throw redirect(ROUTE_PATH.DASHBOARD);
   }
 
-  return null;
-};
-
-export const requireAuthLoader = () => {
-  if (!authService.isAuthenticated()) {
-    throw redirect(ROUTE_PATH.LOGIN);
-  }
   return null;
 };
