@@ -12,7 +12,7 @@ import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeho
 import { validateText } from '@features/onboarding/model/validation';
 import { type OnboardingForm } from '@entities/onboarding';
 import { getPlaceholderByTargetJob } from '@entities/onboarding';
-import { TextField } from '@shared/ui/text-field/text-field';
+import { TextField } from '@shared/ui';
 
 import * as styles from './personal-background.css';
 

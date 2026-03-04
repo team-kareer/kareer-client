@@ -41,3 +41,10 @@ export type FormAutoCompleteFieldProps<
   placeholder: string;
   options: string[];
 };
+
+export type FormTextareaFieldProps<
+  T extends FieldValues,
+  K extends FieldPath<T>,
+> = Omit<FormFieldProps<T, K>, 'children'> & {
+  placeholder: string;
+};
