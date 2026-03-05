@@ -11,12 +11,19 @@ const FormInputField = <T extends FieldValues, K extends FieldPath<T>>({
   rules,
   placeholder,
   maxLength,
+  type = 'text',
 }: FormInputFieldProps<T, K>) => {
   return (
     <FormField name={name} label={label} rules={rules}>
       {(field, fieldState) => (
         <Input
           {...field}
+          value={type === 'number' ? String(field.value ?? '') : field.value}
+          onChange={(e) =>
+            type === 'number'
+              ? field.onChange(Number(e.target.value))
+              : field.onChange(e.target.value)
+          }
           status={fieldState.error ? 'error' : 'default'}
           placeholder={placeholder}
           maxLength={maxLength}
