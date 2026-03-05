@@ -11,7 +11,7 @@ export type FormBaseFieldProps<
   T extends FieldValues,
   K extends FieldPath<T>,
 > = {
-  label: string;
+  label?: string;
   name: K;
 };
 
@@ -20,6 +20,7 @@ export type FormFieldProps<
   K extends FieldPath<T>,
 > = FormBaseFieldProps<T, K> & {
   rules: RegisterOptions<T, K>;
+  showErrorMessage?: boolean;
   children: (
     field: ControllerRenderProps<T, K>,
     fieldState: ControllerFieldState,
@@ -47,4 +48,6 @@ export type FormTextareaFieldProps<
   K extends FieldPath<T>,
 > = Omit<FormFieldProps<T, K>, 'children'> & {
   placeholder: string;
+  showCount: boolean;
+  displayMaxLength: number;
 };

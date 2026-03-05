@@ -10,20 +10,23 @@ export const FormField = <T extends FieldValues, K extends FieldPath<T>>({
   label,
   name,
   rules,
+  showErrorMessage = true,
   children,
 }: FormFieldProps<T, K>) => {
   return (
     <div>
-      <p className={styles.label}>{label}</p>
+      {label && <p className={styles.label}>{label}</p>}
       <Controller
         name={name}
         rules={rules}
         render={({ field, fieldState }) => (
           <>
             {children(field, fieldState)}
-            <p className={styles.errorMessage}>
-              {fieldState.error?.message || NON_BREAKING_SPACE}
-            </p>
+            {showErrorMessage && (
+              <p className={styles.errorMessage}>
+                {fieldState.error?.message || NON_BREAKING_SPACE}
+              </p>
+            )}
           </>
         )}
       />

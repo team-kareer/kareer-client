@@ -10,16 +10,24 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
   label,
   rules,
   placeholder,
+  showCount,
+  displayMaxLength,
 }: FormTextareaFieldProps<T, K>) => {
   return (
-    <FormField name={name} label={label} rules={rules}>
-      {(field, fieldState) => (
-        <TextField
-          {...field}
-          isError={!!fieldState.error}
-          placeholder={placeholder}
-        />
-      )}
+    <FormField name={name} rules={rules} label={label} showErrorMessage={false}>
+      {(field, fieldState) => {
+        return (
+          <TextField
+            {...field}
+            value={field.value || ''}
+            onChange={(e) => field.onChange(e.target.value)}
+            isError={!!fieldState.error}
+            placeholder={placeholder}
+            showCount={showCount}
+            displayMaxLength={displayMaxLength}
+          />
+        );
+      }}
     </FormField>
   );
 };
