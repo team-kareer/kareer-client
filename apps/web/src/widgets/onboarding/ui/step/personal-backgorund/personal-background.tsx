@@ -3,6 +3,8 @@ import { BangCircleIcon } from '@kds/icons';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
+// import { TextField } from '@shared/ui';
+import { FormTextareaField } from '@widgets/onboarding';
 import {
   PERSONAL_BACKGROUND_DESCRIPTION,
   PERSONAL_BACKGROUND_INFO_MESSAGES,
@@ -12,7 +14,6 @@ import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeho
 import { validateText } from '@features/onboarding/model/validation';
 import { type OnboardingForm } from '@entities/onboarding';
 import { getPlaceholderByTargetJob } from '@entities/onboarding';
-import { TextField } from '@shared/ui';
 
 import * as styles from './personal-background.css';
 
@@ -48,7 +49,7 @@ const PersonalBackground = () => {
           </p>
         </div>
         <div className={styles.textAreaWrapper}>
-          <Controller
+          {/* <Controller
             name="personalBackground"
             control={control}
             rules={{
@@ -73,6 +74,14 @@ const PersonalBackground = () => {
                 displayMaxLength={1000}
               />
             )}
+          /> */}
+          <FormTextareaField
+            name="personalBackground"
+            label="Personal Background"
+            rules={{
+              validate: (value) => validateText(value),
+            }}
+            placeholder={placeholder}
           />
         </div>
         <div className={styles.infoContainer}>
