@@ -33,6 +33,7 @@ export type FormInputFieldProps<
 > = Omit<FormFieldProps<T, K>, 'children'> & {
   placeholder: string;
   maxLength?: number;
+  type?: 'text' | 'number';
 };
 
 export type FormAutoCompleteFieldProps<
