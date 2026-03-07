@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Button, Tab, useTabContext } from '@kds/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
@@ -19,6 +20,14 @@ import * as styles from './todo-panel.css';
 const TABS = [
   { id: 1, value: 'visa', label: 'Visa' },
   { id: 2, value: 'career', label: 'Career' },
+] as const;
+
+// 테스트용 코드
+const LANGUAGE_OPTIONS = [
+  { code: 'en', label: 'EN' },
+  { code: 'ko', label: 'KO' },
+  { code: 'vi', label: 'VI' },
+  { code: 'zh-CN', label: 'ZH-CN' },
 ] as const;
 
 type ActionItemListResponse = components['schemas']['ActionItemListResponse'];
@@ -48,6 +57,7 @@ const areAllTodosCompleted = (data?: ActionItemListResponse) => {
 
 const TodoPanel = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation('todo');
   const { data } = useQuery({ ...TODO_QUERY_OPTIONS.GET_TODO_LIST() });
   const { todos } = useSortedTodos({
     visa: data?.visaActionItems ?? [],
@@ -126,7 +136,20 @@ const TodoPanel = () => {
 
   return (
     <aside className={styles.container}>
-      <h3 className={styles.title}>To-Do</h3>
+      {/* 테스트용 코드 */}
+      <div>
+        {LANGUAGE_OPTIONS.map(({ code, label }) => (
+          <Button
+            key={code}
+            preset={i18n.language === code ? 'mini_primary' : 'mini_outlined'}
+            onClick={() => void i18n.changeLanguage(code)}
+          >
+            {label}
+          </Button>
+        ))}
+      </div>
+      {/* 테스트용 코드 */}
+      <h3 className={styles.title}>{t('TodoTitle')}</h3>
       <Tab.Container initialValue="visa">
         <Tab.List className={styles.tabList}>
           <TodoTabButtons />
