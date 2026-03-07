@@ -49,7 +49,7 @@ const areAllTodosCompleted = (data?: ActionItemListResponse) => {
 
 const TodoPanel = () => {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation('todo');
+  const { t } = useTranslation('todo');
   const { data } = useQuery({ ...TODO_QUERY_OPTIONS.GET_TODO_LIST() });
   const { todos } = useSortedTodos({
     visa: data?.visaActionItems ?? [],
