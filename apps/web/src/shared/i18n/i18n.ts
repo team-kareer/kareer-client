@@ -30,6 +30,7 @@ i18n.on('languageChanged', (lng) => {
   }
 
   window.localStorage.setItem(LANGUAGE_STORAGE_KEY, lng);
+  document.documentElement.lang = lng;
 });
 
 i18n.use(initReactI18next).init({
