@@ -1,40 +1,39 @@
 import { createBrowserRouter } from 'react-router';
 
-import GlobalLayout from '@shared/router/global-layout';
+import { ROUTE_PATH } from '@shared/router';
+import AppRouteLayout from '@shared/router/app-route-layout';
+import { LoginPage, OnboardingPage } from '@shared/router/lazy';
+import {
+  guestOnlyLoader,
+  onboardingGuardLoader,
+  requireAuthLoader,
+} from '@shared/router/loader';
 import OnboardingRouteLayout from '@shared/router/onboarding-route-layout';
-import ProtectedRoute from '@shared/router/protected-route';
 import {
   protectedAppRoutes,
   publicRoutes,
 } from '@shared/router/routes/global-routes';
-import {
-  protectedOnboardingRoutes,
-  publicOnboardingRoutes,
-} from '@shared/router/routes/onboarding-routes';
-import UnauthenticatedOnlyRoute from '@shared/router/unauthenticated-only-route';
 
 export const router = createBrowserRouter([
   ...publicRoutes,
   {
-    Component: GlobalLayout,
+    Component: OnboardingRouteLayout,
     children: [
       {
-        Component: ProtectedRoute,
-        children: protectedAppRoutes,
+        path: ROUTE_PATH.LOGIN,
+        loader: guestOnlyLoader,
+        Component: LoginPage,
+      },
+      {
+        path: ROUTE_PATH.ONBOARDING,
+        loader: onboardingGuardLoader,
+        Component: OnboardingPage,
       },
     ],
   },
   {
-    Component: OnboardingRouteLayout,
-    children: [
-      {
-        Component: UnauthenticatedOnlyRoute,
-        children: publicOnboardingRoutes,
-      },
-      {
-        Component: ProtectedRoute,
-        children: protectedOnboardingRoutes,
-      },
-    ],
+    Component: AppRouteLayout,
+    loader: requireAuthLoader,
+    children: protectedAppRoutes,
   },
 ]);
