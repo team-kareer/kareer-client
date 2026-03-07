@@ -11,10 +11,10 @@ export const sectionHeader = style({
 
 export const titleStyle = style({
   ...typography.body7_sb_14,
-  color: color.grayscale.gray500,
+  color: color.grayscale.gray800,
 });
 
 export const subtitleStyle = style({
   ...typography.body8_m_14,
-  color: color.grayscale.gray400,
+  color: color.grayscale.gray500,
 });
