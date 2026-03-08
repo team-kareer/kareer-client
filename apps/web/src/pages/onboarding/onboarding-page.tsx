@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import {
@@ -22,11 +22,9 @@ import {
   OnboardingForm,
   STEP_TITLES,
 } from '@entities/onboarding';
-import { USER_QUERY_KEY } from '@entities/user/queries';
 import useFunnel from '@shared/hooks/usefunnel';
 
 const OnboardingPage = () => {
-  const queryClient = useQueryClient();
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
     useFunnel(FUNNEL_STEPS, '/');
   const [error, setError] = useState<Error | null>(null);
@@ -95,10 +93,7 @@ const OnboardingPage = () => {
 
   const { mutate: submitOnboarding } = useMutation({
     mutationFn: postOnboardingForm,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: USER_QUERY_KEY.USER_STATUS(),
-      });
+    onSuccess: () => {
       // 온보딩 성공 후 로드맵 생성 API 호출
       generateRoadmap();
       goToNextStep();
