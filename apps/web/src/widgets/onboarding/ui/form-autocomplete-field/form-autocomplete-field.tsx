@@ -19,7 +19,7 @@ const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
           {...field}
           placeholder={placeholder}
           options={options}
-          onChange={(value) => field.onChange(value)}
+          onChange={field.onChange}
           value={field.value || ''}
         />
       )}
