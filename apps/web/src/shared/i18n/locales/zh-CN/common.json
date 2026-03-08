@@ -1,0 +1,10 @@
+{
+  "appName": "Kareer",
+  "action": {
+    "confirm": "确认",
+    "cancel": "取消"
+  },
+  "state": {
+    "loading": "加载中..."
+  }
+}

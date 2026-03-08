@@ -1,0 +1,10 @@
+{
+  "appName": "Kareer",
+  "action": {
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "state": {
+    "loading": "Loading..."
+  }
+}

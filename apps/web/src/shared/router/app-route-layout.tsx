@@ -7,7 +7,7 @@ import ErrorPage from '@pages/error/error';
 import { AppLayout } from '@widgets/layout';
 import { PageLoader } from '@shared/ui';
 
-const GlobalLayout = () => {
+const AppRouteLayout = () => {
   return (
     <AppLayout>
       <QueryErrorResetBoundary>
@@ -26,4 +26,4 @@ const GlobalLayout = () => {
   );
 };
 
-export default GlobalLayout;
+export default AppRouteLayout;
