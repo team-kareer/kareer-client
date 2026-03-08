@@ -41,7 +41,7 @@ const VisaInformation = () => {
     }
     return validateIssuanceDate(
       value,
-      visaType === 'D-2' ? 'D-2' : 'D-10',
+      visaType as 'D-2' | 'D-10',
       expectedGraduationDate,
     );
   };
