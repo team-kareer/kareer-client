@@ -17,6 +17,16 @@ import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './visa-information.css';
 
+const validateGraduationDate = (value: string) => {
+  if (!value) {
+    return 'Enter the graduation date';
+  }
+  return validateDate(value, {
+    allowFuture: true,
+    allowPast: false,
+  });
+};
+
 const VisaInformation = () => {
   const { control } = useFormContext<OnboardingForm>();
   const { visaType, visaStartDate } = useVisaInformation();
@@ -24,6 +34,29 @@ const VisaInformation = () => {
     control,
     name: 'expectedGraduationDate',
   });
+
+  const validateIssuanceDateField = (value: string) => {
+    if (!value) {
+      return 'Enter the issuance date';
+    }
+    return validateIssuanceDate(
+      value,
+      visaType === 'D-2' ? 'D-2' : 'D-10',
+      expectedGraduationDate,
+    );
+  };
+
+  const validateExpirationDateField = (value: string) => {
+    if (!value || !visaType) {
+      return true;
+    }
+    return validateExpirationDate(
+      value,
+      visaStartDate || '',
+      expectedGraduationDate || '',
+      visaType as VisaType,
+    );
+  };
 
   return (
     <section>
@@ -42,25 +75,18 @@ const VisaInformation = () => {
         />
         {/* D-2 & D-10 비자 타입 조건부 렌더링 */}
         <div style={{ visibility: visaType ? 'visible' : 'hidden' }}>
-          {visaType === 'D-2' ? (
+          {visaType === 'D-2' && (
             <FormInputField
               name="expectedGraduationDate"
               label="Expected Graducation Date (YYYY-MM-DD)"
               rules={{
                 required: 'Enter the graduation date',
-                validate: (value) => {
-                  if (!value) {
-                    return 'Enter the graduation date';
-                  }
-                  return validateDate(value, {
-                    allowFuture: true,
-                    allowPast: false,
-                  });
-                },
+                validate: validateGraduationDate,
               }}
               placeholder={VISA_INFORMATION_PLACEHOLDERS.GRADUATION_DATE}
             />
-          ) : visaType === 'D-10' ? (
+          )}
+          {visaType === 'D-10' && (
             <FormInputField
               name="visaPoint"
               label="Visa Point"
@@ -71,23 +97,14 @@ const VisaInformation = () => {
               }}
               placeholder={VISA_INFORMATION_PLACEHOLDERS.NUMBER}
             />
-          ) : null}
+          )}
         </div>
         <FormInputField
           name="visaStartDate"
           label="Visa Issuance Date (YYYY-MM-DD)"
           rules={{
             required: 'Enter the issuance date',
-            validate: (value) => {
-              if (!value) {
-                return 'Enter the issuance date';
-              }
-              return validateIssuanceDate(
-                value,
-                visaType === 'D-2' ? 'D-2' : 'D-10',
-                expectedGraduationDate,
-              );
-            },
+            validate: validateIssuanceDateField,
           }}
           placeholder={VISA_INFORMATION_PLACEHOLDERS.ISSUANCE_DATE}
         />
@@ -95,17 +112,7 @@ const VisaInformation = () => {
           name="visaExpiredAt"
           label="Visa Expiration Date (YYYY-MM-DD)"
           rules={{
-            validate: (value) => {
-              if (!value || !visaType) {
-                return true;
-              }
-              return validateExpirationDate(
-                value,
-                visaStartDate || '',
-                expectedGraduationDate || '',
-                visaType as VisaType,
-              );
-            },
+            validate: validateExpirationDateField,
           }}
           placeholder={VISA_INFORMATION_PLACEHOLDERS.EXPIRATION_DATE}
         />
