@@ -15,20 +15,23 @@ const FormInputField = <T extends FieldValues, K extends FieldPath<T>>({
 }: FormInputFieldProps<T, K>) => {
   return (
     <FormField name={name} label={label} rules={rules}>
-      {(field, fieldState) => (
-        <Input
-          {...field}
-          value={type === 'number' ? String(field.value ?? '') : field.value}
-          onChange={(e) =>
-            type === 'number'
-              ? field.onChange(Number(e.target.value))
-              : field.onChange(e.target.value)
-          }
-          status={fieldState.error ? 'error' : 'default'}
-          placeholder={placeholder}
-          maxLength={maxLength}
-        />
-      )}
+      {(field, fieldState) => {
+        const isNumber = type === 'number';
+        const value = isNumber ? String(field.value ?? '') : field.value;
+        const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+          field.onChange(isNumber ? Number(e.target.value) : e.target.value);
+        };
+        return (
+          <Input
+            {...field}
+            value={value}
+            onChange={handleChangeValue}
+            status={fieldState.error ? 'error' : 'default'}
+            placeholder={placeholder}
+            maxLength={maxLength}
+          />
+        );
+      }}
     </FormField>
   );
 };
