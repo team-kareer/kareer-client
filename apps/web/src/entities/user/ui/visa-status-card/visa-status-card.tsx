@@ -21,7 +21,7 @@ const VisaStatusCard = ({
     <article className={styles.container}>
       <div className={styles.top}>
         <div className={styles.header}>
-          <Icon width={14} height={14} className={styles.icon} />
+          <Icon width={14} height={14} />
           <span className={styles.statusName({ isActive })}>{statusName}</span>
         </div>
         <span className={styles.date}>{date}</span>

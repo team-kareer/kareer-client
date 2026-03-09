@@ -16,16 +16,13 @@ export const top = style({
   alignItems: 'center',
   justifyContent: 'space-between',
   width: '100%',
+  color: themeVars.color.grayscale.gray500,
 });
 
 export const header = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.4rem',
-});
-
-export const icon = style({
-  color: themeVars.color.grayscale.gray500,
 });
 
 export const statusName = recipe({
