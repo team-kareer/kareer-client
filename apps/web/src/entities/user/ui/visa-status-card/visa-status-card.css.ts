@@ -32,7 +32,6 @@ export const statusName = recipe({
   variants: {
     isActive: {
       true: { color: themeVars.color.primary[500] },
-      false: { color: themeVars.color.grayscale.gray500 },
     },
   },
 });
@@ -44,5 +43,4 @@ export const title = style({
 
 export const date = style({
   ...typography.cap2_m_12,
-  color: themeVars.color.grayscale.gray500,
 });
