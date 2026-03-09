@@ -21,7 +21,6 @@ const ActionRequiredAccordion = ({ phaseId }: ActionRequiredAccordion) => {
   const navigate = useNavigate();
   const { data } = useQuery({
     ...PHASE_QUERY_OPTIONS.GET_PHASE_ITEM_HOME(phaseId),
-    placeholderData: (prev) => prev,
   });
 
   const { isOpen, shouldRender, toggle } = useAccordion();
