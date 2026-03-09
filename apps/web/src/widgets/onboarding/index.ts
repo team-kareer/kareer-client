@@ -1,6 +1,9 @@
 export * from './constants/placeholders';
 export { VALIDATION_MESSAGE } from './constants/validation-message';
-export { type FormBaseFieldProps } from './types/form-field-types';
+export {
+  type FormBaseFieldProps,
+  type FormFieldProps,
+} from './types/form-field-types';
 export { default as FormAutocompleteField } from './ui/form-autocomplete-field/form-autocomplete-field';
 export { FormField } from './ui/form-field/form-field';
 export { default as FormInputField } from './ui/form-input-field/form-input-field';

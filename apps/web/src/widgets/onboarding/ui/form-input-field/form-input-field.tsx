@@ -1,9 +1,17 @@
 import { Input } from '@kds/ui';
 import { FieldPath, FieldValues } from 'react-hook-form';
 
+import type { FormFieldProps } from '@widgets/onboarding';
 import { FormField } from '@widgets/onboarding';
 
-import { FormInputFieldProps } from '../../types/form-field-types';
+type FormInputFieldProps<T extends FieldValues, K extends FieldPath<T>> = Omit<
+  FormFieldProps<T, K>,
+  'children'
+> & {
+  placeholder: string;
+  maxLength?: number;
+  type?: 'text' | 'number';
+};
 
 const FormInputField = <T extends FieldValues, K extends FieldPath<T>>({
   name,

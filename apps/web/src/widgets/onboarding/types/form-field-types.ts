@@ -26,29 +26,3 @@ export type FormFieldProps<
     fieldState: ControllerFieldState,
   ) => ReactElement;
 };
-
-export type FormInputFieldProps<
-  T extends FieldValues,
-  K extends FieldPath<T>,
-> = Omit<FormFieldProps<T, K>, 'children'> & {
-  placeholder: string;
-  maxLength?: number;
-  type?: 'text' | 'number';
-};
-
-export type FormAutoCompleteFieldProps<
-  T extends FieldValues,
-  K extends FieldPath<T>,
-> = Omit<FormFieldProps<T, K>, 'children'> & {
-  placeholder: string;
-  options: string[];
-};
-
-export type FormTextareaFieldProps<
-  T extends FieldValues,
-  K extends FieldPath<T>,
-> = Omit<FormFieldProps<T, K>, 'children'> & {
-  placeholder: string;
-  showCount: boolean;
-  displayMaxLength: number;
-};

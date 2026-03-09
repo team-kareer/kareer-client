@@ -1,9 +1,17 @@
 import { FieldPath, FieldValues } from 'react-hook-form';
 
+import type { FormFieldProps } from '@widgets/onboarding';
 import { FormField } from '@widgets/onboarding';
 import { TextField } from '@shared/ui';
 
-import { FormTextareaFieldProps } from '../../types/form-field-types';
+type FormTextareaFieldProps<
+  T extends FieldValues,
+  K extends FieldPath<T>,
+> = Omit<FormFieldProps<T, K>, 'children'> & {
+  placeholder: string;
+  showCount: boolean;
+  displayMaxLength: number;
+};
 
 const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
   name,

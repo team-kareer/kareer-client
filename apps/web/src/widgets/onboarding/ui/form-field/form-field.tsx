@@ -1,6 +1,6 @@
 import { Controller, FieldPath, FieldValues } from 'react-hook-form';
 
-import { FormFieldProps } from '../../types/form-field-types';
+import type { FormFieldProps } from '@widgets/onboarding';
 
 import * as styles from './form-field.css';
 
