@@ -1,37 +1,32 @@
-import { ReactNode } from 'react';
 import { CalendarIcon, CheckCircleIcon } from '@kds/icons';
 
 import * as styles from './visa-status-card.css';
 
 interface VisaStatusCardProps {
-  icon: ReactNode;
   statusName: string;
   title: string;
   date: string;
   isActive?: boolean;
 }
 
-export const VisaStatusCard = ({
-  icon,
+const VisaStatusCard = ({
   statusName,
   title,
   date,
   isActive = false,
 }: VisaStatusCardProps) => {
+  const Icon = isActive ? CheckCircleIcon : CalendarIcon;
+
   return (
     <article className={styles.container}>
-      <div className={styles.iconWrapper}>{icon}</div>
-      <div className={styles.textContent}>
+      <div className={styles.top}>
         <div className={styles.header}>
-          {isActive && <CheckCircleIcon width={14} height={14} />}
+          <Icon width={14} height={14} className={styles.icon} />
           <span className={styles.statusName({ isActive })}>{statusName}</span>
         </div>
-        <p className={styles.title}>{title}</p>
-        <div className={styles.date}>
-          <CalendarIcon width={14} height={14} />
-          <span>{date}</span>
-        </div>
+        <span className={styles.date}>{date}</span>
       </div>
+      <p className={styles.title}>{title}</p>
     </article>
   );
 };
