@@ -1,0 +1,10 @@
+{
+  "appName": "Kareer",
+  "action": {
+    "confirm": "Xác nhận",
+    "cancel": "Hủy"
+  },
+  "state": {
+    "loading": "Đang tải..."
+  }
+}

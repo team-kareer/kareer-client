@@ -1382,6 +1382,11 @@ export interface components {
        * @description 졸업일
        */
       graduationDate?: string;
+      /**
+       * @description 온보딩 여부
+       * @example true
+       */
+      onboardingRequired?: boolean;
     };
     BaseResponseJobPostingCrawlListResponse: {
       /**

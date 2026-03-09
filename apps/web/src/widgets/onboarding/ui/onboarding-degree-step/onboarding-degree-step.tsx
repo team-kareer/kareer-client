@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useRef } from 'react';
 import { Autocomplete, Button, Tab, useTabContext } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
-import { validateAutocompleteOption } from '@features/onboarding/hooks/validators';
+import { validateAutocompleteOption } from '@features/onboarding/model/validation';
 import {
   type OnboardingForm,
   OUTSIDE_KOREA_DEGREE_OPTIONS,

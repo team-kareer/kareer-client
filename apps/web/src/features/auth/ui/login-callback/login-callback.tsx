@@ -28,7 +28,7 @@ const LoginCallback = () => {
         const response = await exchangeGoogleCode(code);
 
         if (!response?.accessToken) {
-          throw new Error('AccessToekn을 찾을 수 없습니다.');
+          throw new Error('AccessToken을 찾을 수 없습니다.');
         }
 
         tokenService.saveAccessToken(response.accessToken);

@@ -1,18 +1,19 @@
-import { ChangeEvent } from 'react';
 import { BangCircleIcon } from '@kds/icons';
-import { TextField } from '@kds/ui';
-import { Controller, useFormContext, useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
+import { FormTextareaField } from '@widgets/onboarding';
 import {
   PERSONAL_BACKGROUND_DESCRIPTION,
   PERSONAL_BACKGROUND_INFO_MESSAGES,
   PERSONAL_BACKGROUND_TITLE,
 } from '@widgets/onboarding/constants/personal-background';
 import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeholders';
+import { validateText } from '@features/onboarding/model/validation';
 import { type OnboardingForm } from '@entities/onboarding';
 import { getPlaceholderByTargetJob } from '@entities/onboarding';
 
+// import { TextField } from '@shared/ui';
 import * as styles from './personal-background.css';
 
 const PersonalBackground = () => {
@@ -23,18 +24,11 @@ const PersonalBackground = () => {
     name: 'targetJob',
   });
 
-  const personalBackground = useWatch({
-    control,
-    name: 'personalBackground',
-  });
-
   // TargetJob에 따른 placeholder 선택
   const placeholder = getPlaceholderByTargetJob(
     targetJob,
     PLACEHOLDER_BY_TARGET_JOB,
   );
-
-  const isOverLimit = (personalBackground?.length || 0) > 1000;
 
   return (
     <section>
@@ -47,22 +41,18 @@ const PersonalBackground = () => {
           </p>
         </div>
         <div className={styles.textAreaWrapper}>
-          <Controller
+          <FormTextareaField
             name="personalBackground"
-            control={control}
-            rules={{ required: 'Enter your personal background' }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                placeholder={placeholder}
-                value={field.value || ''}
-                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
-                  field.onChange(e.target.value);
-                }}
-                isError={isOverLimit}
-                displayMaxLength={1000}
-              />
-            )}
+            rules={{
+              validate: (value) =>
+                validateText(value, {
+                  allowNumber: true,
+                  allowBasicSpecialCharacters: true,
+                }),
+            }}
+            placeholder={placeholder}
+            showCount={true}
+            displayMaxLength={1000}
           />
         </div>
         <div className={styles.infoContainer}>
