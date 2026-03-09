@@ -25,7 +25,7 @@ export const header = style({
 });
 
 export const icon = style({
-  color: themeVars.color.grayscale.gray500, // 아이콘 색은 여기서만
+  color: themeVars.color.grayscale.gray500,
 });
 
 export const statusName = recipe({
