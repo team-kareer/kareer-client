@@ -15,13 +15,13 @@ const VisaStatusCard = ({
   date,
   isActive = false,
 }: VisaStatusCardProps) => {
-  const Icon = isActive ? CheckCircleIcon : CalendarIcon;
+  const StatusIcon = isActive ? CheckCircleIcon : CalendarIcon;
 
   return (
     <article className={styles.container}>
-      <div className={styles.top}>
-        <div className={styles.header}>
-          <Icon width={14} height={14} />
+      <div className={styles.statusRow}>
+        <div className={styles.statusGroup}>
+          <StatusIcon width={14} height={14} />
           <span className={styles.statusName({ isActive })}>{statusName}</span>
         </div>
         <span className={styles.date}>{date}</span>

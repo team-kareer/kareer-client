@@ -11,7 +11,7 @@ export const container = style({
   borderRadius: '8px',
 });
 
-export const top = style({
+export const statusRow = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -19,7 +19,7 @@ export const top = style({
   color: themeVars.color.grayscale.gray500,
 });
 
-export const header = style({
+export const statusGroup = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.4rem',
