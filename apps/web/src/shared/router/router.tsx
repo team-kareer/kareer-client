@@ -4,9 +4,9 @@ import { ROUTE_PATH } from '@shared/router';
 import AppRouteLayout from '@shared/router/app-route-layout';
 import { LoginPage, OnboardingPage } from '@shared/router/lazy';
 import {
+  appRouteLoader,
   guestOnlyLoader,
   onboardingGuardLoader,
-  requireAuthLoader,
 } from '@shared/router/loader';
 import OnboardingRouteLayout from '@shared/router/onboarding-route-layout';
 import {
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
   },
   {
     Component: AppRouteLayout,
-    loader: requireAuthLoader,
+    loader: appRouteLoader,
     children: protectedAppRoutes,
   },
 ]);
