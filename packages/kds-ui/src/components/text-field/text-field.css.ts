@@ -1,13 +1,5 @@
 import { themeVars, typography } from '@kds/ui/styles';
-import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-
-export const textFieldContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-  alignItems: 'flex-end',
-});
 
 export const textFieldRecipe = recipe({
   base: {
