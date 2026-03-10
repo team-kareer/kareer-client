@@ -13,7 +13,6 @@ import { validateText } from '@features/onboarding/model/validation';
 import { type OnboardingForm } from '@entities/onboarding';
 import { getPlaceholderByTargetJob } from '@entities/onboarding';
 
-// import { TextField } from '@shared/ui';
 import * as styles from './personal-background.css';
 
 const PersonalBackground = () => {
@@ -53,6 +52,7 @@ const PersonalBackground = () => {
             placeholder={placeholder}
             showCount={true}
             displayMaxLength={1000}
+            maxLength={1000}
           />
         </div>
         <div className={styles.infoContainer}>
