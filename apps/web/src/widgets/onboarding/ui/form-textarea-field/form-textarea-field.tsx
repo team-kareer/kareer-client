@@ -8,6 +8,7 @@ import {
 
 import type { FormFieldProps } from '@widgets/onboarding';
 import { FormField } from '@widgets/onboarding';
+import { TextCounter } from '@shared/ui/text-counter/text-counter';
 
 import { useTextCount } from './hooks/use-text-count';
 
@@ -50,9 +51,11 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
               placeholder={placeholder}
             />
             {showCount && (
-              <span className={styles.textCountRecipe({ error: isOverMax })}>
-                {textCount}/{displayMaxLength}
-              </span>
+              <TextCounter
+                current={textCount}
+                max={displayMaxLength}
+                isError={isOverMax}
+              />
             )}
           </div>
         );
