@@ -36,7 +36,6 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
   const value = useWatch({ control, name }) || '';
 
   const { textCount, isOverMax } = useTextCount(value, maxLength);
-  const hasError = isOverMax;
 
   return (
     <FormField name={name} rules={rules} label={label} showErrorMessage={false}>
@@ -47,11 +46,11 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
               {...field}
               value={value}
               onChange={field.onChange}
-              isError={hasError}
+              isError={isOverMax}
               placeholder={placeholder}
             />
             {showCount && (
-              <span className={styles.textCountRecipe({ error: hasError })}>
+              <span className={styles.textCountRecipe({ error: isOverMax })}>
                 {textCount}/{displayMaxLength}
               </span>
             )}
