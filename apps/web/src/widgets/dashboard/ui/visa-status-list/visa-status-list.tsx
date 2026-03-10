@@ -1,8 +1,3 @@
-import {
-  DefaultStatusIcon,
-  GraduationCountDownIcon,
-  RemainingStayIcon,
-} from '@kds/icons';
 import { useQuery } from '@tanstack/react-query';
 
 import { USER_QUERY_OPTIONS } from '@entities/user/queries';
@@ -27,12 +22,12 @@ export const VisaStatusList = () => {
   const { currentVisa, graduation, remaining } = renderData;
   return (
     <div className={styles.container}>
-      <VisaStatusCard icon={<DefaultStatusIcon />} {...currentVisa} />
+      <VisaStatusCard {...currentVisa} />
 
       {data?.visaType === 'D2' ? (
-        <VisaStatusCard icon={<GraduationCountDownIcon />} {...graduation} />
+        <VisaStatusCard {...graduation} />
       ) : (
-        <VisaStatusCard icon={<RemainingStayIcon />} {...remaining} />
+        <VisaStatusCard {...remaining} />
       )}
     </div>
   );
