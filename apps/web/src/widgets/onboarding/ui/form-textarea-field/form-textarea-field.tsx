@@ -1,5 +1,10 @@
 import { TextField } from '@kds/ui';
-import { FieldPath, FieldValues } from 'react-hook-form';
+import {
+  FieldPath,
+  FieldValues,
+  useFormContext,
+  useWatch,
+} from 'react-hook-form';
 
 import type { FormFieldProps } from '@widgets/onboarding';
 import { FormField } from '@widgets/onboarding';
@@ -27,14 +32,15 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
   displayMaxLength,
   maxLength,
 }: FormTextareaFieldProps<T, K>) => {
+  const { control } = useFormContext<T>();
+  const value = useWatch({ control, name }) || '';
+
+  const { textCount, isOverMax } = useTextCount(value, maxLength);
+  const hasError = isOverMax;
+
   return (
     <FormField name={name} rules={rules} label={label} showErrorMessage={false}>
       {(field) => {
-        const value = field.value || '';
-        const displayLimit = displayMaxLength ?? maxLength ?? 0;
-        const { textCount, isOverMax } = useTextCount(value, maxLength);
-        const hasError = isOverMax;
-
         return (
           <div className={styles.textFieldContainer}>
             <TextField
@@ -46,7 +52,7 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
             />
             {showCount && (
               <span className={styles.textCountRecipe({ error: hasError })}>
-                {textCount}/{displayLimit}
+                {textCount}/{displayMaxLength}
               </span>
             )}
           </div>
