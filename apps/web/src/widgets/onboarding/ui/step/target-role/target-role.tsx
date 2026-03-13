@@ -1,22 +1,22 @@
-import { Autocomplete, Checkbox, Input } from '@kds/ui';
+import { Checkbox } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
-import { Controller, useFormContext } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
+import { FormAutocompleteField, FormInputField } from '@widgets/onboarding';
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
-import { validateAutocompleteOption } from '@features/onboarding/model/validation';
-import { validateText } from '@features/onboarding/model/validation';
+import {
+  validateAutocompleteOption,
+  validateText,
+} from '@features/onboarding/model/validation';
 import {
   MAJOR_LIST_QUERY_OPTIONS,
-  type OnboardingForm,
   TARGET_JOB_OPTIONS,
 } from '@entities/onboarding';
 
 import * as styles from './target-role.css';
 
 const TargetRole = () => {
-  const { control } = useFormContext<OnboardingForm>();
   const { data: majorList } = useQuery({
     ...MAJOR_LIST_QUERY_OPTIONS.GET_MAJOR_LIST(),
   });
@@ -27,73 +27,36 @@ const TargetRole = () => {
     <section>
       <OnboardingStepTitle stepNumber={3} title="Target Role" />
       <div className={styles.inputContainer}>
-        <div className={styles.autoWrapper}>
-          <p className={styles.label}>Primary Major</p>
-          <Controller
-            name="primaryMajor"
-            control={control}
-            rules={{
-              required: 'Enter your major',
-              validate: (value) => {
-                const result = validateAutocompleteOption(
-                  value,
-                  majorList?.majors || [],
-                );
-                return result === true || result;
-              },
-            }}
-            render={({ field }) => (
-              <Autocomplete
-                {...field}
-                placeholder={TARGET_ROLE_PLACEHOLDERS.PRIMARY_MAJOR}
-                options={majorList?.majors || []}
-              />
-            )}
-          />
-        </div>
-        <div className={styles.autoWrapper}>
-          <p className={styles.label}>Secondary Major (Optional)</p>
-          <Controller
-            name="secondaryMajor"
-            control={control}
-            rules={{
-              validate: (value) => {
-                const result = validateText(value);
-                return result === true || result;
-              },
-            }}
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder={TARGET_ROLE_PLACEHOLDERS.SECONDARY_MAJOR}
-              />
-            )}
-          />
-        </div>
-        <div className={styles.autoWrapper}>
-          <p className={styles.label}>Target Job</p>
-          <Controller
-            name="targetJob"
-            control={control}
-            rules={{
-              required: 'Enter your job',
-              validate: (value) => {
-                const result = validateAutocompleteOption(
-                  value,
-                  TARGET_JOB_OPTIONS,
-                );
-                return result === true || result;
-              },
-            }}
-            render={({ field }) => (
-              <Autocomplete
-                {...field}
-                placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
-                options={TARGET_JOB_OPTIONS}
-              />
-            )}
-          />
-        </div>
+        <FormAutocompleteField
+          name="primaryMajor"
+          label="Primary Major"
+          rules={{
+            required: 'Enter your major',
+            validate: (value) =>
+              validateAutocompleteOption(value, majorList?.majors || []),
+          }}
+          placeholder={TARGET_ROLE_PLACEHOLDERS.PRIMARY_MAJOR}
+          options={majorList?.majors || []}
+        />
+        <FormInputField
+          name="secondaryMajor"
+          label="Secondary Major (Optional)"
+          rules={{
+            validate: (value) => validateText(value),
+          }}
+          placeholder={TARGET_ROLE_PLACEHOLDERS.SECONDARY_MAJOR}
+        />
+        <FormAutocompleteField
+          name="targetJob"
+          label="Target Job"
+          rules={{
+            required: 'Enter your job',
+            validate: (value) =>
+              validateAutocompleteOption(value, TARGET_JOB_OPTIONS),
+          }}
+          placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
+          options={TARGET_JOB_OPTIONS}
+        />
       </div>
       {targetJob && (
         <div className={styles.checkboxContainer}>
