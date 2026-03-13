@@ -4,7 +4,7 @@ import * as styles from './avatar.css';
 
 interface AvatarProps {
   profileUrl?: string;
-  size?: 'mini'; //| 'default'
+  size?: 'header' | 'popover'; //| 'mypage'
   onClick?: () => void;
 }
 
