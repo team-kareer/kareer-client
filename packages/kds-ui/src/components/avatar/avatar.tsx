@@ -5,15 +5,17 @@ import * as styles from './avatar.css';
 interface AvatarProps {
   profileUrl?: string;
   size?: 'mini'; //| 'default'
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Avatar = ({ profileUrl, size, onClick }: AvatarProps) => {
+  const isClickable = onClick !== undefined;
+
   return profileUrl ? (
     <img
       src={profileUrl}
       alt="사용자 프로필 이미지"
-      className={styles.img({ size: size })}
+      className={styles.img({ size: size, clickable: isClickable })}
       onClick={onClick}
     />
   ) : (
