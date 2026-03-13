@@ -1,27 +1,56 @@
 import { TextField } from '@kds/ui';
 import {
+  ControllerFieldState,
+  ControllerRenderProps,
   FieldPath,
   FieldValues,
-  useFormContext,
-  useWatch,
 } from 'react-hook-form';
 
 import type { FormFieldProps } from '@widgets/onboarding';
 import { FormField } from '@widgets/onboarding';
-import { TextCounter } from '@shared/ui/text-counter/text-counter';
-
-import { useTextCount } from './hooks/use-text-count';
-
-import * as styles from './form-textarea-field.css';
+import { WithTextCount } from '@shared/ui/field-with-counter/field-with-text-count';
 
 type FormTextareaFieldProps<
   T extends FieldValues,
   K extends FieldPath<T>,
 > = Omit<FormFieldProps<T, K>, 'children'> & {
   placeholder: string;
-  showCount: boolean;
-  displayMaxLength: number;
+  showCount?: boolean;
   maxLength: number;
+};
+
+interface FormTextareaFieldInnerProps<
+  T extends FieldValues,
+  K extends FieldPath<T>,
+> {
+  field: ControllerRenderProps<T, K>;
+  fieldState: ControllerFieldState;
+  placeholder: string;
+  showCount: boolean;
+  maxLength: number;
+}
+
+const FormTextareaFieldInner = <T extends FieldValues, K extends FieldPath<T>>({
+  field,
+  fieldState,
+  placeholder,
+  showCount,
+  maxLength,
+}: FormTextareaFieldInnerProps<T, K>) => {
+  const value = field.value ?? '';
+
+  return (
+    <WithTextCount value={value} maxLength={maxLength} showCount={showCount}>
+      {(isOverMax) => (
+        <TextField
+          {...field}
+          value={value}
+          isError={isOverMax || !!fieldState.error}
+          placeholder={placeholder}
+        />
+      )}
+    </WithTextCount>
+  );
 };
 
 const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
@@ -29,37 +58,20 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
   label,
   rules,
   placeholder,
-  showCount,
-  displayMaxLength,
+  showCount = false,
   maxLength,
 }: FormTextareaFieldProps<T, K>) => {
-  const { control } = useFormContext<T>();
-  const value = useWatch({ control, name }) || '';
-
-  const { textCount, isOverMax } = useTextCount(value, maxLength);
-
   return (
-    <FormField name={name} rules={rules} label={label} showErrorMessage={false}>
-      {(field) => {
-        return (
-          <div className={styles.textFieldContainer}>
-            <TextField
-              {...field}
-              value={value}
-              onChange={field.onChange}
-              isError={isOverMax}
-              placeholder={placeholder}
-            />
-            {showCount && (
-              <TextCounter
-                current={textCount}
-                max={displayMaxLength}
-                isError={isOverMax}
-              />
-            )}
-          </div>
-        );
-      }}
+    <FormField name={name} rules={rules} label={label}>
+      {(field, fieldState) => (
+        <FormTextareaFieldInner
+          field={field}
+          fieldState={fieldState}
+          placeholder={placeholder}
+          showCount={showCount}
+          maxLength={maxLength}
+        />
+      )}
     </FormField>
   );
 };
