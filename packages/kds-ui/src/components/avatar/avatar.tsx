@@ -5,17 +5,19 @@ import * as styles from './avatar.css';
 interface AvatarProps {
   profileUrl?: string;
   size?: 'mini'; //| 'default'
+  onClick: () => void;
 }
 
-const Avatar = ({ profileUrl, size }: AvatarProps) => {
+const Avatar = ({ profileUrl, size, onClick }: AvatarProps) => {
   return profileUrl ? (
     <img
       src={profileUrl}
       alt="사용자 프로필 이미지"
       className={styles.img({ size: size })}
+      onClick={onClick}
     />
   ) : (
-    <AvatarIcon width={52} height={52} />
+    <AvatarIcon width={52} height={52} onClick={onClick} />
   );
 };
 
