@@ -3,6 +3,8 @@ import { recipe } from '@vanilla-extract/recipes';
 export const img = recipe({
   base: {
     borderRadius: '50%',
+    cursor: 'pointer',
+    anchorName: '--anchor-el',
   },
   variants: {
     size: {
