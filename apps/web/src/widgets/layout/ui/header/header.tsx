@@ -3,6 +3,7 @@ import { Avatar } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router';
 
+import { VisaStatusList } from '@widgets/dashboard/ui';
 import { USER_QUERY_OPTIONS } from '@entities/user/queries/queries';
 import { ROUTE_PATH } from '@shared/router/path';
 import Popover from '@shared/ui/popover/popover';
@@ -55,11 +56,12 @@ const Header = () => {
       <Popover
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        anchor="--anchor-el"
+        anchor="--anchor-user-profile"
         placement="bottom-end"
         offsetY="0.7rem"
       >
         팝오버
+        <VisaStatusList />
       </Popover>
     </header>
   );
