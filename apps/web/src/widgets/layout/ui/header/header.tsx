@@ -1,13 +1,10 @@
-import { useState } from 'react';
-import { Avatar } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router';
 
 import { USER_QUERY_OPTIONS } from '@entities/user/queries/queries';
 import { ROUTE_PATH } from '@shared/router/path';
-import Popover from '@shared/ui/popover/popover';
 
-import UserPopover from './user-popover/user-popover';
+import UserMenu from './user-menu/user-menu';
 
 import * as styles from './header.css';
 
@@ -30,7 +27,6 @@ const HEADER_LIST = [
 ] as const;
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const { data } = useQuery({ ...USER_QUERY_OPTIONS.GET_USER_INFO() });
 
   const location = useLocation();
@@ -49,24 +45,11 @@ const Header = () => {
         </h1>
         <p className={styles.subTitle}>{curHeader?.subTitle}</p>
       </div>
-      <Avatar
+      <UserMenu
         profileUrl={data?.profileImageUrl}
-        size="header"
-        onClick={() => setIsOpen(true)}
+        name={data?.name}
+        email={data?.email}
       />
-      <Popover
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        anchor="--anchor-user-profile"
-        placement="bottom-end"
-        offsetY="0.7rem"
-      >
-        <UserPopover
-          profileUrl={data?.profileImageUrl}
-          name={data?.name}
-          email="yoonseobong@gamil.com"
-        />
-      </Popover>
     </header>
   );
 };
