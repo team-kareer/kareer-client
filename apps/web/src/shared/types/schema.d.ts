@@ -4,6 +4,30 @@
  */
 
 export interface paths {
+  '/api/v1/members/mypage': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 마이페이지 조회
+     * @description 마이페이지에서 유저 정보를 조회합니다.
+     */
+    get: operations['getMypage'];
+    /**
+     * 마이페이지 수정
+     * @description 마이페이지에서 유저 프로필을 수정합니다.
+     */
+    put: operations['updateMypage'];
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/rag/required': {
     parameters: {
       query?: never;
@@ -178,6 +202,26 @@ export interface paths {
      * @description 사용자가 업로드한 이력서/자소서, 사용자 정보 기반으로 채용 공고를 추천합니다.
      */
     post: operations['recommendJobPostings'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/auth/sign-out': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 로그아웃
+     * @description Refresh Token 쿠키를 삭제하고 Access Token을 블랙리스트에 등록합니다.
+     */
+    post: operations['signOut'];
     delete?: never;
     options?: never;
     head?: never;
@@ -470,6 +514,276 @@ export interface components {
       code?: number;
       message?: string;
       messageDetail?: string;
+    };
+    MypageRequest: {
+      /**
+       * @description 목표 직무
+       * @example Developer
+       */
+      targetJob: string;
+      /**
+       * Format: date
+       * @description 생년월일
+       */
+      birthDate: string;
+      /**
+       * @description 국가
+       * @example Afghanistan
+       * @enum {string}
+       */
+      country:
+        | 'Afghanistan'
+        | 'Albania'
+        | 'Algeria'
+        | 'Andorra'
+        | 'Angola'
+        | 'Antigua and Barbuda'
+        | 'Argentina'
+        | 'Armenia'
+        | 'Australia'
+        | 'Austria'
+        | 'Azerbaijan'
+        | 'Bahamas'
+        | 'Bahrain'
+        | 'Bangladesh'
+        | 'Barbados'
+        | 'Belarus'
+        | 'Belgium'
+        | 'Belize'
+        | 'Benin'
+        | 'Bhutan'
+        | 'Bolivia'
+        | 'Bosnia and Herzegovina'
+        | 'Botswana'
+        | 'Brazil'
+        | 'Brunei'
+        | 'Bulgaria'
+        | 'Burkina Faso'
+        | 'Burundi'
+        | 'Cabo Verde'
+        | 'Cambodia'
+        | 'Cameroon'
+        | 'Canada'
+        | 'Central African Republic'
+        | 'Chad'
+        | 'Chile'
+        | 'China'
+        | 'Colombia'
+        | 'Comoros'
+        | 'Congo'
+        | 'Democratic Republic of the Congo'
+        | 'Costa Rica'
+        | "Cote d'Ivoire"
+        | 'Croatia'
+        | 'Cuba'
+        | 'Cyprus'
+        | 'Czechia'
+        | 'Denmark'
+        | 'Djibouti'
+        | 'Dominica'
+        | 'Dominican Republic'
+        | 'Ecuador'
+        | 'Egypt'
+        | 'El Salvador'
+        | 'Equatorial Guinea'
+        | 'Eritrea'
+        | 'Estonia'
+        | 'Eswatini'
+        | 'Ethiopia'
+        | 'Fiji'
+        | 'Finland'
+        | 'France'
+        | 'Gabon'
+        | 'Gambia'
+        | 'Georgia'
+        | 'Germany'
+        | 'Ghana'
+        | 'Greece'
+        | 'Grenada'
+        | 'Guatemala'
+        | 'Guinea'
+        | 'Guinea-Bissau'
+        | 'Guyana'
+        | 'Haiti'
+        | 'Honduras'
+        | 'Hungary'
+        | 'Iceland'
+        | 'India'
+        | 'Indonesia'
+        | 'Iran'
+        | 'Iraq'
+        | 'Ireland'
+        | 'Israel'
+        | 'Italy'
+        | 'Jamaica'
+        | 'Japan'
+        | 'Jordan'
+        | 'Kazakhstan'
+        | 'Kenya'
+        | 'Kiribati'
+        | 'Kuwait'
+        | 'Kyrgyzstan'
+        | 'Laos'
+        | 'Latvia'
+        | 'Lebanon'
+        | 'Lesotho'
+        | 'Liberia'
+        | 'Libya'
+        | 'Liechtenstein'
+        | 'Lithuania'
+        | 'Luxembourg'
+        | 'Madagascar'
+        | 'Malawi'
+        | 'Malaysia'
+        | 'Maldives'
+        | 'Mali'
+        | 'Malta'
+        | 'Marshall Islands'
+        | 'Mauritania'
+        | 'Mauritius'
+        | 'Mexico'
+        | 'Micronesia'
+        | 'Moldova'
+        | 'Monaco'
+        | 'Mongolia'
+        | 'Montenegro'
+        | 'Morocco'
+        | 'Mozambique'
+        | 'Myanmar'
+        | 'Namibia'
+        | 'Nauru'
+        | 'Nepal'
+        | 'Netherlands'
+        | 'New Zealand'
+        | 'Nicaragua'
+        | 'Niger'
+        | 'Nigeria'
+        | 'North Macedonia'
+        | 'Norway'
+        | 'Oman'
+        | 'Pakistan'
+        | 'Palau'
+        | 'Panama'
+        | 'Papua New Guinea'
+        | 'Paraguay'
+        | 'Peru'
+        | 'Philippines'
+        | 'Poland'
+        | 'Portugal'
+        | 'Qatar'
+        | 'Romania'
+        | 'Russia'
+        | 'Rwanda'
+        | 'Saint Kitts and Nevis'
+        | 'Saint Lucia'
+        | 'Saint Vincent and the Grenadines'
+        | 'Samoa'
+        | 'San Marino'
+        | 'Sao Tome and Principe'
+        | 'Saudi Arabia'
+        | 'Senegal'
+        | 'Serbia'
+        | 'Seychelles'
+        | 'Sierra Leone'
+        | 'Singapore'
+        | 'Slovakia'
+        | 'Slovenia'
+        | 'Solomon Islands'
+        | 'Somalia'
+        | 'South Africa'
+        | 'South Korea'
+        | 'South Sudan'
+        | 'Spain'
+        | 'Sri Lanka'
+        | 'Sudan'
+        | 'Suriname'
+        | 'Sweden'
+        | 'Switzerland'
+        | 'Syria'
+        | 'Taiwan'
+        | 'Tajikistan'
+        | 'Tanzania'
+        | 'Thailand'
+        | 'Timor-Leste'
+        | 'Togo'
+        | 'Tonga'
+        | 'Trinidad and Tobago'
+        | 'Tunisia'
+        | 'Turkey'
+        | 'Turkmenistan'
+        | 'Tuvalu'
+        | 'Uganda'
+        | 'Ukraine'
+        | 'United Arab Emirates'
+        | 'United Kingdom'
+        | 'United States'
+        | 'Uruguay'
+        | 'Uzbekistan'
+        | 'Vanuatu'
+        | 'Vatican City'
+        | 'Venezuela'
+        | 'Vietnam'
+        | 'Yemen'
+        | 'Zambia'
+        | 'Zimbabwe';
+      /**
+       * @description 학위
+       * @example DOMESTIC_ASSOCIATE
+       * @enum {string}
+       */
+      degree:
+        | 'DOMESTIC_ASSOCIATE'
+        | 'DOMESTIC_BACHELORS'
+        | 'DOMESTIC_MASTERS'
+        | 'DOMESTIC_DOCTORATE'
+        | 'OVERSEAS_BACHELORS'
+        | 'OVERSEAS_MASTERS'
+        | 'OVERSEAS_DOCTORATE';
+      /**
+       * @description 대학
+       * @example Konkuk University
+       */
+      university: string;
+      /**
+       * @description 전공
+       * @example Computer Science
+       */
+      primaryMajor: string;
+      /**
+       * @description 부전공
+       * @example Statistic
+       */
+      secondaryMajor: string;
+      /**
+       * @description 비자 유형
+       * @example D2
+       * @enum {string}
+       */
+      visaType: 'D2' | 'D10' | 'E7';
+      /**
+       * Format: date
+       * @description 비자 만료일
+       * @example 2027-01-01
+       */
+      visaExpiredAt: string;
+      /**
+       * @description 언어 수준
+       * @example LEVEL_3
+       * @enum {string}
+       */
+      languageLevel:
+        | 'LEVEL_1'
+        | 'LEVEL_2'
+        | 'LEVEL_3'
+        | 'LEVEL_4'
+        | 'LEVEL_5'
+        | 'NOT_TAKEN';
+      /**
+       * @description 영어 실력
+       * @example BEGINNER
+       * @enum {string}
+       */
+      englishLevel: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED';
     };
     BaseResponseVoid: {
       /**
@@ -1066,6 +1380,73 @@ export interface components {
     OnboardCountriesResponse: {
       countries?: string[];
     };
+    BaseResponseMypageResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['MypageResponse'];
+    };
+    MypageResponse: {
+      /**
+       * @description 이름
+       * @example 홍승원
+       */
+      name?: string;
+      /** @description 프로필 사진 url */
+      profileImageUrl?: string;
+      /**
+       * @description 목표 직무
+       * @example Developer
+       */
+      targetJob?: string;
+      /**
+       * Format: date
+       * @description 생년월일
+       */
+      birthDate?: string;
+      /** @description 국가 */
+      country?: string;
+      /** @description 학위 */
+      degree?: string;
+      /** @description 대학 */
+      university?: string;
+      /**
+       * @description 전공
+       * @example Computer Science
+       */
+      primaryMajor?: string;
+      /**
+       * @description 부전공
+       * @example Statistic
+       */
+      secondaryMajor?: string;
+      /**
+       * @description 비자 유형
+       * @example D-2
+       */
+      visaType?: string;
+      /**
+       * Format: date
+       * @description 비자 만료일
+       */
+      visaExpiredAt?: string;
+      /**
+       * @description 언어 수준
+       * @enum {string}
+       */
+      languageLevel?:
+        | 'LEVEL_1'
+        | 'LEVEL_2'
+        | 'LEVEL_3'
+        | 'LEVEL_4'
+        | 'LEVEL_5'
+        | 'NOT_TAKEN';
+      /** @description 영어 실력 */
+      englishLevel?: string;
+    };
     BaseResponseMemberInfoResponse: {
       /**
        * Format: int32
@@ -1489,6 +1870,146 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+  getMypage: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseMypageResponse'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  updateMypage: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['MypageRequest'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
   uploadRequired: {
     parameters: {
       query: {
@@ -2067,6 +2588,74 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['BaseResponseJobPostingListResponse'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  signOut: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
         };
       };
       400: {
