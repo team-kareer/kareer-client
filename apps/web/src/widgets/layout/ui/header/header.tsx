@@ -2,6 +2,7 @@ import { Avatar } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router';
 
+import { TestLogoutButton } from '@features/auth';
 import { USER_QUERY_OPTIONS } from '@entities/user/queries/queries';
 import { ROUTE_PATH } from '@shared/router/path';
 
@@ -44,6 +45,8 @@ const Header = () => {
         </h1>
         <p className={styles.subTitle}>{curHeader?.subTitle}</p>
       </div>
+      {/* TODO: 제거 예정 */}
+      <TestLogoutButton />
       <Avatar profileUrl={data?.profileImageUrl} size="mini" />
     </header>
   );
