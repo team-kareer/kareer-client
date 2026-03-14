@@ -6,7 +6,7 @@ export const offsetY = createVar();
 
 export const base = style({
   padding: '2rem',
-  border: `0.1rem solid ${themeVars.color.grayscale.gray300}`,
+  border: `1px solid ${themeVars.color.grayscale.gray300}`,
   borderRadius: '20px',
   boxShadow: '0 0 12px 0 rgba(0, 0, 0, 0.25)',
   positionAnchor: anchor,
