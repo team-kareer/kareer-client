@@ -15,7 +15,7 @@ const UserPopover = ({ profileUrl, name, email }: UserPopoverProps) => {
   return (
     <div className={styles.container}>
       <section className={styles.top}>
-        <Avatar profileUrl={profileUrl} size="popover" />
+        <Avatar profileUrl={profileUrl} use="popover" />
         <div>
           <div className={styles.text['name']}>{name}</div>
           <div className={styles.text['email']}>{email}</div>

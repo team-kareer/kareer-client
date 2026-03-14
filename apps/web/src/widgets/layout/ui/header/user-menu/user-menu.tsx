@@ -16,7 +16,7 @@ const UserMenu = ({ profileUrl, name, email }: UserMenuProps) => {
     <>
       <Avatar
         profileUrl={profileUrl}
-        size="header"
+        use="header"
         onClick={() => setIsOpen(true)}
       />
       <Popover
