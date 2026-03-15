@@ -6,9 +6,9 @@ import { VisaStatusList } from '@widgets/dashboard/ui';
 import * as styles from './user-popover.css';
 
 interface UserPopoverProps {
-  profileUrl: string;
-  name: string;
-  email: string;
+  profileUrl?: string;
+  name?: string;
+  email?: string;
 }
 
 const UserPopover = ({ profileUrl, name, email }: UserPopoverProps) => {

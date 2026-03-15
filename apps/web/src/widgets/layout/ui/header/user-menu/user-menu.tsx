@@ -4,9 +4,9 @@ import { Avatar, Popover } from '@kds/ui';
 import UserPopover from '../user-popover/user-popover';
 
 interface UserMenuProps {
-  profileUrl: string;
-  name: string;
-  email: string;
+  profileUrl?: string;
+  name?: string;
+  email?: string;
 }
 
 const UserMenu = ({ profileUrl, name, email }: UserMenuProps) => {
