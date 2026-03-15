@@ -25,10 +25,10 @@ const UserPopover = ({ profileUrl, name, email }: UserPopoverProps) => {
         <div className={styles.text['status']}>My status</div>
         <VisaStatusList />
       </section>
-      <section className={styles.bottom}>
+      <button className={styles.bottom}>
         <LogoutIcon width={24} height={24} />
         <div className={styles.text['logout']}>Log Out</div>
-      </section>
+      </button>
     </div>
   );
 };
