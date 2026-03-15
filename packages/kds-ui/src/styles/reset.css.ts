@@ -21,6 +21,12 @@ globalStyle('input, button, textarea, select', {
   font: 'inherit',
 });
 
+globalStyle('button', {
+  background: 'none',
+  appearance: 'none',
+  border: 'none',
+});
+
 globalStyle('ul', {
   listStyle: 'none',
 });

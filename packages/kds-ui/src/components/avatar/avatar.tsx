@@ -4,18 +4,22 @@ import * as styles from './avatar.css';
 
 interface AvatarProps {
   profileUrl?: string;
-  size?: 'mini'; //| 'default'
+  use?: 'header' | 'popover' | 'mypage';
+  onClick?: () => void;
 }
 
-const Avatar = ({ profileUrl, size }: AvatarProps) => {
+const Avatar = ({ profileUrl, use, onClick }: AvatarProps) => {
+  const isClickable = onClick !== undefined;
+
   return profileUrl ? (
     <img
       src={profileUrl}
       alt="사용자 프로필 이미지"
-      className={styles.img({ size: size })}
+      className={styles.img({ use: use, clickable: isClickable })}
+      onClick={onClick}
     />
   ) : (
-    <AvatarIcon width={52} height={52} />
+    <AvatarIcon width={52} height={52} onClick={onClick} />
   );
 };
 
