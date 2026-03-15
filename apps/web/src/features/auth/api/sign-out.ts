@@ -3,10 +3,6 @@ import { api } from '@shared/apis/configs/instance';
 
 import { LogOutResponse } from '../model/types';
 
-export const logOut = async () => {
-  const response = await api
-    .post(END_POINT.LOGOUT.SIGN_OUT)
-    .json<LogOutResponse>();
-
-  return response.data;
+export const logOut = async (): Promise<LogOutResponse> => {
+  return api.post(END_POINT.LOGOUT.SIGN_OUT).json<LogOutResponse>();
 };
