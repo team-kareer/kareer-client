@@ -50,7 +50,6 @@ const PersonalBackground = () => {
                 }),
             }}
             placeholder={placeholder}
-            showCount={true}
             maxLength={1000}
           />
         </div>

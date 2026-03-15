@@ -8,14 +8,13 @@ import {
 
 import type { FormFieldProps } from '@widgets/onboarding';
 import { FormField } from '@widgets/onboarding';
-import { WithTextCount } from '@shared/ui/field-with-counter/field-with-text-count';
+import WithTextCount from '@shared/ui/field-with-counter/field-with-text-count';
 
 type FormTextareaFieldProps<
   T extends FieldValues,
   K extends FieldPath<T>,
 > = Omit<FormFieldProps<T, K>, 'children'> & {
   placeholder: string;
-  showCount?: boolean;
   maxLength: number;
 };
 
@@ -26,7 +25,6 @@ interface FormTextareaFieldInnerProps<
   field: ControllerRenderProps<T, K>;
   fieldState: ControllerFieldState;
   placeholder: string;
-  showCount: boolean;
   maxLength: number;
 }
 
@@ -34,13 +32,12 @@ const FormTextareaFieldInner = <T extends FieldValues, K extends FieldPath<T>>({
   field,
   fieldState,
   placeholder,
-  showCount,
   maxLength,
 }: FormTextareaFieldInnerProps<T, K>) => {
   const value = field.value ?? '';
 
   return (
-    <WithTextCount value={value} maxLength={maxLength} showCount={showCount}>
+    <WithTextCount value={value} maxLength={maxLength}>
       {(isOverMax) => (
         <TextField
           {...field}
@@ -58,7 +55,6 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
   label,
   rules,
   placeholder,
-  showCount = false,
   maxLength,
 }: FormTextareaFieldProps<T, K>) => {
   return (
@@ -68,7 +64,6 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
           field={field}
           fieldState={fieldState}
           placeholder={placeholder}
-          showCount={showCount}
           maxLength={maxLength}
         />
       )}

@@ -8,7 +8,7 @@ import {
 
 import type { FormFieldProps } from '@widgets/onboarding';
 import { FormField } from '@widgets/onboarding';
-import { WithTextCount } from '@shared/ui/field-with-counter/field-with-text-count';
+import WithTextCount from '@shared/ui/field-with-counter/field-with-text-count';
 
 type FormInputFieldProps<T extends FieldValues, K extends FieldPath<T>> = Omit<
   FormFieldProps<T, K>,
@@ -16,7 +16,6 @@ type FormInputFieldProps<T extends FieldValues, K extends FieldPath<T>> = Omit<
 > & {
   placeholder: string;
   maxLength?: number;
-  showCount?: boolean;
   type?: 'text' | 'number';
 };
 
@@ -28,7 +27,6 @@ interface FormInputFieldInnerProps<
   fieldState: ControllerFieldState;
   placeholder: string;
   maxLength?: number;
-  showCount: boolean;
   type: 'text' | 'number';
 }
 
@@ -37,14 +35,13 @@ const FormInputFieldInner = <T extends FieldValues, K extends FieldPath<T>>({
   fieldState,
   placeholder,
   maxLength,
-  showCount,
   type,
 }: FormInputFieldInnerProps<T, K>) => {
   const isNumber = type === 'number';
   const value = field.value ?? '';
 
   return (
-    <WithTextCount value={value} maxLength={maxLength} showCount={showCount}>
+    <WithTextCount value={value} maxLength={maxLength}>
       {(isOverMax) => (
         <Input
           {...field}
@@ -66,7 +63,6 @@ const FormInputField = <T extends FieldValues, K extends FieldPath<T>>({
   rules,
   placeholder,
   maxLength,
-  showCount = false,
   type = 'text',
 }: FormInputFieldProps<T, K>) => {
   return (
@@ -77,7 +73,6 @@ const FormInputField = <T extends FieldValues, K extends FieldPath<T>>({
           fieldState={fieldState}
           placeholder={placeholder}
           maxLength={maxLength}
-          showCount={showCount}
           type={type}
         />
       )}

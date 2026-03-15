@@ -1,29 +1,27 @@
-import { useTextCount } from '@shared/hooks/use-text-count';
+import { ReactNode } from 'react';
+
 import { TextCounter } from '@shared/ui/text-counter/text-counter';
 
 import * as styles from './field-with-text-count.css';
 
 interface WithTextCountProps {
-  children: (isOverMax: boolean) => React.ReactNode;
+  children: (isOverMax: boolean) => ReactNode;
   value: string;
   maxLength?: number;
-  showCount?: boolean;
 }
 
-export const WithTextCount = ({
-  children,
-  value,
-  maxLength,
-  showCount = false,
-}: WithTextCountProps) => {
-  const { textCount, isOverMax } = useTextCount(value, maxLength);
+const WithTextCount = ({ children, value, maxLength }: WithTextCountProps) => {
+  const textCount = value.length;
+  const isOverMax = maxLength ? textCount > maxLength : false;
 
   return (
     <div className={styles.container}>
       {children(isOverMax)}
-      {showCount && maxLength !== undefined && (
+      {maxLength !== undefined && (
         <TextCounter current={textCount} max={maxLength} isError={isOverMax} />
       )}
     </div>
   );
 };
+
+export default WithTextCount;
