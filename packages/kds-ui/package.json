@@ -25,6 +25,7 @@
     "@types/react-dom": "catalog:",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
+    "@vanilla-extract/dynamic": "catalog:",
     "@vanilla-extract/vite-plugin": "catalog:",
     "eslint": "catalog:",
     "react": "catalog:",

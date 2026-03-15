@@ -18,6 +18,9 @@ catalogs:
     '@vanilla-extract/css':
       specifier: ^1.18.0
       version: 1.18.0
+    '@vanilla-extract/dynamic':
+      specifier: ^2.1.5
+      version: 2.1.5
     '@vanilla-extract/recipes':
       specifier: ^0.5.7
       version: 0.5.7
@@ -137,6 +140,9 @@ importers:
       '@vanilla-extract/css':
         specifier: 'catalog:'
         version: 1.18.0
+      '@vanilla-extract/dynamic':
+        specifier: 'catalog:'
+        version: 2.1.5
       '@vanilla-extract/recipes':
         specifier: 'catalog:'
         version: 0.5.7(@vanilla-extract/css@1.18.0)
@@ -262,6 +268,9 @@ importers:
       '@vanilla-extract/css':
         specifier: 'catalog:'
         version: 1.18.0
+      '@vanilla-extract/dynamic':
+        specifier: 'catalog:'
+        version: 2.1.5
       '@vanilla-extract/recipes':
         specifier: 'catalog:'
         version: 0.5.7(@vanilla-extract/css@1.18.0)
@@ -1612,6 +1621,12 @@ packages:
     resolution:
       {
         integrity: sha512-/p0dwOjr0o8gE5BRQ5O9P0u/2DjUd6Zfga2JGmE4KaY7ZITWMszTzk4x4CPlM5cKkRr2ZGzbE6XkuPNfp9shSQ==,
+      }
+
+  '@vanilla-extract/dynamic@2.1.5':
+    resolution:
+      {
+        integrity: sha512-QGIFGb1qyXQkbzx6X6i3+3LMc/iv/ZMBttMBL+Wm/DetQd36KsKsFg5CtH3qy+1hCA/5w93mEIIAiL4fkM8ycw==,
       }
 
   '@vanilla-extract/integration@8.0.7':
@@ -5426,6 +5441,10 @@ snapshots:
       picocolors: 1.1.1
     transitivePeerDependencies:
       - babel-plugin-macros
+
+  '@vanilla-extract/dynamic@2.1.5':
+    dependencies:
+      '@vanilla-extract/private': 1.0.9
 
   '@vanilla-extract/integration@8.0.7':
     dependencies:

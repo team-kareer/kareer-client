@@ -1,16 +1,53 @@
-import { FieldPath, FieldValues } from 'react-hook-form';
+import { TextField } from '@kds/ui';
+import {
+  ControllerFieldState,
+  ControllerRenderProps,
+  FieldPath,
+  FieldValues,
+} from 'react-hook-form';
 
 import type { FormFieldProps } from '@widgets/onboarding';
 import { FormField } from '@widgets/onboarding';
-import { TextField } from '@shared/ui';
+import WithTextCount from '@shared/ui/field-with-counter/field-with-text-count';
 
 type FormTextareaFieldProps<
   T extends FieldValues,
   K extends FieldPath<T>,
 > = Omit<FormFieldProps<T, K>, 'children'> & {
   placeholder: string;
-  showCount: boolean;
-  displayMaxLength: number;
+  maxLength: number;
+};
+
+interface FormTextareaFieldInnerProps<
+  T extends FieldValues,
+  K extends FieldPath<T>,
+> {
+  field: ControllerRenderProps<T, K>;
+  fieldState: ControllerFieldState;
+  placeholder: string;
+  maxLength: number;
+}
+
+const FormTextareaFieldInner = <T extends FieldValues, K extends FieldPath<T>>({
+  field,
+  fieldState,
+  placeholder,
+  maxLength,
+}: FormTextareaFieldInnerProps<T, K>) => {
+  const value = field.value ?? '';
+
+  return (
+    <WithTextCount value={value} maxLength={maxLength}>
+      {(isOverMax) => (
+        <TextField
+          {...field}
+          value={value}
+          isError={isOverMax || !!fieldState.error}
+          placeholder={placeholder}
+        />
+      )}
+    </WithTextCount>
+  );
 };
 
 const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
@@ -18,24 +55,18 @@ const FormTextareaField = <T extends FieldValues, K extends FieldPath<T>>({
   label,
   rules,
   placeholder,
-  showCount,
-  displayMaxLength,
+  maxLength,
 }: FormTextareaFieldProps<T, K>) => {
   return (
-    <FormField name={name} rules={rules} label={label} showErrorMessage={false}>
-      {(field, fieldState) => {
-        return (
-          <TextField
-            {...field}
-            value={field.value || ''}
-            onChange={(e) => field.onChange(e.target.value)}
-            isError={!!fieldState.error}
-            placeholder={placeholder}
-            showCount={showCount}
-            displayMaxLength={displayMaxLength}
-          />
-        );
-      }}
+    <FormField name={name} rules={rules} label={label}>
+      {(field, fieldState) => (
+        <FormTextareaFieldInner
+          field={field}
+          fieldState={fieldState}
+          placeholder={placeholder}
+          maxLength={maxLength}
+        />
+      )}
     </FormField>
   );
 };

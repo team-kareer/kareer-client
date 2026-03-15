@@ -1470,6 +1470,11 @@ export interface components {
        */
       name?: string;
       /**
+       * @description 회원 이메일
+       * @example test@example.com
+       */
+      email?: string;
+      /**
        * @description 프로필 이미지 URL
        * @example https://cdn.example.com/profile.png
        */

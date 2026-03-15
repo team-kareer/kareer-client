@@ -1,9 +1,10 @@
-import { Avatar } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router';
 
 import { USER_QUERY_OPTIONS } from '@entities/user/queries/queries';
 import { ROUTE_PATH } from '@shared/router/path';
+
+import UserMenu from './user-menu/user-menu';
 
 import * as styles from './header.css';
 
@@ -44,7 +45,11 @@ const Header = () => {
         </h1>
         <p className={styles.subTitle}>{curHeader?.subTitle}</p>
       </div>
-      <Avatar profileUrl={data?.profileImageUrl} size="mini" />
+      <UserMenu
+        profileUrl={data?.profileImageUrl}
+        name={data?.name}
+        email={data?.email}
+      />
     </header>
   );
 };
