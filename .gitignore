@@ -42,6 +42,9 @@ yarn-error.log*
 # IDE / Editor
 .history/
 
+# Claude Code
+.claude/
+
 # Lefthook
 .lefthook
 .lefthook-local.yml
