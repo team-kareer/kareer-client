@@ -56,7 +56,7 @@ const UploadBox = ({
         accept="application/pdf"
         onChange={handleChangeFile}
       />
-      <div className={styles.uploadContainer}>
+      <section className={styles.uploadContainer}>
         <div className={styles.uploadTopSection}>
           <UploadIcon width="2.4rem" height="2.4rem" />
           <p className={styles.text}>Upload Photo</p>
@@ -64,23 +64,27 @@ const UploadBox = ({
         <Button preset="medium_secondary" onClick={handleChooseFile}>
           Choose File
         </Button>
-      </div>
+      </section>
 
       {file && (
-        <div className={styles.fileContainer}>
+        <section className={styles.fileContainer}>
           <div className={styles.fileTopSection}>
             <div className={styles.fileSection}>
               <p className={styles.fileName}>{file.name}</p>
               <p className={styles.fileSize}>{formatFileSize(file.size)}</p>
             </div>
-            <button className={styles.xButton} onClick={onRemoveFile}>
+            <button
+              type="button"
+              className={styles.xButton}
+              onClick={onRemoveFile}
+            >
               <XIcon width="1.6rem" height="1.6rem" />
             </button>
           </div>
           {progress && (
             <ProgressBar total={progress.total} done={progress.done} />
           )}
-        </div>
+        </section>
       )}
     </div>
   );
