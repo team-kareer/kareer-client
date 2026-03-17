@@ -14,6 +14,10 @@ export const container = style({
   backgroundColor: themeVars.color.grayscale.white,
 });
 
+export const hiddenInput = style({
+  display: 'none',
+});
+
 export const uploadContainer = style({
   display: 'flex',
   flexDirection: 'column',
@@ -39,10 +43,6 @@ export const uploadTopSection = style({
 export const text = style({
   ...typography.body8_m_14,
   color: themeVars.color.grayscale.gray500,
-});
-
-export const hiddenInput = style({
-  display: 'none',
 });
 
 export const fileContainer = style({
