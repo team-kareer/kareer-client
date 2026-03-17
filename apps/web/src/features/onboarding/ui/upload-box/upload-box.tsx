@@ -48,7 +48,9 @@ const UploadBox = ({
               <p className={styles.fileName}>{file.name}</p>
               <p className={styles.fileSize}>{formatFileSize(file.size)}</p>
             </div>
-            <XIcon width="1.6rem" height="1.6rem" onClick={onRemoveFile} />
+            <button className={styles.xButton} onClick={onRemoveFile}>
+              <XIcon width="1.6rem" height="1.6rem" />
+            </button>
           </div>
           {progress && (
             <ProgressBar total={progress.total} done={progress.done} />

@@ -7,7 +7,6 @@ export const container = style({
   gap: '1rem',
   alignItems: 'center',
   width: '33rem',
-  // height: '26.6rem',
   padding: '1.2rem',
 
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
@@ -56,7 +55,7 @@ export const fileContainer = style({
 export const fileTopSection = style({
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center',
+  alignItems: 'flex-start',
 });
 
 export const fileSection = style({
@@ -73,4 +72,9 @@ export const fileName = style({
 export const fileSize = style({
   ...typography.cap2_m_12,
   color: themeVars.color.grayscale.gray400,
+});
+
+export const xButton = style({
+  cursor: 'pointer',
+  color: themeVars.color.grayscale.gray500,
 });
