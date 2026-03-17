@@ -1,3 +1,4 @@
+import { ChangeEvent, useRef } from 'react';
 import { UploadIcon, XIcon } from '@kds/icons';
 import { Button, ProgressBar } from '@kds/ui';
 
@@ -9,7 +10,7 @@ interface UploadBoxProps {
     done: number;
     total: number;
   };
-  onChooseFile: () => void;
+  onSelectFile: (file: File) => void;
   onRemoveFile: () => void;
 }
 
@@ -26,17 +27,41 @@ const formatFileSize = (fileSize: number) => {
 const UploadBox = ({
   file,
   progress,
-  onChooseFile,
+  onSelectFile,
   onRemoveFile,
 }: UploadBoxProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleChooseFile = () => {
+    inputRef.current?.click();
+  };
+
+  const handleChangeFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+
+    if (!selectedFile) {
+      return;
+    }
+
+    onSelectFile(selectedFile);
+    event.target.value = '';
+  };
+
   return (
     <div className={styles.container}>
+      <input
+        ref={inputRef}
+        className={styles.hiddenInput}
+        type="file"
+        accept="application/pdf"
+        onChange={handleChangeFile}
+      />
       <div className={styles.uploadContainer}>
         <div className={styles.uploadTopSection}>
           <UploadIcon width="2.4rem" height="2.4rem" />
           <p className={styles.text}>Upload Photo</p>
         </div>
-        <Button preset="medium_secondary" onClick={onChooseFile}>
+        <Button preset="medium_secondary" onClick={handleChooseFile}>
           Choose File
         </Button>
       </div>

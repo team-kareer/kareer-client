@@ -41,6 +41,10 @@ export const text = style({
   color: themeVars.color.grayscale.gray500,
 });
 
+export const hiddenInput = style({
+  display: 'none',
+});
+
 export const fileContainer = style({
   display: 'flex',
   flexDirection: 'column',
