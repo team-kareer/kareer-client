@@ -1,4 +1,4 @@
-import ProfileField from '../profile-field/profile-field';
+import { ProfileField } from '@widgets/my-page';
 
 import * as styles from './profile-info.css';
 
