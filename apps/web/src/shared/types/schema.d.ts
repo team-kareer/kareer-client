@@ -422,7 +422,11 @@ export interface paths {
     get: operations['getMemberInfo'];
     put?: never;
     post?: never;
-    delete?: never;
+    /**
+     * 회원 탈퇴
+     * @description 회원 탈퇴를 진행합니다.
+     */
+    delete: operations['deleteMember'];
     options?: never;
     head?: never;
     patch?: never;
@@ -3298,6 +3302,74 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['BaseResponseMemberInfoResponse'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  deleteMember: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
         };
       };
       400: {
