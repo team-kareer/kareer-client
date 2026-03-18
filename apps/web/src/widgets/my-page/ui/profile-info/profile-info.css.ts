@@ -16,7 +16,7 @@ export const section = style({
   gap: '2.4rem',
   selectors: {
     '& + &': {
-      borderTop: `1px solid ${themeVars.color.grayscale.gray200}`,
+      borderTop: `1px solid ${themeVars.color.grayscale.gray300}`,
       paddingTop: '2.8rem',
       marginTop: '2.8rem',
     },
