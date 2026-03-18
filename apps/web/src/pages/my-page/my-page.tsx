@@ -1,7 +1,9 @@
+import { ProfileInfoSection } from '@widgets/my-page';
+
 const MyPage = () => {
   return (
     <div>
-      <p>마이페이지</p>
+      <ProfileInfoSection />
     </div>
   );
 };
