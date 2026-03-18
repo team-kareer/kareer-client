@@ -44,6 +44,11 @@ export const inputWrapper = recipe({
           },
         },
       },
+      readOnly: {
+        backgroundColor: themeVars.color.grayscale.gray100,
+        borderColor: themeVars.color.grayscale.gray300,
+        boxShadow: 'none',
+      },
     },
   },
 });
