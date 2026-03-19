@@ -1,18 +1,15 @@
 import { OnboardingStepData } from '@widgets/onboarding';
 
-export type StepStatus = 'Completed' | 'In Progress' | 'Next' | 'Later';
+export type StepStatus = 'Done' | 'In Process' | 'Disabled';
 
 const getStepStatus = (index: number, currentStepIndex: number): StepStatus => {
   if (index < currentStepIndex) {
-    return 'Completed';
+    return 'Done';
   }
   if (index === currentStepIndex) {
-    return 'In Progress';
+    return 'In Process';
   }
-  if (index === currentStepIndex + 1) {
-    return 'Next';
-  }
-  return 'Later';
+  return 'Disabled';
 };
 
 export const createStepData = (
