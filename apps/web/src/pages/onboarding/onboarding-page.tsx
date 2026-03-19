@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import {
+  createStepData,
   OnboardingStepLayout,
   PersonalBackgroundStep,
   PersonalInformationStep,
@@ -14,7 +15,6 @@ import { postOnboardingForm } from '@features/onboarding';
 import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
 import {
   convertFormToRequest,
-  createStepData,
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
   getRequiredFieldsForStep,
