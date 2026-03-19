@@ -20,7 +20,6 @@ import {
   getRequiredFieldsForStep,
   hasAllRequiredFieldValues,
   OnboardingForm,
-  STEP_TITLES,
 } from '@entities/onboarding';
 import { USER_QUERY_KEY } from '@entities/user/queries';
 import useFunnel from '@shared/hooks/usefunnel';
@@ -82,7 +81,7 @@ const OnboardingPage = () => {
     }
   }, [error]);
 
-  const steps = createStepData(STEP_TITLES, currentStepIndex);
+  const steps = createStepData(FUNNEL_STEPS, currentStepIndex);
 
   const handleBack = () => {
     goToPrevStep();
@@ -133,19 +132,19 @@ const OnboardingPage = () => {
         isNextDisabled={isNextDisabled}
       >
         <Funnel>
-          <Step name="Identity & Visa verification">
+          <Step name={FUNNEL_STEPS[0]}>
             <PersonalInformationStep />
           </Step>
-          <Step name="Education">
+          <Step name={FUNNEL_STEPS[1]}>
             <VisaInformationStep />
           </Step>
-          <Step name="Language Skills">
+          <Step name={FUNNEL_STEPS[2]}>
             <TargetRoleStep />
           </Step>
-          <Step name="Career Preferences">
+          <Step name={FUNNEL_STEPS[3]}>
             <TargetRoleStep />
           </Step>
-          <Step name="Background">
+          <Step name={FUNNEL_STEPS[4]}>
             <PersonalBackgroundStep />
           </Step>
         </Funnel>
