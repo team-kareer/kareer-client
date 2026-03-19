@@ -24,7 +24,7 @@ const OnboardingStepLayout = ({
   onNext,
   isNextDisabled,
 }: OnboardingStepLayoutProps) => {
-  const currentStep = steps.find((step) => step.status === 'In Progress');
+  const currentStep = steps.find((step) => step.status === 'In Process');
   const isLastStep =
     currentStep &&
     currentStep.stepNumber === steps[steps.length - 1]?.stepNumber;
