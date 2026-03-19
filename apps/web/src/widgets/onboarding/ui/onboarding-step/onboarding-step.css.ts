@@ -36,21 +36,23 @@ export const step = recipe({
   },
 });
 
+const activeStatus = {
+  color: themeVars.color.primary[900],
+} as const;
+
+const inactiveStatus = {
+  color: themeVars.color.primary[900],
+} as const;
+
 export const title = recipe({
   base: {
     ...typography.cap2_m_12,
   },
   variants: {
     status: {
-      Done: {
-        color: themeVars.color.primary[900],
-      },
-      'In Process': {
-        color: themeVars.color.primary[900],
-      },
-      Disabled: {
-        color: themeVars.color.grayscale.gray600,
-      },
+      Done: activeStatus,
+      'In Process': activeStatus,
+      Disabled: inactiveStatus,
     },
   },
 });
