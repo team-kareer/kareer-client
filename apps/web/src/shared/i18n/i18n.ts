@@ -3,9 +3,9 @@ import { initReactI18next } from 'react-i18next';
 
 import { resources } from '@shared/i18n/resources';
 
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from './constants';
+
 const LANGUAGE_STORAGE_KEY = 'app-language';
-const SUPPORTED_LANGUAGES = ['en', 'ko', 'vi', 'zh-CN'] as const;
-const DEFAULT_LANGUAGE = 'en';
 
 const getInitialLanguage = () => {
   if (typeof window === 'undefined') {
@@ -14,18 +14,17 @@ const getInitialLanguage = () => {
 
   const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
   const isSupported = SUPPORTED_LANGUAGES.some(
-    (language) => language === savedLanguage,
+    (lang) => lang === savedLanguage,
   );
 
   return isSupported && savedLanguage ? savedLanguage : DEFAULT_LANGUAGE;
 };
 
-i18n.on('languageChanged', (lng) => {
+i18n.on('languageChanged', (lng: string) => {
   if (typeof window === 'undefined') {
     return;
   }
-
-  if (!SUPPORTED_LANGUAGES.some((language) => language === lng)) {
+  if (!SUPPORTED_LANGUAGES.some((lang) => lang === lng)) {
     return;
   }
 
@@ -37,12 +36,10 @@ i18n.use(initReactI18next).init({
   resources,
   lng: getInitialLanguage(),
   fallbackLng: DEFAULT_LANGUAGE,
-  supportedLngs: SUPPORTED_LANGUAGES,
+  supportedLngs: [...SUPPORTED_LANGUAGES],
   ns: ['common', 'todo'],
   defaultNS: 'common',
-  interpolation: {
-    escapeValue: false,
-  },
+  interpolation: { escapeValue: false },
 });
 
 export default i18n;

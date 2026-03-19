@@ -2,12 +2,7 @@ import { GlobalIcon } from '@kds/icons';
 import { Dropdown } from '@kds/ui';
 import { useTranslation } from 'react-i18next';
 
-const LANGUAGE_OPTIONS = [
-  { value: 'en', label: 'English' },
-  { value: 'ko', label: 'Korean' },
-  { value: 'zh-CN', label: 'Chinese' },
-  { value: 'vi', label: 'Vietnamese' },
-] as const;
+import { LANGUAGE_OPTIONS } from '@features/onboarding/model';
 
 const LanguageSelector = () => {
   const { i18n } = useTranslation();
