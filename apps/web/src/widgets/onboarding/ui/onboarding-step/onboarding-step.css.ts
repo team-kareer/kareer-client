@@ -2,48 +2,54 @@ import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-export const statusColorVariants = {
-  'In Progress': {
-    color: themeVars.color.grayscale.gray600,
-  },
-  Next: {
-    color: themeVars.color.grayscale.gray400,
-  },
-  Later: {
-    color: themeVars.color.grayscale.gray400,
-  },
-  Completed: {
-    color: themeVars.color.grayscale.gray400,
-  },
-} as const;
-
 export const container = style({
   display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
   flexShrink: 0,
-  flexDirection: 'column',
 });
 
-export const stepNumber = recipe({
+export const step = recipe({
   base: {
-    ...typography.cap2_m_12,
-    paddingBottom: '0.4rem',
+    ...typography.body7_sb_14,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexShrink: 0,
+    width: '2rem',
+    height: '2rem',
+    borderRadius: '50%',
   },
   variants: {
-    status: statusColorVariants,
+    status: {
+      'In Process': {
+        color: themeVars.color.grayscale.white,
+        backgroundColor: themeVars.color.primary[900],
+        outline: `1px solid ${themeVars.color.primary[500]}`,
+        border: `1px solid ${themeVars.color.primary[500]}`,
+      },
+      Disabled: {
+        color: themeVars.color.grayscale.gray600,
+        backgroundColor: themeVars.color.grayscale.gray400,
+      },
+    },
   },
 });
 
 export const title = recipe({
   base: {
-    ...typography.body9_r_14,
-    paddingBottom: '0.8rem',
+    ...typography.cap2_m_12,
   },
   variants: {
     status: {
-      ...statusColorVariants,
-      'In Progress': {
-        ...typography.body7_sb_14,
-        color: themeVars.color.grayscale.gray800,
+      Done: {
+        color: themeVars.color.primary[900],
+      },
+      'In Process': {
+        color: themeVars.color.primary[900],
+      },
+      Disabled: {
+        color: themeVars.color.grayscale.gray600,
       },
     },
   },
