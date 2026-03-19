@@ -58,7 +58,7 @@ const OnboardingPage = () => {
     name: 'personalBackground',
   });
   const isPersonalBackgroundOverLimit =
-    currentStepIndex === 3 && (personalBackground?.length || 0) > 1000;
+    currentStepIndex === 4 && (personalBackground?.length || 0) > 1000;
 
   // 모든 필드 존재 체크
   const hasAllRequiredValues = hasAllRequiredFieldValues(
@@ -133,13 +133,16 @@ const OnboardingPage = () => {
         isNextDisabled={isNextDisabled}
       >
         <Funnel>
-          <Step name="PersonalInformation">
+          <Step name="Identity & Visa verification">
             <PersonalInformationStep />
           </Step>
-          <Step name="VisaInformation">
+          <Step name="Education">
             <VisaInformationStep />
           </Step>
-          <Step name="TargetRole">
+          <Step name="Language Skills">
+            <TargetRoleStep />
+          </Step>
+          <Step name="Career Preferences">
             <TargetRoleStep />
           </Step>
           <Step name="Background">

@@ -34,9 +34,10 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
  * @constant
  */
 export const FUNNEL_STEPS = [
-  'PersonalInformation',
-  'VisaInformation',
-  'TargetRole',
+  'Identity & Visa verification',
+  'Education',
+  'Language Skills',
+  'Career Preferences',
   'Background',
 ] as const;
 
@@ -45,9 +46,10 @@ export const FUNNEL_STEPS = [
  * @constant
  */
 export const STEP_TITLES = [
-  'Personal Information',
-  'Visa Information',
-  'Target Role',
+  'Identity & Visa verification',
+  'Education',
+  'Language Skills',
+  'Career Preferences',
   'Background',
 ];
 
@@ -57,6 +59,7 @@ export const STEP_TITLES = [
 export const STEP_REQUIRED_FIELDS: Array<Array<keyof OnboardingForm>> = [
   ['name', 'birthDate', 'languageLevel', 'degree', 'country'],
   ['visaType', 'expectedGraduationDate', 'visaStartDate', 'visaExpiredAt'],
+  ['primaryMajor', 'targetJob'],
   ['primaryMajor', 'targetJob'],
   ['personalBackground'],
 ];
