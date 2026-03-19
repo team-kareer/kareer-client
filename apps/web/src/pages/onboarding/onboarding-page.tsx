@@ -57,7 +57,8 @@ const OnboardingPage = () => {
     name: 'personalBackground',
   });
   const isPersonalBackgroundOverLimit =
-    currentStepIndex === 4 && (personalBackground?.length || 0) > 1000;
+    currentStepIndex === FUNNEL_STEPS.length - 1 &&
+    (personalBackground?.length || 0) > 1000;
 
   // 모든 필드 존재 체크
   const hasAllRequiredValues = hasAllRequiredFieldValues(
