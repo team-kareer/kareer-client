@@ -12,5 +12,5 @@ export const container = style({
 
 export const title = style({
   ...typography.head4_sb_24,
-  color: themeVars.color.grayscale.gray800,
+  color: themeVars.color.grayscale.gray900,
 });
