@@ -1,11 +1,13 @@
 import { CheckDoneIcon } from '@kds/icons';
 
+import type { StepStatus } from '@widgets/onboarding';
+
 import * as styles from './onboarding-step.css';
 
 interface OnboardingStepProps {
   stepNumber: number;
   title: string;
-  status: 'Done' | 'In Process' | 'Disabled';
+  status: StepStatus;
 }
 
 const OnboardingStep = ({ stepNumber, title, status }: OnboardingStepProps) => {

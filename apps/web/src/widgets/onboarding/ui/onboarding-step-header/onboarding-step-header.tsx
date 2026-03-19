@@ -1,14 +1,8 @@
 import { Fragment } from 'react';
 
-import { OnboardingStep } from '@widgets/onboarding';
+import { OnboardingStep, type OnboardingStepData } from '@widgets/onboarding';
 
 import * as styles from './onboarding-step-header.css';
-
-export interface OnboardingStepData {
-  stepNumber: number;
-  title: string;
-  status: 'Done' | 'In Process' | 'Disabled';
-}
 
 interface OnboardingStepHeaderProps {
   steps: OnboardingStepData[];
