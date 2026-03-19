@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { ProfileField } from '@widgets/my-page';
 import { USER_QUERY_OPTIONS } from '@entities/user/queries';
+import { PageLoader } from '@shared/ui';
 
 import * as styles from './profile-info.css';
 
@@ -28,7 +29,12 @@ const PROFILE_FIELD_SECTIONS = [
 ] as const;
 
 const ProfileInfo = () => {
-  const { data } = useQuery({ ...USER_QUERY_OPTIONS.GET_MY_PAGE() });
+  const { data, isPending } = useQuery({ ...USER_QUERY_OPTIONS.GET_MY_PAGE() });
+
+  if (isPending) {
+    return <PageLoader text="Please wait a bit..." />;
+  }
+
   return (
     <section className={styles.container}>
       {PROFILE_FIELD_SECTIONS.map((section, index) => (
