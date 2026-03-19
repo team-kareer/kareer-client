@@ -10,7 +10,7 @@ import {
 } from '@widgets/onboarding/constants/personal-background';
 import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeholders';
 import { validateText } from '@features/onboarding/model/validation';
-import { type OnboardingForm } from '@entities/onboarding';
+import { FUNNEL_STEPS, type OnboardingForm } from '@entities/onboarding';
 import { getPlaceholderByTargetJob } from '@entities/onboarding';
 
 import * as styles from './personal-background.css';
@@ -31,7 +31,7 @@ const PersonalBackground = () => {
 
   return (
     <section>
-      <OnboardingStepTitle stepNumber={4} title="Personal Background" />
+      <OnboardingStepTitle stepNumber={4} title={FUNNEL_STEPS[4]} />
       <div className={styles.container}>
         <div className={styles.contentWrapper}>
           <h2 className={styles.title}>{PERSONAL_BACKGROUND_TITLE}</h2>

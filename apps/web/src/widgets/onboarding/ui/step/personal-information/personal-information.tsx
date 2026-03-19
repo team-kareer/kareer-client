@@ -9,7 +9,7 @@ import {
   validateDate,
   validateText,
 } from '@features/onboarding/model/validation';
-import { COUNTRY_LIST_QUERY_OPTIONS } from '@entities/onboarding';
+import { COUNTRY_LIST_QUERY_OPTIONS, FUNNEL_STEPS } from '@entities/onboarding';
 import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './personal-information.css';
@@ -23,7 +23,7 @@ const PersonalInformation = () => {
 
   return (
     <section>
-      <OnboardingStepTitle stepNumber={1} title="Personal Information" />
+      <OnboardingStepTitle stepNumber={1} title={FUNNEL_STEPS[0]} />
       <div className={styles.inputContainer}>
         <FormInputField
           name="name"

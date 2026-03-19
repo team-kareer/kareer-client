@@ -10,6 +10,7 @@ import {
   validateText,
 } from '@features/onboarding/model/validation';
 import {
+  FUNNEL_STEPS,
   MAJOR_LIST_QUERY_OPTIONS,
   TARGET_JOB_OPTIONS,
 } from '@entities/onboarding';
@@ -25,7 +26,7 @@ const TargetRole = () => {
 
   return (
     <section>
-      <OnboardingStepTitle stepNumber={3} title="Target Role" />
+      <OnboardingStepTitle stepNumber={3} title={FUNNEL_STEPS[2]} />
       <div className={styles.inputContainer}>
         <FormAutocompleteField
           name="primaryMajor"
