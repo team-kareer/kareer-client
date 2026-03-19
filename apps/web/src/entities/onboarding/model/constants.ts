@@ -42,18 +42,6 @@ export const FUNNEL_STEPS = [
 ] as const;
 
 /**
- * 온보딩 퍼널 step title
- * @constant
- */
-export const STEP_TITLES = [
-  'Identity & Visa verification',
-  'Education',
-  'Language Skills',
-  'Career Preferences',
-  'Background',
-];
-
-/**
  * 각 단계별 필수 입력 필드 배열
  * */
 export const STEP_REQUIRED_FIELDS: Array<Array<keyof OnboardingForm>> = [
