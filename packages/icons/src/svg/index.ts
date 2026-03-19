@@ -11,6 +11,7 @@ export { default as BookmarkCheckIcon } from './ic_bookmark_check.svg?react';
 export { default as CalendarIcon } from './ic_calendar.svg?react';
 export { default as CheckIcon } from './ic_check.svg?react';
 export { default as CheckCircleIcon } from './ic_check-circle.svg?react';
+export { default as CheckDoneIcon } from './ic_check-done.svg?react';
 export { default as CuriousIcon } from './ic_curious.svg?react';
 export { default as CurrentIcon } from './ic_current.svg?react';
 export { default as CustomMapIcon } from './ic_custom-map.svg?react';
