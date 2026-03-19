@@ -16,6 +16,7 @@ export { default as CurrentIcon } from './ic_current.svg?react';
 export { default as CustomMapIcon } from './ic_custom-map.svg?react';
 export { default as EditIcon } from './ic_edit.svg?react';
 export { default as FitAnalysisIcon } from './ic_fit-analysis.svg?react';
+export { default as GlobalIcon } from './ic_global.svg?react';
 export { default as GoogleIcon } from './ic_google.svg?react';
 export { default as HomeIcon } from './ic_home.svg?react';
 export { default as InfoIcon } from './ic_info.svg?react';
