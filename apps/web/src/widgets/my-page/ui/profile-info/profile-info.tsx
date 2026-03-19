@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { ProfileField } from '@widgets/my-page';
+import { ProfileField } from '@entities/user/ui';
 import { USER_QUERY_OPTIONS } from '@entities/user/queries';
 import { PageLoader } from '@shared/ui';
 
