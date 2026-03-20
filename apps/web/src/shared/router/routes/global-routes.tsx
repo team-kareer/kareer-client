@@ -29,11 +29,11 @@ export const protectedAppRoutes = [
     Component: FitAnalysisPage,
   },
   {
-    path: '*',
-    element: <ErrorPage isNotFound={true} />,
-  },
-  {
     path: ROUTE_PATH.MY_PAGE,
     Component: MyPage,
+  },
+  {
+    path: '*',
+    element: <ErrorPage isNotFound={true} />,
   },
 ];
