@@ -53,7 +53,7 @@ const UploadBox = ({
         ref={inputRef}
         className={styles.hiddenInput}
         type="file"
-        accept="application/pdf"
+        accept="application/pdf,image/*"
         onChange={handleChangeFile}
       />
       <section className={styles.uploadContainer}>
