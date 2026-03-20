@@ -1,28 +1,24 @@
-import { Tag } from '@kds/ui';
+import { CheckDoneIcon } from '@kds/icons';
+
+import type { StepStatus } from '@widgets/onboarding';
 
 import * as styles from './onboarding-step.css';
 
 interface OnboardingStepProps {
   stepNumber: number;
   title: string;
-  status: 'In Progress' | 'Next' | 'Later' | 'Completed';
+  status: StepStatus;
 }
 
 const OnboardingStep = ({ stepNumber, title, status }: OnboardingStepProps) => {
-  const tagColorStep = {
-    'In Progress': 'primary_blue',
-    Next: 'outlined_black',
-    Later: 'disabled_gray',
-    Completed: 'disabled_gray',
-  } as const;
-
   return (
     <div className={styles.container}>
-      <p className={styles.stepNumber({ status })}>STEP {stepNumber}</p>
+      {status === 'Done' ? (
+        <CheckDoneIcon width={20} height={20} />
+      ) : (
+        <p className={styles.step({ status })}>{stepNumber}</p>
+      )}
       <h2 className={styles.title({ status })}>{title}</h2>
-      <div>
-        <Tag color={tagColorStep[status]}>{status}</Tag>
-      </div>
     </div>
   );
 };

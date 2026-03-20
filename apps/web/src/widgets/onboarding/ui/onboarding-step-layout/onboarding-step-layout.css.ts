@@ -17,13 +17,7 @@ export const contentContainer = style({
 
 export const buttonContainer = style({
   display: 'flex',
-  flexDirection: 'row',
-  paddingTop: '6.5rem',
   gap: '1.6rem',
-});
-
-export const buttonContainerStep3 = style({
-  paddingTop: '2rem',
 });
 
 export const buttonContent = style({

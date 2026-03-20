@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import {
+  createStepData,
   OnboardingStepLayout,
   PersonalBackgroundStep,
   PersonalInformationStep,
@@ -14,13 +15,11 @@ import { postOnboardingForm } from '@features/onboarding';
 import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
 import {
   convertFormToRequest,
-  createStepData,
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
   getRequiredFieldsForStep,
   hasAllRequiredFieldValues,
   OnboardingForm,
-  STEP_TITLES,
 } from '@entities/onboarding';
 import { USER_QUERY_KEY } from '@entities/user/queries';
 import useFunnel from '@shared/hooks/usefunnel';
@@ -58,7 +57,8 @@ const OnboardingPage = () => {
     name: 'personalBackground',
   });
   const isPersonalBackgroundOverLimit =
-    currentStepIndex === 3 && (personalBackground?.length || 0) > 1000;
+    currentStepIndex === FUNNEL_STEPS.length - 1 &&
+    (personalBackground?.length || 0) > 1000;
 
   // 모든 필드 존재 체크
   const hasAllRequiredValues = hasAllRequiredFieldValues(
@@ -82,7 +82,7 @@ const OnboardingPage = () => {
     }
   }, [error]);
 
-  const steps = createStepData(STEP_TITLES, currentStepIndex);
+  const steps = createStepData(FUNNEL_STEPS, currentStepIndex);
 
   const handleBack = () => {
     goToPrevStep();
@@ -133,16 +133,19 @@ const OnboardingPage = () => {
         isNextDisabled={isNextDisabled}
       >
         <Funnel>
-          <Step name="PersonalInformation">
+          <Step name={FUNNEL_STEPS[0]}>
             <PersonalInformationStep />
           </Step>
-          <Step name="VisaInformation">
+          <Step name={FUNNEL_STEPS[1]}>
             <VisaInformationStep />
           </Step>
-          <Step name="TargetRole">
+          <Step name={FUNNEL_STEPS[2]}>
             <TargetRoleStep />
           </Step>
-          <Step name="Background">
+          <Step name={FUNNEL_STEPS[3]}>
+            <TargetRoleStep />
+          </Step>
+          <Step name={FUNNEL_STEPS[4]}>
             <PersonalBackgroundStep />
           </Step>
         </Funnel>

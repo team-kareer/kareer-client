@@ -12,7 +12,7 @@ import {
   validateIssuanceDate,
   validateVisaPoint,
 } from '@features/onboarding/model/validation';
-import { type OnboardingForm } from '@entities/onboarding';
+import { FUNNEL_STEPS, type OnboardingForm } from '@entities/onboarding';
 import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './visa-information.css';
@@ -60,7 +60,7 @@ const VisaInformation = () => {
 
   return (
     <section>
-      <OnboardingStepTitle stepNumber={2} title="Visa Information" />
+      <OnboardingStepTitle stepNumber={2} title={FUNNEL_STEPS[1]} />
       <div className={styles.inputContainer}>
         <FormAutocompleteField
           name="visaType"
