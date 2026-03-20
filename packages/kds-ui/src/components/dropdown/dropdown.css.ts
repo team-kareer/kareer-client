@@ -15,6 +15,7 @@ export const trigger = style({
   alignItems: 'center',
   gap: '0.4rem',
   width: '10.9rem',
+  justifyContent: 'space-between',
   ...typography.body7_sb_14,
   color: themeVars.color.primary[500],
 });
