@@ -10,6 +10,7 @@ interface UploadBoxProps {
     done: number;
     total: number;
   };
+  disabled?: boolean;
   onSelectFile: (file: File) => void;
   onRemoveFile: () => void;
 }
@@ -27,6 +28,7 @@ const formatFileSize = (fileSize: number) => {
 const UploadBox = ({
   file,
   progress,
+  disabled,
   onSelectFile,
   onRemoveFile,
 }: UploadBoxProps) => {
@@ -58,10 +60,16 @@ const UploadBox = ({
       />
       <section className={styles.uploadContainer}>
         <div className={styles.uploadTopSection}>
-          <UploadIcon width="2.4rem" height="2.4rem" />
+          <UploadIcon width={24} height={24} />
           <p className={styles.text}>Upload Photo</p>
         </div>
-        <Button preset="medium_secondary" onClick={handleChooseFile}>
+
+        <Button
+          style={{ width: '100%', justifyContent: 'center' }}
+          preset="medium_secondary"
+          onClick={handleChooseFile}
+          disabled={disabled}
+        >
           Choose File
         </Button>
       </section>
@@ -81,6 +89,7 @@ const UploadBox = ({
               <XIcon width="1.6rem" height="1.6rem" />
             </button>
           </div>
+
           {progress && (
             <ProgressBar total={progress.total} done={progress.done} />
           )}

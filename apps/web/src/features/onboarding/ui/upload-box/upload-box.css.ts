@@ -37,12 +37,14 @@ export const uploadTopSection = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  width: '11.8rem',
+
   gap: '0.4rem',
+  color: themeVars.color.grayscale.gray500,
 });
 
 export const text = style({
   ...typography.body8_m_14,
-  color: themeVars.color.grayscale.gray500,
 });
 
 export const fileContainer = style({
