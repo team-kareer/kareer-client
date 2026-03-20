@@ -41,7 +41,7 @@ const activeStatus = {
 } as const;
 
 const inactiveStatus = {
-  color: themeVars.color.primary[600],
+  color: themeVars.color.grayscale.gray600,
 } as const;
 
 export const title = recipe({
