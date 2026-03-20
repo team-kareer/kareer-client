@@ -2,18 +2,13 @@ import { Avatar } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
 
 import { USER_QUERY_OPTIONS } from '@entities/user/queries';
-import { PageLoader } from '@shared/ui';
 
 import * as styles from './profile-header.css';
 
 const ProfileHeader = () => {
-  const { data, isPending } = useQuery({
+  const { data } = useQuery({
     ...USER_QUERY_OPTIONS.GET_USER_INFO(),
   });
-
-  if (isPending) {
-    return <PageLoader text="Please wait a bit..." />;
-  }
 
   return (
     <div className={styles.container}>
