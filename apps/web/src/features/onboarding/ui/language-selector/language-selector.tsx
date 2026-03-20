@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { LANGUAGE_OPTIONS } from '@features/onboarding/model';
 
+import * as styles from './language-selector.css';
+
 const LanguageSelector = () => {
   const { i18n } = useTranslation();
 
@@ -20,7 +22,7 @@ const LanguageSelector = () => {
       onSelect={(value) => i18n.changeLanguage(value)}
       options={filteredOptions}
     >
-      <GlobalIcon width={16} height={16} />
+      <GlobalIcon width={16} height={16} className={styles.icon} />
       <span>{currentLabel}</span>
     </Dropdown>
   );

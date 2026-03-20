@@ -5,7 +5,7 @@ export const container = style({
   position: 'relative',
   display: 'inline-block',
   backgroundColor: themeVars.color.grayscale.white,
-  padding: '0.75rem 1.25rem',
+  padding: '0.75rem 1.2rem',
   borderRadius: '10px',
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
 });
@@ -14,8 +14,13 @@ export const trigger = style({
   display: 'inline-flex',
   alignItems: 'center',
   gap: '0.4rem',
+  width: '10.9rem',
   ...typography.body7_sb_14,
   color: themeVars.color.primary[500],
+});
+
+export const icon = style({
+  flexShrink: 0,
 });
 
 export const panel = style({
@@ -26,6 +31,7 @@ export const panel = style({
   minWidth: '100%',
   background: themeVars.color.grayscale.white,
   borderRadius: '10px',
+  overflow: 'hidden',
 });
 
 export const item = style({
@@ -33,7 +39,7 @@ export const item = style({
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  padding: '1.2rem 0.75rem',
+  padding: '0.75rem 1.2rem ',
   color: themeVars.color.grayscale.gray600,
   ...typography.body8_m_14,
 

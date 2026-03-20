@@ -30,7 +30,7 @@ const Dropdown = ({ onSelect, options, children }: DropdownProps) => {
         onClick={() => setIsOpen((prev) => !prev)}
       >
         {children}
-        <ArrowDownIcon width={16} height={16} />
+        <ArrowDownIcon width={16} height={16} className={styles.icon} />
       </button>
 
       {isOpen && (
