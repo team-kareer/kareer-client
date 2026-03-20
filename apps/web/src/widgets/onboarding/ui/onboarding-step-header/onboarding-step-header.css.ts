@@ -8,7 +8,7 @@ export const container = style({
   gap: '0.4rem',
   padding: '1.2rem 1.6rem',
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
-  borderRadius: '2rem',
+  borderRadius: '20px',
   backgroundColor: themeVars.color.grayscale.gray100,
   marginRight: '6.6rem',
   overflow: 'hidden',
