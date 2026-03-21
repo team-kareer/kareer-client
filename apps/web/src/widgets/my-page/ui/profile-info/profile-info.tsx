@@ -7,7 +7,7 @@ import { ProfileField } from '@entities/user/ui';
 import * as styles from './profile-info.css';
 
 const ProfileInfo = () => {
-  const { data } = useQuery({ ...USER_QUERY_OPTIONS.GET_MY_PAGE() });
+  const { data } = useQuery({ ...USER_QUERY_OPTIONS.GET_MY_PAGE_INFO() });
 
   return (
     <section className={styles.container}>

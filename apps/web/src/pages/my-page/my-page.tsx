@@ -9,7 +9,7 @@ const MyPage = () => {
     ...USER_QUERY_OPTIONS.GET_USER_INFO(),
   });
   const { isPending: isMyPagePending } = useQuery({
-    ...USER_QUERY_OPTIONS.GET_MY_PAGE(),
+    ...USER_QUERY_OPTIONS.GET_MY_PAGE_INFO(),
   });
 
   if (isUserInfoPending || isMyPagePending) {

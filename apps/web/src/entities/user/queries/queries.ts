@@ -16,7 +16,7 @@ export const USER_QUERY_OPTIONS = {
       queryFn: getUserStatus,
     });
   },
-  GET_MY_PAGE: () => {
+  GET_MY_PAGE_INFO: () => {
     return queryOptions({
       queryKey: USER_QUERY_KEY.USER_MY_PAGE(),
       queryFn: getUserMyPage,
