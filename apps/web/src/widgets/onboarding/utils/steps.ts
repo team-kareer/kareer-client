@@ -1,22 +1,17 @@
-import { OnboardingStepData } from '@widgets/onboarding';
-
-export type StepStatus = 'Completed' | 'In Progress' | 'Next' | 'Later';
+import { OnboardingStepData, StepStatus } from '@widgets/onboarding';
 
 const getStepStatus = (index: number, currentStepIndex: number): StepStatus => {
   if (index < currentStepIndex) {
-    return 'Completed';
+    return 'Done';
   }
   if (index === currentStepIndex) {
-    return 'In Progress';
+    return 'In Process';
   }
-  if (index === currentStepIndex + 1) {
-    return 'Next';
-  }
-  return 'Later';
+  return 'Disabled';
 };
 
 export const createStepData = (
-  titles: string[],
+  titles: readonly string[],
   currentStepIndex: number,
 ): OnboardingStepData[] => {
   return titles.map((title, index) => ({

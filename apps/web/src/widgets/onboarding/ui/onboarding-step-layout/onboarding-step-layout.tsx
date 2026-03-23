@@ -24,12 +24,11 @@ const OnboardingStepLayout = ({
   onNext,
   isNextDisabled,
 }: OnboardingStepLayoutProps) => {
-  const currentStep = steps.find((step) => step.status === 'In Progress');
+  const currentStep = steps.find((step) => step.status === 'In Process');
   const isLastStep =
     currentStep &&
     currentStep.stepNumber === steps[steps.length - 1]?.stepNumber;
   const isFirstStep = currentStep?.stepNumber === 1;
-  const isStep3 = currentStep?.stepNumber === 3;
 
   return (
     <div className={styles.container}>
@@ -37,11 +36,7 @@ const OnboardingStepLayout = ({
         <OnboardingStepHeader steps={steps} />
       </div>
       <div className={styles.contentContainer}>{children}</div>
-      <div
-        className={`${styles.buttonContainer} ${
-          isStep3 ? styles.buttonContainerStep3 : ''
-        }`}
-      >
+      <div className={styles.buttonContainer}>
         {onBack && (
           <Button
             preset="large_outlined"
