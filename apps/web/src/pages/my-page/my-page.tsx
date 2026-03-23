@@ -1,5 +1,12 @@
+import { ProfileHeader, ProfileInfoSection } from '@widgets/my-page';
+
 const MyPage = () => {
-  return <div>MyPage</div>;
+  return (
+    <>
+      <ProfileHeader />
+      <ProfileInfoSection />
+    </>
+  );
 };
 
 export default MyPage;

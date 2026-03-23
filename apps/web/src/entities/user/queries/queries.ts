@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getUserInfo, getUserStatus } from '@entities/user/api';
+import { getUserInfo, getUserMyPage, getUserStatus } from '@entities/user/api';
 import { USER_QUERY_KEY } from '@entities/user/queries';
 
 export const USER_QUERY_OPTIONS = {
@@ -14,6 +14,12 @@ export const USER_QUERY_OPTIONS = {
     return queryOptions({
       queryKey: USER_QUERY_KEY.USER_STATUS(),
       queryFn: getUserStatus,
+    });
+  },
+  GET_MY_PAGE_INFO: () => {
+    return queryOptions({
+      queryKey: USER_QUERY_KEY.USER_MY_PAGE(),
+      queryFn: getUserMyPage,
     });
   },
 };

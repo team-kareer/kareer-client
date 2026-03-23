@@ -24,6 +24,11 @@ const HEADER_LIST = [
     subTitle: 'See what works in your favor — and what to improve',
     path: ROUTE_PATH.FITANALYSIS,
   },
+  {
+    title: 'My Page',
+    subTitle: 'Check your indentity',
+    path: ROUTE_PATH.MY_PAGE,
+  },
 ] as const;
 
 const Header = () => {

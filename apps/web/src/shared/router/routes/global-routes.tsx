@@ -3,7 +3,7 @@ import {
   DashboardPage,
   FitAnalysisPage,
   LoginCallbackPage,
-  // MyPage,
+  MyPage,
   RoadmapPage,
 } from '@shared/router/lazy';
 import { ROUTE_PATH } from '@shared/router/path';
@@ -29,11 +29,11 @@ export const protectedAppRoutes = [
     Component: FitAnalysisPage,
   },
   {
+    path: ROUTE_PATH.MY_PAGE,
+    Component: MyPage,
+  },
+  {
     path: '*',
     element: <ErrorPage isNotFound={true} />,
   },
-  // {
-  //   path: ROUTE_PATH.MY_PAGE,
-  //   Component: MyPage,
-  // },
 ];

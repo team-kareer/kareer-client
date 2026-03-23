@@ -29,7 +29,7 @@ const NAVIGATION_ITEMS = [
     icon: <FitAnalysisIcon />,
     path: ROUTE_PATH.FITANALYSIS,
   },
-  { label: 'My page', icon: <ProfileIcon />, path: null },
+  { label: 'My page', icon: <ProfileIcon />, path: ROUTE_PATH.MY_PAGE },
 ] as const;
 
 const Navigation = () => {

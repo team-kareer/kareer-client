@@ -20,6 +20,13 @@ export const inputWrapper = recipe({
     borderRadius: '10px',
     border: `1px solid ${themeVars.color.grayscale.gray300}`,
     backgroundColor: themeVars.color.grayscale.white,
+    selectors: {
+      '&:has(input[readonly])': {
+        backgroundColor: themeVars.color.grayscale.gray100,
+        borderColor: themeVars.color.grayscale.gray300,
+        boxShadow: 'none',
+      },
+    },
   },
   variants: {
     status: {
