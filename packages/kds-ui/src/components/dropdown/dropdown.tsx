@@ -11,10 +11,11 @@ interface DropdownOption {
 interface DropdownProps {
   onSelect: (value: string) => void;
   options: DropdownOption[];
+  icon?: ReactNode;
   children: ReactNode;
 }
 
-const Dropdown = ({ onSelect, options, children }: DropdownProps) => {
+const Dropdown = ({ onSelect, options, icon, children }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (optionValue: string) => {
@@ -29,8 +30,9 @@ const Dropdown = ({ onSelect, options, children }: DropdownProps) => {
         className={styles.trigger}
         onClick={() => setIsOpen((prev) => !prev)}
       >
+        {icon}
         {children}
-        <ArrowDownIcon width={16} height={16} className={styles.icon} />
+        <ArrowDownIcon width={16} height={16} />
       </button>
 
       {isOpen && (
