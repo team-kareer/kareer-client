@@ -10,6 +10,16 @@ export const PERSONAL_INFORMATION_PLACEHOLDERS = {
 } as const;
 
 /**
+ * Education Placaholder
+ */
+export const EDUCATION_PLACEHOLDERS = {
+  UNIVERSITY: 'Enter the university name',
+  MAJOR: 'Enter the major',
+  DEGREE: 'Select the degree',
+  GRADUATION_DATE: 'YYYY-MM-DD',
+} as const;
+
+/**
  * Visa Information placeholder
  * @constant
  */
