@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { ArrowDownIcon } from '@kds/icons';
+import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
 
 import * as styles from './dropdown.css';
 
@@ -32,7 +32,11 @@ const Dropdown = ({ onSelect, options, icon, children }: DropdownProps) => {
       >
         {icon}
         {children}
-        <ArrowDownIcon width={16} height={16} />
+        {isOpen ? (
+          <ArrowUpIcon width={16} height={16} />
+        ) : (
+          <ArrowDownIcon width={16} height={16} />
+        )}
       </button>
 
       {isOpen && (
