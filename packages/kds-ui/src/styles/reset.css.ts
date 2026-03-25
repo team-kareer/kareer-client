@@ -25,6 +25,7 @@ globalStyle('button', {
   background: 'none',
   appearance: 'none',
   border: 'none',
+  cursor: 'pointer',
 });
 
 globalStyle('ul', {

@@ -2,6 +2,7 @@ export { default as Autocomplete } from './autocomplete/autocomplete';
 export { default as Avatar } from './avatar/avatar';
 export { default as Button } from './button/button';
 export { default as Checkbox } from './checkbox/checkbox';
+export { default as Dropdown } from './dropdown/dropdown';
 export { default as Input } from './input/input';
 export { default as Popover } from './popover/popover';
 export { default as ProgressBar } from './progress-bar/progress-bar';
