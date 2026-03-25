@@ -13,10 +13,17 @@ export const PERSONAL_INFORMATION_PLACEHOLDERS = {
  * Education Placaholder
  */
 export const EDUCATION_PLACEHOLDERS = {
-  UNIVERSITY: 'Enter the university name',
-  MAJOR: 'Enter the major',
-  DEGREE: 'Select the degree',
+  UNIVERSITY: 'Select your university name',
+  MAJOR: 'Select your major',
+  DEGREE: 'Enter the degree',
   GRADUATION_DATE: 'YYYY-MM-DD',
+} as const;
+
+/**
+ * Language Skills Placaholder
+ */
+export const LANGUAGE_SKILLS_PLACEHOLDERS = {
+  LANGUAGE_LEVEL: 'Select your level',
 } as const;
 
 /**

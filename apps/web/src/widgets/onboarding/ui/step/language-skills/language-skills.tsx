@@ -1,6 +1,6 @@
 import { FormAutocompleteField } from '@widgets/onboarding';
 import { OnboardingStepTitle } from '@widgets/onboarding';
-import { PERSONAL_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
+import { LANGUAGE_SKILLS_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { validateAutocompleteOption } from '@features/onboarding/model/validation';
 import { FUNNEL_STEPS } from '@entities/onboarding';
 import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding/model/options';
@@ -20,7 +20,7 @@ const LanguageSkills = () => {
             validate: (value) =>
               validateAutocompleteOption(value, LANGUAGE_LEVEL_OPTIONS),
           }}
-          placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.OPIK_LEVEL}
+          placeholder={LANGUAGE_SKILLS_PLACEHOLDERS.LANGUAGE_LEVEL}
           options={LANGUAGE_LEVEL_OPTIONS}
         />
         {/* // TODO: 영어 옵션 리스트 추가 예정 */}
@@ -32,7 +32,7 @@ const LanguageSkills = () => {
             validate: (value) =>
               validateAutocompleteOption(value, LANGUAGE_LEVEL_OPTIONS),
           }}
-          placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.OPIK_LEVEL}
+          placeholder={LANGUAGE_SKILLS_PLACEHOLDERS.LANGUAGE_LEVEL}
           options={LANGUAGE_LEVEL_OPTIONS}
         />
       </div>

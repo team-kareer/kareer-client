@@ -27,5 +27,5 @@ export const label = style({
 // Degree 전용
 export const subLabel = style({
   ...typography.body8_m_14,
-  color: themeVars.color.grayscale.gray400,
+  color: themeVars.color.grayscale.gray500,
 });

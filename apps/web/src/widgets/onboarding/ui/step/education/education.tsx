@@ -51,11 +51,11 @@ const Education = () => {
             name="primaryMajor"
             label="Primary Major"
             rules={{
-              required: 'Enter your major',
+              required: 'Select your major',
               validate: (value) =>
                 validateAutocompleteOption(value, majorList?.majors || []),
             }}
-            placeholder={TARGET_ROLE_PLACEHOLDERS.PRIMARY_MAJOR}
+            placeholder={EDUCATION_PLACEHOLDERS.MAJOR}
             options={majorList?.majors || []}
           />
         </div>
@@ -65,7 +65,7 @@ const Education = () => {
           rules={{
             validate: (value) => validateText(value),
           }}
-          placeholder={TARGET_ROLE_PLACEHOLDERS.SECONDARY_MAJOR}
+          placeholder={EDUCATION_PLACEHOLDERS.MAJOR}
         />
         <div>
           <div className={styles.labelWrapper}>
@@ -76,12 +76,12 @@ const Education = () => {
         </div>
         <FormInputField
           name="expectedGraduationDate"
-          label="Expected Graducation Date (YYYY-MM-DD)"
+          label="Expected Graducation Date"
           rules={{
             required: 'Enter the graduation date',
             validate: validateGraduationDate,
           }}
-          placeholder={VISA_INFORMATION_PLACEHOLDERS.GRADUATION_DATE}
+          placeholder={EDUCATION_PLACEHOLDERS.GRADUATION_DATE}
         />
       </div>
     </section>
