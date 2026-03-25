@@ -12,10 +12,6 @@ export const newRow = style({
   gridColumnStart: 1,
 });
 
-export const autoWrapper = style({
-  paddingBottom: '2.2rem',
-});
-
 export const labelWrapper = style({
   display: 'flex',
   flexDirection: 'row',
@@ -32,29 +28,4 @@ export const label = style({
 export const subLabel = style({
   ...typography.body8_m_14,
   color: themeVars.color.grayscale.gray400,
-});
-
-export const buttonWrapper = style({
-  display: 'flex',
-  flexDirection: 'row',
-  paddingBottom: '0.8rem',
-  gap: '0.4rem',
-});
-
-export const errorMessage = style({
-  ...typography.cap2_m_12,
-  color: themeVars.color.pastel.kared_500,
-  marginTop: '0.8rem',
-});
-
-export const textCount = style({
-  ...typography.cap2_m_12,
-  color: themeVars.color.grayscale.gray500,
-  marginTop: '0.8rem',
-});
-
-export const nameFooter = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
 });

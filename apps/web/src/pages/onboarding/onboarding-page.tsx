@@ -5,10 +5,10 @@ import { FormProvider, useForm, useWatch } from 'react-hook-form';
 import {
   createStepData,
   EducationStep,
+  LanguageSkillStep,
   OnboardingStepLayout,
   PersonalBackgroundStep,
   PersonalInformationStep,
-  TargetRoleStep,
   VisaInformationStep,
 } from '@widgets/onboarding';
 import type { PostOnboardingForm } from '@features/onboarding';
@@ -71,11 +71,14 @@ const OnboardingPage = () => {
     Boolean(form.formState.errors[fieldName]),
   );
 
-  const isNextDisabled =
-    form.formState.isLoading ||
-    !hasAllRequiredValues ||
-    hasStepErrors ||
-    isPersonalBackgroundOverLimit;
+  // const isNextDisabled =
+  //   form.formState.isLoading ||
+  //   !hasAllRequiredValues ||
+  //   hasStepErrors ||
+  //   isPersonalBackgroundOverLimit;
+
+  // TODO : 임시 버튼 활성화 로직 구현(추후 삭제 예정)
+  const isNextDisabled = false;
 
   useEffect(() => {
     if (error) {
@@ -109,20 +112,22 @@ const OnboardingPage = () => {
     },
   });
 
+  // TODO : Test 중 임시 주석처리
   const handleNext = async () => {
-    const isValid = await form.trigger(requiredFields);
-    if (isValid) {
-      const isLastStep = currentStepIndex === FUNNEL_STEPS.length - 1;
-      if (isLastStep) {
-        const formData = form.getValues();
-        const requestData = convertFormToRequest(
-          formData,
-        ) as PostOnboardingForm;
-        submitOnboarding(requestData);
-      } else {
-        goToNextStep();
-      }
-    }
+    // const isValid = await form.trigger(requiredFields);
+    // if (isValid) {
+    //   const isLastStep = currentStepIndex === FUNNEL_STEPS.length - 1;
+    //   if (isLastStep) {
+    //     const formData = form.getValues();
+    //     const requestData = convertFormToRequest(
+    //       formData,
+    //     ) as PostOnboardingForm;
+    //     submitOnboarding(requestData);
+    //   } else {
+    //     goToNextStep();
+    //   }
+    // }
+    goToNextStep();
   };
 
   return (
@@ -141,7 +146,7 @@ const OnboardingPage = () => {
             <EducationStep />
           </Step>
           <Step name={FUNNEL_STEPS[2]}>
-            <TargetRoleStep />
+            <LanguageSkillStep />
           </Step>
           <Step name={FUNNEL_STEPS[3]}>
             <VisaInformationStep />
