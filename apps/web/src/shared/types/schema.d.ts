@@ -28,6 +28,26 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v2/members/onboard': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 회원 온보딩 V2
+     * @description PENDING 상태의 회원의 온보딩 결과를 저장합니다.
+     */
+    post: operations['onboardMember'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/rag/required': {
     parameters: {
       query?: never;
@@ -161,7 +181,7 @@ export interface paths {
      * 회원 온보딩
      * @description PENDING 상태의 회원의 온보딩 결과를 저장합니다.
      */
-    post: operations['onboardMember'];
+    post: operations['onboardMember_1'];
     delete?: never;
     options?: never;
     head?: never;
@@ -368,6 +388,26 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/members/onboard/universities': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 온보딩 대학교 목록 조회
+     * @description 회원 온보딩 시 선택할 수 있는 대학교 목록을 조회합니다.
+     */
+    get: operations['getOnboardUniversities'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/members/onboard/majors': {
     parameters: {
       query?: never;
@@ -380,6 +420,26 @@ export interface paths {
      * @description 회원 온보딩 시 선택할 수 있는 전공 목록을 조회합니다.
      */
     get: operations['getOnboardMajors'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/members/onboard/fields': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 온보딩 관심 분야 목록 조회
+     * @description 회원 온보딩 시 선택할 수 있는 관심 분야 목록을 조회합니다.
+     */
+    get: operations['getOnboardFields'];
     put?: never;
     post?: never;
     delete?: never;
@@ -797,6 +857,252 @@ export interface components {
       code?: number;
       message?: string;
       data?: Record<string, never>;
+    };
+    MemberOnboardV2Request: {
+      name: string;
+      /** Format: date */
+      birthDate: string;
+      university: string;
+      /** @enum {string} */
+      country:
+        | 'Afghanistan'
+        | 'Albania'
+        | 'Algeria'
+        | 'Andorra'
+        | 'Angola'
+        | 'Antigua and Barbuda'
+        | 'Argentina'
+        | 'Armenia'
+        | 'Australia'
+        | 'Austria'
+        | 'Azerbaijan'
+        | 'Bahamas'
+        | 'Bahrain'
+        | 'Bangladesh'
+        | 'Barbados'
+        | 'Belarus'
+        | 'Belgium'
+        | 'Belize'
+        | 'Benin'
+        | 'Bhutan'
+        | 'Bolivia'
+        | 'Bosnia and Herzegovina'
+        | 'Botswana'
+        | 'Brazil'
+        | 'Brunei'
+        | 'Bulgaria'
+        | 'Burkina Faso'
+        | 'Burundi'
+        | 'Cabo Verde'
+        | 'Cambodia'
+        | 'Cameroon'
+        | 'Canada'
+        | 'Central African Republic'
+        | 'Chad'
+        | 'Chile'
+        | 'China'
+        | 'Colombia'
+        | 'Comoros'
+        | 'Congo'
+        | 'Democratic Republic of the Congo'
+        | 'Costa Rica'
+        | "Cote d'Ivoire"
+        | 'Croatia'
+        | 'Cuba'
+        | 'Cyprus'
+        | 'Czechia'
+        | 'Denmark'
+        | 'Djibouti'
+        | 'Dominica'
+        | 'Dominican Republic'
+        | 'Ecuador'
+        | 'Egypt'
+        | 'El Salvador'
+        | 'Equatorial Guinea'
+        | 'Eritrea'
+        | 'Estonia'
+        | 'Eswatini'
+        | 'Ethiopia'
+        | 'Fiji'
+        | 'Finland'
+        | 'France'
+        | 'Gabon'
+        | 'Gambia'
+        | 'Georgia'
+        | 'Germany'
+        | 'Ghana'
+        | 'Greece'
+        | 'Grenada'
+        | 'Guatemala'
+        | 'Guinea'
+        | 'Guinea-Bissau'
+        | 'Guyana'
+        | 'Haiti'
+        | 'Honduras'
+        | 'Hungary'
+        | 'Iceland'
+        | 'India'
+        | 'Indonesia'
+        | 'Iran'
+        | 'Iraq'
+        | 'Ireland'
+        | 'Israel'
+        | 'Italy'
+        | 'Jamaica'
+        | 'Japan'
+        | 'Jordan'
+        | 'Kazakhstan'
+        | 'Kenya'
+        | 'Kiribati'
+        | 'Kuwait'
+        | 'Kyrgyzstan'
+        | 'Laos'
+        | 'Latvia'
+        | 'Lebanon'
+        | 'Lesotho'
+        | 'Liberia'
+        | 'Libya'
+        | 'Liechtenstein'
+        | 'Lithuania'
+        | 'Luxembourg'
+        | 'Madagascar'
+        | 'Malawi'
+        | 'Malaysia'
+        | 'Maldives'
+        | 'Mali'
+        | 'Malta'
+        | 'Marshall Islands'
+        | 'Mauritania'
+        | 'Mauritius'
+        | 'Mexico'
+        | 'Micronesia'
+        | 'Moldova'
+        | 'Monaco'
+        | 'Mongolia'
+        | 'Montenegro'
+        | 'Morocco'
+        | 'Mozambique'
+        | 'Myanmar'
+        | 'Namibia'
+        | 'Nauru'
+        | 'Nepal'
+        | 'Netherlands'
+        | 'New Zealand'
+        | 'Nicaragua'
+        | 'Niger'
+        | 'Nigeria'
+        | 'North Macedonia'
+        | 'Norway'
+        | 'Oman'
+        | 'Pakistan'
+        | 'Palau'
+        | 'Panama'
+        | 'Papua New Guinea'
+        | 'Paraguay'
+        | 'Peru'
+        | 'Philippines'
+        | 'Poland'
+        | 'Portugal'
+        | 'Qatar'
+        | 'Romania'
+        | 'Russia'
+        | 'Rwanda'
+        | 'Saint Kitts and Nevis'
+        | 'Saint Lucia'
+        | 'Saint Vincent and the Grenadines'
+        | 'Samoa'
+        | 'San Marino'
+        | 'Sao Tome and Principe'
+        | 'Saudi Arabia'
+        | 'Senegal'
+        | 'Serbia'
+        | 'Seychelles'
+        | 'Sierra Leone'
+        | 'Singapore'
+        | 'Slovakia'
+        | 'Slovenia'
+        | 'Solomon Islands'
+        | 'Somalia'
+        | 'South Africa'
+        | 'South Korea'
+        | 'South Sudan'
+        | 'Spain'
+        | 'Sri Lanka'
+        | 'Sudan'
+        | 'Suriname'
+        | 'Sweden'
+        | 'Switzerland'
+        | 'Syria'
+        | 'Taiwan'
+        | 'Tajikistan'
+        | 'Tanzania'
+        | 'Thailand'
+        | 'Timor-Leste'
+        | 'Togo'
+        | 'Tonga'
+        | 'Trinidad and Tobago'
+        | 'Tunisia'
+        | 'Turkey'
+        | 'Turkmenistan'
+        | 'Tuvalu'
+        | 'Uganda'
+        | 'Ukraine'
+        | 'United Arab Emirates'
+        | 'United Kingdom'
+        | 'United States'
+        | 'Uruguay'
+        | 'Uzbekistan'
+        | 'Vanuatu'
+        | 'Vatican City'
+        | 'Venezuela'
+        | 'Vietnam'
+        | 'Yemen'
+        | 'Zambia'
+        | 'Zimbabwe';
+      /** @enum {string} */
+      languageLevel:
+        | 'LEVEL_1'
+        | 'LEVEL_2'
+        | 'LEVEL_3'
+        | 'LEVEL_4'
+        | 'LEVEL_5'
+        | 'NOT_TAKEN';
+      /** @enum {string} */
+      englishLevel: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED';
+      /** @enum {string} */
+      degree:
+        | 'DOMESTIC_ASSOCIATE'
+        | 'DOMESTIC_BACHELORS'
+        | 'DOMESTIC_MASTERS'
+        | 'DOMESTIC_DOCTORATE'
+        | 'OVERSEAS_BACHELORS'
+        | 'OVERSEAS_MASTERS'
+        | 'OVERSEAS_DOCTORATE';
+      /** @enum {string} */
+      visaType: 'D2' | 'D10' | 'E7';
+      /**
+       * Format: date
+       * @description 예상 졸업일, D2 비자인 경우만
+       * @example 2025-08-31
+       */
+      expectedGraduationDate?: string;
+      /** Format: date */
+      visaStartDate: string;
+      /** Format: date */
+      visaExpiredAt: string;
+      /**
+       * Format: int32
+       * @description 비자 점수, D10 비자인 경우만
+       * @example 50
+       */
+      visaPoint?: number;
+      primaryMajor: string;
+      secondaryMajor?: string;
+      fieldsOfInterests: string[];
+      preparationStatuses?: string[];
+      targetJob: string;
+      targetJobSkill?: string;
+      personalBackground: string;
     };
     JobPostingEmbeddingRequest: {
       jobPostingIds?: number[];
@@ -1360,6 +1666,18 @@ export interface components {
       message?: string;
       data?: components['schemas']['AiGuideResponse'];
     };
+    BaseResponseOnboardUniversitiesResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['OnboardUniversitiesResponse'];
+    };
+    OnboardUniversitiesResponse: {
+      universities?: string[];
+    };
     BaseResponseOnboardMajorsResponse: {
       /**
        * Format: int32
@@ -1371,6 +1689,18 @@ export interface components {
     };
     OnboardMajorsResponse: {
       majors?: string[];
+    };
+    BaseResponseOnboardFieldsResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['OnboardFieldsResponse'];
+    };
+    OnboardFieldsResponse: {
+      fields?: string[];
     };
     BaseResponseOnboardCountriesResponse: {
       /**
@@ -2019,6 +2349,78 @@ export interface operations {
       };
     };
   };
+  onboardMember: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['MemberOnboardV2Request'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
   uploadRequired: {
     parameters: {
       query: {
@@ -2431,7 +2833,7 @@ export interface operations {
       };
     };
   };
-  onboardMember: {
+  onboardMember_1: {
     parameters: {
       query?: never;
       header?: never;
@@ -3192,6 +3594,53 @@ export interface operations {
       };
     };
   };
+  getOnboardUniversities: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseOnboardUniversitiesResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   getOnboardMajors: {
     parameters: {
       query?: never;
@@ -3208,6 +3657,53 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['BaseResponseOnboardMajorsResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
+  getOnboardFields: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseOnboardFieldsResponse'];
         };
       };
       /** @description Bad Request */
