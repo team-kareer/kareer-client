@@ -8,7 +8,7 @@ export const container = style({
   padding: '0.75rem 1.2rem',
   borderRadius: '10px',
   border: `1px solid ${themeVars.color.grayscale.gray300}`,
-  width: '13.9rem',
+  width: '100%',
 });
 
 export const trigger = style({
