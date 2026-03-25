@@ -3,17 +3,17 @@ import { useQuery } from '@tanstack/react-query';
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
 import { FormInputField } from '@widgets/onboarding';
 import { FormAutocompleteField } from '@widgets/onboarding';
-import {
-  EDUCATION_PLACEHOLDERS,
-  TARGET_ROLE_PLACEHOLDERS,
-  VISA_INFORMATION_PLACEHOLDERS,
-} from '@widgets/onboarding/constants/placeholders';
+import { EDUCATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import {
   validateAutocompleteOption,
   validateDate,
   validateText,
 } from '@features/onboarding/model/validation';
-import { FUNNEL_STEPS, MAJOR_LIST_QUERY_OPTIONS } from '@entities/onboarding';
+import {
+  FUNNEL_STEPS,
+  MAJOR_LIST_QUERY_OPTIONS,
+  UNIVERSITY_LIST_QUERY_OPTIONS,
+} from '@entities/onboarding';
 import { UNIVERSITY_OPTIONS } from '@entities/onboarding/model/options';
 
 import * as styles from './education.css';
@@ -33,6 +33,10 @@ const Education = () => {
     ...MAJOR_LIST_QUERY_OPTIONS.GET_MAJOR_LIST(),
   });
 
+  const { data: universityList } = useQuery({
+    ...UNIVERSITY_LIST_QUERY_OPTIONS.GET_UNIVERSITY_LIST(),
+  });
+
   return (
     <section>
       <OnboardingStepTitle stepNumber={2} title={FUNNEL_STEPS[1]} />
@@ -44,7 +48,7 @@ const Education = () => {
             validate: (value) => validateText(value),
           }}
           placeholder={EDUCATION_PLACEHOLDERS.UNIVERSITY}
-          options={UNIVERSITY_OPTIONS}
+          options={universityList?.universities || []}
         />
         <div className={styles.newRow}>
           <FormAutocompleteField
