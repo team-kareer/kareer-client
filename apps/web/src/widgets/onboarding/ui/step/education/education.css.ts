@@ -20,7 +20,7 @@ export const labelWrapper = style({
 
 export const label = style({
   ...typography.body7_sb_14,
-  color: themeVars.color.grayscale.gray500,
+  color: themeVars.color.grayscale.gray800,
   paddingBottom: '0.8rem',
 });
 
