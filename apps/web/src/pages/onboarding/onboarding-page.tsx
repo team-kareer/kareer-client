@@ -10,6 +10,7 @@ import {
   TargetRoleStep,
   VisaInformationStep,
 } from '@widgets/onboarding';
+import CareerPreference from '@widgets/onboarding/ui/step/career-preference/career-preference';
 import type { PostOnboardingForm } from '@features/onboarding';
 import { postOnboardingForm } from '@features/onboarding';
 import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
@@ -143,7 +144,7 @@ const OnboardingPage = () => {
             <TargetRoleStep />
           </Step>
           <Step name={FUNNEL_STEPS[3]}>
-            <TargetRoleStep />
+            <CareerPreference />
           </Step>
           <Step name={FUNNEL_STEPS[4]}>
             <PersonalBackgroundStep />
