@@ -7,7 +7,7 @@ export const LANGUAGE_LEVEL_OPTIONS = [
   'Not taken yet',
 ];
 
-export const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
+export const VISA_TYPE_OPTIONS = ['D-2 (Student)', 'D-10 (Job Seeker)'];
 
 export const TARGET_JOB_OPTIONS = [
   'Planning & Strategy',
