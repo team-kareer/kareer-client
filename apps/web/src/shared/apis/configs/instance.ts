@@ -4,6 +4,7 @@ import { appConfig } from '@shared/apis/configs/app-config';
 import { isHttpError } from '@shared/utils/http-error';
 
 import {
+  handleCheckAndSetPreferredLanguage,
   handleCheckAndSetToken,
   handleUnauthorizedResponse,
 } from './interceptor';
@@ -38,7 +39,7 @@ export const api: ReturnType<typeof ky.create> = ky.create({
   retry: 0,
   hooks: {
     beforeError: [beforeErrorHook],
-    beforeRequest: [handleCheckAndSetToken],
+    beforeRequest: [handleCheckAndSetPreferredLanguage, handleCheckAndSetToken],
     afterResponse: [handleUnauthorizedResponse],
   },
 });
