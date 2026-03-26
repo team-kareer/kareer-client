@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef } from 'react';
+import { ChangeEvent, DragEvent, useRef } from 'react';
 import { UploadIcon, XIcon } from '@kds/icons';
 import { Button, ProgressBar } from '@kds/ui';
 
@@ -49,6 +49,22 @@ const UploadBox = ({
     event.target.value = '';
   };
 
+  const handleDragOver = (event: DragEvent<HTMLElement>) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event: DragEvent<HTMLElement>) => {
+    event.preventDefault();
+
+    const selectedFile = event.dataTransfer.files?.[0];
+
+    if (!selectedFile) {
+      return;
+    }
+
+    onSelectFile(selectedFile);
+  };
+
   return (
     <div className={styles.container}>
       <input
@@ -58,7 +74,11 @@ const UploadBox = ({
         accept="application/pdf,image/*"
         onChange={handleChangeFile}
       />
-      <section className={styles.uploadContainer}>
+      <section
+        className={styles.uploadContainer}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+      >
         <div className={styles.uploadTopSection}>
           <UploadIcon width={24} height={24} />
           <p className={styles.text}>Upload Photo</p>
