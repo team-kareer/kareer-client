@@ -5,13 +5,15 @@ export type OnboardingFormRequest =
 
 export type OnboardingForm = Omit<
   OnboardingFormRequest,
-  'country' | 'languageLevel' | 'degree' | 'visaType'
+  'country' | 'languageLevel' | 'degree' | 'visaType' | 'englishLevel'
 > & {
   country: OnboardingFormRequest['country'] | '';
   languageLevel: OnboardingFormRequest['languageLevel'] | '';
   degree: string;
   visaType: 'D-2' | 'D-10' | '';
   degreeLocation: string;
+  university: string;
+  englishLevel: OnboardingFormRequest['englishLevel'] | '';
 };
 
 export type GetMajorListResponse =

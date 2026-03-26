@@ -27,6 +27,9 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
   targetJob: '',
   targetJobSkill: '',
   personalBackground: '',
+  university: '',
+  englishLevel: '',
+  fieldsOfInterests: [],
 };
 
 /**
@@ -48,7 +51,7 @@ export const STEP_REQUIRED_FIELDS: Array<Array<keyof OnboardingForm>> = [
   ['name', 'birthDate', 'languageLevel', 'degree', 'country'],
   ['visaType', 'expectedGraduationDate', 'visaStartDate', 'visaExpiredAt'],
   ['primaryMajor', 'targetJob'],
-  ['primaryMajor', 'targetJob'],
+  ['fieldsOfInterests', 'targetJob'],
   ['personalBackground'],
 ];
 
