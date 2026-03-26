@@ -5,6 +5,12 @@ export const container = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
+});
+
+export const wrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.8rem',
   alignItems: 'center',
   width: '33rem',
   height: '26.6rem',
@@ -84,4 +90,9 @@ export const fileSize = style({
 export const xButton = style({
   cursor: 'pointer',
   color: themeVars.color.grayscale.gray500,
+});
+
+export const errorText = style({
+  ...typography.cap2_m_12,
+  color: themeVars.color.pastel.kared_500,
 });
