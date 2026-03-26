@@ -18,7 +18,7 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
   degreeLocation: 'south-korea',
   degree: '',
   // TODO : 비자 타입 임시 값 설정, 추후 삭제 예정
-  visaType: 'D-10',
+  visaType: 'D-2',
   expectedGraduationDate: '',
   visaStartDate: '',
   visaExpiredAt: '',

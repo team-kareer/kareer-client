@@ -18,13 +18,23 @@ import {
 
 import * as styles from './education.css';
 
+const validateExpectedGraduationDate = (value: string) => {
+  if (!value) {
+    return 'Enter the Expected graduation date';
+  }
+  return validateDate(value, {
+    allowFuture: true,
+    allowPast: false,
+  });
+};
+
 const validateGraduationDate = (value: string) => {
   if (!value) {
     return 'Enter the graduation date';
   }
   return validateDate(value, {
-    allowFuture: true,
-    allowPast: false,
+    allowFuture: false,
+    allowPast: true,
   });
 };
 
@@ -86,7 +96,7 @@ const Education = () => {
             label="Expected Graducation Date"
             rules={{
               required: 'Enter the graduation date',
-              validate: validateGraduationDate,
+              validate: validateExpectedGraduationDate,
             }}
             placeholder={EDUCATION_PLACEHOLDERS.GRADUATION_DATE}
           />
