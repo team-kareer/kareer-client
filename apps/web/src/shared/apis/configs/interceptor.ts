@@ -88,7 +88,7 @@ const getReissueToken = () => {
  *
  * @param request - 전송할 요청 객체
  */
-export const handleCheckAndSetPreferredLanguage = (request: Request) => {
+export const handleSetPreferredLanguage = (request: Request) => {
   const requestUrl = request.url;
   const currentLanguage = i18n.resolvedLanguage ?? i18n.language;
   const preferredLanguage = SUPPORTED_LANGUAGES.some(
