@@ -4,7 +4,7 @@
     "description": "添加任务以跟进你的职业规划",
     "button": "添加待办"
   },
-  "job": {
+  "section": {
     "title": "一起寻找适合你的工作机会吧",
     "description": "查找适合你的职位并保存",
     "button": "查看职位信息"

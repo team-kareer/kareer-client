@@ -4,7 +4,7 @@
     "description": "Add a task to stay on track\nwith your career plan.",
     "button": "Add a To-Do"
   },
-  "job": {
+  "section": {
     "title": "Let’s find the job opportunities that fit me",
     "description": "Find jobs that fit you and save them",
     "button": "View Job Posting"
