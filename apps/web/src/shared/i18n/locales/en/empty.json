@@ -1,0 +1,17 @@
+{
+  "todo": {
+    "title": "Nothing to do yet",
+    "description": "Add a task to stay on track\nwith your career plan.",
+    "button": "Add a To-Do"
+  },
+  "job": {
+    "title": "Let’s find the job opportunities that fit me",
+    "description": "Find jobs that fit you and save them",
+    "button": "View Job Posting"
+  },
+  "page": {
+    "title": "Something went wrong!",
+    "description": "Please try again in a moment",
+    "button": "Try again"
+  }
+}
