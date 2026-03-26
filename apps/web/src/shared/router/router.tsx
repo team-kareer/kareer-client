@@ -2,7 +2,11 @@ import { createBrowserRouter } from 'react-router';
 
 import { ROUTE_PATH } from '@shared/router';
 import AppRouteLayout from '@shared/router/app-route-layout';
-import { LoginPage, OnboardingPage } from '@shared/router/lazy';
+import {
+  LoginPage,
+  OnboardingPage,
+  TermsAgreementPage,
+} from '@shared/router/lazy';
 import {
   appRouteLoader,
   guestOnlyLoader,
@@ -23,6 +27,11 @@ export const router = createBrowserRouter([
         path: ROUTE_PATH.LOGIN,
         loader: guestOnlyLoader,
         Component: LoginPage,
+      },
+      {
+        path: ROUTE_PATH.TERMSAGREEMENT,
+        // loader: termsGuardLoader,
+        Component: TermsAgreementPage,
       },
       {
         path: ROUTE_PATH.ONBOARDING,
