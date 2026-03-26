@@ -13,5 +13,10 @@
     "title": "Đã xảy ra lỗi!",
     "description": "Vui lòng thử lại sau ít phút",
     "button": "Thử lại"
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "description": "Trang bạn đang tìm không tồn tại.",
+    "button": "Đi tới Dashboard"
   }
 }
