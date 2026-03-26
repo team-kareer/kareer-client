@@ -8,6 +8,7 @@ interface ImageUploadSectionProps {
   title: string;
   subtitle: string;
   file?: File;
+  errorMessage?: string;
   onSelectFile: (file: File) => void;
   onRemoveFile: () => void;
 }
@@ -16,6 +17,7 @@ const ImageUploadSection = ({
   title,
   subtitle,
   file,
+  errorMessage,
   onSelectFile,
   onRemoveFile,
 }: ImageUploadSectionProps) => {
@@ -27,6 +29,7 @@ const ImageUploadSection = ({
         onSelectFile={onSelectFile}
         onRemoveFile={onRemoveFile}
       />
+      {errorMessage && <p className={styles.errorText}>{errorMessage}</p>}
     </section>
   );
 };

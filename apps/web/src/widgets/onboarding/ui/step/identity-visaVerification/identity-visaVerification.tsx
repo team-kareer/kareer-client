@@ -8,9 +8,31 @@ import { FUNNEL_STEPS } from '@entities/onboarding';
 
 import * as styles from './identity-visaVerification.css';
 
+const MAX_FILE_SIZE = 10 * 1000 * 1000;
+const FILE_SIZE_ERROR_MESSAGE = 'Maximum file size: 10MB';
+
+type UploadState = {
+  file?: File;
+  errorMessage?: string;
+};
+
 const IdentityVisaVerification = () => {
-  const [passportFile, setPassportFile] = useState<File | undefined>();
-  const [visaFile, setVisaFile] = useState<File | undefined>();
+  const [passportUpload, setPassportUpload] = useState<UploadState>({});
+  const [visaUpload, setVisaUpload] = useState<UploadState>({});
+
+  const getUploadState = (file: File): UploadState => {
+    if (file.size > MAX_FILE_SIZE) {
+      return {
+        file: undefined,
+        errorMessage: FILE_SIZE_ERROR_MESSAGE,
+      };
+    }
+
+    return {
+      file,
+      errorMessage: undefined,
+    };
+  };
 
   return (
     <section className={styles.container}>
@@ -20,9 +42,10 @@ const IdentityVisaVerification = () => {
           <ImageUploadSection
             title="Upload Passport"
             subtitle="Up to 1 files · 10 MB max"
-            file={passportFile}
-            onSelectFile={setPassportFile}
-            onRemoveFile={() => setPassportFile(undefined)}
+            file={passportUpload.file}
+            errorMessage={passportUpload.errorMessage}
+            onSelectFile={(file) => setPassportUpload(getUploadState(file))}
+            onRemoveFile={() => setPassportUpload({})}
           />
           <UserInfoFormSection />
         </div>
@@ -33,9 +56,10 @@ const IdentityVisaVerification = () => {
           <ImageUploadSection
             title="Upload Visa or ARC"
             subtitle="Up to 1 files · 10 MB max"
-            file={visaFile}
-            onSelectFile={setVisaFile}
-            onRemoveFile={() => setVisaFile(undefined)}
+            file={visaUpload.file}
+            errorMessage={visaUpload.errorMessage}
+            onSelectFile={(file) => setVisaUpload(getUploadState(file))}
+            onRemoveFile={() => setVisaUpload({})}
           />
           <VisaInfoFormSection />
         </div>

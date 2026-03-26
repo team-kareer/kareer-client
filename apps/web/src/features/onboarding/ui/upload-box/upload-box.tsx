@@ -11,7 +11,6 @@ interface UploadBoxProps {
     total: number;
   };
   disabled?: boolean;
-  errorMessage?: string;
   onSelectFile: (file: File) => void;
   onRemoveFile: () => void;
 }
@@ -44,7 +43,6 @@ const UploadBox = ({
   file,
   progress,
   disabled,
-  errorMessage,
   onSelectFile,
   onRemoveFile,
 }: UploadBoxProps) => {
@@ -78,57 +76,54 @@ const UploadBox = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper}>
-        <input
-          ref={inputRef}
-          className={styles.hiddenInput}
-          type="file"
-          accept={FILE_INPUT_ACCEPT}
-          onChange={handleChangeFile}
-        />
-        <section
-          className={styles.uploadContainer}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
+      <input
+        ref={inputRef}
+        className={styles.hiddenInput}
+        type="file"
+        accept={FILE_INPUT_ACCEPT}
+        onChange={handleChangeFile}
+      />
+      <section
+        className={styles.uploadContainer}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+      >
+        <div className={styles.uploadTopSection}>
+          <UploadIcon width={24} height={24} />
+          <p className={styles.text}>Upload Photo</p>
+        </div>
+
+        <Button
+          style={{ width: '100%', justifyContent: 'center' }}
+          preset="medium_secondary"
+          onClick={handleChooseFile}
+          disabled={disabled}
         >
-          <div className={styles.uploadTopSection}>
-            <UploadIcon width={24} height={24} />
-            <p className={styles.text}>Upload Photo</p>
+          Choose File
+        </Button>
+      </section>
+
+      {file && (
+        <section className={styles.fileContainer}>
+          <div className={styles.fileTopSection}>
+            <div className={styles.fileSection}>
+              <p className={styles.fileName}>{file.name}</p>
+              <p className={styles.fileSize}>{formatFileSize(file.size)}</p>
+            </div>
+            <button
+              type="button"
+              className={styles.xButton}
+              onClick={onRemoveFile}
+            >
+              <XIcon width="1.6rem" height="1.6rem" />
+            </button>
           </div>
 
-          <Button
-            style={{ width: '100%', justifyContent: 'center' }}
-            preset="medium_secondary"
-            onClick={handleChooseFile}
-            disabled={disabled}
-          >
-            Choose File
-          </Button>
+          {progress && (
+            <ProgressBar total={progress.total} done={progress.done} />
+          )}
         </section>
-
-        {file && (
-          <section className={styles.fileContainer}>
-            <div className={styles.fileTopSection}>
-              <div className={styles.fileSection}>
-                <p className={styles.fileName}>{file.name}</p>
-                <p className={styles.fileSize}>{formatFileSize(file.size)}</p>
-              </div>
-              <button
-                type="button"
-                className={styles.xButton}
-                onClick={onRemoveFile}
-              >
-                <XIcon width="1.6rem" height="1.6rem" />
-              </button>
-            </div>
-
-            {progress && (
-              <ProgressBar total={progress.total} done={progress.done} />
-            )}
-          </section>
-        )}
-        {errorMessage && <p className={styles.errorText}>{errorMessage}</p>}
-      </div>
+      )}
     </div>
   );
 };
