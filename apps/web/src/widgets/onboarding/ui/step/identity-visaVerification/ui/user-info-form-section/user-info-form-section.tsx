@@ -37,7 +37,7 @@ const UserInfoFormSection = () => {
         name="country"
         label="Country"
         rules={{
-          required: 'Select the Country',
+          required: 'Select your country',
           validate: (value) =>
             validateAutocompleteOption(value, countryList?.countries || []),
         }}
