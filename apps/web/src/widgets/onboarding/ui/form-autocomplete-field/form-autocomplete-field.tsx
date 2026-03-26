@@ -10,6 +10,7 @@ type FormAutoCompleteFieldProps<
 > = Omit<FormFieldProps<T, K>, 'children'> & {
   placeholder: string;
   options: string[];
+  onSelect?: (value: string) => void;
 };
 
 const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
@@ -18,6 +19,7 @@ const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
   rules,
   placeholder,
   options,
+  onSelect,
 }: FormAutoCompleteFieldProps<T, K>) => {
   return (
     <FormField name={name} label={label} rules={rules}>
@@ -26,8 +28,14 @@ const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
           {...field}
           placeholder={placeholder}
           options={options}
-          onChange={field.onChange}
-          value={field.value || ''}
+          value={onSelect ? '' : field.value || ''}
+          onChange={(value) => {
+            if (onSelect) {
+              onSelect(value);
+            } else {
+              field.onChange(value);
+            }
+          }}
         />
       )}
     </FormField>
