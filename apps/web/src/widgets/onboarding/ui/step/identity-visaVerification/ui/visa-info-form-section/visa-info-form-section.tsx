@@ -1,20 +1,34 @@
+import { Autocomplete } from '@kds/ui';
+import { useFormContext, useWatch } from 'react-hook-form';
+
 import {
+  FormField,
   FormInputField,
   VISA_INFORMATION_PLACEHOLDERS,
 } from '@widgets/onboarding';
-import FormAutocompleteField from '@widgets/onboarding/ui/form-autocomplete-field/form-autocomplete-field';
+import { type VisaType } from '@features/onboarding';
 import {
   validateAutocompleteOption,
-  validateDate,
+  validateIdentityVisaExpirationDate,
+  validateIdentityVisaStartDate,
 } from '@features/onboarding/model/validation';
-import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
+import {
+  type OnboardingForm,
+  VISA_TYPE_LABELS,
+  VISA_TYPE_OPTIONS,
+} from '@entities/onboarding';
 
 import * as styles from './visa-info-form-section.css';
 
 const VisaInfoFormSection = () => {
+  const { control } = useFormContext<OnboardingForm>();
+  const visaType = useWatch({ control, name: 'visaType' });
+  const visaStartDate = useWatch({ control, name: 'visaStartDate' });
+  const visaExpiredAt = useWatch({ control, name: 'visaExpiredAt' });
+
   return (
     <section className={styles.formSection}>
-      <FormAutocompleteField
+      <FormField
         name="visaType"
         label="Current Visa Type"
         rules={{
@@ -22,15 +36,31 @@ const VisaInfoFormSection = () => {
           validate: (value) =>
             validateAutocompleteOption(value, VISA_TYPE_OPTIONS),
         }}
-        placeholder={VISA_INFORMATION_PLACEHOLDERS.CURRENT_VISA_TYPE}
-        options={VISA_TYPE_OPTIONS}
-      />
+      >
+        {(field) => (
+          <Autocomplete
+            placeholder={VISA_INFORMATION_PLACEHOLDERS.CURRENT_VISA_TYPE}
+            options={VISA_TYPE_OPTIONS.map(
+              (option) => VISA_TYPE_LABELS[option] ?? option,
+            )}
+            onChange={(value) => {
+              const selectedVisaType = VISA_TYPE_OPTIONS.find(
+                (option) => VISA_TYPE_LABELS[option] === value,
+              );
+
+              field.onChange(selectedVisaType ?? value);
+            }}
+            value={VISA_TYPE_LABELS[field.value] ?? field.value ?? ''}
+          />
+        )}
+      </FormField>
       <FormInputField
         name="visaStartDate"
         label="Visa Start Date"
         rules={{
           required: 'Enter the visa start date',
-          validate: (value) => validateDate(value, { allowPast: true }),
+          validate: (value) =>
+            validateIdentityVisaStartDate(value, visaExpiredAt),
         }}
         placeholder={VISA_INFORMATION_PLACEHOLDERS.START_DATE}
       />
@@ -39,7 +69,12 @@ const VisaInfoFormSection = () => {
         label="Visa Expiration Date"
         rules={{
           required: 'Enter the visa expiration date',
-          validate: (value) => validateDate(value, { allowFuture: true }),
+          validate: (value) =>
+            validateIdentityVisaExpirationDate(
+              value,
+              visaType as VisaType | undefined,
+              visaStartDate,
+            ),
         }}
         placeholder={VISA_INFORMATION_PLACEHOLDERS.EXPIRATION_DATE}
       />
