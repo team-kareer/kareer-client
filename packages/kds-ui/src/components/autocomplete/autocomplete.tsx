@@ -59,6 +59,10 @@ const Autocomplete = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && e.nativeEvent.isComposing) {
+      return;
+    }
+
     if (e.key === 'Enter' && inputValue.trim()) {
       e.preventDefault();
       onChange(inputValue.trim());
