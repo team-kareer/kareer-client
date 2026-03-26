@@ -11,6 +11,7 @@ type FormAutoCompleteFieldProps<
   placeholder: string;
   options: string[];
   onSelect?: (value: string) => void;
+  icon?: 'chevron' | 'search';
 };
 
 const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
@@ -20,11 +21,13 @@ const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
   placeholder,
   options,
   onSelect,
+  icon,
 }: FormAutoCompleteFieldProps<T, K>) => {
   return (
     <FormField name={name} label={label} rules={rules}>
       {(field) => (
         <Autocomplete
+          icon={icon}
           {...field}
           placeholder={placeholder}
           options={options}

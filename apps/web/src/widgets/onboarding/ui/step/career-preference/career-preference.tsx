@@ -35,11 +35,12 @@ const CareerPreference = () => {
       <div className={styles.inputContainer}>
         <div className={styles.leftSection}>
           <FormAutocompleteField
+            icon="search"
             name="fieldsOfInterests"
             label="Industry / Field of Interest"
             rules={{
               validate: (value: string[]) =>
-                value?.length > 0 || 'Please select at least one industry.', // validateAutocompleteOption로 관리?
+                value?.length > 0 || 'Please select at least one industry.',
             }}
             placeholder="Search industries or fields"
             options={availableOptions}
