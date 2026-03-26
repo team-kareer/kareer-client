@@ -29,6 +29,7 @@ export { default as MagnifierIcon } from './ic_magnifier.svg?react';
 export { default as PlusIcon } from './ic_plus.svg?react';
 export { default as ProfileIcon } from './ic_profile.svg?react';
 export { default as RoadmapIcon } from './ic_roadmap.svg?react';
+export { default as SearchIcon } from './ic_search.svg?react';
 export { default as SparkleIcon } from './ic_sparkle.svg?react';
 export { default as SuccessCircleIcon } from './ic_success-circle.svg?react';
 export { default as SurpriseIcon } from './ic_surprised.svg?react';

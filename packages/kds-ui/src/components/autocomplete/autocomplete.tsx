@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
-
-import { color } from '../../styles';
+import { ArrowDownIcon, ArrowUpIcon, SearchIcon } from '@kds/icons';
 
 import * as styles from './autocomplete.css';
-
 interface AutocompleteProps {
   value: string;
   onChange: (value: string) => void;
   options: string[];
   placeholder?: string;
+  icon?: 'chevron' | 'search';
 }
 
 interface DropDownProps {
@@ -22,6 +20,7 @@ const Autocomplete = ({
   onChange,
   options,
   placeholder,
+  icon = 'chevron',
 }: AutocompleteProps) => {
   // 드롭메뉴 열림 여부
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +51,7 @@ const Autocomplete = ({
   };
 
   const Chevron = isOpen ? ArrowUpIcon : ArrowDownIcon;
+  const Icon = icon === 'search' ? SearchIcon : Chevron;
 
   return (
     <div className={styles.inputContainer}>
@@ -65,7 +65,7 @@ const Autocomplete = ({
         placeholder={placeholder}
       />
       <button type="button" className={styles.toggle} onClick={toggleDropdown}>
-        <Chevron width={19} height={19} color={color.grayscale.gray800} />
+        <Icon width={19} height={19} />
       </button>
       {isOpen && filteredOptions.length > 0 && (
         <DropList options={filteredOptions} onClick={handleOptionClick} />
