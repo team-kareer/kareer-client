@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowDownIcon, ArrowUpIcon, SearchIcon } from '@kds/icons';
 
 import * as styles from './autocomplete.css';
@@ -27,6 +27,10 @@ const Autocomplete = ({
   // 드롭메뉴 열림 여부
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(value || '');
+
+  useEffect(() => {
+    setInputValue(value || '');
+  }, [value]);
 
   // 입력값 필터링 (undefined/null 값 제거)
   const filteredOptions = options

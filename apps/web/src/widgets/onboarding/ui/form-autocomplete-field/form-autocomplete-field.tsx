@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Autocomplete } from '@kds/ui';
 import { FieldPath, FieldValues } from 'react-hook-form';
 
@@ -24,8 +23,6 @@ const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
   onSelect,
   icon,
 }: FormAutoCompleteFieldProps<T, K>) => {
-  const [inputValue, setInputValue] = useState('');
-
   return (
     <FormField name={name} label={label} rules={rules}>
       {(field) => (
@@ -34,11 +31,10 @@ const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
           {...field}
           placeholder={placeholder}
           options={options}
-          value={onSelect ? inputValue : field.value || ''}
+          value={onSelect ? '' : field.value || ''}
           onChange={(value) => {
             if (onSelect) {
               onSelect(value);
-              setInputValue('');
             } else {
               field.onChange(value);
             }
