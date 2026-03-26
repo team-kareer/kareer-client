@@ -19,7 +19,9 @@ export const useIndustryField = (fieldList: string[]) => {
   );
 
   const handleSelectField = (field: string) => {
-    if (!field || selectedFields.includes(field)) {
+    const isDuplicate = selectedFields.includes(field);
+
+    if (isDuplicate) {
       return;
     }
 
