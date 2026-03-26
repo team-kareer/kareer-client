@@ -3,25 +3,36 @@ import { style } from '@vanilla-extract/css';
 
 export const inputContainer = style({
   display: 'grid',
-  gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '1.1rem 2.4rem',
-  paddingRight: '6.6rem',
+  gridTemplateColumns: '1fr 1fr',
+  gap: '1.2rem',
+});
+
+export const leftSection = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.1rem',
 });
 
 export const autoWrapper = style({
   paddingBottom: '2.2rem',
 });
 
-export const lebelWrapper = style({
-  display: 'flex',
-  flexDirection: 'row',
-  gap: '0.8rem',
-});
-
 export const label = style({
   ...typography.body7_sb_14,
   color: themeVars.color.grayscale.gray500,
   paddingBottom: '0.8rem',
+});
+
+export const rightSection = style({
+  display: 'flex',
+  flexDirection: 'column',
+  height: 'fit-content',
+  minHeight: '5.7rem',
+  marginTop: '2.5rem',
+  marginRight: '7.8rem',
+  padding: '1.2rem',
+  backgroundColor: themeVars.color.grayscale.gray100,
+  borderRadius: '20px',
 });
 
 export const checkboxContainer = style({

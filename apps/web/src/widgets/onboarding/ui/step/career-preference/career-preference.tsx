@@ -1,10 +1,13 @@
 import { Checkbox } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
 
-import { OnboardingStepTitle } from '@widgets/onboarding';
-import { FormAutocompleteField } from '@widgets/onboarding';
+import {
+  FormAutocompleteField,
+  IndustryFieldChips,
+  OnboardingStepTitle,
+} from '@widgets/onboarding';
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
-import { useTargetJobSkills } from '@features/onboarding/hooks/useTargetJobSkills';
+import { useIndustryField, useTargetJobSkills } from '@features/onboarding';
 import { validateAutocompleteOption } from '@features/onboarding/model/validation';
 import { FUNNEL_STEPS, TARGET_JOB_OPTIONS } from '@entities/onboarding';
 import { FIELD_LIST_QUERY_OPTIONS } from '@entities/onboarding/qureies/queries';
@@ -15,6 +18,14 @@ const CareerPreference = () => {
   const { data: fieldList } = useQuery({
     ...FIELD_LIST_QUERY_OPTIONS.GET_FIELD_LIST(),
   });
+
+  const {
+    selectedFields,
+    availableOptions,
+    handleSelectField,
+    handleRemoveField,
+  } = useIndustryField(fieldList?.fields || []);
+
   const { targetJob, selectedSkills, currentJobSkills, handleSkillToggle } =
     useTargetJobSkills();
 
@@ -22,29 +33,40 @@ const CareerPreference = () => {
     <section>
       <OnboardingStepTitle stepNumber={4} title={FUNNEL_STEPS[3]} />
       <div className={styles.inputContainer}>
-        <FormAutocompleteField
-          name="industryFieldOfInterest"
-          label="Industry / Field of Interest"
-          rules={{
-            required: 'Search industries or fields',
-            validate: (value) =>
-              validateAutocompleteOption(value, fieldList?.fields || []),
-          }}
-          placeholder="Search industries or fields"
-          options={fieldList?.fields || []}
-        />
-        <FormAutocompleteField
-          name="targetJob"
-          label="Target Job"
-          rules={{
-            required: 'Enter your job',
-            validate: (value) =>
-              validateAutocompleteOption(value, TARGET_JOB_OPTIONS),
-          }}
-          placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
-          options={TARGET_JOB_OPTIONS}
-        />
+        <div className={styles.leftSection}>
+          <FormAutocompleteField
+            name="fieldsOfInterests"
+            label="Industry / Field of Interest"
+            rules={{
+              validate: (value: string[]) =>
+                value?.length > 0 || 'Please select at least one industry.', // validateAutocompleteOption로 관리?
+            }}
+            placeholder="Search industries or fields"
+            options={availableOptions}
+            onSelect={handleSelectField}
+          />
+          <FormAutocompleteField
+            name="targetJob"
+            label="Target Job"
+            rules={{
+              required: 'Enter your job',
+              validate: (value) =>
+                validateAutocompleteOption(value, TARGET_JOB_OPTIONS),
+            }}
+            placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
+            options={TARGET_JOB_OPTIONS}
+          />
+        </div>
+        {selectedFields.length > 0 && (
+          <div className={styles.rightSection}>
+            <IndustryFieldChips
+              fields={selectedFields}
+              onRemove={handleRemoveField}
+            />
+          </div>
+        )}
       </div>
+
       {targetJob && (
         <div className={styles.checkboxContainer}>
           {currentJobSkills.map((skill) => (
