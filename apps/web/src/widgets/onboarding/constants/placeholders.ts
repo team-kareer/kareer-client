@@ -3,8 +3,8 @@
  */
 export const PERSONAL_INFORMATION_PLACEHOLDERS = {
   NAME: 'Enter your name',
-  DATE: 'Enter the Date',
-  COUNTRY: 'Select the Country',
+  DATE: 'Enter the date',
+  COUNTRY: 'Select your country',
   OPIK_LEVEL: 'Select the level',
   DEGREE: 'Select the degree',
 } as const;

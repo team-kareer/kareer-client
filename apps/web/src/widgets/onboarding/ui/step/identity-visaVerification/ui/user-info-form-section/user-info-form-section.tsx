@@ -27,7 +27,7 @@ const UserInfoFormSection = () => {
         name="name"
         label="Full Name"
         rules={{
-          required: PERSONAL_INFORMATION_PLACEHOLDERS.NAME,
+          required: 'Please enter your name.',
           validate: (value) => validateText(value),
         }}
         placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.NAME}
@@ -48,7 +48,7 @@ const UserInfoFormSection = () => {
         name="birthDate"
         label="Date of Birth"
         rules={{
-          required: 'Enter the date',
+          required: 'Please enter your date of birth.',
           validate: (value) => validateDate(value, { allowPast: true }),
         }}
         placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.DATE}
