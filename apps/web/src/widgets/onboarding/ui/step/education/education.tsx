@@ -14,7 +14,6 @@ import {
   MAJOR_LIST_QUERY_OPTIONS,
   UNIVERSITY_LIST_QUERY_OPTIONS,
 } from '@entities/onboarding';
-import { UNIVERSITY_OPTIONS } from '@entities/onboarding/model/options';
 
 import * as styles from './education.css';
 
