@@ -15,11 +15,11 @@ export const PERSONAL_INFORMATION_PLACEHOLDERS = {
  */
 export const VISA_INFORMATION_PLACEHOLDERS = {
   CURRENT_VISA_TYPE: 'Select your Visa type',
-  ISSUANCE_DATE: 'Enter the Date',
-  GRADUATION_DATE: 'Enter the Date',
-  EXPIRATION_DATE: 'Enter the Date',
+  ISSUANCE_DATE: 'Enter the date',
+  GRADUATION_DATE: 'Enter the date',
+  EXPIRATION_DATE: 'Enter the date',
   NUMBER: 'Enter the Number',
-  START_DATE: 'Enter the Date',
+  START_DATE: 'Enter the date',
 } as const;
 
 /**
