@@ -1,9 +1,10 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 import Toast from './toast';
-import { ToastContext, type ToastOptions } from './toast-context';
+import { ToastContext } from './toast-context';
+import { type ToastOptions } from './types/toast-type';
 
-import * as styles from './toast-viewport.css';
+import * as styles from './toast.css';
 
 const TOAST_DURATION = 4000;
 const TOAST_EXIT_DURATION = 400;

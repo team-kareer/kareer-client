@@ -1,4 +1,4 @@
-import { ToastOptions } from './toast-context';
+import { ToastOptions } from './types/toast-type';
 
 import * as styles from './toast.css';
 

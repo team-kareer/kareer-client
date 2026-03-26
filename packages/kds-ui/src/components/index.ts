@@ -13,5 +13,6 @@ export { default as Tag } from './tag/tag';
 export { default as TextField } from './text-field/text-field';
 export { default as useToast } from './toast/hooks/use-toast';
 export { default as Toast } from './toast/toast';
-export type { ToastContextValue, ToastOptions } from './toast/toast-context';
+export type { ToastContextValue } from './toast/toast-context';
+export { ToastContext } from './toast/toast-context';
 export { default as ToastProvider } from './toast/toast-provider';

@@ -1,9 +1,6 @@
-import { createContext, ReactNode } from 'react';
+import { createContext } from 'react';
 
-export interface ToastOptions {
-  message: string;
-  icon?: ReactNode;
-}
+import { ToastOptions } from './types/toast-type';
 
 export interface ToastContextValue {
   showToast: ({ message, icon }: ToastOptions) => string;
