@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
 import { FormInputField } from '@widgets/onboarding';
@@ -36,6 +37,8 @@ const Education = () => {
     ...UNIVERSITY_LIST_QUERY_OPTIONS.GET_UNIVERSITY_LIST(),
   });
 
+  const { control } = useFormContext();
+  const visaType = useWatch({ control, name: 'visaType' });
   return (
     <section>
       <OnboardingStepTitle stepNumber={2} title={FUNNEL_STEPS[1]} />
@@ -77,15 +80,28 @@ const Education = () => {
           </div>
           <OnboardingDegreeStep />
         </div>
-        <FormInputField
-          name="expectedGraduationDate"
-          label="Expected Graducation Date"
-          rules={{
-            required: 'Enter the graduation date',
-            validate: validateGraduationDate,
-          }}
-          placeholder={EDUCATION_PLACEHOLDERS.GRADUATION_DATE}
-        />
+        {visaType === 'D-2' && (
+          <FormInputField
+            name="expectedGraduationDate"
+            label="Expected Graducation Date"
+            rules={{
+              required: 'Enter the graduation date',
+              validate: validateGraduationDate,
+            }}
+            placeholder={EDUCATION_PLACEHOLDERS.GRADUATION_DATE}
+          />
+        )}
+        {visaType === 'D-10' && (
+          <FormInputField
+            name="GraduationDate"
+            label="Graducation Date"
+            rules={{
+              required: 'Enter the graduation date',
+              validate: validateGraduationDate,
+            }}
+            placeholder={EDUCATION_PLACEHOLDERS.GRADUATION_DATE}
+          />
+        )}
       </div>
     </section>
   );
