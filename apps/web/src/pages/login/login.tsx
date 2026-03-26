@@ -1,8 +1,13 @@
-import { FeatureSection, HeroSection } from '@widgets/login';
+import {
+  FeatureSection,
+  HeroSection,
+  LanguageSelectorSection,
+} from '@widgets/login';
 
 const Login = () => {
   return (
     <>
+      <LanguageSelectorSection />
       <HeroSection />
       <FeatureSection />
     </>
