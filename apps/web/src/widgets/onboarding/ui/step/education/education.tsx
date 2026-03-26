@@ -7,7 +7,7 @@ import { FormAutocompleteField } from '@widgets/onboarding';
 import { EDUCATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import {
   validateAutocompleteOption,
-  validateDate,
+  validateGraduationDate,
   validateText,
 } from '@features/onboarding/model/validation';
 import {
@@ -17,26 +17,6 @@ import {
 } from '@entities/onboarding';
 
 import * as styles from './education.css';
-
-const validateExpectedGraduationDate = (value: string) => {
-  if (!value) {
-    return 'Enter the Expected graduation date';
-  }
-  return validateDate(value, {
-    allowFuture: true,
-    allowPast: false,
-  });
-};
-
-const validateGraduationDate = (value: string) => {
-  if (!value) {
-    return 'Enter the graduation date';
-  }
-  return validateDate(value, {
-    allowFuture: false,
-    allowPast: true,
-  });
-};
 
 const Education = () => {
   const { data: majorList } = useQuery({
@@ -96,7 +76,11 @@ const Education = () => {
             label="Expected Graducation Date"
             rules={{
               required: 'Enter the graduation date',
-              validate: validateExpectedGraduationDate,
+              validate: (value) =>
+                validateGraduationDate(value, {
+                  allowFuture: true,
+                  allowPast: false,
+                }),
             }}
             placeholder={EDUCATION_PLACEHOLDERS.GRADUATION_DATE}
           />
@@ -107,7 +91,11 @@ const Education = () => {
             label="Graducation Date"
             rules={{
               required: 'Enter the graduation date',
-              validate: validateGraduationDate,
+              validate: (value) =>
+                validateGraduationDate(value, {
+                  allowFuture: false,
+                  allowPast: true,
+                }),
             }}
             placeholder={EDUCATION_PLACEHOLDERS.GRADUATION_DATE}
           />
