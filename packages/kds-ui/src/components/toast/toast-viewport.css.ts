@@ -1,4 +1,5 @@
 import { keyframes, style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { zIndex } from '../../styles';
 
@@ -36,11 +37,16 @@ export const viewport = style({
   pointerEvents: 'none',
 });
 
-export const toastItem = style({
-  pointerEvents: 'auto',
-  animation: `${slideIn} 200ms ease-out`,
-});
-
-export const toastItemLeaving = style({
-  animation: `${fadeOut} 200ms ease-in forwards`,
+export const toastItem = recipe({
+  base: {
+    animation: `${slideIn} 200ms ease-out`,
+  },
+  variants: {
+    leaving: {
+      true: {
+        animation: `${fadeOut} 200ms ease-in forwards`,
+      },
+      false: {},
+    },
+  },
 });

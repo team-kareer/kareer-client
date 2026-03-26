@@ -114,10 +114,7 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
       {children}
       <div className={styles.viewport}>
         {toasts.map(({ id, message, icon, isLeaving }) => (
-          <div
-            key={id}
-            className={`${styles.toastItem} ${isLeaving ? styles.toastItemLeaving : ''}`}
-          >
+          <div key={id} className={styles.toastItem({ leaving: isLeaving })}>
             <Toast message={message} icon={icon} />
           </div>
         ))}
