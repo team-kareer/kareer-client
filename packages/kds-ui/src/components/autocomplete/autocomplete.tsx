@@ -5,6 +5,7 @@ import * as styles from './autocomplete.css';
 interface AutocompleteProps {
   value: string;
   onChange: (value: string) => void;
+  onInputChange?: (value: string) => void;
   options: string[];
   placeholder?: string;
   icon?: 'chevron' | 'search';
@@ -18,25 +19,27 @@ interface DropDownProps {
 const Autocomplete = ({
   value,
   onChange,
+  onInputChange,
   options,
   placeholder,
   icon = 'chevron',
 }: AutocompleteProps) => {
   // 드롭메뉴 열림 여부
   const [isOpen, setIsOpen] = useState(false);
-
-  // value가 undefined일 수 있으므로 빈 문자열로 처리
-  const safeValue = value || '';
+  const [inputValue, setInputValue] = useState(value || '');
 
   // 입력값 필터링 (undefined/null 값 제거)
   const filteredOptions = options
     .filter((option) => option != null)
-    .filter((option) => option.toLowerCase().includes(safeValue.toLowerCase()));
+    .filter((option) =>
+      option.toLowerCase().includes(inputValue.toLowerCase()),
+    );
 
   // 입력 처리
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    onChange(newValue);
+    setInputValue(newValue);
+    onInputChange?.(newValue);
     setIsOpen(newValue.length > 0);
   };
 
@@ -44,10 +47,20 @@ const Autocomplete = ({
   const handleOptionClick = (option: string) => {
     onChange(option);
     setIsOpen(false);
+    setInputValue('');
   };
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && inputValue.trim()) {
+      e.preventDefault();
+      onChange(inputValue.trim());
+      setIsOpen(false);
+      setInputValue('');
+    }
   };
 
   const Chevron = isOpen ? ArrowUpIcon : ArrowDownIcon;
@@ -58,10 +71,11 @@ const Autocomplete = ({
       <input
         type="text"
         className={styles.input}
-        value={safeValue}
+        value={inputValue}
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
         onBlur={() => setIsOpen(false)}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
       />
       <button type="button" className={styles.toggle} onClick={toggleDropdown}>
