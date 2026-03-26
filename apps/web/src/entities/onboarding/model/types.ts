@@ -19,3 +19,6 @@ export type GetMajorListResponse =
 
 export type GetCountryListResponse =
   paths['/api/v1/members/onboard/countries']['get']['responses']['200']['content']['*/*'];
+
+export type GetFieldListResponse =
+  paths['/api/v1/members/onboard/fields']['get']['responses']['200']['content']['*/*'];

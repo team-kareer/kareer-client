@@ -8,6 +8,7 @@ export * from './personal-background';
 export * from './target-job-skills';
 export {
   type GetCountryListResponse,
+  type GetFieldListResponse,
   type GetMajorListResponse,
   type OnboardingForm,
   type OnboardingFormRequest,
