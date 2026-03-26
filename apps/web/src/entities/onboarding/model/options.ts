@@ -7,15 +7,6 @@ export const LANGUAGE_LEVEL_OPTIONS = [
   'Not taken yet',
 ];
 
-// TODO: 제거 예정
-export const UNIVERSITY_OPTIONS = [
-  'Seoul National University',
-  'Korea University',
-  'Yonsei University',
-  'Hanyang University',
-  'Sungkyunkwan University',
-];
-
 export const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
 
 export const TARGET_JOB_OPTIONS = [
