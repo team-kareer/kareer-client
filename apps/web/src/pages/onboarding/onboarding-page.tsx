@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { BangCircleIcon } from '@kds/icons';
-import { Button, useToast } from '@kds/ui';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
@@ -12,6 +10,7 @@ import {
   TargetRoleStep,
   VisaInformationStep,
 } from '@widgets/onboarding';
+import IdentityVisaVerification from '@widgets/onboarding/ui/step/identity-visaVerification/identity-visaVerification';
 import type { PostOnboardingForm } from '@features/onboarding';
 import { postOnboardingForm } from '@features/onboarding';
 import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
@@ -28,7 +27,6 @@ import useFunnel from '@shared/hooks/usefunnel';
 
 const OnboardingPage = () => {
   const queryClient = useQueryClient();
-  const { showToast } = useToast();
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
     useFunnel(FUNNEL_STEPS, '/');
   const [error, setError] = useState<Error | null>(null);
@@ -91,13 +89,6 @@ const OnboardingPage = () => {
     goToPrevStep();
   };
 
-  const handleTestToast = () => {
-    showToast({
-      message: 'We couldn’t save your Korean level. Please try again',
-      icon: <BangCircleIcon width={24} height={24} />,
-    });
-  };
-
   // 로드맵 생성 mutation
   const { mutate: generateRoadmap } = useMutation({
     ...ONBOARDING_MUTATION_OPTIONS.POST_AI_ROADMAP(),
@@ -136,35 +127,33 @@ const OnboardingPage = () => {
 
   return (
     <FormProvider {...form}>
-      <>
-        <Button preset="small_outlined" type="button" onClick={handleTestToast}>
-          Show test toast
-        </Button>
-        <OnboardingStepLayout
-          steps={steps}
-          onBack={handleBack}
-          onNext={handleNext}
-          isNextDisabled={isNextDisabled}
-        >
-          <Funnel>
-            <Step name={FUNNEL_STEPS[0]}>
-              <PersonalInformationStep />
-            </Step>
-            <Step name={FUNNEL_STEPS[1]}>
-              <VisaInformationStep />
-            </Step>
-            <Step name={FUNNEL_STEPS[2]}>
-              <TargetRoleStep />
-            </Step>
-            <Step name={FUNNEL_STEPS[3]}>
-              <TargetRoleStep />
-            </Step>
-            <Step name={FUNNEL_STEPS[4]}>
-              <PersonalBackgroundStep />
-            </Step>
-          </Funnel>
-        </OnboardingStepLayout>
-      </>
+      <OnboardingStepLayout
+        steps={steps}
+        onBack={handleBack}
+        onNext={handleNext}
+        isNextDisabled={isNextDisabled}
+      >
+        <Funnel>
+          <Step name={FUNNEL_STEPS[0]}>
+            <PersonalInformationStep />
+          </Step>
+          <Step name={FUNNEL_STEPS[1]}>
+            <VisaInformationStep />
+          </Step>
+          <Step name={FUNNEL_STEPS[2]}>
+            <TargetRoleStep />
+          </Step>
+          <Step name={FUNNEL_STEPS[3]}>
+            <TargetRoleStep />
+          </Step>
+          <Step name={FUNNEL_STEPS[4]}>
+            <PersonalBackgroundStep />
+          </Step>
+          <Step name={FUNNEL_STEPS[5]}>
+            <IdentityVisaVerification />
+          </Step>
+        </Funnel>
+      </OnboardingStepLayout>
     </FormProvider>
   );
 };
