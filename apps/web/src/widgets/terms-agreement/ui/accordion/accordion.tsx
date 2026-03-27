@@ -25,8 +25,8 @@ const Accordion = ({ title, content, isChecked, onToggle }: AccordionProps) => {
           <span>{title}</span>
         </div>
         <Chevron
-          width={16}
-          height={16}
+          width={14}
+          height={14}
           className={styles.icon}
           onClick={toggle}
         />
@@ -35,11 +35,7 @@ const Accordion = ({ title, content, isChecked, onToggle }: AccordionProps) => {
       {/* accordionContent */}
       <div className={styles.wrapper({ isOpen: isOpen })}>
         <div className={styles.inner}>
-          {shouldRender && (
-            <div className={styles.content}>
-              <p>{content}</p>
-            </div>
-          )}
+          {shouldRender && <p className={styles.content}>{content}</p>}
         </div>
       </div>
     </section>
