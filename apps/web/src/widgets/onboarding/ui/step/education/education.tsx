@@ -34,7 +34,7 @@ const Education = () => {
       <OnboardingStepTitle stepNumber={2} title={FUNNEL_STEPS[1]} />
       <div className={styles.inputContainer}>
         <FormAutocompleteField
-          name="university"
+          name="universityCode"
           label="University / School"
           rules={{
             validate: (value) => validateText(value),
@@ -44,7 +44,7 @@ const Education = () => {
         />
         <div className={styles.newRow}>
           <FormAutocompleteField
-            name="primaryMajor"
+            name="primaryMajorCode"
             label="Primary Major"
             rules={{
               required: 'Select your major',

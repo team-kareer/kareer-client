@@ -29,10 +29,8 @@ export const convertFormToRequest = (
       ? getDegreeValue(rest.degree, degreeLocation)
       : '';
 
-  // 조건부 필드 제거를 위해 destructure
   const {
     expectedGraduationDate,
-    visaPoint,
     secondaryMajor,
     targetJobSkill,
     ...baseFields
@@ -51,10 +49,6 @@ export const convertFormToRequest = (
     ...(rest.visaType === 'D-2' &&
       expectedGraduationDate && {
         expectedGraduationDate,
-      }),
-    ...(rest.visaType === 'D-10' &&
-      visaPoint !== undefined && {
-        visaPoint,
       }),
   } as OnboardingFormRequest;
 };

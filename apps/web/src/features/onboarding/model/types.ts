@@ -1,7 +1,11 @@
 import { paths } from '@shared/types/schema';
 
-export type PostOnboardingForm =
-  paths['/api/v1/members/onboard']['post']['requestBody']['content']['application/json'];
+// export type PostOnboardingForm =
+//   paths['/api/v1/members/onboard']['post']['requestBody']['content']['application/json'];
+
+// Onboard API 버전 업데이트
+export type PostOnbardingForm =
+  paths['/api/v2/members/onboard']['post']['requestBody']['content']['application/json'];
 
 export type PostAiRoadMapResponse =
   paths['/api/v1/members/roadmap']['post']['responses']['200']['content']['*/*'];
