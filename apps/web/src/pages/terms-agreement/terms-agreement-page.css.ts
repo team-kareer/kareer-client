@@ -1,6 +1,5 @@
 import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 
 export const container = style({
   display: 'flex',
@@ -38,24 +37,12 @@ export const sectionContent = style({
   overflowY: 'scroll',
 });
 
-export const checkArea = recipe({
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.4rem',
-  },
-  variants: {
-    text: {
-      all: {
-        ...typography.body7_sb_14,
-        color: themeVars.color.grayscale.gray900,
-      },
-      individual: {
-        ...typography.body8_m_14,
-        color: themeVars.color.grayscale.gray800,
-      },
-    },
-  },
+export const checkArea = style({
+  ...typography.body7_sb_14,
+  color: themeVars.color.grayscale.gray900,
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
 });
 
 export const line = style({

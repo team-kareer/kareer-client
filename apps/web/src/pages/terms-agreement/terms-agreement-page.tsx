@@ -66,7 +66,7 @@ const TermsAgreementPage = () => {
         <header className={styles.header}>Terms & Privacy Consent</header>
         <div className={styles.termsSection}>
           <div className={styles.sectionContent}>
-            <div className={styles.checkArea({ text: 'all' })}>
+            <div className={styles.checkArea}>
               <Checkbox isChecked={allChecked} onClick={handleToggleAll} />
               <span>Agree to all</span>
             </div>
