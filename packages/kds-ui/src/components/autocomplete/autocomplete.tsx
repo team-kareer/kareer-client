@@ -21,7 +21,8 @@ interface DropDownProps {
   options: string[];
   onClick: (option: string) => void;
 }
-
+const isStringOption = (option: unknown): option is string =>
+  typeof option === 'string';
 const Autocomplete = ({
   value,
   onChange,
@@ -36,7 +37,8 @@ const Autocomplete = ({
 
   // 입력값 필터링 (undefined/null 값 제거)
   const filteredOptions = options
-    .filter((option) => option != null)
+    // .filter((option) => option != null)
+    .filter(isStringOption)
     .filter((option) => option.toLowerCase().includes(safeValue.toLowerCase()));
 
   // 입력 처리
