@@ -17,6 +17,7 @@ export const inputContainer = style({
       boxShadow: `0 0 0 0.5px ${themeVars.color.primary[500]}`,
     },
   },
+  height: '5rem',
 });
 
 export const input = style({
