@@ -85,8 +85,3 @@ export const xButton = style({
   cursor: 'pointer',
   color: themeVars.color.grayscale.gray500,
 });
-
-export const errorText = style({
-  ...typography.cap2_m_12,
-  color: themeVars.color.pastel.kared_500,
-});

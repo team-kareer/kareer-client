@@ -2,8 +2,6 @@ import { VALIDATION_MESSAGE } from '@widgets/onboarding';
 
 import { validateDate } from '../common/validateDate';
 
-const INVALID_VISA_DATE_MESSAGE = 'Please enter a valid date';
-
 export const validateIdentityVisaStartDate = (
   value: string,
   visaExpirationDate?: string,
@@ -19,7 +17,7 @@ export const validateIdentityVisaStartDate = (
     result === VALIDATION_MESSAGE.DATE.INVALID_DATE ||
     result === VALIDATION_MESSAGE.DATE.FUTURE_NOT_ALLOWED
   ) {
-    return INVALID_VISA_DATE_MESSAGE;
+    return VALIDATION_MESSAGE.DATE.INVALID_VISA_DATE_MESSAGE;
   }
 
   if (visaExpirationDate) {

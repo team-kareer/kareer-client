@@ -17,6 +17,7 @@ export const VALIDATION_MESSAGE = {
     PAST_NOT_ALLOWED:
       'Please enter a future date for your expected graduation.',
     MUST_BE_AFTER_ISSUANCE: 'The date must be after the visa issuance date.',
+    INVALID_VISA_DATE_MESSAGE: 'Please enter a valid date',
   },
   VISA: {
     D2_EXPIRATION_IN_PAST:

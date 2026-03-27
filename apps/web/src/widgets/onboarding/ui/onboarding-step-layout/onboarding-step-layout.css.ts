@@ -5,7 +5,6 @@ export const container = style({
   flexDirection: 'column',
   paddingTop: '4.8rem',
   minHeight: '100%',
-  boxSizing: 'border-box',
 });
 
 export const headerContainer = style({
