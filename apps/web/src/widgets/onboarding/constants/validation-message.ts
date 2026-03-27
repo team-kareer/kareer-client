@@ -17,8 +17,11 @@ export const VALIDATION_MESSAGE = {
     PAST_NOT_ALLOWED:
       'Please enter a future date for your expected graduation.',
     MUST_BE_AFTER_ISSUANCE: 'The date must be after the visa issuance date.',
+    INVALID_VISA_DATE_MESSAGE: 'Please enter a valid date',
   },
   VISA: {
+    D2_EXPIRATION_IN_PAST:
+      'Please select a valid D-2 visa expiration date that is not in the past.',
     D2_EXCEEDS_TWO_YEARS:
       'D-2 visa must be valid for at least two year from the issuance date.',
     D2_EXPIRATION_BEFORE_GRADUATION:
@@ -29,6 +32,8 @@ export const VALIDATION_MESSAGE = {
       'Please select a valid D-10 visa expiration date that is not in the past.',
     D2_ISSUANCE_AFTER_GRADUATION:
       'Please enter a graduation date that is later than your visa issuance date.',
+    START_DATE_AFTER_EXPIRATION:
+      'Please enter a Visa Start Date that is earlier than your Visa Expiration Date.',
     FUTURE_ISSUANCE_DATE: 'Please enter a valid date',
   },
   NAME: {
