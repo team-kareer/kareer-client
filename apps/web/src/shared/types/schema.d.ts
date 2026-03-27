@@ -128,6 +128,26 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/members/term-agreements': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 약관 동의
+     * @description 약관에 동의합니다.
+     */
+    post: operations['agreeTerms'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/members/roadmap': {
     parameters: {
       query?: never;
@@ -182,6 +202,46 @@ export interface paths {
      * @description PENDING 상태의 회원의 온보딩 결과를 저장합니다.
      */
     post: operations['onboardMember_1'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/members/onboard/ocr/visa': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 온보딩 비자 OCR API
+     * @description 온보딩 과정에서 유저의 비자 문서를 분석하여 정보를 추출합니다.
+     */
+    post: operations['getVisaInfo'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/members/onboard/ocr/passport': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 온보딩 여권 OCR API
+     * @description 온보딩 과정에서 유저의 여권을 분석하여 정보를 추출합니다.
+     */
+    post: operations['getPassportInfo'];
     delete?: never;
     options?: never;
     head?: never;
@@ -306,6 +366,26 @@ export interface paths {
      * @description 특정 액션 아이템의 완료 상태를 토글합니다.
      */
     patch: operations['toggleActionItemCompletion'];
+    trace?: never;
+  };
+  '/api/v1/terms': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 약관 조회
+     * @description 약관 내용을 조회합니다.
+     */
+    get: operations['getTerms'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
     trace?: never;
   };
   '/api/v1/phases': {
@@ -593,203 +673,8 @@ export interface components {
       /**
        * @description 국가
        * @example Afghanistan
-       * @enum {string}
        */
-      country:
-        | 'Afghanistan'
-        | 'Albania'
-        | 'Algeria'
-        | 'Andorra'
-        | 'Angola'
-        | 'Antigua and Barbuda'
-        | 'Argentina'
-        | 'Armenia'
-        | 'Australia'
-        | 'Austria'
-        | 'Azerbaijan'
-        | 'Bahamas'
-        | 'Bahrain'
-        | 'Bangladesh'
-        | 'Barbados'
-        | 'Belarus'
-        | 'Belgium'
-        | 'Belize'
-        | 'Benin'
-        | 'Bhutan'
-        | 'Bolivia'
-        | 'Bosnia and Herzegovina'
-        | 'Botswana'
-        | 'Brazil'
-        | 'Brunei'
-        | 'Bulgaria'
-        | 'Burkina Faso'
-        | 'Burundi'
-        | 'Cabo Verde'
-        | 'Cambodia'
-        | 'Cameroon'
-        | 'Canada'
-        | 'Central African Republic'
-        | 'Chad'
-        | 'Chile'
-        | 'China'
-        | 'Colombia'
-        | 'Comoros'
-        | 'Congo'
-        | 'Democratic Republic of the Congo'
-        | 'Costa Rica'
-        | "Cote d'Ivoire"
-        | 'Croatia'
-        | 'Cuba'
-        | 'Cyprus'
-        | 'Czechia'
-        | 'Denmark'
-        | 'Djibouti'
-        | 'Dominica'
-        | 'Dominican Republic'
-        | 'Ecuador'
-        | 'Egypt'
-        | 'El Salvador'
-        | 'Equatorial Guinea'
-        | 'Eritrea'
-        | 'Estonia'
-        | 'Eswatini'
-        | 'Ethiopia'
-        | 'Fiji'
-        | 'Finland'
-        | 'France'
-        | 'Gabon'
-        | 'Gambia'
-        | 'Georgia'
-        | 'Germany'
-        | 'Ghana'
-        | 'Greece'
-        | 'Grenada'
-        | 'Guatemala'
-        | 'Guinea'
-        | 'Guinea-Bissau'
-        | 'Guyana'
-        | 'Haiti'
-        | 'Honduras'
-        | 'Hungary'
-        | 'Iceland'
-        | 'India'
-        | 'Indonesia'
-        | 'Iran'
-        | 'Iraq'
-        | 'Ireland'
-        | 'Israel'
-        | 'Italy'
-        | 'Jamaica'
-        | 'Japan'
-        | 'Jordan'
-        | 'Kazakhstan'
-        | 'Kenya'
-        | 'Kiribati'
-        | 'Kuwait'
-        | 'Kyrgyzstan'
-        | 'Laos'
-        | 'Latvia'
-        | 'Lebanon'
-        | 'Lesotho'
-        | 'Liberia'
-        | 'Libya'
-        | 'Liechtenstein'
-        | 'Lithuania'
-        | 'Luxembourg'
-        | 'Madagascar'
-        | 'Malawi'
-        | 'Malaysia'
-        | 'Maldives'
-        | 'Mali'
-        | 'Malta'
-        | 'Marshall Islands'
-        | 'Mauritania'
-        | 'Mauritius'
-        | 'Mexico'
-        | 'Micronesia'
-        | 'Moldova'
-        | 'Monaco'
-        | 'Mongolia'
-        | 'Montenegro'
-        | 'Morocco'
-        | 'Mozambique'
-        | 'Myanmar'
-        | 'Namibia'
-        | 'Nauru'
-        | 'Nepal'
-        | 'Netherlands'
-        | 'New Zealand'
-        | 'Nicaragua'
-        | 'Niger'
-        | 'Nigeria'
-        | 'North Macedonia'
-        | 'Norway'
-        | 'Oman'
-        | 'Pakistan'
-        | 'Palau'
-        | 'Panama'
-        | 'Papua New Guinea'
-        | 'Paraguay'
-        | 'Peru'
-        | 'Philippines'
-        | 'Poland'
-        | 'Portugal'
-        | 'Qatar'
-        | 'Romania'
-        | 'Russia'
-        | 'Rwanda'
-        | 'Saint Kitts and Nevis'
-        | 'Saint Lucia'
-        | 'Saint Vincent and the Grenadines'
-        | 'Samoa'
-        | 'San Marino'
-        | 'Sao Tome and Principe'
-        | 'Saudi Arabia'
-        | 'Senegal'
-        | 'Serbia'
-        | 'Seychelles'
-        | 'Sierra Leone'
-        | 'Singapore'
-        | 'Slovakia'
-        | 'Slovenia'
-        | 'Solomon Islands'
-        | 'Somalia'
-        | 'South Africa'
-        | 'South Korea'
-        | 'South Sudan'
-        | 'Spain'
-        | 'Sri Lanka'
-        | 'Sudan'
-        | 'Suriname'
-        | 'Sweden'
-        | 'Switzerland'
-        | 'Syria'
-        | 'Taiwan'
-        | 'Tajikistan'
-        | 'Tanzania'
-        | 'Thailand'
-        | 'Timor-Leste'
-        | 'Togo'
-        | 'Tonga'
-        | 'Trinidad and Tobago'
-        | 'Tunisia'
-        | 'Turkey'
-        | 'Turkmenistan'
-        | 'Tuvalu'
-        | 'Uganda'
-        | 'Ukraine'
-        | 'United Arab Emirates'
-        | 'United Kingdom'
-        | 'United States'
-        | 'Uruguay'
-        | 'Uzbekistan'
-        | 'Vanuatu'
-        | 'Vatican City'
-        | 'Venezuela'
-        | 'Vietnam'
-        | 'Yemen'
-        | 'Zambia'
-        | 'Zimbabwe';
+      countryCode: string;
       /**
        * @description 학위
        * @example DOMESTIC_ASSOCIATE
@@ -807,12 +692,12 @@ export interface components {
        * @description 대학
        * @example Konkuk University
        */
-      university: string;
+      universityCode: string;
       /**
        * @description 전공
        * @example Computer Science
        */
-      primaryMajor: string;
+      primaryMajorCode: string;
       /**
        * @description 부전공
        * @example Statistic
@@ -862,203 +747,8 @@ export interface components {
       name: string;
       /** Format: date */
       birthDate: string;
-      university: string;
-      /** @enum {string} */
-      country:
-        | 'Afghanistan'
-        | 'Albania'
-        | 'Algeria'
-        | 'Andorra'
-        | 'Angola'
-        | 'Antigua and Barbuda'
-        | 'Argentina'
-        | 'Armenia'
-        | 'Australia'
-        | 'Austria'
-        | 'Azerbaijan'
-        | 'Bahamas'
-        | 'Bahrain'
-        | 'Bangladesh'
-        | 'Barbados'
-        | 'Belarus'
-        | 'Belgium'
-        | 'Belize'
-        | 'Benin'
-        | 'Bhutan'
-        | 'Bolivia'
-        | 'Bosnia and Herzegovina'
-        | 'Botswana'
-        | 'Brazil'
-        | 'Brunei'
-        | 'Bulgaria'
-        | 'Burkina Faso'
-        | 'Burundi'
-        | 'Cabo Verde'
-        | 'Cambodia'
-        | 'Cameroon'
-        | 'Canada'
-        | 'Central African Republic'
-        | 'Chad'
-        | 'Chile'
-        | 'China'
-        | 'Colombia'
-        | 'Comoros'
-        | 'Congo'
-        | 'Democratic Republic of the Congo'
-        | 'Costa Rica'
-        | "Cote d'Ivoire"
-        | 'Croatia'
-        | 'Cuba'
-        | 'Cyprus'
-        | 'Czechia'
-        | 'Denmark'
-        | 'Djibouti'
-        | 'Dominica'
-        | 'Dominican Republic'
-        | 'Ecuador'
-        | 'Egypt'
-        | 'El Salvador'
-        | 'Equatorial Guinea'
-        | 'Eritrea'
-        | 'Estonia'
-        | 'Eswatini'
-        | 'Ethiopia'
-        | 'Fiji'
-        | 'Finland'
-        | 'France'
-        | 'Gabon'
-        | 'Gambia'
-        | 'Georgia'
-        | 'Germany'
-        | 'Ghana'
-        | 'Greece'
-        | 'Grenada'
-        | 'Guatemala'
-        | 'Guinea'
-        | 'Guinea-Bissau'
-        | 'Guyana'
-        | 'Haiti'
-        | 'Honduras'
-        | 'Hungary'
-        | 'Iceland'
-        | 'India'
-        | 'Indonesia'
-        | 'Iran'
-        | 'Iraq'
-        | 'Ireland'
-        | 'Israel'
-        | 'Italy'
-        | 'Jamaica'
-        | 'Japan'
-        | 'Jordan'
-        | 'Kazakhstan'
-        | 'Kenya'
-        | 'Kiribati'
-        | 'Kuwait'
-        | 'Kyrgyzstan'
-        | 'Laos'
-        | 'Latvia'
-        | 'Lebanon'
-        | 'Lesotho'
-        | 'Liberia'
-        | 'Libya'
-        | 'Liechtenstein'
-        | 'Lithuania'
-        | 'Luxembourg'
-        | 'Madagascar'
-        | 'Malawi'
-        | 'Malaysia'
-        | 'Maldives'
-        | 'Mali'
-        | 'Malta'
-        | 'Marshall Islands'
-        | 'Mauritania'
-        | 'Mauritius'
-        | 'Mexico'
-        | 'Micronesia'
-        | 'Moldova'
-        | 'Monaco'
-        | 'Mongolia'
-        | 'Montenegro'
-        | 'Morocco'
-        | 'Mozambique'
-        | 'Myanmar'
-        | 'Namibia'
-        | 'Nauru'
-        | 'Nepal'
-        | 'Netherlands'
-        | 'New Zealand'
-        | 'Nicaragua'
-        | 'Niger'
-        | 'Nigeria'
-        | 'North Macedonia'
-        | 'Norway'
-        | 'Oman'
-        | 'Pakistan'
-        | 'Palau'
-        | 'Panama'
-        | 'Papua New Guinea'
-        | 'Paraguay'
-        | 'Peru'
-        | 'Philippines'
-        | 'Poland'
-        | 'Portugal'
-        | 'Qatar'
-        | 'Romania'
-        | 'Russia'
-        | 'Rwanda'
-        | 'Saint Kitts and Nevis'
-        | 'Saint Lucia'
-        | 'Saint Vincent and the Grenadines'
-        | 'Samoa'
-        | 'San Marino'
-        | 'Sao Tome and Principe'
-        | 'Saudi Arabia'
-        | 'Senegal'
-        | 'Serbia'
-        | 'Seychelles'
-        | 'Sierra Leone'
-        | 'Singapore'
-        | 'Slovakia'
-        | 'Slovenia'
-        | 'Solomon Islands'
-        | 'Somalia'
-        | 'South Africa'
-        | 'South Korea'
-        | 'South Sudan'
-        | 'Spain'
-        | 'Sri Lanka'
-        | 'Sudan'
-        | 'Suriname'
-        | 'Sweden'
-        | 'Switzerland'
-        | 'Syria'
-        | 'Taiwan'
-        | 'Tajikistan'
-        | 'Tanzania'
-        | 'Thailand'
-        | 'Timor-Leste'
-        | 'Togo'
-        | 'Tonga'
-        | 'Trinidad and Tobago'
-        | 'Tunisia'
-        | 'Turkey'
-        | 'Turkmenistan'
-        | 'Tuvalu'
-        | 'Uganda'
-        | 'Ukraine'
-        | 'United Arab Emirates'
-        | 'United Kingdom'
-        | 'United States'
-        | 'Uruguay'
-        | 'Uzbekistan'
-        | 'Vanuatu'
-        | 'Vatican City'
-        | 'Venezuela'
-        | 'Vietnam'
-        | 'Yemen'
-        | 'Zambia'
-        | 'Zimbabwe';
+      universityCode: string;
+      countryCode: string;
       /** @enum {string} */
       languageLevel:
         | 'LEVEL_1'
@@ -1090,13 +780,7 @@ export interface components {
       visaStartDate: string;
       /** Format: date */
       visaExpiredAt: string;
-      /**
-       * Format: int32
-       * @description 비자 점수, D10 비자인 경우만
-       * @example 50
-       */
-      visaPoint?: number;
-      primaryMajor: string;
+      primaryMajorCode: string;
       secondaryMajor?: string;
       fieldsOfInterests: string[];
       preparationStatuses?: string[];
@@ -1106,6 +790,25 @@ export interface components {
     };
     JobPostingEmbeddingRequest: {
       jobPostingIds?: number[];
+    };
+    /** @description 약관 동의 요청 */
+    MemberTermsRequest: {
+      /** @description 약관 동의 리스트 */
+      agreements: components['schemas']['TermAgreement'][];
+    };
+    /** @description 약관 동의 리스트 */
+    TermAgreement: {
+      /**
+       * Format: int64
+       * @description 약관 고유번호
+       * @example 1
+       */
+      termId: number;
+      /**
+       * @description 약관 동의여부
+       * @example true
+       */
+      agreed: boolean;
     };
     ActionItemPlan: {
       title?: string;
@@ -1397,6 +1100,253 @@ export interface components {
       targetJobSkill?: string;
       personalBackground: string;
     };
+    BaseResponseOcrVisaResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['OcrVisaResponse'];
+    };
+    OcrVisaResponse: {
+      /**
+       * @description 비자 유형
+       * @enum {string}
+       */
+      visaType?: 'D2' | 'D10' | 'E7';
+      /**
+       * Format: date
+       * @description 비자 발급일
+       */
+      visaStartDate?: string;
+      /**
+       * Format: date
+       * @description 비자 만료일
+       */
+      visaExpiredAt?: string;
+    };
+    BaseResponseOcrPassportResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['OcrPassportResponse'];
+    };
+    OcrPassportResponse: {
+      /**
+       * @description Full Name
+       * @example Hong Seungwon
+       */
+      fullName?: string;
+      /**
+       * @description 국가
+       * @example AFGHANISTAN
+       * @enum {string}
+       */
+      country?:
+        | 'Afghanistan'
+        | 'Albania'
+        | 'Algeria'
+        | 'Andorra'
+        | 'Angola'
+        | 'Antigua and Barbuda'
+        | 'Argentina'
+        | 'Armenia'
+        | 'Australia'
+        | 'Austria'
+        | 'Azerbaijan'
+        | 'Bahamas'
+        | 'Bahrain'
+        | 'Bangladesh'
+        | 'Barbados'
+        | 'Belarus'
+        | 'Belgium'
+        | 'Belize'
+        | 'Benin'
+        | 'Bhutan'
+        | 'Bolivia'
+        | 'Bosnia and Herzegovina'
+        | 'Botswana'
+        | 'Brazil'
+        | 'Brunei'
+        | 'Bulgaria'
+        | 'Burkina Faso'
+        | 'Burundi'
+        | 'Cabo Verde'
+        | 'Cambodia'
+        | 'Cameroon'
+        | 'Canada'
+        | 'Central African Republic'
+        | 'Chad'
+        | 'Chile'
+        | 'China'
+        | 'Colombia'
+        | 'Comoros'
+        | 'Congo'
+        | 'Democratic Republic of the Congo'
+        | 'Costa Rica'
+        | "Cote d'Ivoire"
+        | 'Croatia'
+        | 'Cuba'
+        | 'Cyprus'
+        | 'Czechia'
+        | 'Denmark'
+        | 'Djibouti'
+        | 'Dominica'
+        | 'Dominican Republic'
+        | 'Ecuador'
+        | 'Egypt'
+        | 'El Salvador'
+        | 'Equatorial Guinea'
+        | 'Eritrea'
+        | 'Estonia'
+        | 'Eswatini'
+        | 'Ethiopia'
+        | 'Fiji'
+        | 'Finland'
+        | 'France'
+        | 'Gabon'
+        | 'Gambia'
+        | 'Georgia'
+        | 'Germany'
+        | 'Ghana'
+        | 'Greece'
+        | 'Grenada'
+        | 'Guatemala'
+        | 'Guinea'
+        | 'Guinea-Bissau'
+        | 'Guyana'
+        | 'Haiti'
+        | 'Honduras'
+        | 'Hungary'
+        | 'Iceland'
+        | 'India'
+        | 'Indonesia'
+        | 'Iran'
+        | 'Iraq'
+        | 'Ireland'
+        | 'Israel'
+        | 'Italy'
+        | 'Jamaica'
+        | 'Japan'
+        | 'Jordan'
+        | 'Kazakhstan'
+        | 'Kenya'
+        | 'Kiribati'
+        | 'Kuwait'
+        | 'Kyrgyzstan'
+        | 'Laos'
+        | 'Latvia'
+        | 'Lebanon'
+        | 'Lesotho'
+        | 'Liberia'
+        | 'Libya'
+        | 'Liechtenstein'
+        | 'Lithuania'
+        | 'Luxembourg'
+        | 'Madagascar'
+        | 'Malawi'
+        | 'Malaysia'
+        | 'Maldives'
+        | 'Mali'
+        | 'Malta'
+        | 'Marshall Islands'
+        | 'Mauritania'
+        | 'Mauritius'
+        | 'Mexico'
+        | 'Micronesia'
+        | 'Moldova'
+        | 'Monaco'
+        | 'Mongolia'
+        | 'Montenegro'
+        | 'Morocco'
+        | 'Mozambique'
+        | 'Myanmar'
+        | 'Namibia'
+        | 'Nauru'
+        | 'Nepal'
+        | 'Netherlands'
+        | 'New Zealand'
+        | 'Nicaragua'
+        | 'Niger'
+        | 'Nigeria'
+        | 'North Macedonia'
+        | 'Norway'
+        | 'Oman'
+        | 'Pakistan'
+        | 'Palau'
+        | 'Panama'
+        | 'Papua New Guinea'
+        | 'Paraguay'
+        | 'Peru'
+        | 'Philippines'
+        | 'Poland'
+        | 'Portugal'
+        | 'Qatar'
+        | 'Romania'
+        | 'Russia'
+        | 'Rwanda'
+        | 'Saint Kitts and Nevis'
+        | 'Saint Lucia'
+        | 'Saint Vincent and the Grenadines'
+        | 'Samoa'
+        | 'San Marino'
+        | 'Sao Tome and Principe'
+        | 'Saudi Arabia'
+        | 'Senegal'
+        | 'Serbia'
+        | 'Seychelles'
+        | 'Sierra Leone'
+        | 'Singapore'
+        | 'Slovakia'
+        | 'Slovenia'
+        | 'Solomon Islands'
+        | 'Somalia'
+        | 'South Africa'
+        | 'South Korea'
+        | 'South Sudan'
+        | 'Spain'
+        | 'Sri Lanka'
+        | 'Sudan'
+        | 'Suriname'
+        | 'Sweden'
+        | 'Switzerland'
+        | 'Syria'
+        | 'Taiwan'
+        | 'Tajikistan'
+        | 'Tanzania'
+        | 'Thailand'
+        | 'Timor-Leste'
+        | 'Togo'
+        | 'Tonga'
+        | 'Trinidad and Tobago'
+        | 'Tunisia'
+        | 'Turkey'
+        | 'Turkmenistan'
+        | 'Tuvalu'
+        | 'Uganda'
+        | 'Ukraine'
+        | 'United Arab Emirates'
+        | 'United Kingdom'
+        | 'United States'
+        | 'Uruguay'
+        | 'Uzbekistan'
+        | 'Vanuatu'
+        | 'Vatican City'
+        | 'Venezuela'
+        | 'Vietnam'
+        | 'Yemen'
+        | 'Zambia'
+        | 'Zimbabwe';
+      /**
+       * Format: date
+       * @description 생년월일
+       */
+      birthDate?: string;
+    };
     BaseResponseJobPostingListResponse: {
       /**
        * Format: int32
@@ -1472,6 +1422,44 @@ export interface components {
     TokenExchangeResponse: {
       accessToken?: string;
       onboardingRequired?: boolean;
+    };
+    BaseResponseTermsResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['TermsResponse'];
+    };
+    /** @description 약관 리스트 */
+    TermResponse: {
+      /**
+       * Format: int64
+       * @description 약관 고유번호
+       * @example 1
+       */
+      termId?: number;
+      /**
+       * @description 약관 제목
+       * @example Terms of Service
+       */
+      title?: string;
+      /**
+       * @description 약관 내용
+       * @example 1. Purpose ~
+       */
+      content?: string;
+      /**
+       * @description 필수 여부
+       * @example true
+       */
+      required?: boolean;
+    };
+    /** @description 약관 응답 */
+    TermsResponse: {
+      /** @description 약관 리스트 */
+      terms?: components['schemas']['TermResponse'][];
     };
     BaseResponsePhaseListResponse: {
       /**
@@ -1675,8 +1663,12 @@ export interface components {
       message?: string;
       data?: components['schemas']['OnboardUniversitiesResponse'];
     };
+    LocalizedItemResponse: {
+      code?: string;
+      label?: string;
+    };
     OnboardUniversitiesResponse: {
-      universities?: string[];
+      universities?: components['schemas']['LocalizedItemResponse'][];
     };
     BaseResponseOnboardMajorsResponse: {
       /**
@@ -1688,7 +1680,7 @@ export interface components {
       data?: components['schemas']['OnboardMajorsResponse'];
     };
     OnboardMajorsResponse: {
-      majors?: string[];
+      majors?: components['schemas']['LocalizedItemResponse'][];
     };
     BaseResponseOnboardFieldsResponse: {
       /**
@@ -1700,7 +1692,7 @@ export interface components {
       data?: components['schemas']['OnboardFieldsResponse'];
     };
     OnboardFieldsResponse: {
-      fields?: string[];
+      fields?: components['schemas']['LocalizedItemResponse'][];
     };
     BaseResponseOnboardCountriesResponse: {
       /**
@@ -1712,7 +1704,7 @@ export interface components {
       data?: components['schemas']['OnboardCountriesResponse'];
     };
     OnboardCountriesResponse: {
-      countries?: string[];
+      countries?: components['schemas']['LocalizedItemResponse'][];
     };
     BaseResponseMypageResponse: {
       /**
@@ -1819,205 +1811,8 @@ export interface components {
        * @example 2000-05-02
        */
       birthDate?: string;
-      /**
-       * @description 거주 국가
-       * @enum {string}
-       */
-      country?:
-        | 'Afghanistan'
-        | 'Albania'
-        | 'Algeria'
-        | 'Andorra'
-        | 'Angola'
-        | 'Antigua and Barbuda'
-        | 'Argentina'
-        | 'Armenia'
-        | 'Australia'
-        | 'Austria'
-        | 'Azerbaijan'
-        | 'Bahamas'
-        | 'Bahrain'
-        | 'Bangladesh'
-        | 'Barbados'
-        | 'Belarus'
-        | 'Belgium'
-        | 'Belize'
-        | 'Benin'
-        | 'Bhutan'
-        | 'Bolivia'
-        | 'Bosnia and Herzegovina'
-        | 'Botswana'
-        | 'Brazil'
-        | 'Brunei'
-        | 'Bulgaria'
-        | 'Burkina Faso'
-        | 'Burundi'
-        | 'Cabo Verde'
-        | 'Cambodia'
-        | 'Cameroon'
-        | 'Canada'
-        | 'Central African Republic'
-        | 'Chad'
-        | 'Chile'
-        | 'China'
-        | 'Colombia'
-        | 'Comoros'
-        | 'Congo'
-        | 'Democratic Republic of the Congo'
-        | 'Costa Rica'
-        | "Cote d'Ivoire"
-        | 'Croatia'
-        | 'Cuba'
-        | 'Cyprus'
-        | 'Czechia'
-        | 'Denmark'
-        | 'Djibouti'
-        | 'Dominica'
-        | 'Dominican Republic'
-        | 'Ecuador'
-        | 'Egypt'
-        | 'El Salvador'
-        | 'Equatorial Guinea'
-        | 'Eritrea'
-        | 'Estonia'
-        | 'Eswatini'
-        | 'Ethiopia'
-        | 'Fiji'
-        | 'Finland'
-        | 'France'
-        | 'Gabon'
-        | 'Gambia'
-        | 'Georgia'
-        | 'Germany'
-        | 'Ghana'
-        | 'Greece'
-        | 'Grenada'
-        | 'Guatemala'
-        | 'Guinea'
-        | 'Guinea-Bissau'
-        | 'Guyana'
-        | 'Haiti'
-        | 'Honduras'
-        | 'Hungary'
-        | 'Iceland'
-        | 'India'
-        | 'Indonesia'
-        | 'Iran'
-        | 'Iraq'
-        | 'Ireland'
-        | 'Israel'
-        | 'Italy'
-        | 'Jamaica'
-        | 'Japan'
-        | 'Jordan'
-        | 'Kazakhstan'
-        | 'Kenya'
-        | 'Kiribati'
-        | 'Kuwait'
-        | 'Kyrgyzstan'
-        | 'Laos'
-        | 'Latvia'
-        | 'Lebanon'
-        | 'Lesotho'
-        | 'Liberia'
-        | 'Libya'
-        | 'Liechtenstein'
-        | 'Lithuania'
-        | 'Luxembourg'
-        | 'Madagascar'
-        | 'Malawi'
-        | 'Malaysia'
-        | 'Maldives'
-        | 'Mali'
-        | 'Malta'
-        | 'Marshall Islands'
-        | 'Mauritania'
-        | 'Mauritius'
-        | 'Mexico'
-        | 'Micronesia'
-        | 'Moldova'
-        | 'Monaco'
-        | 'Mongolia'
-        | 'Montenegro'
-        | 'Morocco'
-        | 'Mozambique'
-        | 'Myanmar'
-        | 'Namibia'
-        | 'Nauru'
-        | 'Nepal'
-        | 'Netherlands'
-        | 'New Zealand'
-        | 'Nicaragua'
-        | 'Niger'
-        | 'Nigeria'
-        | 'North Macedonia'
-        | 'Norway'
-        | 'Oman'
-        | 'Pakistan'
-        | 'Palau'
-        | 'Panama'
-        | 'Papua New Guinea'
-        | 'Paraguay'
-        | 'Peru'
-        | 'Philippines'
-        | 'Poland'
-        | 'Portugal'
-        | 'Qatar'
-        | 'Romania'
-        | 'Russia'
-        | 'Rwanda'
-        | 'Saint Kitts and Nevis'
-        | 'Saint Lucia'
-        | 'Saint Vincent and the Grenadines'
-        | 'Samoa'
-        | 'San Marino'
-        | 'Sao Tome and Principe'
-        | 'Saudi Arabia'
-        | 'Senegal'
-        | 'Serbia'
-        | 'Seychelles'
-        | 'Sierra Leone'
-        | 'Singapore'
-        | 'Slovakia'
-        | 'Slovenia'
-        | 'Solomon Islands'
-        | 'Somalia'
-        | 'South Africa'
-        | 'South Korea'
-        | 'South Sudan'
-        | 'Spain'
-        | 'Sri Lanka'
-        | 'Sudan'
-        | 'Suriname'
-        | 'Sweden'
-        | 'Switzerland'
-        | 'Syria'
-        | 'Taiwan'
-        | 'Tajikistan'
-        | 'Tanzania'
-        | 'Thailand'
-        | 'Timor-Leste'
-        | 'Togo'
-        | 'Tonga'
-        | 'Trinidad and Tobago'
-        | 'Tunisia'
-        | 'Turkey'
-        | 'Turkmenistan'
-        | 'Tuvalu'
-        | 'Uganda'
-        | 'Ukraine'
-        | 'United Arab Emirates'
-        | 'United Kingdom'
-        | 'United States'
-        | 'Uruguay'
-        | 'Uzbekistan'
-        | 'Vanuatu'
-        | 'Vatican City'
-        | 'Venezuela'
-        | 'Vietnam'
-        | 'Yemen'
-        | 'Zambia'
-        | 'Zimbabwe';
+      /** @description 거주 국가 */
+      country?: string;
       /**
        * @description 주 전공
        * @example Computer Science
@@ -2033,6 +1828,11 @@ export interface components {
        * @example Backend Engineer
        */
       targetJob?: string;
+      /**
+       * @description 대학교
+       * @example Seoul National University
+       */
+      university?: string;
       /**
        * Format: date
        * @description 졸업일
@@ -2061,6 +1861,11 @@ export interface components {
        * @example Bachelor
        */
       degree?: string;
+      /**
+       * @description 영어 수준
+       * @example Upper Intermediate
+       */
+      englishLevel?: string;
       /**
        * @description 타겟 직무 스킬
        * @example Java, Spring
@@ -2212,7 +2017,10 @@ export interface operations {
   getMypage: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2280,7 +2088,10 @@ export interface operations {
   updateMypage: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2352,7 +2163,10 @@ export interface operations {
   onboardMember: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2426,7 +2240,10 @@ export interface operations {
       query: {
         requiredCategory: 'VISA' | 'CAREER';
       };
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2483,7 +2300,10 @@ export interface operations {
   uploadPolicyFile: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2558,7 +2378,10 @@ export interface operations {
   uploadJobPosting: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2630,7 +2453,10 @@ export interface operations {
   createPhaseActionTodo: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         phaseActionId: number;
       };
@@ -2697,10 +2523,88 @@ export interface operations {
       };
     };
   };
+  agreeTerms: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['MemberTermsRequest'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
   generateRoadmap: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2768,7 +2672,10 @@ export interface operations {
   generateRoadmapForTest: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2836,7 +2743,10 @@ export interface operations {
   onboardMember_1: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2905,10 +2815,127 @@ export interface operations {
       };
     };
   };
+  getVisaInfo: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: {
+      content: {
+        'multipart/form-data': {
+          /** Format: binary */
+          file: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseOcrVisaResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
+  getPassportInfo: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: {
+      content: {
+        'multipart/form-data': {
+          /** Format: binary */
+          file: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseOcrPassportResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   createJobPostingBookmark: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         jobPostingId: number;
       };
@@ -2980,7 +3007,10 @@ export interface operations {
       query?: {
         includeCompletedTodo?: boolean;
       };
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3054,7 +3084,10 @@ export interface operations {
   signOut: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3122,7 +3155,10 @@ export interface operations {
   reissue: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3190,7 +3226,10 @@ export interface operations {
   exchange: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3270,7 +3309,10 @@ export interface operations {
   toggleActionItemCompletion: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         actionItemId: number;
       };
@@ -3337,10 +3379,63 @@ export interface operations {
       };
     };
   };
+  getTerms: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseTermsResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   getPhaseList: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3387,7 +3482,10 @@ export interface operations {
   getRoadmapPhaseDetail: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         phaseId: number;
       };
@@ -3457,7 +3555,10 @@ export interface operations {
   getHomePhaseDetail: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         phaseId: number;
       };
@@ -3527,7 +3628,10 @@ export interface operations {
   getAiGuide: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         phaseActionId: number;
       };
@@ -3597,7 +3701,10 @@ export interface operations {
   getOnboardUniversities: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3644,7 +3751,10 @@ export interface operations {
   getOnboardMajors: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3691,7 +3801,10 @@ export interface operations {
   getOnboardFields: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3738,7 +3851,10 @@ export interface operations {
   getOnboardCountries: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3785,7 +3901,10 @@ export interface operations {
   getMemberInfo: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3853,7 +3972,10 @@ export interface operations {
   deleteMember: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3921,7 +4043,10 @@ export interface operations {
   getMemberStatus: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3991,7 +4116,10 @@ export interface operations {
       query?: {
         limit?: number;
       };
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -4038,7 +4166,10 @@ export interface operations {
   getJobPostingBookmarks: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -4106,7 +4237,10 @@ export interface operations {
   getAllActionItems: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };

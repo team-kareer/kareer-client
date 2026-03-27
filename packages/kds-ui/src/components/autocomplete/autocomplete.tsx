@@ -5,6 +5,11 @@ import { color } from '../../styles';
 
 import * as styles from './autocomplete.css';
 
+export interface AutocompleteOption {
+  code: string;
+  label: string;
+}
+
 interface AutocompleteProps {
   value: string;
   onChange: (value: string) => void;
