@@ -1,3 +1,4 @@
+import { ToastProvider } from '@kds/ui';
 import { RouterProvider } from 'react-router';
 
 import { QueryProvider } from '@shared/apis/providers';
@@ -8,7 +9,9 @@ import '@kds/ui/styles';
 function App() {
   return (
     <QueryProvider>
-      <RouterProvider router={router} />
+      <ToastProvider>
+        <RouterProvider router={router} />
+      </ToastProvider>
     </QueryProvider>
   );
 }
