@@ -38,16 +38,6 @@ const Accordion = ({ title, content, isChecked, onToggle }: AccordionProps) => {
           {shouldRender && (
             <div className={styles.content}>
               <p>{content}</p>
-              {/* <li
-                style={{
-                  listStylePosition: 'outside',
-                  marginLeft: '1.6rem',
-                }}
-              >
-                A Member may request termination of the agreement (withdrawal)
-                at any time through the settings menu, and the Company shall
-                process it immediately in accordance with relevant laws.
-              </li> */}
             </div>
           )}
         </div>
