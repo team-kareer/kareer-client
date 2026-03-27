@@ -7,6 +7,7 @@ export const container = style({
   gap: '0.8rem',
   alignItems: 'center',
   width: '33rem',
+  height: '26.6rem',
   padding: '1.2rem',
 
   border: `1px solid ${themeVars.color.grayscale.gray300}`,

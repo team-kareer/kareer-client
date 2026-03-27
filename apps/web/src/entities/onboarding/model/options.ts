@@ -9,6 +9,11 @@ export const LANGUAGE_LEVEL_OPTIONS = [
 
 export const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
 
+export const VISA_TYPE_LABELS: Record<string, string> = {
+  'D-2': 'D-2 (Student)',
+  'D-10': 'D-10 (Job Seeker)',
+};
+
 export const TARGET_JOB_OPTIONS = [
   'Planning & Strategy',
   'Production',

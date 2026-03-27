@@ -10,11 +10,20 @@ const validateD2Expiration = (
   issuance: Date,
   expectedGraduationDate?: string,
 ) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   const limit = new Date(issuance);
   limit.setFullYear(limit.getFullYear() + D2_YEAR_LIMIT);
-  if (expiration > limit) {
+
+  if (expiration < today) {
+    return VALIDATION_MESSAGE.VISA.D2_EXPIRATION_IN_PAST;
+  }
+
+  if (expiration < limit) {
     return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_TWO_YEARS;
   }
+
   if (expectedGraduationDate) {
     const graduationDateValidation = validateDate(expectedGraduationDate, {
       allowFuture: true,
@@ -55,6 +64,10 @@ export const validateExpirationDate = (
   expectedGraduationDate: string,
   visaType: VisaType,
 ) => {
+  if (!expirationDate) {
+    return true;
+  }
+
   if (!issuanceDate) {
     return true;
   }
@@ -77,6 +90,11 @@ export const validateExpirationDate = (
 
   const expiration = new Date(expirationDate);
   const issuance = new Date(issuanceDate);
+
+  if (expiration <= issuance) {
+    return VALIDATION_MESSAGE.DATE.MUST_BE_AFTER_ISSUANCE;
+  }
+
   switch (visaType) {
     case 'D-2':
       return validateD2Expiration(expiration, issuance, expectedGraduationDate);

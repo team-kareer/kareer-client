@@ -8,17 +8,38 @@ interface WithTextCountProps {
   children: (isOverMax: boolean) => ReactNode;
   value: string;
   maxLength?: number;
+  errorMessage?: string;
 }
 
-const WithTextCount = ({ children, value, maxLength }: WithTextCountProps) => {
+const NON_BREAKING_SPACE = '\u00A0';
+
+const WithTextCount = ({
+  children,
+  value,
+  maxLength,
+  errorMessage,
+}: WithTextCountProps) => {
   const textCount = value.length;
   const isOverMax = maxLength ? textCount > maxLength : false;
+  const shouldRenderFooter =
+    maxLength !== undefined || errorMessage !== undefined;
 
   return (
     <div className={styles.container}>
       {children(isOverMax)}
-      {maxLength !== undefined && (
-        <TextCounter current={textCount} max={maxLength} isError={isOverMax} />
+      {shouldRenderFooter && (
+        <div className={styles.footer}>
+          <p className={styles.errorMessage}>
+            {errorMessage || NON_BREAKING_SPACE}
+          </p>
+          {maxLength && (
+            <TextCounter
+              current={textCount}
+              max={maxLength}
+              isError={isOverMax}
+            />
+          )}
+        </div>
       )}
     </div>
   );

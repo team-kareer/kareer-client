@@ -16,6 +16,7 @@ export const inputWrapper = recipe({
     display: 'flex',
     alignItems: 'center',
     width: '100%',
+    height: '5rem',
     padding: '0 2rem',
     borderRadius: '10px',
     border: `1px solid ${themeVars.color.grayscale.gray300}`,
