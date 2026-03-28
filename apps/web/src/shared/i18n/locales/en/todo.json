@@ -1,3 +1,7 @@
 {
-  "TodoTitle": "To-Do"
+  "TodoTitle": "To-Do",
+  "tab": {
+    "career": "Career",
+    "visa": "Visa"
+  }
 }
