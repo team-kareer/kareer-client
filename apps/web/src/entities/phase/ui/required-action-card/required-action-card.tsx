@@ -1,4 +1,5 @@
 import { Tag } from '@kds/ui';
+import { useTranslation } from 'react-i18next';
 
 import type { RequiredActionType } from '@entities/phase/model';
 import { formatDate } from '@shared/utils';
@@ -29,10 +30,13 @@ const RequiredActionCard = ({
   dueDate,
   onClick,
 }: RequiredActionCardProps) => {
+  const { t } = useTranslation('dashboard');
   const tagConfig = TAG_CONFIG[tagType];
   return (
     <button className={styles.container} onClick={onClick} type="button">
-      <Tag color={tagConfig.color}>{tagConfig.label}</Tag>
+      <Tag color={tagConfig.color}>
+        {t(`phaseOverview.actions.tags.${tagConfig.label}`)}
+      </Tag>
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.dueDate}>{formatDate(dueDate)}</p>

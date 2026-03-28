@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Tag } from '@kds/ui';
+import { useTranslation } from 'react-i18next';
 
 import { JobPostingItem } from '@entities/job';
 import { default_company_image } from '@shared/assets';
@@ -17,13 +18,13 @@ interface BookmarkedJobCardProps extends JobPostingItem {
   onClick?: () => void;
 }
 
-const formatDeadLine = (dDay?: number) => {
+const formatDeadLine = (todayLabel: string, dDay?: number) => {
   if (dDay === undefined) {
     return '-';
   }
 
   if (dDay === 0) {
-    return 'D-Day';
+    return todayLabel;
   }
   return `D-${dDay}`;
 };
@@ -40,15 +41,17 @@ const BookmarkedJobCard = ({
   addressDisplay,
   onClick,
 }: BookmarkedJobCardProps) => {
+  const { t } = useTranslation('dashboard');
+
   return (
     <article className={styles.container} onClick={onClick}>
       <figure className={styles.imageBox}>
         <Tag color="outlined_blue" className={styles.dDayTag}>
-          {formatDeadLine(dDay)}
+          {formatDeadLine(t('bookmarkedJobs.list.deadline.today'), dDay)}
         </Tag>
         <img
           src={imageUrl || default_company_image}
-          alt={`${company} 채용 공고 이미지`}
+          alt={t('bookmarkedJobs.list.imageAlt', { company })}
           className={styles.image}
         />
       </figure>

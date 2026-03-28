@@ -57,5 +57,7 @@ export const stepFormSection = style({
   flexDirection: 'column',
   flex: 1,
   minWidth: 0,
+  minHeight: 0,
+  overflowY: 'auto',
   backgroundColor: themeVars.color.grayscale.gray200,
 });

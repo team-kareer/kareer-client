@@ -1,0 +1,32 @@
+{
+  "phaseOverview": {
+    "section": {
+      "title": "Lộ trình sự nghiệp",
+      "subtitle": "Theo dõi tiến độ hướng tới các cột mốc sự nghiệp quan trọng"
+    },
+    "roadmap": {
+      "prefix": "Lộ trình đến ",
+      "characterAlt": "Nhân vật lộ trình"
+    },
+    "actions": {
+      "title": "Required Actions",
+      "completed": "All Done!",
+      "tags": {
+        "Visa": "Visa",
+        "Career": "Career"
+      }
+    }
+  },
+  "bookmarkedJobs": {
+    "section": {
+      "title": "Việc làm đã lưu",
+      "subtitle": "Lưu các công việc bạn quan tâm và theo dõi chúng tại một nơi"
+    },
+    "list": {
+      "deadline": {
+        "today": "D-Day"
+      },
+      "imageAlt": "Hình ảnh tin tuyển dụng của {{company}}"
+    }
+  }
+}

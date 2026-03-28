@@ -41,7 +41,13 @@ const FormInputFieldInner = <T extends FieldValues, K extends FieldPath<T>>({
   const value = field.value ?? '';
 
   return (
-    <WithTextCount value={value} maxLength={maxLength}>
+    <WithTextCount
+      value={value}
+      maxLength={maxLength}
+      errorMessage={
+        maxLength !== undefined ? fieldState.error?.message : undefined
+      }
+    >
       {(isOverMax) => (
         <Input
           {...field}
@@ -66,7 +72,12 @@ const FormInputField = <T extends FieldValues, K extends FieldPath<T>>({
   type = 'text',
 }: FormInputFieldProps<T, K>) => {
   return (
-    <FormField name={name} label={label} rules={rules}>
+    <FormField
+      name={name}
+      label={label}
+      rules={rules}
+      showErrorMessage={maxLength === undefined}
+    >
       {(field, fieldState) => (
         <FormInputFieldInner
           field={field}
