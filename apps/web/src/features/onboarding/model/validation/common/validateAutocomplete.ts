@@ -1,9 +1,11 @@
+import { AutocompleteOption } from '@kds/ui';
+
 export const validateAutocompleteOption = (
   value: string | undefined,
-  options: string[],
+  options: AutocompleteOption[],
 ): boolean => {
   if (!value) {
     return true;
   }
-  return options.includes(value);
+  return options.some((option) => option.code === value);
 };

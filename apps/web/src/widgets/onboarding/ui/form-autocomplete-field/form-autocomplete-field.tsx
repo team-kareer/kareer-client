@@ -1,4 +1,4 @@
-import { Autocomplete } from '@kds/ui';
+import { Autocomplete, type AutocompleteOption } from '@kds/ui';
 import { FieldPath, FieldValues } from 'react-hook-form';
 
 import type { FormFieldProps } from '@widgets/onboarding';
@@ -9,7 +9,7 @@ type FormAutoCompleteFieldProps<
   K extends FieldPath<T>,
 > = Omit<FormFieldProps<T, K>, 'children'> & {
   placeholder: string;
-  options: string[];
+  options: AutocompleteOption[];
 };
 
 const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({

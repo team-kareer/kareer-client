@@ -6,6 +6,7 @@ import { FUNNEL_STEPS } from '@entities/onboarding';
 import {
   ENGLISH_PROFICIENCY_OPTIONS,
   LANGUAGE_LEVEL_OPTIONS,
+  toOptions,
 } from '@entities/onboarding/model/options';
 
 import * as styles from './language-skills.css';
@@ -21,10 +22,13 @@ const LanguageSkills = () => {
           rules={{
             required: 'Select your level',
             validate: (value) =>
-              validateAutocompleteOption(value, LANGUAGE_LEVEL_OPTIONS),
+              validateAutocompleteOption(
+                value,
+                toOptions(LANGUAGE_LEVEL_OPTIONS),
+              ),
           }}
           placeholder={LANGUAGE_SKILLS_PLACEHOLDERS.LANGUAGE_LEVEL}
-          options={LANGUAGE_LEVEL_OPTIONS}
+          options={toOptions(LANGUAGE_LEVEL_OPTIONS)}
         />
         <FormAutocompleteField
           name="languageLevel"
@@ -32,10 +36,13 @@ const LanguageSkills = () => {
           rules={{
             required: 'Select your level',
             validate: (value) =>
-              validateAutocompleteOption(value, ENGLISH_PROFICIENCY_OPTIONS),
+              validateAutocompleteOption(
+                value,
+                toOptions(ENGLISH_PROFICIENCY_OPTIONS),
+              ),
           }}
           placeholder={LANGUAGE_SKILLS_PLACEHOLDERS.LANGUAGE_LEVEL}
-          options={ENGLISH_PROFICIENCY_OPTIONS}
+          options={toOptions(ENGLISH_PROFICIENCY_OPTIONS)}
         />
       </div>
     </section>
