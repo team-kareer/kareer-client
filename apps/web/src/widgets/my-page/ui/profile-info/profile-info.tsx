@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { PROFILE_FIELD_SECTIONS } from '@widgets/my-page/constants/profile-field-sections';
 import { USER_QUERY_OPTIONS } from '@entities/user/queries';
@@ -8,6 +9,7 @@ import { PageLoader } from '@shared/ui';
 import * as styles from './profile-info.css';
 
 const ProfileInfo = () => {
+  const { t } = useTranslation('myPage');
   const { data, isPending } = useQuery({
     ...USER_QUERY_OPTIONS.GET_MY_PAGE_INFO(),
   });
@@ -21,7 +23,11 @@ const ProfileInfo = () => {
       {PROFILE_FIELD_SECTIONS.map((section, index) => (
         <div key={index} className={styles.section}>
           {section.map(({ label, key }) => (
-            <ProfileField key={key} label={label} value={data?.[key] ?? ''} />
+            <ProfileField
+              key={key}
+              label={t(label)}
+              value={data?.[key] ?? ''}
+            />
           ))}
         </div>
       ))}
