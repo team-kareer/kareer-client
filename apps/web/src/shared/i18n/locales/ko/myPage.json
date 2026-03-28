@@ -1,0 +1,21 @@
+{
+  "profile": {
+    "section": {
+      "title": "내 정보",
+      "subtitle": "저에 대한 기본 정보입니다"
+    },
+    "fields": {
+      "targetJob": "희망 직무",
+      "birthDate": "생년월일",
+      "country": "국가",
+      "degree": "학위",
+      "university": "대학교",
+      "primaryMajor": "전공",
+      "secondaryMajor": "복수전공",
+      "visaType": "현재 비자 유형",
+      "visaExpiredAt": "비자 시작일",
+      "languageLevel": "TOPIK / KIIP 레벨",
+      "englishLevel": "영어 수준"
+    }
+  }
+}
