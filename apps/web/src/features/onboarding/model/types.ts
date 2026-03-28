@@ -4,7 +4,7 @@ import { paths } from '@shared/types/schema';
 //   paths['/api/v1/members/onboard']['post']['requestBody']['content']['application/json'];
 
 // Onboard API 버전 업데이트
-export type PostOnbardingForm =
+export type PostOnboardingForm =
   paths['/api/v2/members/onboard']['post']['requestBody']['content']['application/json'];
 
 export type PostAiRoadMapResponse =
