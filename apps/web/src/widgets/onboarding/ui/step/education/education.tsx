@@ -37,7 +37,11 @@ const Education = () => {
           name="universityCode"
           label="University / School"
           rules={{
-            validate: (value) => validateText(value),
+            validate: (value) =>
+              validateAutocompleteOption(
+                value,
+                universityList?.universities || [],
+              ),
           }}
           placeholder={EDUCATION_PLACEHOLDERS.UNIVERSITY}
           options={universityList?.universities || []}
