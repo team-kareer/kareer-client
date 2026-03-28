@@ -48,3 +48,6 @@ yarn-error.log*
 # Lefthook
 .lefthook
 .lefthook-local.yml
+
+# Codex
+AGENTS.md
