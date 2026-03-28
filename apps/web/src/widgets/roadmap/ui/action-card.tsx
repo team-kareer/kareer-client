@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { ActionTodoButton } from '@features/todo';
 import { ActionRequiredCard } from '@entities/phase';
 
@@ -20,6 +22,8 @@ const ActionCard = ({
   disabled = false,
   isButtonDisabled = false,
 }: ActionCardProps) => {
+  const { t } = useTranslation('roadmap');
+
   return (
     <ActionRequiredCard
       title={title}
@@ -29,7 +33,7 @@ const ActionCard = ({
       onClick={onSelect}
     >
       <ActionTodoButton
-        text="To-Do"
+        text={t('actionRequired.action.todo')}
         onClick={onTodoClick}
         isDisabled={isButtonDisabled}
       />

@@ -1,4 +1,5 @@
 import { BangCircleIcon, InfoCircleIcon, SuccessCircleIcon } from '@kds/icons';
+import { useTranslation } from 'react-i18next';
 
 import * as styles from './ai-guide-card.css';
 
@@ -11,27 +12,25 @@ interface AIGuideCardProps {
 
 const CARD_CONTENT = {
   importance: {
-    title: 'Why this matters',
     icon: <InfoCircleIcon width={24} height={24} />,
   },
   guideline: {
-    title: 'How to do it properly',
     icon: <SuccessCircleIcon width={24} height={24} />,
   },
   commonMistakes: {
-    title: 'Common mistakes',
     icon: <BangCircleIcon width={24} height={24} />,
   },
 } as const;
 
 const AIGuideCard = ({ type, description }: AIGuideCardProps) => {
-  const { title, icon } = CARD_CONTENT[type];
+  const { t } = useTranslation('roadmap');
+  const { icon } = CARD_CONTENT[type];
 
   return (
     <article className={styles.container}>
       <div className={styles.icon}>{icon}</div>
       <div>
-        <h3 className={styles.title}>{title}</h3>
+        <h3 className={styles.title}>{t(`aiGuide.cards.${type}.title`)}</h3>
         <p className={styles.description}>{description}</p>
       </div>
     </article>
