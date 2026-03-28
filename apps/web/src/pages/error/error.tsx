@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { ROUTE_PATH } from '@shared/router/path';
 import { EmptyLayout } from '@shared/ui';
 export interface ErrorPageProps {
@@ -6,6 +8,8 @@ export interface ErrorPageProps {
 }
 
 const ErrorPage = ({ onAction, isNotFound }: ErrorPageProps) => {
+  const { t } = useTranslation('empty');
+
   const handleAction = () => {
     if (isNotFound) {
       window.location.replace(ROUTE_PATH.DASHBOARD);
@@ -24,11 +28,9 @@ const ErrorPage = ({ onAction, isNotFound }: ErrorPageProps) => {
     <EmptyLayout
       variant="page"
       onAction={handleAction}
-      title={isNotFound ? 'Page Not Found' : undefined}
-      subtitle={
-        isNotFound ? 'The page you are looking for does not exist.' : undefined
-      }
-      buttonLabel={isNotFound ? 'Go to Dashboard' : undefined}
+      title={isNotFound ? t('notFound.title') : undefined}
+      subtitle={isNotFound ? t('notFound.description') : undefined}
+      buttonLabel={isNotFound ? t('notFound.button') : undefined}
     />
   );
 };

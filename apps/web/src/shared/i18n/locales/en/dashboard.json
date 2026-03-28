@@ -1,0 +1,32 @@
+{
+  "phaseOverview": {
+    "section": {
+      "title": "Career Roadmap",
+      "subtitle": "Track your progress toward key career milestones"
+    },
+    "roadmap": {
+      "prefix": "Your path to ",
+      "characterAlt": "Roadmap character"
+    },
+    "actions": {
+      "title": "Required Actions",
+      "completed": "All Done!",
+      "tags": {
+        "Visa": "Visa",
+        "Career": "Career"
+      }
+    }
+  },
+  "bookmarkedJobs": {
+    "section": {
+      "title": "Bookmarked Jobs",
+      "subtitle": "Save jobs you're interested in and track them in one place"
+    },
+    "list": {
+      "deadline": {
+        "today": "D-Day"
+      },
+      "imageAlt": "{{company}} job posting image"
+    }
+  }
+}
