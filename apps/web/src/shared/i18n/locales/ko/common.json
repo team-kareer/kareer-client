@@ -4,6 +4,12 @@
     "confirm": "확인",
     "cancel": "취소"
   },
+  "language": {
+    "english": "영어",
+    "korean": "한국어",
+    "vietnamese": "베트남어",
+    "chinese": "중국어"
+  },
   "state": {
     "loading": "로딩 중..."
   }
