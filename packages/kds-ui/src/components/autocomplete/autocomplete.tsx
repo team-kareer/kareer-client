@@ -37,7 +37,7 @@ const Autocomplete = ({
   }, [value, options]);
 
   const filteredOptions = options.filter((option) =>
-    option.label.toLowerCase().includes(inputValue.toLowerCase()),
+    option.label?.toLowerCase().includes(inputValue.toLowerCase()),
   );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
