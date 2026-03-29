@@ -8,7 +8,6 @@ import * as styles from './language-selector.css';
 
 const LanguageSelector = () => {
   const { i18n } = useTranslation();
-
   const currentLabel = LANGUAGE_OPTIONS.find(
     (opt) => opt.value === i18n.language,
   )!.label;

@@ -1,0 +1,32 @@
+{
+  "phaseOverview": {
+    "section": {
+      "title": "职业路线图",
+      "subtitle": "跟踪你迈向关键职业里程碑的进度"
+    },
+    "roadmap": {
+      "prefix": "通往 ",
+      "characterAlt": "路线图角色"
+    },
+    "actions": {
+      "title": "Required Actions",
+      "completed": "All Done!",
+      "tags": {
+        "Visa": "Visa",
+        "Career": "Career"
+      }
+    }
+  },
+  "bookmarkedJobs": {
+    "section": {
+      "title": "已收藏职位",
+      "subtitle": "保存你感兴趣的职位，并在一个地方统一跟踪"
+    },
+    "list": {
+      "deadline": {
+        "today": "D-Day"
+      },
+      "imageAlt": "{{company}} 的职位发布图片"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { ActionRequiredAccordion } from '@widgets/dashboard/ui';
 import { CareerRoadmapStep } from '@entities/phase';
@@ -10,6 +11,7 @@ import { CareerRoadmap } from '@shared/ui';
 import { formatMonthYear } from '@shared/utils';
 
 const PhaseOverview = () => {
+  const { t } = useTranslation('dashboard');
   const { data } = useQuery({ ...PHASE_QUERY_OPTIONS.GET_PHASE_LIST() });
   const [clickedPhase, setClickedPhase] = useState(0);
   const cur_phase = data?.phases?.find(
@@ -24,6 +26,7 @@ const PhaseOverview = () => {
 
   return (
     <CareerRoadmap
+      prefix={t('phaseOverview.roadmap.prefix')}
       goal={data?.phases?.[2]?.goal ?? ''}
       actions={
         <ActionRequiredAccordion
@@ -48,7 +51,7 @@ const PhaseOverview = () => {
                   src={img_roadmap_character}
                   width={60}
                   height={60}
-                  alt="로드맵 캐릭터"
+                  alt={t('phaseOverview.roadmap.characterAlt')}
                 />
               )
             }

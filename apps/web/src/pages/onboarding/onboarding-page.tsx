@@ -11,6 +11,7 @@ import {
   VisaInformationStep,
 } from '@widgets/onboarding';
 import CareerPreference from '@widgets/onboarding/ui/step/career-preference/career-preference';
+import IdentityVisaVerification from '@widgets/onboarding/ui/step/identity-visaVerification/identity-visaVerification';
 import type { PostOnboardingForm } from '@features/onboarding';
 import { postOnboardingForm } from '@features/onboarding';
 import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
@@ -148,6 +149,9 @@ const OnboardingPage = () => {
           </Step>
           <Step name={FUNNEL_STEPS[4]}>
             <PersonalBackgroundStep />
+          </Step>
+          <Step name={FUNNEL_STEPS[5]}>
+            <IdentityVisaVerification />
           </Step>
         </Funnel>
       </OnboardingStepLayout>

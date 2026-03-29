@@ -10,6 +10,13 @@ export const container = style({
   marginBottom: '3.2rem',
 });
 
+export const infoContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  flex: '1',
+  gap: '2rem',
+});
+
 export const title = style({
   ...typography.head4_sb_24,
   color: themeVars.color.grayscale.gray900,

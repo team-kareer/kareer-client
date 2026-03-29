@@ -37,11 +37,12 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
  * @constant
  */
 export const FUNNEL_STEPS = [
-  'Identity & Visa verification',
+  '(before)Identity & Visa verification',
   'Education',
   'Language Skills',
   'Career Preferences',
   'Background',
+  'Identity & Visa verification',
 ] as const;
 
 /**

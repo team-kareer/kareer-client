@@ -3,6 +3,8 @@ import { api } from '@shared/apis/configs/instance';
 import { authService } from '@shared/auth/auth-service';
 import { tokenService } from '@shared/auth/token-service';
 import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@shared/i18n/constants';
+import i18n from '@shared/i18n/i18n';
 import { ROUTE_PATH } from '@shared/router';
 import type { paths } from '@shared/types/schema';
 
@@ -17,6 +19,8 @@ type KyOptions = NonNullable<Parameters<typeof api>[1]>;
 type RetryOptions = KyOptions & {
   kareerAuthRetry?: boolean;
 };
+
+const PREFERRED_LANGUAGE_HEADER = 'X-Preferred-Language';
 
 const isAuthExchangeRequest = (url: string) =>
   url.includes(AUTH_EXCHANGE_ENDPOINT);
@@ -77,6 +81,27 @@ const getReissueToken = () => {
   }
 
   return refreshPromise;
+};
+
+/**
+ * 요청 전에 현재 언어를 X-Preferred-Language 헤더에 설정합니다.
+ *
+ * @param request - 전송할 요청 객체
+ */
+export const handleSetPreferredLanguage = (request: Request) => {
+  const requestUrl = request.url;
+  const currentLanguage = i18n.resolvedLanguage ?? i18n.language;
+  const preferredLanguage = SUPPORTED_LANGUAGES.some(
+    (language) => language === currentLanguage,
+  )
+    ? currentLanguage
+    : DEFAULT_LANGUAGE;
+
+  if (isAuthExchangeRequest(requestUrl)) {
+    return;
+  }
+
+  request.headers.set(PREFERRED_LANGUAGE_HEADER, preferredLanguage);
 };
 
 /**
