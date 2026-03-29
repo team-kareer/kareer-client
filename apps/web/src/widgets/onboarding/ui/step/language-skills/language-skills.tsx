@@ -2,12 +2,12 @@ import { FormAutocompleteField } from '@widgets/onboarding';
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { LANGUAGE_SKILLS_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { validateAutocompleteOption } from '@features/onboarding/model/validation';
-import { FUNNEL_STEPS } from '@entities/onboarding';
 import {
   ENGLISH_PROFICIENCY_OPTIONS,
+  FUNNEL_STEPS,
   LANGUAGE_LEVEL_OPTIONS,
   toOptions,
-} from '@entities/onboarding/model/options';
+} from '@entities/onboarding';
 
 import * as styles from './language-skills.css';
 

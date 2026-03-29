@@ -1,8 +1,3 @@
-import { AutocompleteOption } from '@kds/ui';
-
-export const toOptions = (value: string[]): AutocompleteOption[] =>
-  value.map((value) => ({ code: value, label: value }));
-
 export const LANGUAGE_LEVEL_OPTIONS = [
   'LEVEL_1',
   'LEVEL_2',
