@@ -20,7 +20,7 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
   languageLevel: '',
   degreeLocation: 'south-korea',
   degree: '',
-  visaType: 'D-2',
+  visaType: '',
   expectedGraduationDate: '',
   visaStartDate: '',
   visaExpiredAt: '',
