@@ -43,6 +43,7 @@ const Autocomplete = ({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setIsOpen(e.target.value.length > 0);
+    onChange('');
   };
 
   const handleOptionClick = (option: AutocompleteOption) => {
