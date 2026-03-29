@@ -7,7 +7,7 @@ import { FormAutocompleteField } from '@widgets/onboarding';
 import { EDUCATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import {
   validateAutocompleteOption,
-  validateGraduationDate,
+  validateDate,
   validateText,
 } from '@features/onboarding/model/validation';
 import {
@@ -81,7 +81,7 @@ const Education = () => {
             rules={{
               required: 'Enter the graduation date',
               validate: (value) =>
-                validateGraduationDate(value, {
+                validateDate(value, {
                   allowFuture: true,
                   allowPast: false,
                 }),
@@ -96,7 +96,7 @@ const Education = () => {
             rules={{
               required: 'Enter the graduation date',
               validate: (value) =>
-                validateGraduationDate(value, {
+                validateDate(value, {
                   allowFuture: false,
                   allowPast: true,
                 }),
