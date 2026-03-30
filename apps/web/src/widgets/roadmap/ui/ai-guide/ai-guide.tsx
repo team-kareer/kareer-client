@@ -1,13 +1,9 @@
 import { LogoIcon } from '@kds/icons';
+import { useTranslation } from 'react-i18next';
 
 import { AIGuideCard } from '@entities/phase';
 
 import * as styles from './ai-guide.css';
-
-const CONTENT = {
-  TITLE: 'AI Guide & Risk',
-  DESCRIPTION: 'Document all work exprience during internship period',
-};
 
 interface AIGuideProps {
   importance: string;
@@ -20,6 +16,7 @@ const formatDescription = (value: string | string[]) => {
 };
 
 const AIGuide = ({ importance, guideline, commonMistakes }: AIGuideProps) => {
+  const { t } = useTranslation('roadmap');
   const GUIDE_ITEMS = [
     {
       type: 'importance',
@@ -40,8 +37,10 @@ const AIGuide = ({ importance, guideline, commonMistakes }: AIGuideProps) => {
       <div className={styles.titleContainer}>
         <LogoIcon width={24} height={24} />
         <div className={styles.contentWrapper}>
-          <p className={styles.title}>{CONTENT.TITLE}</p>
-          <p className={styles.description}>{CONTENT.DESCRIPTION}</p>
+          <p className={styles.title}>{t('aiGuide.header.title')}</p>
+          <p className={styles.description}>
+            {t('aiGuide.header.description')}
+          </p>
         </div>
       </div>
       {GUIDE_ITEMS.map(({ type, description }) => (

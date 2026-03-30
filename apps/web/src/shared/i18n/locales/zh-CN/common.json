@@ -12,5 +12,25 @@
   },
   "state": {
     "loading": "加载中..."
+  },
+  "layout": {
+    "header": {
+      "dashboard": {
+        "title": "你的个性化职业规划",
+        "subtitle": "根据你的签证状态、背景和职业目标制定"
+      },
+      "roadmap": {
+        "title": "路线图",
+        "subtitle": "通往职业与签证目标的分步路径"
+      },
+      "fitAnalysis": {
+        "title": "匹配度分析",
+        "subtitle": "看看哪些是你的优势，哪些还需要改进"
+      },
+      "myPage": {
+        "title": "我的页面",
+        "subtitle": "查看你的信息"
+      }
+    }
   }
 }

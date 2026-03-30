@@ -1,0 +1,72 @@
+{
+  "overview": {
+    "section": {
+      "title": "Career Roadmap",
+      "subtitle": "Track your progress toward key career milestones"
+    },
+    "roadmap": {
+      "prefix": "Your path to "
+    },
+    "stepInfo": {
+      "phaseLabel": "{{status}} Phase",
+      "phaseStatus": {
+        "current": "Current",
+        "completed": "Completed",
+        "next": "Next",
+        "future": "Future"
+      },
+      "workStatus": {
+        "allCompleted": "All completed",
+        "incompletedWorks": "Incompleted works",
+        "remainedWorks": "Remained works",
+        "scheduledWorks": "Scheduled works"
+      }
+    }
+  },
+  "phaseList": {
+    "section": {
+      "title": "Phase List",
+      "subtitle": "Check the detailed action plan"
+    },
+    "accordion": {
+      "tag": {
+        "phase": "Phase {{phase}}"
+      },
+      "action": {
+        "showAll": "Show all",
+        "showLess": "Show less"
+      }
+    }
+  },
+  "actionRequired": {
+    "header": {
+      "title": "Action Required",
+      "itemCount": "{{count}} items"
+    },
+    "tags": {
+      "Visa": "Visa",
+      "Career": "Career",
+      "Done": "Done"
+    },
+    "action": {
+      "todo": "To-Do"
+    }
+  },
+  "aiGuide": {
+    "header": {
+      "title": "AI Guide & Risk",
+      "description": "Review AI guidance and common risks for this action."
+    },
+    "cards": {
+      "importance": {
+        "title": "Why this matters"
+      },
+      "guideline": {
+        "title": "How to do it properly"
+      },
+      "commonMistakes": {
+        "title": "Common mistakes"
+      }
+    }
+  }
+}

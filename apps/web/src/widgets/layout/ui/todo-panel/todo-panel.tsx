@@ -18,8 +18,8 @@ import { formatDueInDays } from './utils/format-due-in-days';
 import * as styles from './todo-panel.css';
 
 const TABS = [
-  { id: 1, value: 'visa', label: 'Visa' },
-  { id: 2, value: 'career', label: 'Career' },
+  { id: 1, value: 'visa', label: 'tab.visa' },
+  { id: 2, value: 'career', label: 'tab.career' },
 ] as const;
 
 type ActionItemListResponse = components['schemas']['ActionItemListResponse'];
@@ -164,6 +164,7 @@ const TodoPanel = () => {
 };
 
 const TodoTabButtons = () => {
+  const { t } = useTranslation('todo');
   const { selectedTab, setSelectedTab } = useTabContext();
 
   return (
@@ -174,7 +175,7 @@ const TodoTabButtons = () => {
           preset={selectedTab === value ? 'mini_primary' : 'mini_outlined'}
           onClick={() => setSelectedTab(value)}
         >
-          {label}
+          {t(label)}
         </Button>
       ))}
     </>

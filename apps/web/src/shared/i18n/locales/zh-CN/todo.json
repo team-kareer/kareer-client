@@ -1,3 +1,7 @@
 {
-  "TodoTitle": "待办事项"
+  "TodoTitle": "待办事项",
+  "tab": {
+    "career": "职业",
+    "visa": "签证"
+  }
 }

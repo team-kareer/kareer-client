@@ -1,6 +1,5 @@
 import { Button, useTabContext } from '@kds/ui';
-
-import { VISA_LIST } from '@widgets/fit-analysis';
+import { useTranslation } from 'react-i18next';
 
 interface VisaTabListProps {
   visa: string;
@@ -12,10 +11,11 @@ const PRESET_LIST = {
 } as const;
 
 const VisaTabList = ({ visa }: VisaTabListProps) => {
+  const { t } = useTranslation('fitAnalysis');
   const VISA_BUTTONS = [
-    { label: VISA_LIST.D2, show: visa === VISA_LIST.D2 },
-    { label: VISA_LIST.D10, show: true },
-    { label: VISA_LIST.E7, show: true },
+    { label: 'D2', show: visa === 'D2' },
+    { label: 'D10', show: true },
+    { label: 'E7', show: true },
   ] as const;
 
   const { selectedTab, setSelectedTab } = useTabContext();
@@ -33,7 +33,7 @@ const VisaTabList = ({ visa }: VisaTabListProps) => {
               preset={preset(label)}
               onClick={() => setSelectedTab(label)}
             >
-              {label}
+              {t(`visaEligibility.visaTabs.${label}`)}
             </Button>
           ),
       )}
