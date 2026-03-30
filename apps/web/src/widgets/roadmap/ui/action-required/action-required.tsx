@@ -1,5 +1,6 @@
 import { Tag } from '@kds/ui';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import ActionCard from '@widgets/roadmap/ui/action-card';
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
@@ -10,8 +11,6 @@ import { components } from '@shared/types/schema';
 import { formatDate } from '../../../../shared/utils/date-formatter';
 
 import * as styles from './action-required.css';
-
-const TITLE = 'Action Required';
 
 type ActionsObject = {
   [key: string]: components['schemas']['ActionGroupResponse'];
@@ -40,6 +39,7 @@ const ActionRequired = ({
   actions = {},
   onSelect,
 }: ActionRequiredProps) => {
+  const { t } = useTranslation('roadmap');
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     ...TODO_MUTATION_OPTIONS.POST_TODO(),
@@ -70,8 +70,10 @@ const ActionRequired = ({
   return (
     <section className={styles.container}>
       <header className={styles.header}>
-        <p className={styles.title}>{TITLE}</p>
-        <p className={styles.headerItemCount}>{totalCnt} items</p>
+        <p className={styles.title}>{t('actionRequired.header.title')}</p>
+        <p className={styles.headerItemCount}>
+          {t('actionRequired.header.itemCount', { count: totalCnt })}
+        </p>
       </header>
       {Object.entries(actions).map(([key, value]) => {
         if (!isTagType(key)) {
@@ -81,7 +83,9 @@ const ActionRequired = ({
         return (
           <section key={key} className={styles.section}>
             <div className={styles.sectionType}>
-              <Tag color={TAG_COLOR_PALETTE[key]}>{key}</Tag>
+              <Tag color={TAG_COLOR_PALETTE[key]}>
+                {t(`actionRequired.tags.${key}`)}
+              </Tag>
               <span className={styles.typeItemCount({ color: key })}>
                 {value.count}
               </span>

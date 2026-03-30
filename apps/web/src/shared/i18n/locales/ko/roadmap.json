@@ -1,0 +1,72 @@
+{
+  "overview": {
+    "section": {
+      "title": "커리어 로드맵",
+      "subtitle": "커리어 주요 단계까지의 진행 상황을 확인해보세요"
+    },
+    "roadmap": {
+      "prefix": "까지의 여정"
+    },
+    "stepInfo": {
+      "phaseLabel": "{{status}} 단계",
+      "phaseStatus": {
+        "current": "현재",
+        "completed": "완료",
+        "next": "다음",
+        "future": "예정"
+      },
+      "workStatus": {
+        "allCompleted": "전체 완료",
+        "incompletedWorks": "미완료 작업",
+        "remainedWorks": "남은 작업",
+        "scheduledWorks": "예정된 작업"
+      }
+    }
+  },
+  "phaseList": {
+    "section": {
+      "title": "단계 목록",
+      "subtitle": "세부 액션 플랜을 확인해보세요"
+    },
+    "accordion": {
+      "tag": {
+        "phase": "{{phase}}단계"
+      },
+      "action": {
+        "showAll": "전체 보기",
+        "showLess": "접기"
+      }
+    }
+  },
+  "actionRequired": {
+    "header": {
+      "title": "필수 액션",
+      "itemCount": "{{count}}개"
+    },
+    "tags": {
+      "Visa": "비자",
+      "Career": "커리어",
+      "Done": "완료"
+    },
+    "action": {
+      "todo": "할 일 추가"
+    }
+  },
+  "aiGuide": {
+    "header": {
+      "title": "AI 가이드 & 리스크",
+      "description": "이 액션을 준비할 때 참고할 가이드와 주의할 리스크를 확인해보세요."
+    },
+    "cards": {
+      "importance": {
+        "title": "왜 중요한가요"
+      },
+      "guideline": {
+        "title": "어떻게 준비하면 좋을까요"
+      },
+      "commonMistakes": {
+        "title": "자주 하는 실수"
+      }
+    }
+  }
+}

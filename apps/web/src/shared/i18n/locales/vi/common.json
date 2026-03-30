@@ -6,5 +6,25 @@
   },
   "state": {
     "loading": "Đang tải..."
+  },
+  "layout": {
+    "header": {
+      "dashboard": {
+        "title": "Kế hoạch sự nghiệp cá nhân của bạn",
+        "subtitle": "Được xây dựng dựa trên tình trạng visa, nền tảng và mục tiêu nghề nghiệp của bạn"
+      },
+      "roadmap": {
+        "title": "Lộ trình",
+        "subtitle": "Lộ trình từng bước hướng tới mục tiêu nghề nghiệp và visa của bạn"
+      },
+      "fitAnalysis": {
+        "title": "Phân tích mức độ phù hợp",
+        "subtitle": "Xem điều gì có lợi cho bạn và điều gì cần cải thiện"
+      },
+      "myPage": {
+        "title": "Trang cá nhân",
+        "subtitle": "Kiểm tra thông tin của bạn"
+      }
+    }
   }
 }

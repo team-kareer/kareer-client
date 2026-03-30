@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { CareerRoadmapStep, CareerRoadmapStepInfo } from '@entities/phase';
 import type { Phase } from '@entities/phase/model';
@@ -16,6 +17,7 @@ const PhaseOverview = ({
   clickedPhase,
   setClickedPhase,
 }: PhaseOverviewProps) => {
+  const { t } = useTranslation('roadmap');
   const { data } = useQuery({ ...PHASE_QUERY_OPTIONS.GET_PHASE_LIST() });
   const cur_phase = data?.phases?.find(
     (phase: Phase) => phase.phaseStatus === 'Current',
@@ -28,7 +30,10 @@ const PhaseOverview = ({
   }, [cur_phase, setClickedPhase]);
 
   return (
-    <CareerRoadmap goal={data?.phases?.[2]?.goal ?? ''}>
+    <CareerRoadmap
+      prefix={t('overview.roadmap.prefix')}
+      goal={data?.phases?.[2]?.goal ?? ''}
+    >
       {data?.phases?.map((phase: Phase) => {
         const isActive = clickedPhase === phase.sequence;
 
