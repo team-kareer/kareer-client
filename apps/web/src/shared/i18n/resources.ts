@@ -40,6 +40,7 @@ export const resources = {
     dashboard: enDashboard,
     fitAnalysis: enFitAnalysis,
     roadmap: enRoadmap,
+    myPage: enMyPage,
   },
   ko: {
     common: koCommon,
