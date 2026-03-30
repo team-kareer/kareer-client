@@ -37,7 +37,7 @@ i18n.use(initReactI18next).init({
   lng: getInitialLanguage(),
   fallbackLng: DEFAULT_LANGUAGE,
   supportedLngs: [...SUPPORTED_LANGUAGES],
-  ns: ['common', 'todo', 'dashboard', 'fitAnalysis'],
+  ns: ['common', 'navigation', 'todo', 'empty', 'dashboard', 'fitAnalysis'],
   defaultNS: 'common',
   interpolation: { escapeValue: false },
 });
