@@ -1,0 +1,155 @@
+{
+  "visaEligibility": {
+    "section": {
+      "title": "비자 적격 여부 확인"
+    },
+    "visaTabs": {
+      "D2": "D-2 유학 비자",
+      "D10": "D-10 구직 비자",
+      "E7": "E-7 특정활동 비자"
+    },
+    "status": {
+      "currentVisaStatus": "현재 비자 상태",
+      "eligible": "자격 충족",
+      "notEligible": "자격 미충족"
+    }
+  },
+  "visaChecklist": {
+    "header": {
+      "title": "기본 자격 요건",
+      "subtitle": "체크리스트"
+    },
+    "items": {
+      "expiry": {
+        "title": "만료일(6개월 이상) 확인 및 정보 업데이트",
+        "subtitle": "유효한 여권 및 외국인등록증"
+      },
+      "tuition": {
+        "title": "등록금을 납부하고 납부 영수증 보관",
+        "subtitle": "등록금 및 재학 상태"
+      },
+      "academicStanding": {
+        "title": "학교 GPA와 출석 상태 확인",
+        "subtitle": "학업 상태"
+      },
+      "proofOfFunds": {
+        "title": "등록금과 생활비를 충당할 잔액 준비",
+        "subtitle": "재정 증빙"
+      },
+      "healthInsurance": {
+        "title": "'미납 보험료 없음' 여부 확인",
+        "subtitle": "건강보험"
+      },
+      "proofOfResidence": {
+        "title": "유효한 임대차 계약 및 주소 신고 완료",
+        "subtitle": "거주지 증빙"
+      },
+      "partTimeWork": {
+        "title": "시간제 취업 허가(S-3) 및 소득 한도 확인",
+        "subtitle": "아르바이트 기록"
+      },
+      "tbTest": {
+        "title": "결핵 검사서 필요 여부 확인",
+        "subtitle": "결핵(TB) 검사"
+      },
+      "applicationFeeD2": {
+        "title": "약 60,000원 현금 준비",
+        "subtitle": "신청 수수료"
+      },
+      "legalCompliance": {
+        "title": "불법 취업 이력 없음 확인",
+        "subtitle": "법규 준수"
+      },
+      "graduationCertificate": {
+        "title": "공식 졸업 증명서 보유",
+        "subtitle": "학사 학위"
+      },
+      "pointSystem": {
+        "title": "총점 60점 이상, 기본점수 20점 이상 확보",
+        "subtitle": "점수제"
+      },
+      "languageScore": {
+        "title": "TOPIK 점수 또는 KIIP 수료 여부 확인",
+        "subtitle": "언어 점수"
+      },
+      "jobSeekingPlan": {
+        "title": "6개월간의 월별 구직 활동 계획 작성",
+        "subtitle": "구직 계획"
+      },
+      "proofOfFundsD10": {
+        "title": "6개월 생활비를 충당할 잔액 유지",
+        "subtitle": "재정 증빙"
+      },
+      "independentResidence": {
+        "title": "본인 명의 계약서 확보 및 신고 완료",
+        "subtitle": "독립 거주 증빙"
+      },
+      "tbResult": {
+        "title": "결핵 검사서 제출(필요 시)",
+        "subtitle": "결핵 검사 결과"
+      },
+      "applicationFeeD10": {
+        "title": "약 130,000원 현금 준비",
+        "subtitle": "신청 수수료"
+      },
+      "degreeQualification": {
+        "title": "학위 및 자격 요건 서류 준비",
+        "subtitle": "학위 및 자격"
+      },
+      "jobExpertise": {
+        "title": "전공이 직무 설명과 일치하는지 확인",
+        "subtitle": "직무 전문성"
+      },
+      "validVisaStatus": {
+        "title": "승인 전까지 유효한 D-2/D-10 상태 유지",
+        "subtitle": "유효한 비자 상태"
+      },
+      "koreanEmployeeRatio": {
+        "title": "외국인 고용 비율 확인(통상 20% 미만)",
+        "subtitle": "한국인 직원 비율"
+      },
+      "minimumTeamSize": {
+        "title": "4대보험 가입 한국인 상시근로자 5인 이상 확인",
+        "subtitle": "최소 팀 규모"
+      },
+      "taxPaymentStatus": {
+        "title": "인사팀에 납세증명서 요청",
+        "subtitle": "세금 납부 상태"
+      },
+      "companyViability": {
+        "title": "최근 재무제표 검토",
+        "subtitle": "회사 건전성"
+      },
+      "salaryStandard": {
+        "title": "GNI 80% 이상 조건의 근로계약 체결",
+        "subtitle": "급여 기준"
+      },
+      "jobCodeMatching": {
+        "title": "적절한 E-7 직무 코드를 선택",
+        "subtitle": "직무 코드 일치"
+      },
+      "recommendationLetter": {
+        "title": "필요 시 주무 부처 추천서 확보",
+        "subtitle": "추천서"
+      }
+    }
+  },
+  "jobRecommendation": {
+    "section": {
+      "title": "나에게 맞는 채용 공고 찾기"
+    },
+    "upload": {
+      "info": "최대 2개 파일·20MB 이하",
+      "includeCompletedTodos": "완료한 할 일 항목 반영하기",
+      "actions": {
+        "upload": "업로드",
+        "findPosition": "채용 공고 찾기"
+      },
+      "notice": {
+        "limitExceeded": "파일 개수가 2개 제한을 초과했어요.",
+        "sizeExceeded": "파일 크기가 20MB 제한을 초과했어요.",
+        "duplicateName": "이력서와 자기소개서 파일명은 서로 달라야 합니다. 파일명을 변경한 후 다시 업로드해주세요."
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "visaEligibility": {
+    "section": {
+      "title": "检查签证资格"
+    },
+    "visaTabs": {
+      "D2": "D-2 学生",
+      "D10": "D-10 求职签证",
+      "E7": "E-7 特定活动签证"
+    },
+    "status": {
+      "currentVisaStatus": "当前签证状态",
+      "eligible": "符合条件",
+      "notEligible": "不符合条件"
+    }
+  },
+  "visaChecklist": {
+    "header": {
+      "title": "基本要求",
+      "subtitle": "清单"
+    },
+    "items": {
+      "expiry": {
+        "title": "检查有效期（超过 6 个月）并更新信息",
+        "subtitle": "有效护照和外国人登录证"
+      },
+      "tuition": {
+        "title": "缴纳学费并保存付款凭证",
+        "subtitle": "学费和在学状态"
+      },
+      "academicStanding": {
+        "title": "确认学校 GPA 和出勤情况",
+        "subtitle": "学业状态"
+      },
+      "proofOfFunds": {
+        "title": "准备高于学费和生活费总额的余额",
+        "subtitle": "资金证明"
+      },
+      "healthInsurance": {
+        "title": "确认没有未缴健康保险费",
+        "subtitle": "健康保险"
+      },
+      "proofOfResidence": {
+        "title": "有效合同且已完成住址申报",
+        "subtitle": "居住证明"
+      },
+      "partTimeWork": {
+        "title": "检查 S-3 许可和收入限制",
+        "subtitle": "兼职工作记录"
+      },
+      "tbTest": {
+        "title": "确认是否需要肺结核证明",
+        "subtitle": "肺结核（TB）检测"
+      },
+      "applicationFeeD2": {
+        "title": "准备约 60,000 韩元现金",
+        "subtitle": "申请费用"
+      },
+      "legalCompliance": {
+        "title": "确认没有非法工作记录",
+        "subtitle": "法律合规"
+      },
+      "graduationCertificate": {
+        "title": "持有正式毕业证明",
+        "subtitle": "学士学位"
+      },
+      "pointSystem": {
+        "title": "总分达到 60 分以上（基础分 20 分以上）",
+        "subtitle": "积分制度"
+      },
+      "languageScore": {
+        "title": "持有 TOPIK 成绩或完成 KIIP",
+        "subtitle": "语言成绩"
+      },
+      "jobSeekingPlan": {
+        "title": "制定 6 个月的月度求职计划",
+        "subtitle": "求职计划"
+      },
+      "proofOfFundsD10": {
+        "title": "维持足够覆盖 6 个月生活费的余额",
+        "subtitle": "资金证明"
+      },
+      "independentResidence": {
+        "title": "确保以本人名义签约并完成申报",
+        "subtitle": "独立居住证明"
+      },
+      "tbResult": {
+        "title": "如有需要，提交肺结核证明",
+        "subtitle": "肺结核检测结果"
+      },
+      "applicationFeeD10": {
+        "title": "准备约 130,000 韩元现金",
+        "subtitle": "申请费用"
+      },
+      "degreeQualification": {
+        "title": "准备学历和资格相关材料",
+        "subtitle": "学历与资格"
+      },
+      "jobExpertise": {
+        "title": "确认专业与职位描述相匹配",
+        "subtitle": "岗位专业性"
+      },
+      "validVisaStatus": {
+        "title": "在获批前保持有效的 D-2/D-10 身份",
+        "subtitle": "有效签证状态"
+      },
+      "koreanEmployeeRatio": {
+        "title": "检查外国人雇佣比例（通常低于 20%）",
+        "subtitle": "韩国员工比例"
+      },
+      "minimumTeamSize": {
+        "title": "确保至少有 5 名缴纳四大保险的韩国正式员工",
+        "subtitle": "最低团队规模"
+      },
+      "taxPaymentStatus": {
+        "title": "向 HR 申请完税证明",
+        "subtitle": "纳税状态"
+      },
+      "companyViability": {
+        "title": "查看最近的财务报表",
+        "subtitle": "公司经营能力"
+      },
+      "salaryStandard": {
+        "title": "签署高于 GNI 80% 的劳动合同",
+        "subtitle": "薪资标准"
+      },
+      "jobCodeMatching": {
+        "title": "选择正确的 E-7 职务代码",
+        "subtitle": "职位代码匹配"
+      },
+      "recommendationLetter": {
+        "title": "如有需要，取得主管部门推荐函",
+        "subtitle": "推荐信"
+      }
+    }
+  },
+  "jobRecommendation": {
+    "section": {
+      "title": "找到最适合你的职位"
+    },
+    "upload": {
+      "info": "最多 2 个文件 · 每个不超过 20 MB",
+      "includeCompletedTodos": "包含已完成的待办事项",
+      "actions": {
+        "upload": "上传",
+        "findPosition": "查找职位"
+      },
+      "notice": {
+        "limitExceeded": "文件数量超过 2 个的限制。",
+        "sizeExceeded": "文件大小超过 20 MB 的限制。",
+        "duplicateName": "简历和求职信的文件名必须不同，请重命名后重新上传"
+      }
+    }
+  }
+}

@@ -1,11 +1,8 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const MAX_FILES = 2;
 const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
-const LIMIT_NOTICE_MESSAGE = 'The file count exceeds the 2-file limit.';
-const SIZE_NOTICE_MESSAGE = 'The file size exceeds the 20 MB limit.';
-const DUPLICATE_NOTICE_MESSAGE =
-  'Resume and cover letter must have different file names. Rename one file and upload again.';
 
 export interface FileItem {
   id: string;
@@ -21,6 +18,7 @@ const createFileItems = (files: File[]) =>
   }));
 
 export const useUploadFiles = () => {
+  const { t } = useTranslation('fitAnalysis');
   const [files, setFiles] = useState<FileItem[]>([]);
   const [noticeMessage, setNoticeMessage] = useState('');
 
@@ -44,14 +42,14 @@ export const useUploadFiles = () => {
       const hasOversize = oversizeFiles.length > 0;
 
       if (prev.length + uniqueFiles.length > MAX_FILES) {
-        setNoticeMessage(LIMIT_NOTICE_MESSAGE);
+        setNoticeMessage(t('jobRecommendation.upload.notice.limitExceeded'));
         return prev;
       }
 
       if (hasOversize) {
-        setNoticeMessage(SIZE_NOTICE_MESSAGE);
+        setNoticeMessage(t('jobRecommendation.upload.notice.sizeExceeded'));
       } else if (hasDuplicates) {
-        setNoticeMessage(DUPLICATE_NOTICE_MESSAGE);
+        setNoticeMessage(t('jobRecommendation.upload.notice.duplicateName'));
       } else {
         setNoticeMessage('');
       }
