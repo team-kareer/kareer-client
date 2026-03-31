@@ -28,6 +28,26 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v2/members/onboard': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 회원 온보딩 V2
+     * @description PENDING 상태의 회원의 온보딩 결과를 저장합니다.
+     */
+    post: operations['onboardMember'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/rag/required': {
     parameters: {
       query?: never;
@@ -108,6 +128,26 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/members/term-agreements': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 약관 동의
+     * @description 약관에 동의합니다.
+     */
+    post: operations['agreeTerms'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/members/roadmap': {
     parameters: {
       query?: never;
@@ -161,7 +201,47 @@ export interface paths {
      * 회원 온보딩
      * @description PENDING 상태의 회원의 온보딩 결과를 저장합니다.
      */
-    post: operations['onboardMember'];
+    post: operations['onboardMember_1'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/members/onboard/ocr/visa': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 온보딩 비자 OCR API
+     * @description 온보딩 과정에서 유저의 비자 문서를 분석하여 정보를 추출합니다.
+     */
+    post: operations['getVisaInfo'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/members/onboard/ocr/passport': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * 온보딩 여권 OCR API
+     * @description 온보딩 과정에서 유저의 여권을 분석하여 정보를 추출합니다.
+     */
+    post: operations['getPassportInfo'];
     delete?: never;
     options?: never;
     head?: never;
@@ -288,6 +368,26 @@ export interface paths {
     patch: operations['toggleActionItemCompletion'];
     trace?: never;
   };
+  '/api/v1/terms': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 약관 조회
+     * @description 약관 내용을 조회합니다.
+     */
+    get: operations['getTerms'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/phases': {
     parameters: {
       query?: never;
@@ -368,6 +468,26 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/members/onboard/universities': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 온보딩 대학교 목록 조회
+     * @description 회원 온보딩 시 선택할 수 있는 대학교 목록을 조회합니다.
+     */
+    get: operations['getOnboardUniversities'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/members/onboard/majors': {
     parameters: {
       query?: never;
@@ -380,6 +500,26 @@ export interface paths {
      * @description 회원 온보딩 시 선택할 수 있는 전공 목록을 조회합니다.
      */
     get: operations['getOnboardMajors'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/members/onboard/fields': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 온보딩 관심 분야 목록 조회
+     * @description 회원 온보딩 시 선택할 수 있는 관심 분야 목록을 조회합니다.
+     */
+    get: operations['getOnboardFields'];
     put?: never;
     post?: never;
     delete?: never;
@@ -533,203 +673,8 @@ export interface components {
       /**
        * @description 국가
        * @example Afghanistan
-       * @enum {string}
        */
-      country:
-        | 'Afghanistan'
-        | 'Albania'
-        | 'Algeria'
-        | 'Andorra'
-        | 'Angola'
-        | 'Antigua and Barbuda'
-        | 'Argentina'
-        | 'Armenia'
-        | 'Australia'
-        | 'Austria'
-        | 'Azerbaijan'
-        | 'Bahamas'
-        | 'Bahrain'
-        | 'Bangladesh'
-        | 'Barbados'
-        | 'Belarus'
-        | 'Belgium'
-        | 'Belize'
-        | 'Benin'
-        | 'Bhutan'
-        | 'Bolivia'
-        | 'Bosnia and Herzegovina'
-        | 'Botswana'
-        | 'Brazil'
-        | 'Brunei'
-        | 'Bulgaria'
-        | 'Burkina Faso'
-        | 'Burundi'
-        | 'Cabo Verde'
-        | 'Cambodia'
-        | 'Cameroon'
-        | 'Canada'
-        | 'Central African Republic'
-        | 'Chad'
-        | 'Chile'
-        | 'China'
-        | 'Colombia'
-        | 'Comoros'
-        | 'Congo'
-        | 'Democratic Republic of the Congo'
-        | 'Costa Rica'
-        | "Cote d'Ivoire"
-        | 'Croatia'
-        | 'Cuba'
-        | 'Cyprus'
-        | 'Czechia'
-        | 'Denmark'
-        | 'Djibouti'
-        | 'Dominica'
-        | 'Dominican Republic'
-        | 'Ecuador'
-        | 'Egypt'
-        | 'El Salvador'
-        | 'Equatorial Guinea'
-        | 'Eritrea'
-        | 'Estonia'
-        | 'Eswatini'
-        | 'Ethiopia'
-        | 'Fiji'
-        | 'Finland'
-        | 'France'
-        | 'Gabon'
-        | 'Gambia'
-        | 'Georgia'
-        | 'Germany'
-        | 'Ghana'
-        | 'Greece'
-        | 'Grenada'
-        | 'Guatemala'
-        | 'Guinea'
-        | 'Guinea-Bissau'
-        | 'Guyana'
-        | 'Haiti'
-        | 'Honduras'
-        | 'Hungary'
-        | 'Iceland'
-        | 'India'
-        | 'Indonesia'
-        | 'Iran'
-        | 'Iraq'
-        | 'Ireland'
-        | 'Israel'
-        | 'Italy'
-        | 'Jamaica'
-        | 'Japan'
-        | 'Jordan'
-        | 'Kazakhstan'
-        | 'Kenya'
-        | 'Kiribati'
-        | 'Kuwait'
-        | 'Kyrgyzstan'
-        | 'Laos'
-        | 'Latvia'
-        | 'Lebanon'
-        | 'Lesotho'
-        | 'Liberia'
-        | 'Libya'
-        | 'Liechtenstein'
-        | 'Lithuania'
-        | 'Luxembourg'
-        | 'Madagascar'
-        | 'Malawi'
-        | 'Malaysia'
-        | 'Maldives'
-        | 'Mali'
-        | 'Malta'
-        | 'Marshall Islands'
-        | 'Mauritania'
-        | 'Mauritius'
-        | 'Mexico'
-        | 'Micronesia'
-        | 'Moldova'
-        | 'Monaco'
-        | 'Mongolia'
-        | 'Montenegro'
-        | 'Morocco'
-        | 'Mozambique'
-        | 'Myanmar'
-        | 'Namibia'
-        | 'Nauru'
-        | 'Nepal'
-        | 'Netherlands'
-        | 'New Zealand'
-        | 'Nicaragua'
-        | 'Niger'
-        | 'Nigeria'
-        | 'North Macedonia'
-        | 'Norway'
-        | 'Oman'
-        | 'Pakistan'
-        | 'Palau'
-        | 'Panama'
-        | 'Papua New Guinea'
-        | 'Paraguay'
-        | 'Peru'
-        | 'Philippines'
-        | 'Poland'
-        | 'Portugal'
-        | 'Qatar'
-        | 'Romania'
-        | 'Russia'
-        | 'Rwanda'
-        | 'Saint Kitts and Nevis'
-        | 'Saint Lucia'
-        | 'Saint Vincent and the Grenadines'
-        | 'Samoa'
-        | 'San Marino'
-        | 'Sao Tome and Principe'
-        | 'Saudi Arabia'
-        | 'Senegal'
-        | 'Serbia'
-        | 'Seychelles'
-        | 'Sierra Leone'
-        | 'Singapore'
-        | 'Slovakia'
-        | 'Slovenia'
-        | 'Solomon Islands'
-        | 'Somalia'
-        | 'South Africa'
-        | 'South Korea'
-        | 'South Sudan'
-        | 'Spain'
-        | 'Sri Lanka'
-        | 'Sudan'
-        | 'Suriname'
-        | 'Sweden'
-        | 'Switzerland'
-        | 'Syria'
-        | 'Taiwan'
-        | 'Tajikistan'
-        | 'Tanzania'
-        | 'Thailand'
-        | 'Timor-Leste'
-        | 'Togo'
-        | 'Tonga'
-        | 'Trinidad and Tobago'
-        | 'Tunisia'
-        | 'Turkey'
-        | 'Turkmenistan'
-        | 'Tuvalu'
-        | 'Uganda'
-        | 'Ukraine'
-        | 'United Arab Emirates'
-        | 'United Kingdom'
-        | 'United States'
-        | 'Uruguay'
-        | 'Uzbekistan'
-        | 'Vanuatu'
-        | 'Vatican City'
-        | 'Venezuela'
-        | 'Vietnam'
-        | 'Yemen'
-        | 'Zambia'
-        | 'Zimbabwe';
+      countryCode: string;
       /**
        * @description 학위
        * @example DOMESTIC_ASSOCIATE
@@ -747,12 +692,12 @@ export interface components {
        * @description 대학
        * @example Konkuk University
        */
-      university: string;
+      universityCode: string;
       /**
        * @description 전공
        * @example Computer Science
        */
-      primaryMajor: string;
+      primaryMajorCode: string;
       /**
        * @description 부전공
        * @example Statistic
@@ -798,8 +743,72 @@ export interface components {
       message?: string;
       data?: Record<string, never>;
     };
+    MemberOnboardV2Request: {
+      name: string;
+      /** Format: date */
+      birthDate: string;
+      universityCode: string;
+      countryCode: string;
+      /** @enum {string} */
+      languageLevel:
+        | 'LEVEL_1'
+        | 'LEVEL_2'
+        | 'LEVEL_3'
+        | 'LEVEL_4'
+        | 'LEVEL_5'
+        | 'NOT_TAKEN';
+      /** @enum {string} */
+      englishLevel: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED';
+      /** @enum {string} */
+      degree:
+        | 'DOMESTIC_ASSOCIATE'
+        | 'DOMESTIC_BACHELORS'
+        | 'DOMESTIC_MASTERS'
+        | 'DOMESTIC_DOCTORATE'
+        | 'OVERSEAS_BACHELORS'
+        | 'OVERSEAS_MASTERS'
+        | 'OVERSEAS_DOCTORATE';
+      /** @enum {string} */
+      visaType: 'D2' | 'D10' | 'E7';
+      /**
+       * Format: date
+       * @description 예상 졸업일, D2 비자인 경우만
+       * @example 2025-08-31
+       */
+      expectedGraduationDate?: string;
+      /** Format: date */
+      visaStartDate: string;
+      /** Format: date */
+      visaExpiredAt: string;
+      primaryMajorCode: string;
+      secondaryMajor?: string;
+      fieldsOfInterests: string[];
+      preparationStatuses?: string[];
+      targetJob: string;
+      targetJobSkill?: string;
+      personalBackground: string;
+    };
     JobPostingEmbeddingRequest: {
       jobPostingIds?: number[];
+    };
+    /** @description 약관 동의 요청 */
+    MemberTermsRequest: {
+      /** @description 약관 동의 리스트 */
+      agreements: components['schemas']['TermAgreement'][];
+    };
+    /** @description 약관 동의 리스트 */
+    TermAgreement: {
+      /**
+       * Format: int64
+       * @description 약관 고유번호
+       * @example 1
+       */
+      termId: number;
+      /**
+       * @description 약관 동의여부
+       * @example true
+       */
+      agreed: boolean;
     };
     ActionItemPlan: {
       title?: string;
@@ -1091,406 +1100,50 @@ export interface components {
       targetJobSkill?: string;
       personalBackground: string;
     };
-    BaseResponseJobPostingListResponse: {
+    BaseResponseOcrVisaResponse: {
       /**
        * Format: int32
        * @example 200
        */
       code?: number;
       message?: string;
-      data?: components['schemas']['JobPostingListResponse'];
+      data?: components['schemas']['OcrVisaResponse'];
     };
-    JobPostingListResponse: {
-      jobPostingResponses?: components['schemas']['JobPostingResponse'][];
-    };
-    JobPostingResponse: {
-      /**
-       * Format: int64
-       * @description 채용 공고 ID
-       * @example 1
-       */
-      jobPostingId?: number;
-      /**
-       * Format: date
-       * @description 마감일
-       */
-      deadline?: string;
-      /** @description 이미지 url */
-      imageUrl?: string;
-      /**
-       * @description 회사명
-       * @example THEIA
-       */
-      company?: string;
-      /**
-       * @description 채용 공고 제목
-       * @example Hiring Japanese Marketers
-       */
-      title?: string;
-      /**
-       * @description 근무 형태
-       * @example Part-time Worker
-       */
-      arrangement?: string[];
-      /** @description 주소 */
-      address?: string[];
-      /** @description 공고 url */
-      websiteUrl?: string;
-      /** @description 북마크 여부 */
-      isBookmarked?: boolean;
-    };
-    BaseResponseTokenResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['TokenResponse'];
-    };
-    TokenResponse: {
-      accessToken?: string;
-    };
-    TokenExchangeRequest: {
-      code: string;
-    };
-    BaseResponseTokenExchangeResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['TokenExchangeResponse'];
-    };
-    TokenExchangeResponse: {
-      accessToken?: string;
-      onboardingRequired?: boolean;
-    };
-    BaseResponsePhaseListResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['PhaseListResponse'];
-    };
-    /** @description Phase 리스트 응답 */
-    PhaseListResponse: {
-      /** @description Phase 리스트 응답 */
-      phases?: components['schemas']['PhaseResponse'][];
-    };
-    /** @description Phase 리스트 아이템 응답 */
-    PhaseResponse: {
-      /**
-       * Format: int64
-       * @description Phase id
-       * @example 1
-       */
-      phaseId?: number;
-      /**
-       * @description Phase 상태
-       * @example Current
-       */
-      phaseStatus?: string;
-      /**
-       * Format: int32
-       * @description Phase 순서
-       * @example 1
-       */
-      sequence?: number;
-      /**
-       * @description Phase 목표
-       * @example Verify Requirements
-       */
-      goal?: string;
-      /**
-       * @description Phase 설명
-       * @example Initial setup and documentation
-       */
-      description?: string;
-      /**
-       * @description Work 상태
-       * @example Remained works
-       */
-      workStatus?: string;
-      /**
-       * Format: int64
-       * @description Work 수(Phase 상태에 따라 남은 work 수, 계획된 work 수)
-       * @example 3
-       */
-      worksCount?: number;
-      /**
-       * Format: date
-       * @description Phase 시작일
-       * @example 2025-09-01
-       */
-      startDate?: string;
-      /**
-       * Format: date
-       * @description Phase 종료일
-       * @example 2025-12-01
-       */
-      endDate?: string;
-    };
-    /** @description Phase에 해당하는 그룹화된 PhaseAction */
-    ActionGroupResponse: {
-      /**
-       * Format: int64
-       * @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 수
-       * @example 1
-       */
-      count?: number;
-      /** @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 리스트 */
-      items?: components['schemas']['ActionResponse'][];
-    };
-    /** @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 리스트 */
-    ActionResponse: {
-      /**
-       * Format: int64
-       * @description Phase Action 고유번호
-       * @example 1
-       */
-      phaseActionId?: number;
-      /**
-       * @description Phase Action 제목
-       * @example Prepare internship log
-       */
-      title?: string;
-      /**
-       * @description Phase Action 설명
-       * @example Document all work experience during internship period
-       */
-      description?: string;
-      /**
-       * Format: date
-       * @description Phase Action 마감 기한
-       * @example 2026-01-24
-       */
-      deadline?: string;
-      /**
-       * @description Phase Action todo 추가 여부
-       * @example true
-       */
-      added?: boolean;
-    };
-    BaseResponseRoadmapPhaseDetailResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['RoadmapPhaseDetailResponse'];
-    };
-    /** @description 로드맵 Phase 상세 조회 응답 */
-    RoadmapPhaseDetailResponse: {
-      /**
-       * Format: int64
-       * @description Phase의 PhaseAction 수
-       * @example 1
-       */
-      totalCount?: number;
-      /** @description Phase에 해당하는 그룹화된 PhaseAction */
-      actions?: {
-        [key: string]: components['schemas']['ActionGroupResponse'];
-      };
-    };
-    BaseResponseHomePhaseDetailResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['HomePhaseDetailResponse'];
-    };
-    /** @description Phase의 PhaseAction 리스트 */
-    HomePhaseActionResponse: {
-      /**
-       * Format: int64
-       * @description Phase Action 고유번호
-       * @example 1
-       */
-      phaseActionId?: number;
-      /**
-       * @description Phase Action 타입
-       * @example Visa
-       */
-      type?: string;
-      /**
-       * @description Phase Action 제목
-       * @example Prepare OPT application documents
-       */
-      title?: string;
-      /**
-       * Format: date
-       * @description Phase Action 마감기한
-       * @example 2026-01-01
-       */
-      deadline?: string;
-    };
-    /** @description 홈 Phase 리스트 조회 응답 */
-    HomePhaseDetailResponse: {
-      /**
-       * Format: int64
-       * @description Phase의 PhaseAction 수
-       * @example 1
-       */
-      count?: number;
-      /** @description Phase의 PhaseAction 리스트 */
-      actions?: components['schemas']['HomePhaseActionResponse'][];
-    };
-    /** @description AI 가이드 응답 */
-    AiGuideResponse: {
-      /** @description AI guide - Why this matters */
-      importance?: string;
-      /** @description AI guide - How to do it properly */
-      mistakes?: string[];
-      /** @description AI guide - Common mistakes */
-      guidelines?: string[];
-    };
-    BaseResponseAiGuideResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['AiGuideResponse'];
-    };
-    BaseResponseOnboardMajorsResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['OnboardMajorsResponse'];
-    };
-    OnboardMajorsResponse: {
-      majors?: string[];
-    };
-    BaseResponseOnboardCountriesResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['OnboardCountriesResponse'];
-    };
-    OnboardCountriesResponse: {
-      countries?: string[];
-    };
-    BaseResponseMypageResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['MypageResponse'];
-    };
-    MypageResponse: {
-      /**
-       * @description 이름
-       * @example 홍승원
-       */
-      name?: string;
-      /** @description 프로필 사진 url */
-      profileImageUrl?: string;
-      /**
-       * @description 목표 직무
-       * @example Developer
-       */
-      targetJob?: string;
-      /**
-       * Format: date
-       * @description 생년월일
-       */
-      birthDate?: string;
-      /** @description 국가 */
-      country?: string;
-      /** @description 학위 */
-      degree?: string;
-      /** @description 대학 */
-      university?: string;
-      /**
-       * @description 전공
-       * @example Computer Science
-       */
-      primaryMajor?: string;
-      /**
-       * @description 부전공
-       * @example Statistic
-       */
-      secondaryMajor?: string;
+    OcrVisaResponse: {
       /**
        * @description 비자 유형
-       * @example D-2
+       * @enum {string}
        */
-      visaType?: string;
+      visaType?: 'D2' | 'D10' | 'E7';
+      /**
+       * Format: date
+       * @description 비자 발급일
+       */
+      visaStartDate?: string;
       /**
        * Format: date
        * @description 비자 만료일
        */
       visaExpiredAt?: string;
-      /**
-       * @description 언어 수준
-       * @enum {string}
-       */
-      languageLevel?:
-        | 'LEVEL_1'
-        | 'LEVEL_2'
-        | 'LEVEL_3'
-        | 'LEVEL_4'
-        | 'LEVEL_5'
-        | 'NOT_TAKEN';
-      /** @description 영어 실력 */
-      englishLevel?: string;
     };
-    BaseResponseMemberInfoResponse: {
+    BaseResponseOcrPassportResponse: {
       /**
        * Format: int32
        * @example 200
        */
       code?: number;
       message?: string;
-      data?: components['schemas']['MemberInfoResponse'];
+      data?: components['schemas']['OcrPassportResponse'];
     };
-    /** @description 회원 정보 응답 */
-    MemberInfoResponse: {
+    OcrPassportResponse: {
       /**
-       * Format: int64
-       * @description 회원 id
-       * @example 1
+       * @description Full Name
+       * @example Hong Seungwon
        */
-      memberId?: number;
+      fullName?: string;
       /**
-       * @description 회원 이름
-       * @example 홍길동
-       */
-      name?: string;
-      /**
-       * @description 회원 이메일
-       * @example test@example.com
-       */
-      email?: string;
-      /**
-       * @description 프로필 이미지 URL
-       * @example https://cdn.example.com/profile.png
-       */
-      profileImageUrl?: string;
-      /**
-       * Format: date
-       * @description 생년월일
-       * @example 2000-05-02
-       */
-      birthDate?: string;
-      /**
-       * @description 거주 국가
+       * @description 국가
+       * @example AFGHANISTAN
        * @enum {string}
        */
       country?:
@@ -1689,6 +1342,478 @@ export interface components {
         | 'Zambia'
         | 'Zimbabwe';
       /**
+       * Format: date
+       * @description 생년월일
+       */
+      birthDate?: string;
+    };
+    BaseResponseJobPostingListResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['JobPostingListResponse'];
+    };
+    JobPostingListResponse: {
+      jobPostingResponses?: components['schemas']['JobPostingResponse'][];
+    };
+    JobPostingResponse: {
+      /**
+       * Format: int64
+       * @description 채용 공고 ID
+       * @example 1
+       */
+      jobPostingId?: number;
+      /**
+       * Format: date
+       * @description 마감일
+       */
+      deadline?: string;
+      /** @description 이미지 url */
+      imageUrl?: string;
+      /**
+       * @description 회사명
+       * @example THEIA
+       */
+      company?: string;
+      /**
+       * @description 채용 공고 제목
+       * @example Hiring Japanese Marketers
+       */
+      title?: string;
+      /**
+       * @description 근무 형태
+       * @example Part-time Worker
+       */
+      arrangement?: string[];
+      /** @description 주소 */
+      address?: string[];
+      /** @description 공고 url */
+      websiteUrl?: string;
+      /** @description 북마크 여부 */
+      isBookmarked?: boolean;
+    };
+    BaseResponseTokenResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['TokenResponse'];
+    };
+    TokenResponse: {
+      accessToken?: string;
+    };
+    TokenExchangeRequest: {
+      code: string;
+    };
+    BaseResponseTokenExchangeResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['TokenExchangeResponse'];
+    };
+    TokenExchangeResponse: {
+      accessToken?: string;
+      onboardingRequired?: boolean;
+    };
+    BaseResponseTermsResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['TermsResponse'];
+    };
+    /** @description 약관 리스트 */
+    TermResponse: {
+      /**
+       * Format: int64
+       * @description 약관 고유번호
+       * @example 1
+       */
+      termId?: number;
+      /**
+       * @description 약관 제목
+       * @example Terms of Service
+       */
+      title?: string;
+      /**
+       * @description 약관 내용
+       * @example 1. Purpose ~
+       */
+      content?: string;
+      /**
+       * @description 필수 여부
+       * @example true
+       */
+      required?: boolean;
+    };
+    /** @description 약관 응답 */
+    TermsResponse: {
+      /** @description 약관 리스트 */
+      terms?: components['schemas']['TermResponse'][];
+    };
+    BaseResponsePhaseListResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['PhaseListResponse'];
+    };
+    /** @description Phase 리스트 응답 */
+    PhaseListResponse: {
+      /** @description Phase 리스트 응답 */
+      phases?: components['schemas']['PhaseResponse'][];
+    };
+    /** @description Phase 리스트 아이템 응답 */
+    PhaseResponse: {
+      /**
+       * Format: int64
+       * @description Phase id
+       * @example 1
+       */
+      phaseId?: number;
+      /**
+       * @description Phase 상태
+       * @example Current
+       */
+      phaseStatus?: string;
+      /**
+       * Format: int32
+       * @description Phase 순서
+       * @example 1
+       */
+      sequence?: number;
+      /**
+       * @description Phase 목표
+       * @example Verify Requirements
+       */
+      goal?: string;
+      /**
+       * @description Phase 설명
+       * @example Initial setup and documentation
+       */
+      description?: string;
+      /**
+       * @description Work 상태
+       * @example Remained works
+       */
+      workStatus?: string;
+      /**
+       * Format: int64
+       * @description Work 수(Phase 상태에 따라 남은 work 수, 계획된 work 수)
+       * @example 3
+       */
+      worksCount?: number;
+      /**
+       * Format: date
+       * @description Phase 시작일
+       * @example 2025-09-01
+       */
+      startDate?: string;
+      /**
+       * Format: date
+       * @description Phase 종료일
+       * @example 2025-12-01
+       */
+      endDate?: string;
+    };
+    /** @description Phase에 해당하는 그룹화된 PhaseAction */
+    ActionGroupResponse: {
+      /**
+       * Format: int64
+       * @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 수
+       * @example 1
+       */
+      count?: number;
+      /** @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 리스트 */
+      items?: components['schemas']['ActionResponse'][];
+    };
+    /** @description 태그(Visa, Career, Done)에 해당하는 PhaseAction 리스트 */
+    ActionResponse: {
+      /**
+       * Format: int64
+       * @description Phase Action 고유번호
+       * @example 1
+       */
+      phaseActionId?: number;
+      /**
+       * @description Phase Action 제목
+       * @example Prepare internship log
+       */
+      title?: string;
+      /**
+       * @description Phase Action 설명
+       * @example Document all work experience during internship period
+       */
+      description?: string;
+      /**
+       * Format: date
+       * @description Phase Action 마감 기한
+       * @example 2026-01-24
+       */
+      deadline?: string;
+      /**
+       * @description Phase Action todo 추가 여부
+       * @example true
+       */
+      added?: boolean;
+    };
+    BaseResponseRoadmapPhaseDetailResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['RoadmapPhaseDetailResponse'];
+    };
+    /** @description 로드맵 Phase 상세 조회 응답 */
+    RoadmapPhaseDetailResponse: {
+      /**
+       * Format: int64
+       * @description Phase의 PhaseAction 수
+       * @example 1
+       */
+      totalCount?: number;
+      /** @description Phase에 해당하는 그룹화된 PhaseAction */
+      actions?: {
+        [key: string]: components['schemas']['ActionGroupResponse'];
+      };
+    };
+    BaseResponseHomePhaseDetailResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['HomePhaseDetailResponse'];
+    };
+    /** @description Phase의 PhaseAction 리스트 */
+    HomePhaseActionResponse: {
+      /**
+       * Format: int64
+       * @description Phase Action 고유번호
+       * @example 1
+       */
+      phaseActionId?: number;
+      /**
+       * @description Phase Action 타입
+       * @example Visa
+       */
+      type?: string;
+      /**
+       * @description Phase Action 제목
+       * @example Prepare OPT application documents
+       */
+      title?: string;
+      /**
+       * Format: date
+       * @description Phase Action 마감기한
+       * @example 2026-01-01
+       */
+      deadline?: string;
+    };
+    /** @description 홈 Phase 리스트 조회 응답 */
+    HomePhaseDetailResponse: {
+      /**
+       * Format: int64
+       * @description Phase의 PhaseAction 수
+       * @example 1
+       */
+      count?: number;
+      /** @description Phase의 PhaseAction 리스트 */
+      actions?: components['schemas']['HomePhaseActionResponse'][];
+    };
+    /** @description AI 가이드 응답 */
+    AiGuideResponse: {
+      /** @description AI guide - Why this matters */
+      importance?: string;
+      /** @description AI guide - How to do it properly */
+      mistakes?: string[];
+      /** @description AI guide - Common mistakes */
+      guidelines?: string[];
+    };
+    BaseResponseAiGuideResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['AiGuideResponse'];
+    };
+    BaseResponseOnboardUniversitiesResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['OnboardUniversitiesResponse'];
+    };
+    LocalizedItemResponse: {
+      code?: string;
+      label?: string;
+    };
+    OnboardUniversitiesResponse: {
+      universities?: components['schemas']['LocalizedItemResponse'][];
+    };
+    BaseResponseOnboardMajorsResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['OnboardMajorsResponse'];
+    };
+    OnboardMajorsResponse: {
+      majors?: components['schemas']['LocalizedItemResponse'][];
+    };
+    BaseResponseOnboardFieldsResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['OnboardFieldsResponse'];
+    };
+    OnboardFieldsResponse: {
+      fields?: components['schemas']['LocalizedItemResponse'][];
+    };
+    BaseResponseOnboardCountriesResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['OnboardCountriesResponse'];
+    };
+    OnboardCountriesResponse: {
+      countries?: components['schemas']['LocalizedItemResponse'][];
+    };
+    BaseResponseMypageResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['MypageResponse'];
+    };
+    MypageResponse: {
+      /**
+       * @description 이름
+       * @example 홍승원
+       */
+      name?: string;
+      /** @description 프로필 사진 url */
+      profileImageUrl?: string;
+      /**
+       * @description 목표 직무
+       * @example Developer
+       */
+      targetJob?: string;
+      /**
+       * Format: date
+       * @description 생년월일
+       */
+      birthDate?: string;
+      /** @description 국가 */
+      country?: string;
+      /** @description 학위 */
+      degree?: string;
+      /** @description 대학 */
+      university?: string;
+      /**
+       * @description 전공
+       * @example Computer Science
+       */
+      primaryMajor?: string;
+      /**
+       * @description 부전공
+       * @example Statistic
+       */
+      secondaryMajor?: string;
+      /**
+       * @description 비자 유형
+       * @example D-2
+       */
+      visaType?: string;
+      /**
+       * Format: date
+       * @description 비자 만료일
+       */
+      visaExpiredAt?: string;
+      /**
+       * @description 언어 수준
+       * @enum {string}
+       */
+      languageLevel?:
+        | 'LEVEL_1'
+        | 'LEVEL_2'
+        | 'LEVEL_3'
+        | 'LEVEL_4'
+        | 'LEVEL_5'
+        | 'NOT_TAKEN';
+      /** @description 영어 실력 */
+      englishLevel?: string;
+    };
+    BaseResponseMemberInfoResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['MemberInfoResponse'];
+    };
+    /** @description 회원 정보 응답 */
+    MemberInfoResponse: {
+      /**
+       * Format: int64
+       * @description 회원 id
+       * @example 1
+       */
+      memberId?: number;
+      /**
+       * @description 회원 이름
+       * @example 홍길동
+       */
+      name?: string;
+      /**
+       * @description 회원 이메일
+       * @example test@example.com
+       */
+      email?: string;
+      /**
+       * @description 프로필 이미지 URL
+       * @example https://cdn.example.com/profile.png
+       */
+      profileImageUrl?: string;
+      /**
+       * Format: date
+       * @description 생년월일
+       * @example 2000-05-02
+       */
+      birthDate?: string;
+      /** @description 거주 국가 */
+      country?: string;
+      /**
        * @description 주 전공
        * @example Computer Science
        */
@@ -1703,6 +1828,11 @@ export interface components {
        * @example Backend Engineer
        */
       targetJob?: string;
+      /**
+       * @description 대학교
+       * @example Seoul National University
+       */
+      university?: string;
       /**
        * Format: date
        * @description 졸업일
@@ -1731,6 +1861,11 @@ export interface components {
        * @example Bachelor
        */
       degree?: string;
+      /**
+       * @description 영어 수준
+       * @example Upper Intermediate
+       */
+      englishLevel?: string;
       /**
        * @description 타겟 직무 스킬
        * @example Java, Spring
@@ -1777,6 +1912,11 @@ export interface components {
        * @example true
        */
       onboardingRequired?: boolean;
+      /**
+       * @description 약관 동의 여부
+       * @example true
+       */
+      agreedTerm?: boolean;
     };
     BaseResponseJobPostingCrawlListResponse: {
       /**
@@ -1882,7 +2022,10 @@ export interface operations {
   getMypage: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -1950,7 +2093,10 @@ export interface operations {
   updateMypage: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2019,12 +2165,90 @@ export interface operations {
       };
     };
   };
+  onboardMember: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['MemberOnboardV2Request'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
   uploadRequired: {
     parameters: {
       query: {
         requiredCategory: 'VISA' | 'CAREER';
       };
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2081,7 +2305,10 @@ export interface operations {
   uploadPolicyFile: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2156,7 +2383,10 @@ export interface operations {
   uploadJobPosting: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2228,7 +2458,10 @@ export interface operations {
   createPhaseActionTodo: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         phaseActionId: number;
       };
@@ -2295,10 +2528,88 @@ export interface operations {
       };
     };
   };
+  agreeTerms: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['MemberTermsRequest'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
   generateRoadmap: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2366,7 +2677,10 @@ export interface operations {
   generateRoadmapForTest: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2431,10 +2745,13 @@ export interface operations {
       };
     };
   };
-  onboardMember: {
+  onboardMember_1: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2503,10 +2820,127 @@ export interface operations {
       };
     };
   };
+  getVisaInfo: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: {
+      content: {
+        'multipart/form-data': {
+          /** Format: binary */
+          file: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseOcrVisaResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
+  getPassportInfo: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: {
+      content: {
+        'multipart/form-data': {
+          /** Format: binary */
+          file: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseOcrPassportResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   createJobPostingBookmark: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         jobPostingId: number;
       };
@@ -2578,7 +3012,10 @@ export interface operations {
       query?: {
         includeCompletedTodo?: boolean;
       };
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2652,7 +3089,10 @@ export interface operations {
   signOut: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2720,7 +3160,10 @@ export interface operations {
   reissue: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2788,7 +3231,10 @@ export interface operations {
   exchange: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2868,7 +3314,10 @@ export interface operations {
   toggleActionItemCompletion: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         actionItemId: number;
       };
@@ -2935,10 +3384,63 @@ export interface operations {
       };
     };
   };
+  getTerms: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseTermsResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   getPhaseList: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -2985,7 +3487,10 @@ export interface operations {
   getRoadmapPhaseDetail: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         phaseId: number;
       };
@@ -3055,7 +3560,10 @@ export interface operations {
   getHomePhaseDetail: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         phaseId: number;
       };
@@ -3125,7 +3633,10 @@ export interface operations {
   getAiGuide: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path: {
         phaseActionId: number;
       };
@@ -3192,10 +3703,63 @@ export interface operations {
       };
     };
   };
+  getOnboardUniversities: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseOnboardUniversitiesResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   getOnboardMajors: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3239,10 +3803,63 @@ export interface operations {
       };
     };
   };
+  getOnboardFields: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseOnboardFieldsResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   getOnboardCountries: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3289,7 +3906,10 @@ export interface operations {
   getMemberInfo: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3357,7 +3977,10 @@ export interface operations {
   deleteMember: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3425,7 +4048,10 @@ export interface operations {
   getMemberStatus: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3495,7 +4121,10 @@ export interface operations {
       query?: {
         limit?: number;
       };
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3542,7 +4171,10 @@ export interface operations {
   getJobPostingBookmarks: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
@@ -3610,7 +4242,10 @@ export interface operations {
   getAllActionItems: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
       path?: never;
       cookie?: never;
     };
