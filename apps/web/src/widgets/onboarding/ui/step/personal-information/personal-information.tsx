@@ -9,7 +9,11 @@ import {
   validateDate,
   validateText,
 } from '@features/onboarding/model/validation';
-import { COUNTRY_LIST_QUERY_OPTIONS, FUNNEL_STEPS } from '@entities/onboarding';
+import {
+  COUNTRY_LIST_QUERY_OPTIONS,
+  FUNNEL_STEPS,
+  toOptions,
+} from '@entities/onboarding';
 import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './personal-information.css';
@@ -62,10 +66,13 @@ const PersonalInformation = () => {
           rules={{
             required: 'Select the level',
             validate: (value) =>
-              validateAutocompleteOption(value, LANGUAGE_LEVEL_OPTIONS),
+              validateAutocompleteOption(
+                value,
+                toOptions(LANGUAGE_LEVEL_OPTIONS),
+              ),
           }}
           placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.OPIK_LEVEL}
-          options={LANGUAGE_LEVEL_OPTIONS}
+          options={toOptions(LANGUAGE_LEVEL_OPTIONS)}
         />
         <div>
           <div className={styles.labelWrapper}>

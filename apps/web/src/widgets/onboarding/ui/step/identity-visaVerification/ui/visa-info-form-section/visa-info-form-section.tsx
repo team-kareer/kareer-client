@@ -34,23 +34,24 @@ const VisaInfoFormSection = () => {
         rules={{
           required: 'Select the visa type',
           validate: (value) =>
-            validateAutocompleteOption(value, VISA_TYPE_OPTIONS),
+            validateAutocompleteOption(
+              value,
+              VISA_TYPE_OPTIONS.map((option) => ({
+                code: option,
+                label: VISA_TYPE_LABELS[option] ?? option,
+              })),
+            ),
         }}
       >
         {(field) => (
           <Autocomplete
             placeholder={VISA_INFORMATION_PLACEHOLDERS.CURRENT_VISA_TYPE}
-            options={VISA_TYPE_OPTIONS.map(
-              (option) => VISA_TYPE_LABELS[option] ?? option,
-            )}
-            onChange={(value) => {
-              const selectedVisaType = VISA_TYPE_OPTIONS.find(
-                (option) => VISA_TYPE_LABELS[option] === value,
-              );
-
-              field.onChange(selectedVisaType ?? value);
-            }}
-            value={VISA_TYPE_LABELS[field.value] ?? field.value ?? ''}
+            options={VISA_TYPE_OPTIONS.map((option) => ({
+              code: option,
+              label: VISA_TYPE_LABELS[option] ?? option,
+            }))}
+            onChange={field.onChange}
+            value={field.value ?? ''}
           />
         )}
       </FormField>

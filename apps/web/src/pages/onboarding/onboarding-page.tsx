@@ -4,10 +4,11 @@ import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import {
   createStepData,
+  EducationStep,
+  LanguageSkillStep,
   OnboardingStepLayout,
   PersonalBackgroundStep,
   PersonalInformationStep,
-  TargetRoleStep,
   VisaInformationStep,
 } from '@widgets/onboarding';
 import IdentityVisaVerification from '@widgets/onboarding/ui/step/identity-visaVerification/identity-visaVerification';
@@ -138,13 +139,13 @@ const OnboardingPage = () => {
             <PersonalInformationStep />
           </Step>
           <Step name={FUNNEL_STEPS[1]}>
-            <VisaInformationStep />
+            <EducationStep />
           </Step>
           <Step name={FUNNEL_STEPS[2]}>
-            <TargetRoleStep />
+            <LanguageSkillStep />
           </Step>
           <Step name={FUNNEL_STEPS[3]}>
-            <TargetRoleStep />
+            <VisaInformationStep />
           </Step>
           <Step name={FUNNEL_STEPS[4]}>
             <PersonalBackgroundStep />

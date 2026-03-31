@@ -1,20 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
 
 import { color } from '../../styles';
 
 import * as styles from './autocomplete.css';
 
+export interface AutocompleteOption {
+  code: string;
+  label: string;
+}
+
 interface AutocompleteProps {
   value: string;
   onChange: (value: string) => void;
-  options: string[];
+  options: AutocompleteOption[];
   placeholder?: string;
 }
 
 interface DropDownProps {
-  options: string[];
-  onClick: (option: string) => void;
+  options: AutocompleteOption[];
+  onClick: (option: AutocompleteOption) => void;
 }
 
 const Autocomplete = ({
@@ -23,27 +28,29 @@ const Autocomplete = ({
   options,
   placeholder,
 }: AutocompleteProps) => {
-  // 드롭메뉴 열림 여부
   const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
-  // value가 undefined일 수 있으므로 빈 문자열로 처리
-  const safeValue = value || '';
+  useEffect(() => {
+    const matched = options.find((option) => option.code === value);
+    if (matched) {
+      setInputValue(matched.label);
+    }
+  }, [value, options]);
 
-  // 입력값 필터링 (undefined/null 값 제거)
-  const filteredOptions = options
-    .filter((option) => option != null)
-    .filter((option) => option.toLowerCase().includes(safeValue.toLowerCase()));
+  const filteredOptions = options.filter((option) =>
+    option.label?.toLowerCase().includes(inputValue.toLowerCase()),
+  );
 
-  // 입력 처리
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    onChange(newValue);
-    setIsOpen(newValue.length > 0);
+    setInputValue(e.target.value);
+    setIsOpen(e.target.value.length > 0);
+    onChange(inputValue);
   };
 
-  // 옵션 선택 처리
-  const handleOptionClick = (option: string) => {
-    onChange(option);
+  const handleOptionClick = (option: AutocompleteOption) => {
+    setInputValue(option.label);
+    onChange(option.code);
     setIsOpen(false);
   };
 
@@ -58,7 +65,7 @@ const Autocomplete = ({
       <input
         type="text"
         className={styles.input}
-        value={safeValue}
+        value={inputValue}
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
         onBlur={() => setIsOpen(false)}
@@ -79,11 +86,11 @@ const DropList = ({ options, onClick }: DropDownProps) => {
     <ul className={styles.dropdown}>
       {options.map((option) => (
         <li
-          key={option}
+          key={option.code}
           className={styles.option}
           onMouseDown={() => onClick(option)}
         >
-          {option}
+          {option.label}
         </li>
       ))}
     </ul>

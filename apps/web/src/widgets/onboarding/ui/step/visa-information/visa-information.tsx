@@ -12,7 +12,11 @@ import {
   validateIssuanceDate,
   validateVisaPoint,
 } from '@features/onboarding/model/validation';
-import { FUNNEL_STEPS, type OnboardingForm } from '@entities/onboarding';
+import {
+  FUNNEL_STEPS,
+  type OnboardingForm,
+  toOptions,
+} from '@entities/onboarding';
 import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './visa-information.css';
@@ -68,10 +72,10 @@ const VisaInformation = () => {
           rules={{
             required: 'Select the visa type',
             validate: (value) =>
-              validateAutocompleteOption(value, VISA_TYPE_OPTIONS),
+              validateAutocompleteOption(value, toOptions(VISA_TYPE_OPTIONS)),
           }}
           placeholder={VISA_INFORMATION_PLACEHOLDERS.CURRENT_VISA_TYPE}
-          options={VISA_TYPE_OPTIONS}
+          options={toOptions(VISA_TYPE_OPTIONS)}
         />
         {/* D-2 & D-10 비자 타입 조건부 렌더링 */}
         <div style={{ visibility: visaType ? 'visible' : 'hidden' }}>
