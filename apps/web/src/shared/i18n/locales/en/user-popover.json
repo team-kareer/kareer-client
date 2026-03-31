@@ -1,0 +1,30 @@
+{
+  "section": {
+    "status": "My status"
+  },
+  "action": {
+    "logout": "Log Out"
+  },
+  "visa": {
+    "dday": {
+      "today": "D-Day"
+    },
+    "labels": {
+      "D10": "Job Seeker",
+      "D2": "Student"
+    },
+    "current": {
+      "statusName": "Current Visa Status",
+      "title": "{{visaLabel}} Visa {{visaCode}}",
+      "expiryDate": "Expires {{date}}"
+    },
+    "graduation": {
+      "statusName": "Time Until Graduation",
+      "completed": "Graduated"
+    },
+    "remaining": {
+      "statusName": "Remaining Stay Period",
+      "completed": "Expired"
+    }
+  }
+}

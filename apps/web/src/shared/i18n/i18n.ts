@@ -46,6 +46,7 @@ i18n.use(initReactI18next).init({
     'dashboard',
     'fitAnalysis',
     'roadmap',
+    'userPopover',
     'myPage',
   ],
   defaultNS: 'common',

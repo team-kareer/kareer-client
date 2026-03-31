@@ -1,0 +1,30 @@
+{
+  "section": {
+    "status": "我的状态"
+  },
+  "action": {
+    "logout": "退出登录"
+  },
+  "visa": {
+    "dday": {
+      "today": "D-Day"
+    },
+    "labels": {
+      "D10": "求职",
+      "D2": "学生"
+    },
+    "current": {
+      "statusName": "当前签证状态",
+      "title": "{{visaCode}} {{visaLabel}}签证",
+      "expiryDate": "有效期至 {{date}}"
+    },
+    "graduation": {
+      "statusName": "毕业倒计时",
+      "completed": "已毕业"
+    },
+    "remaining": {
+      "statusName": "剩余停留时间",
+      "completed": "已到期"
+    }
+  }
+}
