@@ -7,9 +7,6 @@ import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
 import { ROUTE_PATH } from '@shared/router';
 import { isHttpError } from '@shared/utils/http-error';
 
-// TODO: 서버에서 termsAgreed 컬럼 추가 시 제거
-const TERMS_AGREE: boolean = true;
-
 export const requireAuth = () => {
   if (!authService.isAuthenticated()) {
     throw redirect(ROUTE_PATH.LOGIN);
@@ -33,10 +30,11 @@ export const appRouteLoader = async () => {
       USER_QUERY_OPTIONS.GET_USER_STATUS(),
     );
 
-    // TODO: TERMS_AGREE 제거
-    const termsAgreed = userStatus.termsAgreed ?? TERMS_AGREE;
+    if (!userStatus) {
+      return;
+    }
 
-    if (!termsAgreed) {
+    if (!userStatus.agreedTerm) {
       throw redirect(ROUTE_PATH.TERMSAGREEMENT);
     }
 
@@ -65,8 +63,11 @@ export const termsGuardLoader = async () => {
       USER_QUERY_OPTIONS.GET_USER_STATUS(),
     );
 
-    // TODO: TERMS_AGREE 제거
-    if ((userStatus.termsAgreed ?? TERMS_AGREE) === false) {
+    if (!userStatus) {
+      return;
+    }
+
+    if (!userStatus.agreedTerm) {
       return null;
     }
 
@@ -74,8 +75,7 @@ export const termsGuardLoader = async () => {
       ? ROUTE_PATH.ONBOARDING
       : ROUTE_PATH.DASHBOARD;
 
-    // if (userStatus.termsAgreed) {
-    if (TERMS_AGREE === true) {
+    if (userStatus.agreedTerm) {
       throw redirect(redirectUrl);
     }
   } catch (error) {
@@ -99,6 +99,10 @@ export const onboardingGuardLoader = async () => {
     const userStatus = await queryClient.ensureQueryData(
       USER_QUERY_OPTIONS.GET_USER_STATUS(),
     );
+
+    if (!userStatus) {
+      return;
+    }
 
     if (userStatus.onboardingRequired === false) {
       throw redirect(ROUTE_PATH.DASHBOARD);
