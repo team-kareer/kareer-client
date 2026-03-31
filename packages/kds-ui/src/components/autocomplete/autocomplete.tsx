@@ -33,7 +33,9 @@ const Autocomplete = ({
 
   useEffect(() => {
     const matched = options.find((option) => option.code === value);
-    setInputValue(matched ? matched.label : '');
+    if (matched) {
+      setInputValue(matched.label);
+    }
   }, [value, options]);
 
   const filteredOptions = options.filter((option) =>
@@ -43,7 +45,7 @@ const Autocomplete = ({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setIsOpen(e.target.value.length > 0);
-    onChange('');
+    onChange(inputValue);
   };
 
   const handleOptionClick = (option: AutocompleteOption) => {

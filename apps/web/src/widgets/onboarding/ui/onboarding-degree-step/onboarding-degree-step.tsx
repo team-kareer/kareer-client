@@ -94,6 +94,7 @@ const OnboardingDegreeStep = () => {
         }}
         render={({ field }) => (
           <Autocomplete
+            key={degreeLocation}
             placeholder="Select your degree"
             value={field.value || ''}
             onChange={(label) => {
