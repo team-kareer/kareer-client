@@ -72,12 +72,11 @@ const OnboardingPage = () => {
     Boolean(form.formState.errors[fieldName]),
   );
 
-  // const isNextDisabled =
-  //   form.formState.isLoading ||
-  //   !hasAllRequiredValues ||
-  //   hasStepErrors ||
-  //   isPersonalBackgroundOverLimit;
-  const isNextDisabled = false;
+  const isNextDisabled =
+    form.formState.isLoading ||
+    !hasAllRequiredValues ||
+    hasStepErrors ||
+    isPersonalBackgroundOverLimit;
 
   useEffect(() => {
     if (error) {
@@ -112,18 +111,19 @@ const OnboardingPage = () => {
   });
 
   const handleNext = async () => {
-    // 임시 주석 - 유효성 검사 스킵
-    // const isValid = await form.trigger(requiredFields);
-    // if (isValid) {
-    const isLastStep = currentStepIndex === FUNNEL_STEPS.length - 1;
-    if (isLastStep) {
-      const formData = form.getValues();
-      const requestData = convertFormToRequest(formData) as PostOnboardingForm;
-      submitOnboarding(requestData);
-    } else {
-      goToNextStep();
+    const isValid = await form.trigger(requiredFields);
+    if (isValid) {
+      const isLastStep = currentStepIndex === FUNNEL_STEPS.length - 1;
+      if (isLastStep) {
+        const formData = form.getValues();
+        const requestData = convertFormToRequest(
+          formData,
+        ) as PostOnboardingForm;
+        submitOnboarding(requestData);
+      } else {
+        goToNextStep();
+      }
     }
-    // }
   };
 
   return (
