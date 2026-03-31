@@ -1,0 +1,1 @@
+export { useTermsCheck } from './useTermsCheck';
