@@ -72,4 +72,5 @@ export const checkItem = style({
   display: 'flex',
   alignItems: 'center',
   gap: '0.8rem',
+  cursor: 'pointer',
 });

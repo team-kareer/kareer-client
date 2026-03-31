@@ -85,11 +85,12 @@ const PersonalBackground = () => {
           <span>Current Preparation Status</span>
           <div className={styles.check({ area: 'list' })}>
             {PREPARATION_STATUS_OPTIONS.map((status) => (
-              <div key={status} className={styles.checkItem}>
-                <Checkbox
-                  isChecked={selectedStatus.includes(status)}
-                  onClick={() => handleToggle(status)}
-                />
+              <div
+                key={status}
+                className={styles.checkItem}
+                onClick={() => handleToggle(status)}
+              >
+                <Checkbox isChecked={selectedStatus.includes(status)} />
                 <span>{status}</span>
               </div>
             ))}
