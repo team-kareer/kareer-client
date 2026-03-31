@@ -31,14 +31,13 @@ const formatDDayText = (
 
 const getVisaStatusLabel = (
   visaType: string | null | undefined,
-  d10Label: string,
-  d2Label: string,
+  t: Translate,
 ) => {
   switch (visaType) {
     case 'D10':
-      return d10Label;
+      return t('visa.labels.D10');
     case 'D2':
-      return d2Label;
+      return t('visa.labels.D2');
     default:
       return visaType ?? EMPTY_TEXT;
   }
@@ -96,11 +95,7 @@ export const getVisaStatusRenderData = (
     title: formattedVisaType
       ? t('visa.current.title', {
           visaCode: formattedVisaType,
-          visaLabel: getVisaStatusLabel(
-            visaType,
-            t('visa.labels.D10'),
-            t('visa.labels.D2'),
-          ),
+          visaLabel: getVisaStatusLabel(visaType, t),
         })
       : EMPTY_TEXT,
     date: t('visa.current.expiryDate', {
