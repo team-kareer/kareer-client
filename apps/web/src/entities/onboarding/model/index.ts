@@ -4,7 +4,6 @@ export { END_POINT } from './end_point';
 export * from './form-to-request';
 export * from './job-skills';
 export * from './options';
-export * from './utils';
 export * from './personal-background';
 export * from './target-job-skills';
 export {
@@ -14,4 +13,5 @@ export {
   type OnboardingForm,
   type OnboardingFormRequest,
 } from './types';
+export * from './utils';
 export * from './validation';
