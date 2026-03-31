@@ -45,6 +45,7 @@ i18n.use(initReactI18next).init({
     'dashboard',
     'fitAnalysis',
     'roadmap',
+    'userPopover',
   ],
   defaultNS: 'common',
   interpolation: { escapeValue: false },
