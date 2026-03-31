@@ -21,6 +21,8 @@ const TargetRole = () => {
   const { data: majorList } = useQuery({
     ...MAJOR_LIST_QUERY_OPTIONS.GET_MAJOR_LIST(),
   });
+  const majors = majorList?.majors?.map((major) => major.label ?? '') || [];
+
   const { targetJob, selectedSkills, currentJobSkills, handleSkillToggle } =
     useTargetJobSkills();
 
@@ -33,11 +35,10 @@ const TargetRole = () => {
           label="Primary Major"
           rules={{
             required: 'Enter your major',
-            validate: (value) =>
-              validateAutocompleteOption(value, majorList?.majors || []),
+            validate: (value) => validateAutocompleteOption(value, majors),
           }}
           placeholder={TARGET_ROLE_PLACEHOLDERS.PRIMARY_MAJOR}
-          options={majorList?.majors || []}
+          options={majors}
         />
         <FormInputField
           name="secondaryMajor"

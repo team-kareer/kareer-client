@@ -14,12 +14,14 @@ import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './personal-information.css';
 
+const MAX_LENGTH = 30;
+
 const PersonalInformation = () => {
   const { data: countryList } = useQuery({
     ...COUNTRY_LIST_QUERY_OPTIONS.GET_COUNTRY_LIST(),
   });
-
-  const MAX_LENGTH = 30;
+  const countries =
+    countryList?.countries?.map((country) => country.label ?? '') || [];
 
   return (
     <section>
@@ -50,11 +52,10 @@ const PersonalInformation = () => {
           label="Country"
           rules={{
             required: 'Select the Country',
-            validate: (value) =>
-              validateAutocompleteOption(value, countryList?.countries || []),
+            validate: (value) => validateAutocompleteOption(value, countries),
           }}
           placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
-          options={countryList?.countries || []}
+          options={countries}
         />
         <FormAutocompleteField
           name="languageLevel"

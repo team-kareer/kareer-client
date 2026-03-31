@@ -20,6 +20,8 @@ const UserInfoFormSection = () => {
   const { data: countryList } = useQuery({
     ...COUNTRY_LIST_QUERY_OPTIONS.GET_COUNTRY_LIST(),
   });
+  const countries =
+    countryList?.countries?.map((country) => country.label ?? '') || [];
 
   return (
     <section className={styles.formSection}>
@@ -38,11 +40,10 @@ const UserInfoFormSection = () => {
         label="Country"
         rules={{
           required: 'Select your country',
-          validate: (value) =>
-            validateAutocompleteOption(value, countryList?.countries || []),
+          validate: (value) => validateAutocompleteOption(value, countries),
         }}
         placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
-        options={countryList?.countries || []}
+        options={countries}
       />
       <FormInputField
         name="birthDate"
