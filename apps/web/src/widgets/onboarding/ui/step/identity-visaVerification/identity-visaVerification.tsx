@@ -36,7 +36,7 @@ const IdentityVisaVerification = () => {
 
   return (
     <section className={styles.container}>
-      <OnboardingStepTitle stepNumber={5} title={FUNNEL_STEPS[5]} />
+      <OnboardingStepTitle stepNumber={1} title={FUNNEL_STEPS[0]} />
       <div className={styles.formcontainer}>
         <div className={styles.formSection}>
           <ImageUploadSection
