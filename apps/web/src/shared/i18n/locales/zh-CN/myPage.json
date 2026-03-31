@@ -1,0 +1,21 @@
+{
+  "profile": {
+    "section": {
+      "title": "关于我",
+      "subtitle": "这里是一些关于您的基本信息"
+    },
+    "fields": {
+      "targetJob": "目标职位",
+      "birthDate": "出生日期",
+      "country": "国家",
+      "degree": "学历",
+      "university": "大学",
+      "primaryMajor": "主修专业",
+      "secondaryMajor": "第二专业",
+      "visaType": "当前签证类型",
+      "visaExpiredAt": "当前签证开始日期",
+      "languageLevel": "TOPIK / KIIP 级别",
+      "englishLevel": "英语水平"
+    }
+  }
+}

@@ -4,6 +4,12 @@
     "confirm": "Xác nhận",
     "cancel": "Hủy"
   },
+  "language": {
+    "english": "Tiếng Anh",
+    "korean": "Tiếng Hàn",
+    "vietnamese": "Tiếng Việt",
+    "chinese": "Tiếng Trung"
+  },
   "state": {
     "loading": "Đang tải..."
   },

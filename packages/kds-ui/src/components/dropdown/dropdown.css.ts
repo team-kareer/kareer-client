@@ -29,6 +29,7 @@ export const panel = style({
   minWidth: '100%',
   backgroundColor: themeVars.color.grayscale.white,
   borderRadius: '10px',
+  border: `1px solid ${themeVars.color.grayscale.gray300}`,
   overflow: 'hidden',
 });
 
