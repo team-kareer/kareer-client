@@ -14,6 +14,10 @@ export const LoginCallbackPage = lazy(
   () => import('@pages/login-callback/login-callback-page'),
 );
 
+export const TermsAgreementPage = lazy(
+  () => import('@pages/terms-agreement/terms-agreement-page'),
+);
+
 export const OnboardingPage = lazy(
   () => import('@pages/onboarding/onboarding-page'),
 );

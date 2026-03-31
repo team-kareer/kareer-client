@@ -7,6 +7,12 @@ export const LANGUAGE_LEVEL_OPTIONS = [
   'Not taken yet',
 ];
 
+export const ENGLISH_PROFICIENCY_OPTIONS = [
+  'Beginner',
+  'Intermediate',
+  'Advanced',
+];
+
 export const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
 
 export const VISA_TYPE_LABELS: Record<string, string> = {

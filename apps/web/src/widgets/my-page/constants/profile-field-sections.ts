@@ -1,21 +1,21 @@
 export const PROFILE_FIELD_SECTIONS = [
-  [{ label: 'Target Job', key: 'targetJob' }],
+  [{ label: 'profile.fields.targetJob', key: 'targetJob' }],
   [
-    { label: 'Date of Birth', key: 'birthDate' },
-    { label: 'Country', key: 'country' },
+    { label: 'profile.fields.birthDate', key: 'birthDate' },
+    { label: 'profile.fields.country', key: 'country' },
   ],
   [
-    { label: 'Degree', key: 'degree' },
-    { label: 'University', key: 'university' },
-    { label: 'Major', key: 'primaryMajor' },
-    { label: 'Secondary Major', key: 'secondaryMajor' },
+    { label: 'profile.fields.degree', key: 'degree' },
+    { label: 'profile.fields.university', key: 'university' },
+    { label: 'profile.fields.primaryMajor', key: 'primaryMajor' },
+    { label: 'profile.fields.secondaryMajor', key: 'secondaryMajor' },
   ],
   [
-    { label: 'Current Visa Type', key: 'visaType' },
-    { label: 'Current Visa Start Date', key: 'visaExpiredAt' },
+    { label: 'profile.fields.visaType', key: 'visaType' },
+    { label: 'profile.fields.visaExpiredAt', key: 'visaExpiredAt' },
   ],
   [
-    { label: 'TOPIK / KIIP Level', key: 'languageLevel' },
-    { label: 'English Level', key: 'englishLevel' },
+    { label: 'profile.fields.languageLevel', key: 'languageLevel' },
+    { label: 'profile.fields.englishLevel', key: 'englishLevel' },
   ],
 ] as const;

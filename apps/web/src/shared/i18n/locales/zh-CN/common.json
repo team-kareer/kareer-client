@@ -4,6 +4,12 @@
     "confirm": "确认",
     "cancel": "取消"
   },
+  "language": {
+    "english": "英语",
+    "korean": "韩语",
+    "vietnamese": "越南语",
+    "chinese": "中文"
+  },
   "state": {
     "loading": "加载中..."
   },

@@ -5,15 +5,14 @@ export type OnboardingFormRequest =
 
 export type OnboardingForm = Omit<
   OnboardingFormRequest,
-  'country' | 'languageLevel' | 'degree' | 'visaType' | 'englishLevel'
+  'languageLevel' | 'englishLevel' | 'degree' | 'visaType'
 > & {
-  country: OnboardingFormRequest['country'] | '';
   languageLevel: OnboardingFormRequest['languageLevel'] | '';
+  englishLevel: OnboardingFormRequest['englishLevel'] | '';
   degree: string;
   visaType: 'D-2' | 'D-10' | '';
   degreeLocation: string;
   university: string;
-  englishLevel: OnboardingFormRequest['englishLevel'] | '';
 };
 
 export type GetMajorListResponse =
@@ -24,3 +23,5 @@ export type GetCountryListResponse =
 
 export type GetFieldListResponse =
   paths['/api/v1/members/onboard/fields']['get']['responses']['200']['content']['*/*'];
+export type GetUniversityListResponse =
+  paths['/api/v1/members/onboard/universities']['get']['responses']['200']['content']['*/*'];

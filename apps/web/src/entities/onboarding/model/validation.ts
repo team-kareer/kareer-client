@@ -1,11 +1,11 @@
 import { STEP_REQUIRED_FIELDS, VISA_TYPE_REQUIRED_FIELDS } from './constants';
 import { type OnboardingForm } from './types';
 
-const VISA_STEP_INDEX = 1;
+const VISA_STEP_INDEX = 0;
 
 /**
  * 특정 단계에 대한 필수 필드 목록을 반환하는 함수
- * @description 비자 정보 단계(stepIndex === 1)인 경우 비자 타입에 따라 다른 필드 반환
+ * @description 비자 정보 단계(stepIndex === 0)인 경우 비자 타입에 따라 다른 필드 반환
  */
 export const getRequiredFieldsForStep = (
   stepIndex: number,

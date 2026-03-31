@@ -2,18 +2,24 @@ import { useEffect, useState } from 'react';
 import { ArrowDownIcon, ArrowUpIcon, SearchIcon } from '@kds/icons';
 
 import * as styles from './autocomplete.css';
+
+export interface AutocompleteOption {
+  code: string;
+  label: string;
+}
+
 interface AutocompleteProps {
   value: string;
   onChange: (value: string) => void;
   onInputChange?: (value: string) => void;
-  options: string[];
+  options: AutocompleteOption[];
   placeholder?: string;
   icon?: 'chevron' | 'search';
 }
 
 interface DropDownProps {
-  options: string[];
-  onClick: (option: string) => void;
+  options: AutocompleteOption[];
+  onClick: (option: AutocompleteOption) => void;
 }
 
 const Autocomplete = ({
@@ -24,34 +30,27 @@ const Autocomplete = ({
   placeholder,
   icon = 'chevron',
 }: AutocompleteProps) => {
-  // 드롭메뉴 열림 여부
   const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(value || '');
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
-    setInputValue(value || '');
-  }, [value]);
+    const matched = options.find((option) => option.code === value);
+    setInputValue(matched ? matched.label : '');
+  }, [value, options]);
 
-  // 입력값 필터링 (undefined/null 값 제거)
-  const filteredOptions = options
-    .filter((option) => option != null)
-    .filter((option) =>
-      option.toLowerCase().includes(inputValue.toLowerCase()),
-    );
+  const filteredOptions = options.filter((option) =>
+    option.label?.toLowerCase().includes(inputValue.toLowerCase()),
+  );
 
-  // 입력 처리
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setInputValue(newValue);
-    onInputChange?.(newValue);
-    setIsOpen(newValue.length > 0);
+    setInputValue(e.target.value);
+    onInputChange?.(e.target.value);
+    setIsOpen(e.target.value.length > 0);
   };
 
-  // 옵션 선택 처리
-  const handleOptionClick = (option: string) => {
-    onChange(option);
+  const handleOptionClick = (option: AutocompleteOption) => {
+    onChange(option.code);
     setIsOpen(false);
-    setInputValue('');
   };
 
   const toggleDropdown = () => {
@@ -101,11 +100,11 @@ const DropList = ({ options, onClick }: DropDownProps) => {
     <ul className={styles.dropdown}>
       {options.map((option) => (
         <li
-          key={option}
+          key={option.code}
           className={styles.option}
           onMouseDown={() => onClick(option)}
         >
-          {option}
+          {option.label}
         </li>
       ))}
     </ul>

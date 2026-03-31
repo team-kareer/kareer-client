@@ -1,0 +1,21 @@
+{
+  "profile": {
+    "section": {
+      "title": "Thông tin của tôi",
+      "subtitle": "Dưới đây là một số thông tin cơ bản về bạn"
+    },
+    "fields": {
+      "targetJob": "Công việc mục tiêu",
+      "birthDate": "Ngày sinh",
+      "country": "Quốc gia",
+      "degree": "Bằng cấp",
+      "university": "Trường đại học",
+      "primaryMajor": "Chuyên ngành chính",
+      "secondaryMajor": "Chuyên ngành phụ",
+      "visaType": "Loại visa hiện tại",
+      "visaExpiredAt": "Ngày bắt đầu visa",
+      "languageLevel": "Trình độ TOPIK / KIIP",
+      "englishLevel": "Trình độ tiếng Anh"
+    }
+  }
+}

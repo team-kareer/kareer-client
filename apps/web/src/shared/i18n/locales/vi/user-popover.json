@@ -1,0 +1,30 @@
+{
+  "section": {
+    "status": "Trạng thái của tôi"
+  },
+  "action": {
+    "logout": "Đăng xuất"
+  },
+  "visa": {
+    "dday": {
+      "today": "D-Day"
+    },
+    "labels": {
+      "D10": "người tìm việc",
+      "D2": "sinh viên"
+    },
+    "current": {
+      "statusName": "Tình trạng visa hiện tại",
+      "title": "Visa {{visaLabel}} {{visaCode}}",
+      "expiryDate": "hết hạn {{date}}"
+    },
+    "graduation": {
+      "statusName": "Thời gian còn lại đến khi tốt nghiệp",
+      "completed": "Đã tốt nghiệp"
+    },
+    "remaining": {
+      "statusName": "Thời gian lưu trú còn lại",
+      "completed": "Đã hết hạn"
+    }
+  }
+}

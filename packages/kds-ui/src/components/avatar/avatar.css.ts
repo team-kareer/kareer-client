@@ -3,7 +3,6 @@ import { recipe } from '@vanilla-extract/recipes';
 export const img = recipe({
   base: {
     borderRadius: '50%',
-    anchorName: '--anchor-user-profile',
   },
   variants: {
     use: {
@@ -12,6 +11,7 @@ export const img = recipe({
         height: '6.4rem',
       },
       header: {
+        anchorName: '--anchor-user-profile',
         width: '5.2rem',
         height: '5.2rem',
       },

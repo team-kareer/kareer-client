@@ -7,6 +7,7 @@ import {
   type OnboardingForm,
   OUTSIDE_KOREA_DEGREE_OPTIONS,
   SOUTH_KOREA_DEGREE_OPTIONS,
+  toOptions,
 } from '@entities/onboarding';
 
 import * as styles from './onboarding-degree-step.css';
@@ -84,18 +85,22 @@ const OnboardingDegreeStep = () => {
         rules={{
           required: 'Select the degree',
           validate: (value) => {
-            const result = validateAutocompleteOption(value, options);
+            const result = validateAutocompleteOption(
+              value,
+              toOptions(options),
+            );
             return result === true || result;
           },
         }}
         render={({ field }) => (
           <Autocomplete
-            placeholder="Select the degree"
+            key={degreeLocation}
+            placeholder="Select your degree"
             value={field.value || ''}
             onChange={(label) => {
               field.onChange(label);
             }}
-            options={options}
+            options={toOptions(options)}
           />
         )}
       />
