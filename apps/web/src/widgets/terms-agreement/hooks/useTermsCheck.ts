@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
-import type { Term } from '@widgets/terms-agreement';
+import { Term } from '@entities/terms';
 
 export const useTermsCheck = (terms: Term[]) => {
-  const [checkedItems, setCheckedItems] = useState(() =>
-    Object.fromEntries(terms.map(({ termId }) => [termId, false])),
+  const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>(
+    () => Object.fromEntries(terms.map(({ termId }) => [termId, false])),
   );
-  const allChecked = terms.every((term) => checkedItems[term.termId]);
+  const allChecked =
+    terms.length > 0 && terms.every((term) => checkedItems[term.termId ?? 0]);
 
   const handleToggleAll = () => {
     setCheckedItems(
