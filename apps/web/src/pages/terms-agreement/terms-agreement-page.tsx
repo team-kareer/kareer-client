@@ -1,5 +1,6 @@
 import { Button, Checkbox } from '@kds/ui';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
 
 import { AccordionList, useTermsCheck } from '@widgets/terms-agreement';
 import { TERMS_QUERY_OPTIONS } from '@entities/terms';
@@ -7,15 +8,31 @@ import { TERMS_QUERY_OPTIONS } from '@entities/terms';
 import * as styles from './terms-agreement-page.css';
 
 const TermsAgreementPage = () => {
+  const navigate = useNavigate();
   const { data } = useSuspenseQuery({
     ...TERMS_QUERY_OPTIONS.GET_TERMS_LIST(),
   });
-  const { checkedItems, allChecked, handleToggleAll, handleToggleItem } =
-    useTermsCheck(data?.terms ?? []);
+  const terms = data?.terms ?? [];
 
-  const canSubmit = (data?.terms ?? [])
+  const { mutate: submitTerms } = useMutation({
+    ...TERMS_QUERY_OPTIONS.POST_TERM_AGREEMENTS(),
+    onSuccess: () => {
+      navigate('/onboarding');
+    },
+  });
+  const { checkedItems, allChecked, handleToggleAll, handleToggleItem } =
+    useTermsCheck(terms);
+
+  const canSubmit = terms
     .filter((data) => data.required)
     .every((data) => checkedItems[data.termId ?? 0]);
+  const handleSubmit = () => {
+    const agreements = terms.map((term) => ({
+      termId: term.termId ?? 0,
+      agreed: checkedItems[term.termId ?? 0] ?? false,
+    }));
+    submitTerms({ agreements });
+  };
 
   return (
     <div className={styles.container}>
@@ -38,7 +55,11 @@ const TermsAgreementPage = () => {
           </div>
         </div>
       </div>
-      <Button preset="large_primary" disabled={!canSubmit}>
+      <Button
+        preset="large_primary"
+        onClick={handleSubmit}
+        disabled={!canSubmit}
+      >
         Agree and Start
       </Button>
     </div>
