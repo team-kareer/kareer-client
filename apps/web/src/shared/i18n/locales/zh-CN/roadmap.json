@@ -1,0 +1,72 @@
+{
+  "overview": {
+    "section": {
+      "title": "职业发展路线",
+      "subtitle": "跟踪您在关键职业阶段的进展"
+    },
+    "roadmap": {
+      "prefix": "通往 "
+    },
+    "stepInfo": {
+      "phaseLabel": "{{status}}阶段",
+      "phaseStatus": {
+        "current": "当前",
+        "completed": "已完成",
+        "next": "下一",
+        "future": "未来"
+      },
+      "workStatus": {
+        "allCompleted": "全部完成",
+        "incompletedWorks": "未完成任务",
+        "remainedWorks": "剩余任务",
+        "scheduledWorks": "已安排任务"
+      }
+    }
+  },
+  "phaseList": {
+    "section": {
+      "title": "阶段列表",
+      "subtitle": "查看详细执行计划"
+    },
+    "accordion": {
+      "tag": {
+        "phase": "阶段 {{phase}}"
+      },
+      "action": {
+        "showAll": "查看全部",
+        "showLess": "收起"
+      }
+    }
+  },
+  "actionRequired": {
+    "header": {
+      "title": "需要完成的任务",
+      "itemCount": "{{count}} items"
+    },
+    "tags": {
+      "Visa": "签证",
+      "Career": "职业",
+      "Done": "已完成"
+    },
+    "action": {
+      "todo": "添加待办"
+    }
+  },
+  "aiGuide": {
+    "header": {
+      "title": "AI 指南与风险",
+      "description": "请记录实习期间的所有工作经验"
+    },
+    "cards": {
+      "importance": {
+        "title": "为什么重要"
+      },
+      "guideline": {
+        "title": "如何正确完成"
+      },
+      "commonMistakes": {
+        "title": "常见错误"
+      }
+    }
+  }
+}

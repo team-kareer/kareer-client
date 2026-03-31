@@ -1,3 +1,7 @@
 {
-  "TodoTitle": "Việc cần làm"
+  "TodoTitle": "Việc cần làm",
+  "tab": {
+    "career": "Nghề nghiệp",
+    "visa": "Visa"
+  }
 }

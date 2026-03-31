@@ -1,5 +1,6 @@
 import { CheckCircleIcon } from '@kds/icons';
 import { ProgressBar, Tag } from '@kds/ui';
+import { useTranslation } from 'react-i18next';
 
 import * as styles from './visa-status-box.css';
 
@@ -18,10 +19,13 @@ const VisaStatusBox = ({
   total,
   done,
 }: VisaStatusBoxProps) => {
+  const { t } = useTranslation('fitAnalysis');
   const percent = Math.floor((done / total) * 100);
   const completed = percent === 100;
   const color = completed ? 'pastel_mint' : 'pastel_orange';
-  const tagText = completed ? 'Eligible' : 'Not Eligible';
+  const tagText = completed
+    ? t('visaEligibility.status.eligible')
+    : t('visaEligibility.status.notEligible');
 
   return (
     <div className={styles.container}>
@@ -30,10 +34,14 @@ const VisaStatusBox = ({
           {isCurrent && (
             <>
               <CheckCircleIcon width={19} height={19} />
-              <span className={styles.guide}>Current Visa Status</span>
+              <span className={styles.guide}>
+                {t('visaEligibility.status.currentVisaStatus')}
+              </span>
             </>
           )}
-          <span className={styles.current}>{goal}</span>
+          <span className={styles.current}>
+            {t(`visaEligibility.visaTabs.${goal}`)}
+          </span>
           {isCurrent && <span className={styles.date}>{date}</span>}
         </div>
         <div className={styles.right_section}>
