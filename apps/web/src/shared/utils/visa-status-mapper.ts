@@ -6,20 +6,23 @@ import { calculateDDay } from './dday-calculate';
 type UserStatus = components['schemas']['MemberStatusResponse'];
 type Translate = (key: string, options?: Record<string, string>) => string;
 
+const EMPTY_TEXT = '-';
+const TODAY_DDAY = 0;
+
 const formatDDayText = (
   dDay: number | undefined,
   completedLabel: string,
   todayLabel: string,
 ) => {
   if (dDay === undefined) {
-    return '-';
+    return EMPTY_TEXT;
   }
 
   if (dDay < 0) {
     return completedLabel;
   }
 
-  if (dDay === 0) {
+  if (dDay === TODAY_DDAY) {
     return todayLabel;
   }
 
@@ -37,7 +40,7 @@ const getVisaStatusLabel = (
     case 'D2':
       return d2Label;
     default:
-      return visaType ?? '-';
+      return visaType ?? EMPTY_TEXT;
   }
 };
 
@@ -46,13 +49,13 @@ const formatVisaStatusDate = (
   language: SupportedLanguage,
 ) => {
   if (!dateStr) {
-    return '-';
+    return EMPTY_TEXT;
   }
 
   const date = new Date(dateStr);
 
   if (Number.isNaN(date.getTime())) {
-    return '-';
+    return EMPTY_TEXT;
   }
 
   const year = date.getFullYear();
@@ -99,7 +102,7 @@ export const getVisaStatusRenderData = (
             t('visa.labels.D2'),
           ),
         })
-      : '-',
+      : EMPTY_TEXT,
     date: t('visa.current.expiryDate', {
       date: formatVisaStatusDate(visaExpiredAt, language),
     }),
