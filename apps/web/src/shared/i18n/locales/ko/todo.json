@@ -1,3 +1,7 @@
 {
-  "TodoTitle": "할 일"
+  "TodoTitle": "할 일",
+  "tab": {
+    "career": "커리어",
+    "visa": "비자"
+  }
 }

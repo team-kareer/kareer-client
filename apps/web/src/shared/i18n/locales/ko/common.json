@@ -4,7 +4,33 @@
     "confirm": "확인",
     "cancel": "취소"
   },
+  "language": {
+    "english": "영어",
+    "korean": "한국어",
+    "vietnamese": "베트남어",
+    "chinese": "중국어"
+  },
   "state": {
     "loading": "로딩 중..."
+  },
+  "layout": {
+    "header": {
+      "dashboard": {
+        "title": "나만의 커리어 플랜",
+        "subtitle": "비자 상태, 배경, 커리어 목표를 바탕으로 구성했어요"
+      },
+      "roadmap": {
+        "title": "로드맵",
+        "subtitle": "커리어와 비자 목표까지의 단계별 경로를 확인해보세요"
+      },
+      "fitAnalysis": {
+        "title": "적합도 분석",
+        "subtitle": "어떤 점이 강점이고, 무엇을 보완해야 하는지 확인해보세요"
+      },
+      "myPage": {
+        "title": "마이페이지",
+        "subtitle": "내 정보를 확인해보세요"
+      }
+    }
   }
 }

@@ -7,6 +7,7 @@ export const ROUTE_PATH = {
   ERROR: '/error-page',
   LOGIN: '/login',
   LOGIN_CALLBACK: '/oauth/callback',
+  TERMSAGREEMENT: '/terms-agreement',
   ONBOARDING: '/onboarding',
 };
 

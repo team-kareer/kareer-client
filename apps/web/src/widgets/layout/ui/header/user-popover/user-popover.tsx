@@ -1,6 +1,7 @@
 import { LogoutIcon } from '@kds/icons';
 import { Avatar } from '@kds/ui';
 import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { VisaStatusList } from '@widgets/dashboard/ui';
 import { AUTH_MUTATION_OPTIONS } from '@features/auth/queries/queries';
@@ -14,6 +15,7 @@ interface UserPopoverProps {
 }
 
 const UserPopover = ({ profileUrl, name, email }: UserPopoverProps) => {
+  const { t } = useTranslation('userPopover');
   const { mutate } = useMutation({
     ...AUTH_MUTATION_OPTIONS.LOGOUT(),
   });
@@ -28,12 +30,12 @@ const UserPopover = ({ profileUrl, name, email }: UserPopoverProps) => {
         </div>
       </section>
       <section className={styles.middle}>
-        <div className={styles.text['status']}>My status</div>
+        <div className={styles.text['status']}>{t('section.status')}</div>
         <VisaStatusList />
       </section>
       <button className={styles.bottom} onClick={handleLogout}>
         <LogoutIcon width={24} height={24} />
-        <div className={styles.text['logout']}>Log Out</div>
+        <div className={styles.text['logout']}>{t('action.logout')}</div>
       </button>
     </div>
   );

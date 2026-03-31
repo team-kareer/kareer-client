@@ -37,7 +37,18 @@ i18n.use(initReactI18next).init({
   lng: getInitialLanguage(),
   fallbackLng: DEFAULT_LANGUAGE,
   supportedLngs: [...SUPPORTED_LANGUAGES],
-  ns: ['common', 'todo', 'empty', 'dashboard'],
+
+  ns: [
+    'common',
+    'navigation',
+    'todo',
+    'empty',
+    'dashboard',
+    'fitAnalysis',
+    'roadmap',
+    'userPopover',
+    'myPage',
+  ],
   defaultNS: 'common',
   interpolation: { escapeValue: false },
 });

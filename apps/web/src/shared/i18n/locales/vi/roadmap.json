@@ -1,0 +1,72 @@
+{
+  "overview": {
+    "section": {
+      "title": "Lộ trình sự nghiệp",
+      "subtitle": "Theo dõi tiến độ của bạn hướng tới các cột mốc quan trọng"
+    },
+    "roadmap": {
+      "prefix": "Lộ trình đến "
+    },
+    "stepInfo": {
+      "phaseLabel": "Giai đoạn {{status}}",
+      "phaseStatus": {
+        "current": "hiện tại",
+        "completed": "trước",
+        "next": "tiếp theo",
+        "future": "tiếp theo"
+      },
+      "workStatus": {
+        "allCompleted": "Đã hoàn thành tất cả",
+        "incompletedWorks": "Công việc chưa hoàn thành",
+        "remainedWorks": "Công việc còn lại",
+        "scheduledWorks": "Công việc đã lên kế hoạch"
+      }
+    }
+  },
+  "phaseList": {
+    "section": {
+      "title": "Danh sách giai đoạn",
+      "subtitle": "Xem kế hoạch chi tiết"
+    },
+    "accordion": {
+      "tag": {
+        "phase": "Giai đoạn {{phase}}"
+      },
+      "action": {
+        "showAll": "Xem tất cả",
+        "showLess": "Thu gọn"
+      }
+    }
+  },
+  "actionRequired": {
+    "header": {
+      "title": "Công việc cần thực hiện",
+      "itemCount": "{{count}} items"
+    },
+    "tags": {
+      "Visa": "Visa",
+      "Career": "Nghề nghiệp",
+      "Done": "Hoàn thành"
+    },
+    "action": {
+      "todo": "Thêm việc cần làm"
+    }
+  },
+  "aiGuide": {
+    "header": {
+      "title": "Hướng dẫn AI & rủi ro",
+      "description": "Hãy ghi lại toàn bộ kinh nghiệm làm việc trong thời gian thực tập"
+    },
+    "cards": {
+      "importance": {
+        "title": "Vì sao điều này quan trọng"
+      },
+      "guideline": {
+        "title": "Cách thực hiện đúng"
+      },
+      "commonMistakes": {
+        "title": "Những lỗi thường gặp"
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import TodoItem from '@entities/todo/ui/todo-item/todo-item';
 import { VisaStatusBox } from '@shared/ui';
@@ -24,6 +25,7 @@ const VisaChecklist = ({
   date,
   checklistData,
 }: VisaChecklistProps) => {
+  const { t } = useTranslation('fitAnalysis');
   const STORAGE_KEY = `checked_ids_${curTab}`;
   const [checkedIds, setCheckedIds] = useState<number[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -55,15 +57,17 @@ const VisaChecklist = ({
       />
       <section className={styles.container}>
         <header className={styles.header}>
-          <h3 className={styles.title}>Basic Requirements</h3>
-          <span className={styles.subTitle}>Check List</span>
+          <h3 className={styles.title}>{t('visaChecklist.header.title')}</h3>
+          <span className={styles.subTitle}>
+            {t('visaChecklist.header.subtitle')}
+          </span>
         </header>
         <ul className={styles.checklist}>
           {checklistData.map((item) => (
             <TodoItem
               key={item.title}
-              title={item.title}
-              description={item.subTitle}
+              title={t(item.title)}
+              description={t(item.subTitle)}
               size="lg"
               isChecked={checkedIds.includes(item.id)}
               onToggle={() => handleToggle(item.id)}

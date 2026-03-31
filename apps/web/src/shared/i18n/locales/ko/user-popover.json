@@ -1,0 +1,30 @@
+{
+  "section": {
+    "status": "내 상태"
+  },
+  "action": {
+    "logout": "로그아웃"
+  },
+  "visa": {
+    "dday": {
+      "today": "D-Day"
+    },
+    "labels": {
+      "D10": "구직 비자",
+      "D2": "학생 비자"
+    },
+    "current": {
+      "statusName": "현재 비자 상태",
+      "title": "{{visaCode}} {{visaLabel}}",
+      "expiryDate": "{{date}} 만료"
+    },
+    "graduation": {
+      "statusName": "졸업까지 남은 기간",
+      "completed": "졸업"
+    },
+    "remaining": {
+      "statusName": "체류 가능 기간",
+      "completed": "만료"
+    }
+  }
+}

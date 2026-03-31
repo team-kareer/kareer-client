@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import { Button, Tag } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { ActionRequired, AIGuide } from '@widgets/roadmap';
 import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
@@ -29,12 +30,15 @@ const Accordion = ({
   endDate,
   clickedPhase,
 }: PhaseListAccordionItemProps) => {
+  const { t } = useTranslation('roadmap');
   const { data: roadmapPhaseData } = useQuery({
     ...PHASE_QUERY_OPTIONS.GET_PAHSE_ITEM_ROADMAP(phaseId),
   });
   const { isOpen, shouldRender, toggle, open, close } = useAccordion();
   const tagStyle = isOpen ? 'pastel_blue' : 'disabled_gray';
-  const buttonText = isOpen ? 'Show less' : 'Show all';
+  const buttonText = isOpen
+    ? t('phaseList.accordion.action.showLess')
+    : t('phaseList.accordion.action.showAll');
   const prevClickedPhaseRef = useRef(clickedPhase);
   const containerRef = useRef<HTMLElement>(null);
   const isInitialized = useRef(false);
@@ -94,7 +98,9 @@ const Accordion = ({
       {/* accordionTrigger */}
       <header className={styles.header}>
         <div className={styles.left_section}>
-          <Tag color={tagStyle}>Phase {phase}</Tag>
+          <Tag color={tagStyle}>
+            {t('phaseList.accordion.tag.phase', { phase })}
+          </Tag>
           <div className={styles.column}>
             <h3 className={styles.title}>{title}</h3>
             <p className={styles.grayText}>{subTitle}</p>

@@ -4,7 +4,33 @@
     "confirm": "Confirm",
     "cancel": "Cancel"
   },
+  "language": {
+    "english": "English",
+    "korean": "Korean",
+    "vietnamese": "Vietnamese",
+    "chinese": "Chinese"
+  },
   "state": {
     "loading": "Loading..."
+  },
+  "layout": {
+    "header": {
+      "dashboard": {
+        "title": "Your Personalized Career Plan",
+        "subtitle": "Built from your visa status, background, and career goals"
+      },
+      "roadmap": {
+        "title": "Road Map",
+        "subtitle": "Your step-by-step path toward career and visa goals"
+      },
+      "fitAnalysis": {
+        "title": "Fit analysis",
+        "subtitle": "See what works in your favor — and what to improve"
+      },
+      "myPage": {
+        "title": "My Page",
+        "subtitle": "Check your identity"
+      }
+    }
   }
 }
