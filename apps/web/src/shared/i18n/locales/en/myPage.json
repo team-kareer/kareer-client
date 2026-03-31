@@ -1,0 +1,21 @@
+{
+  "profile": {
+    "section": {
+      "title": "About Me",
+      "subtitle": "Here’s some information about me"
+    },
+    "fields": {
+      "targetJob": "Target Job",
+      "birthDate": "Date of Birth",
+      "country": "Country",
+      "degree": "Degree",
+      "university": "University",
+      "primaryMajor": "Major",
+      "secondaryMajor": "Secondary Major",
+      "visaType": "Current Visa Type",
+      "visaExpiredAt": "Current Visa Start Date",
+      "languageLevel": "TOPIK / KIIP Level",
+      "englishLevel": "English Level"
+    }
+  }
+}

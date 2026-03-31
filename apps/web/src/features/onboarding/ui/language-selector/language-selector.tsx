@@ -7,14 +7,17 @@ import { LANGUAGE_OPTIONS } from '@shared/i18n/constants';
 import * as styles from './language-selector.css';
 
 const LanguageSelector = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const currentLabel = LANGUAGE_OPTIONS.find(
     (opt) => opt.value === i18n.language,
   )!.label;
 
   const filteredOptions = LANGUAGE_OPTIONS.filter(
     (opt) => opt.value !== i18n.language,
-  );
+  ).map((option) => ({
+    ...option,
+    label: t(option.label),
+  }));
 
   return (
     <div className={styles.container}>
@@ -23,7 +26,7 @@ const LanguageSelector = () => {
         options={filteredOptions}
         icon={<GlobalIcon width={16} height={16} />}
       >
-        {currentLabel}
+        {t(currentLabel)}
       </Dropdown>
     </div>
   );

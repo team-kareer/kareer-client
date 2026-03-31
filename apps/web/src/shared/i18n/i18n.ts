@@ -37,6 +37,7 @@ i18n.use(initReactI18next).init({
   lng: getInitialLanguage(),
   fallbackLng: DEFAULT_LANGUAGE,
   supportedLngs: [...SUPPORTED_LANGUAGES],
+
   ns: [
     'common',
     'navigation',
@@ -46,6 +47,7 @@ i18n.use(initReactI18next).init({
     'fitAnalysis',
     'roadmap',
     'userPopover',
+    'myPage',
   ],
   defaultNS: 'common',
   interpolation: { escapeValue: false },
