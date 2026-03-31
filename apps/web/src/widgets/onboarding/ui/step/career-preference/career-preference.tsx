@@ -9,7 +9,11 @@ import {
 import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { useIndustryField, useTargetJobSkills } from '@features/onboarding';
 import { validateAutocompleteOption } from '@features/onboarding/model/validation';
-import { FUNNEL_STEPS, TARGET_JOB_OPTIONS } from '@entities/onboarding';
+import {
+  FUNNEL_STEPS,
+  TARGET_JOB_OPTIONS,
+  toOptions,
+} from '@entities/onboarding';
 import { FIELD_LIST_QUERY_OPTIONS } from '@entities/onboarding/qureies/queries';
 
 import * as styles from './career-preference.css';
@@ -52,10 +56,13 @@ const CareerPreference = () => {
             rules={{
               required: 'Enter your job',
               validate: (value) =>
-                validateAutocompleteOption(value, TARGET_JOB_OPTIONS),
+                validateAutocompleteOption(
+                  value,
+                  toOptions(TARGET_JOB_OPTIONS),
+                ),
             }}
             placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
-            options={TARGET_JOB_OPTIONS}
+            options={toOptions(TARGET_JOB_OPTIONS)}
           />
         </div>
         {selectedFields.length > 0 && (

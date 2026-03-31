@@ -1,10 +1,11 @@
+import { type AutocompleteOption } from '@kds/ui';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingForm } from '@entities/onboarding';
 
 const MAX_SELECTED_FIELDS = 5;
 
-export const useIndustryField = (fieldList: string[]) => {
+export const useIndustryField = (fieldList: AutocompleteOption[]) => {
   const { control, setValue, setError, clearErrors } =
     useFormContext<OnboardingForm>();
 
@@ -15,13 +16,11 @@ export const useIndustryField = (fieldList: string[]) => {
   });
 
   const availableOptions = fieldList.filter(
-    (field) => !selectedFields.includes(field),
+    (field) => !selectedFields.includes(field.code ?? ''),
   );
 
-  const handleSelectField = (field: string) => {
-    const isDuplicate = selectedFields.includes(field);
-
-    if (isDuplicate) {
+  const handleSelectField = (code: string) => {
+    if (!code || selectedFields.includes(code)) {
       return;
     }
 
@@ -32,16 +31,16 @@ export const useIndustryField = (fieldList: string[]) => {
       return;
     }
 
-    setValue('fieldsOfInterests', [...selectedFields, field], {
+    setValue('fieldsOfInterests', [...selectedFields, code], {
       shouldValidate: true,
     });
     clearErrors('fieldsOfInterests');
   };
 
-  const handleRemoveField = (field: string) => {
+  const handleRemoveField = (code: string) => {
     setValue(
       'fieldsOfInterests',
-      selectedFields.filter((f) => f !== field),
+      selectedFields.filter((f) => f !== code),
       { shouldValidate: true },
     );
     clearErrors('fieldsOfInterests');

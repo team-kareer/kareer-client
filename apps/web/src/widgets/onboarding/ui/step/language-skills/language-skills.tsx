@@ -31,7 +31,7 @@ const LanguageSkills = () => {
           options={toOptions(LANGUAGE_LEVEL_OPTIONS)}
         />
         <FormAutocompleteField
-          name="englishProficiency"
+          name="englishLevel"
           label="English Proficiency"
           rules={{
             required: 'Select your level',
