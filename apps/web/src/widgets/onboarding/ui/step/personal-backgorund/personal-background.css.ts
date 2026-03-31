@@ -1,15 +1,18 @@
 import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
+  gap: '2rem',
+  paddingRight: '5.4rem',
 });
 
-export const contentWrapper = style({
+export const inputSection = style({
   display: 'flex',
   flexDirection: 'column',
-  paddingBottom: '0.8rem',
+  gap: '0.8rem',
 });
 
 export const title = style({
@@ -23,31 +26,51 @@ export const description = style({
   color: themeVars.color.grayscale.gray500,
 });
 
-export const textAreaWrapper = style({
-  padding: '0 5.4rem 1.2rem 0',
-});
-
 export const infoContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.8rem',
-  paddingRight: '5.4rem',
+  gap: '0.4rem',
 });
 
 export const intoText = style({
   display: 'flex',
-  flexDirection: 'row',
   alignItems: 'center',
   gap: '0.4rem',
+  height: '2.8rem',
 });
 
 export const iconWrapper = style({
-  display: 'flex',
-  alignItems: 'center',
   flexShrink: 0,
 });
 
 export const infoText = style({
   ...typography.cap3_r_12,
   color: themeVars.color.grayscale.gray600,
+});
+
+export const check = recipe({
+  base: {
+    display: 'flex',
+    flexDirection: 'column',
+    color: themeVars.color.grayscale.gray700,
+  },
+  variants: {
+    area: {
+      container: {
+        ...typography.body7_sb_14,
+        gap: '0.4rem',
+      },
+      list: {
+        gap: '0.2rem',
+      },
+    },
+  },
+});
+
+export const checkItem = style({
+  ...typography.cap2_m_12,
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+  cursor: 'pointer',
 });

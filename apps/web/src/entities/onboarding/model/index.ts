@@ -9,7 +9,9 @@ export * from './target-job-skills';
 export {
   type GetCountryListResponse,
   type GetMajorListResponse,
+  type GetUniversityListResponse,
   type OnboardingForm,
   type OnboardingFormRequest,
 } from './types';
+export * from './utils';
 export * from './validation';

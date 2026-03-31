@@ -13,6 +13,7 @@ import {
   FUNNEL_STEPS,
   MAJOR_LIST_QUERY_OPTIONS,
   TARGET_JOB_OPTIONS,
+  toOptions,
 } from '@entities/onboarding';
 
 import * as styles from './target-role.css';
@@ -54,10 +55,10 @@ const TargetRole = () => {
           rules={{
             required: 'Enter your job',
             validate: (value) =>
-              validateAutocompleteOption(value, TARGET_JOB_OPTIONS),
+              validateAutocompleteOption(value, toOptions(TARGET_JOB_OPTIONS)),
           }}
           placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
-          options={TARGET_JOB_OPTIONS}
+          options={toOptions(TARGET_JOB_OPTIONS)}
         />
       </div>
       {targetJob && (

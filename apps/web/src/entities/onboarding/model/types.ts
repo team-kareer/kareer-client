@@ -1,14 +1,14 @@
 import { paths } from '@shared/types/schema';
 
 export type OnboardingFormRequest =
-  paths['/api/v1/members/onboard']['post']['requestBody']['content']['application/json'];
+  paths['/api/v2/members/onboard']['post']['requestBody']['content']['application/json'];
 
 export type OnboardingForm = Omit<
   OnboardingFormRequest,
-  'country' | 'languageLevel' | 'degree' | 'visaType'
+  'languageLevel' | 'englishLevel' | 'degree' | 'visaType'
 > & {
-  country: OnboardingFormRequest['country'] | '';
   languageLevel: OnboardingFormRequest['languageLevel'] | '';
+  englishLevel: OnboardingFormRequest['englishLevel'] | '';
   degree: string;
   visaType: 'D-2' | 'D-10' | '';
   degreeLocation: string;
@@ -19,3 +19,6 @@ export type GetMajorListResponse =
 
 export type GetCountryListResponse =
   paths['/api/v1/members/onboard/countries']['get']['responses']['200']['content']['*/*'];
+
+export type GetUniversityListResponse =
+  paths['/api/v1/members/onboard/universities']['get']['responses']['200']['content']['*/*'];

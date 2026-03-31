@@ -6,6 +6,7 @@ import enMyPage from '@shared/i18n/locales/en/myPage.json';
 import enNavigation from '@shared/i18n/locales/en/navigation.json';
 import enRoadmap from '@shared/i18n/locales/en/roadmap.json';
 import enTodo from '@shared/i18n/locales/en/todo.json';
+import enUserPopover from '@shared/i18n/locales/en/user-popover.json';
 import koCommon from '@shared/i18n/locales/ko/common.json';
 import koDashboard from '@shared/i18n/locales/ko/dashboard.json';
 import koEmpty from '@shared/i18n/locales/ko/empty.json';
@@ -14,6 +15,7 @@ import koMyPage from '@shared/i18n/locales/ko/myPage.json';
 import koNavigation from '@shared/i18n/locales/ko/navigation.json';
 import koRoadmap from '@shared/i18n/locales/ko/roadmap.json';
 import koTodo from '@shared/i18n/locales/ko/todo.json';
+import koUserPopover from '@shared/i18n/locales/ko/user-popover.json';
 import viCommon from '@shared/i18n/locales/vi/common.json';
 import viDashboard from '@shared/i18n/locales/vi/dashboard.json';
 import viEmpty from '@shared/i18n/locales/vi/empty.json';
@@ -22,6 +24,7 @@ import viMyPage from '@shared/i18n/locales/vi/myPage.json';
 import viNavigation from '@shared/i18n/locales/vi/navigation.json';
 import viRoadmap from '@shared/i18n/locales/vi/roadmap.json';
 import viTodo from '@shared/i18n/locales/vi/todo.json';
+import viUserPopover from '@shared/i18n/locales/vi/user-popover.json';
 import zhCnCommon from '@shared/i18n/locales/zh-CN/common.json';
 import zhCnDashboard from '@shared/i18n/locales/zh-CN/dashboard.json';
 import zhCnEmpty from '@shared/i18n/locales/zh-CN/empty.json';
@@ -30,6 +33,7 @@ import zhCnMyPage from '@shared/i18n/locales/zh-CN/myPage.json';
 import zhCnNavigation from '@shared/i18n/locales/zh-CN/navigation.json';
 import zhCnRoadmap from '@shared/i18n/locales/zh-CN/roadmap.json';
 import zhCnTodo from '@shared/i18n/locales/zh-CN/todo.json';
+import zhCnUserPopover from '@shared/i18n/locales/zh-CN/user-popover.json';
 
 export const resources = {
   en: {
@@ -40,6 +44,7 @@ export const resources = {
     dashboard: enDashboard,
     fitAnalysis: enFitAnalysis,
     roadmap: enRoadmap,
+    userPopover: enUserPopover,
     myPage: enMyPage,
   },
   ko: {
@@ -50,6 +55,7 @@ export const resources = {
     dashboard: koDashboard,
     fitAnalysis: koFitAnalysis,
     roadmap: koRoadmap,
+    userPopover: koUserPopover,
     myPage: koMyPage,
   },
   vi: {
@@ -60,6 +66,7 @@ export const resources = {
     dashboard: viDashboard,
     fitAnalysis: viFitAnalysis,
     roadmap: viRoadmap,
+    userPopover: viUserPopover,
     myPage: viMyPage,
   },
   'zh-CN': {
@@ -70,6 +77,7 @@ export const resources = {
     dashboard: zhCnDashboard,
     fitAnalysis: zhCnFitAnalysis,
     roadmap: zhCnRoadmap,
+    userPopover: zhCnUserPopover,
     myPage: zhCnMyPage,
   },
 } as const;

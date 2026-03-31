@@ -1,67 +1,128 @@
+import { type SupportedLanguage } from '@shared/i18n/constants';
 import { components } from '@shared/types/schema';
 
-import { formatDate } from './date-formatter';
 import { calculateDDay } from './dday-calculate';
 
 type UserStatus = components['schemas']['MemberStatusResponse'];
+type Translate = (key: string, options?: Record<string, string>) => string;
 
-const formatDDayText = (dDay: number | undefined, dDayLabel: string = '-') => {
+const EMPTY_TEXT = '-';
+const TODAY_DDAY = 0;
+
+const formatDDayText = (
+  dDay: number | undefined,
+  completedLabel: string,
+  todayLabel: string,
+) => {
   if (dDay === undefined) {
-    return '-';
+    return EMPTY_TEXT;
   }
 
   if (dDay < 0) {
-    return dDayLabel;
+    return completedLabel;
   }
-  if (dDay === 0) {
-    return 'D-Day';
+
+  if (dDay === TODAY_DDAY) {
+    return todayLabel;
   }
+
   return `D-${dDay}`;
 };
 
-const getVisaStatusLabel = (visaType?: string | null): string => {
-  if (!visaType) {
-    return '-';
+const getVisaStatusLabel = (
+  visaType: string | null | undefined,
+  t: Translate,
+) => {
+  switch (visaType) {
+    case 'D10':
+      return t('visa.labels.D10');
+    case 'D2':
+      return t('visa.labels.D2');
+    default:
+      return visaType ?? EMPTY_TEXT;
   }
-
-  const visaStatusMap: Record<string, string> = {
-    D10: 'Job Seeker',
-    D2: 'Student',
-  };
-
-  return visaStatusMap[visaType] || visaType;
 };
 
-export const getVisaStatusRenderData = (data?: UserStatus | null) => {
+const formatVisaStatusDate = (
+  dateStr: string | null | undefined,
+  language: SupportedLanguage,
+) => {
+  if (!dateStr) {
+    return EMPTY_TEXT;
+  }
+
+  const date = new Date(dateStr);
+
+  if (Number.isNaN(date.getTime())) {
+    return EMPTY_TEXT;
+  }
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  switch (language) {
+    case 'ko':
+      return `${year}년 ${month}월 ${day}일`;
+    case 'zh-CN':
+      return `${year}年${month}月${day}日`;
+    case 'vi':
+      return `${String(day).padStart(2, '0')}/${String(month).padStart(2, '0')}/${year}`;
+    case 'en':
+    default:
+      return new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      }).format(date);
+  }
+};
+
+export const getVisaStatusRenderData = (
+  data: UserStatus | null | undefined,
+  language: SupportedLanguage,
+  t: Translate,
+) => {
   if (!data) {
     return null;
   }
 
   const { visaType, visaExpiredAt, expectedGraduationDate } = data;
-
-  const gradDDay = calculateDDay(expectedGraduationDate);
-  const remainDDay = calculateDDay(visaExpiredAt);
+  const formattedVisaType = visaType?.replace(/(\D)(\d)/, '$1-$2');
 
   const currentVisa = {
-    statusName: 'Current Visa Status',
-    title: visaType
-      ? `${visaType.replace(/(\D)(\d)/, '$1-$2')} ${getVisaStatusLabel(visaType)}`
-      : '-',
-    date: `Expires ${formatDate(visaExpiredAt)}`,
+    statusName: t('visa.current.statusName'),
+    title: formattedVisaType
+      ? t('visa.current.title', {
+          visaCode: formattedVisaType,
+          visaLabel: getVisaStatusLabel(visaType, t),
+        })
+      : EMPTY_TEXT,
+    date: t('visa.current.expiryDate', {
+      date: formatVisaStatusDate(visaExpiredAt, language),
+    }),
     isActive: true,
   };
 
   const graduation = {
-    statusName: 'Graduation Countdown',
-    title: formatDate(expectedGraduationDate),
-    date: formatDDayText(gradDDay, 'Graduated'),
+    statusName: t('visa.graduation.statusName'),
+    title: formatVisaStatusDate(expectedGraduationDate, language),
+    date: formatDDayText(
+      calculateDDay(expectedGraduationDate),
+      t('visa.graduation.completed'),
+      t('visa.dday.today'),
+    ),
     isActive: false,
   };
 
   const remaining = {
-    statusName: 'Remaining Stay',
-    title: formatDate(visaExpiredAt),
-    date: formatDDayText(remainDDay, 'Expired'),
+    statusName: t('visa.remaining.statusName'),
+    title: formatVisaStatusDate(visaExpiredAt, language),
+    date: formatDDayText(
+      calculateDDay(visaExpiredAt),
+      t('visa.remaining.completed'),
+      t('visa.dday.today'),
+    ),
     isActive: false,
   };
 
