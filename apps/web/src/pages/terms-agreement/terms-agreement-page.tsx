@@ -3,7 +3,7 @@ import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
 import { AccordionList, useTermsCheck } from '@widgets/terms-agreement';
-import { TERMS_QUERY_OPTIONS } from '@entities/terms';
+import { Term, TERMS_QUERY_OPTIONS } from '@entities/terms';
 
 import * as styles from './terms-agreement-page.css';
 
@@ -24,10 +24,10 @@ const TermsAgreementPage = () => {
     useTermsCheck(terms);
 
   const canSubmit = terms
-    .filter((data) => data.required)
-    .every((data) => checkedItems[data.termId ?? 0]);
+    .filter((data: Term) => data.required)
+    .every((data: Term) => checkedItems[data.termId ?? 0]);
   const handleSubmit = () => {
-    const agreements = terms.map((term) => ({
+    const agreements = terms.map((term: Term) => ({
       termId: term.termId ?? 0,
       agreed: checkedItems[term.termId ?? 0] ?? false,
     }));
