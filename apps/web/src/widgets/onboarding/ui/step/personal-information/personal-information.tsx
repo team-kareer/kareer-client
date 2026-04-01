@@ -24,8 +24,6 @@ const PersonalInformation = () => {
   const { data: countryList } = useQuery({
     ...COUNTRY_LIST_QUERY_OPTIONS.GET_COUNTRY_LIST(),
   });
-  const countries =
-    countryList?.countries?.map((country) => country.label ?? '') || [];
 
   return (
     <section>
@@ -52,14 +50,15 @@ const PersonalInformation = () => {
           maxLength={MAX_LENGTH}
         />
         <FormAutocompleteField
-          name="country"
+          name="countryCode"
           label="Country"
           rules={{
             required: 'Select the Country',
-            validate: (value) => validateAutocompleteOption(value, countries),
+            validate: (value) =>
+              validateAutocompleteOption(value, countryList?.countries || []),
           }}
           placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
-          options={countries}
+          options={countryList?.countries || []}
         />
         <FormAutocompleteField
           name="languageLevel"

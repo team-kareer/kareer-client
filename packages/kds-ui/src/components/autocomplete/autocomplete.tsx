@@ -6,8 +6,8 @@ import { color } from '../../styles';
 import * as styles from './autocomplete.css';
 
 export interface AutocompleteOption {
-  code: string;
-  label: string;
+  code?: string;
+  label?: string;
 }
 
 interface AutocompleteProps {
@@ -34,7 +34,7 @@ const Autocomplete = ({
   useEffect(() => {
     const matched = options.find((option) => option.code === value);
     if (matched) {
-      setInputValue(matched.label);
+      setInputValue(matched.label ?? '');
     }
   }, [value, options]);
 
@@ -49,8 +49,8 @@ const Autocomplete = ({
   };
 
   const handleOptionClick = (option: AutocompleteOption) => {
-    setInputValue(option.label);
-    onChange(option.code);
+    setInputValue(option.label ?? '');
+    onChange(option.code ?? '');
     setIsOpen(false);
   };
 
