@@ -1,4 +1,5 @@
 import { Checkbox } from '@kds/ui';
+import { type AutocompleteOption } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
@@ -67,6 +68,16 @@ const CareerPreference = () => {
     handleSelectField,
     handleRemoveField,
   } = useIndustryField(fieldList?.fields || []);
+  const selectedFieldOptions = selectedFields.map((selectedField) => {
+    const matchedField = (fieldList?.fields || []).find(
+      (field: AutocompleteOption) => field.code === selectedField,
+    );
+
+    return {
+      code: selectedField,
+      label: matchedField?.label ?? selectedField,
+    };
+  });
 
   const { targetJob, selectedSkills, currentJobSkills, handleSkillToggle } =
     useTargetJobSkills();
@@ -115,7 +126,7 @@ const CareerPreference = () => {
         {selectedFields.length > 0 && (
           <div className={styles.rightSection}>
             <IndustryFieldChips
-              fields={selectedFields}
+              fields={selectedFieldOptions}
               onRemove={handleRemoveField}
             />
           </div>
