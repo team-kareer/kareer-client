@@ -91,7 +91,7 @@ const Education = () => {
         )}
         {visaType === 'D-10' && (
           <FormInputField
-            name="GraduationDate"
+            name="expectedGraduationDate"
             label="Graducation Date"
             rules={{
               required: 'Enter the graduation date',
