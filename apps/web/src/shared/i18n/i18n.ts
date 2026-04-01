@@ -43,6 +43,7 @@ i18n.use(initReactI18next).init({
     'navigation',
     'login',
     'onboarding',
+    'termsAgreement',
     'todo',
     'empty',
     'dashboard',

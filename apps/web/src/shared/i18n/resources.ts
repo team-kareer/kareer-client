@@ -7,6 +7,7 @@ import enMyPage from '@shared/i18n/locales/en/myPage.json';
 import enNavigation from '@shared/i18n/locales/en/navigation.json';
 import enOnboarding from '@shared/i18n/locales/en/onboarding.json';
 import enRoadmap from '@shared/i18n/locales/en/roadmap.json';
+import enTermsAgreement from '@shared/i18n/locales/en/termsAgreement.json';
 import enTodo from '@shared/i18n/locales/en/todo.json';
 import enUserPopover from '@shared/i18n/locales/en/user-popover.json';
 import koCommon from '@shared/i18n/locales/ko/common.json';
@@ -18,6 +19,7 @@ import koMyPage from '@shared/i18n/locales/ko/myPage.json';
 import koNavigation from '@shared/i18n/locales/ko/navigation.json';
 import koOnboarding from '@shared/i18n/locales/ko/onboarding.json';
 import koRoadmap from '@shared/i18n/locales/ko/roadmap.json';
+import koTermsAgreement from '@shared/i18n/locales/ko/termsAgreement.json';
 import koTodo from '@shared/i18n/locales/ko/todo.json';
 import koUserPopover from '@shared/i18n/locales/ko/user-popover.json';
 import viCommon from '@shared/i18n/locales/vi/common.json';
@@ -29,6 +31,7 @@ import viMyPage from '@shared/i18n/locales/vi/myPage.json';
 import viNavigation from '@shared/i18n/locales/vi/navigation.json';
 import viOnboarding from '@shared/i18n/locales/vi/onboarding.json';
 import viRoadmap from '@shared/i18n/locales/vi/roadmap.json';
+import viTermsAgreement from '@shared/i18n/locales/vi/termsAgreement.json';
 import viTodo from '@shared/i18n/locales/vi/todo.json';
 import viUserPopover from '@shared/i18n/locales/vi/user-popover.json';
 import zhCnCommon from '@shared/i18n/locales/zh-CN/common.json';
@@ -40,6 +43,7 @@ import zhCnMyPage from '@shared/i18n/locales/zh-CN/myPage.json';
 import zhCnNavigation from '@shared/i18n/locales/zh-CN/navigation.json';
 import zhCnOnboarding from '@shared/i18n/locales/zh-CN/onboarding.json';
 import zhCnRoadmap from '@shared/i18n/locales/zh-CN/roadmap.json';
+import zhCnTermsAgreement from '@shared/i18n/locales/zh-CN/termsAgreement.json';
 import zhCnTodo from '@shared/i18n/locales/zh-CN/todo.json';
 import zhCnUserPopover from '@shared/i18n/locales/zh-CN/user-popover.json';
 
@@ -54,6 +58,7 @@ export const resources = {
     dashboard: enDashboard,
     fitAnalysis: enFitAnalysis,
     roadmap: enRoadmap,
+    termsAgreement: enTermsAgreement,
     userPopover: enUserPopover,
     myPage: enMyPage,
   },
@@ -67,6 +72,7 @@ export const resources = {
     dashboard: koDashboard,
     fitAnalysis: koFitAnalysis,
     roadmap: koRoadmap,
+    termsAgreement: koTermsAgreement,
     userPopover: koUserPopover,
     myPage: koMyPage,
   },
@@ -80,6 +86,7 @@ export const resources = {
     dashboard: viDashboard,
     fitAnalysis: viFitAnalysis,
     roadmap: viRoadmap,
+    termsAgreement: viTermsAgreement,
     userPopover: viUserPopover,
     myPage: viMyPage,
   },
@@ -93,6 +100,7 @@ export const resources = {
     dashboard: zhCnDashboard,
     fitAnalysis: zhCnFitAnalysis,
     roadmap: zhCnRoadmap,
+    termsAgreement: zhCnTermsAgreement,
     userPopover: zhCnUserPopover,
     myPage: zhCnMyPage,
   },
