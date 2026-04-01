@@ -19,12 +19,14 @@ const HeroSection = () => {
       <div className={styles.languageSelectorWrapper}>
         <LanguageSelector />
       </div>
-      <p className={styles.copy}>
-        {HERO_COPY.NORMAL}
-        <span className={styles.highlight}>{HERO_COPY.HIGHLIGHT}</span>
-      </p>
-      <div>
-        <LoginButton onClick={handleGoogleLogin} />
+      <div className={styles.copySection}>
+        <p className={styles.copy}>
+          {HERO_COPY.NORMAL}
+          <span className={styles.highlight}>{HERO_COPY.HIGHLIGHT}</span>
+        </p>
+        <div>
+          <LoginButton onClick={handleGoogleLogin} />
+        </div>
       </div>
     </div>
   );
