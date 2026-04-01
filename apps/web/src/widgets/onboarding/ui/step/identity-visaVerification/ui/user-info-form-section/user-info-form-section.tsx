@@ -34,7 +34,7 @@ const UserInfoFormSection = () => {
         maxLength={MAX_LENGTH}
       />
       <FormAutocompleteField
-        name="country"
+        name="countryCode"
         label="Country"
         rules={{
           required: 'Select your country',

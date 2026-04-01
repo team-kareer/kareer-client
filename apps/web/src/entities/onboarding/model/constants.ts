@@ -13,12 +13,10 @@ export const STORAGE_KEY = 'onboarding-form-data';
 export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
   name: '',
   birthDate: '',
-  countryCode: '',
   universityCode: '',
-  englishLevel: '',
-  fieldsOfInterests: [],
+  countryCode: '',
   languageLevel: '',
-  degreeLocation: 'south-korea',
+  englishLevel: '',
   degree: '',
   visaType: '',
   expectedGraduationDate: '',
@@ -26,10 +24,12 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
   visaExpiredAt: '',
   primaryMajorCode: '',
   secondaryMajor: '',
+  fieldsOfInterests: [],
+  preparationStatuses: [],
   targetJob: '',
   targetJobSkill: '',
   personalBackground: '',
-  university: '',
+  degreeLocation: 'south-korea',
 };
 
 /**
@@ -50,30 +50,17 @@ export const FUNNEL_STEPS = [
 export const STEP_REQUIRED_FIELDS: Array<Array<keyof OnboardingForm>> = [
   [
     'name',
-    'birthDate',
     'countryCode',
+    'birthDate',
     'visaType',
     'visaStartDate',
     'visaExpiredAt',
   ],
-  ['universityCode', 'primaryMajorCode', 'degree'],
+  ['universityCode', 'primaryMajorCode', 'degree', 'expectedGraduationDate'],
   ['languageLevel', 'englishLevel'],
   ['fieldsOfInterests', 'targetJob'],
   ['personalBackground'],
 ];
-
-/**
- * 비자 타입별 필수 입력 필드 매핑
- * @description D2, D10 비자 타입에 따라 필드 요구
- */
-export const VISA_TYPE_REQUIRED_FIELDS: Record<
-  'D2' | 'D10' | 'default',
-  Array<keyof OnboardingForm>
-> = {
-  D2: ['visaType', 'expectedGraduationDate', 'visaStartDate', 'visaExpiredAt'],
-  D10: ['visaType', 'visaStartDate', 'visaExpiredAt'],
-  default: ['visaType', 'visaStartDate', 'visaExpiredAt'],
-};
 
 /**
  * 입력 필드 최대 길이

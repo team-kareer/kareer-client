@@ -22,6 +22,7 @@ export const guestOnlyLoader = ({ request }: LoaderFunctionArgs) => {
   return null;
 };
 
+// TODO: 로더 로직 개선 필요
 export const appRouteLoader = async () => {
   requireAuth();
 
@@ -46,7 +47,7 @@ export const appRouteLoader = async () => {
       isHttpError(error) &&
       error.response?.status === HTTP_STATUS_CODE.FORBIDDEN
     ) {
-      throw redirect(ROUTE_PATH.ONBOARDING);
+      throw redirect(ROUTE_PATH.TERMSAGREEMENT);
     }
 
     throw error;

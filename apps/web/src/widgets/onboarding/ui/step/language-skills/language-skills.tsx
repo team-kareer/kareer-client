@@ -36,13 +36,10 @@ const LanguageSkills = () => {
           rules={{
             required: 'Select your level',
             validate: (value) =>
-              validateAutocompleteOption(
-                value,
-                toOptions(ENGLISH_PROFICIENCY_OPTIONS),
-              ),
+              validateAutocompleteOption(value, ENGLISH_PROFICIENCY_OPTIONS),
           }}
           placeholder={LANGUAGE_SKILLS_PLACEHOLDERS.LANGUAGE_LEVEL}
-          options={toOptions(ENGLISH_PROFICIENCY_OPTIONS)}
+          options={ENGLISH_PROFICIENCY_OPTIONS}
         />
       </div>
     </section>

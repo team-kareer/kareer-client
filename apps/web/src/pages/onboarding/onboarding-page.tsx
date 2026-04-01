@@ -38,8 +38,7 @@ const OnboardingPage = () => {
   });
 
   // 버튼 비활성화 로직
-  const visaType = useWatch({ control: form.control, name: 'visaType' });
-  const requiredFields = getRequiredFieldsForStep(currentStepIndex, visaType);
+  const requiredFields = getRequiredFieldsForStep(currentStepIndex);
 
   // 현재 단계의 필수 필드만 감시
   const watchedRequiredFields = useWatch({

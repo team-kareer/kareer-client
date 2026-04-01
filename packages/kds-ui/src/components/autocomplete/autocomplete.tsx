@@ -50,6 +50,10 @@ const Autocomplete = ({
     setInputValue(e.target.value);
     onInputChange?.(e.target.value);
     setIsOpen(e.target.value.length > 0);
+
+    if (e.target.value === '') {
+      onChange('');
+    }
   };
 
   const handleOptionClick = (option: AutocompleteOption) => {

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BangCircleIcon } from '@kds/icons';
 import { Checkbox } from '@kds/ui';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -24,17 +23,7 @@ const PREPARATION_STATUS_OPTIONS = [
 ] as const;
 
 const PersonalBackground = () => {
-  // TODO: onboarding v2 post 전송값으로 변경
-  const [selectedStatus, setSelectedStatus] = useState<string[]>([]);
-  const handleToggle = (status: string) => {
-    setSelectedStatus((prev) =>
-      prev.includes(status)
-        ? prev.filter((s) => s !== status)
-        : [...prev, status],
-    );
-  };
-
-  const { control } = useFormContext<OnboardingForm>();
+  const { control, setValue } = useFormContext<OnboardingForm>();
 
   const targetJob = useWatch({
     control,
@@ -46,6 +35,19 @@ const PersonalBackground = () => {
     targetJob,
     PLACEHOLDER_BY_TARGET_JOB,
   );
+
+  const selectedStatus =
+    useWatch({
+      control,
+      name: 'preparationStatuses',
+    }) ?? [];
+
+  const handleToggle = (status: string) => {
+    const updated = selectedStatus?.includes(status)
+      ? selectedStatus.filter((s) => s !== status)
+      : [...selectedStatus, status];
+    setValue('preparationStatuses', updated);
+  };
 
   return (
     <section>

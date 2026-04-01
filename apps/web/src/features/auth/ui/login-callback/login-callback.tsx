@@ -33,9 +33,10 @@ const LoginCallback = () => {
 
         tokenService.saveAccessToken(response.accessToken);
 
+        // TODO: 로직 개선 필요
         navigate(
           response.onboardingRequired
-            ? ROUTE_PATH.ONBOARDING
+            ? ROUTE_PATH.TERMSAGREEMENT
             : ROUTE_PATH.DASHBOARD,
           { replace: true },
         );
