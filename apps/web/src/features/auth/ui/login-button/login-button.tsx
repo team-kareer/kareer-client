@@ -1,16 +1,17 @@
 import { ArrowRightIcon } from '@kds/icons';
 import { Button } from '@kds/ui';
-
-const BUTTON_TEXT = 'Get Started Free with Google';
+import { useTranslation } from 'react-i18next';
 
 interface LoginButtonProps {
   onClick: () => void;
 }
 
 const LoginButton = ({ onClick }: LoginButtonProps) => {
+  const { t } = useTranslation('login');
+
   return (
     <Button preset="large_outlined" onClick={onClick}>
-      <p>{BUTTON_TEXT}</p>
+      <p>{t('actions.googleLogin')}</p>
       <ArrowRightIcon width={19} height={19} />
     </Button>
   );
