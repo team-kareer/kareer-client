@@ -1,18 +1,25 @@
 import { ReactNode, useEffect, useRef } from 'react';
 import { Autocomplete, Button, Tab, useTabContext } from '@kds/ui';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { validateAutocompleteOption } from '@features/onboarding/model/validation';
 import {
   type OnboardingForm,
   OUTSIDE_KOREA_DEGREE_OPTIONS,
   SOUTH_KOREA_DEGREE_OPTIONS,
-  toOptions,
 } from '@entities/onboarding';
 
 import * as styles from './onboarding-degree-step.css';
 
 const DEFAULT_DEGREE_LOCATION = 'south-korea';
+
+const DEGREE_LABEL_KEYS: Record<string, string> = {
+  'Associate Degree': 'options.degree.associate',
+  "Bachelor's Degree": 'options.degree.bachelors',
+  "Master's Degree": 'options.degree.masters',
+  'Doctoral(PhD)': 'options.degree.doctorate',
+};
 
 const getDegreeOptions = (degreeLocation: string) =>
   degreeLocation === 'south-korea'
@@ -45,6 +52,7 @@ const DegreeLocationButton = ({
 };
 
 const OnboardingDegreeStep = () => {
+  const { t } = useTranslation('onboarding');
   const { control, resetField } = useFormContext<OnboardingForm>();
 
   const degreeLocation =
@@ -66,16 +74,20 @@ const OnboardingDegreeStep = () => {
   }, [degreeLocation, resetField]);
 
   const options = getDegreeOptions(degreeLocation);
+  const degreeOptions = options.map((option) => ({
+    code: option,
+    label: t(DEGREE_LABEL_KEYS[option] ?? option),
+  }));
 
   return (
     <Tab.Container initialValue={degreeLocation}>
       <TabSync degreeLocation={degreeLocation} />
       <Tab.List className={styles.buttonWrapper}>
         <DegreeLocationButton value="south-korea">
-          <p>South Korea</p>
+          <p>{t('degree.location.southKorea')}</p>
         </DegreeLocationButton>
         <DegreeLocationButton value="outside-korea">
-          <p>Outside Korea</p>
+          <p>{t('degree.location.outsideKorea')}</p>
         </DegreeLocationButton>
       </Tab.List>
 
@@ -83,24 +95,21 @@ const OnboardingDegreeStep = () => {
         name="degree"
         control={control}
         rules={{
-          required: 'Select the degree',
+          required: t('degree.required'),
           validate: (value) => {
-            const result = validateAutocompleteOption(
-              value,
-              toOptions(options),
-            );
+            const result = validateAutocompleteOption(value, degreeOptions);
             return result === true || result;
           },
         }}
         render={({ field }) => (
           <Autocomplete
             key={degreeLocation}
-            placeholder="Select your degree"
+            placeholder={t('degree.placeholder')}
             value={field.value || ''}
             onChange={(label) => {
               field.onChange(label);
             }}
-            options={toOptions(options)}
+            options={degreeOptions}
           />
         )}
       />

@@ -1,0 +1,294 @@
+{
+  "stepFlow": {
+    "actions": {
+      "back": "上一步",
+      "next": "下一步",
+      "submit": "开始你的职业旅程"
+    },
+    "steps": {
+      "identityVisaVerification": "身份与签证验证",
+      "education": "教育背景",
+      "languageSkills": "语言能力",
+      "careerPreferences": "职业偏好",
+      "background": "背景信息"
+    }
+  },
+  "steps": {
+    "identityVisaVerification": {
+      "upload": {
+        "passport": {
+          "title": "上传护照",
+          "subtitle": "最多 1 个文件 · 10MB 以内"
+        },
+        "visaArc": {
+          "title": "上传签证或外国人登录证",
+          "subtitle": "最多 1 个文件 · 10MB 以内"
+        },
+        "box": {
+          "title": "上传照片",
+          "button": "选择文件"
+        },
+        "fileSizeError": "文件大小不能超过 10MB"
+      },
+      "userInfo": {
+        "name": {
+          "label": "姓名",
+          "placeholder": "请输入您的姓名",
+          "required": "该名称已被占用"
+        },
+        "country": {
+          "label": "国籍",
+          "placeholder": "请选择你的国家",
+          "required": "请选择您的国家"
+        },
+        "birthDate": {
+          "label": "出生日期",
+          "placeholder": "请选择日期",
+          "required": "请输入有效的数字"
+        }
+      },
+      "visaInfo": {
+        "visaType": {
+          "label": "当前签证类型",
+          "placeholder": "请选择签证类型",
+          "required": "请选择签证类型"
+        },
+        "visaStartDate": {
+          "label": "签证开始日期",
+          "placeholder": "请选择日期",
+          "required": "请输入有效的数字"
+        },
+        "visaExpiredAt": {
+          "label": "签证到期日期",
+          "placeholder": "请选择日期",
+          "required": "请输入有效的数字"
+        }
+      }
+    },
+    "education": {
+      "section": {
+        "degreeLabel": "学位",
+        "degreeDescription": "应届毕业生也可选择",
+        "placeholder": "请选择学位"
+      },
+      "fields": {
+        "university": {
+          "label": "学校名称",
+          "placeholder": "请输入学校名称"
+        },
+        "primaryMajor": {
+          "label": "主修专业",
+          "placeholder": "请选择专业",
+          "required": "请选择专业"
+        },
+        "secondaryMajor": {
+          "label": "辅修 / 双专业（可选）",
+          "placeholder": "请选择专业"
+        },
+        "expectedGraduationDate": {
+          "label": "预计毕业日期",
+          "placeholder": "YYYY-MM-DD",
+          "required": "请输入毕业日期"
+        },
+        "graduationDate": {
+          "label": "毕业日期",
+          "placeholder": "YYYY-MM-DD",
+          "required": "请输入毕业日期"
+        }
+      }
+    },
+    "languageSkills": {
+      "fields": {
+        "languageLevel": {
+          "label": "TOPIK / KIIP 等级",
+          "placeholder": "请选择您的等级",
+          "required": "请选择您的等级"
+        },
+        "englishLevel": {
+          "label": "英语能力",
+          "placeholder": "请选择您的等级",
+          "required": "请选择您的等级"
+        }
+      }
+    },
+    "careerPreferences": {
+      "fields": {
+        "fieldsOfInterests": {
+          "label": "意向行业/领域",
+          "placeholder": "搜索行业或领域",
+          "required": "请至少选择一个行业。",
+          "maxSelected": "最多只能选择 5 个行业。"
+        },
+        "targetJob": {
+          "label": "目标职位",
+          "placeholder": "输入您的目标职位",
+          "required": "请输入您的目标职位"
+        }
+      }
+    },
+    "background": {
+      "content": {
+        "title": "请填写有助于我们更好理解您当前情况和目标的信息。",
+        "description": "这些信息将帮助我们为您提供个性化的职业规划与推荐。"
+      },
+      "info": {
+        "privacy": "为保护您的隐私，请避免填写敏感信息（如身份证号、护照信息或银行账户等）。",
+        "referenceOnly": "该信息由您自行填写，仅作为AI推荐的参考，不会用于任何法律或官方用途。"
+      },
+      "preparationStatus": {
+        "title": "当前准备情况",
+        "options": {
+          "alreadyApplied": "我已经提交了求职申请",
+          "partTimeOrInternship": "目前正在兼职或实习",
+          "resumeReady": "简历和作品集已准备好"
+        }
+      },
+      "placeholderByTargetJob": {
+        "sales": "例如：[学术] 在“全球营销”课程中，我分析了本国消费者趋势，并为韩国家电制定了市场进入策略，获得了 A+。[职业] 后来作为贸易实习生，我负责与买家进行邮件沟通，并协助准备发票等贸易文件。",
+        "marketing": "例如：[学术] 我在“消费者心理学”课程中对 100 名国际学生进行了调查，以分析韩国品牌认知度。[职业] 作为市场实习生，我负责本地社交媒体渠道，并通过数据驱动的定位和本地化内容使帖子覆盖率提高了 30%。",
+        "planningStrategy": "例如：[学术] 在“商业战略”课程中，我使用 SWOT 分析制定了初创企业商业模式并设计了风险管理策略。[职业] 在现场实习期间，我整理库存数据以识别成本节约机会，并建议简化报告流程。",
+        "production": "例如：[学术] 在“运营管理”课程中，我学习了供应链管理原理，并使用 ERP 系统完成了关于 MRP 的模拟项目。[职业] 在制造业实习期间，我跟踪库存流动并分析供应商价格以降低成本，同时还更新了质量检查清单。"
+      }
+    }
+  },
+  "degree": {
+    "location": {
+      "southKorea": "韩国",
+      "outsideKorea": "韩国以外"
+    },
+    "placeholder": "请选择您的学位",
+    "required": "请选择学位"
+  },
+  "options": {
+    "languageLevel": {
+      "level1": "Level 1",
+      "level2": "Level 2",
+      "level3": "Level 3",
+      "level4": "Level 4",
+      "level5": "Level 5",
+      "notTakenYet": "尚未参加"
+    },
+    "englishLevel": {
+      "beginner": "初级",
+      "intermediate": "中级",
+      "advanced": "高级"
+    },
+    "visaType": {
+      "d2": "D-2（学生）",
+      "d10": "D-10（求职者）"
+    },
+    "targetJob": {
+      "developer": "开发者",
+      "dataAnalyst": "数据分析师",
+      "marketer": "市场营销",
+      "globalSales": "国际销售"
+    },
+    "degree": {
+      "associate": "专科",
+      "bachelors": "学士",
+      "masters": "硕士",
+      "doctorate": "博士"
+    }
+  },
+  "jobSkills": {
+    "developer": {
+      "techStack": {
+        "title": "技术栈",
+        "description": "我有使用以下语言/框架的经验（例如：Java, Python, JavaScript, Spring, React, Node.js）。"
+      },
+      "csTools": {
+        "title": "计算机科学 (CS) & 工具",
+        "description": "我有使用以下语言/框架的经验（例如：Java, Python, JavaScript, Spring, React, Node.js）。"
+      },
+      "projects": {
+        "title": "项目",
+        "description": "我有 1 个以上已完成的项目（个人、学校或团队），并在 GitHub 或作品集网站上附有代码。"
+      },
+      "teamWorkExperience": {
+        "title": "团队 / 工作经验",
+        "description": "我曾作为开发者在团队或真实工作环境（实习、兼职、开源项目或与设计师/产品经理的协作）中工作过。"
+      }
+    },
+    "dataAnalyst": {
+      "dataTools": {
+        "title": "数据工具",
+        "description": "我可以使用 Excel/Google Sheets（公式、数据透视表）处理数据，并至少掌握一种 BI 工具（如 Tableau、Power BI）。"
+      },
+      "sqlProgramming": {
+        "title": "SQL 与编程",
+        "description": "我可以编写基础 SQL 查询（SELECT、JOIN、GROUP BY），并有一些使用 Python 或 R 进行数据分析的经验。"
+      },
+      "analysisStorytelling": {
+        "title": "分析与表达",
+        "description": "我练习过将数据转化为洞察（简单分析、图表或报告），并能用易懂的语言解释结果。"
+      },
+      "projects": {
+        "title": "项目",
+        "description": "我至少有 1 个数据项目（学校、Kaggle 或个人项目），可以在作品集或 GitHub 中展示。"
+      }
+    },
+    "marketer": {
+      "channelsTools": {
+        "title": "渠道与工具",
+        "description": "我有使用至少一种数字渠道（如 Instagram、YouTube、博客、电子邮件）以及基础工具（Meta Ads、Google Analytics 等）的经验。"
+      },
+      "contentCopy": {
+        "title": "内容与文案",
+        "description": "我曾用英语或韩语制作营销内容（社交帖子、博客、邮件、落地页）。"
+      },
+      "dataExperimentation": {
+        "title": "数据与实验",
+        "description": "我看过简单的营销指标（点击、转化、粉丝），并尝试过 A/B 测试或小规模实验。"
+      },
+      "projects": {
+        "title": "项目",
+        "description": "我至少参与过一个有可量化结果的活动或项目（学校社团、副业项目、实习）。"
+      }
+    },
+    "globalSales": {
+      "clientCommunication": {
+        "title": "客户沟通",
+        "description": "我能够使用英语或韩语与客户/合作伙伴进行口头或书面沟通（邮件、电话、会议）。"
+      },
+      "salesToolsProcess": {
+        "title": "销售工具与流程",
+        "description": "我理解基本销售流程（开发客户 → 会面 → 提案 → 跟进），并使用过简单的 CRM 或表格进行跟踪。"
+      },
+      "numbersTargets": {
+        "title": "数据与目标",
+        "description": "我习惯于处理简单的销售 KPI（潜在客户、会议、收入）并持续跟踪。"
+      },
+      "projects": {
+        "title": "项目",
+        "description": "我有面向客户岗位的经验（兼职、实习、社团、志愿活动），需要进行说服或谈判。"
+      }
+    }
+  },
+  "validation": {
+    "number": {
+      "invalid": "请输入有效的数字"
+    },
+    "date": {
+      "invalidFormat": "请输入 YYYY-MM-DD 格式。",
+      "invalidDate": "日期无效。请输入有效的日历日期。",
+      "futureNotAllowed": "不允许填写未来日期。",
+      "pastNotAllowed": "请填写未来的预计毕业日期。",
+      "mustBeAfterIssuance": "该日期必须晚于签证签发日期。",
+      "invalidVisaDate": "请输入有效日期"
+    },
+    "visa": {
+      "d2ExpirationInPast": "请选择一个有效且未过期的 D-2 签证到期日期。",
+      "d2ExceedsTwoYears": "D-2 签证自签发日起必须至少有效两年。",
+      "d2ExpirationBeforeGraduation": "签证到期日期必须等于或晚于预计毕业日期。",
+      "d10InvalidDuration": "到期日期无效。D-10 签证必须按 6 个月间隔设置。",
+      "d10ExpirationInPast": "请选择一个有效且未过期的 D-10 签证到期日期。",
+      "d2IssuanceAfterGraduation": "请输入晚于签证签发日期的毕业日期。",
+      "startDateAfterExpiration": "请输入早于签证到期日期的签证开始日期。",
+      "futureIssuanceDate": "请输入有效日期"
+    },
+    "name": {
+      "empty": "姓名不能为空。",
+      "specialCharacters": "请仅使用标准字母。"
+    }
+  }
+}

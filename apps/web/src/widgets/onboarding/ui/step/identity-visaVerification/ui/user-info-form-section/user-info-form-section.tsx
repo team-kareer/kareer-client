@@ -1,10 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
-import {
-  FormAutocompleteField,
-  FormInputField,
-  PERSONAL_INFORMATION_PLACEHOLDERS,
-} from '@widgets/onboarding';
+import { FormAutocompleteField, FormInputField } from '@widgets/onboarding';
 import {
   validateAutocompleteOption,
   validateDate,
@@ -17,6 +14,7 @@ import * as styles from './user-info-form-section.css';
 const MAX_LENGTH = 20;
 
 const UserInfoFormSection = () => {
+  const { t } = useTranslation('onboarding');
   const { data: countryList } = useQuery({
     ...COUNTRY_LIST_QUERY_OPTIONS.GET_COUNTRY_LIST(),
   });
@@ -25,33 +23,43 @@ const UserInfoFormSection = () => {
     <section className={styles.formSection}>
       <FormInputField
         name="name"
-        label="Full Name"
+        label={t('steps.identityVisaVerification.userInfo.name.label')}
         rules={{
-          required: 'Please enter your name.',
+          required: t('steps.identityVisaVerification.userInfo.name.required'),
           validate: (value) => validateText(value),
         }}
-        placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.NAME}
+        placeholder={t(
+          'steps.identityVisaVerification.userInfo.name.placeholder',
+        )}
         maxLength={MAX_LENGTH}
       />
       <FormAutocompleteField
         name="countryCode"
-        label="Country"
+        label={t('steps.identityVisaVerification.userInfo.country.label')}
         rules={{
-          required: 'Select your country',
+          required: t(
+            'steps.identityVisaVerification.userInfo.country.required',
+          ),
           validate: (value) =>
             validateAutocompleteOption(value, countryList?.countries || []),
         }}
-        placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.COUNTRY}
+        placeholder={t(
+          'steps.identityVisaVerification.userInfo.country.placeholder',
+        )}
         options={countryList?.countries || []}
       />
       <FormInputField
         name="birthDate"
-        label="Date of Birth"
+        label={t('steps.identityVisaVerification.userInfo.birthDate.label')}
         rules={{
-          required: 'Please enter your date of birth.',
+          required: t(
+            'steps.identityVisaVerification.userInfo.birthDate.required',
+          ),
           validate: (value) => validateDate(value, { allowPast: true }),
         }}
-        placeholder={PERSONAL_INFORMATION_PLACEHOLDERS.DATE}
+        placeholder={t(
+          'steps.identityVisaVerification.userInfo.birthDate.placeholder',
+        )}
       />
     </section>
   );

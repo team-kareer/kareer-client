@@ -1,18 +1,12 @@
 import { BangCircleIcon } from '@kds/icons';
 import { Checkbox } from '@kds/ui';
 import { useFormContext, useWatch } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
 import { FormTextareaField } from '@widgets/onboarding';
-import {
-  PERSONAL_BACKGROUND_DESCRIPTION,
-  PERSONAL_BACKGROUND_INFO_MESSAGES,
-  PERSONAL_BACKGROUND_TITLE,
-} from '@widgets/onboarding/constants/personal-background';
-import { PLACEHOLDER_BY_TARGET_JOB } from '@widgets/onboarding/constants/placeholders';
 import { validateText } from '@features/onboarding/model/validation';
-import { FUNNEL_STEPS, type OnboardingForm } from '@entities/onboarding';
-import { getPlaceholderByTargetJob } from '@entities/onboarding';
+import { type OnboardingForm } from '@entities/onboarding';
 
 import * as styles from './personal-background.css';
 
@@ -22,7 +16,28 @@ const PREPARATION_STATUS_OPTIONS = [
   'Resume and portfolio are ready',
 ] as const;
 
+const PREPARATION_STATUS_LABEL_KEYS: Record<
+  (typeof PREPARATION_STATUS_OPTIONS)[number],
+  string
+> = {
+  'I have already submitted job applications':
+    'steps.background.preparationStatus.options.alreadyApplied',
+  'Currently working part-time or doing an internship':
+    'steps.background.preparationStatus.options.partTimeOrInternship',
+  'Resume and portfolio are ready':
+    'steps.background.preparationStatus.options.resumeReady',
+};
+
+const PLACEHOLDER_BY_TARGET_JOB_KEYS: Record<string, string> = {
+  Sales: 'steps.background.placeholderByTargetJob.sales',
+  Marketing: 'steps.background.placeholderByTargetJob.marketing',
+  'Planning & Strategy':
+    'steps.background.placeholderByTargetJob.planningStrategy',
+  Production: 'steps.background.placeholderByTargetJob.production',
+};
+
 const PersonalBackground = () => {
+  const { t } = useTranslation('onboarding');
   const { control, setValue } = useFormContext<OnboardingForm>();
 
   const targetJob = useWatch({
@@ -31,10 +46,10 @@ const PersonalBackground = () => {
   });
 
   // TargetJob에 따른 placeholder 선택
-  const placeholder = getPlaceholderByTargetJob(
-    targetJob,
-    PLACEHOLDER_BY_TARGET_JOB,
-  );
+  const placeholderKey = targetJob
+    ? PLACEHOLDER_BY_TARGET_JOB_KEYS[targetJob]
+    : undefined;
+  const placeholder = placeholderKey ? t(placeholderKey) : '';
 
   const selectedStatus =
     useWatch({
@@ -51,13 +66,18 @@ const PersonalBackground = () => {
 
   return (
     <section>
-      <OnboardingStepTitle stepNumber={4} title={FUNNEL_STEPS[4]} />
+      <OnboardingStepTitle
+        stepNumber={4}
+        title={t('stepFlow.steps.background')}
+      />
       <div className={styles.container}>
         <div className={styles.inputSection}>
           <div>
-            <h2 className={styles.title}>{PERSONAL_BACKGROUND_TITLE}</h2>
+            <h2 className={styles.title}>
+              {t('steps.background.content.title')}
+            </h2>
             <p className={styles.description}>
-              {PERSONAL_BACKGROUND_DESCRIPTION}
+              {t('steps.background.content.description')}
             </p>
           </div>
           <FormTextareaField
@@ -73,7 +93,10 @@ const PersonalBackground = () => {
             maxLength={1000}
           />
           <div className={styles.infoContainer}>
-            {PERSONAL_BACKGROUND_INFO_MESSAGES.map((message, index) => (
+            {[
+              t('steps.background.info.privacy'),
+              t('steps.background.info.referenceOnly'),
+            ].map((message, index) => (
               <div key={index} className={styles.intoText}>
                 <span className={styles.iconWrapper}>
                   <BangCircleIcon width={24} height={24} />
@@ -84,7 +107,7 @@ const PersonalBackground = () => {
           </div>
         </div>
         <div className={styles.check({ area: 'container' })}>
-          <span>Current Preparation Status</span>
+          <span>{t('steps.background.preparationStatus.title')}</span>
           <div className={styles.check({ area: 'list' })}>
             {PREPARATION_STATUS_OPTIONS.map((status) => (
               <div
@@ -93,7 +116,7 @@ const PersonalBackground = () => {
                 onClick={() => handleToggle(status)}
               >
                 <Checkbox isChecked={selectedStatus.includes(status)} />
-                <span>{status}</span>
+                <span>{t(PREPARATION_STATUS_LABEL_KEYS[status])}</span>
               </div>
             ))}
           </div>
