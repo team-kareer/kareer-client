@@ -12,7 +12,6 @@ export type OnboardingForm = Omit<
   degree: string;
   visaType: 'D-2' | 'D-10' | '';
   degreeLocation: string;
-  university: string;
 };
 
 export type GetMajorListResponse =

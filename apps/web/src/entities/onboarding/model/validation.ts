@@ -1,7 +1,5 @@
-import { STEP_REQUIRED_FIELDS, VISA_REQUIRED_FIELDS } from './constants';
+import { STEP_REQUIRED_FIELDS } from './constants';
 import { type OnboardingForm } from './types';
-
-const VISA_STEP_INDEX = 0;
 
 /**
  * 특정 단계에 대한 필수 필드 목록을 반환하는 함수
@@ -10,9 +8,6 @@ const VISA_STEP_INDEX = 0;
 export const getRequiredFieldsForStep = (
   stepIndex: number,
 ): Array<keyof OnboardingForm> => {
-  if (stepIndex === VISA_STEP_INDEX) {
-    return VISA_REQUIRED_FIELDS;
-  }
   return STEP_REQUIRED_FIELDS[stepIndex] ?? [];
 };
 
