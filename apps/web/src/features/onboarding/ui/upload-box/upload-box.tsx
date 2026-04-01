@@ -3,14 +3,13 @@ import { UploadIcon, XIcon } from '@kds/icons';
 import { Button, ProgressBar } from '@kds/ui';
 import { useTranslation } from 'react-i18next';
 
+import { UploadProgress } from '@features/onboarding/model';
+
 import * as styles from './upload-box.css';
 
 interface UploadBoxProps {
   file?: File;
-  progress?: {
-    done: number;
-    total: number;
-  };
+  progress?: UploadProgress;
   disabled?: boolean;
   onSelectFile: (file: File) => void;
   onRemoveFile: () => void;
