@@ -6,11 +6,7 @@ import { OnboardingStepTitle } from '@widgets/onboarding';
 import ImageUploadSection from '@widgets/onboarding/ui/step/identity-visaVerification/ui/image-upload-section/image-upload-section';
 import UserInfoFormSection from '@widgets/onboarding/ui/step/identity-visaVerification/ui/user-info-form-section/user-info-form-section';
 import VisaInfoFormSection from '@widgets/onboarding/ui/step/identity-visaVerification/ui/visa-info-form-section/visa-info-form-section';
-import {
-  ONBOARDING_MUTATION_OPTIONS,
-  UploadProgress,
-  VisaType,
-} from '@features/onboarding';
+import { ONBOARDING_MUTATION_OPTIONS, VisaType } from '@features/onboarding';
 import { FUNNEL_STEPS, OnboardingForm } from '@entities/onboarding';
 
 import * as styles from './identity-visaVerification.css';
@@ -69,7 +65,7 @@ const IdentityVisaVerification = () => {
     };
   };
 
-  const [visaProgress, setVisaProgress] = useState<UploadProgress>();
+  // const [visaProgress, setVisaProgress] = useState<UploadProgress>();
 
   const handleSelectVisa = (file: File) => {
     const state = getUploadState(file);
@@ -78,12 +74,13 @@ const IdentityVisaVerification = () => {
       return;
     }
 
-    submitVisaFile({
-      file,
-      onProgress: (progress) => {
-        setVisaProgress(progress);
-      },
-    });
+    // submitVisaFile({
+    //   file,
+    //   onProgress: (progress) => {
+    //     setVisaProgress(progress);
+    //   },
+    // });
+    submitVisaFile(file);
   };
 
   const handleSelectPassport = (file: File) => {
@@ -118,7 +115,7 @@ const IdentityVisaVerification = () => {
             title="Upload Visa or ARC"
             subtitle="Up to 1 files · 10 MB max"
             file={visaUpload.file}
-            progress={visaProgress}
+            // progress={visaProgress}
             errorMessage={visaUpload.errorMessage}
             onSelectFile={handleSelectVisa}
             onRemoveFile={() => setVisaUpload({})}

@@ -34,7 +34,8 @@ export type UploadProgress = {
   done: number;
   total: number;
 };
-export interface FileUploadParams {
-  file: File;
-  onProgress: (progress: UploadProgress) => void;
-}
+
+// export interface FileUploadParams {
+//   file: File;
+//   onProgress: (progress: UploadProgress) => void;
+// }

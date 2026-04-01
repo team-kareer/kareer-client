@@ -1,7 +1,6 @@
 import { mutationOptions } from '@tanstack/react-query';
 
 import {
-  FileUploadParams,
   postAiRoadMap,
   postOcrPassport,
   postOcrVisa,
@@ -21,7 +20,7 @@ export const ONBOARDING_MUTATION_OPTIONS = {
   },
   POST_OCR_VISA: () => {
     return mutationOptions({
-      mutationFn: (params: FileUploadParams) => postOcrVisa(params),
+      mutationFn: (file: File) => postOcrVisa(file),
     });
   },
   POST_OCR_PASSPORT: () => {

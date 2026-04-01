@@ -1,6 +1,6 @@
 export { END_POINT } from './end-point';
 export {
-  type FileUploadParams,
+  // type FileUploadParams,
   type PostAiRoadMapResponse,
   type PostOcrPassportResponse,
   type PostOcrVisaResponse,
