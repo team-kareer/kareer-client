@@ -3,10 +3,27 @@
  */
 export const PERSONAL_INFORMATION_PLACEHOLDERS = {
   NAME: 'Enter your name',
-  DATE: 'Enter the Date',
-  COUNTRY: 'Select the Country',
+  DATE: 'Enter the date',
+  COUNTRY: 'Select your country',
   OPIK_LEVEL: 'Select the level',
   DEGREE: 'Select the degree',
+} as const;
+
+/**
+ * Education Placaholder
+ */
+export const EDUCATION_PLACEHOLDERS = {
+  UNIVERSITY: 'Select your university name',
+  MAJOR: 'Select your major',
+  DEGREE: 'Enter the degree',
+  GRADUATION_DATE: 'YYYY-MM-DD',
+} as const;
+
+/**
+ * Language Skills Placaholder
+ */
+export const LANGUAGE_SKILLS_PLACEHOLDERS = {
+  LANGUAGE_LEVEL: 'Select your level',
 } as const;
 
 /**
@@ -14,11 +31,12 @@ export const PERSONAL_INFORMATION_PLACEHOLDERS = {
  * @constant
  */
 export const VISA_INFORMATION_PLACEHOLDERS = {
-  CURRENT_VISA_TYPE: 'Select the visa type',
-  ISSUANCE_DATE: 'Enter the Date',
-  GRADUATION_DATE: 'Enter the Date',
-  EXPIRATION_DATE: 'Enter the Date',
+  CURRENT_VISA_TYPE: 'Select your Visa type',
+  ISSUANCE_DATE: 'Enter the date',
+  GRADUATION_DATE: 'Enter the date',
+  EXPIRATION_DATE: 'Enter the date',
   NUMBER: 'Enter the Number',
+  START_DATE: 'Enter the date',
 } as const;
 
 /**

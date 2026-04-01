@@ -1,0 +1,31 @@
+{
+  "layout": {
+    "description": "Guiding your career journey\nwith trusted visa and career insights"
+  },
+  "hero": {
+    "copy": {
+      "normal": "Turn visa barriers\ninto ",
+      "highlight": "career opportunities"
+    }
+  },
+  "actions": {
+    "googleLogin": "Get Started Free with Google"
+  },
+  "features": {
+    "title": "Main Function",
+    "items": {
+      "careerRoadmap": {
+        "title": "Integrated Career Roadmap",
+        "description": "Generates a strategic plan aligning your visa milestones with career goals, based on your unique background."
+      },
+      "taskBreakdown": {
+        "title": "Actionable Task Breakdown",
+        "description": "Automatically converts major roadmap goals into detailed, step-by-step to-do lists."
+      },
+      "jobCuration": {
+        "title": "Smart Job Curation",
+        "description": "Personalized job recommendations based on your resume and cover letter analysis."
+      }
+    }
+  }
+}

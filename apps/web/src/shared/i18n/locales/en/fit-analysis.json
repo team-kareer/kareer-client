@@ -1,0 +1,155 @@
+{
+  "visaEligibility": {
+    "section": {
+      "title": "Check visa eligibility"
+    },
+    "visaTabs": {
+      "D2": "D-2 Student",
+      "D10": "D-10 Job Seeker",
+      "E7": "E-7 Foreign National of Special Ability"
+    },
+    "status": {
+      "currentVisaStatus": "Current Visa Status",
+      "eligible": "Eligible",
+      "notEligible": "Not Eligible"
+    }
+  },
+  "visaChecklist": {
+    "header": {
+      "title": "Basic Requirements",
+      "subtitle": "Check List"
+    },
+    "items": {
+      "expiry": {
+        "title": "Check expiry (> 6 months) & Update info",
+        "subtitle": "Valid Passport & ARC"
+      },
+      "tuition": {
+        "title": "Pay tuition & Save payment receipt",
+        "subtitle": "Tuition & Enrollment"
+      },
+      "academicStanding": {
+        "title": "Confirm school GPA & good attendance",
+        "subtitle": "Academic Standing"
+      },
+      "proofOfFunds": {
+        "title": "Prepare balance > (Tuition + Living cost)",
+        "subtitle": "Proof of Funds"
+      },
+      "healthInsurance": {
+        "title": "Verify 'No Unpaid Premiums' (Zero balance)",
+        "subtitle": "Health Insurance"
+      },
+      "proofOfResidence": {
+        "title": "Valid contract & address report complete",
+        "subtitle": "Proof of Residence"
+      },
+      "partTimeWork": {
+        "title": "Check S-3 permit & income limit",
+        "subtitle": "Part-time Work Record"
+      },
+      "tbTest": {
+        "title": "Check TB certificate (if required)",
+        "subtitle": "Tuberculosis (TB) Test"
+      },
+      "applicationFeeD2": {
+        "title": "Prepare ~60,000 KRW in cash",
+        "subtitle": "Application Fee"
+      },
+      "legalCompliance": {
+        "title": "Verify no illegal work history",
+        "subtitle": "Legal Compliance"
+      },
+      "graduationCertificate": {
+        "title": "Possess official graduation certificate",
+        "subtitle": "Bachelor's Degree"
+      },
+      "pointSystem": {
+        "title": "Achieve total 60+ points (basic 20+)",
+        "subtitle": "Point System"
+      },
+      "languageScore": {
+        "title": "Hold TOPIK score or KIIP completion",
+        "subtitle": "Language Score"
+      },
+      "jobSeekingPlan": {
+        "title": "Draft monthly action plan for 6 months",
+        "subtitle": "Job Seeking Plan"
+      },
+      "proofOfFundsD10": {
+        "title": "Maintain balance covering 6 months of living cost",
+        "subtitle": "Proof of Funds"
+      },
+      "independentResidence": {
+        "title": "Secure contract under own name & report",
+        "subtitle": "Independent Residence"
+      },
+      "tbResult": {
+        "title": "Submit TB certificate (if required)",
+        "subtitle": "TB Test Result"
+      },
+      "applicationFeeD10": {
+        "title": "Prepare ~130,000 KRW in cash",
+        "subtitle": "Application Fee"
+      },
+      "degreeQualification": {
+        "title": "Pay tuition & save payment receipt",
+        "subtitle": "Degree & Qualification"
+      },
+      "jobExpertise": {
+        "title": "Verify major matches the job description",
+        "subtitle": "Job Expertise"
+      },
+      "validVisaStatus": {
+        "title": "Maintain valid D-2/D-10 until approval",
+        "subtitle": "Valid Visa Status"
+      },
+      "koreanEmployeeRatio": {
+        "title": "Check foreign hire ratio (often < 20%)",
+        "subtitle": "Korean Employee Ratio"
+      },
+      "minimumTeamSize": {
+        "title": "Ensure 5+ full-time insured Korean employees",
+        "subtitle": "Minimum Team Size"
+      },
+      "taxPaymentStatus": {
+        "title": "Request 'Tax Clearance Certificate' from HR",
+        "subtitle": "Tax Payment Status"
+      },
+      "companyViability": {
+        "title": "Review recent financial statements",
+        "subtitle": "Company Viability"
+      },
+      "salaryStandard": {
+        "title": "Sign contract over GNI 80%",
+        "subtitle": "Salary Standard"
+      },
+      "jobCodeMatching": {
+        "title": "Select correct E-7 code",
+        "subtitle": "Job Code Matching"
+      },
+      "recommendationLetter": {
+        "title": "Get ministry recommendation (if required)",
+        "subtitle": "Recommendation Letter"
+      }
+    }
+  },
+  "jobRecommendation": {
+    "section": {
+      "title": "Find Your Perfect Job Match"
+    },
+    "upload": {
+      "info": "Up to 2 files · 20 MB max",
+      "includeCompletedTodos": "Include completed to-dos",
+      "actions": {
+        "upload": "Upload",
+        "findPosition": "Find Position"
+      },
+      "notice": {
+        "limitExceeded": "The file count exceeds the 2-file limit.",
+        "sizeExceeded": "The file size exceeds the 20 MB limit.",
+        "duplicateName": "Resume and cover letter must have different file names. Rename one file and upload again."
+      }
+    }
+  }
+}

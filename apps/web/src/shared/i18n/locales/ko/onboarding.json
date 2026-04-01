@@ -1,0 +1,294 @@
+{
+  "stepFlow": {
+    "actions": {
+      "back": "이전",
+      "next": "다음",
+      "submit": "커리어 여정 시작하기"
+    },
+    "steps": {
+      "identityVisaVerification": "신원 및 비자 인증",
+      "education": "학력 정보",
+      "languageSkills": "어학 능력",
+      "careerPreferences": "커리어 선호도",
+      "background": "배경 정보"
+    }
+  },
+  "steps": {
+    "identityVisaVerification": {
+      "upload": {
+        "passport": {
+          "title": "여권 업로드",
+          "subtitle": "최대 1개 파일 · 10MB 이하"
+        },
+        "visaArc": {
+          "title": "비자/외국인등록증 업로드",
+          "subtitle": "최대 1개 파일 · 10MB 이하"
+        },
+        "box": {
+          "title": "사진 업로드",
+          "button": "파일 선택"
+        },
+        "fileSizeError": "최대 파일 크기: 10MB"
+      },
+      "userInfo": {
+        "name": {
+          "label": "이름",
+          "placeholder": "이름을 입력해주세요",
+          "required": "이름을 입력해주세요"
+        },
+        "country": {
+          "label": "국가",
+          "placeholder": "국가를 선택해주세요",
+          "required": "국가를 선택해주세요"
+        },
+        "birthDate": {
+          "label": "생년월일",
+          "placeholder": "날짜를 입력해주세요",
+          "required": "생년월일을 입력해주세요"
+        }
+      },
+      "visaInfo": {
+        "visaType": {
+          "label": "현재 비자 유형",
+          "placeholder": "비자 유형을 선택해주세요",
+          "required": "비자 유형을 선택해주세요"
+        },
+        "visaStartDate": {
+          "label": "비자 시작일",
+          "placeholder": "날짜를 입력해주세요",
+          "required": "비자 시작일을 입력해주세요"
+        },
+        "visaExpiredAt": {
+          "label": "비자 만료일",
+          "placeholder": "날짜를 입력해주세요",
+          "required": "비자 만료일을 입력해주세요"
+        }
+      }
+    },
+    "education": {
+      "section": {
+        "degreeLabel": "학위",
+        "degreeDescription": "졸업예정자 포함",
+        "placeholder": "학위를 선택해주세요"
+      },
+      "fields": {
+        "university": {
+          "label": "대학교 / 학교명",
+          "placeholder": "이름을 입력해주세요"
+        },
+        "primaryMajor": {
+          "label": "주전공",
+          "placeholder": "전공을 선택해주세요",
+          "required": "전공을 선택해주세요"
+        },
+        "secondaryMajor": {
+          "label": "부/복수전공 (선택)",
+          "placeholder": "전공을 선택해주세요"
+        },
+        "expectedGraduationDate": {
+          "label": "졸업 예정일",
+          "placeholder": "YYYY-MM-DD",
+          "required": "졸업일을 입력해주세요"
+        },
+        "graduationDate": {
+          "label": "졸업일",
+          "placeholder": "YYYY-MM-DD",
+          "required": "졸업일을 입력해주세요"
+        }
+      }
+    },
+    "languageSkills": {
+      "fields": {
+        "languageLevel": {
+          "label": "TOPIK / KIIP 등급",
+          "placeholder": "등급을 선택해주세요",
+          "required": "등급을 선택해주세요"
+        },
+        "englishLevel": {
+          "label": "영어 능력",
+          "placeholder": "수준을 선택해주세요",
+          "required": "수준을 선택해주세요"
+        }
+      }
+    },
+    "careerPreferences": {
+      "fields": {
+        "fieldsOfInterests": {
+          "label": "관심 산업 분야",
+          "placeholder": "산업 분야를 검색해주세요",
+          "required": "관심 산업을 하나 이상 선택해주세요.",
+          "maxSelected": "산업은 최대 5개까지 선택할 수 있어요."
+        },
+        "targetJob": {
+          "label": "희망 직무",
+          "placeholder": "희망 직무를 입력해주세요",
+          "required": "희망 직무를 입력해주세요"
+        }
+      }
+    },
+    "background": {
+      "content": {
+        "title": "현재 상황과 목표를 더 잘 이해할 수 있도록 자유롭게 작성해주세요.",
+        "description": "작성해주신 내용은 맞춤 커리어 방향과 추천을 제공하는 데 활용됩니다."
+      },
+      "info": {
+        "privacy": "개인정보 보호를 위해 주민등록번호, 여권번호, 계좌정보 등 민감한 정보는 입력하지 말아주세요.",
+        "referenceOnly": "이 정보는 사용자가 직접 작성한 내용으로, AI 추천을 위한 참고 자료로만 활용됩니다. 법적 또는 공식적인 판단에는 사용되지 않습니다."
+      },
+      "preparationStatus": {
+        "title": "현재 준비 상태",
+        "options": {
+          "alreadyApplied": "이미 지원서를 제출했어요",
+          "partTimeOrInternship": "현재 아르바이트 또는 인턴을 하고 있어요",
+          "resumeReady": "이력서와 포트폴리오가 준비되어 있어요"
+        }
+      },
+      "placeholderByTargetJob": {
+        "sales": "예: [학업] '글로벌 마케팅' 수업에서 모국 소비자 트렌드를 분석하고 한국 가전의 진출 전략을 발표해 A+를 받았습니다.[실무] 이후 무역 인턴으로 일하며 바이어와의 이메일 커뮤니케이션을 담당하고 Invoice 등 무역 서류 준비를 도왔습니다.",
+        "marketing": "예: [학업] '소비자 심리' 수업에서 외국인 유학생 100명을 대상으로 설문을 진행해 K-브랜드 인지도를 분석했습니다.[실무] 마케팅 인턴으로서 현지 소셜 미디어 채널을 운영하고 데이터 기반 타기팅과 현지화된 콘텐츠로 게시물 도달률을 30% 높였습니다.",
+        "planningStrategy": "예: [학업] '비즈니스 전략' 수업에서 SWOT 분석을 활용해 스타트업 비즈니스 모델을 설계하고 리스크 관리 전략을 수립했습니다.[실무] 현장 실습 중 재고 데이터를 정리해 비용 절감 기회를 찾고 보고 절차 간소화를 제안했습니다.",
+        "production": "예: [학업] '생산운영관리' 수업에서 SCM 원칙을 학습하고 ERP 시스템을 활용한 MRP 시뮬레이션 프로젝트를 수행했습니다.[실무] 제조업 인턴으로 근무하며 재고 흐름을 추적하고 공급업체 가격을 분석해 원가 절감에 기여했습니다. 품질 점검 체크리스트도 업데이트했습니다."
+      }
+    }
+  },
+  "degree": {
+    "location": {
+      "southKorea": "한국",
+      "outsideKorea": "해외"
+    },
+    "placeholder": "학위를 선택해 주세요",
+    "required": "학위를 선택해 주세요"
+  },
+  "options": {
+    "languageLevel": {
+      "level1": "레벨 1",
+      "level2": "레벨 2",
+      "level3": "레벨 3",
+      "level4": "레벨 4",
+      "level5": "레벨 5",
+      "notTakenYet": "아직 응시하지 않음"
+    },
+    "englishLevel": {
+      "beginner": "초급",
+      "intermediate": "중급",
+      "advanced": "고급"
+    },
+    "visaType": {
+      "d2": "D-2 (유학생)",
+      "d10": "D-10 (구직)"
+    },
+    "targetJob": {
+      "developer": "개발자",
+      "dataAnalyst": "데이터 분석가",
+      "marketer": "마케터",
+      "globalSales": "글로벌 세일즈"
+    },
+    "degree": {
+      "associate": "전문학사",
+      "bachelors": "학사",
+      "masters": "석사",
+      "doctorate": "박사"
+    }
+  },
+  "jobSkills": {
+    "developer": {
+      "techStack": {
+        "title": "기술 스택",
+        "description": "사용 가능한 언어 및 프레임워크를 입력해주세요 (예: Java, Python, JavaScript, Spring, React, Node.js)"
+      },
+      "csTools": {
+        "title": "CS 및 개발 도구",
+        "description": "사용 가능한 CS 지식 및 개발 도구를 입력해주세요"
+      },
+      "projects": {
+        "title": "프로젝트 경험",
+        "description": "개인, 학교, 팀 프로젝트 중 1개 이상의 완료 경험이 있으며, GitHub 또는 포트폴리오 링크가 있습니다."
+      },
+      "teamWorkExperience": {
+        "title": "팀 / 실무 경험",
+        "description": "개발자로서 팀 프로젝트 또는 실제 업무 환경(인턴, 아르바이트, 오픈소스, 디자이너/PM 협업 등)에서 협업한 경험이 있습니다."
+      }
+    },
+    "dataAnalyst": {
+      "dataTools": {
+        "title": "데이터 도구",
+        "description": "Excel/Google Sheets(수식, 피벗 테이블)와 Tableau, Power BI 같은 BI 도구 중 하나 이상으로 데이터를 다룰 수 있어요."
+      },
+      "sqlProgramming": {
+        "title": "SQL 및 프로그래밍",
+        "description": "기본 SQL 쿼리(SELECT, JOIN, GROUP BY)를 작성할 수 있고 Python 또는 R로 데이터 분석을 해본 경험이 있어요."
+      },
+      "analysisStorytelling": {
+        "title": "분석 및 스토리텔링",
+        "description": "간단한 분석, 차트, 보고서를 통해 데이터를 인사이트로 바꾸고 결과를 쉽게 설명해본 경험이 있어요."
+      },
+      "projects": {
+        "title": "프로젝트",
+        "description": "학교, Kaggle, 개인 프로젝트 등 포트폴리오나 GitHub로 보여줄 수 있는 데이터 프로젝트가 1개 이상 있어요."
+      }
+    },
+    "marketer": {
+      "channelsTools": {
+        "title": "채널 및 도구",
+        "description": "Instagram, YouTube, 블로그, 이메일 등 디지털 채널을 하나 이상 써봤고 Meta Ads, Google Analytics 같은 기본 도구를 사용한 경험이 있어요."
+      },
+      "contentCopy": {
+        "title": "콘텐츠 및 카피",
+        "description": "영어 또는 한국어로 소셜 게시물, 블로그, 이메일, 랜딩 페이지 같은 마케팅 콘텐츠를 제작한 경험이 있어요."
+      },
+      "dataExperimentation": {
+        "title": "데이터 및 실험",
+        "description": "클릭, 전환, 팔로워 같은 기본 마케팅 지표를 보고 A/B 테스트나 작은 실험을 진행해본 경험이 있어요."
+      },
+      "projects": {
+        "title": "프로젝트",
+        "description": "학교 동아리, 사이드 프로젝트, 인턴 등에서 측정 가능한 성과가 있는 캠페인이나 프로젝트에 참여한 경험이 있어요."
+      }
+    },
+    "globalSales": {
+      "clientCommunication": {
+        "title": "고객 커뮤니케이션",
+        "description": "영어 또는 한국어로 고객/파트너와 이메일, 전화, 미팅 등으로 소통하는 데 익숙해요."
+      },
+      "salesToolsProcess": {
+        "title": "영업 도구 및 프로세스",
+        "description": "기본 영업 단계(잠재고객 발굴 → 미팅 → 제안 → 후속 조치)를 이해하고 간단한 CRM이나 스프레드시트 추적 도구를 사용해본 적이 있어요."
+      },
+      "numbersTargets": {
+        "title": "수치 및 목표",
+        "description": "리드, 미팅, 매출 같은 기본 영업 KPI를 다루고 시간에 따라 추적하는 데 익숙해요."
+      },
+      "projects": {
+        "title": "프로젝트",
+        "description": "아르바이트, 인턴, 동아리, 봉사활동 등 고객 접점 역할에서 설득이나 협상이 필요했던 경험이 있어요."
+      }
+    }
+  },
+  "validation": {
+    "number": {
+      "invalid": "유효한 숫자를 입력해 주세요"
+    },
+    "date": {
+      "invalidFormat": "YYYY-MM-DD 형식으로 입력해 주세요.",
+      "invalidDate": "유효하지 않은 날짜예요. 실제 달력 날짜를 입력해 주세요.",
+      "futureNotAllowed": "미래 날짜는 입력할 수 없어요.",
+      "pastNotAllowed": "졸업 예정일은 미래 날짜로 입력해 주세요.",
+      "mustBeAfterIssuance": "해당 날짜는 비자 발급일 이후여야 해요.",
+      "invalidVisaDate": "유효한 날짜를 입력해 주세요"
+    },
+    "visa": {
+      "d2ExpirationInPast": "지난 날짜가 아닌 유효한 D-2 비자 만료일을 선택해 주세요.",
+      "d2ExceedsTwoYears": "D-2 비자는 발급일 기준 최소 2년 이상 유효해야 해요.",
+      "d2ExpirationBeforeGraduation": "비자 만료일은 졸업 예정일과 같거나 그 이후여야 해요.",
+      "d10InvalidDuration": "유효하지 않은 만료일이에요. D-10 비자는 6개월 단위로 설정되어야 해요.",
+      "d10ExpirationInPast": "지난 날짜가 아닌 유효한 D-10 비자 만료일을 선택해 주세요.",
+      "d2IssuanceAfterGraduation": "비자 발급일보다 늦은 졸업일을 입력해 주세요.",
+      "startDateAfterExpiration": "비자 시작일은 비자 만료일보다 빨라야 해요.",
+      "futureIssuanceDate": "유효한 날짜를 입력해 주세요"
+    },
+    "name": {
+      "empty": "이름은 비워둘 수 없어요.",
+      "specialCharacters": "일반 문자만 사용해 주세요."
+    }
+  }
+}

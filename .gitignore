@@ -11,6 +11,7 @@ node_modules
 .env.development.local
 .env.test.local
 .env.production.local
+.env.production
 
 # Testing
 coverage
@@ -41,6 +42,12 @@ yarn-error.log*
 # IDE / Editor
 .history/
 
+# Claude Code
+.claude/
+
 # Lefthook
 .lefthook
 .lefthook-local.yml
+
+# Codex
+AGENTS.md

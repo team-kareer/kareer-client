@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Button, Tab, useTabContext } from '@kds/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
@@ -17,8 +18,8 @@ import { formatDueInDays } from './utils/format-due-in-days';
 import * as styles from './todo-panel.css';
 
 const TABS = [
-  { id: 1, value: 'visa', label: 'Visa' },
-  { id: 2, value: 'career', label: 'Career' },
+  { id: 1, value: 'visa', label: 'tab.visa' },
+  { id: 2, value: 'career', label: 'tab.career' },
 ] as const;
 
 type ActionItemListResponse = components['schemas']['ActionItemListResponse'];
@@ -48,6 +49,7 @@ const areAllTodosCompleted = (data?: ActionItemListResponse) => {
 
 const TodoPanel = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation('todo');
   const { data } = useQuery({ ...TODO_QUERY_OPTIONS.GET_TODO_LIST() });
   const { todos } = useSortedTodos({
     visa: data?.visaActionItems ?? [],
@@ -126,7 +128,7 @@ const TodoPanel = () => {
 
   return (
     <aside className={styles.container}>
-      <h3 className={styles.title}>To-Do</h3>
+      <h3 className={styles.title}>{t('TodoTitle')}</h3>
       <Tab.Container initialValue="visa">
         <Tab.List className={styles.tabList}>
           <TodoTabButtons />
@@ -162,6 +164,7 @@ const TodoPanel = () => {
 };
 
 const TodoTabButtons = () => {
+  const { t } = useTranslation('todo');
   const { selectedTab, setSelectedTab } = useTabContext();
 
   return (
@@ -172,7 +175,7 @@ const TodoTabButtons = () => {
           preset={selectedTab === value ? 'mini_primary' : 'mini_outlined'}
           onClick={() => setSelectedTab(value)}
         >
-          {label}
+          {t(label)}
         </Button>
       ))}
     </>

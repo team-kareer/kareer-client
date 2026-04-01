@@ -5,13 +5,9 @@ interface OnboardingStepTitleProps {
   title: string;
 }
 
-const OnboardingStepTitle = ({
-  stepNumber,
-  title,
-}: OnboardingStepTitleProps) => {
+const OnboardingStepTitle = ({ title }: OnboardingStepTitleProps) => {
   return (
     <div className={styles.container}>
-      <div className={styles.numbering}>{stepNumber}</div>
       <div className={styles.title}>{title}</div>
     </div>
   );

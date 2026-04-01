@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { LogoTypoIcon, SymbolPrimaryIcon } from '@kds/icons';
 import Lottie from 'lottie-react';
+import { useTranslation } from 'react-i18next';
 
 import { onboarding_lottie } from '@shared/assets';
 
@@ -10,9 +11,9 @@ interface OnboardingLayoutProps {
   children: ReactNode;
 }
 
-const DESCRIPTION_TEXT = `Guiding your career journey\nwith trusted visa and career insights`;
-
 const OnboardingLayout = ({ children }: OnboardingLayoutProps) => {
+  const { t } = useTranslation('login');
+
   return (
     <div className={styles.container}>
       <div className={styles.introSection}>
@@ -29,7 +30,7 @@ const OnboardingLayout = ({ children }: OnboardingLayoutProps) => {
             <SymbolPrimaryIcon width={48} height={48} />
             <LogoTypoIcon width={121} height={48} />
           </span>
-          <p className={styles.text}>{DESCRIPTION_TEXT}</p>
+          <p className={styles.text}>{t('layout.description')}</p>
         </div>
       </div>
       <div className={styles.stepFormSection}>{children}</div>

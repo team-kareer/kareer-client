@@ -1,0 +1,32 @@
+{
+  "phaseOverview": {
+    "section": {
+      "title": "커리어 로드맵",
+      "subtitle": "커리어 주요 단계까지의 진행 상황을 확인해보세요"
+    },
+    "roadmap": {
+      "prefix": "까지의 여정",
+      "characterAlt": "로드맵 캐릭터"
+    },
+    "actions": {
+      "title": "Required Actions",
+      "completed": "All Done!",
+      "tags": {
+        "Visa": "Visa",
+        "Career": "Career"
+      }
+    }
+  },
+  "bookmarkedJobs": {
+    "section": {
+      "title": "북마크한 채용 공고",
+      "subtitle": "관심 있는 채용 공고를 저장하고 한 곳에서 관리해보세요"
+    },
+    "list": {
+      "deadline": {
+        "today": "D-Day"
+      },
+      "imageAlt": "{{company}} 채용 공고 이미지"
+    }
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "stepFlow": {
+    "actions": {
+      "back": "Quay lại",
+      "next": "Tiếp theo",
+      "submit": "Bắt đầu hành trình sự nghiệp"
+    },
+    "steps": {
+      "identityVisaVerification": "Xác minh danh tính & visa",
+      "education": "Học vấn",
+      "languageSkills": "Kỹ năng ngôn ngữ",
+      "careerPreferences": "Định hướng nghề nghiệp",
+      "background": "Thông tin bổ sung"
+    }
+  },
+  "steps": {
+    "identityVisaVerification": {
+      "upload": {
+        "passport": {
+          "title": "Tải lên hộ chiếu",
+          "subtitle": "Tối đa 1 tệp · Dung lượng tối đa 10 MB"
+        },
+        "visaArc": {
+          "title": "Tải lên visa hoặc thẻ cư trú người nước ngoài",
+          "subtitle": "Tối đa 1 tệp · Dung lượng tối đa 10 MB"
+        },
+        "box": {
+          "title": "Tải ảnh lên",
+          "button": "Chọn tệp"
+        },
+        "fileSizeError": "Dung lượng tệp tối đa: 10 MB"
+      },
+      "userInfo": {
+        "name": {
+          "label": "Họ và tên",
+          "placeholder": "Nhập họ và tên",
+          "required": "Tên này đã được sử dụng"
+        },
+        "country": {
+          "label": "Quốc tịch",
+          "placeholder": "Chọn quốc tịch",
+          "required": "Chọn quốc gia của bạn"
+        },
+        "birthDate": {
+          "label": "Ngày sinh",
+          "placeholder": "Chọn ngày",
+          "required": "Vui lòng nhập số hợp lệ"
+        }
+      },
+      "visaInfo": {
+        "visaType": {
+          "label": "Loại visa hiện tại",
+          "placeholder": "Chọn loại visa",
+          "required": "Chọn loại visa"
+        },
+        "visaStartDate": {
+          "label": "Ngày bắt đầu visa",
+          "placeholder": "Chọn ngày",
+          "required": "Vui lòng nhập số hợp lệ"
+        },
+        "visaExpiredAt": {
+          "label": "Ngày hết hạn visa",
+          "placeholder": "Chọn ngày",
+          "required": "Vui lòng nhập số hợp lệ"
+        }
+      }
+    },
+    "education": {
+      "section": {
+        "degreeLabel": "Bằng cấp",
+        "degreeDescription": "Bao gồm cả sinh viên sắp tốt nghiệp",
+        "placeholder": "Chọn bằng cấp"
+      },
+      "fields": {
+        "university": {
+          "label": "Trường đại học / Trường học",
+          "placeholder": "Nhập tên trường"
+        },
+        "primaryMajor": {
+          "label": "Chuyên ngành chính",
+          "placeholder": "Chọn chuyên ngành",
+          "required": "Chọn chuyên ngành"
+        },
+        "secondaryMajor": {
+          "label": "Chuyên ngành phụ (Tùy chọn)",
+          "placeholder": "Chọn chuyên ngành"
+        },
+        "expectedGraduationDate": {
+          "label": "Ngày dự kiến tốt nghiệp",
+          "placeholder": "YYYY-MM-DD",
+          "required": "Vui lòng nhập một số hợp lệ"
+        },
+        "graduationDate": {
+          "label": "Ngày tốt nghiệp",
+          "placeholder": "YYYY-MM-DD",
+          "required": "Nhập ngày tốt nghiệp"
+        }
+      }
+    },
+    "languageSkills": {
+      "fields": {
+        "languageLevel": {
+          "label": "Trình độ tiếng Hàn (TOPIK / KIIP)",
+          "placeholder": "Chọn trình độ",
+          "required": "Chọn trình độ của bạn"
+        },
+        "englishLevel": {
+          "label": "Trình độ tiếng Anh",
+          "placeholder": "Chọn trình độ",
+          "required": "Chọn trình độ của bạn"
+        }
+      }
+    },
+    "careerPreferences": {
+      "fields": {
+        "fieldsOfInterests": {
+          "label": "Ngành / Lĩnh vực quan tâm",
+          "placeholder": "Tìm kiếm ngành hoặc lĩnh vực",
+          "required": "Vui lòng chọn ít nhất một ngành.",
+          "maxSelected": "Bạn chỉ có thể chọn tối đa 5 ngành."
+        },
+        "targetJob": {
+          "label": "Vị trí mục tiêu",
+          "placeholder": "Nhập vị trí mục tiêu của bạn",
+          "required": "Nhập công việc bạn muốn"
+        }
+      }
+    },
+    "background": {
+      "content": {
+        "title": "Hãy chia sẻ bất kỳ thông tin nào giúp chúng tôi hiểu rõ hơn về hoàn cảnh và mục tiêu của bạn.",
+        "description": "Thông tin này sẽ giúp chúng tôi đưa ra lộ trình và gợi ý nghề nghiệp phù hợp với bạn."
+      },
+      "info": {
+        "privacy": "Để bảo vệ quyền riêng tư, vui lòng không chia sẻ thông tin nhạy cảm (như số CMND/CCCD, hộ chiếu, tài khoản ngân hàng).",
+        "referenceOnly": "Thông tin này do bạn tự cung cấp và chỉ được sử dụng làm tài liệu tham khảo cho AI. Không được dùng cho mục đích pháp lý hoặc chính thức."
+      },
+      "preparationStatus": {
+        "title": "Tình trạng chuẩn bị hiện tại",
+        "options": {
+          "alreadyApplied": "Tôi đã nộp đơn ứng tuyển",
+          "partTimeOrInternship": "Hiện đang làm bán thời gian hoặc thực tập",
+          "resumeReady": "Hồ sơ và portfolio đã sẵn sàng"
+        }
+      },
+      "placeholderByTargetJob": {
+        "sales": "Ví dụ: [Học thuật] Trong môn 'Global Marketing', tôi đã phân tích xu hướng tiêu dùng ở quê nhà và trình bày chiến lược thâm nhập cho đồ gia dụng Hàn Quốc, đạt điểm A+.[Chuyên môn] Sau đó, khi là thực tập sinh thương mại, tôi quản lý email với người mua và hỗ trợ chuẩn bị chứng từ thương mại như hóa đơn.",
+        "marketing": "Ví dụ: [Học thuật] Tôi đã thực hiện khảo sát 100 sinh viên quốc tế trong môn 'Consumer Psychology' để phân tích mức độ nhận biết thương hiệu Hàn Quốc.[Chuyên môn] Khi thực tập marketing, tôi quản lý kênh mạng xã hội địa phương và tăng 30% độ phủ bài đăng nhờ nhắm mục tiêu dựa trên dữ liệu và nội dung bản địa hóa.",
+        "planningStrategy": "Ví dụ: [Học thuật] Tôi đã xây dựng mô hình kinh doanh startup và thiết kế chiến lược quản lý rủi ro bằng phân tích SWOT trong môn 'Business Strategy'.[Chuyên môn] Trong kỳ thực tập thực địa, tôi sắp xếp dữ liệu tồn kho để xác định cơ hội tiết kiệm chi phí và đề xuất đơn giản hóa quy trình báo cáo.",
+        "production": "Ví dụ: [Học thuật] Trong môn 'Operations Management', tôi học các nguyên tắc SCM và hoàn thành dự án mô phỏng MRP bằng hệ thống ERP.[Chuyên môn] Khi thực tập tại nhà máy, tôi theo dõi luồng tồn kho và phân tích giá của nhà cung cấp để giảm chi phí. Tôi cũng cập nhật danh sách kiểm tra chất lượng."
+      }
+    }
+  },
+  "degree": {
+    "location": {
+      "southKorea": "Hàn Quốc",
+      "outsideKorea": "Ngoài Hàn Quốc"
+    },
+    "placeholder": "Chọn bằng cấp của bạn",
+    "required": "Chọn bằng cấp"
+  },
+  "options": {
+    "languageLevel": {
+      "level1": "Cấp độ 1",
+      "level2": "Cấp độ 2",
+      "level3": "Cấp độ 3",
+      "level4": "Cấp độ 4",
+      "level5": "Cấp độ 5",
+      "notTakenYet": "Chưa thi"
+    },
+    "englishLevel": {
+      "beginner": "Sơ cấp",
+      "intermediate": "Trung cấp",
+      "advanced": "Cao cấp"
+    },
+    "visaType": {
+      "d2": "D-2 (Du học sinh)",
+      "d10": "D-10 (Tìm việc)"
+    },
+    "targetJob": {
+      "developer": "Lập trình viên",
+      "dataAnalyst": "Chuyên viên phân tích dữ liệu",
+      "marketer": "Nhân viên marketing",
+      "globalSales": "Kinh doanh quốc tế"
+    },
+    "degree": {
+      "associate": "Cao đẳng",
+      "bachelors": "Cử nhân",
+      "masters": "Thạc sĩ",
+      "doctorate": "Tiến sĩ"
+    }
+  },
+  "jobSkills": {
+    "developer": {
+      "techStack": {
+        "title": "Công nghệ sử dụng (Tech Stack)",
+        "description": "Tôi có kinh nghiệm với các ngôn ngữ / framework này (VD: Java, Python, JavaScript, Spring, React, Node.js)."
+      },
+      "csTools": {
+        "title": "Khoa học máy tính & Công cụ (CS & Tools)",
+        "description": "Tôi có kinh nghiệm với các ngôn ngữ / framework này (VD: Java, Python, JavaScript, Spring, React, Node.js)."
+      },
+      "projects": {
+        "title": "Dự án",
+        "description": "Tôi có 1+ dự án đã hoàn thành (cá nhân, trường học hoặc nhóm) với mã nguồn trên GitHub hoặc trang portfolio."
+      },
+      "teamWorkExperience": {
+        "title": "Kinh nghiệm làm việc / Nhóm",
+        "description": "Tôi đã từng làm việc trong nhóm hoặc môi trường thực tế (thực tập, bán thời gian, mã nguồn mở, hoặc cộng tác với designer/PM) với tư cách là lập trình viên."
+      }
+    },
+    "dataAnalyst": {
+      "dataTools": {
+        "title": "Công cụ dữ liệu",
+        "description": "Tôi có thể làm việc với dữ liệu bằng Excel/Google Sheets (công thức, bảng pivot) và ít nhất một công cụ BI như Tableau hoặc Power BI."
+      },
+      "sqlProgramming": {
+        "title": "SQL & Lập trình",
+        "description": "Tôi có thể viết các truy vấn SQL cơ bản (SELECT, JOIN, GROUP BY) và có một số kinh nghiệm với Python hoặc R để phân tích dữ liệu."
+      },
+      "analysisStorytelling": {
+        "title": "Phân tích & kể chuyện",
+        "description": "Tôi đã luyện tập biến dữ liệu thành insight (phân tích đơn giản, biểu đồ hoặc báo cáo) và giải thích kết quả bằng ngôn ngữ dễ hiểu."
+      },
+      "projects": {
+        "title": "Dự án",
+        "description": "Tôi có ít nhất 1 dự án dữ liệu (ở trường, Kaggle, cá nhân) có thể giới thiệu trong portfolio hoặc GitHub."
+      }
+    },
+    "marketer": {
+      "channelsTools": {
+        "title": "Kênh & công cụ",
+        "description": "Tôi có kinh nghiệm sử dụng ít nhất một kênh số (Instagram, YouTube, blog, email) và các công cụ cơ bản như Meta Ads, Google Analytics."
+      },
+      "contentCopy": {
+        "title": "Nội dung & copy",
+        "description": "Tôi đã tạo nội dung marketing (bài đăng mạng xã hội, blog, email, landing page) bằng tiếng Anh hoặc tiếng Hàn."
+      },
+      "dataExperimentation": {
+        "title": "Dữ liệu & thử nghiệm",
+        "description": "Tôi đã theo dõi các chỉ số marketing cơ bản (click, conversion, follower) và thử A/B test hoặc các thử nghiệm nhỏ."
+      },
+      "projects": {
+        "title": "Dự án",
+        "description": "Tôi đã tham gia ít nhất một chiến dịch hoặc dự án (câu lạc bộ, side project, thực tập) có kết quả đo lường được."
+      }
+    },
+    "globalSales": {
+      "clientCommunication": {
+        "title": "Giao tiếp với khách hàng",
+        "description": "Tôi tự tin trao đổi bằng lời nói hoặc văn bản với khách hàng/đối tác bằng tiếng Anh hoặc tiếng Hàn (email, cuộc gọi, cuộc họp)."
+      },
+      "salesToolsProcess": {
+        "title": "Công cụ & quy trình bán hàng",
+        "description": "Tôi hiểu các bước bán hàng cơ bản (tìm kiếm khách hàng tiềm năng → gặp gỡ → đề xuất → theo dõi) và đã dùng CRM đơn giản hoặc bảng tính để theo dõi."
+      },
+      "numbersTargets": {
+        "title": "Số liệu & mục tiêu",
+        "description": "Tôi quen làm việc với các KPI bán hàng cơ bản (lead, cuộc họp, doanh thu) và theo dõi chúng theo thời gian."
+      },
+      "projects": {
+        "title": "Dự án",
+        "description": "Tôi có kinh nghiệm ở vai trò tiếp xúc khách hàng (bán thời gian, thực tập, câu lạc bộ, tình nguyện) nơi tôi cần thuyết phục hoặc đàm phán."
+      }
+    }
+  },
+  "validation": {
+    "number": {
+      "invalid": "Vui lòng nhập số hợp lệ"
+    },
+    "date": {
+      "invalidFormat": "Vui lòng dùng định dạng YYYY-MM-DD.",
+      "invalidDate": "Ngày không hợp lệ. Vui lòng nhập ngày có thực trên lịch.",
+      "futureNotAllowed": "Không được nhập ngày trong tương lai.",
+      "pastNotAllowed": "Vui lòng nhập ngày tốt nghiệp dự kiến trong tương lai.",
+      "mustBeAfterIssuance": "Ngày này phải sau ngày cấp visa.",
+      "invalidVisaDate": "Vui lòng nhập ngày hợp lệ"
+    },
+    "visa": {
+      "d2ExpirationInPast": "Vui lòng chọn ngày hết hạn visa D-2 hợp lệ và không ở trong quá khứ.",
+      "d2ExceedsTwoYears": "Visa D-2 phải còn hiệu lực ít nhất 2 năm kể từ ngày cấp.",
+      "d2ExpirationBeforeGraduation": "Ngày hết hạn visa phải bằng hoặc sau ngày dự kiến tốt nghiệp.",
+      "d10InvalidDuration": "Ngày hết hạn không hợp lệ. Visa D-10 phải được đặt theo chu kỳ 6 tháng.",
+      "d10ExpirationInPast": "Vui lòng chọn ngày hết hạn visa D-10 hợp lệ và không ở trong quá khứ.",
+      "d2IssuanceAfterGraduation": "Vui lòng nhập ngày tốt nghiệp muộn hơn ngày cấp visa.",
+      "startDateAfterExpiration": "Vui lòng nhập ngày bắt đầu visa sớm hơn ngày hết hạn visa.",
+      "futureIssuanceDate": "Vui lòng nhập ngày hợp lệ"
+    },
+    "name": {
+      "empty": "Tên không được để trống.",
+      "specialCharacters": "Vui lòng chỉ dùng ký tự chữ thông thường."
+    }
+  }
+}

@@ -18,10 +18,12 @@
     "@tanstack/react-query": "^5.90.16",
     "@tanstack/react-query-devtools": "^5.91.2",
     "@toss/ky": "^1.2.1",
+    "i18next": "^25.8.13",
     "lottie-react": "^2.4.1",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-hook-form": "^7.71.1",
+    "react-i18next": "^16.5.4",
     "react-router": "^7.11.0"
   },
   "devDependencies": {
@@ -33,6 +35,7 @@
     "@types/react-dom": "catalog:",
     "@vanilla-extract/css": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
+    "@vanilla-extract/dynamic": "catalog:",
     "@vanilla-extract/vite-plugin": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "babel-plugin-react-compiler": "^1.0.0",

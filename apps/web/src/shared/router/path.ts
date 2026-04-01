@@ -2,11 +2,12 @@ export const ROUTE_PATH = {
   DASHBOARD: '/',
   ROADMAP: '/roadmap',
   FITANALYSIS: '/fit-analysis',
-  // MY_PAGE: '/my-page',
+  MY_PAGE: '/my-page',
 
   ERROR: '/error-page',
   LOGIN: '/login',
   LOGIN_CALLBACK: '/oauth/callback',
+  TERMSAGREEMENT: '/terms-agreement',
   ONBOARDING: '/onboarding',
 };
 

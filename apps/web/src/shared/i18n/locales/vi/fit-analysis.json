@@ -1,0 +1,155 @@
+{
+  "visaEligibility": {
+    "section": {
+      "title": "Kiểm tra điều kiện visa"
+    },
+    "visaTabs": {
+      "D2": "D-2 Du học",
+      "D10": "D-10 Tìm việc",
+      "E7": "E-7 Lao động chuyên môn cho người nước ngoài"
+    },
+    "status": {
+      "currentVisaStatus": "Tình trạng visa hiện tại",
+      "eligible": "Đủ điều kiện",
+      "notEligible": "Không đủ điều kiện"
+    }
+  },
+  "visaChecklist": {
+    "header": {
+      "title": "Yêu cầu cơ bản",
+      "subtitle": "Danh sách kiểm tra"
+    },
+    "items": {
+      "expiry": {
+        "title": "Kiểm tra ngày hết hạn (> 6 tháng) và cập nhật thông tin",
+        "subtitle": "Hộ chiếu và ARC còn hiệu lực"
+      },
+      "tuition": {
+        "title": "Đóng học phí và lưu biên lai thanh toán",
+        "subtitle": "Học phí và tình trạng nhập học"
+      },
+      "academicStanding": {
+        "title": "Xác nhận GPA và tình trạng chuyên cần",
+        "subtitle": "Tình trạng học tập"
+      },
+      "proofOfFunds": {
+        "title": "Chuẩn bị số dư lớn hơn học phí và chi phí sinh hoạt",
+        "subtitle": "Chứng minh tài chính"
+      },
+      "healthInsurance": {
+        "title": "Xác nhận không còn phí bảo hiểm y tế chưa thanh toán",
+        "subtitle": "Bảo hiểm y tế"
+      },
+      "proofOfResidence": {
+        "title": "Hợp đồng cư trú hợp lệ và đã báo cáo địa chỉ",
+        "subtitle": "Chứng minh nơi ở"
+      },
+      "partTimeWork": {
+        "title": "Kiểm tra giấy phép S-3 và giới hạn thu nhập",
+        "subtitle": "Lịch sử làm thêm"
+      },
+      "tbTest": {
+        "title": "Kiểm tra giấy chứng nhận lao phổi nếu cần",
+        "subtitle": "Xét nghiệm lao (TB)"
+      },
+      "applicationFeeD2": {
+        "title": "Chuẩn bị khoảng 60.000 KRW tiền mặt",
+        "subtitle": "Lệ phí hồ sơ"
+      },
+      "legalCompliance": {
+        "title": "Xác minh không có lịch sử lao động bất hợp pháp",
+        "subtitle": "Tuân thủ pháp lý"
+      },
+      "graduationCertificate": {
+        "title": "Có giấy chứng nhận tốt nghiệp chính thức",
+        "subtitle": "Bằng cử nhân"
+      },
+      "pointSystem": {
+        "title": "Đạt tổng 60+ điểm (điểm cơ bản 20+)",
+        "subtitle": "Hệ thống tính điểm"
+      },
+      "languageScore": {
+        "title": "Có điểm TOPIK hoặc hoàn thành KIIP",
+        "subtitle": "Điểm ngôn ngữ"
+      },
+      "jobSeekingPlan": {
+        "title": "Lập kế hoạch tìm việc theo tháng trong 6 tháng",
+        "subtitle": "Kế hoạch tìm việc"
+      },
+      "proofOfFundsD10": {
+        "title": "Duy trì số dư đủ cho 6 tháng sinh hoạt",
+        "subtitle": "Chứng minh tài chính"
+      },
+      "independentResidence": {
+        "title": "Có hợp đồng nhà đứng tên mình và đã khai báo",
+        "subtitle": "Nơi ở độc lập"
+      },
+      "tbResult": {
+        "title": "Nộp giấy chứng nhận lao phổi nếu cần",
+        "subtitle": "Kết quả xét nghiệm lao"
+      },
+      "applicationFeeD10": {
+        "title": "Chuẩn bị khoảng 130.000 KRW tiền mặt",
+        "subtitle": "Lệ phí hồ sơ"
+      },
+      "degreeQualification": {
+        "title": "Chuẩn bị hồ sơ bằng cấp và điều kiện chuyên môn",
+        "subtitle": "Bằng cấp và điều kiện"
+      },
+      "jobExpertise": {
+        "title": "Xác minh chuyên ngành phù hợp với mô tả công việc",
+        "subtitle": "Chuyên môn công việc"
+      },
+      "validVisaStatus": {
+        "title": "Duy trì D-2/D-10 hợp lệ cho đến khi được chấp thuận",
+        "subtitle": "Tình trạng visa hợp lệ"
+      },
+      "koreanEmployeeRatio": {
+        "title": "Kiểm tra tỷ lệ tuyển người nước ngoài (thường < 20%)",
+        "subtitle": "Tỷ lệ nhân viên Hàn Quốc"
+      },
+      "minimumTeamSize": {
+        "title": "Đảm bảo có ít nhất 5 nhân viên Hàn Quốc toàn thời gian có bảo hiểm",
+        "subtitle": "Quy mô đội ngũ tối thiểu"
+      },
+      "taxPaymentStatus": {
+        "title": "Yêu cầu HR cung cấp giấy xác nhận hoàn thành nghĩa vụ thuế",
+        "subtitle": "Tình trạng nộp thuế"
+      },
+      "companyViability": {
+        "title": "Xem xét báo cáo tài chính gần đây",
+        "subtitle": "Năng lực doanh nghiệp"
+      },
+      "salaryStandard": {
+        "title": "Ký hợp đồng với mức lương trên 80% GNI",
+        "subtitle": "Tiêu chuẩn lương"
+      },
+      "jobCodeMatching": {
+        "title": "Chọn đúng mã nghề E-7",
+        "subtitle": "Khớp mã công việc"
+      },
+      "recommendationLetter": {
+        "title": "Nhận thư giới thiệu từ bộ ngành nếu cần",
+        "subtitle": "Thư giới thiệu"
+      }
+    }
+  },
+  "jobRecommendation": {
+    "section": {
+      "title": "Tìm công việc phù hợp nhất với bạn"
+    },
+    "upload": {
+      "info": "Tối đa 2 tệp · Dung lượng tối đa 20 MB",
+      "includeCompletedTodos": "Bao gồm các việc cần làm đã hoàn thành",
+      "actions": {
+        "upload": "Tải lên",
+        "findPosition": "Tìm vị trí"
+      },
+      "notice": {
+        "limitExceeded": "Số lượng tệp vượt quá giới hạn 2 tệp.",
+        "sizeExceeded": "Kích thước tệp vượt quá giới hạn 20 MB.",
+        "duplicateName": "Tên file CV và thư xin việc phải khác nhau. Vui lòng đổi tên một file và tải lên lại."
+      }
+    }
+  }
+}

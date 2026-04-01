@@ -2,4 +2,7 @@ export const END_POINT = {
   LOGIN: {
     EXCHANGE_GOOGLE_CODE: 'api/v1/auth/code/exchange',
   },
+  LOGOUT: {
+    SIGN_OUT: 'api/v1/auth/sign-out',
+  },
 };

@@ -13,20 +13,23 @@ export const STORAGE_KEY = 'onboarding-form-data';
 export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
   name: '',
   birthDate: '',
-  country: '',
+  universityCode: '',
+  countryCode: '',
   languageLevel: '',
-  degreeLocation: 'south-korea',
+  englishLevel: '',
   degree: '',
   visaType: '',
   expectedGraduationDate: '',
   visaStartDate: '',
   visaExpiredAt: '',
-  visaPoint: 0,
-  primaryMajor: '',
+  primaryMajorCode: '',
   secondaryMajor: '',
+  fieldsOfInterests: [],
+  preparationStatuses: [],
   targetJob: '',
   targetJobSkill: '',
   personalBackground: '',
+  degreeLocation: 'south-korea',
 };
 
 /**
@@ -34,45 +37,30 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
  * @constant
  */
 export const FUNNEL_STEPS = [
-  'PersonalInformation',
-  'VisaInformation',
-  'TargetRole',
+  'Identity & Visa verification',
+  'Education',
+  'Language Skills',
+  'Career Preferences',
   'Background',
 ] as const;
-
-/**
- * 온보딩 퍼널 step title
- * @constant
- */
-export const STEP_TITLES = [
-  'Personal Information',
-  'Visa Information',
-  'Target Role',
-  'Background',
-];
 
 /**
  * 각 단계별 필수 입력 필드 배열
  * */
 export const STEP_REQUIRED_FIELDS: Array<Array<keyof OnboardingForm>> = [
-  ['name', 'birthDate', 'country', 'languageLevel', 'degree'],
-  ['visaType', 'expectedGraduationDate', 'visaStartDate', 'visaExpiredAt'],
-  ['primaryMajor', 'targetJob'],
+  [
+    'name',
+    'countryCode',
+    'birthDate',
+    'visaType',
+    'visaStartDate',
+    'visaExpiredAt',
+  ],
+  ['universityCode', 'primaryMajorCode', 'degree', 'expectedGraduationDate'],
+  ['languageLevel', 'englishLevel'],
+  ['fieldsOfInterests', 'targetJob'],
   ['personalBackground'],
 ];
-
-/**
- * 비자 타입별 필수 입력 필드 매핑
- * @description D2, D10 비자 타입에 따라 필드 요구
- */
-export const VISA_TYPE_REQUIRED_FIELDS: Record<
-  'D2' | 'D10' | 'default',
-  Array<keyof OnboardingForm>
-> = {
-  D2: ['visaType', 'expectedGraduationDate', 'visaStartDate', 'visaExpiredAt'],
-  D10: ['visaType', 'visaPoint', 'visaStartDate', 'visaExpiredAt'],
-  default: ['visaType', 'visaStartDate', 'visaExpiredAt'],
-};
 
 /**
  * 입력 필드 최대 길이

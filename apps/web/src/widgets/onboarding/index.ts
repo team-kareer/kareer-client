@@ -1,12 +1,24 @@
 export * from './constants/placeholders';
 export { VALIDATION_MESSAGE } from './constants/validation-message';
+export * from './types';
+export {
+  type FormBaseFieldProps,
+  type FormFieldProps,
+} from './types/form-field-types';
+export { default as FormAutocompleteField } from './ui/form-autocomplete-field/form-autocomplete-field';
+export { FormField } from './ui/form-field/form-field';
+export { default as FormInputField } from './ui/form-input-field/form-input-field';
+export { default as FormTextareaField } from './ui/form-textarea-field/form-textarea-field';
+export { default as IndustryFieldChips } from './ui/industry-field-chips/industry-field-chips';
 export { default as OnboardingDegreeStep } from './ui/onboarding-degree-step/onboarding-degree-step';
 export { default as OnboardingStep } from './ui/onboarding-step/onboarding-step';
 export { default as OnboardingStepHeader } from './ui/onboarding-step-header/onboarding-step-header';
-export { type OnboardingStepData } from './ui/onboarding-step-header/onboarding-step-header';
 export { default as OnboardingStepLayout } from './ui/onboarding-step-layout/onboarding-step-layout';
 export { default as OnboardingStepTitle } from './ui/onboarding-step-title/onboarding-step-title';
+export { default as EducationStep } from './ui/step/education/education';
+export { default as LanguageSkillStep } from './ui/step/language-skills/language-skills';
 export { default as PersonalBackgroundStep } from './ui/step/personal-backgorund/personal-background';
 export { default as PersonalInformationStep } from './ui/step/personal-information/personal-information';
 export { default as TargetRoleStep } from './ui/step/target-role/target-role';
 export { default as VisaInformationStep } from './ui/step/visa-information/visa-information';
+export * from './utils';

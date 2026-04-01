@@ -1,0 +1,22 @@
+{
+  "card": {
+    "title": "Hiện chưa có việc cần\nlàm",
+    "description": "Hãy thêm công việc để theo\ndõi kế hoạch sự nghiệp của\nbạn",
+    "button": "Thêm việc cần làm"
+  },
+  "section": {
+    "title": "Hãy tìm những cơ hội việc làm phù hợp với bạn",
+    "description": "Tìm các công việc phù hợp và lưu lại",
+    "button": "Xem tin tuyển dụng"
+  },
+  "page": {
+    "title": "Đã xảy ra lỗi!",
+    "description": "Vui lòng thử lại sau ít phút",
+    "button": "Thử lại"
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "description": "Trang bạn đang tìm không tồn tại.",
+    "button": "Đi tới Dashboard"
+  }
+}

@@ -5,12 +5,14 @@ export * from './form-to-request';
 export * from './job-skills';
 export * from './options';
 export * from './personal-background';
-export * from './steps';
 export * from './target-job-skills';
 export {
   type GetCountryListResponse,
+  type GetFieldListResponse,
   type GetMajorListResponse,
+  type GetUniversityListResponse,
   type OnboardingForm,
   type OnboardingFormRequest,
 } from './types';
+export * from './utils';
 export * from './validation';

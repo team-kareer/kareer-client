@@ -1,0 +1,293 @@
+{
+  "stepFlow": {
+    "actions": {
+      "back": "Back",
+      "next": "Next",
+      "submit": "Start your career journey"
+    },
+    "steps": {
+      "identityVisaVerification": "Identity & Visa verification",
+      "education": "Education",
+      "languageSkills": "Language Skills",
+      "careerPreferences": "Career Preferences",
+      "background": "Background"
+    }
+  },
+  "steps": {
+    "identityVisaVerification": {
+      "upload": {
+        "passport": {
+          "title": "Upload Passport",
+          "subtitle": "Up to 1 files · 10 MB max"
+        },
+        "visaArc": {
+          "title": "Upload Visa or ARC",
+          "subtitle": "Up to 1 files · 10 MB max"
+        },
+        "box": {
+          "title": "Upload Photo",
+          "button": "Choose File"
+        },
+        "fileSizeError": "Maximum file size: 10MB"
+      },
+      "userInfo": {
+        "name": {
+          "label": "Full Name",
+          "placeholder": "Enter your name",
+          "required": "Please enter your name."
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": "Select your country",
+          "required": "Select your country"
+        },
+        "birthDate": {
+          "label": "Date of Birth",
+          "placeholder": "Enter the date",
+          "required": "Please enter your date of birth."
+        }
+      },
+      "visaInfo": {
+        "visaType": {
+          "label": "Current Visa Type",
+          "placeholder": "Select your visa type",
+          "required": "Select the visa type"
+        },
+        "visaStartDate": {
+          "label": "Visa Start Date",
+          "placeholder": "Enter the date",
+          "required": "Enter the visa start date"
+        },
+        "visaExpiredAt": {
+          "label": "Visa Expiration Date",
+          "placeholder": "Enter the date",
+          "required": "Enter the visa expiration date"
+        }
+      }
+    },
+    "education": {
+      "section": {
+        "degreeLabel": "Degree",
+        "degreeDescription": "Graduating students are included."
+      },
+      "fields": {
+        "university": {
+          "label": "University / School",
+          "placeholder": "Select your university name"
+        },
+        "primaryMajor": {
+          "label": "Primary Major",
+          "placeholder": "Select your major",
+          "required": "Select your major"
+        },
+        "secondaryMajor": {
+          "label": "Secondary Major (Optional)",
+          "placeholder": "Select your major"
+        },
+        "expectedGraduationDate": {
+          "label": "Expected Graduation Date",
+          "placeholder": "YYYY-MM-DD",
+          "required": "Enter the graduation date"
+        },
+        "graduationDate": {
+          "label": "Graduation Date",
+          "placeholder": "YYYY-MM-DD",
+          "required": "Enter the graduation date"
+        }
+      }
+    },
+    "languageSkills": {
+      "fields": {
+        "languageLevel": {
+          "label": "TOPIK / KIIP Level",
+          "placeholder": "Select your level",
+          "required": "Select your level"
+        },
+        "englishLevel": {
+          "label": "English Proficiency",
+          "placeholder": "Select your level",
+          "required": "Select your level"
+        }
+      }
+    },
+    "careerPreferences": {
+      "fields": {
+        "fieldsOfInterests": {
+          "label": "Industry / Field of Interest",
+          "placeholder": "Search industries or fields",
+          "required": "Please select at least one industry.",
+          "maxSelected": "You can select up to 5 industries."
+        },
+        "targetJob": {
+          "label": "Target Job",
+          "placeholder": "Enter your job",
+          "required": "Enter your job"
+        }
+      }
+    },
+    "background": {
+      "content": {
+        "title": "Share anything that might help us better understand your situation and goals.",
+        "description": "This helps us tailor your career roadmap and recommendations."
+      },
+      "info": {
+        "privacy": "For your privacy, please avoid sharing sensitive information (e.g. ID numbers, passport details, or bank account information)",
+        "referenceOnly": "This information is self-described by you and used only as a reference for AI guidance. It is not used for any legal, official, or immigration decisions"
+      },
+      "preparationStatus": {
+        "title": "Current Preparation Status",
+        "options": {
+          "alreadyApplied": "I have already submitted job applications",
+          "partTimeOrInternship": "Currently working part-time or doing an internship",
+          "resumeReady": "Resume and portfolio are ready"
+        }
+      },
+      "placeholderByTargetJob": {
+        "sales": "e.g. [Academic] In my 'Global Marketing' course, I analyzed consumer trends in my home country and presented an entry strategy for Korean appliances, earning an A+.[Professional] Later, as a trade intern, I managed email correspondence with buyers and assisted in preparing trade documents like Invoices.",
+        "marketing": "e.g. [Academic] Conducted a survey of 100 international students for a 'Consumer Psychology' course to analyze K-brand awareness.[Professional] As a marketing intern, I managed local social media channels and improved post reach by 30% through data-driven targeting and localized content.",
+        "planningStrategy": "e.g. [Academic] Developed a startup business model and designed risk management strategies using SWOT analysis in a 'Business Strategy' course.[Professional] During a field practicum, I organized inventory data to identify cost-saving opportunities and suggested streamlining report procedures.",
+        "production": "e.g. [Academic] In an 'Operations Management' course, I studied SCM principles and completed a simulation project on MRP using ERP systems.[Professional] During a manufacturing internship, I tracked inventory flow and analyzed supplier prices for cost reduction. I also updated quality checklists."
+      }
+    }
+  },
+  "degree": {
+    "location": {
+      "southKorea": "South Korea",
+      "outsideKorea": "Outside Korea"
+    },
+    "placeholder": "Select your degree",
+    "required": "Select the degree"
+  },
+  "options": {
+    "languageLevel": {
+      "level1": "Level 1",
+      "level2": "Level 2",
+      "level3": "Level 3",
+      "level4": "Level 4",
+      "level5": "Level 5",
+      "notTakenYet": "Not taken yet"
+    },
+    "englishLevel": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "visaType": {
+      "d2": "D-2 (Student)",
+      "d10": "D-10 (Job Seeker)"
+    },
+    "targetJob": {
+      "developer": "Developer",
+      "dataAnalyst": "Data Analyst",
+      "marketer": "Marketer",
+      "globalSales": "Global Sales"
+    },
+    "degree": {
+      "associate": "Associate Degree",
+      "bachelors": "Bachelor's Degree",
+      "masters": "Master's Degree",
+      "doctorate": "Doctoral(PhD)"
+    }
+  },
+  "jobSkills": {
+    "developer": {
+      "techStack": {
+        "title": "Tech Stack",
+        "description": "I have experience with these languages / frameworks (e.g., Java, Python, JavaScript, Spring, React, Node.js)."
+      },
+      "csTools": {
+        "title": "CS & Tools",
+        "description": "I understand basic CS topics (data structures, algorithms, databases) and use Git / GitHub regularly."
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "I have 1+ completed projects (personal, school, or team) with code on GitHub or a portfolio site."
+      },
+      "teamWorkExperience": {
+        "title": "Team / Work Experience",
+        "description": "I have worked on a team or real-world setting (internship, part-time, open-source, or collaboration with designers/PMs) as a developer."
+      }
+    },
+    "dataAnalyst": {
+      "dataTools": {
+        "title": "Data Tools",
+        "description": "I can work with data using Excel/Google Sheets (formulas, pivot tables) and at least one BI tool (e.g., Tableau, Power BI)"
+      },
+      "sqlProgramming": {
+        "title": "SQL & Programming",
+        "description": "I can write basic SQL queries (SELECT, JOIN, GROUP BY) and have some experience with Python or R for data analysis."
+      },
+      "analysisStorytelling": {
+        "title": "Analysis & Storytelling",
+        "description": "I have practiced turning data into insights (simple analysis, charts, or reports) and explaining results in plain language."
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "I have 1+ data projects (school, Kaggle, personal) that I can show in a portfolio or GitHub."
+      }
+    },
+    "marketer": {
+      "channelsTools": {
+        "title": "Channels & Tools",
+        "description": "I have experience using at least one digital channel (e.g., Instagram, YouTube, blog, email) and basic tools (Meta Ads, Google Analytics, etc.)."
+      },
+      "contentCopy": {
+        "title": "Content & Copy",
+        "description": "I have created marketing content (social posts, blog, emails, landing pages) in English or Korean."
+      },
+      "dataExperimentation": {
+        "title": "Data & Experimentation",
+        "description": "I have looked at simple marketing metrics (clicks, conversions, followers) and tried A/B tests or small experiments."
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "I have participated in at least one campaign or project (school club, side project, internship) with measurable outcomes."
+      }
+    },
+    "globalSales": {
+      "clientCommunication": {
+        "title": "Client Communication",
+        "description": "I am comfortable talking or writing with customers/partners in English or Korean (email, calls, meetings)."
+      },
+      "salesToolsProcess": {
+        "title": "Sales Tools & Process",
+        "description": "I understand basic sales steps (prospecting → meeting → proposal → follow-up) and have used simple CRM/spreadsheet tracking."
+      },
+      "numbersTargets": {
+        "title": "Numbers & Targets",
+        "description": "I am used to working with simple sales KPIs (leads, meetings, revenue) and tracking them over time."
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "I have experience in a customer-facing role (part-time, internship, club, volunteering) where I had to persuade or negotiate."
+      }
+    }
+  },
+  "validation": {
+    "number": {
+      "invalid": "Please enter a valid number"
+    },
+    "date": {
+      "invalidFormat": "Please use the format YYYY-MM-DD.",
+      "invalidDate": "Invalid date. Please enter a valid calendar date.",
+      "futureNotAllowed": "Future dates are not allowed.",
+      "pastNotAllowed": "Please enter a future date for your expected graduation.",
+      "mustBeAfterIssuance": "The date must be after the visa issuance date.",
+      "invalidVisaDate": "Please enter a valid date"
+    },
+    "visa": {
+      "d2ExpirationInPast": "Please select a valid D-2 visa expiration date that is not in the past.",
+      "d2ExceedsTwoYears": "D-2 visa must be valid for at least two year from the issuance date.",
+      "d2ExpirationBeforeGraduation": "The visa expiration date must be on or after your expected graduation date.",
+      "d10InvalidDuration": "Invalid expiration date. The D-10 visa must be set in 6-month intervals.",
+      "d10ExpirationInPast": "Please select a valid D-10 visa expiration date that is not in the past.",
+      "d2IssuanceAfterGraduation": "Please enter a graduation date that is later than your visa issuance date.",
+      "startDateAfterExpiration": "Please enter a Visa Start Date that is earlier than your Visa Expiration Date.",
+      "futureIssuanceDate": "Please enter a valid date"
+    },
+    "name": {
+      "empty": "Your name can't be empty.",
+      "specialCharacters": "Please use standard letters only."
+    }
+  }
+}

@@ -5,14 +5,28 @@ export const img = recipe({
     borderRadius: '50%',
   },
   variants: {
-    size: {
-      mini: {
+    use: {
+      mypage: {
+        width: '6.4rem',
+        height: '6.4rem',
+      },
+      header: {
+        anchorName: '--anchor-user-profile',
         width: '5.2rem',
         height: '5.2rem',
       },
-      // 마이페이지에서 사용할 크기
-      // default: {
-      // }
+      popover: {
+        width: '4.2rem',
+        height: '4.2rem',
+      },
+    },
+    clickable: {
+      true: {
+        cursor: 'pointer',
+      },
+      false: {
+        cursor: 'default',
+      },
     },
   },
 });

@@ -1,30 +1,34 @@
 import { useEffect, useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
+  createStepData,
+  EducationStep,
+  LanguageSkillStep,
   OnboardingStepLayout,
   PersonalBackgroundStep,
-  PersonalInformationStep,
-  TargetRoleStep,
-  VisaInformationStep,
 } from '@widgets/onboarding';
+import CareerPreference from '@widgets/onboarding/ui/step/career-preference/career-preference';
+import IdentityVisaVerification from '@widgets/onboarding/ui/step/identity-visaVerification/identity-visaVerification';
 import type { PostOnboardingForm } from '@features/onboarding';
 import { postOnboardingForm } from '@features/onboarding';
 import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
 import {
   convertFormToRequest,
-  createStepData,
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
   getRequiredFieldsForStep,
   hasAllRequiredFieldValues,
   OnboardingForm,
-  STEP_TITLES,
 } from '@entities/onboarding';
+import { USER_QUERY_KEY } from '@entities/user/queries';
 import useFunnel from '@shared/hooks/usefunnel';
 
 const OnboardingPage = () => {
+  const { t } = useTranslation('onboarding');
+  const queryClient = useQueryClient();
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
     useFunnel(FUNNEL_STEPS, '/');
   const [error, setError] = useState<Error | null>(null);
@@ -36,8 +40,7 @@ const OnboardingPage = () => {
   });
 
   // 버튼 비활성화 로직
-  const visaType = useWatch({ control: form.control, name: 'visaType' });
-  const requiredFields = getRequiredFieldsForStep(currentStepIndex, visaType);
+  const requiredFields = getRequiredFieldsForStep(currentStepIndex);
 
   // 현재 단계의 필수 필드만 감시
   const watchedRequiredFields = useWatch({
@@ -56,7 +59,8 @@ const OnboardingPage = () => {
     name: 'personalBackground',
   });
   const isPersonalBackgroundOverLimit =
-    currentStepIndex === 3 && (personalBackground?.length || 0) > 1000;
+    currentStepIndex === FUNNEL_STEPS.length - 1 &&
+    (personalBackground?.length || 0) > 1000;
 
   // 모든 필드 존재 체크
   const hasAllRequiredValues = hasAllRequiredFieldValues(
@@ -80,7 +84,16 @@ const OnboardingPage = () => {
     }
   }, [error]);
 
-  const steps = createStepData(STEP_TITLES, currentStepIndex);
+  const steps = createStepData(
+    [
+      t('stepFlow.steps.identityVisaVerification'),
+      t('stepFlow.steps.education'),
+      t('stepFlow.steps.languageSkills'),
+      t('stepFlow.steps.careerPreferences'),
+      t('stepFlow.steps.background'),
+    ],
+    currentStepIndex,
+  );
 
   const handleBack = () => {
     goToPrevStep();
@@ -93,7 +106,10 @@ const OnboardingPage = () => {
 
   const { mutate: submitOnboarding } = useMutation({
     mutationFn: postOnboardingForm,
-    onSuccess: () => {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: USER_QUERY_KEY.USER_STATUS(),
+      });
       // 온보딩 성공 후 로드맵 생성 API 호출
       generateRoadmap();
       goToNextStep();
@@ -128,16 +144,19 @@ const OnboardingPage = () => {
         isNextDisabled={isNextDisabled}
       >
         <Funnel>
-          <Step name="PersonalInformation">
-            <PersonalInformationStep />
+          <Step name={FUNNEL_STEPS[0]}>
+            <IdentityVisaVerification />
           </Step>
-          <Step name="VisaInformation">
-            <VisaInformationStep />
+          <Step name={FUNNEL_STEPS[1]}>
+            <EducationStep />
           </Step>
-          <Step name="TargetRole">
-            <TargetRoleStep />
+          <Step name={FUNNEL_STEPS[2]}>
+            <LanguageSkillStep />
           </Step>
-          <Step name="Background">
+          <Step name={FUNNEL_STEPS[3]}>
+            <CareerPreference />
+          </Step>
+          <Step name={FUNNEL_STEPS[4]}>
             <PersonalBackgroundStep />
           </Step>
         </Funnel>

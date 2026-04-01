@@ -27,6 +27,8 @@ export const PHASE_QUERY_OPTIONS = {
       queryKey: PHASE_QUERY_KEY.PHASE_ITEM_HOME(phaseId),
       queryFn: () => getPhaseItemHome(phaseId),
       enabled: !!phaseId && phaseId > 0,
+      staleTime: Infinity,
+      placeholderData: (prev) => prev,
     });
   },
   GET_PAHSE_ITEM_ROADMAP: (phaseId: number) => {

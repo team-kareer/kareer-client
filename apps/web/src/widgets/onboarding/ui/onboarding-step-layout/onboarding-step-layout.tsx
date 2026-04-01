@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { SymbolGrayIcon, SymbolLightIcon } from '@kds/icons/svg';
 import { Button } from '@kds/ui';
+import { useTranslation } from 'react-i18next';
 
 import {
   type OnboardingStepData,
@@ -24,12 +25,12 @@ const OnboardingStepLayout = ({
   onNext,
   isNextDisabled,
 }: OnboardingStepLayoutProps) => {
-  const currentStep = steps.find((step) => step.status === 'In Progress');
+  const { t } = useTranslation('onboarding');
+  const currentStep = steps.find((step) => step.status === 'In Process');
   const isLastStep =
     currentStep &&
     currentStep.stepNumber === steps[steps.length - 1]?.stepNumber;
   const isFirstStep = currentStep?.stepNumber === 1;
-  const isStep3 = currentStep?.stepNumber === 3;
 
   return (
     <div className={styles.container}>
@@ -37,18 +38,14 @@ const OnboardingStepLayout = ({
         <OnboardingStepHeader steps={steps} />
       </div>
       <div className={styles.contentContainer}>{children}</div>
-      <div
-        className={`${styles.buttonContainer} ${
-          isStep3 ? styles.buttonContainerStep3 : ''
-        }`}
-      >
+      <div className={styles.buttonContainer}>
         {onBack && (
           <Button
             preset="large_outlined"
             onClick={onBack}
             disabled={isFirstStep}
           >
-            Back
+            {t('stepFlow.actions.back')}
           </Button>
         )}
         {onNext && (
@@ -64,10 +61,10 @@ const OnboardingStepLayout = ({
                 ) : (
                   <SymbolLightIcon width={19} height={19} />
                 )}
-                <span>Start your career journey</span>
+                <span>{t('stepFlow.actions.submit')}</span>
               </span>
             ) : (
-              'Next'
+              t('stepFlow.actions.next')
             )}
           </Button>
         )}

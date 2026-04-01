@@ -1,20 +1,35 @@
-import { Autocomplete, Input } from '@kds/ui';
-import { Controller, useFormContext, useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 
 import { OnboardingStepTitle } from '@widgets/onboarding';
+import { FormAutocompleteField, FormInputField } from '@widgets/onboarding';
 import { VISA_INFORMATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
+import { type VisaType } from '@features/onboarding';
 import { useVisaInformation } from '@features/onboarding/hooks/useVisaInformation';
 import {
   validateAutocompleteOption,
   validateDate,
-  validateNumber,
-  validateVisaExpirationDate,
-  validateVisaIssuanceDate,
-} from '@features/onboarding/hooks/validators';
-import { type OnboardingForm } from '@entities/onboarding';
+  validateExpirationDate,
+  validateIssuanceDate,
+  validateVisaPoint,
+} from '@features/onboarding/model/validation';
+import {
+  FUNNEL_STEPS,
+  type OnboardingForm,
+  toOptions,
+} from '@entities/onboarding';
 import { VISA_TYPE_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './visa-information.css';
+
+const validateGraduationDate = (value: string) => {
+  if (!value) {
+    return 'Enter the graduation date';
+  }
+  return validateDate(value, {
+    allowFuture: true,
+    allowPast: false,
+  });
+};
 
 const VisaInformation = () => {
   const { control } = useFormContext<OnboardingForm>();
@@ -24,183 +39,87 @@ const VisaInformation = () => {
     name: 'expectedGraduationDate',
   });
 
+  const validateIssuanceDateField = (value: string) => {
+    if (!value) {
+      return 'Enter the issuance date';
+    }
+    return validateIssuanceDate(
+      value,
+      visaType as 'D-2' | 'D-10',
+      expectedGraduationDate,
+    );
+  };
+
+  const validateExpirationDateField = (value: string) => {
+    if (!value || !visaType) {
+      return true;
+    }
+    return validateExpirationDate(
+      value,
+      visaStartDate || '',
+      expectedGraduationDate || '',
+      visaType as VisaType,
+    );
+  };
+
   return (
     <section>
-      <OnboardingStepTitle stepNumber={2} title="Visa Information" />
+      <OnboardingStepTitle stepNumber={2} title={FUNNEL_STEPS[1]} />
       <div className={styles.inputContainer}>
-        <div className={styles.autoWrapper}>
-          <p className={styles.label}>Current Visa Type</p>
-          <Controller
-            name="visaType"
-            control={control}
-            rules={{
-              required: 'Select the visa type',
-              validate: (value) => {
-                const result = validateAutocompleteOption(
-                  value,
-                  VISA_TYPE_OPTIONS,
-                );
-                return result === true || result;
-              },
-            }}
-            render={({ field }) => {
-              return (
-                <Autocomplete
-                  placeholder={VISA_INFORMATION_PLACEHOLDERS.CURRENT_VISA_TYPE}
-                  value={field.value || ''}
-                  onChange={(label) => {
-                    // UI 값 그대로 저장
-                    field.onChange(label);
-                  }}
-                  options={VISA_TYPE_OPTIONS}
-                />
-              );
-            }}
-          />
-        </div>
+        <FormAutocompleteField
+          name="visaType"
+          label="Current Visa Type"
+          rules={{
+            required: 'Select the visa type',
+            validate: (value) =>
+              validateAutocompleteOption(value, toOptions(VISA_TYPE_OPTIONS)),
+          }}
+          placeholder={VISA_INFORMATION_PLACEHOLDERS.CURRENT_VISA_TYPE}
+          options={toOptions(VISA_TYPE_OPTIONS)}
+        />
         {/* D-2 & D-10 비자 타입 조건부 렌더링 */}
         <div style={{ visibility: visaType ? 'visible' : 'hidden' }}>
-          {visaType === 'D-2' ? (
-            <div>
-              <p className={styles.label}>
-                Expected Graducation Date (YYYY-MM-DD)
-              </p>
-              <Controller
-                name="expectedGraduationDate"
-                control={control}
-                rules={{
-                  required: 'Enter the graduation date',
-                  validate: (value) => {
-                    if (!value) {
-                      return 'Enter the graduation date';
-                    }
-                    const result = validateDate(value, true, false);
-                    return result === true || result;
-                  },
-                }}
-                render={({ field, fieldState }) => (
-                  <>
-                    <Input
-                      {...field}
-                      placeholder={
-                        VISA_INFORMATION_PLACEHOLDERS.GRADUATION_DATE
-                      }
-                      status={fieldState.error ? 'error' : 'default'}
-                    />
-                    <p className={styles.errorMessage}>
-                      {fieldState.error?.message || ''}
-                    </p>
-                  </>
-                )}
-              />
-            </div>
-          ) : visaType === 'D-10' ? (
-            <div>
-              <div>
-                <p className={styles.label}>Visa Point</p>
-                <Controller
-                  name="visaPoint"
-                  control={control}
-                  rules={{
-                    required: 'Enter the visa point',
-                    validate: (value) => {
-                      const result = validateNumber(String(value));
-                      return result === true || result;
-                    },
-                  }}
-                  render={({ field, fieldState }) => (
-                    <>
-                      <Input
-                        {...field}
-                        placeholder={VISA_INFORMATION_PLACEHOLDERS.NUMBER}
-                        status={fieldState.error ? 'error' : 'default'}
-                      />
-                      <div>
-                        <p className={styles.errorMessage}>
-                          {fieldState.error?.message || ''}
-                        </p>
-                      </div>
-                    </>
-                  )}
-                />
-              </div>
-            </div>
-          ) : null}
+          {visaType === 'D-2' && (
+            <FormInputField
+              name="expectedGraduationDate"
+              label="Expected Graducation Date (YYYY-MM-DD)"
+              rules={{
+                required: 'Enter the graduation date',
+                validate: validateGraduationDate,
+              }}
+              placeholder={VISA_INFORMATION_PLACEHOLDERS.GRADUATION_DATE}
+            />
+          )}
+          {visaType === 'D-10' && (
+            <FormInputField
+              name="visaPoint"
+              label="Visa Point"
+              type="number"
+              rules={{
+                required: 'Enter the visa point',
+                validate: (value) => validateVisaPoint(String(value)),
+              }}
+              placeholder={VISA_INFORMATION_PLACEHOLDERS.NUMBER}
+            />
+          )}
         </div>
-        <div>
-          <p className={styles.label}>Visa Issuance Date (YYYY-MM-DD)</p>
-          <Controller
-            name="visaStartDate"
-            control={control}
-            rules={{
-              required: 'Enter the issuance date',
-              validate: (value) => {
-                if (!value) {
-                  return 'Enter the issuance date';
-                }
-                // 기본 날짜 형식 체크 (미래/과거 날짜 모두 허용)
-                const result = validateDate(value, true, true);
-                if (result !== true) {
-                  return result;
-                }
-                // D-2 비자 타입일 경우 졸업 예정일과 비교
-                return validateVisaIssuanceDate(
-                  value,
-                  visaType,
-                  expectedGraduationDate,
-                );
-              },
-            }}
-            render={({ field, fieldState }) => (
-              <>
-                <Input
-                  {...field}
-                  placeholder={VISA_INFORMATION_PLACEHOLDERS.ISSUANCE_DATE}
-                  status={fieldState.error ? 'error' : 'default'}
-                />
-                <p className={styles.errorMessage}>
-                  {fieldState.error?.message || ''}
-                </p>
-              </>
-            )}
-          />
-        </div>{' '}
-        <div>
-          <p className={styles.label}>Visa Expiration Date (YYYY-MM-DD)</p>
-          <Controller
-            name="visaExpiredAt"
-            control={control}
-            rules={{
-              validate: (value) => {
-                if (!value) {
-                  return true;
-                }
-                const result = validateDate(value, true, true);
-                if (result !== true) {
-                  return result;
-                }
-
-                return validateVisaExpirationDate(
-                  value,
-                  visaType,
-                  visaStartDate,
-                );
-              },
-            }}
-            render={({ field, fieldState }) => (
-              <>
-                <Input
-                  {...field}
-                  placeholder={VISA_INFORMATION_PLACEHOLDERS.EXPIRATION_DATE}
-                  status={fieldState.error ? 'error' : 'default'}
-                />
-                <p className={styles.errorMessage}>
-                  {fieldState.error?.message || ''}
-                </p>
-              </>
-            )}
-          />
-        </div>
+        <FormInputField
+          name="visaStartDate"
+          label="Visa Issuance Date (YYYY-MM-DD)"
+          rules={{
+            required: 'Enter the issuance date',
+            validate: validateIssuanceDateField,
+          }}
+          placeholder={VISA_INFORMATION_PLACEHOLDERS.ISSUANCE_DATE}
+        />
+        <FormInputField
+          name="visaExpiredAt"
+          label="Visa Expiration Date (YYYY-MM-DD)"
+          rules={{
+            validate: validateExpirationDateField,
+          }}
+          placeholder={VISA_INFORMATION_PLACEHOLDERS.EXPIRATION_DATE}
+        />
       </div>
     </section>
   );

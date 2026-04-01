@@ -1,3 +1,5 @@
+import i18n from '@shared/i18n/i18n';
+
 /**
  * 폼 검증 시 사용되는 에러 메시지 상수
  * @constant
@@ -7,30 +9,87 @@
  * @property NAME - 이름 검증 관련
  */
 export const VALIDATION_MESSAGE = {
-  NUMEBR: {
-    INVALID: 'Please enter a valid number',
+  NUMBER: {
+    get INVALID() {
+      return i18n.t('validation.number.invalid', { ns: 'onboarding' });
+    },
   },
   DATE: {
-    INVALID_FORMAT: 'Please use the format YYYY-MM-DD.',
-    INVALID_DATE: 'Invalid date. Please enter a valid calendar date.',
-    FUTURE_NOT_ALLOWED: 'Future dates are not allowed.',
-    PAST_NOT_ALLOWED:
-      'Please enter a future date for your expected graduation.',
-    MUST_BE_AFTER_ISSUANCE: 'The date must be after the visa issuance date.',
+    get INVALID_FORMAT() {
+      return i18n.t('validation.date.invalidFormat', { ns: 'onboarding' });
+    },
+    get INVALID_DATE() {
+      return i18n.t('validation.date.invalidDate', { ns: 'onboarding' });
+    },
+    get FUTURE_NOT_ALLOWED() {
+      return i18n.t('validation.date.futureNotAllowed', {
+        ns: 'onboarding',
+      });
+    },
+    get PAST_NOT_ALLOWED() {
+      return i18n.t('validation.date.pastNotAllowed', { ns: 'onboarding' });
+    },
+    get MUST_BE_AFTER_ISSUANCE() {
+      return i18n.t('validation.date.mustBeAfterIssuance', {
+        ns: 'onboarding',
+      });
+    },
+    get INVALID_VISA_DATE_MESSAGE() {
+      return i18n.t('validation.date.invalidVisaDate', {
+        ns: 'onboarding',
+      });
+    },
   },
   VISA: {
-    D2_EXCEEDS_TWO_YEARS:
-      'D-2 visa must be valid for at least two year from the issuance date.',
-    D10_LESS_THAN_SIX_MONTHS:
-      'Invalid expiration date. The D-10 visa must be set in 6-month intervals.',
-    D10_EXPIRATION_IN_PAST:
-      'Please select a valid D-10 visa expiration date that is not in the past.',
-    D2_ISSUANCE_AFTER_GRADUATION:
-      'Please enter a graduation date that is later than your visa issuance date.',
-    FUTURE_ISSUANCE_DATE: 'Please enter a valid date',
+    get D2_EXPIRATION_IN_PAST() {
+      return i18n.t('validation.visa.d2ExpirationInPast', {
+        ns: 'onboarding',
+      });
+    },
+    get D2_EXCEEDS_TWO_YEARS() {
+      return i18n.t('validation.visa.d2ExceedsTwoYears', {
+        ns: 'onboarding',
+      });
+    },
+    get D2_EXPIRATION_BEFORE_GRADUATION() {
+      return i18n.t('validation.visa.d2ExpirationBeforeGraduation', {
+        ns: 'onboarding',
+      });
+    },
+    get D10_INVALID_DURATION() {
+      return i18n.t('validation.visa.d10InvalidDuration', {
+        ns: 'onboarding',
+      });
+    },
+    get D10_EXPIRATION_IN_PAST() {
+      return i18n.t('validation.visa.d10ExpirationInPast', {
+        ns: 'onboarding',
+      });
+    },
+    get D2_ISSUANCE_AFTER_GRADUATION() {
+      return i18n.t('validation.visa.d2IssuanceAfterGraduation', {
+        ns: 'onboarding',
+      });
+    },
+    get START_DATE_AFTER_EXPIRATION() {
+      return i18n.t('validation.visa.startDateAfterExpiration', {
+        ns: 'onboarding',
+      });
+    },
+    get FUTURE_ISSUANCE_DATE() {
+      return i18n.t('validation.visa.futureIssuanceDate', {
+        ns: 'onboarding',
+      });
+    },
   },
   NAME: {
-    EMPTY: "Your name can't be empty.",
-    SPECIAL_CHARACTERS: 'Please use standard letters only.',
+    get EMPTY() {
+      return i18n.t('validation.name.empty', { ns: 'onboarding' });
+    },
+    get SPECIAL_CHARACTERS() {
+      return i18n.t('validation.name.specialCharacters', {
+        ns: 'onboarding',
+      });
+    },
   },
 } as const;

@@ -1,5 +1,6 @@
 import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 import { RequiredActionCard } from '@entities/phase';
@@ -18,10 +19,10 @@ interface ActionRequiredAccordion {
 }
 
 const ActionRequiredAccordion = ({ phaseId }: ActionRequiredAccordion) => {
+  const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
   const { data } = useQuery({
     ...PHASE_QUERY_OPTIONS.GET_PHASE_ITEM_HOME(phaseId),
-    placeholderData: (prev) => prev,
   });
 
   const { isOpen, shouldRender, toggle } = useAccordion();
@@ -41,9 +42,11 @@ const ActionRequiredAccordion = ({ phaseId }: ActionRequiredAccordion) => {
         onClick={isDone ? undefined : toggle}
       >
         <div className={styles.left_section}>
-          <h3 className={styles.text({ textTone: 'gray' })}>Action Required</h3>
+          <h3 className={styles.text({ textTone: 'gray' })}>
+            {t('phaseOverview.actions.title')}
+          </h3>
           <span className={styles.text({ textTone: 'primary' })}>
-            {isDone ? 'All Done!' : data?.count}
+            {isDone ? t('phaseOverview.actions.completed') : data?.count}
           </span>
         </div>
         {!isDone && <Chevron width={16} height={16} className={styles.icon} />}

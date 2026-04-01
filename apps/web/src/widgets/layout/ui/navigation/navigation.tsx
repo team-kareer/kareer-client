@@ -5,6 +5,7 @@ import {
   ProfileIcon,
   RoadmapIcon,
 } from '@kds/icons';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
 
 import { ROUTE_PATH } from '@shared/router/path';
@@ -15,26 +16,27 @@ import * as styles from './navigation.css';
 
 const NAVIGATION_ITEMS = [
   {
-    label: 'Home',
+    label: 'home',
     icon: <HomeIcon />,
     path: ROUTE_PATH.DASHBOARD,
   },
   {
-    label: 'Road map',
+    label: 'roadmap',
     icon: <RoadmapIcon />,
     path: ROUTE_PATH.ROADMAP,
   },
   {
-    label: 'Fit analysis',
+    label: 'fitAnalysis',
     icon: <FitAnalysisIcon />,
     path: ROUTE_PATH.FITANALYSIS,
   },
-  { label: 'My page', icon: <ProfileIcon />, path: null },
+  { label: 'myPage', icon: <ProfileIcon />, path: ROUTE_PATH.MY_PAGE },
 ] as const;
 
 const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation('navigation');
 
   return (
     <nav className={styles.container}>
@@ -45,7 +47,7 @@ const Navigation = () => {
         <IconWrapper
           key={label}
           icon={icon}
-          label={label}
+          label={t(label)}
           isActive={path ? location.pathname === path : false}
           onClick={path ? () => navigate(path) : () => {}}
         />

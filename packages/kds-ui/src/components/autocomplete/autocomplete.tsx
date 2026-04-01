@@ -1,49 +1,63 @@
-import { useState } from 'react';
-import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
-
-import { color } from '../../styles';
+import { useEffect, useState } from 'react';
+import { ArrowDownIcon, ArrowUpIcon, SearchIcon } from '@kds/icons';
 
 import * as styles from './autocomplete.css';
+
+export interface AutocompleteOption {
+  code?: string;
+  label?: string;
+}
 
 interface AutocompleteProps {
   value: string;
   onChange: (value: string) => void;
-  options: string[];
+  onInputChange?: (value: string) => void;
+  options: AutocompleteOption[];
   placeholder?: string;
+  icon?: 'chevron' | 'search';
 }
 
 interface DropDownProps {
-  options: string[];
-  onClick: (option: string) => void;
+  options: AutocompleteOption[];
+  onClick: (option: AutocompleteOption) => void;
 }
 
 const Autocomplete = ({
   value,
   onChange,
+  onInputChange,
   options,
   placeholder,
+  icon = 'chevron',
 }: AutocompleteProps) => {
-  // 드롭메뉴 열림 여부
   const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
-  // value가 undefined일 수 있으므로 빈 문자열로 처리
-  const safeValue = value || '';
+  useEffect(() => {
+    const matched = options.find((option) => option.code === value);
+    if (matched) {
+      setInputValue(matched.label ?? '');
+    } else {
+      setInputValue('');
+    }
+  }, [value, options]);
 
-  // 입력값 필터링 (undefined/null 값 제거)
-  const filteredOptions = options
-    .filter((option) => option != null)
-    .filter((option) => option.toLowerCase().includes(safeValue.toLowerCase()));
+  const filteredOptions = options.filter((option) =>
+    option.label?.toLowerCase().includes(inputValue.toLowerCase()),
+  );
 
-  // 입력 처리
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    onChange(newValue);
-    setIsOpen(newValue.length > 0);
+    setInputValue(e.target.value);
+    onInputChange?.(e.target.value);
+    setIsOpen(e.target.value.length > 0);
+
+    if (e.target.value === '') {
+      onChange('');
+    }
   };
 
-  // 옵션 선택 처리
-  const handleOptionClick = (option: string) => {
-    onChange(option);
+  const handleOptionClick = (option: AutocompleteOption) => {
+    onChange(option.code ?? '');
     setIsOpen(false);
   };
 
@@ -51,21 +65,40 @@ const Autocomplete = ({
     setIsOpen((prev) => !prev);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && e.nativeEvent.isComposing) {
+      return;
+    }
+
+    if (e.key === 'Enter' && inputValue.trim()) {
+      e.preventDefault();
+      const matchedOption = options.find(
+        (option) =>
+          option.label?.toLowerCase() === inputValue.trim().toLowerCase(),
+      );
+      onChange(matchedOption?.code ?? inputValue.trim());
+      setIsOpen(false);
+      setInputValue('');
+    }
+  };
+
   const Chevron = isOpen ? ArrowUpIcon : ArrowDownIcon;
+  const Icon = icon === 'search' ? SearchIcon : Chevron;
 
   return (
     <div className={styles.inputContainer}>
       <input
         type="text"
         className={styles.input}
-        value={safeValue}
+        value={inputValue}
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
         onBlur={() => setIsOpen(false)}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
       />
       <button type="button" className={styles.toggle} onClick={toggleDropdown}>
-        <Chevron width={19} height={19} color={color.grayscale.gray800} />
+        <Icon width={19} height={19} />
       </button>
       {isOpen && filteredOptions.length > 0 && (
         <DropList options={filteredOptions} onClick={handleOptionClick} />
@@ -79,11 +112,11 @@ const DropList = ({ options, onClick }: DropDownProps) => {
     <ul className={styles.dropdown}>
       {options.map((option) => (
         <li
-          key={option}
+          key={option.code}
           className={styles.option}
           onMouseDown={() => onClick(option)}
         >
-          {option}
+          {option.label}
         </li>
       ))}
     </ul>

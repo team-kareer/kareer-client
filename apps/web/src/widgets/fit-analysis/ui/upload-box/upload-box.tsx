@@ -1,13 +1,11 @@
 import { ChangeEvent, useRef } from 'react';
 import { PlusIcon, XIcon } from '@kds/icons';
 import { Button, Checkbox } from '@kds/ui';
+import { useTranslation } from 'react-i18next';
 
 import { FileItem } from './use-upload-files';
 
 import * as styles from './upload-box.css';
-
-const INFO_MESSAGE = 'Up to 2 files · 20 MB max';
-const CHECK_MESSAGE = 'Include completed to-dos';
 
 interface UploadBoxProps {
   isChecked: boolean;
@@ -30,6 +28,7 @@ const UploadBox = ({
   onRemoveFile,
   isLoading,
 }: UploadBoxProps) => {
+  const { t } = useTranslation('fitAnalysis');
   const inputRef = useRef<HTMLInputElement>(null);
   const hasFiles = files.length > 0;
 
@@ -62,7 +61,7 @@ const UploadBox = ({
               disabled={isLoading}
             >
               <PlusIcon width={16} height={16} />
-              <span>Upload</span>
+              <span>{t('jobRecommendation.upload.actions.upload')}</span>
             </Button>
             <input
               ref={inputRef}
@@ -94,7 +93,9 @@ const UploadBox = ({
               onClick={handleToggleCheckBox}
               disabled={isLoading}
             />
-            <p className={styles.checkText}>{CHECK_MESSAGE}</p>
+            <p className={styles.checkText}>
+              {t('jobRecommendation.upload.includeCompletedTodos')}
+            </p>
           </div>
         </div>
         {hasFiles && (
@@ -103,12 +104,12 @@ const UploadBox = ({
             onClick={onClick}
             disabled={isLoading}
           >
-            <span>Find Position</span>
+            <span>{t('jobRecommendation.upload.actions.findPosition')}</span>
           </Button>
         )}
       </div>
       <div className={styles.infoSection}>
-        <p className={styles.info}>{INFO_MESSAGE}</p>
+        <p className={styles.info}>{t('jobRecommendation.upload.info')}</p>
         {noticeMessage && <p className={styles.notice}>{noticeMessage}</p>}
       </div>
     </section>

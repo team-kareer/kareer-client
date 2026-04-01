@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { VisaStatusListSection } from '@widgets/dashboard/ui';
 import { MyBookmarkedJobsSection } from '@widgets/dashboard/ui';
 import { PhaseOverviewSection } from '@widgets/dashboard/ui';
 import { PHASE_QUERY_OPTIONS } from '@entities/phase/queries';
@@ -16,7 +15,6 @@ const DashboardPage = () => {
 
   return (
     <>
-      <VisaStatusListSection />
       <PhaseOverviewSection />
       <MyBookmarkedJobsSection />
     </>
