@@ -1,24 +1,29 @@
 import { Checkbox } from '@kds/ui';
+import { type AutocompleteOption } from '@kds/ui';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import {
   FormAutocompleteField,
   IndustryFieldChips,
   OnboardingStepTitle,
 } from '@widgets/onboarding';
-import { TARGET_ROLE_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import { useIndustryField, useTargetJobSkills } from '@features/onboarding';
 import { validateAutocompleteOption } from '@features/onboarding/model/validation';
-import {
-  FUNNEL_STEPS,
-  TARGET_JOB_OPTIONS,
-  toOptions,
-} from '@entities/onboarding';
+import { TARGET_JOB_OPTIONS } from '@entities/onboarding';
 import { FIELD_LIST_QUERY_OPTIONS } from '@entities/onboarding/qureies/queries';
 
 import * as styles from './career-preference.css';
 
+const TARGET_JOB_LABEL_KEYS: Record<string, string> = {
+  Developer: 'options.targetJob.developer',
+  'Data Analyst': 'options.targetJob.dataAnalyst',
+  Marketer: 'options.targetJob.marketer',
+  'Global Sales': 'options.targetJob.globalSales',
+};
+
 const CareerPreference = () => {
+  const { t } = useTranslation('onboarding');
   const { data: fieldList } = useQuery({
     ...FIELD_LIST_QUERY_OPTIONS.GET_FIELD_LIST(),
   });
@@ -29,46 +34,65 @@ const CareerPreference = () => {
     handleSelectField,
     handleRemoveField,
   } = useIndustryField(fieldList?.fields || []);
+  const selectedFieldOptions = selectedFields.map((selectedField) => {
+    const matchedField = (fieldList?.fields || []).find(
+      (field: AutocompleteOption) => field.code === selectedField,
+    );
+
+    return {
+      code: selectedField,
+      label: matchedField?.label ?? selectedField,
+    };
+  });
 
   const { targetJob, selectedSkills, currentJobSkills, handleSkillToggle } =
     useTargetJobSkills();
+  const targetJobOptions = TARGET_JOB_OPTIONS.map((option) => ({
+    code: option,
+    label: t(TARGET_JOB_LABEL_KEYS[option] ?? option),
+  }));
 
   return (
     <section>
-      <OnboardingStepTitle stepNumber={4} title={FUNNEL_STEPS[3]} />
+      <OnboardingStepTitle
+        stepNumber={4}
+        title={t('stepFlow.steps.careerPreferences')}
+      />
       <div className={styles.inputContainer}>
         <div className={styles.leftSection}>
           <FormAutocompleteField
             icon="search"
             name="fieldsOfInterests"
-            label="Industry / Field of Interest"
+            label={t('steps.careerPreferences.fields.fieldsOfInterests.label')}
             rules={{
               validate: (value: string[]) =>
-                value?.length > 0 || 'Please select at least one industry.',
+                value?.length > 0 ||
+                t('steps.careerPreferences.fields.fieldsOfInterests.required'),
             }}
-            placeholder="Search industries or fields"
+            placeholder={t(
+              'steps.careerPreferences.fields.fieldsOfInterests.placeholder',
+            )}
             options={availableOptions}
             onSelect={handleSelectField}
           />
           <FormAutocompleteField
             name="targetJob"
-            label="Target Job"
+            label={t('steps.careerPreferences.fields.targetJob.label')}
             rules={{
-              required: 'Enter your job',
+              required: t('steps.careerPreferences.fields.targetJob.required'),
               validate: (value) =>
-                validateAutocompleteOption(
-                  value,
-                  toOptions(TARGET_JOB_OPTIONS),
-                ),
+                validateAutocompleteOption(value, targetJobOptions),
             }}
-            placeholder={TARGET_ROLE_PLACEHOLDERS.TARGET_JOB}
-            options={toOptions(TARGET_JOB_OPTIONS)}
+            placeholder={t(
+              'steps.careerPreferences.fields.targetJob.placeholder',
+            )}
+            options={targetJobOptions}
           />
         </div>
         {selectedFields.length > 0 && (
           <div className={styles.rightSection}>
             <IndustryFieldChips
-              fields={selectedFields}
+              fields={selectedFieldOptions}
               onRemove={handleRemoveField}
             />
           </div>
@@ -88,9 +112,9 @@ const CareerPreference = () => {
                 onChange={() => handleSkillToggle(skill.id)}
               />
               <div className={styles.checkboxContent}>
-                <h3 className={styles.checkboxTitle}>{skill.title}</h3>
+                <h3 className={styles.checkboxTitle}>{t(skill.title)}</h3>
                 <p className={styles.checkboxDescription}>
-                  {skill.description}
+                  {t(skill.description)}
                 </p>
               </div>
             </div>

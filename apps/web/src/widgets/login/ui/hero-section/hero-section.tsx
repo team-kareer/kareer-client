@@ -1,14 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 import { LoginButton } from '@features/auth';
 import { appConfig } from '@shared/apis/configs/app-config';
 
 import * as styles from './hero-section.css';
 
-const HERO_COPY = {
-  NORMAL: 'Turn visa barriers\ninto ',
-  HIGHLIGHT: 'career opportunities',
-};
-
 const HeroSection = () => {
+  const { t } = useTranslation('login');
+
   const handleGoogleLogin = () => {
     const loginUrl = appConfig.auth.googleLoginUrl;
 
@@ -17,8 +16,8 @@ const HeroSection = () => {
   return (
     <div className={styles.container}>
       <p className={styles.copy}>
-        {HERO_COPY.NORMAL}
-        <span className={styles.highlight}>{HERO_COPY.HIGHLIGHT}</span>
+        {t('hero.copy.normal')}
+        <span className={styles.highlight}>{t('hero.copy.highlight')}</span>
       </p>
       <div>
         <LoginButton onClick={handleGoogleLogin} />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
   createStepData,
@@ -26,6 +27,7 @@ import { USER_QUERY_KEY } from '@entities/user/queries';
 import useFunnel from '@shared/hooks/usefunnel';
 
 const OnboardingPage = () => {
+  const { t } = useTranslation('onboarding');
   const queryClient = useQueryClient();
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
     useFunnel(FUNNEL_STEPS, '/');
@@ -82,7 +84,16 @@ const OnboardingPage = () => {
     }
   }, [error]);
 
-  const steps = createStepData(FUNNEL_STEPS, currentStepIndex);
+  const steps = createStepData(
+    [
+      t('stepFlow.steps.identityVisaVerification'),
+      t('stepFlow.steps.education'),
+      t('stepFlow.steps.languageSkills'),
+      t('stepFlow.steps.careerPreferences'),
+      t('stepFlow.steps.background'),
+    ],
+    currentStepIndex,
+  );
 
   const handleBack = () => {
     goToPrevStep();

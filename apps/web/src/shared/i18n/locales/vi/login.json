@@ -1,0 +1,31 @@
+{
+  "layout": {
+    "description": "Đồng hành cùng hành trình sự nghiệp\ncủa bạn với những thông tin đáng tin cậy\nvề visa và định hướng nghề nghiệp"
+  },
+  "hero": {
+    "copy": {
+      "normal": "Biến rào cản visa thành cơ hội nghề nghiệp",
+      "highlight": ""
+    }
+  },
+  "actions": {
+    "googleLogin": "Bắt đầu miễn phí với Google"
+  },
+  "features": {
+    "title": "Tính năng chính",
+    "items": {
+      "careerRoadmap": {
+        "title": "Lộ trình sự nghiệp tích hợp",
+        "description": "Tạo ra kế hoạch chiến lược phù hợp giữa các cột mốc visa và mục tiêu nghề nghiệp dựa trên nền tảng cá nhân của bạn."
+      },
+      "taskBreakdown": {
+        "title": "Phân tách nhiệm vụ có thể thực hiện",
+        "description": "Tự động chuyển các mục tiêu chính trong lộ trình thành danh sách việc cần làm chi tiết theo từng bước."
+      },
+      "jobCuration": {
+        "title": "Gợi ý việc làm thông minh",
+        "description": "Đề xuất việc làm phù hợp dựa trên phân tích CV và thư xin việc của bạn."
+      }
+    }
+  }
+}

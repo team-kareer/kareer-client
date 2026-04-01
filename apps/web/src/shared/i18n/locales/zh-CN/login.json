@@ -1,0 +1,31 @@
+{
+  "layout": {
+    "description": "用可靠的签证与职业洞察,\n陪你走好每一步职业之路"
+  },
+  "hero": {
+    "copy": {
+      "normal": "把签证限制，",
+      "highlight": "变成职业机会"
+    }
+  },
+  "actions": {
+    "googleLogin": "使用 Google 账号免费开始"
+  },
+  "features": {
+    "title": "核心功能",
+    "items": {
+      "careerRoadmap": {
+        "title": "一体化职业路线图",
+        "description": "基于你的个人背景，生成与签证关键节点相匹配的职业发展规划。"
+      },
+      "taskBreakdown": {
+        "title": "可执行的任务拆解",
+        "description": "自动将路线图中的关键目标拆解为清晰、可执行的分步待办事项。"
+      },
+      "jobCuration": {
+        "title": "智能职位推荐",
+        "description": "基于你的简历和求职信分析，为你推荐更匹配的职位机会。"
+      }
+    }
+  }
+}

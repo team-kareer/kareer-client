@@ -22,7 +22,7 @@ export const introSection = style({
 
 export const textSection = style({
   position: 'relative',
-  padding: '4.8rem 20.2rem 0 3.6rem',
+  padding: '4.8rem 0 0 3.6rem',
   flexShrink: 0,
   zIndex: 1,
 });

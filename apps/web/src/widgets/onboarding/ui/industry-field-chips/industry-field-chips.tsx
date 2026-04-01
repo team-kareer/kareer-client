@@ -1,11 +1,11 @@
 import { XIcon } from '@kds/icons';
-import { Button } from '@kds/ui';
+import { type AutocompleteOption, Button } from '@kds/ui';
 
 import * as styles from './industry-field-chips.css';
 
 interface IndustryFieldChipsProps {
-  fields: string[];
-  onRemove: (field: string) => void;
+  fields: AutocompleteOption[];
+  onRemove: (fieldCode: string) => void;
 }
 
 const IndustryFieldChips = ({ fields, onRemove }: IndustryFieldChipsProps) => {
@@ -13,11 +13,11 @@ const IndustryFieldChips = ({ fields, onRemove }: IndustryFieldChipsProps) => {
     <div className={styles.container}>
       {fields.map((field) => (
         <Button
-          key={field}
+          key={field.code}
           preset="small_outlined"
-          onClick={() => onRemove(field)}
+          onClick={() => onRemove(field.code ?? '')}
         >
-          {field}
+          {field.label ?? field.code}
           <XIcon width={16} height={16} />
         </Button>
       ))}

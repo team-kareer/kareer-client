@@ -1,17 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { useFormContext, useWatch } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { OnboardingDegreeStep, OnboardingStepTitle } from '@widgets/onboarding';
 import { FormInputField } from '@widgets/onboarding';
 import { FormAutocompleteField } from '@widgets/onboarding';
-import { EDUCATION_PLACEHOLDERS } from '@widgets/onboarding/constants/placeholders';
 import {
   validateAutocompleteOption,
   validateDate,
   validateText,
 } from '@features/onboarding/model/validation';
 import {
-  FUNNEL_STEPS,
   MAJOR_LIST_QUERY_OPTIONS,
   UNIVERSITY_LIST_QUERY_OPTIONS,
 } from '@entities/onboarding';
@@ -19,6 +18,7 @@ import {
 import * as styles from './education.css';
 
 const Education = () => {
+  const { t } = useTranslation('onboarding');
   const { data: majorList } = useQuery({
     ...MAJOR_LIST_QUERY_OPTIONS.GET_MAJOR_LIST(),
   });
@@ -31,11 +31,14 @@ const Education = () => {
   const visaType = useWatch({ control, name: 'visaType' });
   return (
     <section>
-      <OnboardingStepTitle stepNumber={2} title={FUNNEL_STEPS[1]} />
+      <OnboardingStepTitle
+        stepNumber={2}
+        title={t('stepFlow.steps.education')}
+      />
       <div className={styles.inputContainer}>
         <FormAutocompleteField
           name="universityCode"
-          label="University / School"
+          label={t('steps.education.fields.university.label')}
           rules={{
             validate: (value) =>
               validateAutocompleteOption(
@@ -43,65 +46,73 @@ const Education = () => {
                 universityList?.universities || [],
               ),
           }}
-          placeholder={EDUCATION_PLACEHOLDERS.UNIVERSITY}
+          placeholder={t('steps.education.fields.university.placeholder')}
           options={universityList?.universities || []}
         />
         <div className={styles.newRow}>
           <FormAutocompleteField
             name="primaryMajorCode"
-            label="Primary Major"
+            label={t('steps.education.fields.primaryMajor.label')}
             rules={{
-              required: 'Select your major',
+              required: t('steps.education.fields.primaryMajor.required'),
               validate: (value) =>
                 validateAutocompleteOption(value, majorList?.majors || []),
             }}
-            placeholder={EDUCATION_PLACEHOLDERS.MAJOR}
+            placeholder={t('steps.education.fields.primaryMajor.placeholder')}
             options={majorList?.majors || []}
           />
         </div>
         <FormInputField
           name="secondaryMajor"
-          label="Secondary Major (Optional)"
+          label={t('steps.education.fields.secondaryMajor.label')}
           rules={{
             validate: (value) => validateText(value),
           }}
-          placeholder={EDUCATION_PLACEHOLDERS.MAJOR}
+          placeholder={t('steps.education.fields.secondaryMajor.placeholder')}
         />
         <div>
           <div className={styles.labelWrapper}>
-            <p className={styles.label}>Degree</p>
-            <p className={styles.subLabel}>Graduating students are included.</p>
+            <p className={styles.label}>
+              {t('steps.education.section.degreeLabel')}
+            </p>
+            <p className={styles.subLabel}>
+              {t('steps.education.section.degreeDescription')}
+            </p>
           </div>
           <OnboardingDegreeStep />
         </div>
         {visaType === 'D-2' && (
           <FormInputField
             name="expectedGraduationDate"
-            label="Expected Graducation Date"
+            label={t('steps.education.fields.expectedGraduationDate.label')}
             rules={{
-              required: 'Enter the graduation date',
+              required: t(
+                'steps.education.fields.expectedGraduationDate.required',
+              ),
               validate: (value) =>
                 validateDate(value, {
                   allowFuture: true,
                   allowPast: false,
                 }),
             }}
-            placeholder={EDUCATION_PLACEHOLDERS.GRADUATION_DATE}
+            placeholder={t(
+              'steps.education.fields.expectedGraduationDate.placeholder',
+            )}
           />
         )}
         {visaType === 'D-10' && (
           <FormInputField
             name="expectedGraduationDate"
-            label="Graducation Date"
+            label={t('steps.education.fields.graduationDate.label')}
             rules={{
-              required: 'Enter the graduation date',
+              required: t('steps.education.fields.graduationDate.required'),
               validate: (value) =>
                 validateDate(value, {
                   allowFuture: false,
                   allowPast: true,
                 }),
             }}
-            placeholder={EDUCATION_PLACEHOLDERS.GRADUATION_DATE}
+            placeholder={t('steps.education.fields.graduationDate.placeholder')}
           />
         )}
       </div>

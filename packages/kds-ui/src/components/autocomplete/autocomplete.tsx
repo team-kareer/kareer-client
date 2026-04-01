@@ -72,7 +72,11 @@ const Autocomplete = ({
 
     if (e.key === 'Enter' && inputValue.trim()) {
       e.preventDefault();
-      onChange(inputValue.trim());
+      const matchedOption = options.find(
+        (option) =>
+          option.label?.toLowerCase() === inputValue.trim().toLowerCase(),
+      );
+      onChange(matchedOption?.code ?? inputValue.trim());
       setIsOpen(false);
       setInputValue('');
     }

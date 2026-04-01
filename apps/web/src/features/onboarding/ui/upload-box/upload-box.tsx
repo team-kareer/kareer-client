@@ -1,6 +1,7 @@
 import { ChangeEvent, DragEvent, useRef } from 'react';
 import { UploadIcon, XIcon } from '@kds/icons';
 import { Button, ProgressBar } from '@kds/ui';
+import { useTranslation } from 'react-i18next';
 
 import { UploadProgress } from '@features/onboarding/model';
 
@@ -45,6 +46,7 @@ const UploadBox = ({
   onSelectFile,
   onRemoveFile,
 }: UploadBoxProps) => {
+  const { t } = useTranslation('onboarding');
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChooseFile = () => {
@@ -89,7 +91,9 @@ const UploadBox = ({
       >
         <div className={styles.uploadTopSection}>
           <UploadIcon width={24} height={24} />
-          <p className={styles.text}>Upload Photo</p>
+          <p className={styles.text}>
+            {t('steps.identityVisaVerification.upload.box.title')}
+          </p>
         </div>
 
         <Button
@@ -98,7 +102,7 @@ const UploadBox = ({
           onClick={handleChooseFile}
           disabled={disabled}
         >
-          Choose File
+          {t('steps.identityVisaVerification.upload.box.button')}
         </Button>
       </section>
 

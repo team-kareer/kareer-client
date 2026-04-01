@@ -1,4 +1,5 @@
 import { VALIDATION_MESSAGE } from '@widgets/onboarding';
+import i18n from '@shared/i18n/i18n';
 
 import { validateDate } from '../common/validateDate';
 
@@ -7,7 +8,10 @@ export const validateIdentityVisaStartDate = (
   visaExpirationDate?: string,
 ) => {
   if (!value) {
-    return 'Enter the visa start date';
+    return i18n.t(
+      'steps.identityVisaVerification.visaInfo.visaStartDate.required',
+      { ns: 'onboarding' },
+    );
   }
 
   const result = validateDate(value, { allowPast: true });
