@@ -1912,6 +1912,11 @@ export interface components {
        * @example true
        */
       onboardingRequired?: boolean;
+      /**
+       * @description 약관 동의 여부
+       * @example true
+       */
+      agreedTerm?: boolean;
     };
     BaseResponseJobPostingCrawlListResponse: {
       /**
