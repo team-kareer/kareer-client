@@ -13,12 +13,6 @@ export const languageSelectorWrapper = style({
   justifyContent: 'flex-end',
 });
 
-export const featureSectionWrapper = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '3.2rem',
-  marginTop: '4rem',
-});
 export const copy = style({
   ...typography.head1_sb_40,
   color: themeVars.color.grayscale.gray800,
