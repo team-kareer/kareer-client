@@ -8,9 +8,9 @@ export const LANGUAGE_LEVEL_OPTIONS = [
 ];
 
 export const ENGLISH_PROFICIENCY_OPTIONS = [
-  'Beginner',
-  'Intermediate',
-  'Advanced',
+  { code: 'BEGINNER', label: 'Beginner' },
+  { code: 'INTERMEDIATE', label: 'Intermediate' },
+  { code: 'ADVANCED', label: 'Advanced' },
 ];
 
 export const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
