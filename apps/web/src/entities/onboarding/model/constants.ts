@@ -13,12 +13,10 @@ export const STORAGE_KEY = 'onboarding-form-data';
 export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
   name: '',
   birthDate: '',
-  countryCode: '',
   universityCode: '',
-  englishLevel: '',
-  fieldsOfInterests: [],
+  countryCode: '',
   languageLevel: '',
-  degreeLocation: 'south-korea',
+  englishLevel: '',
   degree: '',
   visaType: '',
   expectedGraduationDate: '',
@@ -26,10 +24,12 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
   visaExpiredAt: '',
   primaryMajorCode: '',
   secondaryMajor: '',
+  fieldsOfInterests: [],
+  preparationStatuses: [],
   targetJob: '',
   targetJobSkill: '',
   personalBackground: '',
-  university: '',
+  degreeLocation: 'south-korea',
 };
 
 /**
@@ -61,15 +61,6 @@ export const STEP_REQUIRED_FIELDS: Array<Array<keyof OnboardingForm>> = [
   ['fieldsOfInterests', 'targetJob'],
   ['personalBackground'],
 ];
-
-/**
- * 비자 관련 필수 입력 필드 매핑
- */
-export const VISA_REQUIRED_FIELDS: Array<keyof OnboardingForm> = [
-  'visaType',
-  'visaStartDate',
-  'visaExpiredAt',
-] as const;
 
 /**
  * 입력 필드 최대 길이
