@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowDownIcon, ArrowUpIcon } from '@kds/icons';
-
-import { color } from '../../styles';
+import { ArrowDownIcon, ArrowUpIcon, SearchIcon } from '@kds/icons';
 
 import * as styles from './autocomplete.css';
 
@@ -13,8 +11,10 @@ export interface AutocompleteOption {
 interface AutocompleteProps {
   value: string;
   onChange: (value: string) => void;
+  onInputChange?: (value: string) => void;
   options: AutocompleteOption[];
   placeholder?: string;
+  icon?: 'chevron' | 'search';
 }
 
 interface DropDownProps {
@@ -25,17 +25,17 @@ interface DropDownProps {
 const Autocomplete = ({
   value,
   onChange,
+  onInputChange,
   options,
   placeholder,
+  icon = 'chevron',
 }: AutocompleteProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     const matched = options.find((option) => option.code === value);
-    if (matched) {
-      setInputValue(matched.label ?? '');
-    }
+    setInputValue(matched ? matched.label : '');
   }, [value, options]);
 
   const filteredOptions = options.filter((option) =>
@@ -44,13 +44,12 @@ const Autocomplete = ({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
+    onInputChange?.(e.target.value);
     setIsOpen(e.target.value.length > 0);
-    onChange(inputValue);
   };
 
   const handleOptionClick = (option: AutocompleteOption) => {
-    setInputValue(option.label ?? '');
-    onChange(option.code ?? '');
+    onChange(option.code);
     setIsOpen(false);
   };
 
@@ -58,7 +57,21 @@ const Autocomplete = ({
     setIsOpen((prev) => !prev);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && e.nativeEvent.isComposing) {
+      return;
+    }
+
+    if (e.key === 'Enter' && inputValue.trim()) {
+      e.preventDefault();
+      onChange(inputValue.trim());
+      setIsOpen(false);
+      setInputValue('');
+    }
+  };
+
   const Chevron = isOpen ? ArrowUpIcon : ArrowDownIcon;
+  const Icon = icon === 'search' ? SearchIcon : Chevron;
 
   return (
     <div className={styles.inputContainer}>
@@ -69,10 +82,11 @@ const Autocomplete = ({
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
         onBlur={() => setIsOpen(false)}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
       />
       <button type="button" className={styles.toggle} onClick={toggleDropdown}>
-        <Chevron width={19} height={19} color={color.grayscale.gray800} />
+        <Icon width={19} height={19} />
       </button>
       {isOpen && filteredOptions.length > 0 && (
         <DropList options={filteredOptions} onClick={handleOptionClick} />

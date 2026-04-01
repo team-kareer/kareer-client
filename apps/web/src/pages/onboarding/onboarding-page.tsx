@@ -8,9 +8,8 @@ import {
   LanguageSkillStep,
   OnboardingStepLayout,
   PersonalBackgroundStep,
-  PersonalInformationStep,
-  VisaInformationStep,
 } from '@widgets/onboarding';
+import CareerPreference from '@widgets/onboarding/ui/step/career-preference/career-preference';
 import IdentityVisaVerification from '@widgets/onboarding/ui/step/identity-visaVerification/identity-visaVerification';
 import type { PostOnboardingForm } from '@features/onboarding';
 import { postOnboardingForm } from '@features/onboarding';
@@ -136,7 +135,7 @@ const OnboardingPage = () => {
       >
         <Funnel>
           <Step name={FUNNEL_STEPS[0]}>
-            <PersonalInformationStep />
+            <IdentityVisaVerification />
           </Step>
           <Step name={FUNNEL_STEPS[1]}>
             <EducationStep />
@@ -145,13 +144,10 @@ const OnboardingPage = () => {
             <LanguageSkillStep />
           </Step>
           <Step name={FUNNEL_STEPS[3]}>
-            <VisaInformationStep />
+            <CareerPreference />
           </Step>
           <Step name={FUNNEL_STEPS[4]}>
             <PersonalBackgroundStep />
-          </Step>
-          <Step name={FUNNEL_STEPS[5]}>
-            <IdentityVisaVerification />
           </Step>
         </Funnel>
       </OnboardingStepLayout>

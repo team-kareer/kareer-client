@@ -29,6 +29,7 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
   targetJob: '',
   targetJobSkill: '',
   personalBackground: '',
+  university: '',
 };
 
 /**
@@ -36,22 +37,28 @@ export const DEFAULT_ONBOARDING_FORM: OnboardingForm = {
  * @constant
  */
 export const FUNNEL_STEPS = [
-  '(before)Identity & Visa verification',
+  'Identity & Visa verification',
   'Education',
   'Language Skills',
   'Career Preferences',
   'Background',
-  'Identity & Visa verification',
 ] as const;
 
 /**
  * 각 단계별 필수 입력 필드 배열
  * */
 export const STEP_REQUIRED_FIELDS: Array<Array<keyof OnboardingForm>> = [
-  ['name', 'birthDate', 'languageLevel', 'degree', 'countryCode'],
-  ['universityCode', 'primaryMajorCode', 'degree', 'expectedGraduationDate'],
+  [
+    'name',
+    'birthDate',
+    'countryCode',
+    'visaType',
+    'visaStartDate',
+    'visaExpiredAt',
+  ],
+  ['universityCode', 'primaryMajorCode', 'degree'],
   ['languageLevel', 'englishLevel'],
-  ['primaryMajorCode', 'targetJob'],
+  ['fieldsOfInterests', 'targetJob'],
   ['personalBackground'],
 ];
 

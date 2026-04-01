@@ -10,6 +10,8 @@ type FormAutoCompleteFieldProps<
 > = Omit<FormFieldProps<T, K>, 'children'> & {
   placeholder: string;
   options: AutocompleteOption[];
+  onSelect?: (value: string) => void;
+  icon?: 'chevron' | 'search';
 };
 
 const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
@@ -18,16 +20,27 @@ const FormAutocompleteField = <T extends FieldValues, K extends FieldPath<T>>({
   rules,
   placeholder,
   options,
+  onSelect,
+  icon,
 }: FormAutoCompleteFieldProps<T, K>) => {
+  const isChipMode = !!onSelect;
+
   return (
     <FormField name={name} label={label} rules={rules}>
       {(field) => (
         <Autocomplete
+          icon={icon}
           {...field}
           placeholder={placeholder}
           options={options}
-          onChange={field.onChange}
-          value={field.value || ''}
+          {...(!isChipMode && { value: field.value || '' })}
+          onChange={(value) => {
+            if (isChipMode) {
+              onSelect(value);
+            } else {
+              field.onChange(value);
+            }
+          }}
         />
       )}
     </FormField>
