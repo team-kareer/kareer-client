@@ -22,40 +22,6 @@ const TARGET_JOB_LABEL_KEYS: Record<string, string> = {
   'Global Sales': 'options.targetJob.globalSales',
 };
 
-const JOB_SKILL_KEY_MAP: Record<string, Record<string, string>> = {
-  Developer: {
-    'tech-stack': 'techStack',
-    'cs-tools': 'csTools',
-    projects: 'projects',
-    'team-work-experience': 'teamWorkExperience',
-  },
-  'Data Analyst': {
-    'data-tools': 'dataTools',
-    'sql-programming': 'sqlProgramming',
-    'analysis-storytelling': 'analysisStorytelling',
-    projects: 'projects',
-  },
-  Marketer: {
-    'channels-tools': 'channelsTools',
-    'content-copy': 'contentCopy',
-    'data-experimentation': 'dataExperimentation',
-    projects: 'projects',
-  },
-  'Global Sales': {
-    'client-communication': 'clientCommunication',
-    'sales-tools-process': 'salesToolsProcess',
-    'numbers-targets': 'numbersTargets',
-    projects: 'projects',
-  },
-};
-
-const JOB_SKILL_GROUP_KEYS: Record<string, string> = {
-  Developer: 'developer',
-  'Data Analyst': 'dataAnalyst',
-  Marketer: 'marketer',
-  'Global Sales': 'globalSales',
-};
-
 const CareerPreference = () => {
   const { t } = useTranslation('onboarding');
   const { data: fieldList } = useQuery({
@@ -146,15 +112,9 @@ const CareerPreference = () => {
                 onChange={() => handleSkillToggle(skill.id)}
               />
               <div className={styles.checkboxContent}>
-                <h3 className={styles.checkboxTitle}>
-                  {t(
-                    `jobSkills.${JOB_SKILL_GROUP_KEYS[targetJob]}.${JOB_SKILL_KEY_MAP[targetJob]?.[skill.id]}.title`,
-                  )}
-                </h3>
+                <h3 className={styles.checkboxTitle}>{t(skill.title)}</h3>
                 <p className={styles.checkboxDescription}>
-                  {t(
-                    `jobSkills.${JOB_SKILL_GROUP_KEYS[targetJob]}.${JOB_SKILL_KEY_MAP[targetJob]?.[skill.id]}.description`,
-                  )}
+                  {t(skill.description)}
                 </p>
               </div>
             </div>

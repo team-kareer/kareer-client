@@ -12,105 +12,89 @@ export const JOB_SKILL_OPTIONS: Record<string, SkillOption[]> = {
   Developer: [
     {
       id: 'tech-stack',
-      title: 'Tech Stack',
-      description:
-        'I have experience with these languages / frameworks (e.g., Java, Python, JavaScript, Spring, React, Node.js).',
+      title: 'jobSkills.developer.techStack.title',
+      description: 'jobSkills.developer.techStack.description',
     },
     {
       id: 'cs-tools',
-      title: 'CS & Tools',
-      description:
-        'I understand basic CS topics (data structures, algorithms, databases) and use Git / GitHub regularly.',
+      title: 'jobSkills.developer.csTools.title',
+      description: 'jobSkills.developer.csTools.description',
     },
     {
       id: 'projects',
-      title: 'Projects',
-      description:
-        'I have 1+ completed projects (personal, school, or team) with code on GitHub or a portfolio site.',
+      title: 'jobSkills.developer.projects.title',
+      description: 'jobSkills.developer.projects.description',
     },
     {
       id: 'team-work-experience',
-      title: 'Team / Work Experience',
-      description:
-        'I have worked on a team or real-world setting (internship, part-time, open-source, or collaboration with designers/PMs) as a developer.',
+      title: 'jobSkills.developer.teamWorkExperience.title',
+      description: 'jobSkills.developer.teamWorkExperience.description',
     },
   ],
   'Data Analyst': [
     {
       id: 'data-tools',
-      title: 'Data Tools',
-      description:
-        'I can work with data using Excel/Google Sheets (formulas, pivot tables) and at least one BI tool (e.g., Tableau, Power BI)',
+      title: 'jobSkills.dataAnalyst.dataTools.title',
+      description: 'jobSkills.dataAnalyst.dataTools.description',
     },
     {
       id: 'sql-programming',
-      title: 'SQL & Programming',
-      description:
-        'I can write basic SQL queries (SELECT, JOIN, GROUP BY) and have some experience with Python or R for data analysis.',
+      title: 'jobSkills.dataAnalyst.sqlProgramming.title',
+      description: 'jobSkills.dataAnalyst.sqlProgramming.description',
     },
     {
       id: 'analysis-storytelling',
-      title: 'Analysis & Storytelling',
-      description:
-        'I have practiced turning data into insights (simple analysis, charts, or reports) and explaining results in plain language.',
+      title: 'jobSkills.dataAnalyst.analysisStorytelling.title',
+      description: 'jobSkills.dataAnalyst.analysisStorytelling.description',
     },
     {
       id: 'projects',
-      title: 'Projects',
-      description:
-        'I have 1+ data projects (school, Kaggle, personal) that I can show in a portfolio or GitHub.',
+      title: 'jobSkills.dataAnalyst.projects.title',
+      description: 'jobSkills.dataAnalyst.projects.description',
     },
   ],
   Marketer: [
     {
       id: 'channels-tools',
-      title: 'Channels & Tools',
-      description:
-        'I have experience using at least one digital channel (e.g., Instagram, YouTube, blog, email) and basic tools (Meta Ads, Google Analytics, etc.).',
+      title: 'jobSkills.marketer.channelsTools.title',
+      description: 'jobSkills.marketer.channelsTools.description',
     },
     {
       id: 'content-copy',
-      title: 'Content & Copy',
-      description:
-        'I have created marketing content (social posts, blog, emails, landing pages) in English or Korean.',
+      title: 'jobSkills.marketer.contentCopy.title',
+      description: 'jobSkills.marketer.contentCopy.description',
     },
     {
       id: 'data-experimentation',
-      title: 'Data & Experimentation',
-      description:
-        'I have looked at simple marketing metrics (clicks, conversions, followers) and tried A/B tests or small experiments.',
+      title: 'jobSkills.marketer.dataExperimentation.title',
+      description: 'jobSkills.marketer.dataExperimentation.description',
     },
     {
       id: 'projects',
-      title: 'Projects',
-      description:
-        'I have participated in at least one campaign or project (school club, side project, internship) with measurable outcomes.',
+      title: 'jobSkills.marketer.projects.title',
+      description: 'jobSkills.marketer.projects.description',
     },
   ],
   'Global Sales': [
     {
       id: 'client-communication',
-      title: 'Client Communication',
-      description:
-        'I am comfortable talking or writing with customers/partners in English or Korean (email, calls, meetings).',
+      title: 'jobSkills.globalSales.clientCommunication.title',
+      description: 'jobSkills.globalSales.clientCommunication.description',
     },
     {
       id: 'sales-tools-process',
-      title: 'Sales Tools & Process',
-      description:
-        'I understand basic sales steps (prospecting → meeting → proposal → follow‑up) and have used simple CRM/spreadsheet tracking.',
+      title: 'jobSkills.globalSales.salesToolsProcess.title',
+      description: 'jobSkills.globalSales.salesToolsProcess.description',
     },
     {
       id: 'numbers-targets',
-      title: 'Numbers & Targets',
-      description:
-        'I am used to working with simple sales KPIs (leads, meetings, revenue) and tracking them over time.',
+      title: 'jobSkills.globalSales.numbersTargets.title',
+      description: 'jobSkills.globalSales.numbersTargets.description',
     },
     {
       id: 'projects',
-      title: 'Projects',
-      description:
-        'I have experience in a customer-facing role (part‑time, internship, club, volunteering) where I had to persuade or negotiate.',
+      title: 'jobSkills.globalSales.projects.title',
+      description: 'jobSkills.globalSales.projects.description',
     },
   ],
 };
