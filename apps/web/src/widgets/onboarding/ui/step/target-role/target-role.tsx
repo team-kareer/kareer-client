@@ -35,10 +35,7 @@ const TargetRole = () => {
           rules={{
             required: 'Enter your major',
             validate: (value) =>
-              validateAutocompleteOption(
-                value,
-                toOptions(majorList?.majors || []),
-              ),
+              validateAutocompleteOption(value, majorList?.majors || []),
           }}
           placeholder={TARGET_ROLE_PLACEHOLDERS.PRIMARY_MAJOR}
           options={majorList?.majors || []}

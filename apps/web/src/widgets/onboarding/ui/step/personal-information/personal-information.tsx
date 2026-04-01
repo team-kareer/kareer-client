@@ -18,12 +18,12 @@ import { LANGUAGE_LEVEL_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './personal-information.css';
 
+const MAX_LENGTH = 30;
+
 const PersonalInformation = () => {
   const { data: countryList } = useQuery({
     ...COUNTRY_LIST_QUERY_OPTIONS.GET_COUNTRY_LIST(),
   });
-
-  const MAX_LENGTH = 30;
 
   return (
     <section>
@@ -50,7 +50,7 @@ const PersonalInformation = () => {
           maxLength={MAX_LENGTH}
         />
         <FormAutocompleteField
-          name="country"
+          name="countryCode"
           label="Country"
           rules={{
             required: 'Select the Country',
