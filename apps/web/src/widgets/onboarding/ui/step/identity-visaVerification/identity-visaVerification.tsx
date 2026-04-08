@@ -36,7 +36,10 @@ const IdentityVisaVerification = () => {
     ...ONBOARDING_MUTATION_OPTIONS.POST_OCR_PASSPORT(),
     onSuccess: (data) => {
       setValue('name', data.data?.fullName ?? '');
-      setValue('countryCode', (data.data?.country ?? '').toLowerCase());
+      const normalizedCountryCode = (data.data?.country ?? '')
+        .toLowerCase()
+        .replace(/\s+/g, '-');
+      setValue('countryCode', normalizedCountryCode);
       setValue('birthDate', data.data?.birthDate ?? '');
     },
   });
