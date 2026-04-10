@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { Autocomplete } from '@kds/ui';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { FormField, FormInputField } from '@widgets/onboarding';
@@ -15,7 +16,15 @@ import * as styles from './visa-info-form-section.css';
 
 const VisaInfoFormSection = () => {
   const { t } = useTranslation('onboarding');
-  const { getValues } = useFormContext<OnboardingForm>();
+  const { control, trigger } = useFormContext<OnboardingForm>();
+  const visaType = useWatch({ control, name: 'visaType' });
+  const visaStartDate = useWatch({ control, name: 'visaStartDate' });
+  const visaExpiredAt = useWatch({ control, name: 'visaExpiredAt' });
+
+  useEffect(() => {
+    trigger('visaExpiredAt');
+  }, [visaType, trigger]);
+
   const visaTypeOptions = VISA_TYPE_OPTIONS.map((option) => ({
     code: option,
     label:
@@ -54,7 +63,7 @@ const VisaInfoFormSection = () => {
             'steps.identityVisaVerification.visaInfo.visaStartDate.required',
           ),
           validate: (value) =>
-            validateIdentityVisaStartDate(value, getValues('visaExpiredAt')),
+            validateIdentityVisaStartDate(value, visaExpiredAt),
         }}
         placeholder={t(
           'steps.identityVisaVerification.visaInfo.visaStartDate.placeholder',
@@ -70,8 +79,8 @@ const VisaInfoFormSection = () => {
           validate: (value) =>
             validateIdentityVisaExpirationDate(
               value,
-              getValues('visaType') as VisaType | undefined,
-              getValues('visaStartDate'),
+              visaType as VisaType | undefined,
+              visaStartDate,
             ),
         }}
         placeholder={t(
