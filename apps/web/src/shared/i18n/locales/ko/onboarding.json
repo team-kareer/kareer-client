@@ -288,7 +288,8 @@
     },
     "name": {
       "empty": "이름은 비워둘 수 없어요.",
-      "specialCharacters": "일반 문자만 사용해 주세요."
+      "specialCharacters": "일반 문자만 사용해 주세요.",
+      "maxLength": "이름을 20자 이하로 입력해 주세요."
     }
   }
 }

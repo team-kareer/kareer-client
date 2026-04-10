@@ -287,7 +287,8 @@
     },
     "name": {
       "empty": "Your name can't be empty.",
-      "specialCharacters": "Please use standard letters only."
+      "specialCharacters": "Please use standard letters only.",
+      "maxLength": "Please enter a name with 20 characters or fewer."
     }
   }
 }
