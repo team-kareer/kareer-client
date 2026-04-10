@@ -26,7 +26,7 @@ const UserInfoFormSection = () => {
         label={t('steps.identityVisaVerification.userInfo.name.label')}
         rules={{
           required: t('steps.identityVisaVerification.userInfo.name.required'),
-          validate: (value) => validateText(value),
+          validate: (value) => validateText(value, { maxLength: MAX_LENGTH }),
         }}
         placeholder={t(
           'steps.identityVisaVerification.userInfo.name.placeholder',

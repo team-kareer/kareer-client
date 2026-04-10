@@ -91,5 +91,10 @@ export const VALIDATION_MESSAGE = {
         ns: 'onboarding',
       });
     },
+    get MAX_LENGTH() {
+      return i18n.t('validation.name.maxLength', {
+        ns: 'onboarding',
+      });
+    },
   },
 } as const;
