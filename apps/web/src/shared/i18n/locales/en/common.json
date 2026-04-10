@@ -4,12 +4,6 @@
     "confirm": "Confirm",
     "cancel": "Cancel"
   },
-  "language": {
-    "english": "English",
-    "korean": "Korean",
-    "vietnamese": "Vietnamese",
-    "chinese": "Chinese"
-  },
   "state": {
     "loading": "Loading..."
   },
