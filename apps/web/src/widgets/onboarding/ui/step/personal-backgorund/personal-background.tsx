@@ -71,21 +71,19 @@ const PersonalBackground = () => {
       />
       <div className={styles.container}>
         <div className={styles.inputSection}>
-          <div className={styles.textSection}>
-            <h2 className={styles.title}>
-              {t('steps.background.content.title')}
-            </h2>
-            <ul className={styles.infoList}>
-              {[
-                t('steps.background.info.privacy'),
-                t('steps.background.info.referenceOnly'),
-              ].map((message, index) => (
-                <li key={index} className={styles.infoText}>
-                  {message}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <h2 className={styles.title}>
+            {t('steps.background.content.title')}
+          </h2>
+          <ul className={styles.infoList}>
+            {[
+              t('steps.background.info.privacy'),
+              t('steps.background.info.referenceOnly'),
+            ].map((message, index) => (
+              <li key={index} className={styles.infoText}>
+                {message}
+              </li>
+            ))}
+          </ul>
           <FormTextareaField
             name="personalBackground"
             rules={{

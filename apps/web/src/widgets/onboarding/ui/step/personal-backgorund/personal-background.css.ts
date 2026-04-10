@@ -16,19 +16,10 @@ export const inputSection = style({
   marginBottom: '1.6rem',
 });
 
-export const textSection = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-});
 export const title = style({
   ...typography.body8_m_14,
   color: themeVars.color.grayscale.gray800,
-});
-
-export const description = style({
-  ...typography.cap3_r_12,
-  color: themeVars.color.grayscale.gray500,
+  marginBottom: '0.8rem',
 });
 
 export const infoList = style({
@@ -47,7 +38,6 @@ export const infoText = style({
     content: '•',
     position: 'absolute',
     left: 0,
-    color: themeVars.color.grayscale.gray500,
   },
 });
 
