@@ -592,6 +592,23 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/members/completion': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** 온보딩, 약관동의 여부 조회 */
+    get: operations['getMemberCompletionStatus'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/job-postings/crawl': {
     parameters: {
       query?: never;
@@ -1907,16 +1924,21 @@ export interface components {
        * @description 졸업일
        */
       graduationDate?: string;
+    };
+    BaseResponseMemberCompletionResponse: {
       /**
-       * @description 온보딩 여부
-       * @example true
+       * Format: int32
+       * @example 200
        */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['MemberCompletionResponse'];
+    };
+    MemberCompletionResponse: {
+      /** @description 온보딩 여부 */
       onboardingRequired?: boolean;
-      /**
-       * @description 약관 동의 여부
-       * @example true
-       */
-      agreedTerm?: boolean;
+      /** @description 약관 동의 여부 */
+      agreeTerm?: boolean;
     };
     BaseResponseJobPostingCrawlListResponse: {
       /**
@@ -4064,6 +4086,77 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['BaseResponseMemberStatusResponse'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  getMemberCompletionStatus: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseMemberCompletionResponse'];
         };
       };
       400: {
