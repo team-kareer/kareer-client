@@ -15,7 +15,7 @@ import * as styles from './visa-info-form-section.css';
 
 const VisaInfoFormSection = () => {
   const { t } = useTranslation('onboarding');
-  const { control } = useFormContext<OnboardingForm>();
+  const { control, getValues } = useFormContext<OnboardingForm>();
   const visaType = useWatch({ control, name: 'visaType' });
   const visaStartDate = useWatch({ control, name: 'visaStartDate' });
   const visaExpiredAt = useWatch({ control, name: 'visaExpiredAt' });
@@ -73,8 +73,8 @@ const VisaInfoFormSection = () => {
           validate: (value) =>
             validateIdentityVisaExpirationDate(
               value,
-              visaType as VisaType | undefined,
-              visaStartDate,
+              getValues('visaType') as VisaType | undefined,
+              getValues('visaStartDate'),
             ),
         }}
         placeholder={t(

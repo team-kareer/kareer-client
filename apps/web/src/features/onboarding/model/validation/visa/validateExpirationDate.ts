@@ -20,7 +20,7 @@ const validateD2Expiration = (
     return VALIDATION_MESSAGE.VISA.D2_EXPIRATION_IN_PAST;
   }
 
-  if (expiration < limit) {
+  if (expiration > limit) {
     return VALIDATION_MESSAGE.VISA.D2_EXCEEDS_TWO_YEARS;
   }
 
