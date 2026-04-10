@@ -1,0 +1,31 @@
+{
+  "layout": {
+    "description": "믿을 수 있는 비자·커리어 인사이트로,\n당신의 커리어 여정을 함께합니다."
+  },
+  "hero": {
+    "copy": {
+      "normal": "비자의 한계를,\n",
+      "highlight": "커리어의 가능성으로."
+    }
+  },
+  "actions": {
+    "googleLogin": "Google 계정으로 무료로 시작하기"
+  },
+  "features": {
+    "title": "주요 기능",
+    "items": {
+      "careerRoadmap": {
+        "title": "통합 커리어 로드맵",
+        "description": "당신의 고유한 배경을 바탕으로, 비자 진행 단계와 커리어 목표를 함께 고려한 전략적 로드맵을 생성합니다."
+      },
+      "taskBreakdown": {
+        "title": "실행 가능한 할 일 세분화",
+        "description": "로드맵의 주요 목표를 구체적이고 단계적인 실행 항목(To-do List) 으로 자동 전환해 줍니다."
+      },
+      "jobCuration": {
+        "title": "스마트 채용 공고 추천",
+        "description": "이력서와 자기소개서 분석을 기반으로, 당신에게 맞는 맞춤형 채용 공고를 추천합니다."
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { SymbolGrayIcon, SymbolLightIcon } from '@kds/icons/svg';
 import { Button } from '@kds/ui';
+import { useTranslation } from 'react-i18next';
 
 import {
   type OnboardingStepData,
@@ -24,6 +25,7 @@ const OnboardingStepLayout = ({
   onNext,
   isNextDisabled,
 }: OnboardingStepLayoutProps) => {
+  const { t } = useTranslation('onboarding');
   const currentStep = steps.find((step) => step.status === 'In Process');
   const isLastStep =
     currentStep &&
@@ -43,7 +45,7 @@ const OnboardingStepLayout = ({
             onClick={onBack}
             disabled={isFirstStep}
           >
-            Back
+            {t('stepFlow.actions.back')}
           </Button>
         )}
         {onNext && (
@@ -59,10 +61,10 @@ const OnboardingStepLayout = ({
                 ) : (
                   <SymbolLightIcon width={19} height={19} />
                 )}
-                <span>Start your career journey</span>
+                <span>{t('stepFlow.actions.submit')}</span>
               </span>
             ) : (
-              'Next'
+              t('stepFlow.actions.next')
             )}
           </Button>
         )}

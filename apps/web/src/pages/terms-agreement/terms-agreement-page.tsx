@@ -1,5 +1,6 @@
 import { Button, Checkbox } from '@kds/ui';
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 import { AccordionList, useTermsCheck } from '@widgets/terms-agreement';
@@ -9,6 +10,7 @@ import { ROUTE_PATH } from '@shared/router';
 import * as styles from './terms-agreement-page.css';
 
 const TermsAgreementPage = () => {
+  const { t } = useTranslation('termsAgreement');
   const navigate = useNavigate();
   const { data } = useSuspenseQuery({
     ...TERMS_QUERY_OPTIONS.GET_TERMS_LIST(),
@@ -38,12 +40,12 @@ const TermsAgreementPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.body}>
-        <header className={styles.header}>Terms & Privacy Consent</header>
+        <header className={styles.header}>{t('header.title')}</header>
         <div className={styles.termsSection}>
           <div className={styles.sectionContent}>
             <div className={styles.checkArea}>
               <Checkbox isChecked={allChecked} onClick={handleToggleAll} />
-              <span>Agree to all</span>
+              <span>{t('actions.agreeAll')}</span>
             </div>
             <hr className={styles.line} />
             <section className={styles.termsList}>
@@ -61,7 +63,7 @@ const TermsAgreementPage = () => {
         onClick={handleSubmit}
         disabled={!canSubmit}
       >
-        Agree and Start
+        {t('actions.submit')}
       </Button>
     </div>
   );

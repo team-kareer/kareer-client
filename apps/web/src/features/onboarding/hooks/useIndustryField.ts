@@ -1,11 +1,13 @@
 import { type AutocompleteOption } from '@kds/ui';
 import { useFormContext, useWatch } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { OnboardingForm } from '@entities/onboarding';
 
 const MAX_SELECTED_FIELDS = 5;
 
 export const useIndustryField = (fieldList: AutocompleteOption[]) => {
+  const { t } = useTranslation('onboarding');
   const { control, setValue, setError, clearErrors } =
     useFormContext<OnboardingForm>();
 
@@ -26,7 +28,9 @@ export const useIndustryField = (fieldList: AutocompleteOption[]) => {
 
     if (selectedFields.length >= MAX_SELECTED_FIELDS) {
       setError('fieldsOfInterests', {
-        message: 'You can select up to 5 industries.',
+        message: t(
+          'steps.careerPreferences.fields.fieldsOfInterests.maxSelected',
+        ),
       });
       return;
     }

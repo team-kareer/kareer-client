@@ -41,6 +41,9 @@ i18n.use(initReactI18next).init({
   ns: [
     'common',
     'navigation',
+    'login',
+    'onboarding',
+    'termsAgreement',
     'todo',
     'empty',
     'dashboard',
