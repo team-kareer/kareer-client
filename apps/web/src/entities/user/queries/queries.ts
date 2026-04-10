@@ -25,8 +25,8 @@ export const USER_QUERY_OPTIONS = {
     return queryOptions({
       queryKey: USER_QUERY_KEY.USER_COMPLETION(),
       queryFn: getUserCompletion,
-      // staleTime: Infinity,
-      // gcTime: Infinity,
+      staleTime: Infinity,
+      gcTime: Infinity,
     });
   },
   GET_MY_PAGE_INFO: () => {
