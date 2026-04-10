@@ -74,22 +74,18 @@ const PersonalBackground = () => {
             {t('steps.background.content.title')}
           </h2>
           <ul className={styles.infoList}>
-            {[
-              t('steps.background.info.privacy'),
-              t('steps.background.info.referenceOnly'),
-            ].map((message, index) => (
-              <li key={index} className={styles.infoText}>
-                {message}
-              </li>
-            ))}
+            <li className={styles.infoText}>
+              {t('steps.background.info.privacy')}
+            </li>
+            <li className={styles.infoText}>
+              {t('steps.background.info.referenceOnly')}
+            </li>
           </ul>
           <FormTextareaField
             name="personalBackground"
             rules={{
+              required: true,
               validate: (value) => {
-                if (!value || value.trim().length === 0) {
-                  return true;
-                }
                 return validateText(value, {
                   allowNumber: true,
                   allowBasicSpecialCharacters: true,
