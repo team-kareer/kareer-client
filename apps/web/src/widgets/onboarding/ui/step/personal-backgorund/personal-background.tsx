@@ -83,11 +83,15 @@ const PersonalBackground = () => {
           <FormTextareaField
             name="personalBackground"
             rules={{
-              validate: (value) =>
-                validateText(value, {
+              validate: (value) => {
+                if (!value || value.trim().length === 0) {
+                  return true;
+                }
+                return validateText(value, {
                   allowNumber: true,
                   allowBasicSpecialCharacters: true,
-                }),
+                });
+              },
             }}
             placeholder={placeholder}
             maxLength={1000}
