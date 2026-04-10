@@ -10,7 +10,7 @@ export const container = style({
 export const languageSelectorWrapper = style({
   display: 'flex',
   justifyContent: 'flex-end',
-  paddingBottom: '8.1rem',
+  paddingBottom: '6.2rem',
 });
 
 export const copySection = style({
