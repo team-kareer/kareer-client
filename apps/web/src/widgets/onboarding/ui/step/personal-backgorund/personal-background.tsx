@@ -1,4 +1,3 @@
-import { BangCircleIcon } from '@kds/icons';
 import { Checkbox } from '@kds/ui';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -72,13 +71,20 @@ const PersonalBackground = () => {
       />
       <div className={styles.container}>
         <div className={styles.inputSection}>
-          <div>
+          <div className={styles.textSection}>
             <h2 className={styles.title}>
               {t('steps.background.content.title')}
             </h2>
-            <p className={styles.description}>
-              {t('steps.background.content.description')}
-            </p>
+            <ul className={styles.infoList}>
+              {[
+                t('steps.background.info.privacy'),
+                t('steps.background.info.referenceOnly'),
+              ].map((message, index) => (
+                <li key={index} className={styles.infoText}>
+                  {message}
+                </li>
+              ))}
+            </ul>
           </div>
           <FormTextareaField
             name="personalBackground"
@@ -96,19 +102,6 @@ const PersonalBackground = () => {
             placeholder={placeholder}
             maxLength={1000}
           />
-          <div className={styles.infoContainer}>
-            {[
-              t('steps.background.info.privacy'),
-              t('steps.background.info.referenceOnly'),
-            ].map((message, index) => (
-              <div key={index} className={styles.intoText}>
-                <span className={styles.iconWrapper}>
-                  <BangCircleIcon width={24} height={24} />
-                </span>
-                <p className={styles.infoText}>{message}</p>
-              </div>
-            ))}
-          </div>
         </div>
         <div className={styles.check({ area: 'container' })}>
           <span>{t('steps.background.preparationStatus.title')}</span>
