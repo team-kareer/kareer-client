@@ -28,11 +28,10 @@ const PREPARATION_STATUS_LABEL_KEYS: Record<
 };
 
 const PLACEHOLDER_BY_TARGET_JOB_KEYS: Record<string, string> = {
-  Sales: 'steps.background.placeholderByTargetJob.sales',
-  Marketing: 'steps.background.placeholderByTargetJob.marketing',
-  'Planning & Strategy':
-    'steps.background.placeholderByTargetJob.planningStrategy',
-  Production: 'steps.background.placeholderByTargetJob.production',
+  Developer: 'steps.background.placeholderByTargetJob.developer',
+  'Data Analyst': 'steps.background.placeholderByTargetJob.dataAnalyst',
+  Marketer: 'steps.background.placeholderByTargetJob.marketing',
+  'Global Sales': 'steps.background.placeholderByTargetJob.sales',
 };
 
 const PersonalBackground = () => {
