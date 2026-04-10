@@ -55,7 +55,13 @@ const FormInputFieldInner = <T extends FieldValues, K extends FieldPath<T>>({
           onChange={(e) =>
             field.onChange(isNumber ? Number(e.target.value) : e.target.value)
           }
-          status={fieldState.error || isOverMax ? 'error' : 'default'}
+          status={
+            fieldState.error || isOverMax
+              ? 'error'
+              : fieldState.isDirty && !fieldState.error
+                ? 'success'
+                : 'default'
+          }
           placeholder={placeholder}
         />
       )}
