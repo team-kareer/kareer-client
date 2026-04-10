@@ -75,9 +75,6 @@ export const fileName = style({
   ...typography.body7_sb_14,
   color: themeVars.color.grayscale.gray700,
   maxWidth: '24rem',
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-  textOverflow: 'ellipsis',
 });
 
 export const fileSize = style({
