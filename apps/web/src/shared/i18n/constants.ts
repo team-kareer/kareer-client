@@ -1,8 +1,8 @@
 export const LANGUAGE_OPTIONS = [
-  { value: 'en', label: 'language.english' },
-  { value: 'ko', label: 'language.korean' },
-  { value: 'vi', label: 'language.vietnamese' },
-  { value: 'zh-CN', label: 'language.chinese' },
+  { value: 'en', label: 'English' },
+  { value: 'ko', label: '한국어' },
+  { value: 'vi', label: 'Tiếng Việt' },
+  { value: 'zh-CN', label: '中文' },
 ] as const;
 
 export type SupportedLanguage = (typeof LANGUAGE_OPTIONS)[number]['value'];
