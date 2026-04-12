@@ -42,4 +42,3 @@ export { default as TodoCheckIcon } from './ic_todo_check.svg?react';
 export { default as UpdateIcon } from './ic_update.svg?react';
 export { default as UploadIcon } from './ic_upload.svg?react';
 export { default as XIcon } from './ic_x.svg?react';
-export { default as XCircleIcon } from './ic_x-circle.svg?react';

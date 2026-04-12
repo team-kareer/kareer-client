@@ -30,6 +30,20 @@ interface FormInputFieldInnerProps<
   type: 'text' | 'number';
 }
 
+const getInputStatus = (
+  error: ControllerFieldState['error'],
+  isOverMax: boolean,
+  value: string,
+): 'error' | 'success' | 'default' => {
+  if (error || isOverMax) {
+    return 'error';
+  }
+  if (value.trim().length > 0) {
+    return 'success';
+  }
+  return 'default';
+};
+
 const FormInputFieldInner = <T extends FieldValues, K extends FieldPath<T>>({
   field,
   fieldState,
@@ -55,7 +69,7 @@ const FormInputFieldInner = <T extends FieldValues, K extends FieldPath<T>>({
           onChange={(e) =>
             field.onChange(isNumber ? Number(e.target.value) : e.target.value)
           }
-          status={fieldState.error || isOverMax ? 'error' : 'default'}
+          status={getInputStatus(fieldState.error, isOverMax, value)}
           placeholder={placeholder}
         />
       )}
