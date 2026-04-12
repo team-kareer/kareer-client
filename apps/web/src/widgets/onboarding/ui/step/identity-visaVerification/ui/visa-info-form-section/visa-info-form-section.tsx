@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Autocomplete } from '@kds/ui';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -15,10 +16,15 @@ import * as styles from './visa-info-form-section.css';
 
 const VisaInfoFormSection = () => {
   const { t } = useTranslation('onboarding');
-  const { control } = useFormContext<OnboardingForm>();
+  const { control, trigger } = useFormContext<OnboardingForm>();
   const visaType = useWatch({ control, name: 'visaType' });
   const visaStartDate = useWatch({ control, name: 'visaStartDate' });
   const visaExpiredAt = useWatch({ control, name: 'visaExpiredAt' });
+
+  useEffect(() => {
+    trigger('visaExpiredAt');
+  }, [visaType, trigger]);
+
   const visaTypeOptions = VISA_TYPE_OPTIONS.map((option) => ({
     code: option,
     label:
