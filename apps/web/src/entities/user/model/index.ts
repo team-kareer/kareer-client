@@ -1,4 +1,7 @@
 export { END_POINT } from './end_point';
-export type { GetUserStatusResponse } from './types';
-export type { GetUserInfoResponse } from './types';
-export type { GetUserMyPageResponse } from './types';
+export type {
+  GetUserCompletion,
+  GetUserInfoResponse,
+  GetUserMyPageResponse,
+  GetUserStatusResponse,
+} from './types';
