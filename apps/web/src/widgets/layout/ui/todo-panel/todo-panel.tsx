@@ -34,19 +34,6 @@ const toggleCompleted = (
       : item,
   );
 
-const areAllTodosCompleted = (data?: ActionItemListResponse) => {
-  const allItems = [
-    ...(data?.visaActionItems ?? []),
-    ...(data?.careerActionItems ?? []),
-  ];
-
-  if (allItems.length === 0) {
-    return false;
-  }
-
-  return allItems.every((item) => item.completed);
-};
-
 const TodoPanel = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('todo');
@@ -96,14 +83,6 @@ const TodoPanel = () => {
       }
     },
     onSuccess: () => {
-      const queryKey = TODO_QUERY_KEY.TODO_LIST();
-      const current =
-        queryClient.getQueryData<ActionItemListResponse>(queryKey);
-
-      if (!areAllTodosCompleted(current)) {
-        return;
-      }
-
       queryClient.invalidateQueries({
         queryKey: PHASE_QUERY_KEY.PHASE_ITEM_ROADMAP_ALL(),
       });

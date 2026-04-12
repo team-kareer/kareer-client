@@ -15,15 +15,11 @@ export const PHASE_QUERY_KEY = {
     phaseId,
     getLocaleQueryKey(),
   ],
+  PHASE_ITEM_ROADMAP_ALL: () => [...PHASE_QUERY_KEY.ALL, 'phaseItemRoadmap'],
   PHASE_ITEM_ROADMAP: (phaseId: number) => [
     ...PHASE_QUERY_KEY.ALL,
     'phaseItemRoadmap',
     phaseId,
-    getLocaleQueryKey(),
-  ],
-  PHASE_ITEM_ROADMAP_ALL: () => [
-    ...PHASE_QUERY_KEY.ALL,
-    'phaseItemRoadmap',
     getLocaleQueryKey(),
   ],
 };
