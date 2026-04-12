@@ -37,11 +37,7 @@ const FormTextareaFieldInner = <T extends FieldValues, K extends FieldPath<T>>({
   const value = field.value ?? '';
 
   return (
-    <WithTextCount
-      value={value}
-      maxLength={maxLength}
-      errorMessage={fieldState.error?.message}
-    >
+    <WithTextCount value={value} maxLength={maxLength}>
       {(isOverMax) => (
         <TextField
           {...field}
