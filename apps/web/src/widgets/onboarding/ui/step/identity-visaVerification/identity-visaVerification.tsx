@@ -35,13 +35,9 @@ const IdentityVisaVerification = () => {
   const { mutate: submitPassportFile } = useMutation({
     ...ONBOARDING_MUTATION_OPTIONS.POST_OCR_PASSPORT(),
     onSuccess: (data) => {
-      setValue('name', data.data?.fullName ?? '', { shouldValidate: true });
-      setValue('countryCode', data.data?.country ?? '', {
-        shouldValidate: true,
-      });
-      setValue('birthDate', data.data?.birthDate ?? '', {
-        shouldValidate: true,
-      });
+      setValue('name', data.data?.fullName ?? '');
+      setValue('countryCode', data.data?.country?.code ?? '');
+      setValue('birthDate', data.data?.birthDate ?? '');
     },
   });
   const { mutate: submitVisaFile } = useMutation({

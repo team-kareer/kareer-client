@@ -98,7 +98,9 @@ const JobRecommendationList = () => {
         isLoading={isPending}
       />
       {recommendations.length === 0 ? (
-        <PageLoader text="Searching for a new job for you..." />
+        <div className={styles.loaderWrapper}>
+          <PageLoader text="Searching for a new job for you..." />
+        </div>
       ) : (
         <BookmarkedJobList jobs={recommendations} onScrap={handleToggle} />
       )}
