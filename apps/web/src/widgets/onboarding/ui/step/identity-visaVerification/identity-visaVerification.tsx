@@ -35,17 +35,27 @@ const IdentityVisaVerification = () => {
   const { mutate: submitPassportFile } = useMutation({
     ...ONBOARDING_MUTATION_OPTIONS.POST_OCR_PASSPORT(),
     onSuccess: (data) => {
-      setValue('name', data.data?.fullName ?? '');
-      setValue('countryCode', data.data?.country ?? '');
-      setValue('birthDate', data.data?.birthDate ?? '');
+      setValue('name', data.data?.fullName ?? '', { shouldValidate: true });
+      setValue('countryCode', data.data?.country ?? '', {
+        shouldValidate: true,
+      });
+      setValue('birthDate', data.data?.birthDate ?? '', {
+        shouldValidate: true,
+      });
     },
   });
   const { mutate: submitVisaFile } = useMutation({
     ...ONBOARDING_MUTATION_OPTIONS.POST_OCR_VISA(),
     onSuccess: (data) => {
-      setValue('visaType', transformVisaType(data.data?.visaType ?? ''));
-      setValue('visaStartDate', data.data?.visaStartDate ?? '');
-      setValue('visaExpiredAt', data.data?.visaExpiredAt ?? '');
+      setValue('visaType', transformVisaType(data.data?.visaType ?? ''), {
+        shouldValidate: true,
+      });
+      setValue('visaStartDate', data.data?.visaStartDate ?? '', {
+        shouldValidate: true,
+      });
+      setValue('visaExpiredAt', data.data?.visaExpiredAt ?? '', {
+        shouldValidate: true,
+      });
     },
   });
 
