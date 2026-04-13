@@ -289,7 +289,7 @@
     "name": {
       "empty": "姓名不能为空。",
       "specialCharacters": "请仅使用标准字母。",
-      "maxLength": "请输入20个字符以内的姓名。"
+      "maxLength": "请输入30个字符以内的姓名。"
     }
   }
 }

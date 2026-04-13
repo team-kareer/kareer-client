@@ -289,7 +289,7 @@
     "name": {
       "empty": "Tên không được để trống.",
       "specialCharacters": "Vui lòng chỉ dùng ký tự chữ thông thường.",
-      "maxLength": "Vui lòng nhập tên với tối đa 20 ký tự."
+      "maxLength": "Vui lòng nhập tên với tối đa 30 ký tự."
     }
   }
 }

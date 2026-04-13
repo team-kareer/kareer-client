@@ -11,7 +11,7 @@ import { COUNTRY_LIST_QUERY_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './user-info-form-section.css';
 
-const MAX_LENGTH = 20;
+const MAX_LENGTH = 30;
 
 const UserInfoFormSection = () => {
   const { t } = useTranslation('onboarding');
