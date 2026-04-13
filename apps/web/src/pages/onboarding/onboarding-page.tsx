@@ -13,7 +13,6 @@ import {
 import CareerPreference from '@widgets/onboarding/ui/step/career-preference/career-preference';
 import IdentityVisaVerification from '@widgets/onboarding/ui/step/identity-visaVerification/identity-visaVerification';
 import type { PostOnboardingForm } from '@features/onboarding';
-import { postOnboardingForm } from '@features/onboarding';
 import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
 import {
   convertFormToRequest,
@@ -105,10 +104,10 @@ const OnboardingPage = () => {
   });
 
   const { mutate: submitOnboarding } = useMutation({
-    mutationFn: postOnboardingForm,
+    ...ONBOARDING_MUTATION_OPTIONS.POST_ONBOARDING_FORM(),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: USER_QUERY_KEY.USER_STATUS(),
+      await queryClient.refetchQueries({
+        queryKey: USER_QUERY_KEY.USER_COMPLETION(),
       });
       // 온보딩 성공 후 로드맵 생성 API 호출
       generateRoadmap();

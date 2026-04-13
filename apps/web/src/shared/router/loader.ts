@@ -3,9 +3,7 @@ import { type LoaderFunctionArgs, redirect } from 'react-router';
 import { USER_QUERY_OPTIONS } from '@entities/user/queries';
 import { queryClient } from '@shared/apis/providers/query-client';
 import { authService } from '@shared/auth/auth-service';
-import { HTTP_STATUS_CODE } from '@shared/constants/HTTP_STATUS_CODE';
 import { ROUTE_PATH } from '@shared/router';
-import { isHttpError } from '@shared/utils/http-error';
 
 export const requireAuth = () => {
   if (!authService.isAuthenticated()) {
@@ -22,35 +20,23 @@ export const guestOnlyLoader = ({ request }: LoaderFunctionArgs) => {
   return null;
 };
 
-// TODO: 로더 로직 개선 필요
 export const appRouteLoader = async () => {
   requireAuth();
 
-  try {
-    const userStatus = await queryClient.ensureQueryData(
-      USER_QUERY_OPTIONS.GET_USER_STATUS(),
-    );
+  const userCompletion = await queryClient.ensureQueryData(
+    USER_QUERY_OPTIONS.GET_USER_COMPLETION(),
+  );
 
-    if (!userStatus) {
-      return;
-    }
+  if (!userCompletion) {
+    return;
+  }
 
-    if (!userStatus.agreedTerm) {
-      throw redirect(ROUTE_PATH.TERMSAGREEMENT);
-    }
+  if (!userCompletion.agreeTerm) {
+    throw redirect(ROUTE_PATH.TERMSAGREEMENT);
+  }
 
-    if (userStatus.onboardingRequired) {
-      throw redirect(ROUTE_PATH.ONBOARDING);
-    }
-  } catch (error) {
-    if (
-      isHttpError(error) &&
-      error.response?.status === HTTP_STATUS_CODE.FORBIDDEN
-    ) {
-      throw redirect(ROUTE_PATH.TERMSAGREEMENT);
-    }
-
-    throw error;
+  if (userCompletion.onboardingRequired) {
+    throw redirect(ROUTE_PATH.ONBOARDING);
   }
 
   return null;
@@ -59,35 +45,20 @@ export const appRouteLoader = async () => {
 export const termsGuardLoader = async () => {
   requireAuth();
 
-  try {
-    const userStatus = await queryClient.ensureQueryData(
-      USER_QUERY_OPTIONS.GET_USER_STATUS(),
-    );
+  const userCompletion = await queryClient.ensureQueryData(
+    USER_QUERY_OPTIONS.GET_USER_COMPLETION(),
+  );
 
-    if (!userStatus) {
-      return;
-    }
+  if (!userCompletion) {
+    return;
+  }
 
-    if (!userStatus.agreedTerm) {
-      return null;
-    }
+  const redirectUrl = userCompletion.onboardingRequired
+    ? ROUTE_PATH.ONBOARDING
+    : ROUTE_PATH.DASHBOARD;
 
-    const redirectUrl = userStatus.onboardingRequired
-      ? ROUTE_PATH.ONBOARDING
-      : ROUTE_PATH.DASHBOARD;
-
-    if (userStatus.agreedTerm) {
-      throw redirect(redirectUrl);
-    }
-  } catch (error) {
-    if (
-      isHttpError(error) &&
-      error.response?.status === HTTP_STATUS_CODE.FORBIDDEN
-    ) {
-      throw redirect(ROUTE_PATH.ONBOARDING);
-    }
-
-    throw error;
+  if (userCompletion.agreeTerm) {
+    throw redirect(redirectUrl);
   }
 
   return null;
@@ -96,27 +67,20 @@ export const termsGuardLoader = async () => {
 export const onboardingGuardLoader = async () => {
   requireAuth();
 
-  try {
-    const userStatus = await queryClient.ensureQueryData(
-      USER_QUERY_OPTIONS.GET_USER_STATUS(),
-    );
+  const userCompletion = await queryClient.ensureQueryData(
+    USER_QUERY_OPTIONS.GET_USER_COMPLETION(),
+  );
 
-    if (!userStatus) {
-      return;
-    }
+  if (!userCompletion) {
+    return;
+  }
 
-    if (userStatus.onboardingRequired === false) {
-      throw redirect(ROUTE_PATH.DASHBOARD);
-    }
-  } catch (error) {
-    if (
-      isHttpError(error) &&
-      error.response?.status === HTTP_STATUS_CODE.FORBIDDEN
-    ) {
-      return null;
-    }
+  if (!userCompletion.agreeTerm) {
+    throw redirect(ROUTE_PATH.TERMSAGREEMENT);
+  }
 
-    throw error;
+  if (!userCompletion.onboardingRequired) {
+    throw redirect(ROUTE_PATH.DASHBOARD);
   }
 
   return null;

@@ -144,10 +144,10 @@
         }
       },
       "placeholderByTargetJob": {
-        "sales": "Ví dụ: [Học thuật] Trong môn 'Global Marketing', tôi đã phân tích xu hướng tiêu dùng ở quê nhà và trình bày chiến lược thâm nhập cho đồ gia dụng Hàn Quốc, đạt điểm A+.[Chuyên môn] Sau đó, khi là thực tập sinh thương mại, tôi quản lý email với người mua và hỗ trợ chuẩn bị chứng từ thương mại như hóa đơn.",
-        "marketing": "Ví dụ: [Học thuật] Tôi đã thực hiện khảo sát 100 sinh viên quốc tế trong môn 'Consumer Psychology' để phân tích mức độ nhận biết thương hiệu Hàn Quốc.[Chuyên môn] Khi thực tập marketing, tôi quản lý kênh mạng xã hội địa phương và tăng 30% độ phủ bài đăng nhờ nhắm mục tiêu dựa trên dữ liệu và nội dung bản địa hóa.",
-        "planningStrategy": "Ví dụ: [Học thuật] Tôi đã xây dựng mô hình kinh doanh startup và thiết kế chiến lược quản lý rủi ro bằng phân tích SWOT trong môn 'Business Strategy'.[Chuyên môn] Trong kỳ thực tập thực địa, tôi sắp xếp dữ liệu tồn kho để xác định cơ hội tiết kiệm chi phí và đề xuất đơn giản hóa quy trình báo cáo.",
-        "production": "Ví dụ: [Học thuật] Trong môn 'Operations Management', tôi học các nguyên tắc SCM và hoàn thành dự án mô phỏng MRP bằng hệ thống ERP.[Chuyên môn] Khi thực tập tại nhà máy, tôi theo dõi luồng tồn kho và phân tích giá của nhà cung cấp để giảm chi phí. Tôi cũng cập nhật danh sách kiểm tra chất lượng."
+        "globalSales": "Ví dụ: [Học thuật] Trong môn 'Global Marketing', tôi đã phân tích xu hướng tiêu dùng ở quê nhà và trình bày chiến lược thâm nhập cho đồ gia dụng Hàn Quốc, đạt điểm A+.[Chuyên môn] Sau đó, khi là thực tập sinh thương mại, tôi quản lý email với người mua và hỗ trợ chuẩn bị chứng từ thương mại như hóa đơn.",
+        "marketer": "Ví dụ: [Học thuật] Tôi đã thực hiện khảo sát 100 sinh viên quốc tế trong môn 'Consumer Psychology' để phân tích mức độ nhận biết thương hiệu Hàn Quốc.[Chuyên môn] Khi thực tập marketing, tôi quản lý kênh mạng xã hội địa phương và tăng 30% độ phủ bài đăng nhờ nhắm mục tiêu dựa trên dữ liệu và nội dung bản địa hóa.",
+        "developer": "Ví dụ: [Học thuật] Tôi đã xây dựng mô hình kinh doanh startup và thiết kế chiến lược quản lý rủi ro bằng phân tích SWOT trong môn 'Business Strategy'.[Chuyên môn] Trong kỳ thực tập thực địa, tôi sắp xếp dữ liệu tồn kho để xác định cơ hội tiết kiệm chi phí và đề xuất đơn giản hóa quy trình báo cáo.",
+        "dataAnalyst": "Ví dụ: [Học thuật] Trong môn 'Operations Management', tôi học các nguyên tắc SCM và hoàn thành dự án mô phỏng MRP bằng hệ thống ERP.[Chuyên môn] Khi thực tập tại nhà máy, tôi theo dõi luồng tồn kho và phân tích giá của nhà cung cấp để giảm chi phí. Tôi cũng cập nhật danh sách kiểm tra chất lượng."
       }
     }
   },
