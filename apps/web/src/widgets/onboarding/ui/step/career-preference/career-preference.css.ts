@@ -32,7 +32,7 @@ export const rightSection = style({
   marginRight: '7.8rem',
   padding: '1.2rem',
   backgroundColor: themeVars.color.grayscale.gray100,
-  borderRadius: '20px',
+  borderRadius: '10px',
 });
 
 export const checkboxContainer = style({

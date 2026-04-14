@@ -7,7 +7,12 @@ import {
   OnboardingPage,
   TermsAgreementPage,
 } from '@shared/router/lazy';
-import { appRouteLoader, guestOnlyLoader } from '@shared/router/loader';
+import {
+  appRouteLoader,
+  guestOnlyLoader,
+  onboardingGuardLoader,
+  termsGuardLoader,
+} from '@shared/router/loader';
 import OnboardingRouteLayout from '@shared/router/onboarding-route-layout';
 import {
   protectedAppRoutes,
@@ -24,15 +29,14 @@ export const router = createBrowserRouter([
         loader: guestOnlyLoader,
         Component: LoginPage,
       },
-      // TODO: 로더 개선 필요
       {
         path: ROUTE_PATH.TERMSAGREEMENT,
-        // loader: termsGuardLoader,
+        loader: termsGuardLoader,
         Component: TermsAgreementPage,
       },
       {
         path: ROUTE_PATH.ONBOARDING,
-        // loader: onboardingGuardLoader,
+        loader: onboardingGuardLoader,
         Component: OnboardingPage,
       },
     ],
