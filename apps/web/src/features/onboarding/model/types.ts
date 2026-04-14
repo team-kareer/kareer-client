@@ -28,14 +28,10 @@ export type ValidateDateOptions = {
 export type ValidateTextOptions = {
   allowNumber?: boolean;
   allowBasicSpecialCharacters?: boolean;
+  maxLength?: number;
 };
 
 export type UploadProgress = {
   done: number;
   total: number;
 };
-
-// export interface FileUploadParams {
-//   file: File;
-//   onProgress: (progress: UploadProgress) => void;
-// }

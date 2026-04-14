@@ -7,6 +7,7 @@ export { default as Button } from './button/button';
 export { default as Checkbox } from './checkbox/checkbox';
 export { default as Dropdown } from './dropdown/dropdown';
 export { default as Input } from './input/input';
+export { default as MiddleEllipsis } from './middle-ellipsis/middle-ellipsis';
 export { default as Popover } from './popover/popover';
 export { default as ProgressBar } from './progress-bar/progress-bar';
 export { default as SectionHeader } from './section-header/section-header';
