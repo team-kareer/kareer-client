@@ -1,6 +1,6 @@
 import { ChangeEvent, DragEvent, useRef } from 'react';
 import { UploadIcon, XIcon } from '@kds/icons';
-import { Button, ProgressBar } from '@kds/ui';
+import { Button, MiddleEllipsis, ProgressBar } from '@kds/ui';
 import { useTranslation } from 'react-i18next';
 
 import { UploadProgress } from '@features/onboarding/model';
@@ -110,7 +110,11 @@ const UploadBox = ({
         <section className={styles.fileContainer}>
           <div className={styles.fileTopSection}>
             <div className={styles.fileSection}>
-              <p className={styles.fileName}>{file.name}</p>
+              <MiddleEllipsis
+                className={styles.fileName}
+                text={file.name}
+                endChars={4}
+              ></MiddleEllipsis>
               <p className={styles.fileSize}>{formatFileSize(file.size)}</p>
             </div>
             <button
