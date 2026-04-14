@@ -34,8 +34,8 @@ const IdentityVisaVerification = () => {
 
   const { mutate: submitPassportFile } = useMutation({
     ...ONBOARDING_MUTATION_OPTIONS.POST_OCR_PASSPORT(),
-    onSuccess: (data) => {
-      const { fullName, country, birthDate } = data.data ?? {};
+    onSuccess: ({ data: passportData }) => {
+      const { fullName, country, birthDate } = passportData ?? {};
 
       setValue('name', fullName ?? '');
       setValue('countryCode', country ?? '');
@@ -64,8 +64,8 @@ const IdentityVisaVerification = () => {
   });
   const { mutate: submitVisaFile } = useMutation({
     ...ONBOARDING_MUTATION_OPTIONS.POST_OCR_VISA(),
-    onSuccess: (data) => {
-      const { visaType, visaStartDate, visaExpiredAt } = data.data ?? {};
+    onSuccess: ({ data: visaData }) => {
+      const { visaType, visaStartDate, visaExpiredAt } = visaData ?? {};
 
       setValue('visaType', transformVisaType(visaType ?? '') ?? '');
       setValue('visaStartDate', visaStartDate ?? '');
