@@ -38,7 +38,7 @@ const IdentityVisaVerification = () => {
       const { fullName, country, birthDate } = passportData ?? {};
 
       setValue('name', fullName ?? '');
-      setValue('countryCode', country?.label ?? '');
+      setValue('countryCode', country?.code ?? '');
       setValue('birthDate', birthDate ?? '');
 
       if (!fullName) {
