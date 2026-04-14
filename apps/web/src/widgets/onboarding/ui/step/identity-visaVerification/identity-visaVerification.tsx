@@ -37,9 +37,9 @@ const IdentityVisaVerification = () => {
     onSuccess: ({ data: passportData }) => {
       const { fullName, country, birthDate } = passportData ?? {};
 
-      setValue('name', fullName ?? '');
-      setValue('countryCode', country?.code ?? '');
-      setValue('birthDate', birthDate ?? '');
+      setValue('name', fullName ?? '', { shouldValidate: true });
+      setValue('countryCode', country?.code ?? '', { shouldValidate: true });
+      setValue('birthDate', birthDate ?? '', { shouldValidate: true });
 
       if (!fullName) {
         setError('name', {
@@ -67,9 +67,11 @@ const IdentityVisaVerification = () => {
     onSuccess: ({ data: visaData }) => {
       const { visaType, visaStartDate, visaExpiredAt } = visaData ?? {};
 
-      setValue('visaType', transformVisaType(visaType ?? '') ?? '');
-      setValue('visaStartDate', visaStartDate ?? '');
-      setValue('visaExpiredAt', visaExpiredAt ?? '');
+      setValue('visaType', transformVisaType(visaType ?? '') ?? '', {
+        shouldValidate: true,
+      });
+      setValue('visaStartDate', visaStartDate ?? '', { shouldValidate: true });
+      setValue('visaExpiredAt', visaExpiredAt ?? '', { shouldValidate: true });
 
       if (!visaType) {
         setError('visaType', {
