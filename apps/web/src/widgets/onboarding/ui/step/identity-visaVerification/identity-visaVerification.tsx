@@ -26,7 +26,7 @@ const VISA_TYPE_MAP: Record<string, VisaType | ''> = {
 
 const IdentityVisaVerification = () => {
   const { t } = useTranslation('onboarding');
-  const { setValue } = useFormContext<OnboardingForm>();
+  const { setValue, setError } = useFormContext<OnboardingForm>();
 
   const transformVisaType = (serverValue: string): VisaType | '' => {
     return (serverValue && VISA_TYPE_MAP[serverValue]) || '';
@@ -34,18 +34,66 @@ const IdentityVisaVerification = () => {
 
   const { mutate: submitPassportFile } = useMutation({
     ...ONBOARDING_MUTATION_OPTIONS.POST_OCR_PASSPORT(),
-    onSuccess: (data) => {
-      setValue('name', data.data?.fullName ?? '');
-      setValue('countryCode', data.data?.country ?? '');
-      setValue('birthDate', data.data?.birthDate ?? '');
+    onSuccess: ({ data: passportData }) => {
+      const { fullName, country, birthDate } = passportData ?? {};
+
+      setValue('name', fullName ?? '', { shouldValidate: true });
+      setValue('countryCode', country?.code ?? '', { shouldValidate: true });
+      setValue('birthDate', birthDate ?? '', { shouldValidate: true });
+
+      if (!fullName) {
+        setError('name', {
+          message: t('steps.identityVisaVerification.userInfo.name.required'),
+        });
+      }
+      if (!country) {
+        setError('countryCode', {
+          message: t(
+            'steps.identityVisaVerification.userInfo.country.required',
+          ),
+        });
+      }
+      if (!birthDate) {
+        setError('birthDate', {
+          message: t(
+            'steps.identityVisaVerification.userInfo.birthDate.required',
+          ),
+        });
+      }
     },
   });
   const { mutate: submitVisaFile } = useMutation({
     ...ONBOARDING_MUTATION_OPTIONS.POST_OCR_VISA(),
-    onSuccess: (data) => {
-      setValue('visaType', transformVisaType(data.data?.visaType ?? ''));
-      setValue('visaStartDate', data.data?.visaStartDate ?? '');
-      setValue('visaExpiredAt', data.data?.visaExpiredAt ?? '');
+    onSuccess: ({ data: visaData }) => {
+      const { visaType, visaStartDate, visaExpiredAt } = visaData ?? {};
+
+      setValue('visaType', transformVisaType(visaType ?? '') ?? '', {
+        shouldValidate: true,
+      });
+      setValue('visaStartDate', visaStartDate ?? '', { shouldValidate: true });
+      setValue('visaExpiredAt', visaExpiredAt ?? '', { shouldValidate: true });
+
+      if (!visaType) {
+        setError('visaType', {
+          message: t(
+            'steps.identityVisaVerification.visaInfo.visaType.required',
+          ),
+        });
+      }
+      if (!visaStartDate) {
+        setError('visaStartDate', {
+          message: t(
+            'steps.identityVisaVerification.visaInfo.visaStartDate.required',
+          ),
+        });
+      }
+      if (!visaExpiredAt) {
+        setError('visaExpiredAt', {
+          message: t(
+            'steps.identityVisaVerification.visaInfo.visaExpiredAt.required',
+          ),
+        });
+      }
     },
   });
 
@@ -66,21 +114,12 @@ const IdentityVisaVerification = () => {
     };
   };
 
-  // const [visaProgress, setVisaProgress] = useState<UploadProgress>();
-
   const handleSelectVisa = (file: File) => {
     const state = getUploadState(file);
     setVisaUpload(state);
     if (!state.file) {
       return;
     }
-
-    // submitVisaFile({
-    //   file,
-    //   onProgress: (progress) => {
-    //     setVisaProgress(progress);
-    //   },
-    // });
     submitVisaFile(file);
   };
 
@@ -123,7 +162,6 @@ const IdentityVisaVerification = () => {
               'steps.identityVisaVerification.upload.visaArc.subtitle',
             )}
             file={visaUpload.file}
-            // progress={visaProgress}
             errorMessage={visaUpload.errorMessage}
             onSelectFile={handleSelectVisa}
             onRemoveFile={() => setVisaUpload({})}

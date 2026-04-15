@@ -7,10 +7,18 @@ export const validateText = (
   value: string | undefined,
   options: ValidateTextOptions = {},
 ) => {
-  const { allowNumber = false, allowBasicSpecialCharacters = false } = options;
+  const {
+    allowNumber = false,
+    allowBasicSpecialCharacters = false,
+    maxLength,
+  } = options;
 
   if (!value || value.trim().length === 0) {
     return VALIDATION_MESSAGE.NAME.EMPTY;
+  }
+
+  if (maxLength && value.length > maxLength) {
+    return VALIDATION_MESSAGE.NAME.MAX_LENGTH;
   }
 
   // 기본 패턴 설정

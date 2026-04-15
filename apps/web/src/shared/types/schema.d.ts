@@ -592,6 +592,23 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/members/completion': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** 온보딩, 약관동의 여부 조회 */
+    get: operations['getMemberCompletionStatus'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/job-postings/crawl': {
     parameters: {
       query?: never;
@@ -1135,212 +1152,24 @@ export interface components {
       message?: string;
       data?: components['schemas']['OcrPassportResponse'];
     };
+    /**
+     * @description 국가 코드 및 라벨
+     * @example {
+     *       "code": "south-korea",
+     *       "label": "South Korea"
+     *     }
+     */
+    LocalizedItemResponse: {
+      code?: string;
+      label?: string;
+    };
     OcrPassportResponse: {
       /**
        * @description Full Name
        * @example Hong Seungwon
        */
       fullName?: string;
-      /**
-       * @description 국가
-       * @example AFGHANISTAN
-       * @enum {string}
-       */
-      country?:
-        | 'Afghanistan'
-        | 'Albania'
-        | 'Algeria'
-        | 'Andorra'
-        | 'Angola'
-        | 'Antigua and Barbuda'
-        | 'Argentina'
-        | 'Armenia'
-        | 'Australia'
-        | 'Austria'
-        | 'Azerbaijan'
-        | 'Bahamas'
-        | 'Bahrain'
-        | 'Bangladesh'
-        | 'Barbados'
-        | 'Belarus'
-        | 'Belgium'
-        | 'Belize'
-        | 'Benin'
-        | 'Bhutan'
-        | 'Bolivia'
-        | 'Bosnia and Herzegovina'
-        | 'Botswana'
-        | 'Brazil'
-        | 'Brunei'
-        | 'Bulgaria'
-        | 'Burkina Faso'
-        | 'Burundi'
-        | 'Cabo Verde'
-        | 'Cambodia'
-        | 'Cameroon'
-        | 'Canada'
-        | 'Central African Republic'
-        | 'Chad'
-        | 'Chile'
-        | 'China'
-        | 'Colombia'
-        | 'Comoros'
-        | 'Congo'
-        | 'Democratic Republic of the Congo'
-        | 'Costa Rica'
-        | "Cote d'Ivoire"
-        | 'Croatia'
-        | 'Cuba'
-        | 'Cyprus'
-        | 'Czechia'
-        | 'Denmark'
-        | 'Djibouti'
-        | 'Dominica'
-        | 'Dominican Republic'
-        | 'Ecuador'
-        | 'Egypt'
-        | 'El Salvador'
-        | 'Equatorial Guinea'
-        | 'Eritrea'
-        | 'Estonia'
-        | 'Eswatini'
-        | 'Ethiopia'
-        | 'Fiji'
-        | 'Finland'
-        | 'France'
-        | 'Gabon'
-        | 'Gambia'
-        | 'Georgia'
-        | 'Germany'
-        | 'Ghana'
-        | 'Greece'
-        | 'Grenada'
-        | 'Guatemala'
-        | 'Guinea'
-        | 'Guinea-Bissau'
-        | 'Guyana'
-        | 'Haiti'
-        | 'Honduras'
-        | 'Hungary'
-        | 'Iceland'
-        | 'India'
-        | 'Indonesia'
-        | 'Iran'
-        | 'Iraq'
-        | 'Ireland'
-        | 'Israel'
-        | 'Italy'
-        | 'Jamaica'
-        | 'Japan'
-        | 'Jordan'
-        | 'Kazakhstan'
-        | 'Kenya'
-        | 'Kiribati'
-        | 'Kuwait'
-        | 'Kyrgyzstan'
-        | 'Laos'
-        | 'Latvia'
-        | 'Lebanon'
-        | 'Lesotho'
-        | 'Liberia'
-        | 'Libya'
-        | 'Liechtenstein'
-        | 'Lithuania'
-        | 'Luxembourg'
-        | 'Madagascar'
-        | 'Malawi'
-        | 'Malaysia'
-        | 'Maldives'
-        | 'Mali'
-        | 'Malta'
-        | 'Marshall Islands'
-        | 'Mauritania'
-        | 'Mauritius'
-        | 'Mexico'
-        | 'Micronesia'
-        | 'Moldova'
-        | 'Monaco'
-        | 'Mongolia'
-        | 'Montenegro'
-        | 'Morocco'
-        | 'Mozambique'
-        | 'Myanmar'
-        | 'Namibia'
-        | 'Nauru'
-        | 'Nepal'
-        | 'Netherlands'
-        | 'New Zealand'
-        | 'Nicaragua'
-        | 'Niger'
-        | 'Nigeria'
-        | 'North Macedonia'
-        | 'Norway'
-        | 'Oman'
-        | 'Pakistan'
-        | 'Palau'
-        | 'Panama'
-        | 'Papua New Guinea'
-        | 'Paraguay'
-        | 'Peru'
-        | 'Philippines'
-        | 'Poland'
-        | 'Portugal'
-        | 'Qatar'
-        | 'Romania'
-        | 'Russia'
-        | 'Rwanda'
-        | 'Saint Kitts and Nevis'
-        | 'Saint Lucia'
-        | 'Saint Vincent and the Grenadines'
-        | 'Samoa'
-        | 'San Marino'
-        | 'Sao Tome and Principe'
-        | 'Saudi Arabia'
-        | 'Senegal'
-        | 'Serbia'
-        | 'Seychelles'
-        | 'Sierra Leone'
-        | 'Singapore'
-        | 'Slovakia'
-        | 'Slovenia'
-        | 'Solomon Islands'
-        | 'Somalia'
-        | 'South Africa'
-        | 'South Korea'
-        | 'South Sudan'
-        | 'Spain'
-        | 'Sri Lanka'
-        | 'Sudan'
-        | 'Suriname'
-        | 'Sweden'
-        | 'Switzerland'
-        | 'Syria'
-        | 'Taiwan'
-        | 'Tajikistan'
-        | 'Tanzania'
-        | 'Thailand'
-        | 'Timor-Leste'
-        | 'Togo'
-        | 'Tonga'
-        | 'Trinidad and Tobago'
-        | 'Tunisia'
-        | 'Turkey'
-        | 'Turkmenistan'
-        | 'Tuvalu'
-        | 'Uganda'
-        | 'Ukraine'
-        | 'United Arab Emirates'
-        | 'United Kingdom'
-        | 'United States'
-        | 'Uruguay'
-        | 'Uzbekistan'
-        | 'Vanuatu'
-        | 'Vatican City'
-        | 'Venezuela'
-        | 'Vietnam'
-        | 'Yemen'
-        | 'Zambia'
-        | 'Zimbabwe';
+      country?: components['schemas']['LocalizedItemResponse'];
       /**
        * Format: date
        * @description 생년월일
@@ -1663,10 +1492,6 @@ export interface components {
       message?: string;
       data?: components['schemas']['OnboardUniversitiesResponse'];
     };
-    LocalizedItemResponse: {
-      code?: string;
-      label?: string;
-    };
     OnboardUniversitiesResponse: {
       universities?: components['schemas']['LocalizedItemResponse'][];
     };
@@ -1907,16 +1732,21 @@ export interface components {
        * @description 졸업일
        */
       graduationDate?: string;
+    };
+    BaseResponseMemberCompletionResponse: {
       /**
-       * @description 온보딩 여부
-       * @example true
+       * Format: int32
+       * @example 200
        */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['MemberCompletionResponse'];
+    };
+    MemberCompletionResponse: {
+      /** @description 온보딩 여부 */
       onboardingRequired?: boolean;
-      /**
-       * @description 약관 동의 여부
-       * @example true
-       */
-      agreedTerm?: boolean;
+      /** @description 약관 동의 여부 */
+      agreeTerm?: boolean;
     };
     BaseResponseJobPostingCrawlListResponse: {
       /**
@@ -4064,6 +3894,77 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['BaseResponseMemberStatusResponse'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  getMemberCompletionStatus: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseMemberCompletionResponse'];
         };
       };
       400: {

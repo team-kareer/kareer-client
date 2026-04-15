@@ -1,4 +1,3 @@
-import { BangCircleIcon } from '@kds/icons';
 import { Checkbox } from '@kds/ui';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -29,11 +28,10 @@ const PREPARATION_STATUS_LABEL_KEYS: Record<
 };
 
 const PLACEHOLDER_BY_TARGET_JOB_KEYS: Record<string, string> = {
-  Sales: 'steps.background.placeholderByTargetJob.sales',
-  Marketing: 'steps.background.placeholderByTargetJob.marketing',
-  'Planning & Strategy':
-    'steps.background.placeholderByTargetJob.planningStrategy',
-  Production: 'steps.background.placeholderByTargetJob.production',
+  Developer: 'steps.background.placeholderByTargetJob.developer',
+  'Data Analyst': 'steps.background.placeholderByTargetJob.dataAnalyst',
+  Marketer: 'steps.background.placeholderByTargetJob.marketing',
+  'Global Sales': 'steps.background.placeholderByTargetJob.sales',
 };
 
 const PersonalBackground = () => {
@@ -72,39 +70,31 @@ const PersonalBackground = () => {
       />
       <div className={styles.container}>
         <div className={styles.inputSection}>
-          <div>
-            <h2 className={styles.title}>
-              {t('steps.background.content.title')}
-            </h2>
-            <p className={styles.description}>
-              {t('steps.background.content.description')}
-            </p>
-          </div>
+          <h2 className={styles.title}>
+            {t('steps.background.content.title')}
+          </h2>
+          <ul className={styles.infoList}>
+            <li className={styles.infoText}>
+              {t('steps.background.info.privacy')}
+            </li>
+            <li className={styles.infoText}>
+              {t('steps.background.info.referenceOnly')}
+            </li>
+          </ul>
           <FormTextareaField
             name="personalBackground"
             rules={{
-              validate: (value) =>
-                validateText(value, {
+              required: true,
+              validate: (value) => {
+                return validateText(value, {
                   allowNumber: true,
                   allowBasicSpecialCharacters: true,
-                }),
+                });
+              },
             }}
             placeholder={placeholder}
             maxLength={1000}
           />
-          <div className={styles.infoContainer}>
-            {[
-              t('steps.background.info.privacy'),
-              t('steps.background.info.referenceOnly'),
-            ].map((message, index) => (
-              <div key={index} className={styles.intoText}>
-                <span className={styles.iconWrapper}>
-                  <BangCircleIcon width={24} height={24} />
-                </span>
-                <p className={styles.infoText}>{message}</p>
-              </div>
-            ))}
-          </div>
         </div>
         <div className={styles.check({ area: 'container' })}>
           <span>{t('steps.background.preparationStatus.title')}</span>

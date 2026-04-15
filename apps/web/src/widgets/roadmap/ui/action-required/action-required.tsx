@@ -7,8 +7,7 @@ import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
 import { PHASE_QUERY_KEY } from '@entities/phase/queries';
 import { TODO_QUERY_KEY } from '@entities/todo';
 import { components } from '@shared/types/schema';
-
-import { formatDate } from '../../../../shared/utils/date-formatter';
+import { formatDate } from '@shared/utils';
 
 import * as styles from './action-required.css';
 
@@ -41,13 +40,13 @@ const ActionRequired = ({
 }: ActionRequiredProps) => {
   const { t } = useTranslation('roadmap');
   const queryClient = useQueryClient();
-  const { mutate } = useMutation({
+  const { mutate, isPending, variables } = useMutation({
     ...TODO_MUTATION_OPTIONS.POST_TODO(),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: TODO_QUERY_KEY.TODO_LIST(),
       });
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: PHASE_QUERY_KEY.PHASE_ITEM_ROADMAP_ALL(),
       });
     },
@@ -97,7 +96,9 @@ const ActionRequired = ({
                 subTitle={item.description ?? ''}
                 dueDate={formatDate(item.deadline) ?? ''}
                 disabled={key === 'Done'}
-                isButtonDisabled={item.added}
+                isButtonDisabled={
+                  item.added || (isPending && variables === item.phaseActionId)
+                }
                 onSelect={() => handleSelect(item.phaseActionId)}
                 onTodoClick={() => handleTodoItem(item.phaseActionId)}
               />

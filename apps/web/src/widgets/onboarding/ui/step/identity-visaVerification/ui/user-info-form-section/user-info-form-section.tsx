@@ -11,7 +11,7 @@ import { COUNTRY_LIST_QUERY_OPTIONS } from '@entities/onboarding';
 
 import * as styles from './user-info-form-section.css';
 
-const MAX_LENGTH = 20;
+const MAX_LENGTH = 30;
 
 const UserInfoFormSection = () => {
   const { t } = useTranslation('onboarding');
@@ -26,7 +26,7 @@ const UserInfoFormSection = () => {
         label={t('steps.identityVisaVerification.userInfo.name.label')}
         rules={{
           required: t('steps.identityVisaVerification.userInfo.name.required'),
-          validate: (value) => validateText(value),
+          validate: (value) => validateText(value, { maxLength: MAX_LENGTH }),
         }}
         placeholder={t(
           'steps.identityVisaVerification.userInfo.name.placeholder',

@@ -4,8 +4,19 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
+  padding: '4.8rem 6.6rem 8rem 8rem',
+});
+
+export const languageSelectorWrapper = style({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  paddingBottom: '6.2rem',
+});
+
+export const copySection = style({
+  display: 'flex',
+  flexDirection: 'column',
   gap: '3.2rem',
-  padding: '14.2rem 6.6rem 8rem 8rem',
 });
 
 export const copy = style({

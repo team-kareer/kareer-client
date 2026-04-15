@@ -16,7 +16,7 @@ import * as styles from './visa-info-form-section.css';
 
 const VisaInfoFormSection = () => {
   const { t } = useTranslation('onboarding');
-  const { control, trigger } = useFormContext<OnboardingForm>();
+  const { control, getValues, trigger } = useFormContext<OnboardingForm>();
   const visaType = useWatch({ control, name: 'visaType' });
   const visaStartDate = useWatch({ control, name: 'visaStartDate' });
   const visaExpiredAt = useWatch({ control, name: 'visaExpiredAt' });
@@ -30,6 +30,12 @@ const VisaInfoFormSection = () => {
     label:
       option === 'D-2' ? t('options.visaType.d2') : t('options.visaType.d10'),
   }));
+
+  useEffect(() => {
+    if (getValues('visaExpiredAt')) {
+      trigger('visaExpiredAt');
+    }
+  }, [visaStartDate, visaType, trigger, getValues]);
 
   return (
     <section className={styles.formSection}>
@@ -79,8 +85,8 @@ const VisaInfoFormSection = () => {
           validate: (value) =>
             validateIdentityVisaExpirationDate(
               value,
-              visaType as VisaType | undefined,
-              visaStartDate,
+              getValues('visaType') as VisaType | undefined,
+              getValues('visaStartDate'),
             ),
         }}
         placeholder={t(
