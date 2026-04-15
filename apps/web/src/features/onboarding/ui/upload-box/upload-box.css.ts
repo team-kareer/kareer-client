@@ -74,6 +74,7 @@ export const fileSection = style({
 export const fileName = style({
   ...typography.body7_sb_14,
   color: themeVars.color.grayscale.gray700,
+  maxWidth: '24rem',
 });
 
 export const fileSize = style({
@@ -84,4 +85,5 @@ export const fileSize = style({
 export const xButton = style({
   cursor: 'pointer',
   color: themeVars.color.grayscale.gray500,
+  flexShrink: 0,
 });

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router';
 
 import { AccordionList, useTermsCheck } from '@widgets/terms-agreement';
 import { Term, TERMS_QUERY_OPTIONS } from '@entities/terms';
+import { USER_QUERY_KEY } from '@entities/user/queries';
+import { queryClient } from '@shared/apis/providers/query-client';
 import { ROUTE_PATH } from '@shared/router';
 
 import * as styles from './terms-agreement-page.css';
@@ -19,7 +21,10 @@ const TermsAgreementPage = () => {
 
   const { mutate: submitTerms } = useMutation({
     ...TERMS_QUERY_OPTIONS.POST_TERM_AGREEMENTS(),
-    onSuccess: () => {
+    onSuccess: async () => {
+      await queryClient.refetchQueries({
+        queryKey: USER_QUERY_KEY.USER_COMPLETION(),
+      });
       navigate(ROUTE_PATH.ONBOARDING);
     },
   });
