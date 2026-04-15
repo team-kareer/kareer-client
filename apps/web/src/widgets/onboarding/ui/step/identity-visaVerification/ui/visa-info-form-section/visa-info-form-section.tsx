@@ -20,11 +20,6 @@ const VisaInfoFormSection = () => {
   const visaType = useWatch({ control, name: 'visaType' });
   const visaStartDate = useWatch({ control, name: 'visaStartDate' });
   const visaExpiredAt = useWatch({ control, name: 'visaExpiredAt' });
-
-  useEffect(() => {
-    trigger('visaExpiredAt');
-  }, [visaType, trigger]);
-
   const visaTypeOptions = VISA_TYPE_OPTIONS.map((option) => ({
     code: option,
     label:
