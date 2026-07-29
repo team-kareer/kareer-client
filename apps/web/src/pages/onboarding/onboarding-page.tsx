@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -13,24 +11,21 @@ import {
 import CareerPreference from '@widgets/onboarding/ui/step/career-preference/career-preference';
 import IdentityVisaVerification from '@widgets/onboarding/ui/step/identity-visaVerification/identity-visaVerification';
 import type { PostOnboardingForm } from '@features/onboarding';
-import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
 import {
   convertFormToRequest,
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
   OnboardingForm,
 } from '@entities/onboarding';
-import { USER_QUERY_KEY } from '@entities/user/queries';
 import useFunnel from '@shared/hooks/usefunnel';
 
 import useOnboardingStepValidation from './hooks/useOnboardingStepValidation';
+import useOnboardingSubmit from './hooks/useOnboardingSubmit';
 
 const OnboardingPage = () => {
   const { t } = useTranslation('onboarding');
-  const queryClient = useQueryClient();
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
     useFunnel(FUNNEL_STEPS, '/');
-  const [error, setError] = useState<Error | null>(null);
 
   const form = useForm<OnboardingForm>({
     mode: 'onChange',
@@ -43,11 +38,7 @@ const OnboardingPage = () => {
     currentStepIndex,
   });
 
-  useEffect(() => {
-    if (error) {
-      throw error;
-    }
-  }, [error]);
+  const { submitOnboarding } = useOnboardingSubmit({ goToNextStep });
 
   const steps = createStepData(
     [
@@ -63,26 +54,6 @@ const OnboardingPage = () => {
   const handleBack = () => {
     goToPrevStep();
   };
-
-  // 로드맵 생성 mutation
-  const { mutate: generateRoadmap } = useMutation({
-    ...ONBOARDING_MUTATION_OPTIONS.POST_AI_ROADMAP(),
-  });
-
-  const { mutate: submitOnboarding } = useMutation({
-    ...ONBOARDING_MUTATION_OPTIONS.POST_ONBOARDING_FORM(),
-    onSuccess: async () => {
-      await queryClient.refetchQueries({
-        queryKey: USER_QUERY_KEY.USER_COMPLETION(),
-      });
-      // 온보딩 성공 후 로드맵 생성 API 호출
-      generateRoadmap();
-      goToNextStep();
-    },
-    onError: (error) => {
-      setError(error instanceof Error ? error : new Error('온보딩 제출 실패'));
-    },
-  });
 
   const handleNext = async () => {
     const isValid = await form.trigger(requiredFields);
