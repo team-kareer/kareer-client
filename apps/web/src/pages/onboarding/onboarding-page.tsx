@@ -2,14 +2,14 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
+  CareerPreference,
   createStepData,
   EducationStep,
+  IdentityVisaVerification,
   LanguageSkillStep,
   OnboardingStepLayout,
   PersonalBackgroundStep,
 } from '@widgets/onboarding';
-import CareerPreference from '@widgets/onboarding/ui/step/career-preference/career-preference';
-import IdentityVisaVerification from '@widgets/onboarding/ui/step/identity-visaVerification/identity-visaVerification';
 import type { PostOnboardingForm } from '@features/onboarding';
 import {
   convertFormToRequest,
