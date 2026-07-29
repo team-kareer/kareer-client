@@ -33,8 +33,12 @@ const useOnboardingSubmit = ({ goToNextStep }: UseOnboardingSubmitProps) => {
       generateRoadmap();
       goToNextStep();
     },
-    onError: (error) => {
-      setError(error instanceof Error ? error : new Error('온보딩 제출 실패'));
+    onError: (submitError) => {
+      setError(
+        submitError instanceof Error
+          ? submitError
+          : new Error('온보딩 제출 실패'),
+      );
     },
   });
 
