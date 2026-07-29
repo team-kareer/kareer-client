@@ -1,13 +1,12 @@
 import { type UseFormReturn, useWatch } from 'react-hook-form';
 
 import {
+  FIELD_MAX_LENGTHS,
   FUNNEL_STEPS,
   getRequiredFieldsForStep,
   hasAllRequiredFieldValues,
   type OnboardingForm,
 } from '@entities/onboarding';
-
-const MAX_PERSONAL_BACKGROUND_LENGTH = 1000;
 
 interface UseOnboardingStepValidationProps {
   form: UseFormReturn<OnboardingForm>;
@@ -38,7 +37,7 @@ const useOnboardingStepValidation = ({
   });
   const isPersonalBackgroundOverLimit =
     currentStepIndex === FUNNEL_STEPS.length - 1 &&
-    (personalBackground?.length || 0) > MAX_PERSONAL_BACKGROUND_LENGTH;
+    (personalBackground?.length || 0) > FIELD_MAX_LENGTHS.PERSONAL_BACKGROUND;
 
   // 모든 필드 존재 체크
   const hasAllRequiredValues = hasAllRequiredFieldValues(
