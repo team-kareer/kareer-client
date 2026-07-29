@@ -9,7 +9,7 @@ import {
 
 const MAX_PERSONAL_BACKGROUND_LENGTH = 1000;
 
-interface useOnbardingStepValidationProps {
+interface UseOnboardingStepValidationProps {
   form: UseFormReturn<OnboardingForm>;
   currentStepIndex: number;
 }
@@ -17,7 +17,7 @@ interface useOnbardingStepValidationProps {
 const useOnboardingStepValidation = ({
   form,
   currentStepIndex,
-}: useOnbardingStepValidationProps) => {
+}: UseOnboardingStepValidationProps) => {
   const requiredFields = getRequiredFieldsForStep(currentStepIndex);
 
   // 현재 단계의 필수 필드만 감시
