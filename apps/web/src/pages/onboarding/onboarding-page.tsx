@@ -18,12 +18,12 @@ import {
   convertFormToRequest,
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
-  getRequiredFieldsForStep,
-  hasAllRequiredFieldValues,
   OnboardingForm,
 } from '@entities/onboarding';
 import { USER_QUERY_KEY } from '@entities/user/queries';
 import useFunnel from '@shared/hooks/usefunnel';
+
+import useOnboardingStepValidation from './hooks/useOnboardingStepValidation';
 
 const OnboardingPage = () => {
   const { t } = useTranslation('onboarding');
@@ -38,44 +38,10 @@ const OnboardingPage = () => {
     defaultValues: DEFAULT_ONBOARDING_FORM,
   });
 
-  // 버튼 비활성화 로직
-  const requiredFields = getRequiredFieldsForStep(currentStepIndex);
-
-  // 현재 단계의 필수 필드만 감시
-  const watchedRequiredFields = useWatch({
-    control: form.control,
-    name: requiredFields,
+  const { requiredFields, isNextDisabled } = useOnboardingStepValidation({
+    form,
+    currentStepIndex,
   });
-
-  // 전체 폼 값 감시
-  const allFormValues = useWatch({
-    control: form.control,
-  }) as OnboardingForm;
-
-  // 길이 체크
-  const personalBackground = useWatch({
-    control: form.control,
-    name: 'personalBackground',
-  });
-  const isPersonalBackgroundOverLimit =
-    currentStepIndex === FUNNEL_STEPS.length - 1 &&
-    (personalBackground?.length || 0) > 1000;
-
-  // 모든 필드 존재 체크
-  const hasAllRequiredValues = hasAllRequiredFieldValues(
-    { ...allFormValues, ...watchedRequiredFields } as OnboardingForm,
-    requiredFields,
-  );
-
-  const hasStepErrors = requiredFields.some((fieldName) =>
-    Boolean(form.formState.errors[fieldName]),
-  );
-
-  const isNextDisabled =
-    form.formState.isLoading ||
-    !hasAllRequiredValues ||
-    hasStepErrors ||
-    isPersonalBackgroundOverLimit;
 
   useEffect(() => {
     if (error) {
