@@ -1,0 +1,19 @@
+{
+  "name": "desktop",
+  "productName": "Kareer",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Desktop application",
+  "main": "src/main.cjs",
+  "scripts": {
+    "lint": "node --check src/main.cjs && node --check src/url-policy.cjs && node --check scripts/make-macos.cjs",
+    "make:mac": "node scripts/make-macos.cjs",
+    "start": "electron .",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.4",
+    "@kds/icons": "workspace:*",
+    "electron": "^43.2.0"
+  }
+}
