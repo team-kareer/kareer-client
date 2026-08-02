@@ -4,16 +4,21 @@
   "private": true,
   "version": "0.1.0",
   "description": "Desktop application",
-  "main": "src/main.cjs",
+  "main": "dist/src/main.js",
   "scripts": {
-    "lint": "node --check src/main.cjs && node --check src/url-policy.cjs && node --check scripts/make-macos.cjs",
-    "make:mac": "node scripts/make-macos.cjs",
-    "start": "electron .",
-    "test": "node --test"
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "make:mac": "pnpm build && node dist/scripts/make-macos.js",
+    "start": "pnpm build && electron .",
+    "test": "pnpm build && node --test dist/src/url-policy.test.js"
   },
   "devDependencies": {
     "@electron/packager": "^20.0.4",
+    "@kareer/typescript-config": "workspace:*",
     "@kds/icons": "workspace:*",
-    "electron": "^43.2.0"
+    "@types/node": "catalog:",
+    "electron": "^43.2.0",
+    "typescript": "catalog:"
   }
 }

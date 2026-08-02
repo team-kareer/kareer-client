@@ -1,7 +1,7 @@
-const { app, BrowserWindow, shell } = require('electron');
+import { app, BrowserWindow, shell } from 'electron';
 
-const { productName } = require('../package.json');
-const { isHttpsUrl } = require('./url-policy.cjs');
+import { productName } from '../package.json';
+import { isHttpsUrl } from './url-policy.js';
 
 const WEB_URL = 'https://ka-reer.com';
 

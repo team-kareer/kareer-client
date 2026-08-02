@@ -1,19 +1,20 @@
-const { execFileSync } = require('node:child_process');
-const fs = require('node:fs');
-const os = require('node:os');
-const path = require('node:path');
+import { execFileSync } from 'node:child_process';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 
-const { packager } = require('@electron/packager');
-const { productName, version } = require('../package.json');
+import { packager, type OfficialArch } from '@electron/packager';
 
-const desktopDir = path.resolve(__dirname, '..');
+import { productName, version } from '../package.json';
+
+const desktopDir = path.resolve(__dirname, '../..');
 const outDir = path.join(desktopDir, 'out');
-const arch = process.argv[2] ?? process.arch;
+const arch = (process.argv[2] ?? process.arch) as OfficialArch;
 
-const run = (command, args) =>
+const run = (command: string, args: string[]) =>
   execFileSync(command, args, { stdio: 'inherit' });
 
-const makeIcon = (tempDir) => {
+const makeIcon = (tempDir: string) => {
   const logoPath = require.resolve('@kds/icons/assets/logo.svg');
   const svgPath = path.join(tempDir, 'logo.svg');
   const logo = fs
@@ -45,7 +46,7 @@ const makeIcon = (tempDir) => {
     ['icon_256x256@2x.png', 512],
     ['icon_512x512.png', 512],
     ['icon_512x512@2x.png', 1024],
-  ]) {
+  ] as const) {
     run('/usr/bin/sips', [
       '-z',
       String(size),
@@ -76,13 +77,22 @@ const main = async () => {
       asar: true,
       dir: desktopDir,
       icon: makeIcon(tempDir),
-      ignore: [/\/node_modules(?:\/|$)/, /\/scripts(?:\/|$)/, /\.test\.cjs$/],
+      ignore: [
+        /\/node_modules(?:\/|$)/,
+        /\/scripts(?:\/|$)/,
+        /\.test\.js$/,
+        /\.ts$/,
+      ],
       name: productName,
       out: outDir,
       overwrite: true,
       platform: 'darwin',
       prune: false,
     });
+
+    if (!packageDir) {
+      throw new Error('Electron 앱 패키징 결과를 찾을 수 없습니다.');
+    }
 
     const appPath = path.join(packageDir, `${productName}.app`);
     run('/usr/bin/codesign', ['--force', '--deep', '--sign', '-', appPath]);
@@ -114,7 +124,7 @@ const main = async () => {
   }
 };
 
-main().catch((error) => {
+main().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
 });

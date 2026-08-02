@@ -82,12 +82,21 @@ importers:
       '@electron/packager':
         specifier: ^20.0.4
         version: 20.0.4
+      '@kareer/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/configs/typescript
       '@kds/icons':
         specifier: workspace:*
         version: link:../../packages/icons
+      '@types/node':
+        specifier: 'catalog:'
+        version: 22.15.3
       electron:
         specifier: ^43.2.0
         version: 43.2.0
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.2
 
   apps/web:
     dependencies:

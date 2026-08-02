@@ -1,7 +1,7 @@
-const assert = require('node:assert/strict');
-const test = require('node:test');
+import assert from 'node:assert/strict';
+import test from 'node:test';
 
-const { isHttpsUrl } = require('./url-policy.cjs');
+import { isHttpsUrl } from './url-policy.js';
 
 test('HTTPS URL만 허용한다', () => {
   assert.equal(isHttpsUrl('https://ka-reer.com'), true);
