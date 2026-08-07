@@ -1,7 +1,7 @@
 import { app, BrowserWindow, shell } from 'electron';
 
 import { productName } from '../package.json';
-import { isHttpsUrl } from './url-policy.js';
+import { isAllowedNavigationUrl, isHttpsUrl } from './url-policy.js';
 
 const WEB_URL = 'https://ka-reer.com';
 
@@ -26,7 +26,7 @@ const createWindow = () => {
   mainWindow.once('ready-to-show', () => mainWindow.show());
 
   mainWindow.webContents.on('will-navigate', (event, url) => {
-    if (!isHttpsUrl(url)) {
+    if (!isAllowedNavigationUrl(url)) {
       event.preventDefault();
     }
   });
