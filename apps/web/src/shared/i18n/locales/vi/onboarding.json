@@ -13,6 +13,24 @@
       "background": "Thông tin bổ sung"
     }
   },
+  "roadmapLoading": {
+    "title": "Đang xây dựng lộ trình cá nhân hóa của bạn",
+    "completedTitle": "{{name}}, lộ trình của bạn đã sẵn sàng",
+    "steps": {
+      "profileReview": {
+        "title": "Đang xem xét hồ sơ của {{name}}",
+        "description": "Đang kiểm tra loại thị thực, chuyên ngành và trình độ tiếng Hàn của bạn."
+      },
+      "jobMatching": {
+        "title": "Đang tìm công việc và lựa chọn thị thực phù hợp",
+        "description": "Đang kiểm tra loại thị thực, chuyên ngành và trình độ tiếng Hàn của bạn."
+      },
+      "roadmapCreation": {
+        "title": "Đang xây dựng lộ trình cá nhân hóa cho {{name}}",
+        "description": "Sắp xong rồi—chúng tôi đang hoàn thiện lộ trình của bạn."
+      }
+    }
+  },
   "steps": {
     "identityVisaVerification": {
       "upload": {

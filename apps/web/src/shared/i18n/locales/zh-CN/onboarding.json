@@ -13,6 +13,24 @@
       "background": "背景信息"
     }
   },
+  "roadmapLoading": {
+    "title": "正在生成你的个性化职业路线图",
+    "completedTitle": "{{name}}，你的职业路线图已准备好",
+    "steps": {
+      "profileReview": {
+        "title": "正在查看{{name}}的资料",
+        "description": "正在核对你的签证类型、专业和韩语水平。"
+      },
+      "jobMatching": {
+        "title": "正在匹配职位和签证方案",
+        "description": "正在核对你的签证类型、专业和韩语水平。"
+      },
+      "roadmapCreation": {
+        "title": "正在生成{{name}}的个性化职业路线图",
+        "description": "快完成了——我们正在完善你的职业路线图。"
+      }
+    }
+  },
   "steps": {
     "identityVisaVerification": {
       "upload": {
