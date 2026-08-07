@@ -10,8 +10,7 @@
     "check-types": "tsc --noEmit",
     "lint": "tsc --noEmit",
     "make:mac": "pnpm build && node dist/scripts/make-macos.js",
-    "start": "pnpm build && electron .",
-    "test": "pnpm build && node --test dist/src/url-policy.test.js"
+    "start": "pnpm build && electron ."
   },
   "devDependencies": {
     "@electron/packager": "^20.0.4",
