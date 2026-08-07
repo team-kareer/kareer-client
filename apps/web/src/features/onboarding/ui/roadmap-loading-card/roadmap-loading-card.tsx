@@ -2,13 +2,13 @@ import { CheckIcon } from '@kds/icons';
 import type { AnimationEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import * as styles from './roadmap-loading-card.css';
+import { useRoadmapLoadingProgress } from '@features/onboarding/hooks';
 
-export type RoadmapLoadingCompletedStepCount = 0 | 1 | 2 | 3;
+import * as styles from './roadmap-loading-card.css';
 
 interface RoadmapLoadingCardProps {
   name: string;
-  completedStepCount: RoadmapLoadingCompletedStepCount;
+  isRoadmapReady: boolean;
   onExitComplete?: () => void;
 }
 
@@ -16,7 +16,7 @@ type StepStatus = 'active' | 'done' | 'pending';
 
 const getStepStatus = (
   stepIndex: number,
-  completedStepCount: RoadmapLoadingCompletedStepCount,
+  completedStepCount: number,
 ): StepStatus => {
   if (stepIndex < completedStepCount) {
     return 'done';
@@ -31,11 +31,10 @@ const getStepStatus = (
 
 const RoadmapLoadingCard = ({
   name,
-  completedStepCount,
+  isRoadmapReady,
   onExitComplete,
 }: RoadmapLoadingCardProps) => {
   const { t } = useTranslation('onboarding');
-  const isComplete = completedStepCount === 3;
   const steps = [
     {
       id: 'profileReview',
@@ -53,6 +52,11 @@ const RoadmapLoadingCard = ({
       description: t('roadmapLoading.steps.roadmapCreation.description'),
     },
   ];
+  const completedStepCount = useRoadmapLoadingProgress({
+    stepCount: steps.length,
+    isRoadmapReady,
+  });
+  const isComplete = completedStepCount === steps.length;
   const currentStep = steps[completedStepCount];
   const stepItems = steps.map((step, index) => {
     const status = getStepStatus(index, completedStepCount);
