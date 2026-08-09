@@ -21,3 +21,5 @@ export const TermsAgreementPage = lazy(
 export const OnboardingPage = lazy(
   () => import('@pages/onboarding/onboarding-page'),
 );
+
+export const LandingPage = lazy(() => import('@pages/landing/landing-page'));

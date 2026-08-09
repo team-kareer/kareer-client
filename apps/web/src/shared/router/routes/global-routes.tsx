@@ -2,6 +2,7 @@ import ErrorPage from '@pages/error/error';
 import {
   DashboardPage,
   FitAnalysisPage,
+  LandingPage,
   LoginCallbackPage,
   MyPage,
   RoadmapPage,
@@ -12,6 +13,10 @@ export const publicRoutes = [
   {
     path: ROUTE_PATH.LOGIN_CALLBACK,
     Component: LoginCallbackPage,
+  },
+  {
+    path: ROUTE_PATH.LANDING,
+    Component: LandingPage,
   },
 ];
 
