@@ -1,0 +1,10 @@
+{
+  "header": {
+    "navigation": {
+      "features": "기능",
+      "reviews": "후기",
+      "earlyAccess": "얼리 액세스"
+    },
+    "cta": "얼리 액세스 신청"
+  }
+}
