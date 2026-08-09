@@ -1,5 +1,7 @@
+import { LandingHeader } from '@widgets/landing';
+
 const LandingPage = () => {
-  return <div>Landing Page</div>;
+  return <LandingHeader />;
 };
 
 export default LandingPage;
