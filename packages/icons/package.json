@@ -12,6 +12,7 @@
       "types": "./src/index.d.ts",
       "default": "./src/svg/index.ts"
     },
+    "./assets/logo.svg": "./src/svg/ic_logo.svg",
     "./*": "./src/components/*.tsx"
   },
   "scripts": {
