@@ -94,25 +94,3 @@ export const solution = style({
   marginBottom: '2.8rem',
   color: themeVars.color.primary[500],
 });
-
-export const earlyAccess = style({
-  width: '100%',
-  maxWidth: '48rem',
-  margin: '0 auto',
-});
-
-export const form = style({
-  display: 'flex',
-  gap: '0.8rem',
-});
-
-export const inputWrapper = style({
-  flex: 1,
-  minWidth: 0,
-});
-
-export const note = style({
-  marginTop: '1rem',
-  color: themeVars.color.grayscale.gray500,
-  fontSize: '1.1rem',
-});

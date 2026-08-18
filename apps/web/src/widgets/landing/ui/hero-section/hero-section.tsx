@@ -1,5 +1,6 @@
-import { Button, Input } from '@kds/ui';
 import { useTranslation } from 'react-i18next';
+
+import EarlyAccessForm from '../early-access-form/early-access-form';
 
 import * as styles from './hero-section.css';
 
@@ -36,15 +37,11 @@ const HeroSection = () => {
 
       <p className={styles.solution}>{t('hero.solution')}</p>
 
-      <div className={styles.earlyAccess}>
-        <div className={styles.form}>
-          <div className={styles.inputWrapper}>
-            <Input type="email" placeholder={t('hero.email.placeholder')} />
-          </div>
-          <Button preset="large_primary">{t('hero.email.cta')}</Button>
-        </div>
-        <p className={styles.note}>{t('hero.email.note')}</p>
-      </div>
+      <EarlyAccessForm
+        placeholder={t('hero.email.placeholder')}
+        buttonLabel={t('hero.email.cta')}
+        note={t('hero.email.note')}
+      />
     </section>
   );
 };
