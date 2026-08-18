@@ -7,6 +7,8 @@ import {
   postOnboardingForm,
 } from '@features/onboarding';
 
+export const ROADMAP_GENERATION_MUTATION_KEY = ['roadmap-generation'] as const;
+
 export const ONBOARDING_MUTATION_OPTIONS = {
   POST_ONBOARDING_FORM: () => {
     return mutationOptions({
@@ -15,6 +17,7 @@ export const ONBOARDING_MUTATION_OPTIONS = {
   },
   POST_AI_ROADMAP: () => {
     return mutationOptions({
+      mutationKey: ROADMAP_GENERATION_MUTATION_KEY,
       mutationFn: postAiRoadMap,
     });
   },
