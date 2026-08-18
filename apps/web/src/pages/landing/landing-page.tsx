@@ -1,5 +1,6 @@
 import {
   CareerRoadmapSection,
+  EarlyAccessSection,
   HeroSection,
   JobRecommendationSection,
   LandingHeader,
@@ -23,6 +24,7 @@ const LandingPage = () => {
         <TodoManagementSection />
         <RealVoicesSection />
         <WhyKareerSection />
+        <EarlyAccessSection />
       </main>
     </div>
   );
