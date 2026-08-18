@@ -4,6 +4,7 @@ import {
   JobRecommendationSection,
   LandingHeader,
   StatsSection,
+  TodoManagementSection,
 } from '@widgets/landing';
 
 import * as styles from './landing-page.css';
@@ -17,6 +18,7 @@ const LandingPage = () => {
         <StatsSection />
         <JobRecommendationSection />
         <CareerRoadmapSection />
+        <TodoManagementSection />
       </main>
     </div>
   );
