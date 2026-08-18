@@ -1,4 +1,9 @@
-import { HeroSection, LandingHeader, StatsSection } from '@widgets/landing';
+import {
+  HeroSection,
+  JobRecommendationSection,
+  LandingHeader,
+  StatsSection,
+} from '@widgets/landing';
 
 import * as styles from './landing-page.css';
 
@@ -9,6 +14,7 @@ const LandingPage = () => {
       <main>
         <HeroSection />
         <StatsSection />
+        <JobRecommendationSection />
       </main>
     </div>
   );
