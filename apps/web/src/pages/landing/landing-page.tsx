@@ -1,7 +1,12 @@
-import { LandingHeader } from '@widgets/landing';
+import { HeroSection, LandingHeader } from '@widgets/landing';
 
 const LandingPage = () => {
-  return <LandingHeader />;
+  return (
+    <>
+      <LandingHeader />
+      <HeroSection />
+    </>
+  );
 };
 
 export default LandingPage;
