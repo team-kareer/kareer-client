@@ -1,11 +1,16 @@
-import { HeroSection, LandingHeader } from '@widgets/landing';
+import { HeroSection, LandingHeader, StatsSection } from '@widgets/landing';
+
+import * as styles from './landing-page.css';
 
 const LandingPage = () => {
   return (
-    <>
+    <div className={styles.container}>
       <LandingHeader />
-      <HeroSection />
-    </>
+      <main>
+        <HeroSection />
+        <StatsSection />
+      </main>
+    </div>
   );
 };
 
