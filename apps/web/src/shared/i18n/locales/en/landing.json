@@ -39,6 +39,16 @@
       "label": "Feature 01",
       "title": "Upload your resume,\nget only the jobs\nyou can actually apply for",
       "description": "We analyze your visa info and resume from onboarding to show only jobs you can apply for right now. No more wasting time on listings that reject you due to visa issues."
+    },
+    "roadmap": {
+      "label": "Feature 02",
+      "title": "We design your visa &\ncareer roadmap together",
+      "description": "We analyze your major, visa type, and language data from onboarding to map out a realistic path to E-7. Each step comes with a concrete action list."
+    },
+    "todo": {
+      "label": "Feature 03",
+      "title": "Manage everything\nin one place, never miss a step",
+      "description": "From visa documents to career prep — manage it all in Visa / Career tabs. Actions from your roadmap link directly to your To-Do list."
     }
   }
 }
