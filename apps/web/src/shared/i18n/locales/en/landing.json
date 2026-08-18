@@ -33,5 +33,12 @@
     },
     "versus": "VS",
     "gap": "🔥 A 69.3%p gap — Kareer is here to close it"
+  },
+  "features": {
+    "job": {
+      "label": "Feature 01",
+      "title": "Upload your resume,\nget only the jobs\nyou can actually apply for",
+      "description": "We analyze your visa info and resume from onboarding to show only jobs you can apply for right now. No more wasting time on listings that reject you due to visa issues."
+    }
   }
 }
