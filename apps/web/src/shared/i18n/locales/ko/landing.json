@@ -24,5 +24,14 @@
       "cta": "신청하기",
       "note": "스팸 없이 출시 소식만 보내드려요"
     }
+  },
+  "stats": {
+    "label": "왜 KAREER가 필요한가요",
+    "descriptions": {
+      "desiredEmployment": "외국인 유학생의\n한국 취업 희망률",
+      "actualEmployment": "실제 취업\n전환율"
+    },
+    "versus": "VS",
+    "gap": "🔥 69.3%p의 갭 — Kareer가 이 간격을 줄여드려요"
   }
 }

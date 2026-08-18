@@ -24,5 +24,14 @@
       "cta": "Get Early Access",
       "note": "We'll only send you launch updates. No spam."
     }
+  },
+  "stats": {
+    "label": "WHY KAREER EXISTS",
+    "descriptions": {
+      "desiredEmployment": "of international students\nwant to work in Korea",
+      "actualEmployment": "actually\nget hired"
+    },
+    "versus": "VS",
+    "gap": "🔥 A 69.3%p gap — Kareer is here to close it"
   }
 }
