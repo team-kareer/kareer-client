@@ -1,4 +1,5 @@
 import {
+  CareerRoadmapSection,
   HeroSection,
   JobRecommendationSection,
   LandingHeader,
@@ -15,6 +16,7 @@ const LandingPage = () => {
         <HeroSection />
         <StatsSection />
         <JobRecommendationSection />
+        <CareerRoadmapSection />
       </main>
     </div>
   );
