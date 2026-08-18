@@ -48,12 +48,13 @@ const RoadmapGenerationGate = ({ children }: RoadmapGenerationGateProps) => {
     throw generationState.error;
   }
 
-  if (isLoadingCardVisible || shouldStartLoadingCard) {
+  if ((isLoadingCardVisible || shouldStartLoadingCard) && generationState) {
     return (
       <div className={styles.loadingCardContainer}>
         <RoadmapLoadingCard
           name={userData?.name ?? ''}
           isRoadmapReady={hasPhaseData}
+          startedAt={generationState.submittedAt}
           onExitComplete={() => setIsLoadingCardVisible(false)}
         />
       </div>
