@@ -87,5 +87,15 @@
       }
     },
     "credit": "DIVE SOPT 37TH WEBJAM · TEAM KAREER — \"YOUR CAREER, NOW CLEARING FOR TAKE-OFF\""
+  },
+  "earlyAccess": {
+    "badge": "🔥 Early Access 선착순 100명",
+    "title": "Sign up now and\nbe the first to use it",
+    "description": "We're opening early access to just 100 people.\nGet your personalized job matches and career roadmap right away.",
+    "email": {
+      "placeholder": "Enter your email address",
+      "cta": "Early Access 신청하기",
+      "note": "We'll only send you launch updates. No spam."
+    }
   }
 }
