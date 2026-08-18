@@ -2,6 +2,7 @@ export { default as CareerRoadmapSection } from './ui/career-roadmap-section/car
 export { default as EarlyAccessSection } from './ui/early-access-section/early-access-section';
 export { default as HeroSection } from './ui/hero-section/hero-section';
 export { default as JobRecommendationSection } from './ui/job-recommendation-section/job-recommendation-section';
+export { default as LandingFooter } from './ui/landing-footer/landing-footer';
 export { default as LandingHeader } from './ui/landing-header/landing-header';
 export { default as RealVoicesSection } from './ui/real-voices-section/real-voices-section';
 export { default as StatsSection } from './ui/stats-section/stats-section';

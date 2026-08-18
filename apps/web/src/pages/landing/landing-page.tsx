@@ -3,6 +3,7 @@ import {
   EarlyAccessSection,
   HeroSection,
   JobRecommendationSection,
+  LandingFooter,
   LandingHeader,
   RealVoicesSection,
   StatsSection,
@@ -26,6 +27,7 @@ const LandingPage = () => {
         <WhyKareerSection />
         <EarlyAccessSection />
       </main>
+      <LandingFooter />
     </div>
   );
 };
