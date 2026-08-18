@@ -1,4 +1,4 @@
-export { END_POINT } from './end_points';
+export { END_POINT } from './end-point';
 export type {
   GetTermsListResponse,
   PostTermAgreementsBody,

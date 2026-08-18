@@ -48,6 +48,86 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/roadmap': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * AI 로드맵 생성
+     * @description 사용자가 온보딩에 입력한 정보를 통해 로드맵을 생성합니다.
+     */
+    post: operations['generateRoadmap'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/roadmap/test': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * AI 로드맵 생성 테스트용 (Server Only)
+     * @description 사용자가 온보딩에 입력한 정보를 통해 로드맵을 생성합니다.
+     */
+    post: operations['generateRoadmapForTest'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/roadmap/phase-actions/{phaseActionId}/todo': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Phase Action 기반 Todo 생성
+     * @description 특정 Phase Action을 기반으로 Todo를 생성합니다.
+     */
+    post: operations['createPhaseActionTodo'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/roadmap/generations/stream': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * AI 로드맵 생성 진행 상태 스트림
+     * @description 로드맵을 생성하면서 단계별 진행 상태를 SSE로 전달합니다.
+     */
+    post: operations['generateRoadmapStream'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/rag/required': {
     parameters: {
       query?: never;
@@ -108,26 +188,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/phase-actions/{phaseActionId}/todo': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /**
-     * Phase Action 기반 Todo 생성
-     * @description 특정 Phase Action을 기반으로 Todo를 생성합니다.
-     */
-    post: operations['createPhaseActionTodo'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   '/api/v1/members/term-agreements': {
     parameters: {
       query?: never;
@@ -142,66 +202,6 @@ export interface paths {
      * @description 약관에 동의합니다.
      */
     post: operations['agreeTerms'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/members/roadmap': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /**
-     * AI 로드맵 생성 API
-     * @description 사용자가 온보딩에 입력한 정보를 통해 로드맵을 생성합니다.
-     */
-    post: operations['generateRoadmap'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/members/roadmap/test': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /**
-     * AI 로드맵 생성 테스트용 API (Server Only)
-     * @description 사용자가 온보딩에 입력한 정보를 통해 로드맵을 생성합니다.
-     */
-    post: operations['generateRoadmapForTest'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/members/onboard': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /**
-     * 회원 온보딩
-     * @description PENDING 상태의 회원의 온보딩 결과를 저장합니다.
-     */
-    post: operations['onboardMember_1'];
     delete?: never;
     options?: never;
     head?: never;
@@ -348,7 +348,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/action-items/{actionItemId}/completed': {
+  '/api/v1/roadmap/action-items/{actionItemId}/completed': {
     parameters: {
       query?: never;
       header?: never;
@@ -388,7 +388,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/phases': {
+  '/api/v1/roadmap/phases': {
     parameters: {
       query?: never;
       header?: never;
@@ -408,7 +408,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/phases/{phaseId}/roadmap': {
+  '/api/v1/roadmap/phases/{phaseId}': {
     parameters: {
       query?: never;
       header?: never;
@@ -428,7 +428,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/phases/{phaseId}/home': {
+  '/api/v1/roadmap/phases/{phaseId}/home': {
     parameters: {
       query?: never;
       header?: never;
@@ -448,7 +448,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/phase-actions/{phaseActionId}/guide': {
+  '/api/v1/roadmap/phase-actions/{phaseActionId}/guide': {
     parameters: {
       query?: never;
       header?: never;
@@ -460,6 +460,26 @@ export interface paths {
      * @description AI 가이드를 조회합니다.
      */
     get: operations['getAiGuide'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v1/roadmap/action-items': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 액션 아이템 전체 조회
+     * @description 로그인한 회원의 활성화된 모든 액션 아이템을 조회합니다.
+     */
+    get: operations['getAllActionItems'];
     put?: never;
     post?: never;
     delete?: never;
@@ -646,26 +666,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/action-items': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * 액션 아이템 전체 조회
-     * @description 로그인한 회원의 활성화된 모든 액션 아이템을 조회합니다.
-     */
-    get: operations['getAllActionItems'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -805,28 +805,6 @@ export interface components {
       targetJobSkill?: string;
       personalBackground: string;
     };
-    JobPostingEmbeddingRequest: {
-      jobPostingIds?: number[];
-    };
-    /** @description 약관 동의 요청 */
-    MemberTermsRequest: {
-      /** @description 약관 동의 리스트 */
-      agreements: components['schemas']['TermAgreement'][];
-    };
-    /** @description 약관 동의 리스트 */
-    TermAgreement: {
-      /**
-       * Format: int64
-       * @description 약관 고유번호
-       * @example 1
-       */
-      termId: number;
-      /**
-       * @description 약관 동의여부
-       * @example true
-       */
-      agreed: boolean;
-    };
     ActionItemPlan: {
       title?: string;
       actionsType?: string;
@@ -876,246 +854,31 @@ export interface components {
       roadmap?: components['schemas']['RoadmapResponse'];
       retrieved?: components['schemas']['RetrievedChunk'][];
     };
-    MemberOnboardRequest: {
-      name: string;
-      /** Format: date */
-      birthDate: string;
-      /** @enum {string} */
-      country:
-        | 'Afghanistan'
-        | 'Albania'
-        | 'Algeria'
-        | 'Andorra'
-        | 'Angola'
-        | 'Antigua and Barbuda'
-        | 'Argentina'
-        | 'Armenia'
-        | 'Australia'
-        | 'Austria'
-        | 'Azerbaijan'
-        | 'Bahamas'
-        | 'Bahrain'
-        | 'Bangladesh'
-        | 'Barbados'
-        | 'Belarus'
-        | 'Belgium'
-        | 'Belize'
-        | 'Benin'
-        | 'Bhutan'
-        | 'Bolivia'
-        | 'Bosnia and Herzegovina'
-        | 'Botswana'
-        | 'Brazil'
-        | 'Brunei'
-        | 'Bulgaria'
-        | 'Burkina Faso'
-        | 'Burundi'
-        | 'Cabo Verde'
-        | 'Cambodia'
-        | 'Cameroon'
-        | 'Canada'
-        | 'Central African Republic'
-        | 'Chad'
-        | 'Chile'
-        | 'China'
-        | 'Colombia'
-        | 'Comoros'
-        | 'Congo'
-        | 'Democratic Republic of the Congo'
-        | 'Costa Rica'
-        | "Cote d'Ivoire"
-        | 'Croatia'
-        | 'Cuba'
-        | 'Cyprus'
-        | 'Czechia'
-        | 'Denmark'
-        | 'Djibouti'
-        | 'Dominica'
-        | 'Dominican Republic'
-        | 'Ecuador'
-        | 'Egypt'
-        | 'El Salvador'
-        | 'Equatorial Guinea'
-        | 'Eritrea'
-        | 'Estonia'
-        | 'Eswatini'
-        | 'Ethiopia'
-        | 'Fiji'
-        | 'Finland'
-        | 'France'
-        | 'Gabon'
-        | 'Gambia'
-        | 'Georgia'
-        | 'Germany'
-        | 'Ghana'
-        | 'Greece'
-        | 'Grenada'
-        | 'Guatemala'
-        | 'Guinea'
-        | 'Guinea-Bissau'
-        | 'Guyana'
-        | 'Haiti'
-        | 'Honduras'
-        | 'Hungary'
-        | 'Iceland'
-        | 'India'
-        | 'Indonesia'
-        | 'Iran'
-        | 'Iraq'
-        | 'Ireland'
-        | 'Israel'
-        | 'Italy'
-        | 'Jamaica'
-        | 'Japan'
-        | 'Jordan'
-        | 'Kazakhstan'
-        | 'Kenya'
-        | 'Kiribati'
-        | 'Kuwait'
-        | 'Kyrgyzstan'
-        | 'Laos'
-        | 'Latvia'
-        | 'Lebanon'
-        | 'Lesotho'
-        | 'Liberia'
-        | 'Libya'
-        | 'Liechtenstein'
-        | 'Lithuania'
-        | 'Luxembourg'
-        | 'Madagascar'
-        | 'Malawi'
-        | 'Malaysia'
-        | 'Maldives'
-        | 'Mali'
-        | 'Malta'
-        | 'Marshall Islands'
-        | 'Mauritania'
-        | 'Mauritius'
-        | 'Mexico'
-        | 'Micronesia'
-        | 'Moldova'
-        | 'Monaco'
-        | 'Mongolia'
-        | 'Montenegro'
-        | 'Morocco'
-        | 'Mozambique'
-        | 'Myanmar'
-        | 'Namibia'
-        | 'Nauru'
-        | 'Nepal'
-        | 'Netherlands'
-        | 'New Zealand'
-        | 'Nicaragua'
-        | 'Niger'
-        | 'Nigeria'
-        | 'North Macedonia'
-        | 'Norway'
-        | 'Oman'
-        | 'Pakistan'
-        | 'Palau'
-        | 'Panama'
-        | 'Papua New Guinea'
-        | 'Paraguay'
-        | 'Peru'
-        | 'Philippines'
-        | 'Poland'
-        | 'Portugal'
-        | 'Qatar'
-        | 'Romania'
-        | 'Russia'
-        | 'Rwanda'
-        | 'Saint Kitts and Nevis'
-        | 'Saint Lucia'
-        | 'Saint Vincent and the Grenadines'
-        | 'Samoa'
-        | 'San Marino'
-        | 'Sao Tome and Principe'
-        | 'Saudi Arabia'
-        | 'Senegal'
-        | 'Serbia'
-        | 'Seychelles'
-        | 'Sierra Leone'
-        | 'Singapore'
-        | 'Slovakia'
-        | 'Slovenia'
-        | 'Solomon Islands'
-        | 'Somalia'
-        | 'South Africa'
-        | 'South Korea'
-        | 'South Sudan'
-        | 'Spain'
-        | 'Sri Lanka'
-        | 'Sudan'
-        | 'Suriname'
-        | 'Sweden'
-        | 'Switzerland'
-        | 'Syria'
-        | 'Taiwan'
-        | 'Tajikistan'
-        | 'Tanzania'
-        | 'Thailand'
-        | 'Timor-Leste'
-        | 'Togo'
-        | 'Tonga'
-        | 'Trinidad and Tobago'
-        | 'Tunisia'
-        | 'Turkey'
-        | 'Turkmenistan'
-        | 'Tuvalu'
-        | 'Uganda'
-        | 'Ukraine'
-        | 'United Arab Emirates'
-        | 'United Kingdom'
-        | 'United States'
-        | 'Uruguay'
-        | 'Uzbekistan'
-        | 'Vanuatu'
-        | 'Vatican City'
-        | 'Venezuela'
-        | 'Vietnam'
-        | 'Yemen'
-        | 'Zambia'
-        | 'Zimbabwe';
-      /** @enum {string} */
-      languageLevel:
-        | 'LEVEL_1'
-        | 'LEVEL_2'
-        | 'LEVEL_3'
-        | 'LEVEL_4'
-        | 'LEVEL_5'
-        | 'NOT_TAKEN';
-      /** @enum {string} */
-      degree:
-        | 'DOMESTIC_ASSOCIATE'
-        | 'DOMESTIC_BACHELORS'
-        | 'DOMESTIC_MASTERS'
-        | 'DOMESTIC_DOCTORATE'
-        | 'OVERSEAS_BACHELORS'
-        | 'OVERSEAS_MASTERS'
-        | 'OVERSEAS_DOCTORATE';
-      /** @enum {string} */
-      visaType: 'D2' | 'D10' | 'E7';
+    SseEmitter: {
+      /** Format: int64 */
+      timeout?: number;
+    };
+    JobPostingEmbeddingRequest: {
+      jobPostingIds?: number[];
+    };
+    /** @description 약관 동의 요청 */
+    MemberTermsRequest: {
+      /** @description 약관 동의 리스트 */
+      agreements: components['schemas']['TermAgreement'][];
+    };
+    /** @description 약관 동의 리스트 */
+    TermAgreement: {
       /**
-       * Format: date
-       * @description 예상 졸업일, D2 비자인 경우만
-       * @example 2025-08-31
+       * Format: int64
+       * @description 약관 고유번호
+       * @example 1
        */
-      expectedGraduationDate?: string;
-      /** Format: date */
-      visaStartDate: string;
-      /** Format: date */
-      visaExpiredAt: string;
+      termId: number;
       /**
-       * Format: int32
-       * @description 비자 점수, D10 비자인 경우만
-       * @example 50
+       * @description 약관 동의여부
+       * @example true
        */
-      visaPoint?: number;
-      primaryMajor: string;
-      secondaryMajor?: string;
-      targetJob: string;
-      targetJobSkill?: string;
-      personalBackground: string;
+      agreed: boolean;
     };
     BaseResponseOcrVisaResponse: {
       /**
@@ -1483,6 +1246,44 @@ export interface components {
       message?: string;
       data?: components['schemas']['AiGuideResponse'];
     };
+    ActionItemListResponse: {
+      visaActionItems?: components['schemas']['ActionItemResponse'][];
+      careerActionItems?: components['schemas']['ActionItemResponse'][];
+    };
+    /** @description Action Item 응답(Todo) */
+    ActionItemResponse: {
+      /**
+       * Format: int64
+       * @description Action Item id
+       * @example 1
+       */
+      actionItemId?: number;
+      /**
+       * @description Action Item 제목
+       * @example Prepare Resume
+       */
+      title?: string;
+      /**
+       * Format: date
+       * @description Action Item 마감일
+       * @example 2025-10-15
+       */
+      deadline?: string;
+      /**
+       * @description Action Item 완료 여부
+       * @example false
+       */
+      completed?: boolean;
+    };
+    BaseResponseActionItemListResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['ActionItemListResponse'];
+    };
     BaseResponseOnboardUniversitiesResponse: {
       /**
        * Format: int32
@@ -1802,44 +1603,6 @@ export interface components {
        */
       address?: string;
     };
-    ActionItemListResponse: {
-      visaActionItems?: components['schemas']['ActionItemResponse'][];
-      careerActionItems?: components['schemas']['ActionItemResponse'][];
-    };
-    /** @description Action Item 응답(Todo) */
-    ActionItemResponse: {
-      /**
-       * Format: int64
-       * @description Action Item id
-       * @example 1
-       */
-      actionItemId?: number;
-      /**
-       * @description Action Item 제목
-       * @example Prepare Resume
-       */
-      title?: string;
-      /**
-       * Format: date
-       * @description Action Item 마감일
-       * @example 2025-10-15
-       */
-      deadline?: string;
-      /**
-       * @description Action Item 완료 여부
-       * @example false
-       */
-      completed?: boolean;
-    };
-    BaseResponseActionItemListResponse: {
-      /**
-       * Format: int32
-       * @example 200
-       */
-      code?: number;
-      message?: string;
-      data?: components['schemas']['ActionItemListResponse'];
-    };
   };
   responses: never;
   parameters: never;
@@ -2018,6 +1781,292 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['BaseResponseVoid'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  generateRoadmap: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  generateRoadmapForTest: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseRoadmapTestResponse'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  createPhaseActionTodo: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path: {
+        phaseActionId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseVoid'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  generateRoadmapStream: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'text/event-stream': components['schemas']['SseEmitter'];
         };
       };
       400: {
@@ -2285,79 +2334,6 @@ export interface operations {
       };
     };
   };
-  createPhaseActionTodo: {
-    parameters: {
-      query?: never;
-      header?: {
-        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
-        'X-Preferred-Language'?: string;
-      };
-      path: {
-        phaseActionId: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['BaseResponseVoid'];
-        };
-      };
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      405: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-    };
-  };
   agreeTerms: {
     parameters: {
       query?: never;
@@ -2371,223 +2347,6 @@ export interface operations {
     requestBody: {
       content: {
         'application/json': components['schemas']['MemberTermsRequest'];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['BaseResponseVoid'];
-        };
-      };
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      405: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-    };
-  };
-  generateRoadmap: {
-    parameters: {
-      query?: never;
-      header?: {
-        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
-        'X-Preferred-Language'?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['BaseResponseVoid'];
-        };
-      };
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      405: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-    };
-  };
-  generateRoadmapForTest: {
-    parameters: {
-      query?: never;
-      header?: {
-        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
-        'X-Preferred-Language'?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['BaseResponseRoadmapTestResponse'];
-        };
-      };
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      405: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-    };
-  };
-  onboardMember_1: {
-    parameters: {
-      query?: never;
-      header?: {
-        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
-        'X-Preferred-Language'?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['MemberOnboardRequest'];
       };
     };
     responses: {
@@ -3533,6 +3292,77 @@ export interface operations {
       };
     };
   };
+  getAllActionItems: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseActionItemListResponse'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
   getOnboardUniversities: {
     parameters: {
       query?: never;
@@ -4088,77 +3918,6 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['BaseResponseJobPostingListResponse'];
-        };
-      };
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      405: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-    };
-  };
-  getAllActionItems: {
-    parameters: {
-      query?: never;
-      header?: {
-        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
-        'X-Preferred-Language'?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['BaseResponseActionItemListResponse'];
         };
       };
       400: {

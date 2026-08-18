@@ -1,4 +1,4 @@
-export { END_POINT } from './end_point';
+export { END_POINT } from './end-point';
 export type {
   GetPhaseItemHomeResponse,
   GetPhaseItemRoadmapResponse,
