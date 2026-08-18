@@ -68,5 +68,24 @@
         "meta": "유저 인터뷰 · 중국 · D-2 · 국제통상"
       }
     }
+  },
+  "whyKareer": {
+    "title": "왜 Kareer여야 하나요?",
+    "description": "외국인 유학생의 한국 취업, Kareer가 처음부터 끝까지 함께해요",
+    "benefits": {
+      "jobs": {
+        "title": "내 조건에 맞는 공고만",
+        "description": "비자, TOPIK, 이력서를 분석해서 지금 지원 가능한 공고만 골라드려요. 비자 때문에 안 된다는 말을 공고 보기 전에 미리 걸러드려요."
+      },
+      "roadmap": {
+        "title": "비자·커리어 로드맵 통합 설계",
+        "description": "전공, 비자, 언어 데이터를 기반으로 E-7 취득까지의 경로를 설계해요. 비자 준비와 커리어 준비를 따로 할 필요 없어요."
+      },
+      "actions": {
+        "title": "액션 리스트로 바로 연결",
+        "description": "로드맵의 각 단계가 구체적인 To-Do로 연결돼요. 무엇을 언제까지 해야 하는지 막막하지 않아요."
+      }
+    },
+    "credit": "DIVE SOPT 37TH WEBJAM · TEAM KAREER — \"YOUR CAREER, NOW CLEARING FOR TAKE-OFF\""
   }
 }

@@ -68,5 +68,24 @@
         "meta": "User Interview · China · D-2 · International Trade"
       }
     }
+  },
+  "whyKareer": {
+    "title": "Why Kareer?",
+    "description": "Your Korean career journey, from first step to final offer — with Kareer.",
+    "benefits": {
+      "jobs": {
+        "title": "Only jobs that match your profile",
+        "description": "We analyze your visa, TOPIK level, and resume to show only the jobs you can apply for. We filter out the rejections before you even see the listing."
+      },
+      "roadmap": {
+        "title": "Integrated visa & career roadmap",
+        "description": "We design your E-7 path based on your major, visa, and language data. No need to manage visa prep and career prep separately."
+      },
+      "actions": {
+        "title": "Directly linked to your action list",
+        "description": "Every step of your roadmap links to a concrete To-Do. You'll always know what to do and when."
+      }
+    },
+    "credit": "DIVE SOPT 37TH WEBJAM · TEAM KAREER — \"YOUR CAREER, NOW CLEARING FOR TAKE-OFF\""
   }
 }
