@@ -3,6 +3,7 @@ import {
   HeroSection,
   JobRecommendationSection,
   LandingHeader,
+  RealVoicesSection,
   StatsSection,
   TodoManagementSection,
 } from '@widgets/landing';
@@ -19,6 +20,7 @@ const LandingPage = () => {
         <JobRecommendationSection />
         <CareerRoadmapSection />
         <TodoManagementSection />
+        <RealVoicesSection />
       </main>
     </div>
   );
