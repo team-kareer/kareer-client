@@ -50,5 +50,23 @@
       "title": "Manage everything\nin one place, never miss a step",
       "description": "From visa documents to career prep — manage it all in Visa / Career tabs. Actions from your roadmap link directly to your To-Do list."
     }
+  },
+  "voices": {
+    "label": "Real Voices",
+    "title": "Here's what international students are saying",
+    "items": {
+      "trade": {
+        "quote": "\"I wanted a job in trade, but had no idea where to start — so I just worked part-time at a kimbap place.\"",
+        "meta": "User Interview · China · D-2 · Business"
+      },
+      "resume": {
+        "quote": "\"I've never written a resume or cover letter before. I have no idea how to improve my chances of getting hired.\"",
+        "meta": "User Interview · Vietnam · D-2 · Marketing"
+      },
+      "wechat": {
+        "quote": "\"The only information I could find was in WeChat groups. I had no idea where else to look.\"",
+        "meta": "User Interview · China · D-2 · International Trade"
+      }
+    }
   }
 }
