@@ -5,3 +5,4 @@ export { default as LandingHeader } from './ui/landing-header/landing-header';
 export { default as RealVoicesSection } from './ui/real-voices-section/real-voices-section';
 export { default as StatsSection } from './ui/stats-section/stats-section';
 export { default as TodoManagementSection } from './ui/todo-management-section/todo-management-section';
+export { default as WhyKareerSection } from './ui/why-kareer-section/why-kareer-section';
