@@ -13,6 +13,9 @@ export const container = style({
 
 export const badge = style({
   ...typography.cap1_sb_12,
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.6rem',
   marginBottom: '2.8rem',
   padding: '0.5rem 1.6rem',
   border: `1px solid ${themeVars.color.primary[300]}`,
@@ -84,8 +87,8 @@ export const painPoint = style({
   },
 });
 
-export const emoji = style({
-  fontSize: '1.6rem',
+export const painPointIcon = style({
+  flexShrink: 0,
 });
 
 export const solution = style({

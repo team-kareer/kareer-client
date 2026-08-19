@@ -43,11 +43,6 @@ export const card = style({
   textAlign: 'left',
 });
 
-export const icon = style({
-  marginBottom: '1.4rem',
-  fontSize: '2.4rem',
-});
-
 export const quote = style({
   ...typography.body9_r_14,
   marginBottom: '1.6rem',

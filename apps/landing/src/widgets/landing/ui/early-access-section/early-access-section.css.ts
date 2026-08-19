@@ -10,13 +10,15 @@ export const container = style({
 
 export const badge = style({
   ...typography.cap1_sb_12,
-  display: 'inline-block',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.6rem',
   marginBottom: '2rem',
   padding: '0.5rem 1.6rem',
-  border: '1px solid #fde68a',
+  border: `1px solid ${themeVars.color.primary[300]}`,
   borderRadius: '99px',
-  color: '#92400e',
-  backgroundColor: '#fef3c7',
+  color: themeVars.color.primary[500],
+  backgroundColor: themeVars.color.primary[100],
   lineHeight: 1.6,
 });
 

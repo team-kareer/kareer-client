@@ -1,3 +1,4 @@
+import { CheckIcon, FitAnalysisIcon, RoadmapIcon } from '@kds/icons';
 import { useTranslation } from 'react-i18next';
 
 import { bg_why_kareer } from '@shared/assets';
@@ -5,9 +6,9 @@ import { bg_why_kareer } from '@shared/assets';
 import * as styles from './why-kareer-section.css';
 
 const BENEFITS = [
-  { id: 'jobs', icon: '🎯' },
-  { id: 'roadmap', icon: '🗺️' },
-  { id: 'actions', icon: '✅' },
+  { id: 'jobs', icon: FitAnalysisIcon, iconSize: 28 },
+  { id: 'roadmap', icon: RoadmapIcon, iconSize: 28 },
+  { id: 'actions', icon: CheckIcon, iconSize: 32 },
 ] as const;
 
 const WhyKareerSection = () => {
@@ -23,9 +24,11 @@ const WhyKareerSection = () => {
         <p className={styles.description}>{t('whyKareer.description')}</p>
 
         <div className={styles.benefits}>
-          {BENEFITS.map(({ id, icon }) => (
+          {BENEFITS.map(({ id, icon: Icon, iconSize }) => (
             <article key={id} className={styles.card}>
-              <p className={styles.icon}>{icon}</p>
+              <div className={styles.icon}>
+                <Icon width={iconSize} height={iconSize} />
+              </div>
               <h3 className={styles.cardTitle}>
                 {t(`whyKareer.benefits.${id}.title`)}
               </h3>

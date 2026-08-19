@@ -8,7 +8,7 @@
     "cta": "Get Early Access"
   },
   "hero": {
-    "badge": "🇰🇷 For International Students in Korea",
+    "badge": "For International Students in Korea",
     "title": "Lost in Korea's job market?",
     "highlight": "Start with Kareer",
     "description": "From visa to job listings to action plans —\nfind your personalized path, all in one place.",
@@ -32,7 +32,7 @@
       "actualEmployment": "actually\nget hired"
     },
     "versus": "VS",
-    "gap": "🔥 A 69.3%p gap — Kareer is here to close it"
+    "gap": "A 69.3%p gap — Kareer is here to close it"
   },
   "features": {
     "job": {
@@ -56,15 +56,15 @@
     "title": "Here's what international students are saying",
     "items": {
       "trade": {
-        "quote": "\"I wanted a job in trade, but had no idea where to start — so I just worked part-time at a kimbap place.\"",
+        "quote": "I wanted a job in trade, but had no idea where to start — so I just worked part-time at a kimbap place.",
         "meta": "User Interview · China · D-2 · Business"
       },
       "resume": {
-        "quote": "\"I've never written a resume or cover letter before. I have no idea how to improve my chances of getting hired.\"",
+        "quote": "I've never written a resume or cover letter before. I have no idea how to improve my chances of getting hired.",
         "meta": "User Interview · Vietnam · D-2 · Marketing"
       },
       "wechat": {
-        "quote": "\"The only information I could find was in WeChat groups. I had no idea where else to look.\"",
+        "quote": "The only information I could find was in WeChat groups. I had no idea where else to look.",
         "meta": "User Interview · China · D-2 · International Trade"
       }
     }
@@ -89,7 +89,7 @@
     "credit": "DIVE SOPT 37TH WEBJAM · TEAM KAREER — \"YOUR CAREER, NOW CLEARING FOR TAKE-OFF\""
   },
   "earlyAccess": {
-    "badge": "🔥 Early Access · First 100 Sign-ups",
+    "badge": "Early Access · First 100 Sign-ups",
     "title": "Sign up now and\nbe the first to use it",
     "description": "We're opening early access to just 100 people.\nGet your personalized job matches and career roadmap right away.",
     "email": {

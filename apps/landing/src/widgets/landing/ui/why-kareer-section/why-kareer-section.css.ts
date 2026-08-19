@@ -64,8 +64,11 @@ export const card = style({
 });
 
 export const icon = style({
+  display: 'flex',
+  alignItems: 'center',
+  height: '3.2rem',
+  color: themeVars.color.grayscale.white,
   marginBottom: '1.4rem',
-  fontSize: '2.4rem',
 });
 
 export const cardTitle = style({

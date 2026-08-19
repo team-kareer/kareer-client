@@ -1,3 +1,4 @@
+import { GlobalIcon } from '@kds/icons';
 import { useTranslation } from 'react-i18next';
 
 import { PAIN_POINTS } from '@widgets/landing/constants';
@@ -11,7 +12,10 @@ const HeroSection = () => {
 
   return (
     <section className={styles.container}>
-      <div className={styles.badge}>{t('hero.badge')}</div>
+      <div className={styles.badge}>
+        <GlobalIcon width={16} height={16} />
+        {t('hero.badge')}
+      </div>
 
       <h1 className={styles.title}>
         {t('hero.title')}
@@ -22,9 +26,9 @@ const HeroSection = () => {
       <p className={styles.description}>{t('hero.description')}</p>
 
       <div className={styles.painPoints}>
-        {PAIN_POINTS.map(({ emoji, translationKey }) => (
+        {PAIN_POINTS.map(({ icon: Icon, translationKey }) => (
           <div key={translationKey} className={styles.painPoint}>
-            <span className={styles.emoji}>{emoji}</span>
+            <Icon width={18} height={18} className={styles.painPointIcon} />
             {t(translationKey)}
           </div>
         ))}

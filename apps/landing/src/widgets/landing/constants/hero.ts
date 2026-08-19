@@ -1,6 +1,8 @@
+import { RoadmapIcon, SearchIcon, TimerIcon, XIcon } from '@kds/icons';
+
 export const PAIN_POINTS = [
-  { emoji: '😮‍💨', translationKey: 'hero.painPoints.visa' },
-  { emoji: '🤷', translationKey: 'hero.painPoints.e7' },
-  { emoji: '😩', translationKey: 'hero.painPoints.job' },
-  { emoji: '😶‍🌫️', translationKey: 'hero.painPoints.deadline' },
+  { icon: XIcon, translationKey: 'hero.painPoints.visa' },
+  { icon: RoadmapIcon, translationKey: 'hero.painPoints.e7' },
+  { icon: SearchIcon, translationKey: 'hero.painPoints.job' },
+  { icon: TimerIcon, translationKey: 'hero.painPoints.deadline' },
 ] as const;
