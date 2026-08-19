@@ -24,7 +24,7 @@ const WhyKareerSection = () => {
 
         <div className={styles.benefits}>
           {BENEFITS.map(({ id, icon }) => (
-            <div key={id} className={styles.card}>
+            <article key={id} className={styles.card}>
               <p className={styles.icon}>{icon}</p>
               <h3 className={styles.cardTitle}>
                 {t(`whyKareer.benefits.${id}.title`)}
@@ -32,7 +32,7 @@ const WhyKareerSection = () => {
               <p className={styles.cardDescription}>
                 {t(`whyKareer.benefits.${id}.description`)}
               </p>
-            </div>
+            </article>
           ))}
         </div>
 

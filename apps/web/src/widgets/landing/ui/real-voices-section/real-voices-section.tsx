@@ -15,11 +15,11 @@ const RealVoicesSection = () => {
 
         <div className={styles.voices}>
           {VOICE_IDS.map((id) => (
-            <div key={id} className={styles.card}>
+            <article key={id} className={styles.card}>
               <p className={styles.icon}>💬</p>
               <p className={styles.quote}>{t(`voices.items.${id}.quote`)}</p>
               <p className={styles.meta}>{t(`voices.items.${id}.meta`)}</p>
-            </div>
+            </article>
           ))}
         </div>
       </div>
