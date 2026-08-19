@@ -7,6 +7,7 @@ interface FeatureSectionProps {
   title: string;
   description: string;
   preview: ReactNode;
+  id?: string;
   previewPosition?: 'left' | 'right';
   background?: 'default' | 'muted';
 }
@@ -16,11 +17,12 @@ const FeatureSection = ({
   title,
   description,
   preview,
+  id,
   previewPosition = 'right',
   background = 'default',
 }: FeatureSectionProps) => {
   return (
-    <section className={styles.container({ background })}>
+    <section id={id} className={styles.container({ background })}>
       <div className={styles.inner({ previewPosition })}>
         <div className={styles.content}>
           <p className={styles.featureLabel}>{featureLabel}</p>
