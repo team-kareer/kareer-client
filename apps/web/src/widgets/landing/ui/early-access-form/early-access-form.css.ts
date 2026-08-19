@@ -1,4 +1,4 @@
-import { themeVars } from '@kds/ui/styles';
+import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
@@ -29,8 +29,9 @@ export const note = recipe({
         fontSize: '1.1rem',
       },
       final: {
+        ...typography.body6_r_16,
         marginBottom: '3.6rem',
-        fontSize: '1.6rem',
+        lineHeight: 1.6,
       },
     },
   },

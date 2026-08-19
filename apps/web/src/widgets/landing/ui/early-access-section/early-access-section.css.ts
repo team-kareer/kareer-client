@@ -1,4 +1,4 @@
-import { themeVars } from '@kds/ui/styles';
+import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
@@ -9,6 +9,7 @@ export const container = style({
 });
 
 export const badge = style({
+  ...typography.cap1_sb_12,
   display: 'inline-block',
   marginBottom: '2rem',
   padding: '0.5rem 1.6rem',
@@ -16,8 +17,7 @@ export const badge = style({
   borderRadius: '99px',
   color: '#92400e',
   backgroundColor: '#fef3c7',
-  fontSize: '1.2rem',
-  fontWeight: 600,
+  lineHeight: 1.6,
 });
 
 export const title = style({
@@ -30,9 +30,9 @@ export const title = style({
 });
 
 export const description = style({
+  ...typography.body6_r_16,
   marginBottom: '3.6rem',
   color: themeVars.color.grayscale.gray700,
-  fontSize: '1.6rem',
   lineHeight: 1.7,
   whiteSpace: 'pre-line',
 });

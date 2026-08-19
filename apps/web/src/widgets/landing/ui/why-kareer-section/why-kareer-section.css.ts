@@ -1,4 +1,4 @@
-import { themeVars } from '@kds/ui/styles';
+import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
@@ -42,9 +42,10 @@ export const title = style({
 });
 
 export const description = style({
+  ...typography.body6_r_16,
   marginBottom: '5.2rem',
   color: 'rgba(255, 255, 255, 0.6)',
-  fontSize: '1.6rem',
+  lineHeight: 1.6,
 });
 
 export const benefits = style({
@@ -75,8 +76,8 @@ export const cardTitle = style({
 });
 
 export const cardDescription = style({
+  ...typography.cap3_r_12,
   color: 'rgba(255, 255, 255, 0.65)',
-  fontSize: '1.2rem',
   lineHeight: 1.7,
 });
 

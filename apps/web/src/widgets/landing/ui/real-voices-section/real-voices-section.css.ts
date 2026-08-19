@@ -1,4 +1,4 @@
-import { themeVars } from '@kds/ui/styles';
+import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
@@ -49,9 +49,9 @@ export const icon = style({
 });
 
 export const quote = style({
+  ...typography.body9_r_14,
   marginBottom: '1.6rem',
   color: themeVars.color.grayscale.gray800,
-  fontSize: '1.4rem',
   fontStyle: 'italic',
   lineHeight: 1.75,
 });
