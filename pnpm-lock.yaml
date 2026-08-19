@@ -77,6 +77,70 @@ importers:
         specifier: 5.9.2
         version: 5.9.2
 
+  apps/landing:
+    dependencies:
+      '@kds/icons':
+        specifier: workspace:*
+        version: link:../../packages/icons
+      '@kds/ui':
+        specifier: workspace:*
+        version: link:../../packages/kds-ui
+      i18next:
+        specifier: ^25.8.13
+        version: 25.8.13(typescript@5.9.2)
+      react:
+        specifier: 'catalog:'
+        version: 19.2.0
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.0(react@19.2.0)
+      react-i18next:
+        specifier: ^16.5.4
+        version: 16.5.4(i18next@25.8.13(typescript@5.9.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.2)
+    devDependencies:
+      '@kareer/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/configs/eslint
+      '@kareer/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/configs/typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 22.15.3
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.7)
+      '@vanilla-extract/css':
+        specifier: 'catalog:'
+        version: 1.18.0
+      '@vanilla-extract/recipes':
+        specifier: 'catalog:'
+        version: 0.5.7(@vanilla-extract/css@1.18.0)
+      '@vanilla-extract/vite-plugin':
+        specifier: 'catalog:'
+        version: 5.1.4(@types/node@22.15.3)(jiti@2.6.1)(vite@7.3.1(@types/node@22.15.3)(jiti@2.6.1))
+      '@vitejs/plugin-react':
+        specifier: 'catalog:'
+        version: 5.1.2(vite@7.3.1(@types/node@22.15.3)(jiti@2.6.1))
+      babel-plugin-react-compiler:
+        specifier: ^1.0.0
+        version: 1.0.0
+      eslint:
+        specifier: 'catalog:'
+        version: 9.39.1(jiti@2.6.1)
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.2
+      vite:
+        specifier: 'catalog:'
+        version: 7.3.1(@types/node@22.15.3)(jiti@2.6.1)
+      vite-plugin-svgr:
+        specifier: 'catalog:'
+        version: 4.5.0(rollup@4.54.0)(typescript@5.9.2)(vite@7.3.1(@types/node@22.15.3)(jiti@2.6.1))
+
   apps/web:
     dependencies:
       '@kds/icons':

@@ -2,7 +2,6 @@ import enCommon from '@shared/i18n/locales/en/common.json';
 import enDashboard from '@shared/i18n/locales/en/dashboard.json';
 import enEmpty from '@shared/i18n/locales/en/empty.json';
 import enFitAnalysis from '@shared/i18n/locales/en/fit-analysis.json';
-import enLanding from '@shared/i18n/locales/en/landing.json';
 import enLogin from '@shared/i18n/locales/en/login.json';
 import enMyPage from '@shared/i18n/locales/en/myPage.json';
 import enNavigation from '@shared/i18n/locales/en/navigation.json';
@@ -15,7 +14,6 @@ import koCommon from '@shared/i18n/locales/ko/common.json';
 import koDashboard from '@shared/i18n/locales/ko/dashboard.json';
 import koEmpty from '@shared/i18n/locales/ko/empty.json';
 import koFitAnalysis from '@shared/i18n/locales/ko/fit-analysis.json';
-import koLanding from '@shared/i18n/locales/ko/landing.json';
 import koLogin from '@shared/i18n/locales/ko/login.json';
 import koMyPage from '@shared/i18n/locales/ko/myPage.json';
 import koNavigation from '@shared/i18n/locales/ko/navigation.json';
@@ -59,7 +57,6 @@ export const resources = {
     empty: enEmpty,
     dashboard: enDashboard,
     fitAnalysis: enFitAnalysis,
-    landing: enLanding,
     roadmap: enRoadmap,
     termsAgreement: enTermsAgreement,
     userPopover: enUserPopover,
@@ -74,7 +71,6 @@ export const resources = {
     empty: koEmpty,
     dashboard: koDashboard,
     fitAnalysis: koFitAnalysis,
-    landing: koLanding,
     roadmap: koRoadmap,
     termsAgreement: koTermsAgreement,
     userPopover: koUserPopover,

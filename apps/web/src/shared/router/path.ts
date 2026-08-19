@@ -3,7 +3,6 @@ export const ROUTE_PATH = {
   ROADMAP: '/roadmap',
   FITANALYSIS: '/fit-analysis',
   MY_PAGE: '/my-page',
-  LANDING: '/landing',
 
   ERROR: '/error-page',
   LOGIN: '/login',

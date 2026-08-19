@@ -48,7 +48,6 @@ i18n.use(initReactI18next).init({
     'empty',
     'dashboard',
     'fitAnalysis',
-    'landing',
     'roadmap',
     'userPopover',
     'myPage',

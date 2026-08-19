@@ -1,6 +1,5 @@
 export { default as bg_career_roadmap } from './bg_career_roadmap.webp';
 export { default as bg_progress_bar } from './bg_progress_bar.webp';
-export { default as bg_why_kareer } from './bg_why_kareer.jpg';
 export { default as default_company_image } from './default_company_image.webp';
 export { default as img_roadmap_character } from './img_roadmap_character.webp';
 export { default as loadingAnimation } from './lottie/loading.json';
