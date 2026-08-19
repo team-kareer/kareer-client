@@ -3,26 +3,13 @@ import { LogoIcon } from '@kds/icons';
 import { Button } from '@kds/ui';
 import { useTranslation } from 'react-i18next';
 
-import { LANDING_SECTION_ID } from '@widgets/landing/constants/section-id';
+import {
+  LANDING_SECTION_ID,
+  type LandingSectionId,
+  NAVIGATION_ITEMS,
+} from '@widgets/landing/constants';
 
 import * as styles from './landing-header.css';
-
-const NAVIGATION_ITEMS = [
-  {
-    labelKey: 'header.navigation.features',
-    sectionId: LANDING_SECTION_ID.features,
-  },
-  {
-    labelKey: 'header.navigation.reviews',
-    sectionId: LANDING_SECTION_ID.reviews,
-  },
-  {
-    labelKey: 'header.navigation.earlyAccess',
-    sectionId: LANDING_SECTION_ID.earlyAccess,
-  },
-] as const;
-
-type LandingSectionId = (typeof NAVIGATION_ITEMS)[number]['sectionId'];
 
 const scrollToSection = (sectionId: LandingSectionId) => {
   document.getElementById(sectionId)?.scrollIntoView({

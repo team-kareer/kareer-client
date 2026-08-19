@@ -1,49 +1,8 @@
+import { JOB_PREVIEWS } from '@widgets/landing/constants';
+
 import JobPreviewCard from './job-preview-card';
 
 import * as styles from './job-recommendation-preview.css';
-
-const JOB_PREVIEWS = [
-  {
-    id: 'part-time',
-    company: 'Hunjin',
-    title: 'Frontend Developer',
-    date: 'Jan 24, 2026',
-    deadline: 'D-5',
-    employmentType: 'Part-time',
-    tagTone: 'blue',
-    location: 'Incheon',
-  },
-  {
-    id: 'regular',
-    company: 'Junghoon',
-    title: 'Backend Developer',
-    date: 'Jan 24, 2026',
-    deadline: 'D-5',
-    employmentType: 'Regular',
-    tagTone: 'green',
-    location: 'Seoul',
-  },
-  {
-    id: 'discussion',
-    company: 'Yoonji',
-    title: 'AI Developer',
-    date: 'Jan 24, 2026',
-    deadline: 'D-5',
-    employmentType: 'Discussion',
-    tagTone: 'gray',
-    location: 'Seoul',
-  },
-  {
-    id: 'contract',
-    company: 'Haeun',
-    title: 'Frontend Developer',
-    date: 'Jan 24, 2026',
-    deadline: 'D-5',
-    employmentType: 'Contract',
-    tagTone: 'orange',
-    location: 'Changwon',
-  },
-] as const;
 
 const JobRecommendationPreview = () => {
   return (

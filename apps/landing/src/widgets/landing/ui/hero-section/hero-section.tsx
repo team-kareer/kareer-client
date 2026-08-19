@@ -1,15 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
+import { PAIN_POINTS } from '@widgets/landing/constants';
+
 import EarlyAccessForm from '../early-access-form/early-access-form';
 
 import * as styles from './hero-section.css';
-
-const PAIN_POINTS = [
-  { emoji: '😮‍💨', translationKey: 'hero.painPoints.visa' },
-  { emoji: '🤷', translationKey: 'hero.painPoints.e7' },
-  { emoji: '😩', translationKey: 'hero.painPoints.job' },
-  { emoji: '😶‍🌫️', translationKey: 'hero.painPoints.deadline' },
-] as const;
 
 const HeroSection = () => {
   const { t } = useTranslation('landing');
