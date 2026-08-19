@@ -1,5 +1,6 @@
 import { themeVars, typography, zIndex } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const container = style({
   position: 'fixed',
@@ -34,13 +35,28 @@ export const sectionNavigation = style({
   gap: '2.4rem',
 });
 
-export const sectionLink = style({
-  ...typography.cap2_m_12,
-  padding: '0.4rem 0',
-  borderBottom: '2px solid transparent',
-  color: themeVars.color.grayscale.gray500,
-  transition: 'color 0.2s ease',
-  ':hover': {
-    color: themeVars.color.grayscale.gray800,
+export const sectionLink = recipe({
+  base: {
+    ...typography.cap2_m_12,
+    padding: '0.4rem 0',
+    borderBottom: '2px solid transparent',
+    color: themeVars.color.grayscale.gray500,
+    transition: 'color 0.2s ease',
+    ':hover': {
+      color: themeVars.color.grayscale.gray800,
+    },
+  },
+  variants: {
+    active: {
+      true: {
+        borderBottomColor: themeVars.color.primary[500],
+        color: themeVars.color.primary[500],
+        selectors: {
+          '&:hover': {
+            color: themeVars.color.primary[500],
+          },
+        },
+      },
+    },
   },
 });
