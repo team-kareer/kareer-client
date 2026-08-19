@@ -4,13 +4,11 @@ import { bg_why_kareer } from '@shared/assets';
 
 import * as styles from './why-kareer-section.css';
 
-const BENEFIT_IDS = ['jobs', 'roadmap', 'actions'] as const;
-
-const BENEFIT_ICONS = {
-  jobs: '🎯',
-  roadmap: '🗺️',
-  actions: '✅',
-} as const;
+const BENEFITS = [
+  { id: 'jobs', icon: '🎯' },
+  { id: 'roadmap', icon: '🗺️' },
+  { id: 'actions', icon: '✅' },
+] as const;
 
 const WhyKareerSection = () => {
   const { t } = useTranslation('landing');
@@ -25,9 +23,9 @@ const WhyKareerSection = () => {
         <p className={styles.description}>{t('whyKareer.description')}</p>
 
         <div className={styles.benefits}>
-          {BENEFIT_IDS.map((id) => (
+          {BENEFITS.map(({ id, icon }) => (
             <div key={id} className={styles.card}>
-              <p className={styles.icon}>{BENEFIT_ICONS[id]}</p>
+              <p className={styles.icon}>{icon}</p>
               <h3 className={styles.cardTitle}>
                 {t(`whyKareer.benefits.${id}.title`)}
               </h3>
