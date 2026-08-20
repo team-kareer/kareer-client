@@ -9,6 +9,7 @@ import * as styles from './roadmap-loading-card.css';
 interface RoadmapLoadingCardProps {
   name: string;
   isRoadmapReady: boolean;
+  startedAt: number;
   onExitComplete?: () => void;
 }
 
@@ -32,6 +33,7 @@ const getStepStatus = (
 const RoadmapLoadingCard = ({
   name,
   isRoadmapReady,
+  startedAt,
   onExitComplete,
 }: RoadmapLoadingCardProps) => {
   const { t } = useTranslation('onboarding');
@@ -55,6 +57,7 @@ const RoadmapLoadingCard = ({
   const completedStepCount = useRoadmapLoadingProgress({
     stepCount: steps.length,
     isRoadmapReady,
+    startedAt,
   });
   const isComplete = completedStepCount === steps.length;
   const currentStep = steps[completedStepCount];
