@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { LANDING_SECTION_ID } from '@widgets/landing/constants/section-id';
 
+import VoiceCard from './voice-card';
+
 import * as styles from './real-voices-section.css';
 
 const VOICE_IDS = ['trade', 'resume', 'wechat'] as const;
@@ -17,10 +19,11 @@ const RealVoicesSection = () => {
 
         <div className={styles.voices}>
           {VOICE_IDS.map((id) => (
-            <article key={id} className={styles.card}>
-              <p className={styles.quote}>{t(`voices.items.${id}.quote`)}</p>
-              <p className={styles.meta}>{t(`voices.items.${id}.meta`)}</p>
-            </article>
+            <VoiceCard
+              key={id}
+              quote={t(`voices.items.${id}.quote`)}
+              meta={t(`voices.items.${id}.meta`)}
+            />
           ))}
         </div>
       </div>

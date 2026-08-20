@@ -54,36 +54,6 @@ export const benefits = style({
   gap: '1.4rem',
 });
 
-export const card = style({
-  padding: '2.6rem 2.2rem',
-  border: '1px solid rgba(255, 255, 255, 0.18)',
-  borderRadius: '14px',
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  textAlign: 'left',
-  backdropFilter: 'blur(12px)',
-});
-
-export const icon = style({
-  display: 'flex',
-  alignItems: 'center',
-  height: '3.2rem',
-  color: themeVars.color.grayscale.white,
-  marginBottom: '1.4rem',
-});
-
-export const cardTitle = style({
-  marginBottom: '0.8rem',
-  color: themeVars.color.grayscale.white,
-  fontSize: '1.5rem',
-  fontWeight: 700,
-});
-
-export const cardDescription = style({
-  ...typography.cap3_r_12,
-  color: 'rgba(255, 255, 255, 0.65)',
-  lineHeight: 1.7,
-});
-
 export const credit = style({
   marginTop: '3.6rem',
   color: 'rgba(255, 255, 255, 0.35)',

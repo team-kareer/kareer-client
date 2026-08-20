@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { bg_why_kareer } from '@shared/assets';
 
+import BenefitCard from './benefit-card';
+
 import * as styles from './why-kareer-section.css';
 
 const BENEFITS = [
@@ -25,17 +27,12 @@ const WhyKareerSection = () => {
 
         <div className={styles.benefits}>
           {BENEFITS.map(({ id, icon: Icon, iconSize }) => (
-            <article key={id} className={styles.card}>
-              <div className={styles.icon}>
-                <Icon width={iconSize} height={iconSize} />
-              </div>
-              <h3 className={styles.cardTitle}>
-                {t(`whyKareer.benefits.${id}.title`)}
-              </h3>
-              <p className={styles.cardDescription}>
-                {t(`whyKareer.benefits.${id}.description`)}
-              </p>
-            </article>
+            <BenefitCard
+              key={id}
+              icon={<Icon width={iconSize} height={iconSize} />}
+              title={t(`whyKareer.benefits.${id}.title`)}
+              description={t(`whyKareer.benefits.${id}.description`)}
+            />
           ))}
         </div>
 
