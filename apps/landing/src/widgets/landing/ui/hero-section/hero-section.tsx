@@ -5,6 +5,7 @@ import { PAIN_POINTS } from '@widgets/landing/constants';
 import { Badge } from '@shared/ui';
 
 import EarlyAccessForm from '../early-access-form/early-access-form';
+import PainPointItem from './pain-point-item';
 
 import * as styles from './hero-section.css';
 
@@ -30,10 +31,13 @@ const HeroSection = () => {
 
       <div className={styles.painPoints}>
         {PAIN_POINTS.map(({ icon: Icon, translationKey }) => (
-          <div key={translationKey} className={styles.painPoint}>
-            <Icon width={18} height={18} className={styles.painPointIcon} />
-            {t(translationKey)}
-          </div>
+          <PainPointItem
+            key={translationKey}
+            icon={
+              <Icon width={18} height={18} className={styles.painPointIcon} />
+            }
+            label={t(translationKey)}
+          />
         ))}
       </div>
 
