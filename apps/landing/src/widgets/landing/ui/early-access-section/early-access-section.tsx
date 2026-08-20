@@ -2,6 +2,7 @@ import { SparkleIcon } from '@kds/icons';
 import { useTranslation } from 'react-i18next';
 
 import { LANDING_SECTION_ID } from '@widgets/landing/constants/section-id';
+import { Badge } from '@shared/ui';
 
 import EarlyAccessForm from '../early-access-form/early-access-form';
 
@@ -12,10 +13,12 @@ const EarlyAccessSection = () => {
 
   return (
     <section id={LANDING_SECTION_ID.earlyAccess} className={styles.container}>
-      <div className={styles.badge}>
-        <SparkleIcon width={16} height={16} />
+      <Badge
+        icon={<SparkleIcon width={16} height={16} />}
+        className={styles.badgeSpacing}
+      >
         {t('earlyAccess.badge')}
-      </div>
+      </Badge>
       <h2 className={styles.title}>{t('earlyAccess.title')}</h2>
       <p className={styles.description}>{t('earlyAccess.description')}</p>
 

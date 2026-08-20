@@ -1,4 +1,4 @@
-import { themeVars, typography } from '@kds/ui/styles';
+import { themeVars } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
@@ -56,13 +56,6 @@ export const versus = style({
   fontWeight: 700,
 });
 
-export const gap = style({
-  ...typography.cap1_sb_12,
-  display: 'inline-block',
+export const gapSpacing = style({
   marginTop: '2.8rem',
-  padding: '0.6rem 1.6rem',
-  border: `1px solid ${themeVars.color.primary[700]}`,
-  borderRadius: '99px',
-  color: themeVars.color.primary[300],
-  backgroundColor: 'rgba(59, 110, 248, 0.25)',
 });

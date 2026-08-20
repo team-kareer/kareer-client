@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { FitAnalysisIcon } from '@kds/icons';
 import { useTranslation } from 'react-i18next';
+
+import { Badge } from '@shared/ui';
 
 import * as styles from './stats-section.css';
 
@@ -91,7 +94,13 @@ const StatsSection = () => {
         </div>
       </div>
 
-      <p className={styles.gap}>{t('stats.gap')}</p>
+      <Badge
+        tone="dark"
+        icon={<FitAnalysisIcon width={16} height={16} />}
+        className={styles.gapSpacing}
+      >
+        {t('stats.gap')}
+      </Badge>
     </section>
   );
 };

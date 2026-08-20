@@ -2,6 +2,7 @@ import { GlobalIcon } from '@kds/icons';
 import { useTranslation } from 'react-i18next';
 
 import { PAIN_POINTS } from '@widgets/landing/constants';
+import { Badge } from '@shared/ui';
 
 import EarlyAccessForm from '../early-access-form/early-access-form';
 
@@ -12,10 +13,12 @@ const HeroSection = () => {
 
   return (
     <section className={styles.container}>
-      <div className={styles.badge}>
-        <GlobalIcon width={16} height={16} />
+      <Badge
+        icon={<GlobalIcon width={16} height={16} />}
+        className={styles.badgeSpacing}
+      >
         {t('hero.badge')}
-      </div>
+      </Badge>
 
       <h1 className={styles.title}>
         {t('hero.title')}
