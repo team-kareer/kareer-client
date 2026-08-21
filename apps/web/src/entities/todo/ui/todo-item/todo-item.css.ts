@@ -14,6 +14,7 @@ export const contentWrapper = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.2rem',
+  minWidth: 0,
 });
 
 export const icon = style({
@@ -25,6 +26,13 @@ export const icon = style({
 export const title = style({
   ...typography.body8_m_14,
   color: themeVars.color.grayscale.gray800,
+
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  WebkitLineClamp: 2,
+  overflow: 'hidden',
+  minWidth: 0,
+  wordBreak: 'break-word',
 });
 
 export const description = style({
