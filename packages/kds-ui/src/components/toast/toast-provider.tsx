@@ -6,7 +6,7 @@ import { type ToastOptions } from './types/toast-type';
 
 import * as styles from './toast.css';
 
-const TOAST_DURATION = 4000;
+export const TOAST_DURATION = 4000;
 const TOAST_EXIT_DURATION = 400;
 const MAX_VISIBLE_TOASTS = 3;
 
@@ -68,13 +68,13 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
   );
 
   const showToast = useCallback(
-    ({ message, icon }: ToastOptions) => {
+    ({ message, icon, action }: ToastOptions) => {
       const id = createToastId();
 
       setToasts((prevToasts) => {
         const nextToasts = [
           ...prevToasts,
-          { id, message, icon, isLeaving: false },
+          { id, message, icon, action, isLeaving: false },
         ];
         const exceededToasts = nextToasts.slice(0, -MAX_VISIBLE_TOASTS);
 
@@ -114,9 +114,9 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
     <ToastContext.Provider value={{ showToast, hideToast }}>
       {children}
       <div className={styles.viewport}>
-        {toasts.map(({ id, message, icon, isLeaving }) => (
+        {toasts.map(({ id, message, icon, action, isLeaving }) => (
           <div key={id} className={styles.toastItem({ leaving: isLeaving })}>
-            <Toast message={message} icon={icon} />
+            <Toast message={message} icon={icon} action={action} />
           </div>
         ))}
       </div>
