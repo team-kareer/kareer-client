@@ -128,6 +128,30 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/roadmap/action-items': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 액션 아이템 전체 조회
+     * @description 로그인한 회원의 활성화된 모든 액션 아이템을 조회합니다.
+     */
+    get: operations['getAllActionItems'];
+    put?: never;
+    /**
+     * 사용자 액션 아이템 생성
+     * @description 사용자가 직접 액션 아이템을 생성합니다.
+     */
+    post: operations['createActionItem'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v1/rag/required': {
     parameters: {
       query?: never;
@@ -348,6 +372,30 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v1/roadmap/action-items/{actionItemId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    /**
+     * 액션 아이템 삭제
+     * @description 액션 아이템을 삭제합니다.
+     */
+    delete: operations['deleteActionItem'];
+    options?: never;
+    head?: never;
+    /**
+     * 액션 아이템 수정
+     * @description 액션 아이템의 제목 또는 마감일을 수정합니다.
+     */
+    patch: operations['updateActionItem'];
+    trace?: never;
+  };
   '/api/v1/roadmap/action-items/{actionItemId}/completed': {
     parameters: {
       query?: never;
@@ -460,26 +508,6 @@ export interface paths {
      * @description AI 가이드를 조회합니다.
      */
     get: operations['getAiGuide'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/api/v1/roadmap/action-items': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * 액션 아이템 전체 조회
-     * @description 로그인한 회원의 활성화된 모든 액션 아이템을 조회합니다.
-     */
-    get: operations['getAllActionItems'];
     put?: never;
     post?: never;
     delete?: never;
@@ -858,6 +886,58 @@ export interface components {
       /** Format: int64 */
       timeout?: number;
     };
+    ActionItemCreateRequest: {
+      /**
+       * @description 액션 아이템 타입
+       * @example CAREER
+       */
+      type: string;
+      /**
+       * @description 액션 아이템 제목
+       * @example 이력서 작성하기
+       */
+      title: string;
+      /**
+       * Format: date
+       * @description 액션 아이템 마감일
+       * @example 2026-09-01
+       */
+      deadline: string;
+    };
+    /** @description Action Item 응답(Todo) */
+    ActionItemResponse: {
+      /**
+       * Format: int64
+       * @description Action Item id
+       * @example 1
+       */
+      actionItemId?: number;
+      /**
+       * @description Action Item 제목
+       * @example Prepare Resume
+       */
+      title?: string;
+      /**
+       * Format: date
+       * @description Action Item 마감일
+       * @example 2025-10-15
+       */
+      deadline?: string;
+      /**
+       * @description Action Item 완료 여부
+       * @example false
+       */
+      completed?: boolean;
+    };
+    BaseResponseActionItemResponse: {
+      /**
+       * Format: int32
+       * @example 200
+       */
+      code?: number;
+      message?: string;
+      data?: components['schemas']['ActionItemResponse'];
+    };
     JobPostingEmbeddingRequest: {
       jobPostingIds?: number[];
     };
@@ -1014,6 +1094,21 @@ export interface components {
     TokenExchangeResponse: {
       accessToken?: string;
       onboardingRequired?: boolean;
+    };
+    ActionItemUpdateRequest: {
+      /**
+       * @description 수정할 액션 아이템 제목
+       * @example 이력서 초안 작성하기
+       */
+      title?: string;
+      /**
+       * Format: date
+       * @description 수정할 액션 아이템 마감일
+       * @example 2026-09-10
+       */
+      deadline?: string;
+      updateFieldPresent?: boolean;
+      titleValid?: boolean;
     };
     BaseResponseTermsResponse: {
       /**
@@ -1249,31 +1344,6 @@ export interface components {
     ActionItemListResponse: {
       visaActionItems?: components['schemas']['ActionItemResponse'][];
       careerActionItems?: components['schemas']['ActionItemResponse'][];
-    };
-    /** @description Action Item 응답(Todo) */
-    ActionItemResponse: {
-      /**
-       * Format: int64
-       * @description Action Item id
-       * @example 1
-       */
-      actionItemId?: number;
-      /**
-       * @description Action Item 제목
-       * @example Prepare Resume
-       */
-      title?: string;
-      /**
-       * Format: date
-       * @description Action Item 마감일
-       * @example 2025-10-15
-       */
-      deadline?: string;
-      /**
-       * @description Action Item 완료 여부
-       * @example false
-       */
-      completed?: boolean;
     };
     BaseResponseActionItemListResponse: {
       /**
@@ -2119,6 +2189,131 @@ export interface operations {
       };
     };
   };
+  getAllActionItems: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseActionItemListResponse'];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  createActionItem: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ActionItemCreateRequest'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseActionItemResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   uploadRequired: {
     parameters: {
       query: {
@@ -2900,6 +3095,112 @@ export interface operations {
       };
     };
   };
+  deleteActionItem: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path: {
+        actionItemId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
+  updateActionItem: {
+    parameters: {
+      query?: never;
+      header?: {
+        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
+        'X-Preferred-Language'?: string;
+      };
+      path: {
+        actionItemId: number;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['ActionItemUpdateRequest'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseResponseActionItemResponse'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['BaseErrorResponse'];
+        };
+      };
+    };
+  };
   toggleActionItemCompletion: {
     parameters: {
       query?: never;
@@ -3240,77 +3541,6 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['BaseResponseAiGuideResponse'];
-        };
-      };
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      405: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          'application/json': unknown;
-        };
-      };
-    };
-  };
-  getAllActionItems: {
-    parameters: {
-      query?: never;
-      header?: {
-        /** @description Preferred language code (e.g., en, ko, zh-CN, vi) */
-        'X-Preferred-Language'?: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['BaseResponseActionItemListResponse'];
         };
       };
       400: {
