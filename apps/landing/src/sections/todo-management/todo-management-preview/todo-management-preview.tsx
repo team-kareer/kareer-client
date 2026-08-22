@@ -32,7 +32,7 @@ const TodoManagementPreview = () => {
 
       <div className={styles.completedBar}>
         <span className={styles.completedCheck}>✓</span>
-        <span className={styles.completedLabel}>완료됨</span>
+        <span className={styles.completedLabel}>Completed</span>
         <span className={styles.completedCount}>2</span>
       </div>
     </div>

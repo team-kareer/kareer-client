@@ -3,7 +3,8 @@ import { Button } from '@kds/ui';
 import { useTranslation } from 'react-i18next';
 
 import { LANDING_SECTION_ID, NAVIGATION_ITEMS } from '@shared/constants';
-import useLandingNavigation from '@shared/hooks/use-landing-navigation';
+
+import useLandingNavigation from './hooks/use-landing-navigation';
 
 import * as styles from './landing-header.css';
 
