@@ -1,10 +1,9 @@
 import { SparkleIcon } from '@kds/icons';
 import { useTranslation } from 'react-i18next';
 
-import { LANDING_SECTION_ID } from '@widgets/landing/constants/section-id';
-import { Badge } from '@shared/ui';
-
-import EarlyAccessForm from '../early-access-form/early-access-form';
+import Badge from '@shared/components/badge/badge';
+import EarlyAccessForm from '@shared/components/early-access-form/early-access-form';
+import { LANDING_SECTION_ID } from '@shared/constants/section-id';
 
 import * as styles from './early-access-section.css';
 

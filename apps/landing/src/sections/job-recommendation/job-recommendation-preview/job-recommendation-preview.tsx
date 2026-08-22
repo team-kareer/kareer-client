@@ -1,6 +1,6 @@
-import { JOB_PREVIEWS } from '@widgets/landing/constants';
+import { JOB_PREVIEWS } from '@shared/constants';
 
-import JobPreviewCard from './job-preview-card';
+import JobPreviewCard from '../job-preview-card/job-preview-card';
 
 import * as styles from './job-recommendation-preview.css';
 

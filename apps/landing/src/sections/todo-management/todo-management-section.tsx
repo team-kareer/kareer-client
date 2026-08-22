@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import FeatureSection from '../feature-section/feature-section';
-import TodoManagementPreview from './todo-management-preview';
+import FeatureSection from '@shared/components/feature-section/feature-section';
+
+import TodoManagementPreview from './todo-management-preview/todo-management-preview';
 
 const TodoManagementSection = () => {
   const { t } = useTranslation('landing');

@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-import { LANDING_SECTION_ID } from '@widgets/landing/constants/section-id';
+import FeatureSection from '@shared/components/feature-section/feature-section';
+import { LANDING_SECTION_ID } from '@shared/constants/section-id';
 
-import FeatureSection from '../feature-section/feature-section';
-import JobRecommendationPreview from './job-recommendation-preview';
+import JobRecommendationPreview from './job-recommendation-preview/job-recommendation-preview';
 
 const JobRecommendationSection = () => {
   const { t } = useTranslation('landing');

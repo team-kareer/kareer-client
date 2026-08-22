@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { bg_why_kareer } from '@shared/assets';
 
-import BenefitCard from './benefit-card';
+import BenefitCard from './benefit-card/benefit-card';
 
 import * as styles from './why-kareer-section.css';
 

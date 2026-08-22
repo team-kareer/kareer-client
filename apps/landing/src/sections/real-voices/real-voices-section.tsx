@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { LANDING_SECTION_ID } from '@widgets/landing/constants/section-id';
+import { LANDING_SECTION_ID } from '@shared/constants/section-id';
 
-import VoiceCard from './voice-card';
+import VoiceCard from './voice-card/voice-card';
 
 import * as styles from './real-voices-section.css';
 

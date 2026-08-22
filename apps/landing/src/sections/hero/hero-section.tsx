@@ -1,11 +1,11 @@
 import { GlobalIcon } from '@kds/icons';
 import { useTranslation } from 'react-i18next';
 
-import { PAIN_POINTS } from '@widgets/landing/constants';
-import { Badge } from '@shared/ui';
+import Badge from '@shared/components/badge/badge';
+import EarlyAccessForm from '@shared/components/early-access-form/early-access-form';
+import { PAIN_POINTS } from '@shared/constants';
 
-import EarlyAccessForm from '../early-access-form/early-access-form';
-import PainPointItem from './pain-point-item';
+import PainPointItem from './pain-point-item/pain-point-item';
 
 import * as styles from './hero-section.css';
 

@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import FeatureSection from '../feature-section/feature-section';
-import CareerRoadmapPreview from './career-roadmap-preview';
+import FeatureSection from '@shared/components/feature-section/feature-section';
+
+import CareerRoadmapPreview from './career-roadmap-preview/career-roadmap-preview';
 
 const CareerRoadmapSection = () => {
   const { t } = useTranslation('landing');

@@ -1,15 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { LogoIcon } from '@kds/icons';
-import { Button } from '@kds/ui';
-import { useTranslation } from 'react-i18next';
 
 import {
   LANDING_SECTION_ID,
   type LandingSectionId,
   NAVIGATION_ITEMS,
-} from '@widgets/landing/constants';
-
-import * as styles from './landing-header.css';
+} from '@shared/constants';
 
 const scrollToSection = (sectionId: LandingSectionId) => {
   document.getElementById(sectionId)?.scrollIntoView({
@@ -18,8 +13,7 @@ const scrollToSection = (sectionId: LandingSectionId) => {
   });
 };
 
-const LandingHeader = () => {
-  const { t } = useTranslation('landing');
+const useLandingNavigation = () => {
   const headerRef = useRef<HTMLElement>(null);
   const [activeSectionId, setActiveSectionId] =
     useState<LandingSectionId | null>(null);
@@ -47,7 +41,10 @@ const LandingHeader = () => {
         (currentSection, { sectionId }) => {
           const section = document.getElementById(sectionId);
 
-          if (section && section.getBoundingClientRect().top <= activationTop) {
+          if (
+            section &&
+            section.getBoundingClientRect().top <= activationTop + 1
+          ) {
             return sectionId;
           }
 
@@ -69,38 +66,7 @@ const LandingHeader = () => {
     };
   }, []);
 
-  return (
-    <header ref={headerRef} className={styles.container}>
-      <nav className={styles.navigation}>
-        <div className={styles.logo}>
-          <LogoIcon width={20} height={20} />
-        </div>
-
-        <div className={styles.sectionNavigation}>
-          {NAVIGATION_ITEMS.map(({ labelKey, sectionId }) => (
-            <button
-              key={sectionId}
-              type="button"
-              className={styles.sectionLink({
-                active: activeSectionId === sectionId,
-              })}
-              onClick={() => scrollToSection(sectionId)}
-            >
-              {t(labelKey)}
-            </button>
-          ))}
-        </div>
-
-        <Button
-          type="button"
-          preset="small_primary"
-          onClick={() => scrollToSection(LANDING_SECTION_ID.earlyAccess)}
-        >
-          {t('header.cta')}
-        </Button>
-      </nav>
-    </header>
-  );
+  return { headerRef, activeSectionId, scrollToSection };
 };
 
-export default LandingHeader;
+export default useLandingNavigation;

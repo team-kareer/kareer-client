@@ -1,10 +1,10 @@
 import { FitAnalysisIcon } from '@kds/icons';
 import { useTranslation } from 'react-i18next';
 
-import { Badge } from '@shared/ui';
+import Badge from '@shared/components/badge/badge';
+import useCountUpOnVisible from '@shared/hooks/use-count-up-on-visible';
 
-import StatItem from './stat-item';
-import useCountUpOnVisible from './use-count-up-on-visible';
+import StatItem from './stat-item/stat-item';
 
 import * as styles from './stats-section.css';
 

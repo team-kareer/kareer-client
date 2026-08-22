@@ -1,6 +1,6 @@
 import { TodoCheckIcon, TodoIcon } from '@kds/icons';
 
-import { TODO_ITEMS } from '@widgets/landing/constants';
+import { TODO_ITEMS } from '@shared/constants';
 
 import * as styles from './todo-management-preview.css';
 

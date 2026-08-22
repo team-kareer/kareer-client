@@ -1,4 +1,4 @@
-import { ROADMAP_ACTIONS, ROADMAP_PHASES } from '@widgets/landing/constants';
+import { ROADMAP_ACTIONS, ROADMAP_PHASES } from '@shared/constants';
 
 import * as styles from './career-roadmap-preview.css';
 
