@@ -5,8 +5,7 @@
     "types": ["vite/client", "vite-plugin-svgr/client"],
     "paths": {
       "@app/*": ["src/app/*"],
-      "@landing": ["src/pages/landing/index.ts"],
-      "@landing/*": ["src/pages/landing/*"],
+      "@pages/*": ["src/pages/*"],
       "@layout/*": ["src/layout/*"],
       "@sections/*": ["src/sections/*"],
       "@shared/*": ["src/shared/*"]

@@ -1,4 +1,4 @@
-import { LandingPage } from '@landing';
+import { LandingPage } from '@pages/landing';
 
 import '@kds/ui/styles';
 
