@@ -26,7 +26,7 @@ export const note = recipe({
   variants: {
     variant: {
       hero: {
-        fontSize: '1.1rem',
+        ...typography.cap3_r_12,
       },
       final: {
         ...typography.body6_r_16,

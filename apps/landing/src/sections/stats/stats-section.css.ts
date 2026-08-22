@@ -1,4 +1,4 @@
-import { themeVars } from '@kds/ui/styles';
+import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
@@ -8,10 +8,9 @@ export const container = style({
 });
 
 export const label = style({
+  ...typography.cap1_sb_12,
   marginBottom: '4rem',
   color: themeVars.color.grayscale.gray500,
-  fontSize: '1.1rem',
-  fontWeight: 700,
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
 });
@@ -25,10 +24,9 @@ export const stats = style({
 });
 
 export const versus = style({
+  ...typography.body1_sb_18,
   padding: '0 1.6rem',
   color: themeVars.color.grayscale.gray600,
-  fontSize: '1.8rem',
-  fontWeight: 700,
 });
 
 export const gapSpacing = style({

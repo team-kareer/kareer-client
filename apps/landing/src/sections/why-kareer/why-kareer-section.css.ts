@@ -55,8 +55,8 @@ export const benefits = style({
 });
 
 export const credit = style({
+  ...typography.cap3_r_12,
   marginTop: '3.6rem',
   color: 'rgba(255, 255, 255, 0.35)',
-  fontSize: '1.1rem',
   textAlign: 'left',
 });

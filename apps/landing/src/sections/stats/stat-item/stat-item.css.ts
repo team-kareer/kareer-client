@@ -1,4 +1,4 @@
-import { themeVars } from '@kds/ui/styles';
+import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const stat = style({
@@ -20,8 +20,8 @@ export const accent = style({
 });
 
 export const description = style({
+  ...typography.body9_r_14,
   color: themeVars.color.grayscale.gray400,
-  fontSize: '1.3rem',
   lineHeight: 1.5,
   whiteSpace: 'pre-line',
 });

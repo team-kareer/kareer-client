@@ -1,7 +1,8 @@
-import { themeVars } from '@kds/ui/styles';
+import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const painPoint = style({
+  ...typography.body9_r_14,
   display: 'flex',
   alignItems: 'center',
   gap: '0.8rem',
@@ -10,7 +11,6 @@ export const painPoint = style({
   borderRadius: '10px',
   color: themeVars.color.grayscale.gray800,
   backgroundColor: themeVars.color.grayscale.gray100,
-  fontSize: '1.3rem',
   lineHeight: 1.6,
   transition: 'all 0.2s ease',
   ':hover': {

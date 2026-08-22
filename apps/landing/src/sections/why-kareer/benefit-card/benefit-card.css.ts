@@ -26,10 +26,9 @@ export const icon = style({
 });
 
 export const cardTitle = style({
+  ...typography.body4_sb_16,
   marginBottom: '0.8rem',
   color: themeVars.color.grayscale.white,
-  fontSize: '1.5rem',
-  fontWeight: 700,
 });
 
 export const cardDescription = style({

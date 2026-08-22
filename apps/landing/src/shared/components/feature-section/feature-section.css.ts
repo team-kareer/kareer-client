@@ -43,10 +43,9 @@ export const content = style({
 });
 
 export const featureLabel = style({
+  ...typography.cap1_sb_12,
   marginBottom: '1.2rem',
   color: themeVars.color.primary[500],
-  fontSize: '1.1rem',
-  fontWeight: 700,
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
 });

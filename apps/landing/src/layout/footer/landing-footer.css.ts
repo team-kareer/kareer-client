@@ -1,4 +1,4 @@
-import { themeVars } from '@kds/ui/styles';
+import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
@@ -15,6 +15,6 @@ export const logo = style({
 });
 
 export const note = style({
+  ...typography.cap3_r_12,
   color: themeVars.color.grayscale.gray500,
-  fontSize: '1.1rem',
 });

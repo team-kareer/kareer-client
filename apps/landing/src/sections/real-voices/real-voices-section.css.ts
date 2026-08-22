@@ -1,4 +1,4 @@
-import { themeVars } from '@kds/ui/styles';
+import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
@@ -13,10 +13,9 @@ export const inner = style({
 });
 
 export const label = style({
+  ...typography.cap1_sb_12,
   marginBottom: '1.6rem',
   color: themeVars.color.primary[500],
-  fontSize: '1.1rem',
-  fontWeight: 700,
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
 });

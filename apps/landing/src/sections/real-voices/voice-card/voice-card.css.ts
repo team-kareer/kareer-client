@@ -18,7 +18,6 @@ export const quote = style({
 });
 
 export const meta = style({
+  ...typography.cap2_m_12,
   color: themeVars.color.grayscale.gray500,
-  fontSize: '1.1rem',
-  fontWeight: 500,
 });
