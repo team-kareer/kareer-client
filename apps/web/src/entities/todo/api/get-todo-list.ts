@@ -1,4 +1,4 @@
-import { END_POINT } from '@entities/todo/model/end_point';
+import { END_POINT } from '@entities/todo/model/end-point';
 import { GetTodoListResponse } from '@entities/todo/model/types';
 import { api } from '@shared/apis/configs/instance';
 

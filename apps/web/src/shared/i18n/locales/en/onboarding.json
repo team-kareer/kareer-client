@@ -13,6 +13,24 @@
       "background": "Background"
     }
   },
+  "roadmapLoading": {
+    "title": "Building your personalized roadmap",
+    "completedTitle": "{{name}}, your roadmap is ready",
+    "steps": {
+      "profileReview": {
+        "title": "Reviewing {{name}}’s profile",
+        "description": "Checking your visa type, major, and Korean proficiency."
+      },
+      "jobMatching": {
+        "title": "Finding matching jobs and visa options",
+        "description": "Checking your visa type, major, and Korean proficiency."
+      },
+      "roadmapCreation": {
+        "title": "Building {{name}}’s personalized roadmap",
+        "description": "Almost there—we’re putting the finishing touches on your roadmap."
+      }
+    }
+  },
   "steps": {
     "identityVisaVerification": {
       "upload": {

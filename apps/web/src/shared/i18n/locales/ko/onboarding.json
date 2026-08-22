@@ -13,6 +13,24 @@
       "background": "배경 정보"
     }
   },
+  "roadmapLoading": {
+    "title": "맞춤형 로드맵을 만들고 있어요",
+    "completedTitle": "{{name}}님, 로드맵이 준비됐어요",
+    "steps": {
+      "profileReview": {
+        "title": "{{name}}님의 프로필을 검토하고 있어요",
+        "description": "비자 유형, 전공, 한국어 능력을 확인하고 있어요."
+      },
+      "jobMatching": {
+        "title": "적합한 직무와 비자 옵션을 찾고 있어요",
+        "description": "비자 유형, 전공, 한국어 능력을 확인하고 있어요."
+      },
+      "roadmapCreation": {
+        "title": "{{name}}님의 맞춤형 로드맵을 만들고 있어요",
+        "description": "거의 다 됐어요. 로드맵을 마무리하고 있어요."
+      }
+    }
+  },
   "steps": {
     "identityVisaVerification": {
       "upload": {

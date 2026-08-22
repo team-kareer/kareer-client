@@ -1,8 +1,8 @@
 export const END_POINT = {
   TODO: {
     POST_TODO_ITEM: (phaseActionId: number) =>
-      `api/v1/phase-actions/${phaseActionId}/todo`,
+      `api/v1/roadmap/phase-actions/${phaseActionId}/todo`,
     PATCH_TOGGLE_CHECKBOX: (actionItemId: number) =>
-      `api/v1/action-items/${actionItemId}/completed`,
+      `api/v1/roadmap/action-items/${actionItemId}/completed`,
   },
 };

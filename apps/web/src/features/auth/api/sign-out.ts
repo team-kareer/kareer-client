@@ -1,4 +1,4 @@
-import { END_POINT } from '@features/auth/model/end_point';
+import { END_POINT } from '@features/auth/model/end-point';
 import { LogOutResponse } from '@features/auth/model/types';
 import { api } from '@shared/apis/configs/instance';
 
