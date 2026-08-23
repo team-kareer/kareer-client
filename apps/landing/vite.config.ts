@@ -16,11 +16,11 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@app': path.resolve(__dirname, 'src/app'),
-      '@pages': path.resolve(__dirname, 'src/pages'),
-      '@layout': path.resolve(__dirname, 'src/layout'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@constants': path.resolve(__dirname, 'src/constants'),
+      '@i18n': path.resolve(__dirname, 'src/i18n'),
       '@sections': path.resolve(__dirname, 'src/sections'),
-      '@shared': path.resolve(__dirname, 'src/shared'),
     },
   },
 });

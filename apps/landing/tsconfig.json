@@ -1,14 +1,13 @@
 {
   "extends": "@kareer/typescript-config/react.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "types": ["vite/client", "vite-plugin-svgr/client"],
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@pages/*": ["src/pages/*"],
-      "@layout/*": ["src/layout/*"],
-      "@sections/*": ["src/sections/*"],
-      "@shared/*": ["src/shared/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@i18n/*": ["./src/i18n/*"],
+      "@sections/*": ["./src/sections/*"]
     }
   },
   "include": ["src", "vite.config.ts"],
