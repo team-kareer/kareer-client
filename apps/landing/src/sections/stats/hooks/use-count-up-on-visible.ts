@@ -8,9 +8,7 @@ const useCountUpOnVisible = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const container = containerRef.current;
-
-    if (!container) {
+    if (!containerRef.current) {
       return;
     }
 
@@ -41,7 +39,7 @@ const useCountUpOnVisible = () => {
       { threshold: VISIBLE_THRESHOLD },
     );
 
-    observer.observe(container);
+    observer.observe(containerRef.current);
 
     return () => {
       observer.disconnect();
