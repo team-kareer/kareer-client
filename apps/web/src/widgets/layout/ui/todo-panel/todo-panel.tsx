@@ -1,108 +1,135 @@
-import { useRef } from 'react';
 import { Button, Tab, useTabContext } from '@kds/ui';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router';
 
-import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
-import { PHASE_QUERY_KEY } from '@entities/phase/queries';
-import { TODO_QUERY_KEY, TODO_QUERY_OPTIONS } from '@entities/todo';
-import TodoItem from '@entities/todo/ui/todo-item/todo-item';
-import { ROUTE_PATH } from '@shared/router/path';
-import type { components } from '@shared/types/schema';
+import {
+  type TodoActionsType,
+  type TodoDraft,
+  TodoItemForm,
+  TodoItemMenu,
+  TodoUndoToastAction,
+  useCreateTodo,
+  useDeleteTodo,
+  useToggleTodo,
+  useUpdateTodo,
+} from '@features/todo';
+import {
+  type ActionItem,
+  getDueInDays,
+  TODO_QUERY_OPTIONS,
+  TodoCompletedSection,
+  TodoItem,
+} from '@entities/todo';
 import { EmptyLayout } from '@shared/ui';
 
+import { useDueLabel } from './hooks/use-due-label';
 import { useSortedTodos } from './hooks/use-sorted-todos';
-import { formatDueInDays } from './utils/format-due-in-days';
+import { useTodoPanelMode } from './hooks/use-todo-panel-mode';
 
 import * as styles from './todo-panel.css';
 
 const TABS = [
-  { id: 1, value: 'visa', label: 'tab.visa' },
-  { id: 2, value: 'career', label: 'tab.career' },
-] as const;
+  { id: 1, value: 'visa', label: 'tab.visa', actionsType: 'VISA' },
+  { id: 2, value: 'career', label: 'tab.career', actionsType: 'CAREER' },
+] as const satisfies readonly {
+  id: number;
+  value: string;
+  label: string;
+  actionsType: TodoActionsType;
+}[];
 
-type ActionItemListResponse = components['schemas']['ActionItemListResponse'];
-
-const toggleCompleted = (
-  items: ActionItemListResponse['visaActionItems'],
-  actionItemId: number,
-) =>
-  items?.map((item) =>
-    item.actionItemId === actionItemId
-      ? { ...item, completed: !item.completed }
-      : item,
-  );
+const EMPTY_DRAFT: TodoDraft = { title: '', dueInDays: null };
 
 const TodoPanel = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation('todo');
+  const getDueLabel = useDueLabel();
   const { data } = useQuery({ ...TODO_QUERY_OPTIONS.GET_TODO_LIST() });
   const { todos } = useSortedTodos({
     visa: data?.visaActionItems ?? [],
     career: data?.careerActionItems ?? [],
   });
 
-  const queryClient = useQueryClient();
-  const pendingActionItemIds = useRef(new Set<number>());
-  const { mutate } = useMutation({
-    ...TODO_MUTATION_OPTIONS.PATCH_TODO(),
-    onMutate: async (actionItemId) => {
-      pendingActionItemIds.current.add(actionItemId);
-      const queryKey = TODO_QUERY_KEY.TODO_LIST();
+  const {
+    mode,
+    exitMode,
+    enterCreateMode,
+    enterEditMode,
+    setMenuOpen,
+    isCompletedOpen,
+    toggleCompletedOpen,
+    pendingDeleteIds,
+    hidePendingDelete,
+    revealPendingDelete,
+  } = useTodoPanelMode();
 
-      await queryClient.cancelQueries({ queryKey });
-
-      const prev = queryClient.getQueryData<ActionItemListResponse>(queryKey);
-
-      queryClient.setQueryData<ActionItemListResponse>(queryKey, (current) => {
-        if (!current) {
-          return current;
-        }
-
-        return {
-          ...current,
-          visaActionItems: toggleCompleted(
-            current.visaActionItems,
-            actionItemId,
-          ),
-          careerActionItems: toggleCompleted(
-            current.careerActionItems,
-            actionItemId,
-          ),
-        };
-      });
-
-      return { prev };
-    },
-    onError: (_error, _variables, context) => {
-      const queryKey = TODO_QUERY_KEY.TODO_LIST();
-
-      if (context?.prev) {
-        queryClient.setQueryData(queryKey, context.prev);
-      }
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: PHASE_QUERY_KEY.PHASE_ITEM_ROADMAP_ALL(),
-      });
-    },
-    onSettled: (_data, _error, actionItemId) => {
-      pendingActionItemIds.current.delete(actionItemId);
-      queryClient.invalidateQueries({ queryKey: TODO_QUERY_KEY.TODO_LIST() });
-    },
+  const { toggleTodo } = useToggleTodo();
+  const { createTodo, isPending: isCreating } = useCreateTodo();
+  const { updateTodo, isPending: isUpdating } = useUpdateTodo();
+  const { requestDelete } = useDeleteTodo({
+    onHide: hidePendingDelete,
+    onReveal: revealPendingDelete,
+    renderUndoAction: (onUndo) => (
+      <TodoUndoToastAction label={t('toast.undo')} onUndo={onUndo} />
+    ),
   });
 
-  const handleAddTodo = () => {
-    navigate(ROUTE_PATH.ROADMAP);
+  const isVisible = (item: ActionItem) =>
+    !pendingDeleteIds.has(Number(item.actionItemId));
+
+  const handleCreateSubmit = (
+    draft: TodoDraft,
+    actionsType: TodoActionsType,
+  ) => {
+    createTodo(draft, actionsType);
+    exitMode();
   };
 
-  const handleTodoToggle = (actionItemId: number) => {
-    const id = Number(actionItemId);
-    if (pendingActionItemIds.current.has(id)) {
-      return;
+  const handleEditSubmit = (actionItemId: number, draft: TodoDraft) => {
+    updateTodo(actionItemId, draft);
+    exitMode();
+  };
+
+  const renderTodoItem = (item: ActionItem, isCompletedItem: boolean) => {
+    const actionItemId = Number(item.actionItemId);
+
+    if (mode.type === 'editing' && mode.actionItemId === actionItemId) {
+      return (
+        <TodoItemForm
+          key={actionItemId}
+          initialDraft={{
+            title: item.title ?? '',
+            dueInDays: Math.max(1, getDueInDays(item.deadline ?? '') ?? 0),
+          }}
+          isPending={isUpdating}
+          onSubmit={(draft) => handleEditSubmit(actionItemId, draft)}
+          onCancel={exitMode}
+        />
+      );
     }
-    mutate(id);
+
+    const isMenuOpen =
+      mode.type === 'menuOpen' && mode.actionItemId === actionItemId;
+
+    return (
+      <TodoItem
+        key={actionItemId}
+        title={item.title ?? ''}
+        description={getDueLabel(item.deadline ?? '')}
+        size="sm"
+        isChecked={item.completed ?? false}
+        onToggle={() => toggleTodo(actionItemId)}
+        action={
+          <TodoItemMenu
+            isOpen={isMenuOpen}
+            onOpenChange={(isOpen) => setMenuOpen(actionItemId, isOpen)}
+            onEdit={
+              isCompletedItem ? undefined : () => enterEditMode(actionItemId)
+            }
+            onDelete={() => requestDelete(actionItemId)}
+          />
+        }
+      />
+    );
   };
 
   return (
@@ -110,29 +137,49 @@ const TodoPanel = () => {
       <h3 className={styles.title}>{t('TodoTitle')}</h3>
       <Tab.Container initialValue="visa">
         <Tab.List className={styles.tabList}>
-          <TodoTabButtons />
+          <TodoTabButtons onTabChange={exitMode} />
         </Tab.List>
-        {TABS.map(({ id, value }) => {
-          const currentTodos = todos[value];
-          const isEmpty = currentTodos.length === 0;
+        {TABS.map(({ id, value, actionsType }) => {
+          const incompleteTodos = todos[value].incomplete.filter(isVisible);
+          const completedTodos = todos[value].completed.filter(isVisible);
+          const isCreatingMode = mode.type === 'creating';
+          const isEmpty =
+            incompleteTodos.length === 0 && completedTodos.length === 0;
+
+          if (isEmpty && !isCreatingMode) {
+            return (
+              <Tab.Panel key={id} tab={value} className={styles.tabPanel}>
+                <EmptyLayout variant="card" onAction={enterCreateMode} />
+              </Tab.Panel>
+            );
+          }
 
           return (
             <Tab.Panel key={id} tab={value} className={styles.tabPanel}>
-              {isEmpty ? (
-                <EmptyLayout variant="card" onAction={handleAddTodo} />
-              ) : (
-                currentTodos.map(
-                  ({ actionItemId, title, completed, deadline }) => (
-                    <TodoItem
-                      key={actionItemId}
-                      title={title ?? ''}
-                      description={formatDueInDays(deadline ?? '')}
-                      size="sm"
-                      isChecked={completed ?? false}
-                      onToggle={() => handleTodoToggle(Number(actionItemId))}
+              {(isCreatingMode || incompleteTodos.length > 0) && (
+                <ul className={styles.list}>
+                  {isCreatingMode && (
+                    <TodoItemForm
+                      initialDraft={EMPTY_DRAFT}
+                      isPending={isCreating}
+                      onSubmit={(draft) =>
+                        handleCreateSubmit(draft, actionsType)
+                      }
+                      onCancel={exitMode}
                     />
-                  ),
-                )
+                  )}
+                  {incompleteTodos.map((item) => renderTodoItem(item, false))}
+                </ul>
+              )}
+              {completedTodos.length > 0 && (
+                <TodoCompletedSection
+                  count={completedTodos.length}
+                  label={t('completed.label')}
+                  isOpen={isCompletedOpen}
+                  onToggleOpen={toggleCompletedOpen}
+                >
+                  {completedTodos.map((item) => renderTodoItem(item, true))}
+                </TodoCompletedSection>
               )}
             </Tab.Panel>
           );
@@ -142,9 +189,22 @@ const TodoPanel = () => {
   );
 };
 
-const TodoTabButtons = () => {
+interface TodoTabButtonsProps {
+  onTabChange: () => void;
+}
+
+const TodoTabButtons = ({ onTabChange }: TodoTabButtonsProps) => {
   const { t } = useTranslation('todo');
   const { selectedTab, setSelectedTab } = useTabContext();
+
+  const handleTabClick = (value: string) => {
+    if (value === selectedTab) {
+      return;
+    }
+
+    setSelectedTab(value);
+    onTabChange();
+  };
 
   return (
     <>
@@ -152,7 +212,7 @@ const TodoTabButtons = () => {
         <Button
           key={id}
           preset={selectedTab === value ? 'mini_primary' : 'mini_outlined'}
-          onClick={() => setSelectedTab(value)}
+          onClick={() => handleTabClick(value)}
         >
           {t(label)}
         </Button>
@@ -160,4 +220,5 @@ const TodoTabButtons = () => {
     </>
   );
 };
+
 export default TodoPanel;
