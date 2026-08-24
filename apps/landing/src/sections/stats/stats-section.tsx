@@ -15,7 +15,9 @@ const StatsSection = () => {
   const { containerRef, progress } = useCountUpOnVisible();
 
   const desiredEmploymentRate = Math.floor(DESIRED_EMPLOYMENT_RATE * progress);
-  const actualEmploymentRate = (ACTUAL_EMPLOYMENT_RATE * progress).toFixed(1);
+  const actualEmploymentRate = Number(
+    (ACTUAL_EMPLOYMENT_RATE * progress).toFixed(1),
+  );
 
   return (
     <section ref={containerRef} className={styles.container}>

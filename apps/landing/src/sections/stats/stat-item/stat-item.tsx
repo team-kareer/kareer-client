@@ -1,7 +1,7 @@
 import * as styles from './stat-item.css';
 
 interface StatItemProps {
-  value: string | number;
+  value: number;
   description: string;
 }
 
