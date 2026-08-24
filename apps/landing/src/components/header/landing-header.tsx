@@ -1,8 +1,9 @@
-import { LANDING_SECTION_ID, NAVIGATION_ITEMS } from '@constants/index';
+import { LANDING_SECTION_ID } from '@constants/index';
 import { LogoIcon } from '@kds/icons';
 import { Button } from '@kds/ui';
 import { useTranslation } from 'react-i18next';
 
+import { NAVIGATION_ITEMS } from './constants/navigation';
 import useLandingNavigation from './hooks/use-landing-navigation';
 
 import * as styles from './landing-header.css';

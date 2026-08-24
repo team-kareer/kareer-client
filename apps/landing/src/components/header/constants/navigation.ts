@@ -1,4 +1,4 @@
-import { LANDING_SECTION_ID } from './section-id';
+import { LANDING_SECTION_ID } from '@constants/section-id';
 
 export const NAVIGATION_ITEMS = [
   {

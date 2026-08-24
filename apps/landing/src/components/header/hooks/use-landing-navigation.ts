@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { LANDING_SECTION_ID } from '@constants/index';
+
 import {
-  LANDING_SECTION_ID,
   type LandingSectionId,
   NAVIGATION_ITEMS,
-} from '@constants/index';
+} from '../constants/navigation';
 
 const scrollToSection = (sectionId: LandingSectionId) => {
   document.getElementById(sectionId)?.scrollIntoView({
