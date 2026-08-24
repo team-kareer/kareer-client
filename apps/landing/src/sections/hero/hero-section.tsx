@@ -1,12 +1,24 @@
 import Badge from '@components/badge/badge';
 import EarlyAccessForm from '@components/early-access-form/early-access-form';
-import { PAIN_POINTS } from '@constants/index';
-import { GlobalIcon } from '@kds/icons';
+import {
+  GlobalIcon,
+  RoadmapIcon,
+  SearchIcon,
+  TimerIcon,
+  XIcon,
+} from '@kds/icons';
 import { useTranslation } from 'react-i18next';
 
 import PainPointItem from './pain-point-item/pain-point-item';
 
 import * as styles from './hero-section.css';
+
+const PAIN_POINTS = [
+  { icon: XIcon, translationKey: 'hero.painPoints.visa' },
+  { icon: RoadmapIcon, translationKey: 'hero.painPoints.e7' },
+  { icon: SearchIcon, translationKey: 'hero.painPoints.job' },
+  { icon: TimerIcon, translationKey: 'hero.painPoints.deadline' },
+] as const;
 
 const HeroSection = () => {
   const { t } = useTranslation('landing');
