@@ -1,4 +1,5 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import Toast from './toast';
 import { ToastContext } from './toast-context';
@@ -16,13 +17,14 @@ interface ToastItem extends ToastOptions {
 }
 
 interface ToastProviderProps {
+  anchor: string;
   children: ReactNode;
 }
 
 const createToastId = () =>
   `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 
-const ToastProvider = ({ children }: ToastProviderProps) => {
+const ToastProvider = ({ anchor, children }: ToastProviderProps) => {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
   const dismissTimeoutsRef = useRef<Map<string, number>>(new Map());
   const removeTimeoutsRef = useRef<Map<string, number>>(new Map());
@@ -113,7 +115,10 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
   return (
     <ToastContext.Provider value={{ showToast, hideToast }}>
       {children}
-      <div className={styles.viewport}>
+      <div
+        className={styles.viewport}
+        style={assignInlineVars({ [styles.anchor]: anchor })}
+      >
         {toasts.map(({ id, message, icon, action, isLeaving }) => (
           <div key={id} className={styles.toastItem({ leaving: isLeaving })}>
             <Toast message={message} icon={icon} action={action} />
