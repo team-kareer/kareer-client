@@ -1,4 +1,5 @@
 import { Checkbox } from '@kds/ui';
+import type { ReactNode } from 'react';
 
 import * as styles from './todo-item.css';
 
@@ -10,6 +11,7 @@ interface TodoItemProps {
   size: TodoItemSize;
   isChecked: boolean;
   onToggle: () => void;
+  action?: ReactNode;
 }
 
 const TodoItem = ({
@@ -18,6 +20,7 @@ const TodoItem = ({
   size,
   isChecked,
   onToggle,
+  action,
 }: TodoItemProps) => {
   const showDescription = size === 'lg' || !isChecked;
 
@@ -28,6 +31,7 @@ const TodoItem = ({
         <p className={styles.title}>{title}</p>
         {showDescription && <p className={styles.description}>{description}</p>}
       </div>
+      {action && <div className={styles.action}>{action}</div>}
     </li>
   );
 };
