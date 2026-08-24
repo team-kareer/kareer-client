@@ -24,7 +24,7 @@
       "titleRequired": "할 일을 입력해주세요",
       "titleTooLong": "제목은 {{max}}자까지 입력할 수 있어요",
       "daysRequired": "마감일을 입력해주세요",
-      "daysInvalid": "1일부터 {{max}}일 사이로 입력해주세요"
+      "daysInvalid": "{{min}}일 이상으로 입력해주세요"
     }
   },
   "toast": {

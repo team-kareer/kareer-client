@@ -13,8 +13,8 @@
   },
   "menu": {
     "trigger": "Open task menu",
-    "edit": "Edit",
-    "delete": "Delete"
+    "edit": "edit",
+    "delete": "delete"
   },
   "form": {
     "placeholder": "Add your text here",
@@ -25,7 +25,7 @@
       "titleRequired": "Please enter a task",
       "titleTooLong": "Title can be up to {{max}} characters",
       "daysRequired": "Please enter a due date",
-      "daysInvalid": "Enter a number between 1 and {{max}}"
+      "daysInvalid": "Enter a number of {{min}} or more"
     }
   },
   "toast": {

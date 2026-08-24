@@ -24,7 +24,7 @@
       "titleRequired": "Vui lòng nhập công việc",
       "titleTooLong": "Tiêu đề tối đa {{max}} ký tự",
       "daysRequired": "Vui lòng nhập hạn chót",
-      "daysInvalid": "Nhập số từ 1 đến {{max}}"
+      "daysInvalid": "Nhập số từ {{min}} trở lên"
     }
   },
   "toast": {

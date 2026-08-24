@@ -24,7 +24,7 @@
       "titleRequired": "请输入待办事项",
       "titleTooLong": "标题最多 {{max}} 个字符",
       "daysRequired": "请输入截止日期",
-      "daysInvalid": "请输入 1 到 {{max}} 之间的数字"
+      "daysInvalid": "请输入 {{min}} 以上的数字"
     }
   },
   "toast": {
