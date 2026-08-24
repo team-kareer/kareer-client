@@ -82,7 +82,7 @@ export const useDeleteTodo = ({
     onHide(actionItemId);
 
     const toastId = showToast({
-      message: t('toast.deleted', { count: 1 }),
+      message: t('toast.deleted'),
       action: renderUndoAction(() => cancelDelete(actionItemId)),
       onAutoDismiss: () => commitDelete(actionItemId),
     });

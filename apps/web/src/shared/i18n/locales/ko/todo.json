@@ -28,7 +28,7 @@
     }
   },
   "toast": {
-    "deleted_other": "할 일 {{count}}개를 삭제했어요",
+    "deleted": "할 일 1개를 삭제했어요",
     "undo": "실행 취소"
   }
 }

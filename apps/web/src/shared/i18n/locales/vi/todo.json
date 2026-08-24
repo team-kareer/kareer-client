@@ -28,7 +28,7 @@
     }
   },
   "toast": {
-    "deleted_other": "Đã xóa {{count}} công việc",
+    "deleted": "Đã xóa 1 công việc",
     "undo": "Hoàn tác"
   }
 }

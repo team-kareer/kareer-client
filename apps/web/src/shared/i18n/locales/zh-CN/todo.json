@@ -28,7 +28,7 @@
     }
   },
   "toast": {
-    "deleted_other": "已删除 {{count}} 项待办",
+    "deleted": "已删除 1 项待办",
     "undo": "撤销"
   }
 }

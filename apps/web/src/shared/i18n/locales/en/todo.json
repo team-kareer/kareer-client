@@ -29,8 +29,7 @@
     }
   },
   "toast": {
-    "deleted_one": "{{count}} task deleted",
-    "deleted_other": "{{count}} tasks deleted",
+    "deleted": "1 task deleted",
     "undo": "Undo"
   }
 }
