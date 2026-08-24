@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useRef } from 'react';
-import { TOAST_DURATION, useToast } from '@kds/ui';
+import { useToast } from '@kds/ui';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
@@ -7,13 +7,6 @@ import { deleteTodoItem } from '@features/todo/api';
 import { removeItem } from '@features/todo/model';
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
 import { type ActionItemList, TODO_QUERY_KEY } from '@entities/todo';
-
-const DELETE_GRACE_MS = TOAST_DURATION;
-
-interface PendingDelete {
-  timeoutId: number;
-  toastId: string;
-}
 
 interface UseDeleteTodoParams {
   onHide: (actionItemId: number) => void;
@@ -29,7 +22,7 @@ export const useDeleteTodo = ({
   const { t } = useTranslation('todo');
   const { showToast, hideToast } = useToast();
   const queryClient = useQueryClient();
-  const pendingDeletesRef = useRef(new Map<number, PendingDelete>());
+  const pendingDeletesRef = useRef(new Map<number, string>());
 
   const { mutate } = useMutation({
     ...TODO_MUTATION_OPTIONS.DELETE_TODO(),
@@ -61,17 +54,23 @@ export const useDeleteTodo = ({
       onReveal(actionItemId);
     },
   });
-
-  const cancelDelete = (actionItemId: number) => {
-    const pendingDelete = pendingDeletesRef.current.get(actionItemId);
-
-    if (!pendingDelete) {
+  const commitDelete = (actionItemId: number) => {
+    if (!pendingDeletesRef.current.delete(actionItemId)) {
       return;
     }
 
-    window.clearTimeout(pendingDelete.timeoutId);
+    mutate({ actionItemId });
+  };
+
+  const cancelDelete = (actionItemId: number) => {
+    const toastId = pendingDeletesRef.current.get(actionItemId);
+
+    if (!toastId) {
+      return;
+    }
+
     pendingDeletesRef.current.delete(actionItemId);
-    hideToast(pendingDelete.toastId);
+    hideToast(toastId);
     onReveal(actionItemId);
   };
 
@@ -82,25 +81,20 @@ export const useDeleteTodo = ({
 
     onHide(actionItemId);
 
-    const timeoutId = window.setTimeout(() => {
-      pendingDeletesRef.current.delete(actionItemId);
-      mutate({ actionItemId });
-    }, DELETE_GRACE_MS);
-
     const toastId = showToast({
       message: t('toast.deleted', { count: 1 }),
       action: renderUndoAction(() => cancelDelete(actionItemId)),
+      onAutoDismiss: () => commitDelete(actionItemId),
     });
 
-    pendingDeletesRef.current.set(actionItemId, { timeoutId, toastId });
+    pendingDeletesRef.current.set(actionItemId, toastId);
   };
 
   useEffect(() => {
     const pendingDeletes = pendingDeletesRef.current;
 
     return () => {
-      pendingDeletes.forEach(({ timeoutId }, actionItemId) => {
-        window.clearTimeout(timeoutId);
+      pendingDeletes.forEach((_toastId, actionItemId) => {
         deleteTodoItem({ actionItemId }).catch(() => undefined);
       });
 

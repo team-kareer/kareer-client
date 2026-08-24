@@ -81,6 +81,7 @@ export const toastItem = recipe({
     leaving: {
       true: {
         animation: `${fadeOut} 200ms ease-in forwards`,
+        pointerEvents: 'none',
       },
       false: {},
     },
