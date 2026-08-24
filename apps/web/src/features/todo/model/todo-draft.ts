@@ -5,21 +5,28 @@ export type TodoDraft = {
 
 export type TodoDraftError =
   | 'TITLE_REQUIRED'
+  | 'TITLE_TOO_LONG'
   | 'DAYS_REQUIRED'
   | 'DAYS_INVALID';
 
-export const DUE_DAYS_MIN = 1;
+export const TITLE_MAX_LENGTH = 255;
 
 export const validateTodoDraft = (draft: TodoDraft): TodoDraftError | null => {
-  if (draft.title.trim().length === 0) {
+  const title = draft.title.trim();
+
+  if (title.length === 0) {
     return 'TITLE_REQUIRED';
+  }
+
+  if (title.length > TITLE_MAX_LENGTH) {
+    return 'TITLE_TOO_LONG';
   }
 
   if (draft.dueInDays === null) {
     return 'DAYS_REQUIRED';
   }
 
-  if (!Number.isInteger(draft.dueInDays) || draft.dueInDays < DUE_DAYS_MIN) {
+  if (!Number.isInteger(draft.dueInDays) || draft.dueInDays < 1) {
     return 'DAYS_INVALID';
   }
 
