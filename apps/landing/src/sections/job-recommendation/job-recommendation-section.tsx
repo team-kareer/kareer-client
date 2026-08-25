@@ -1,0 +1,22 @@
+import FeatureSection from '@components/feature-section/feature-section';
+import { LANDING_SECTION_ID } from '@constants/section-id';
+import { useTranslation } from 'react-i18next';
+
+import JobRecommendationPreview from './job-recommendation-preview/job-recommendation-preview';
+
+const JobRecommendationSection = () => {
+  const { t } = useTranslation('landing');
+
+  return (
+    <FeatureSection
+      id={LANDING_SECTION_ID.features}
+      featureLabel={t('features.job.label')}
+      title={t('features.job.title')}
+      description={t('features.job.description')}
+      preview={<JobRecommendationPreview />}
+      background="muted"
+    />
+  );
+};
+
+export default JobRecommendationSection;
