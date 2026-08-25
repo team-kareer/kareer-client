@@ -1,5 +1,5 @@
-import enLanding from '@i18n/locales/en/landing.json';
-import koLanding from '@i18n/locales/ko/landing.json';
+import enLanding from '@i18n/locales/en.json';
+import koLanding from '@i18n/locales/ko.json';
 
 export const resources = {
   en: {
