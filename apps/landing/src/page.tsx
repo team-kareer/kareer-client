@@ -1,4 +1,5 @@
 import LandingHeader from '@components/header/landing-header';
+import CareerRoadmapSection from '@sections/career-roadmap/career-roadmap-section';
 import HeroSection from '@sections/hero/hero-section';
 import JobRecommendationSection from '@sections/job-recommendation/job-recommendation-section';
 import StatsSection from '@sections/stats/stats-section';
@@ -13,6 +14,7 @@ const Page = () => {
         <HeroSection />
         <StatsSection />
         <JobRecommendationSection />
+        <CareerRoadmapSection />
       </main>
     </div>
   );
