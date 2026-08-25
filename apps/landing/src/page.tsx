@@ -1,3 +1,4 @@
+import LandingFooter from '@components/footer/landing-footer';
 import LandingHeader from '@components/header/landing-header';
 import CareerRoadmapSection from '@sections/career-roadmap/career-roadmap-section';
 import EarlyAccessSection from '@sections/early-access/early-access-section';
@@ -24,6 +25,7 @@ const Page = () => {
         <WhyKareerSection />
         <EarlyAccessSection />
       </main>
+      <LandingFooter />
     </div>
   );
 };
