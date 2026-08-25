@@ -2,6 +2,7 @@ import LandingHeader from '@components/header/landing-header';
 import CareerRoadmapSection from '@sections/career-roadmap/career-roadmap-section';
 import HeroSection from '@sections/hero/hero-section';
 import JobRecommendationSection from '@sections/job-recommendation/job-recommendation-section';
+import RealVoicesSection from '@sections/real-voices/real-voices-section';
 import StatsSection from '@sections/stats/stats-section';
 import TodoManagementSection from '@sections/todo-management/todo-management-section';
 
@@ -17,6 +18,7 @@ const Page = () => {
         <JobRecommendationSection />
         <CareerRoadmapSection />
         <TodoManagementSection />
+        <RealVoicesSection />
       </main>
     </div>
   );
