@@ -5,6 +5,7 @@ import JobRecommendationSection from '@sections/job-recommendation/job-recommend
 import RealVoicesSection from '@sections/real-voices/real-voices-section';
 import StatsSection from '@sections/stats/stats-section';
 import TodoManagementSection from '@sections/todo-management/todo-management-section';
+import WhyKareerSection from '@sections/why-kareer/why-kareer-section';
 
 import * as styles from './page.css';
 
@@ -19,6 +20,7 @@ const Page = () => {
         <CareerRoadmapSection />
         <TodoManagementSection />
         <RealVoicesSection />
+        <WhyKareerSection />
       </main>
     </div>
   );
