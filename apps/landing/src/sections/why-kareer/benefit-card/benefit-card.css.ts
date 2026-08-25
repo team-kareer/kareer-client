@@ -13,7 +13,6 @@ export const card = style({
     transform: 'translateY(-4px)',
     borderColor: 'rgba(255, 255, 255, 0.32)',
     backgroundColor: 'rgba(255, 255, 255, 0.16)',
-    // boxShadow: '0 12px 32px rgba(0, 0, 0, 0.35)',
   },
 });
 
