@@ -1,5 +1,6 @@
 import LandingHeader from '@components/header/landing-header';
 import CareerRoadmapSection from '@sections/career-roadmap/career-roadmap-section';
+import EarlyAccessSection from '@sections/early-access/early-access-section';
 import HeroSection from '@sections/hero/hero-section';
 import JobRecommendationSection from '@sections/job-recommendation/job-recommendation-section';
 import RealVoicesSection from '@sections/real-voices/real-voices-section';
@@ -21,6 +22,7 @@ const Page = () => {
         <TodoManagementSection />
         <RealVoicesSection />
         <WhyKareerSection />
+        <EarlyAccessSection />
       </main>
     </div>
   );
