@@ -1,4 +1,4 @@
-import * as styles from './todo-undo-toast-action.css';
+import { Button } from '@kds/ui';
 
 interface TodoUndoToastActionProps {
   label: string;
@@ -7,9 +7,9 @@ interface TodoUndoToastActionProps {
 
 const TodoUndoToastAction = ({ label, onUndo }: TodoUndoToastActionProps) => {
   return (
-    <button type="button" className={styles.button} onClick={onUndo}>
+    <Button preset="text_inverse" type="button" onClick={onUndo}>
       {label}
-    </button>
+    </Button>
   );
 };
 

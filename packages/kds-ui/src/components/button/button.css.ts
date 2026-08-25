@@ -97,9 +97,28 @@ export const button = recipe({
           backgroundColor: themeVars.color.grayscale.gray300,
         },
       },
+      inverse: {
+        color: themeVars.color.primary[400],
+        backgroundColor: 'transparent',
+        ':hover': {
+          color: themeVars.color.primary[300],
+        },
+        ':active': {
+          color: themeVars.color.primary[200],
+        },
+      },
     },
   },
   compoundVariants: [
+    {
+      variants: {
+        variant: 'text',
+        color: 'inverse',
+      },
+      style: {
+        padding: 0,
+      },
+    },
     {
       variants: {
         variant: 'mini',

@@ -1,4 +1,4 @@
-import { createVar, globalStyle, keyframes, style } from '@vanilla-extract/css';
+import { createVar, keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars, typography, zIndex } from '../../styles';
@@ -30,11 +30,6 @@ export const action = style({
   display: 'inline-flex',
   alignItems: 'center',
   flexShrink: 0,
-});
-
-globalStyle(`${action} button`, {
-  ...typography.cap2_m_12,
-  color: themeVars.color.primary[400],
 });
 
 const slideIn = keyframes({
