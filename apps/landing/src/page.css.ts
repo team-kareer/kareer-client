@@ -1,5 +1,8 @@
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
-  minHeight: '100dvh',
+  height: '100dvh',
+  overflowX: 'hidden',
+  overflowY: 'auto',
+  scrollPaddingTop: '6.2rem',
 });
