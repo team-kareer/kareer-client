@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { NAVIGATION_ITEMS } from './constants/navigation';
 import useLandingNavigation from './hooks/use-landing-navigation';
+import LanguageSelector from './language-selector/language-selector';
 
 import * as styles from './landing-header.css';
 
@@ -35,13 +36,16 @@ const LandingHeader = () => {
           ))}
         </div>
 
-        <Button
-          type="button"
-          preset="small_primary"
-          onClick={() => scrollToSection(LANDING_SECTION_ID.earlyAccess)}
-        >
-          {t('header.cta')}
-        </Button>
+        <div className={styles.actions}>
+          <LanguageSelector />
+          <Button
+            type="button"
+            preset="small_primary"
+            onClick={() => scrollToSection(LANDING_SECTION_ID.earlyAccess)}
+          >
+            {t('header.cta')}
+          </Button>
+        </div>
       </nav>
     </header>
   );
