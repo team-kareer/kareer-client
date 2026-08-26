@@ -54,28 +54,6 @@ const useAutoResize = (value: string) => {
   return ref;
 };
 
-interface DaysFieldProps {
-  value: string;
-  hasError: boolean;
-  label: string;
-  onChange: (value: string) => void;
-}
-
-const DaysField = ({ value, hasError, label, onChange }: DaysFieldProps) => {
-  return (
-    <input
-      type="text"
-      inputMode="numeric"
-      className={styles.daysInput({ hasError })}
-      value={value}
-      aria-label={label}
-      maxLength={DAYS_INPUT_MAX_LENGTH}
-      size={value.length || 1}
-      onChange={(event) => onChange(event.target.value)}
-    />
-  );
-};
-
 interface TodoItemFormProps {
   initialDraft: TodoDraft;
   onSubmit: (draft: TodoDraft) => void;
@@ -181,6 +159,28 @@ const TodoItemForm = ({
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
       </div>
     </li>
+  );
+};
+
+interface DaysFieldProps {
+  value: string;
+  hasError: boolean;
+  label: string;
+  onChange: (value: string) => void;
+}
+
+const DaysField = ({ value, hasError, label, onChange }: DaysFieldProps) => {
+  return (
+    <input
+      type="text"
+      inputMode="numeric"
+      className={styles.daysInput({ hasError })}
+      value={value}
+      aria-label={label}
+      maxLength={DAYS_INPUT_MAX_LENGTH}
+      size={value.length || 1}
+      onChange={(event) => onChange(event.target.value)}
+    />
   );
 };
 
