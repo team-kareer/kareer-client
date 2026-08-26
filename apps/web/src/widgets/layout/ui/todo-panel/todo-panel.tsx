@@ -22,8 +22,8 @@ import {
 import { EmptyLayout } from '@shared/ui';
 
 import { useDueLabel } from './hooks/use-due-label';
-import { useSortedTodos } from './hooks/use-sorted-todos';
 import { useTodoPanelMode } from './hooks/use-todo-panel-mode';
+import { getSortedTodos } from './utils/get-sorted-todos';
 
 import * as styles from './todo-panel.css';
 
@@ -43,7 +43,7 @@ const TodoPanel = () => {
   const { t } = useTranslation('todo');
   const getDueLabel = useDueLabel();
   const { data } = useQuery({ ...TODO_QUERY_OPTIONS.GET_TODO_LIST() });
-  const { todos } = useSortedTodos({
+  const todos = getSortedTodos({
     visa: data?.visaActionItems ?? [],
     career: data?.careerActionItems ?? [],
   });

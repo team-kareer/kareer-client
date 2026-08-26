@@ -24,11 +24,7 @@ const splitByCompleted = (list: ActionItem[]): SortedTodos => ({
   completed: sortByDueDate(list.filter((todo) => todo.completed)),
 });
 
-export const useSortedTodos = (initialTodos: TodosByTab) => {
-  const todos = {
-    visa: splitByCompleted(initialTodos.visa),
-    career: splitByCompleted(initialTodos.career),
-  };
-
-  return { todos };
-};
+export const getSortedTodos = (todosByTab: TodosByTab) => ({
+  visa: splitByCompleted(todosByTab.visa),
+  career: splitByCompleted(todosByTab.career),
+});
