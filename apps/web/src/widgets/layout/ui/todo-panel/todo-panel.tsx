@@ -7,7 +7,6 @@ import {
   type TodoDraft,
   TodoItemForm,
   TodoItemMenu,
-  TodoUndoToastAction,
   useCreateTodo,
   useDeleteTodo,
   useToggleTodo,
@@ -69,7 +68,9 @@ const TodoPanel = () => {
     onHide: hidePendingDelete,
     onReveal: revealPendingDelete,
     renderUndoAction: (onUndo) => (
-      <TodoUndoToastAction label={t('toast.undo')} onUndo={onUndo} />
+      <Button preset="text_inverse" type="button" onClick={onUndo}>
+        {t('toast.undo')}
+      </Button>
     ),
   });
 
