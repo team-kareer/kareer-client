@@ -16,9 +16,9 @@ export const container = style({
 });
 
 export const navigation = style({
-  display: 'flex',
+  display: 'grid',
+  gridTemplateColumns: '1fr auto 1fr',
   alignItems: 'center',
-  justifyContent: 'space-between',
   height: '100%',
 });
 
@@ -26,6 +26,7 @@ export const logo = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  justifySelf: 'start',
   flexShrink: 0,
 });
 
@@ -33,6 +34,13 @@ export const sectionNavigation = style({
   display: 'flex',
   alignItems: 'center',
   gap: '2.4rem',
+});
+
+export const actions = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifySelf: 'end',
+  gap: '1.2rem',
 });
 
 export const sectionLink = recipe({

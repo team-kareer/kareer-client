@@ -1,10 +1,9 @@
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@i18n/constants';
 import { resources } from '@i18n/resources';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 const LANGUAGE_STORAGE_KEY = 'landing-language';
-const DEFAULT_LANGUAGE = 'en';
-const SUPPORTED_LANGUAGES = ['en', 'ko'] as const;
 
 const getInitialLanguage = () => {
   const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
