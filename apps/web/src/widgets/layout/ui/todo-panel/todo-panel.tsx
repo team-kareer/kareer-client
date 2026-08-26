@@ -62,8 +62,8 @@ const TodoPanel = () => {
   } = useTodoPanelMode();
 
   const { toggleTodo } = useToggleTodo();
-  const { createTodo, isPending: isCreating } = useCreateTodo();
-  const { updateTodo, isPending: isUpdating } = useUpdateTodo();
+  const { createTodo } = useCreateTodo();
+  const { updateTodo } = useUpdateTodo();
   const { requestDelete } = useDeleteTodo({
     onHide: hidePendingDelete,
     onReveal: revealPendingDelete,
@@ -101,7 +101,6 @@ const TodoPanel = () => {
             title: item.title ?? '',
             dueInDays: Math.max(1, getDueInDays(item.deadline ?? '') ?? 0),
           }}
-          isPending={isUpdating}
           onSubmit={(draft) => handleEditSubmit(actionItemId, draft)}
           onCancel={exitMode}
         />
@@ -162,7 +161,6 @@ const TodoPanel = () => {
                   {isCreatingMode && (
                     <TodoItemForm
                       initialDraft={EMPTY_DRAFT}
-                      isPending={isCreating}
                       onSubmit={(draft) =>
                         handleCreateSubmit(draft, actionsType)
                       }

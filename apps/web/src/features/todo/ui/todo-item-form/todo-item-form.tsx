@@ -58,14 +58,12 @@ interface TodoItemFormProps {
   initialDraft: TodoDraft;
   onSubmit: (draft: TodoDraft) => void;
   onCancel: () => void;
-  isPending: boolean;
 }
 
 const TodoItemForm = ({
   initialDraft,
   onSubmit,
   onCancel,
-  isPending,
 }: TodoItemFormProps) => {
   const { t } = useTranslation('todo');
   const [title, setTitle] = useState(initialDraft.title);
@@ -85,10 +83,6 @@ const TodoItemForm = ({
   };
 
   const handleSubmit = () => {
-    if (isPending) {
-      return;
-    }
-
     const draft = toDraft();
     const nextErrorKey = validateTodoDraft(draft);
 
