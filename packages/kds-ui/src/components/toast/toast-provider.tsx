@@ -16,7 +16,7 @@ interface ToastItem extends ToastOptions {
 }
 
 interface ToastProviderProps {
-  anchor: string;
+  anchor?: string;
   children: ReactNode;
 }
 
@@ -130,8 +130,10 @@ const ToastProvider = ({ anchor, children }: ToastProviderProps) => {
     <ToastContext.Provider value={{ showToast, hideToast }}>
       {children}
       <div
-        className={styles.viewport}
-        style={assignInlineVars({ [styles.anchor]: anchor })}
+        className={styles.viewport({ anchored: Boolean(anchor) })}
+        style={
+          anchor ? assignInlineVars({ [styles.anchor]: anchor }) : undefined
+        }
       >
         {toasts.map(({ id, message, icon, action, isLeaving }) => (
           <div key={id} className={styles.toastItem({ leaving: isLeaving })}>

@@ -32,7 +32,7 @@ export const action = style({
   flexShrink: 0,
 });
 
-const slideIn = keyframes({
+const slideDownIn = keyframes({
   from: {
     opacity: 0,
     transform: 'translateY(-0.8rem)',
@@ -43,7 +43,7 @@ const slideIn = keyframes({
   },
 });
 
-const fadeOut = keyframes({
+const slideDownOut = keyframes({
   from: {
     opacity: 1,
     transform: 'translateY(0)',
@@ -51,32 +51,83 @@ const fadeOut = keyframes({
   to: {
     opacity: 0,
     transform: 'translateY(-0.8rem)',
+  },
+});
+
+const slideUpIn = keyframes({
+  from: {
+    opacity: 0,
+    transform: 'translateY(0.8rem)',
+  },
+  to: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+});
+
+const slideUpOut = keyframes({
+  from: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+  to: {
+    opacity: 0,
+    transform: 'translateY(0.8rem)',
   },
 });
 
 export const anchor = createVar();
 
-export const viewport = style({
-  position: 'fixed',
+const anchoredViewport = style({
   positionAnchor: anchor,
   top: 'calc(anchor(top) + 1.5rem)',
   right: 'calc(anchor(right) - 1.3rem)',
-  display: 'flex',
-  flexDirection: 'column',
   alignItems: 'flex-end',
-  gap: '0.4rem',
-  zIndex: zIndex.toast,
+});
+
+export const viewport = recipe({
+  base: {
+    position: 'fixed',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.4rem',
+    zIndex: zIndex.toast,
+  },
+  variants: {
+    anchored: {
+      true: anchoredViewport,
+      false: {
+        left: '50%',
+        bottom: '3.2rem',
+        alignItems: 'center',
+        transform: 'translateX(-50%)',
+      },
+    },
+  },
+  defaultVariants: {
+    anchored: false,
+  },
 });
 
 export const toastItem = recipe({
   base: {
-    animation: `${slideIn} 200ms ease-out`,
+    animation: `${slideUpIn} 200ms ease-out`,
+    selectors: {
+      [`${anchoredViewport} &`]: {
+        animation: `${slideDownIn} 200ms ease-out`,
+      },
+    },
   },
   variants: {
     leaving: {
       true: {
-        animation: `${fadeOut} 200ms ease-in forwards`,
+        animation: `${slideUpOut} 200ms ease-in forwards`,
         pointerEvents: 'none',
+        selectors: {
+          [`${anchoredViewport} &`]: {
+            animation: `${slideDownOut} 200ms ease-in forwards`,
+          },
+        },
       },
       false: {},
     },
