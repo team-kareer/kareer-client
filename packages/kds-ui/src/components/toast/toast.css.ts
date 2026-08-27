@@ -1,4 +1,4 @@
-import { globalStyle, keyframes, style } from '@vanilla-extract/css';
+import { createVar, keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { themeVars, typography, zIndex } from '../../styles';
@@ -32,15 +32,10 @@ export const action = style({
   flexShrink: 0,
 });
 
-globalStyle(`${action} button`, {
-  ...typography.cap2_m_12,
-  color: themeVars.color.primary[400],
-});
-
 const slideIn = keyframes({
   from: {
     opacity: 0,
-    transform: 'translateY(0.8rem)',
+    transform: 'translateY(-0.8rem)',
   },
   to: {
     opacity: 1,
@@ -55,18 +50,21 @@ const fadeOut = keyframes({
   },
   to: {
     opacity: 0,
-    transform: 'translateY(0.8rem)',
+    transform: 'translateY(-0.8rem)',
   },
 });
 
+export const anchor = createVar();
+
 export const viewport = style({
   position: 'fixed',
-  left: '50%',
-  bottom: '3.2rem',
+  positionAnchor: anchor,
+  top: 'calc(anchor(top) + 1.5rem)',
+  right: 'calc(anchor(right) - 1.3rem)',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'flex-end',
   gap: '0.4rem',
-  transform: 'translateX(-50%)',
   zIndex: zIndex.toast,
 });
 
@@ -78,6 +76,7 @@ export const toastItem = recipe({
     leaving: {
       true: {
         animation: `${fadeOut} 200ms ease-in forwards`,
+        pointerEvents: 'none',
       },
       false: {},
     },

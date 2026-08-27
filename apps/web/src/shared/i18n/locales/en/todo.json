@@ -3,5 +3,33 @@
   "tab": {
     "career": "Career",
     "visa": "Visa"
+  },
+  "dueIn_one": "Due in {{count}} day",
+  "dueIn_other": "Due in {{count}} days",
+  "dueToday": "Due today",
+  "overdue": "Overdue",
+  "completed": {
+    "label": "Completed"
+  },
+  "menu": {
+    "trigger": "Open task menu",
+    "edit": "edit",
+    "delete": "delete"
+  },
+  "form": {
+    "placeholder": "Add your text here",
+    "titleLabel": "Task title",
+    "daysLabel": "Days until due",
+    "dueIn": "Due in <days></days> days",
+    "error": {
+      "titleRequired": "Please enter a task",
+      "titleTooLong": "Title can be up to {{max}} characters",
+      "daysRequired": "Please enter a due date",
+      "daysInvalid": "Enter a number of {{min}} or more"
+    }
+  },
+  "toast": {
+    "deleted": "1 task deleted",
+    "undo": "Undo"
   }
 }

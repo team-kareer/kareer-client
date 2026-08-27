@@ -5,14 +5,22 @@ export type TodoDraft = {
 
 export type TodoDraftError =
   | 'TITLE_REQUIRED'
+  | 'TITLE_TOO_LONG'
   | 'DAYS_REQUIRED'
   | 'DAYS_INVALID';
 
+export const TITLE_MAX_LENGTH = 255;
 export const DUE_DAYS_MIN = 1;
 
 export const validateTodoDraft = (draft: TodoDraft): TodoDraftError | null => {
-  if (draft.title.trim().length === 0) {
+  const title = draft.title.trim();
+
+  if (title.length === 0) {
     return 'TITLE_REQUIRED';
+  }
+
+  if (title.length > TITLE_MAX_LENGTH) {
+    return 'TITLE_TOO_LONG';
   }
 
   if (draft.dueInDays === null) {
@@ -34,7 +42,6 @@ export const daysToDeadline = (days: number): string => {
     now.getDate() + days,
   );
 
-  // toISOString() (UTC 기준) -> KST에서 하루 앞당김
   const year = String(deadline.getFullYear()).padStart(4, '0');
   const month = String(deadline.getMonth() + 1).padStart(2, '0');
   const date = String(deadline.getDate()).padStart(2, '0');

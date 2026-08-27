@@ -17,10 +17,11 @@ export const contentWrapper = style({
   minWidth: 0,
 });
 
-export const icon = style({
-  backgroundColor: 'transparent',
-  padding: 0,
-  cursor: 'pointer',
+export const action = style({
+  display: 'flex',
+  alignItems: 'center',
+  flexShrink: 0,
+  marginLeft: 'auto',
 });
 
 export const title = style({
