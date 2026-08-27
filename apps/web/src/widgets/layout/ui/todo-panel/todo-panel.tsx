@@ -62,7 +62,7 @@ const TodoPanel = () => {
   } = useTodoPanelMode();
 
   const { toggleTodo } = useToggleTodo();
-  const { createTodo } = useCreateTodo();
+  const { createTodo, isPending } = useCreateTodo();
   const { updateTodo } = useUpdateTodo();
   const { requestDelete } = useDeleteTodo({
     onHide: hidePendingDelete,
@@ -146,7 +146,7 @@ const TodoPanel = () => {
           const isEmpty =
             incompleteTodos.length === 0 && completedTodos.length === 0;
 
-          if (isEmpty && !isCreatingMode) {
+          if (isEmpty && !isCreatingMode && !isPending) {
             return (
               <Tab.Panel key={id} tab={value} className={styles.tabPanel}>
                 <EmptyLayout variant="card" onAction={enterCreateMode} />
