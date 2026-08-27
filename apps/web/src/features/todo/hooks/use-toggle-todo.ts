@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
 import { PHASE_QUERY_KEY } from '@entities/phase/queries';
-import { type ActionItemList, TODO_QUERY_KEY } from '@entities/todo';
+import { type ActionItemList, TODO_QUERY_OPTIONS } from '@entities/todo';
 
 const toggleCompleted = (
   items: ActionItemList['visaActionItems'],
@@ -17,13 +17,13 @@ const toggleCompleted = (
 
 export const useToggleTodo = () => {
   const queryClient = useQueryClient();
+  const { queryKey } = TODO_QUERY_OPTIONS.GET_TODO_LIST();
   const pendingActionItemIds = useRef(new Set<number>());
 
   const { mutate } = useMutation({
     ...TODO_MUTATION_OPTIONS.PATCH_TODO(),
     onMutate: async (actionItemId) => {
       pendingActionItemIds.current.add(actionItemId);
-      const queryKey = TODO_QUERY_KEY.TODO_LIST();
 
       await queryClient.cancelQueries({ queryKey });
 
@@ -51,7 +51,7 @@ export const useToggleTodo = () => {
     },
     onError: (_error, _variables, context) => {
       if (context?.prev) {
-        queryClient.setQueryData(TODO_QUERY_KEY.TODO_LIST(), context.prev);
+        queryClient.setQueryData(queryKey, context.prev);
       }
     },
     onSuccess: () => {
@@ -61,7 +61,7 @@ export const useToggleTodo = () => {
     },
     onSettled: (_data, _error, actionItemId) => {
       pendingActionItemIds.current.delete(actionItemId);
-      queryClient.invalidateQueries({ queryKey: TODO_QUERY_KEY.TODO_LIST() });
+      queryClient.invalidateQueries({ queryKey });
     },
   });
 

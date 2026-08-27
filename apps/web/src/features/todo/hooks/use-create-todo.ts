@@ -8,7 +8,7 @@ import {
   type TodoDraft,
 } from '@features/todo/model';
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
-import { type ActionItemList, TODO_QUERY_KEY } from '@entities/todo';
+import { type ActionItemList, TODO_QUERY_OPTIONS } from '@entities/todo';
 
 let lastTempId = 0;
 
@@ -20,12 +20,11 @@ const createTempId = () => {
 
 export const useCreateTodo = () => {
   const queryClient = useQueryClient();
+  const { queryKey } = TODO_QUERY_OPTIONS.GET_TODO_LIST();
 
   const { mutate, isPending } = useMutation({
     ...TODO_MUTATION_OPTIONS.POST_CREATE_TODO(),
     onMutate: async (payload) => {
-      const queryKey = TODO_QUERY_KEY.TODO_LIST();
-
       await queryClient.cancelQueries({ queryKey });
 
       const prev = queryClient.getQueryData<ActionItemList>(queryKey);
@@ -51,24 +50,21 @@ export const useCreateTodo = () => {
       return { prev, tempId };
     },
     onSuccess: (item, payload, context) => {
-      queryClient.setQueryData<ActionItemList>(
-        TODO_QUERY_KEY.TODO_LIST(),
-        (current) => {
-          if (!current) {
-            return current;
-          }
+      queryClient.setQueryData<ActionItemList>(queryKey, (current) => {
+        if (!current) {
+          return current;
+        }
 
-          return insertItem(
-            removeItem(current, context.tempId),
-            item,
-            payload.actionsType,
-          );
-        },
-      );
+        return insertItem(
+          removeItem(current, context.tempId),
+          item,
+          payload.actionsType,
+        );
+      });
     },
     onError: (_error, _payload, context) => {
       if (context?.prev) {
-        queryClient.setQueryData(TODO_QUERY_KEY.TODO_LIST(), context.prev);
+        queryClient.setQueryData(queryKey, context.prev);
       }
     },
   });

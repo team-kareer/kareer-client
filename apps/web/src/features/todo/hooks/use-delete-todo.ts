@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { deleteTodoItem } from '@features/todo/api';
 import { removeItem } from '@features/todo/model';
 import { TODO_MUTATION_OPTIONS } from '@features/todo/queries';
-import { type ActionItemList, TODO_QUERY_KEY } from '@entities/todo';
+import { type ActionItemList, TODO_QUERY_OPTIONS } from '@entities/todo';
 
 interface UseDeleteTodoParams {
   onHide: (actionItemId: number) => void;
@@ -22,13 +22,12 @@ export const useDeleteTodo = ({
   const { t } = useTranslation('todo');
   const { showToast, hideToast } = useToast();
   const queryClient = useQueryClient();
+  const { queryKey } = TODO_QUERY_OPTIONS.GET_TODO_LIST();
   const pendingDeletesRef = useRef(new Map<number, string>());
 
   const { mutate } = useMutation({
     ...TODO_MUTATION_OPTIONS.DELETE_TODO(),
     onMutate: async ({ actionItemId }) => {
-      const queryKey = TODO_QUERY_KEY.TODO_LIST();
-
       await queryClient.cancelQueries({ queryKey });
 
       const prev = queryClient.getQueryData<ActionItemList>(queryKey);
@@ -48,7 +47,7 @@ export const useDeleteTodo = ({
     },
     onError: (_error, { actionItemId }, context) => {
       if (context?.prev) {
-        queryClient.setQueryData(TODO_QUERY_KEY.TODO_LIST(), context.prev);
+        queryClient.setQueryData(queryKey, context.prev);
       }
 
       onReveal(actionItemId);
