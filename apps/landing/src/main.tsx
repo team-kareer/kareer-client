@@ -1,4 +1,5 @@
 import { StrictMode } from 'react';
+import { ToastProvider } from '@kds/ui';
 import { createRoot } from 'react-dom/client';
 
 import '@kds/ui/styles';
@@ -8,6 +9,8 @@ import Page from './page';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Page />
+    <ToastProvider>
+      <Page />
+    </ToastProvider>
   </StrictMode>,
 );

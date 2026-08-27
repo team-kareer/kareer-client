@@ -1,4 +1,8 @@
 {
+  "form": {
+    "success": "얼리 액세스 신청이 완료되었어요.",
+    "error": "신청에 실패했어요. 잠시 후 다시 시도해주세요."
+  },
   "header": {
     "navigation": {
       "features": "기능",

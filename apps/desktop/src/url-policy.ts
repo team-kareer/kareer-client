@@ -1,5 +1,5 @@
 const ALLOWED_NAVIGATION_ORIGINS = new Set([
-  'https://ka-reer.com',
+  'https://app.ka-reer.com',
   'https://api.ka-reer.com',
   'https://accounts.google.com',
 ]);

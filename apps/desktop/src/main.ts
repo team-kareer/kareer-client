@@ -3,7 +3,7 @@ import { app, BrowserWindow, shell } from 'electron';
 import { productName } from '../package.json';
 import { isAllowedNavigationUrl, isHttpsUrl } from './url-policy.js';
 
-const WEB_URL = 'https://ka-reer.com';
+const WEB_URL = 'https://app.ka-reer.com';
 
 app.setName(productName);
 

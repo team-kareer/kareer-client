@@ -18,6 +18,15 @@ export const inputWrapper = style({
   minWidth: 0,
 });
 
+export const visuallyHidden = style({
+  position: 'absolute',
+  width: 1,
+  height: 1,
+  overflow: 'hidden',
+  clipPath: 'inset(50%)',
+  whiteSpace: 'nowrap',
+});
+
 export const note = recipe({
   base: {
     marginTop: '1rem',
