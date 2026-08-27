@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import {
   type TodoActionsType,
   type TodoDraft,
-  TodoItemForm,
-  TodoItemMenu,
+  type TodoItemHandlers,
+  TodoItemList,
   useCreateTodo,
   useDeleteTodo,
   useToggleTodo,
@@ -14,10 +14,8 @@ import {
 } from '@features/todo';
 import {
   type ActionItem,
-  getDueInDays,
   TODO_QUERY_OPTIONS,
   TodoCompletedSection,
-  TodoItem,
 } from '@entities/todo';
 import { EmptyLayout } from '@shared/ui';
 
@@ -36,8 +34,6 @@ const TABS = [
   label: string;
   actionsType: TodoActionsType;
 }[];
-
-const EMPTY_DRAFT: TodoDraft = { title: '', dueInDays: null };
 
 const TodoPanel = () => {
   const { t } = useTranslation('todo');
@@ -77,59 +73,28 @@ const TodoPanel = () => {
   const isVisible = (item: ActionItem) =>
     !pendingDeleteIds.has(Number(item.actionItemId));
 
+  const isCreating = mode.type === 'creating';
+  const editingItemId = mode.type === 'editing' ? mode.actionItemId : null;
+  const menuOpenItemId = mode.type === 'menuOpen' ? mode.actionItemId : null;
+
+  const todoItemHandlers: TodoItemHandlers = {
+    onToggle: toggleTodo,
+    onEditStart: enterEditMode,
+    onEditSubmit: (actionItemId, draft) => {
+      updateTodo(actionItemId, draft);
+      exitMode();
+    },
+    onDelete: requestDelete,
+    onMenuOpenChange: setMenuOpen,
+    onCancelEdit: exitMode,
+  };
+
   const handleCreateSubmit = (
     draft: TodoDraft,
     actionsType: TodoActionsType,
   ) => {
     createTodo(draft, actionsType);
     exitMode();
-  };
-
-  const handleEditSubmit = (actionItemId: number, draft: TodoDraft) => {
-    updateTodo(actionItemId, draft);
-    exitMode();
-  };
-
-  const renderTodoItem = (item: ActionItem, isCompletedItem: boolean) => {
-    const actionItemId = Number(item.actionItemId);
-
-    if (mode.type === 'editing' && mode.actionItemId === actionItemId) {
-      return (
-        <TodoItemForm
-          key={actionItemId}
-          initialDraft={{
-            title: item.title ?? '',
-            dueInDays: Math.max(1, getDueInDays(item.deadline ?? '') ?? 0),
-          }}
-          onSubmit={(draft) => handleEditSubmit(actionItemId, draft)}
-          onCancel={exitMode}
-        />
-      );
-    }
-
-    const isMenuOpen =
-      mode.type === 'menuOpen' && mode.actionItemId === actionItemId;
-
-    return (
-      <TodoItem
-        key={actionItemId}
-        title={item.title ?? ''}
-        description={getDueLabel(item.deadline ?? '')}
-        size="sm"
-        isChecked={item.completed ?? false}
-        onToggle={() => toggleTodo(actionItemId)}
-        action={
-          <TodoItemMenu
-            isOpen={isMenuOpen}
-            onOpenChange={(isOpen) => setMenuOpen(actionItemId, isOpen)}
-            onEdit={
-              isCompletedItem ? undefined : () => enterEditMode(actionItemId)
-            }
-            onDelete={() => requestDelete(actionItemId)}
-          />
-        }
-      />
-    );
   };
 
   return (
@@ -142,43 +107,45 @@ const TodoPanel = () => {
         {TABS.map(({ id, value, actionsType }) => {
           const incompleteTodos = todos[value].incomplete.filter(isVisible);
           const completedTodos = todos[value].completed.filter(isVisible);
-          const isCreatingMode = mode.type === 'creating';
           const isEmpty =
             incompleteTodos.length === 0 && completedTodos.length === 0;
-
-          if (isEmpty && !isCreatingMode && !isPending) {
-            return (
-              <Tab.Panel key={id} tab={value} className={styles.tabPanel}>
-                <EmptyLayout variant="card" onAction={enterCreateMode} />
-              </Tab.Panel>
-            );
-          }
+          const showEmptyLayout = isEmpty && !isCreating && !isPending;
 
           return (
             <Tab.Panel key={id} tab={value} className={styles.tabPanel}>
-              {(isCreatingMode || incompleteTodos.length > 0) && (
-                <ul className={styles.list}>
-                  {isCreatingMode && (
-                    <TodoItemForm
-                      initialDraft={EMPTY_DRAFT}
-                      onSubmit={(draft) =>
-                        handleCreateSubmit(draft, actionsType)
-                      }
-                      onCancel={exitMode}
-                    />
+              {showEmptyLayout ? (
+                <EmptyLayout variant="card" onAction={enterCreateMode} />
+              ) : (
+                <>
+                  <TodoItemList
+                    items={incompleteTodos}
+                    editingItemId={editingItemId}
+                    menuOpenItemId={menuOpenItemId}
+                    getDescription={getDueLabel}
+                    handlers={todoItemHandlers}
+                    onCreateSubmit={
+                      isCreating
+                        ? (draft) => handleCreateSubmit(draft, actionsType)
+                        : undefined
+                    }
+                  />
+                  {completedTodos.length > 0 && (
+                    <TodoCompletedSection
+                      count={completedTodos.length}
+                      label={t('completed.label')}
+                      isOpen={isCompletedOpen}
+                      onToggleOpen={toggleCompletedOpen}
+                    >
+                      <TodoItemList
+                        items={completedTodos}
+                        editingItemId={editingItemId}
+                        menuOpenItemId={menuOpenItemId}
+                        getDescription={getDueLabel}
+                        handlers={todoItemHandlers}
+                      />
+                    </TodoCompletedSection>
                   )}
-                  {incompleteTodos.map((item) => renderTodoItem(item, false))}
-                </ul>
-              )}
-              {completedTodos.length > 0 && (
-                <TodoCompletedSection
-                  count={completedTodos.length}
-                  label={t('completed.label')}
-                  isOpen={isCompletedOpen}
-                  onToggleOpen={toggleCompletedOpen}
-                >
-                  {completedTodos.map((item) => renderTodoItem(item, true))}
-                </TodoCompletedSection>
+                </>
               )}
             </Tab.Panel>
           );

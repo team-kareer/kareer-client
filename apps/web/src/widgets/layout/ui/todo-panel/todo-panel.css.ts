@@ -38,9 +38,3 @@ export const tabPanel = style({
   gap: '1.6rem',
   marginTop: '1.6rem',
 });
-
-export const list = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-});

@@ -39,9 +39,3 @@ export const chevron = style({
   marginLeft: 'auto',
   color: themeVars.color.grayscale.gray400,
 });
-
-export const list = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-});

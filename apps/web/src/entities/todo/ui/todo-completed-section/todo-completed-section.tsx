@@ -32,7 +32,7 @@ const TodoCompletedSection = ({
         <span className={styles.count}>{count}</span>
         <ChevronIcon width={24} height={24} className={styles.chevron} />
       </button>
-      {isOpen && <ul className={styles.list}>{children}</ul>}
+      {isOpen && children}
     </section>
   );
 };
