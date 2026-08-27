@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import * as styles from './early-access-form.css';
 
-const FORMSPREE_FORM_ID = import.meta.env.VITE_FORMSPREE_FORM_ID?.trim();
+const FORMSPREE_FORM_ID = import.meta.env.VITE_FORMSPREE_FORM_ID;
 const FORMSPREE_ENDPOINT = FORMSPREE_FORM_ID
   ? `https://formspree.io/f/${FORMSPREE_FORM_ID}`
   : undefined;
