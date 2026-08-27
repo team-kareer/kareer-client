@@ -3,7 +3,7 @@ import { createContext } from 'react';
 import { ToastOptions } from './types/toast-type';
 
 export interface ToastContextValue {
-  showToast: ({ message, icon }: ToastOptions) => string;
+  showToast: ({ message, icon, action }: ToastOptions) => string;
   hideToast: (id: string) => void;
 }
 
