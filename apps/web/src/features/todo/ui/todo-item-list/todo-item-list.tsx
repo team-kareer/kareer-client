@@ -1,4 +1,4 @@
-import type { TodoDraft } from '@features/todo/model';
+import { DUE_DAYS_MIN, type TodoDraft } from '@features/todo/model';
 import { type ActionItem, getDueInDays, TodoItem } from '@entities/todo';
 
 import TodoItemForm from '../todo-item-form/todo-item-form';
@@ -10,7 +10,7 @@ const EMPTY_DRAFT: TodoDraft = { title: '', dueInDays: null };
 
 const toEditDraft = (item: ActionItem): TodoDraft => ({
   title: item.title ?? '',
-  dueInDays: Math.max(1, getDueInDays(item.deadline ?? '') ?? 0),
+  dueInDays: Math.max(DUE_DAYS_MIN, getDueInDays(item.deadline ?? '') ?? 0),
 });
 
 export interface TodoItemHandlers {

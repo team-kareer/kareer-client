@@ -10,6 +10,7 @@ export type TodoDraftError =
   | 'DAYS_INVALID';
 
 export const TITLE_MAX_LENGTH = 255;
+export const DUE_DAYS_MIN = 1;
 
 export const validateTodoDraft = (draft: TodoDraft): TodoDraftError | null => {
   const title = draft.title.trim();
@@ -26,7 +27,7 @@ export const validateTodoDraft = (draft: TodoDraft): TodoDraftError | null => {
     return 'DAYS_REQUIRED';
   }
 
-  if (!Number.isInteger(draft.dueInDays) || draft.dueInDays < 1) {
+  if (!Number.isInteger(draft.dueInDays) || draft.dueInDays < DUE_DAYS_MIN) {
     return 'DAYS_INVALID';
   }
 

@@ -9,6 +9,7 @@ import { TodoIcon } from '@kds/icons';
 import { Trans, useTranslation } from 'react-i18next';
 
 import {
+  DUE_DAYS_MIN,
   TITLE_MAX_LENGTH,
   type TodoDraft,
   type TodoDraftError,
@@ -29,7 +30,7 @@ const ERROR_MESSAGES: Record<
   DAYS_REQUIRED: { key: 'form.error.daysRequired' },
   DAYS_INVALID: {
     key: 'form.error.daysInvalid',
-    options: { min: 1 },
+    options: { min: DUE_DAYS_MIN },
   },
 };
 
