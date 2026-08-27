@@ -1,4 +1,8 @@
 {
+  "form": {
+    "success": "Your early access request is complete.",
+    "error": "Something went wrong. Please try again shortly."
+  },
   "header": {
     "navigation": {
       "features": "Features",
