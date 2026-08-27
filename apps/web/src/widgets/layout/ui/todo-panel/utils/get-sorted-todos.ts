@@ -10,14 +10,25 @@ type SortedTodos = {
   completed: ActionItem[];
 };
 
-const sortByDueDate = (list: ActionItem[]) => {
-  const toTime = (value: string) => new Date(value).getTime();
+const toTime = (deadline: string | undefined): number | null => {
+  if (!deadline) {
+    return null;
+  }
 
-  return [...list].sort(
-    (firstTodo, secondTodo) =>
-      toTime(firstTodo.deadline ?? '') - toTime(secondTodo.deadline ?? ''),
-  );
+  const time = new Date(deadline).getTime();
+
+  if (Number.isNaN(time)) {
+    return null;
+  }
+
+  return time;
 };
+
+const sortByDueDate = (list: ActionItem[]) =>
+  [...list].sort(
+    (firstTodo, secondTodo) =>
+      (toTime(firstTodo.deadline) ?? 0) - (toTime(secondTodo.deadline) ?? 0),
+  );
 
 const splitByCompleted = (list: ActionItem[]): SortedTodos => ({
   incomplete: sortByDueDate(list.filter((todo) => !todo.completed)),
