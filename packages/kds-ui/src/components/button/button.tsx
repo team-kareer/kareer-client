@@ -19,7 +19,8 @@ type ButtonPreset =
   | 'large_primary'
   | 'large_secondary'
   | 'large_outlined'
-  | 'text_ghost';
+  | 'text_ghost'
+  | 'text_inverse';
 
 interface ButtonProps extends Omit<ComponentProps<'button'>, 'className'> {
   preset: ButtonPreset;

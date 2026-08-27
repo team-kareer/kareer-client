@@ -1,4 +1,5 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import Toast from './toast';
 import { ToastContext } from './toast-context';
@@ -8,7 +9,6 @@ import * as styles from './toast.css';
 
 const TOAST_DURATION = 4000;
 const TOAST_EXIT_DURATION = 400;
-const MAX_VISIBLE_TOASTS = 3;
 
 interface ToastItem extends ToastOptions {
   id: string;
@@ -16,16 +16,18 @@ interface ToastItem extends ToastOptions {
 }
 
 interface ToastProviderProps {
+  anchor?: string;
   children: ReactNode;
 }
 
 const createToastId = () =>
   `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 
-const ToastProvider = ({ children }: ToastProviderProps) => {
+const ToastProvider = ({ anchor, children }: ToastProviderProps) => {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
   const dismissTimeoutsRef = useRef<Map<string, number>>(new Map());
   const removeTimeoutsRef = useRef<Map<string, number>>(new Map());
+  const autoDismissRef = useRef<Map<string, () => void>>(new Map());
 
   const clearToastTimers = useCallback((id: string) => {
     const dismissTimeout = dismissTimeoutsRef.current.get(id);
@@ -42,6 +44,13 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
     }
   }, []);
 
+  const fireAutoDismiss = useCallback((id: string) => {
+    const onAutoDismiss = autoDismissRef.current.get(id);
+
+    autoDismissRef.current.delete(id);
+    onAutoDismiss?.();
+  }, []);
+
   const removeToast = useCallback(
     (id: string) => {
       clearToastTimers(id);
@@ -50,7 +59,7 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
     [clearToastTimers],
   );
 
-  const hideToast = useCallback(
+  const startLeaving = useCallback(
     (id: string) => {
       setToasts((prevToasts) =>
         prevToasts.map((toast) =>
@@ -67,38 +76,43 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
     [removeToast],
   );
 
+  const hideToast = useCallback(
+    (id: string) => {
+      autoDismissRef.current.delete(id);
+      startLeaving(id);
+    },
+    [startLeaving],
+  );
+
   const showToast = useCallback(
-    ({ message, icon }: ToastOptions) => {
+    (options: ToastOptions) => {
       const id = createToastId();
 
-      setToasts((prevToasts) => {
-        const nextToasts = [
-          ...prevToasts,
-          { id, message, icon, isLeaving: false },
-        ];
-        const exceededToasts = nextToasts.slice(0, -MAX_VISIBLE_TOASTS);
+      if (options.onAutoDismiss) {
+        autoDismissRef.current.set(id, options.onAutoDismiss);
+      }
 
-        exceededToasts.forEach((toast) => {
-          clearToastTimers(toast.id);
-        });
-
-        return nextToasts.slice(-MAX_VISIBLE_TOASTS);
-      });
+      setToasts((prevToasts) => [
+        ...prevToasts,
+        { ...options, id, isLeaving: false },
+      ]);
 
       const dismissTimeout = window.setTimeout(() => {
-        hideToast(id);
+        fireAutoDismiss(id);
+        startLeaving(id);
       }, TOAST_DURATION);
 
       dismissTimeoutsRef.current.set(id, dismissTimeout);
 
       return id;
     },
-    [clearToastTimers, hideToast],
+    [fireAutoDismiss, startLeaving],
   );
 
   useEffect(() => {
     const dismissTimeouts = dismissTimeoutsRef.current;
     const removeTimeouts = removeTimeoutsRef.current;
+    const autoDismisses = autoDismissRef.current;
 
     return () => {
       dismissTimeouts.forEach((timeout) => {
@@ -107,16 +121,23 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
       removeTimeouts.forEach((timeout) => {
         window.clearTimeout(timeout);
       });
+
+      autoDismisses.clear();
     };
   }, []);
 
   return (
     <ToastContext.Provider value={{ showToast, hideToast }}>
       {children}
-      <div className={styles.viewport}>
-        {toasts.map(({ id, message, icon, isLeaving }) => (
+      <div
+        className={styles.viewport({ anchored: Boolean(anchor) })}
+        style={
+          anchor ? assignInlineVars({ [styles.anchor]: anchor }) : undefined
+        }
+      >
+        {toasts.map(({ id, message, icon, action, isLeaving }) => (
           <div key={id} className={styles.toastItem({ leaving: isLeaving })}>
-            <Toast message={message} icon={icon} />
+            <Toast message={message} icon={icon} action={action} />
           </div>
         ))}
       </div>

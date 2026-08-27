@@ -3,5 +3,32 @@
   "tab": {
     "career": "Nghề nghiệp",
     "visa": "Visa"
+  },
+  "dueIn_other": "Còn {{count}} ngày",
+  "dueToday": "Đến hạn hôm nay",
+  "overdue": "Quá hạn",
+  "completed": {
+    "label": "Đã hoàn thành"
+  },
+  "menu": {
+    "trigger": "Mở menu công việc",
+    "edit": "Sửa",
+    "delete": "Xóa"
+  },
+  "form": {
+    "placeholder": "Nhập công việc của bạn",
+    "titleLabel": "Tên công việc",
+    "daysLabel": "Số ngày còn lại",
+    "dueIn": "Còn <days></days> ngày",
+    "error": {
+      "titleRequired": "Vui lòng nhập công việc",
+      "titleTooLong": "Tiêu đề tối đa {{max}} ký tự",
+      "daysRequired": "Vui lòng nhập hạn chót",
+      "daysInvalid": "Nhập số từ {{min}} trở lên"
+    }
+  },
+  "toast": {
+    "deleted": "Đã xóa 1 công việc",
+    "undo": "Hoàn tác"
   }
 }

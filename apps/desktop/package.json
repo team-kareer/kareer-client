@@ -1,0 +1,23 @@
+{
+  "name": "desktop",
+  "productName": "Kareer",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Desktop application",
+  "main": "dist/src/main.js",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "make:mac": "pnpm build && node dist/scripts/make-macos.js",
+    "start": "pnpm build && electron ."
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.4",
+    "@kareer/typescript-config": "workspace:*",
+    "@kds/icons": "workspace:*",
+    "@types/node": "catalog:",
+    "electron": "^43.2.0",
+    "typescript": "catalog:"
+  }
+}

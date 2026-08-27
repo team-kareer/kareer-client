@@ -1,36 +1,31 @@
-import { useEffect, useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { FormProvider, useForm, useWatch } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
+  CareerPreference,
   createStepData,
   EducationStep,
+  IdentityVisaVerification,
   LanguageSkillStep,
   OnboardingStepLayout,
   PersonalBackgroundStep,
 } from '@widgets/onboarding';
-import CareerPreference from '@widgets/onboarding/ui/step/career-preference/career-preference';
-import IdentityVisaVerification from '@widgets/onboarding/ui/step/identity-visaVerification/identity-visaVerification';
 import type { PostOnboardingForm } from '@features/onboarding';
-import { ONBOARDING_MUTATION_OPTIONS } from '@features/onboarding/queries';
 import {
   convertFormToRequest,
   DEFAULT_ONBOARDING_FORM,
   FUNNEL_STEPS,
-  getRequiredFieldsForStep,
-  hasAllRequiredFieldValues,
   OnboardingForm,
 } from '@entities/onboarding';
-import { USER_QUERY_KEY } from '@entities/user/queries';
 import useFunnel from '@shared/hooks/usefunnel';
+
+import useOnboardingStepValidation from './hooks/useOnboardingStepValidation';
+import useOnboardingSubmit from './hooks/useOnboardingSubmit';
 
 const OnboardingPage = () => {
   const { t } = useTranslation('onboarding');
-  const queryClient = useQueryClient();
   const { Funnel, Step, goToNextStep, goToPrevStep, currentStepIndex } =
     useFunnel(FUNNEL_STEPS, '/');
-  const [error, setError] = useState<Error | null>(null);
 
   const form = useForm<OnboardingForm>({
     mode: 'onChange',
@@ -38,50 +33,12 @@ const OnboardingPage = () => {
     defaultValues: DEFAULT_ONBOARDING_FORM,
   });
 
-  // 버튼 비활성화 로직
-  const requiredFields = getRequiredFieldsForStep(currentStepIndex);
-
-  // 현재 단계의 필수 필드만 감시
-  const watchedRequiredFields = useWatch({
-    control: form.control,
-    name: requiredFields,
+  const { requiredFields, isNextDisabled } = useOnboardingStepValidation({
+    form,
+    currentStepIndex,
   });
 
-  // 전체 폼 값 감시
-  const allFormValues = useWatch({
-    control: form.control,
-  }) as OnboardingForm;
-
-  // 길이 체크
-  const personalBackground = useWatch({
-    control: form.control,
-    name: 'personalBackground',
-  });
-  const isPersonalBackgroundOverLimit =
-    currentStepIndex === FUNNEL_STEPS.length - 1 &&
-    (personalBackground?.length || 0) > 1000;
-
-  // 모든 필드 존재 체크
-  const hasAllRequiredValues = hasAllRequiredFieldValues(
-    { ...allFormValues, ...watchedRequiredFields } as OnboardingForm,
-    requiredFields,
-  );
-
-  const hasStepErrors = requiredFields.some((fieldName) =>
-    Boolean(form.formState.errors[fieldName]),
-  );
-
-  const isNextDisabled =
-    form.formState.isLoading ||
-    !hasAllRequiredValues ||
-    hasStepErrors ||
-    isPersonalBackgroundOverLimit;
-
-  useEffect(() => {
-    if (error) {
-      throw error;
-    }
-  }, [error]);
+  const { submitOnboarding } = useOnboardingSubmit({ goToNextStep });
 
   const steps = createStepData(
     [
@@ -97,26 +54,6 @@ const OnboardingPage = () => {
   const handleBack = () => {
     goToPrevStep();
   };
-
-  // 로드맵 생성 mutation
-  const { mutate: generateRoadmap } = useMutation({
-    ...ONBOARDING_MUTATION_OPTIONS.POST_AI_ROADMAP(),
-  });
-
-  const { mutate: submitOnboarding } = useMutation({
-    ...ONBOARDING_MUTATION_OPTIONS.POST_ONBOARDING_FORM(),
-    onSuccess: async () => {
-      await queryClient.refetchQueries({
-        queryKey: USER_QUERY_KEY.USER_COMPLETION(),
-      });
-      // 온보딩 성공 후 로드맵 생성 API 호출
-      generateRoadmap();
-      goToNextStep();
-    },
-    onError: (error) => {
-      setError(error instanceof Error ? error : new Error('온보딩 제출 실패'));
-    },
-  });
 
   const handleNext = async () => {
     const isValid = await form.trigger(requiredFields);

@@ -1,6 +1,6 @@
 export * from './constants';
 export * from './degree';
-export { END_POINT } from './end_point';
+export { END_POINT } from './end-point';
 export * from './form-to-request';
 export * from './job-skills';
 export * from './options';

@@ -1,7 +1,11 @@
 import { themeVars, typography } from '@kds/ui/styles';
 import { style } from '@vanilla-extract/css';
 
+import { TODO_PANEL_ANCHOR } from '@shared/constants/TODO_PANEL_ANCHOR';
+
 export const container = style({
+  anchorName: TODO_PANEL_ANCHOR,
+
   display: 'flex',
   flexDirection: 'column',
   flexShrink: 0,
@@ -31,6 +35,6 @@ export const tabList = style({
 export const tabPanel = style({
   display: 'flex',
   flexDirection: 'column',
+  gap: '1.6rem',
   marginTop: '1.6rem',
-  gap: '0.4rem',
 });

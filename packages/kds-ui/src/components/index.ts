@@ -20,3 +20,4 @@ export { default as Toast } from './toast/toast';
 export type { ToastContextValue } from './toast/toast-context';
 export { ToastContext } from './toast/toast-context';
 export { default as ToastProvider } from './toast/toast-provider';
+export type { ToastOptions } from './toast/types/toast-type';

@@ -3,5 +3,32 @@
   "tab": {
     "career": "커리어",
     "visa": "비자"
+  },
+  "dueIn_other": "{{count}}일 남음",
+  "dueToday": "오늘 마감",
+  "overdue": "기한 지남",
+  "completed": {
+    "label": "완료됨"
+  },
+  "menu": {
+    "trigger": "할 일 메뉴 열기",
+    "edit": "수정",
+    "delete": "삭제"
+  },
+  "form": {
+    "placeholder": "할 일을 입력하세요",
+    "titleLabel": "할 일 제목",
+    "daysLabel": "마감까지 남은 일수",
+    "dueIn": "<days></days>일 후",
+    "error": {
+      "titleRequired": "할 일을 입력해주세요",
+      "titleTooLong": "제목은 {{max}}자까지 입력할 수 있어요",
+      "daysRequired": "마감일을 입력해주세요",
+      "daysInvalid": "{{min}}일 이상으로 입력해주세요"
+    }
+  },
+  "toast": {
+    "deleted": "할 일 1개를 삭제했어요",
+    "undo": "실행 취소"
   }
 }

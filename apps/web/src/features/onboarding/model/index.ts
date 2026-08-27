@@ -1,6 +1,5 @@
 export { END_POINT } from './end-point';
 export {
-  type PostAiRoadMapResponse,
   type PostOcrPassportResponse,
   type PostOcrVisaResponse,
   type PostOnboardingForm,

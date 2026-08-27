@@ -3,5 +3,32 @@
   "tab": {
     "career": "职业",
     "visa": "签证"
+  },
+  "dueIn_other": "还剩 {{count}} 天",
+  "dueToday": "今天截止",
+  "overdue": "已逾期",
+  "completed": {
+    "label": "已完成"
+  },
+  "menu": {
+    "trigger": "打开任务菜单",
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "form": {
+    "placeholder": "请输入待办事项",
+    "titleLabel": "待办标题",
+    "daysLabel": "距离截止的天数",
+    "dueIn": "<days></days> 天后截止",
+    "error": {
+      "titleRequired": "请输入待办事项",
+      "titleTooLong": "标题最多 {{max}} 个字符",
+      "daysRequired": "请输入截止日期",
+      "daysInvalid": "请输入 {{min}} 以上的数字"
+    }
+  },
+  "toast": {
+    "deleted": "已删除 1 项待办",
+    "undo": "撤销"
   }
 }

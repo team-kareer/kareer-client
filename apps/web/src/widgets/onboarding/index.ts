@@ -15,7 +15,9 @@ export { default as OnboardingStep } from './ui/onboarding-step/onboarding-step'
 export { default as OnboardingStepHeader } from './ui/onboarding-step-header/onboarding-step-header';
 export { default as OnboardingStepLayout } from './ui/onboarding-step-layout/onboarding-step-layout';
 export { default as OnboardingStepTitle } from './ui/onboarding-step-title/onboarding-step-title';
+export { default as CareerPreference } from './ui/step/career-preference/career-preference';
 export { default as EducationStep } from './ui/step/education/education';
+export { default as IdentityVisaVerification } from './ui/step/identity-visaVerification/identity-visaVerification';
 export { default as LanguageSkillStep } from './ui/step/language-skills/language-skills';
 export { default as PersonalBackgroundStep } from './ui/step/personal-backgorund/personal-background';
 export { default as PersonalInformationStep } from './ui/step/personal-information/personal-information';

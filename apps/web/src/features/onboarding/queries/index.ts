@@ -1,1 +1,4 @@
-export { ONBOARDING_MUTATION_OPTIONS } from './queries';
+export {
+  ONBOARDING_MUTATION_OPTIONS,
+  ROADMAP_GENERATION_MUTATION_KEY,
+} from './queries';
