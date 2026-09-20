@@ -10,8 +10,19 @@ import {
 } from './constants';
 import type { DateSchemaOptions, Option, TextSchemaOptions } from './types';
 
+/**
+ * 공백 문자를 제외한 입력 내용이 있는지 확인
+ * @param value 검사할 문자열
+ * @returns 공백만 있거나 빈 문자열이면 true
+ */
 const isBlank = (value: string) => value.trim().length === 0;
 
+/**
+ * YYYY-MM-DD 형식의 날짜 문자열이 실제 존재하는 날짜인지 확인
+ * 문자열을 연-월-일로 분리해 로컬 Date를 생성 후 일치하는지 비교
+ * @param value 형식 검증을 통과한 날짜 문자열
+ * @returns 실제 존재하는 날짜이면 true
+ */
 const isRealDate = (value: string) => {
   const [year, month, day] = value.split('-').map(Number) as [
     number,
@@ -27,6 +38,11 @@ const isRealDate = (value: string) => {
   );
 };
 
+/**
+ * YYYY-MM-DD 문자열을 Date 객체로 변환
+ * @param value 형식 검증을 통과한 날짜 문자열
+ * @returns 로컬 날짜를 나타내는 Date 객체
+ */
 const toLocalDate = (value: string) => {
   const [year, month, day] = value.split('-').map(Number) as [
     number,
