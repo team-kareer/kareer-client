@@ -20,11 +20,7 @@ type DateParts = [year: number, month: number, day: number];
  * @returns year/month/day
  */
 const parseDateParts = (value: string): DateParts => {
-  const [year, month, day] = value.split('-').map(Number) as [
-    number,
-    number,
-    number,
-  ];
+  const [year, month, day] = value.split('-').map(Number) as DateParts;
   return [year, month, day];
 };
 
