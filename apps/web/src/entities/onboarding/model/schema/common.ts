@@ -10,6 +10,24 @@ import {
 } from './constants';
 import type { DateSchemaOptions, Option, TextSchemaOptions } from './types';
 
+type DateParts = [year: number, month: number, day: number];
+
+/**
+ * YYYY-MM-DD 형식의 날짜 문자열을 연/월/일 숫자 구성값으로 변환
+ * 날짜 검증 & 로컬 Date 생성할때 반복되는 Spit('-')를 한곳에서 처리
+ *
+ * @param value 검증을 통과한 날짜 문자열
+ * @returns year/month/day
+ */
+const parseDateParts = (value: string): DateParts => {
+  const [year, month, day] = value.split('-').map(Number) as [
+    number,
+    number,
+    number,
+  ];
+  return [year, month, day];
+};
+
 /**
  * 공백 문자를 제외한 입력 내용이 있는지 확인
  * @param value 검사할 문자열
@@ -23,17 +41,13 @@ const isBlank = (value: string) => value.trim().length === 0;
  * @param value 형식 검증을 통과한 날짜 문자열
  * @returns 실제 존재하는 날짜이면 true
  */
-const isRealDate = (value: string) => {
-  const [year, month, day] = value.split('-').map(Number) as [
-    number,
-    number,
-    number,
-  ];
+const isRealDate = (value: string): boolean => {
+  const [year, month, day] = parseDateParts(value);
   const date = new Date(year, month - 1, day);
 
   return (
     date.getFullYear() === year &&
-    date.getMonth() === month - 1 &&
+    date.getMonth() + 1 === month &&
     date.getDate() === day
   );
 };
@@ -43,12 +57,8 @@ const isRealDate = (value: string) => {
  * @param value 형식 검증을 통과한 날짜 문자열
  * @returns 로컬 날짜를 나타내는 Date 객체
  */
-const toLocalDate = (value: string) => {
-  const [year, month, day] = value.split('-').map(Number) as [
-    number,
-    number,
-    number,
-  ];
+const toLocalDate = (value: string): Date => {
+  const [year, month, day] = parseDateParts(value);
   return new Date(year, month - 1, day);
 };
 
