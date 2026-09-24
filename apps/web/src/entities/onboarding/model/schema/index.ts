@@ -11,3 +11,7 @@ export {
   createIdentityVisaSchema,
   type IdentityVisaSchemaOptions,
 } from './steps/identity-visa';
+export {
+  createLanguageSkillsSchema,
+  type LanguageSkillsSchemaOptions,
+} from './steps/language-skills';
