@@ -5,6 +5,7 @@ export type ValidationMessages = {
 };
 
 export type DateValidationMessages = {
+  required: string;
   invalidFormat: string;
   invalidDate: string;
   futureNotAllowed: string;
@@ -26,4 +27,9 @@ export type DateSchemaOptions = {
 
 export type Option = {
   code?: string;
+};
+
+export type OptionSchemaOptions = {
+  options: Option[];
+  messages: Pick<ValidationMessages, 'empty' | 'invalid'>;
 };
