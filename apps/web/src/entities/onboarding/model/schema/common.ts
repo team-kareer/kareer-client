@@ -24,7 +24,7 @@ const isBlank = (value: string) => value.trim().length === 0;
 
 /**
  * 텍스트 입력값 검증
- * @param options - 오류 메시지, 최대 길이, 숫자 및 기본 특수문자 허용 여부
+ * @param options - 오류 메시지, 최대 길이, 숫자 및 기본 특수문자, 빈 문자열 허용 여부
  * @description
  * - 공백만 있는 값
  * - 최대 길이
@@ -37,6 +37,7 @@ export const createTextSchema = ({
   maxLength,
   allowNumber = false,
   allowBasicSpecialCharacters = false,
+  allowEmpty = false,
 }: TextSchemaOptions) => {
   let allowedCharacters = LETTER + SPACE + NEW_LINE;
 
@@ -50,6 +51,10 @@ export const createTextSchema = ({
   const allowedCharacterPattern = new RegExp(`^[${allowedCharacters}]+$`, 'u');
 
   return z.string().superRefine((value, context) => {
+    if (allowEmpty && value === '') {
+      return;
+    }
+
     if (isBlank(value)) {
       context.addIssue({ code: 'custom', message: messages.empty });
       return;

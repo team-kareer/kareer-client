@@ -17,6 +17,7 @@ export type TextSchemaOptions = {
   maxLength?: number;
   allowNumber?: boolean;
   allowBasicSpecialCharacters?: boolean;
+  allowEmpty?: boolean;
 };
 
 export type DateSchemaOptions = {
