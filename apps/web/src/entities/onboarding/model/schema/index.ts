@@ -4,6 +4,10 @@ export {
   createTextSchema,
 } from './common';
 export {
+  type CareerPreferenceSchemaOptions,
+  createCareerPreferenceSchema,
+} from './steps/career-preference';
+export {
   createEducationSchema,
   type EducationSchemaOptions,
 } from './steps/education';
