@@ -8,7 +8,7 @@ import {
   NUMBER,
   SPACE,
 } from './constants';
-import { isRealDate, toLocalDate } from './date';
+import { getToday, isRealDate, toLocalDate } from './date';
 import type {
   DateSchemaOptions,
   OptionSchemaOptions,
@@ -106,8 +106,9 @@ export const createDateSchema = ({
     }
 
     const inputDate = toLocalDate(value);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const today = getToday();
+    // const today = new Date();
+    // today.setHours(0, 0, 0, 0);
 
     if (!allowFuture && inputDate > today) {
       context.addIssue({
