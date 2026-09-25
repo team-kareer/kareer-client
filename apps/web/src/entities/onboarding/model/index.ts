@@ -5,6 +5,7 @@ export * from './form-to-request';
 export * from './job-skills';
 export * from './options';
 export * from './personal-background';
+export * from './schema';
 export * from './target-job-skills';
 export {
   type GetCountryListResponse,
