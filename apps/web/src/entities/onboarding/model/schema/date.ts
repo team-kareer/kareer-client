@@ -28,3 +28,10 @@ export const isRealDate = (value: string): boolean => {
     date.getDate() === day
   );
 };
+
+export const getToday = () => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return today;
+};
