@@ -31,23 +31,11 @@ export type EducationSchemaOptions = {
     primaryMajorCode: ValidationMessages;
     secondaryMajor: ValidationMessages;
     degreeLocation: ValidationMessages;
-    degree: ValidationMessages & {
-      invalidForLocation: string;
-    };
+    degree: ValidationMessages;
     visaType: ValidationMessages;
     expectedGraduationDate: DateValidationMessages;
   };
 };
-
-/**
- * 학위 취득 지역에 맞는 학위 목록 반환
- * @param degreeLocation - 한국 / 해외 학위
- * @returns 해당 지역에서 선택할 수 있는 학위 목록
- */
-const getDegreeOptions = (degreeLocation: string) =>
-  degreeLocation === 'south-korea'
-    ? SOUTH_KOREA_DEGREE_OPTIONS
-    : OUTSIDE_KOREA_DEGREE_OPTIONS;
 
 /**
  * 오늘 날짜를 시간 정보 없이 로컬 Date로 반환
@@ -98,22 +86,6 @@ export const createEducationSchema = ({
       }),
     })
     .superRefine((value, context) => {
-      if (
-        DEGREE_LOCATIONS.includes(
-          value.degreeLocation as (typeof DEGREE_LOCATIONS)[number],
-        )
-      ) {
-        const degreeOptions = getDegreeOptions(value.degreeLocation);
-
-        if (!degreeOptions.includes(value.degree)) {
-          context.addIssue({
-            code: 'custom',
-            path: ['degree'],
-            message: messages.degree.invalidForLocation,
-          });
-        }
-      }
-
       if (!isRealDate(value.expectedGraduationDate)) {
         return;
       }
