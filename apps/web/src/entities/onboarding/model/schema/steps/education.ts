@@ -37,17 +37,6 @@ export type EducationSchemaOptions = {
   };
 };
 
-/**
- * 오늘 날짜를 시간 정보 없이 로컬 Date로 반환
- * @returns 로컬 자정 기준의 오늘 날짜
- */
-// const getToday = () => {
-//   const today = new Date();
-//   today.setHours(0, 0, 0, 0);
-
-//   return today;
-// };
-
 export const createEducationSchema = ({
   universities,
   majors,
