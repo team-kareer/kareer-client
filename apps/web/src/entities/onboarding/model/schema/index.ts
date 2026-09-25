@@ -4,6 +4,10 @@ export {
   createTextSchema,
 } from './common';
 export {
+  type BackgroundSchemaOptions,
+  createBackgroundSchema,
+} from './steps/background';
+export {
   type CareerPreferenceSchemaOptions,
   createCareerPreferenceSchema,
 } from './steps/career-preference';
