@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-import { TARGET_JOB_OPTIONS } from '../../options';
-import { createFixedOptionSchema } from '../common';
-import type { ValidationMessages } from '../types';
+import { TARGET_JOB_OPTIONS } from '@entities/onboarding/model/options';
+import { createFixedOptionSchema } from '@entities/onboarding/model/schema/common';
+import type { ValidationMessages } from '@entities/onboarding/model/schema/types';
 
 export type CareerPreferenceSchemaOptions = {
   messages: {

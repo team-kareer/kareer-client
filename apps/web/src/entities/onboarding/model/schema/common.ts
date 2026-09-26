@@ -7,14 +7,18 @@ import {
   NEW_LINE,
   NUMBER,
   SPACE,
-} from './constants';
-import { getToday, isRealDate, toLocalDate } from './date';
+} from '@entities/onboarding/model/schema/constants';
+import {
+  getToday,
+  isRealDate,
+  toLocalDate,
+} from '@entities/onboarding/model/schema/date';
 import type {
   DateSchemaOptions,
   FixedOptionSchemaOptions,
   OptionSchemaOptions,
   TextSchemaOptions,
-} from './types';
+} from '@entities/onboarding/model/schema/types';
 
 /**
  * 공백 문자를 제외한 입력 내용이 있는지 확인

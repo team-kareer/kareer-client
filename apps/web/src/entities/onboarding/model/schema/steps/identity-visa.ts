@@ -1,18 +1,18 @@
 import { z } from 'zod';
 
-import { VISA_TYPE_OPTIONS } from '../../options';
+import { VISA_TYPE_OPTIONS } from '@entities/onboarding/model/options';
 import {
   createDateSchema,
   createFixedOptionSchema,
   createOptionSchema,
   createTextSchema,
-} from '../common';
-import { isRealDate, toLocalDate } from '../date';
+} from '@entities/onboarding/model/schema/common';
+import { isRealDate, toLocalDate } from '@entities/onboarding/model/schema/date';
 import type {
   DateValidationMessages,
   Option,
   ValidationMessages,
-} from '../types';
+} from '@entities/onboarding/model/schema/types';
 
 const D10_ALLOWED_MONTHS = [6, 12, 18, 24, 30, 36];
 

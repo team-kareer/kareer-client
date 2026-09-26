@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { createTextSchema } from '../common';
-import type { ValidationMessages } from '../types';
+import { createTextSchema } from '@entities/onboarding/model/schema/common';
+import type { ValidationMessages } from '@entities/onboarding/model/schema/types';
 
 export type BackgroundSchemaOptions = {
   messages: {

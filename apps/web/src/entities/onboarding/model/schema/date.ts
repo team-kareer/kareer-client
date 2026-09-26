@@ -1,4 +1,4 @@
-import { COMPLETE_DATE_FORMAT } from './constants';
+import { COMPLETE_DATE_FORMAT } from '@entities/onboarding/model/schema/constants';
 
 type DateParts = [year: number, month: number, day: number];
 

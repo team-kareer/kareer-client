@@ -1,18 +1,25 @@
 import { z } from 'zod';
 
-import { SOUTH_KOREA_DEGREE_OPTIONS, VISA_TYPE_OPTIONS } from '../../options';
+import {
+  SOUTH_KOREA_DEGREE_OPTIONS,
+  VISA_TYPE_OPTIONS,
+} from '@entities/onboarding/model/options';
 import {
   createDateSchema,
   createFixedOptionSchema,
   createOptionSchema,
   createTextSchema,
-} from '../common';
-import { getToday, isRealDate, toLocalDate } from '../date';
+} from '@entities/onboarding/model/schema/common';
+import {
+  getToday,
+  isRealDate,
+  toLocalDate,
+} from '@entities/onboarding/model/schema/date';
 import type {
   DateValidationMessages,
   Option,
   ValidationMessages,
-} from '../types';
+} from '@entities/onboarding/model/schema/types';
 
 const DEGREE_LOCATIONS = ['south-korea', 'outside-korea'] as const;
 

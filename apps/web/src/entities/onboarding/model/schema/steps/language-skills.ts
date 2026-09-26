@@ -3,9 +3,9 @@ import { z } from 'zod';
 import {
   ENGLISH_PROFICIENCY_OPTIONS,
   LANGUAGE_LEVEL_OPTIONS,
-} from '../../options';
-import { createFixedOptionSchema } from '../common';
-import type { ValidationMessages } from '../types';
+} from '@entities/onboarding/model/options';
+import { createFixedOptionSchema } from '@entities/onboarding/model/schema/common';
+import type { ValidationMessages } from '@entities/onboarding/model/schema/types';
 
 export type LanguageSkillsSchemaOptions = {
   messages: {

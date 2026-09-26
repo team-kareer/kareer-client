@@ -8,7 +8,7 @@ import {
   LANGUAGE_LEVEL_OPTIONS,
 } from '@entities/onboarding';
 
-import * as styles from './language-skills.css';
+import * as styles from '@widgets/onboarding/ui/step/language-skills/language-skills.css';
 
 const LANGUAGE_LEVEL_LABEL_KEYS: Record<string, string> = {
   LEVEL_1: 'options.languageLevel.level1',

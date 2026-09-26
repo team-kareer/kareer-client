@@ -2,24 +2,24 @@ export {
   createDateSchema,
   createOptionSchema,
   createTextSchema,
-} from './common';
+} from '@entities/onboarding/model/schema/common';
 export {
   type BackgroundSchemaOptions,
   createBackgroundSchema,
-} from './steps/background';
+} from '@entities/onboarding/model/schema/steps/background';
 export {
   type CareerPreferenceSchemaOptions,
   createCareerPreferenceSchema,
-} from './steps/career-preference';
+} from '@entities/onboarding/model/schema/steps/career-preference';
 export {
   createEducationSchema,
   type EducationSchemaOptions,
-} from './steps/education';
+} from '@entities/onboarding/model/schema/steps/education';
 export {
   createIdentityVisaSchema,
   type IdentityVisaSchemaOptions,
-} from './steps/identity-visa';
+} from '@entities/onboarding/model/schema/steps/identity-visa';
 export {
   createLanguageSkillsSchema,
   type LanguageSkillsSchemaOptions,
-} from './steps/language-skills';
+} from '@entities/onboarding/model/schema/steps/language-skills';
