@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  OUTSIDE_KOREA_DEGREE_OPTIONS,
-  SOUTH_KOREA_DEGREE_OPTIONS,
-  VISA_TYPE_OPTIONS,
-} from '../../options';
+import { SOUTH_KOREA_DEGREE_OPTIONS, VISA_TYPE_OPTIONS } from '../../options';
 import {
   createDateSchema,
   createOptionSchema,
@@ -18,10 +14,6 @@ import type {
 } from '../types';
 
 const DEGREE_LOCATIONS = ['south-korea', 'outside-korea'] as const;
-const DEGREE_LOCATION_OPTIONS = DEGREE_LOCATIONS.map((code) => ({ code }));
-const DEGREE_OPTIONS = [
-  ...new Set([...SOUTH_KOREA_DEGREE_OPTIONS, ...OUTSIDE_KOREA_DEGREE_OPTIONS]),
-].map((code) => ({ code }));
 
 export type EducationSchemaOptions = {
   universities: Option[];
@@ -56,17 +48,21 @@ export const createEducationSchema = ({
         messages: messages.secondaryMajor,
         allowEmpty: true,
       }),
-      degreeLocation: createOptionSchema({
-        options: DEGREE_LOCATION_OPTIONS,
-        messages: messages.degreeLocation,
+      degreeLocation: z.enum(DEGREE_LOCATIONS, {
+        error: (issue) =>
+          issue.input === ''
+            ? messages.degreeLocation.empty
+            : messages.degreeLocation.invalid,
       }),
-      degree: createOptionSchema({
-        options: DEGREE_OPTIONS,
-        messages: messages.degree,
+      degree: z.enum(SOUTH_KOREA_DEGREE_OPTIONS, {
+        error: (issue) =>
+          issue.input === '' ? messages.degree.empty : messages.degree.invalid,
       }),
-      visaType: createOptionSchema({
-        options: VISA_TYPE_OPTIONS.map((code) => ({ code })),
-        messages: messages.visaType,
+      visaType: z.enum(VISA_TYPE_OPTIONS, {
+        error: (issue) =>
+          issue.input === ''
+            ? messages.visaType.empty
+            : messages.visaType.invalid,
       }),
       expectedGraduationDate: createDateSchema({
         messages: messages.expectedGraduationDate,

@@ -63,9 +63,11 @@ export const createIdentityVisaSchema = ({
         messages: messages.birthDate,
         allowPast: true,
       }),
-      visaType: createOptionSchema({
-        options: VISA_TYPE_OPTIONS.map((code) => ({ code })),
-        messages: messages.visaType,
+      visaType: z.enum(VISA_TYPE_OPTIONS, {
+        error: (issue) =>
+          issue.input === ''
+            ? messages.visaType.empty
+            : messages.visaType.invalid,
       }),
       visaStartDate: createDateSchema({
         messages: messages.visaStartDate,

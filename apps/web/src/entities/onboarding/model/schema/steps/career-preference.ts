@@ -1,12 +1,7 @@
 import { z } from 'zod';
 
 import { TARGET_JOB_OPTIONS } from '../../options';
-import { createOptionSchema } from '../common';
 import type { ValidationMessages } from '../types';
-
-const TARGET_JOB_OPTION_CODES = TARGET_JOB_OPTIONS.map((code) => ({
-  code,
-}));
 
 export type CareerPreferenceSchemaOptions = {
   messages: {
@@ -35,9 +30,11 @@ export const createCareerPreferenceSchema = ({
           });
         }
       }),
-    targetJob: createOptionSchema({
-      options: TARGET_JOB_OPTION_CODES,
-      messages: messages.targetJob,
+    targetJob: z.enum(TARGET_JOB_OPTIONS, {
+      error: (issue) =>
+        issue.input === ''
+          ? messages.targetJob.empty
+          : messages.targetJob.invalid,
     }),
     targetJobSkill: z.string(),
   });
