@@ -77,16 +77,15 @@ export const createIdentityVisaSchema = ({
       }),
     })
     .superRefine((value, context) => {
-      const startDate = isRealDate(value.visaStartDate)
-        ? toLocalDate(value.visaStartDate)
-        : undefined;
-      const expirationDate = isRealDate(value.visaExpiredAt)
-        ? toLocalDate(value.visaExpiredAt)
-        : undefined;
-
-      if (!startDate || !expirationDate) {
+      if (
+        !isRealDate(value.visaStartDate) ||
+        !isRealDate(value.visaExpiredAt)
+      ) {
         return;
       }
+
+      const startDate = toLocalDate(value.visaStartDate);
+      const expirationDate = toLocalDate(value.visaExpiredAt);
 
       if (startDate > expirationDate) {
         context.addIssue({

@@ -107,8 +107,6 @@ export const createDateSchema = ({
 
     const inputDate = toLocalDate(value);
     const today = getToday();
-    // const today = new Date();
-    // today.setHours(0, 0, 0, 0);
 
     if (!allowFuture && inputDate > today) {
       context.addIssue({
