@@ -11,6 +11,7 @@ import {
 import { getToday, isRealDate, toLocalDate } from './date';
 import type {
   DateSchemaOptions,
+  FixedOptionSchemaOptions,
   OptionSchemaOptions,
   TextSchemaOptions,
 } from './types';
@@ -142,4 +143,17 @@ export const createOptionSchema = ({
     if (!options.some((option) => option.code === value)) {
       context.addIssue({ code: 'custom', message: messages.invalid });
     }
+  });
+
+/**
+ * 고정된 옵션 코드 검증
+ * @param options - 허용할 목록
+ * @param messages - 오류 메시지
+ */
+export const createFixedOptionSchema = <const T extends readonly string[]>({
+  options,
+  messages,
+}: FixedOptionSchemaOptions<T>) =>
+  z.enum(options, {
+    error: (issue) => (issue.input === '' ? messages.empty : messages.invalid),
   });

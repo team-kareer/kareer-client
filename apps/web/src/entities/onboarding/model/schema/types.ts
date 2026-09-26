@@ -34,3 +34,8 @@ export type OptionSchemaOptions = {
   options: Option[];
   messages: Pick<ValidationMessages, 'empty' | 'invalid'>;
 };
+
+export type FixedOptionSchemaOptions<T extends readonly string[]> = {
+  options: T;
+  messages: OptionSchemaOptions['messages'];
+};
