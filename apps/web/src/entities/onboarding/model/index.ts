@@ -1,11 +1,12 @@
-export * from './constants';
-export * from './degree';
-export { END_POINT } from './end-point';
-export * from './form-to-request';
-export * from './job-skills';
-export * from './options';
-export * from './personal-background';
-export * from './target-job-skills';
+export * from '@entities/onboarding/model/constants';
+export * from '@entities/onboarding/model/degree';
+export { END_POINT } from '@entities/onboarding/model/end-point';
+export * from '@entities/onboarding/model/form-to-request';
+export * from '@entities/onboarding/model/job-skills';
+export * from '@entities/onboarding/model/options';
+export * from '@entities/onboarding/model/personal-background';
+export * from '@entities/onboarding/model/schema';
+export * from '@entities/onboarding/model/target-job-skills';
 export {
   type GetCountryListResponse,
   type GetFieldListResponse,
@@ -13,6 +14,6 @@ export {
   type GetUniversityListResponse,
   type OnboardingForm,
   type OnboardingFormRequest,
-} from './types';
-export * from './utils';
-export * from './validation';
+} from '@entities/onboarding/model/types';
+export * from '@entities/onboarding/model/utils';
+export * from '@entities/onboarding/model/validation';

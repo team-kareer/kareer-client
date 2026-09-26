@@ -4,16 +4,16 @@ export const LANGUAGE_LEVEL_OPTIONS = [
   'LEVEL_3',
   'LEVEL_4',
   'LEVEL_5',
-  'Not taken yet',
-];
+  'NOT_TAKEN',
+] as const;
 
 export const ENGLISH_PROFICIENCY_OPTIONS = [
   { code: 'BEGINNER', label: 'Beginner' },
   { code: 'INTERMEDIATE', label: 'Intermediate' },
   { code: 'ADVANCED', label: 'Advanced' },
-];
+] as const;
 
-export const VISA_TYPE_OPTIONS = ['D-2', 'D-10'];
+export const VISA_TYPE_OPTIONS = ['D-2', 'D-10'] as const;
 
 export const VISA_TYPE_LABELS: Record<string, string> = {
   'D-2': 'D-2 (Student)',
@@ -25,18 +25,18 @@ export const TARGET_JOB_OPTIONS = [
   'Data Analyst',
   'Marketer',
   'Global Sales',
-];
+] as const;
 
 export const OUTSIDE_KOREA_DEGREE_OPTIONS = [
   "Bachelor's Degree",
   "Master's Degree",
   'Doctoral(PhD)',
-];
+] as const;
 
 export const SOUTH_KOREA_DEGREE_OPTIONS = [
   'Associate Degree',
   ...OUTSIDE_KOREA_DEGREE_OPTIONS,
-];
+] as const;
 
 export const LABEL_AND_LOCATION_TO_DEGREE_MAP: Record<
   string,
