@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { SOUTH_KOREA_DEGREE_OPTIONS, VISA_TYPE_OPTIONS } from '../../options';
 import {
   createDateSchema,
+  createFixedOptionSchema,
   createOptionSchema,
   createTextSchema,
 } from '../common';
@@ -48,21 +49,17 @@ export const createEducationSchema = ({
         messages: messages.secondaryMajor,
         allowEmpty: true,
       }),
-      degreeLocation: z.enum(DEGREE_LOCATIONS, {
-        error: (issue) =>
-          issue.input === ''
-            ? messages.degreeLocation.empty
-            : messages.degreeLocation.invalid,
+      degreeLocation: createFixedOptionSchema({
+        options: DEGREE_LOCATIONS,
+        messages: messages.degreeLocation,
       }),
-      degree: z.enum(SOUTH_KOREA_DEGREE_OPTIONS, {
-        error: (issue) =>
-          issue.input === '' ? messages.degree.empty : messages.degree.invalid,
+      degree: createFixedOptionSchema({
+        options: SOUTH_KOREA_DEGREE_OPTIONS,
+        messages: messages.degree,
       }),
-      visaType: z.enum(VISA_TYPE_OPTIONS, {
-        error: (issue) =>
-          issue.input === ''
-            ? messages.visaType.empty
-            : messages.visaType.invalid,
+      visaType: createFixedOptionSchema({
+        options: VISA_TYPE_OPTIONS,
+        messages: messages.visaType,
       }),
       expectedGraduationDate: createDateSchema({
         messages: messages.expectedGraduationDate,

@@ -4,6 +4,7 @@ import {
   ENGLISH_PROFICIENCY_OPTIONS,
   LANGUAGE_LEVEL_OPTIONS,
 } from '../../options';
+import { createFixedOptionSchema } from '../common';
 import type { ValidationMessages } from '../types';
 
 export type LanguageSkillsSchemaOptions = {
@@ -17,19 +18,12 @@ export const createLanguageSkillsSchema = ({
   messages,
 }: LanguageSkillsSchemaOptions) =>
   z.object({
-    languageLevel: z.enum(LANGUAGE_LEVEL_OPTIONS, {
-      error: (issue) =>
-        issue.input === ''
-          ? messages.languageLevel.empty
-          : messages.languageLevel.invalid,
+    languageLevel: createFixedOptionSchema({
+      options: LANGUAGE_LEVEL_OPTIONS,
+      messages: messages.languageLevel,
     }),
-    englishLevel: z.enum(
-      ENGLISH_PROFICIENCY_OPTIONS.map((option) => option.code),
-      {
-        error: (issue) =>
-          issue.input === ''
-            ? messages.englishLevel.empty
-            : messages.englishLevel.invalid,
-      },
-    ),
+    englishLevel: createFixedOptionSchema({
+      options: ENGLISH_PROFICIENCY_OPTIONS.map((option) => option.code),
+      messages: messages.englishLevel,
+    }),
   });

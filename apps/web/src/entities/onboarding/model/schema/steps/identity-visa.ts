@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { VISA_TYPE_OPTIONS } from '../../options';
 import {
   createDateSchema,
+  createFixedOptionSchema,
   createOptionSchema,
   createTextSchema,
 } from '../common';
@@ -63,11 +64,9 @@ export const createIdentityVisaSchema = ({
         messages: messages.birthDate,
         allowPast: true,
       }),
-      visaType: z.enum(VISA_TYPE_OPTIONS, {
-        error: (issue) =>
-          issue.input === ''
-            ? messages.visaType.empty
-            : messages.visaType.invalid,
+      visaType: createFixedOptionSchema({
+        options: VISA_TYPE_OPTIONS,
+        messages: messages.visaType,
       }),
       visaStartDate: createDateSchema({
         messages: messages.visaStartDate,
