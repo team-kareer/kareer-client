@@ -7,22 +7,18 @@ import {
   NEW_LINE,
   NUMBER,
   SPACE,
-} from './constants';
-import type { DateSchemaOptions, Option, TextSchemaOptions } from './types';
-
-type DateParts = [year: number, month: number, day: number];
-
-/**
- * YYYY-MM-DD 형식의 날짜 문자열을 연/월/일 숫자 구성값으로 변환
- * 날짜 검증 & 로컬 Date 생성할때 반복되는 Spit('-')를 한곳에서 처리
- *
- * @param value 검증을 통과한 날짜 문자열
- * @returns year/month/day
- */
-const parseDateParts = (value: string): DateParts => {
-  const [year, month, day] = value.split('-').map(Number) as DateParts;
-  return [year, month, day];
-};
+} from '@entities/onboarding/model/schema/constants';
+import {
+  getToday,
+  isRealDate,
+  toLocalDate,
+} from '@entities/onboarding/model/schema/date';
+import type {
+  DateSchemaOptions,
+  FixedOptionSchemaOptions,
+  OptionSchemaOptions,
+  TextSchemaOptions,
+} from '@entities/onboarding/model/schema/types';
 
 /**
  * 공백 문자를 제외한 입력 내용이 있는지 확인
@@ -32,35 +28,8 @@ const parseDateParts = (value: string): DateParts => {
 const isBlank = (value: string) => value.trim().length === 0;
 
 /**
- * YYYY-MM-DD 형식의 날짜 문자열이 실제 존재하는 날짜인지 확인
- * 문자열을 연-월-일로 분리해 로컬 Date를 생성 후 일치하는지 비교
- * @param value 형식 검증을 통과한 날짜 문자열
- * @returns 실제 존재하는 날짜이면 true
- */
-const isRealDate = (value: string): boolean => {
-  const [year, month, day] = parseDateParts(value);
-  const date = new Date(year, month - 1, day);
-
-  return (
-    date.getFullYear() === year &&
-    date.getMonth() + 1 === month &&
-    date.getDate() === day
-  );
-};
-
-/**
- * YYYY-MM-DD 문자열을 Date 객체로 변환
- * @param value 형식 검증을 통과한 날짜 문자열
- * @returns 로컬 날짜를 나타내는 Date 객체
- */
-const toLocalDate = (value: string): Date => {
-  const [year, month, day] = parseDateParts(value);
-  return new Date(year, month - 1, day);
-};
-
-/**
  * 텍스트 입력값 검증
- * @param options - 오류 메시지, 최대 길이, 숫자 및 기본 특수문자 허용 여부
+ * @param options - 오류 메시지, 최대 길이, 숫자 및 기본 특수문자, 빈 문자열 허용 여부
  * @description
  * - 공백만 있는 값
  * - 최대 길이
@@ -73,6 +42,7 @@ export const createTextSchema = ({
   maxLength,
   allowNumber = false,
   allowBasicSpecialCharacters = false,
+  allowEmpty = false,
 }: TextSchemaOptions) => {
   let allowedCharacters = LETTER + SPACE + NEW_LINE;
 
@@ -86,6 +56,10 @@ export const createTextSchema = ({
   const allowedCharacterPattern = new RegExp(`^[${allowedCharacters}]+$`, 'u');
 
   return z.string().superRefine((value, context) => {
+    if (allowEmpty && value === '') {
+      return;
+    }
+
     if (isBlank(value)) {
       context.addIssue({ code: 'custom', message: messages.empty });
       return;
@@ -109,10 +83,10 @@ export const createTextSchema = ({
  * 날짜 문자열 검증
  * @param options - 오류 메시지, 과거 & 미래 날짜 허용 여부
  * @description
+ * - 빈 값
  * - YYYY-MM-DD 형식
  * - 실제 존재하는 날짜인지 여부
  * - 금일 기준으로 과거&미래 허용 범위 검증
- * - 빈 값의 필수 여부는 각 스텝 스키마에서 별도로 검증 진행
  * @returns 날짜 문자열 검증용 Zod 스키마
  */
 export const createDateSchema = ({
@@ -122,6 +96,7 @@ export const createDateSchema = ({
 }: DateSchemaOptions) =>
   z.string().superRefine((value, context) => {
     if (!value) {
+      context.addIssue({ code: 'custom', message: messages.required });
       return;
     }
 
@@ -136,8 +111,7 @@ export const createDateSchema = ({
     }
 
     const inputDate = toLocalDate(value);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const today = getToday();
 
     if (!allowFuture && inputDate > today) {
       context.addIssue({
@@ -156,13 +130,34 @@ export const createDateSchema = ({
  * Autocomplete 옵션 검증
  * @param options - code를 기준으로 대조할 옵션 목록
  * @description
- * - 빈 값은 허용하고 값이 있으면 전달받은 옵션과 일치하는지 검증
+ * - 빈 값
+ * - 전달받은 옵션의 code와 일치하는지 여부
  * @returns 옵션 코드 검증용 Zod 스키마
  */
-export const createOptionSchema = (options: Option[]) =>
-  z
-    .string()
-    .refine(
-      (value) => !value || options.some((option) => option.code === value),
-      { message: '' },
-    );
+export const createOptionSchema = ({
+  options,
+  messages,
+}: OptionSchemaOptions) =>
+  z.string().superRefine((value, context) => {
+    if (!value) {
+      context.addIssue({ code: 'custom', message: messages.empty });
+      return;
+    }
+
+    if (!options.some((option) => option.code === value)) {
+      context.addIssue({ code: 'custom', message: messages.invalid });
+    }
+  });
+
+/**
+ * 고정된 옵션 코드 검증
+ * @param options - 허용할 목록
+ * @param messages - 오류 메시지
+ */
+export const createFixedOptionSchema = <const T extends readonly string[]>({
+  options,
+  messages,
+}: FixedOptionSchemaOptions<T>) =>
+  z.enum(options, {
+    error: (issue) => (issue.input === '' ? messages.empty : messages.invalid),
+  });

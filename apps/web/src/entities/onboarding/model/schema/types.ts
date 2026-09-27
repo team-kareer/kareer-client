@@ -5,6 +5,7 @@ export type ValidationMessages = {
 };
 
 export type DateValidationMessages = {
+  required: string;
   invalidFormat: string;
   invalidDate: string;
   futureNotAllowed: string;
@@ -16,6 +17,7 @@ export type TextSchemaOptions = {
   maxLength?: number;
   allowNumber?: boolean;
   allowBasicSpecialCharacters?: boolean;
+  allowEmpty?: boolean;
 };
 
 export type DateSchemaOptions = {
@@ -26,4 +28,14 @@ export type DateSchemaOptions = {
 
 export type Option = {
   code?: string;
+};
+
+export type OptionSchemaOptions = {
+  options: Option[];
+  messages: Pick<ValidationMessages, 'empty' | 'invalid'>;
+};
+
+export type FixedOptionSchemaOptions<T extends readonly string[]> = {
+  options: T;
+  messages: OptionSchemaOptions['messages'];
 };

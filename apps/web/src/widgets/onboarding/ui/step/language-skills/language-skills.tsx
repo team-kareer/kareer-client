@@ -8,7 +8,7 @@ import {
   LANGUAGE_LEVEL_OPTIONS,
 } from '@entities/onboarding';
 
-import * as styles from './language-skills.css';
+import * as styles from '@widgets/onboarding/ui/step/language-skills/language-skills.css';
 
 const LANGUAGE_LEVEL_LABEL_KEYS: Record<string, string> = {
   LEVEL_1: 'options.languageLevel.level1',
@@ -16,7 +16,7 @@ const LANGUAGE_LEVEL_LABEL_KEYS: Record<string, string> = {
   LEVEL_3: 'options.languageLevel.level3',
   LEVEL_4: 'options.languageLevel.level4',
   LEVEL_5: 'options.languageLevel.level5',
-  'Not taken yet': 'options.languageLevel.notTakenYet',
+  NOT_TAKEN: 'options.languageLevel.notTakenYet',
 };
 
 const ENGLISH_LEVEL_LABEL_KEYS: Record<string, string> = {
